@@ -86,7 +86,7 @@ namespace MyAnimePlugin3
 
         #region Public Methods
 
-		public bool ResumeOrPlay(VideoDetailedVM fileToPlay)
+		public bool ResumeOrPlay(VideoLocalVM fileToPlay)
 		{
 			try
 			{
@@ -113,7 +113,7 @@ namespace MyAnimePlugin3
 					if (null != dlgYesNo)
 					{
 						dlgYesNo.SetHeading(GUILocalizeStrings.Get(900)); //resume movie?
-						dlgYesNo.SetLine(1, fileToPlay.FileSelectionDisplay);
+						dlgYesNo.SetLine(1, fileToPlay.FileName);
 						dlgYesNo.SetLine(2, GUILocalizeStrings.Get(936) + " " + MediaPortal.Util.Utils.SecondsToHMSString(timeMovieStopped));
 						dlgYesNo.SetDefaultToYes(true);
 						dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
@@ -135,6 +135,7 @@ namespace MyAnimePlugin3
 			return false;
 		}
 
+		
         public bool ResumeOrPlay(AnimeEpisodeVM episode)
         {
             try

@@ -26,7 +26,7 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(102)] protected GUIButtonControl btnListUnlinkedFiles = null;
 
 		[SkinControlAttribute(6)] protected GUIButtonControl btnRunImport = null;
-		[SkinControlAttribute(7)] protected GUIButtonControl btnScanDropFolder = null;
+		[SkinControlAttribute(7)] protected GUIButtonControl btnRetryUnlinkedFiles = null;
 		[SkinControlAttribute(8)] protected GUIButtonControl btnMoreOptions = null;
 
 		[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
@@ -101,6 +101,10 @@ namespace MyAnimePlugin3.Windows
 			setGUIProperty("Utilities.Status.GeneralQueueState", ev.GeneralQueueState);
 			setGUIProperty("Utilities.Status.GeneralQueueRunning", ev.GeneralQueueRunning ? "Running" : "Paused");
 
+			setGUIProperty("Utilities.Status.ImagesQueueCount", ev.ImagesQueueCount.ToString());
+			setGUIProperty("Utilities.Status.ImagesQueueState", ev.ImagesQueueState);
+			setGUIProperty("Utilities.Status.ImagesQueueRunning", ev.ImagesQueueRunning ? "Running" : "Paused");
+
 		}
 
 
@@ -133,6 +137,22 @@ namespace MyAnimePlugin3.Windows
             }
         }
 
+		private void ShowPageServerStatus()
+		{
+			setGUIProperty("Utilities.CurrentView", "Server Status");
+			if (dummyServerStatus != null) dummyServerStatus.Visible = true;
+			if (dummyListUnlinkedFiles != null) dummyListUnlinkedFiles.Visible = false;
+		}
+
+		private void ShowPageUnlinkedFiles()
+		{
+			setGUIProperty("Utilities.CurrentView", "Unlinked Files");
+			if (dummyServerStatus != null) dummyServerStatus.Visible = false;
+			if (dummyListUnlinkedFiles != null) dummyListUnlinkedFiles.Visible = true;
+
+			RefreshUnlinkedFiles();
+		}
+
 		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
 		{
 			if (MA3WindowManager.HandleWindowChangeButton(control))
@@ -140,40 +160,50 @@ namespace MyAnimePlugin3.Windows
 
 			if (this.btnServerStatus != null && control == this.btnServerStatus)
 			{
-				setGUIProperty("Utilities.CurrentView", "Server Status");
-				if (dummyServerStatus != null) dummyServerStatus.Visible = true;
-				if (dummyListUnlinkedFiles != null) dummyListUnlinkedFiles.Visible = false;
-
+				ShowPageServerStatus();
 				this.btnServerStatus.IsFocused = false;
 				m_Facade.Focus = true;
-
-				//RefreshGroups();
 			}
 
 			if (this.btnListUnlinkedFiles != null && control == this.btnListUnlinkedFiles)
 			{
-				setGUIProperty("Utilities.CurrentView", "Unlinked Files");
-				if (dummyServerStatus != null) dummyServerStatus.Visible = false;
-				if (dummyListUnlinkedFiles != null) dummyListUnlinkedFiles.Visible = true;
-
+				ShowPageUnlinkedFiles();
 				this.btnListUnlinkedFiles.IsFocused = false;
 				m_Facade.Focus = true;
-
-				RefreshUnlinkedFiles();
 			}
 
 			if (this.btnRunImport != null && control == this.btnRunImport)
 			{
-				
 				this.btnRunImport.IsFocused = false;
 				m_Facade.Focus = true;
+				JMMServerVM.Instance.clientBinaryHTTP.RunImport();
+
+				ShowPageServerStatus();
+				
+				Utils.DialogMsg("Done", "Process is running on the server");
                 return;
+			}
+
+			if (this.btnRetryUnlinkedFiles != null && control == this.btnRetryUnlinkedFiles)
+			{
+				this.btnRunImport.IsFocused = false;
+				m_Facade.Focus = true;
+
+				JMMServerVM.Instance.clientBinaryHTTP.RescanUnlinkedFiles();
+
+				ShowPageServerStatus();
+
+				Utils.DialogMsg("Done", "Process is running on the server");
+
+				return;
 			}
 
 			if (this.btnMoreOptions != null && control == this.btnMoreOptions)
 			{
 				ShowMoreOptionsMenu();
 			}
+
+
 
 			if (actionType == MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM)
 				OnShowContextMenu();
@@ -191,11 +221,10 @@ namespace MyAnimePlugin3.Windows
 				dlg.Reset();
 				dlg.SetHeading("Options");
 
-				dlg.Add("Scan Drop Folder");
 				dlg.Add("Remove records without physical file");
-				dlg.Add("Re-scan unrecognized Files");
-				dlg.Add("Rehash unrecognized Files");
-				dlg.Add("Download Votes/Ratings from AniDB");
+				dlg.Add("Sync Votes from AniDB");
+				dlg.Add("Sync MyList from AniDB");
+				dlg.Add("Sync Trakt Info");
 				
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 
@@ -269,7 +298,6 @@ namespace MyAnimePlugin3.Windows
 			if (dummyServerStatus != null) dummyServerStatus.Visible = false;
 			if (dummyListUnlinkedFiles != null) dummyListUnlinkedFiles.Visible = true;
 
-			//RefreshGroups();
 			RefreshUnlinkedFiles();
 
 			if (FirstLoad)
@@ -413,549 +441,54 @@ namespace MyAnimePlugin3.Windows
 
 		protected override void OnShowContextMenu()
 		{
-			/*try
+			try
 			{
 				
-				bool istvdb = false;
-				if (dummyListTvDB != null) istvdb = dummyListTvDB.Visible;
+				GUIListItem currentitem = this.m_Facade.SelectedListItem;
+				if (currentitem == null)
+					return;
 
-				if (istvdb)
-				{
+				VideoLocalVM vid = currentitem.TVTag as VideoLocalVM;
+				if (vid == null)
+					return;
 
+				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+				dlg.Reset();
 
-					GUIListItem currentitem = this.lstFacade.SelectedListItem;
-					if (currentitem == null)
-						return;
+				dlg.SetHeading("File options");			
+				dlg.Add("Play file");
+				//dlg.Add("Rehash file");
+				//dlg.Add("Delete file from disk");
 
-					AnimeGroupVM grp = currentitem.TVTag as AnimeGroup;
-					if (grp == null)
-						return;
-
-					GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-					dlg.Reset();
-
-					dlg.SetHeading("Group options");
-					dlg.Add("Search The TvDB");
-					dlg.Add("Search The MovieDB");
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
-					if (dlg.SelectedId == 1)
-						SearchTheTvDB(grp);
-					else if (dlg.SelectedId == 2)
-						SearchTheMovieDB(grp);
-				}
-				else
-				{
-					GUIListItem currentitem = this.lstFacade.SelectedListItem;
-					if (currentitem == null)
-						return;
-
-					FileLocal file = currentitem.TVTag as FileLocal;
-					if (file == null)
-						return;
-
-					GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-					dlg.Reset();
-
-					dlg.SetHeading("File options");
-                    dlg.Add("Associate episode with file");					
-					dlg.Add("Play file");
-					dlg.Add("Rehash file");
-					dlg.Add("Delete file from disk");
-
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
                    
-
-
-                    if (dlg.SelectedId == 1)
-                    {
-                        // ask the user which series
-                        IDialogbox dlg2 = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-                        dlg2.Reset();
-                        dlg2.SetHeading("Select Series");
-                        GUIListItem pItem2 = null;
-
-                        List<AnimeSeries> seriesList = AnimeSeries.GetAll();
-                        if (seriesList.Count == 0)
-                        {
-                            GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-                            if (null == dlgOK)
-                                return;
-                            dlgOK.SetHeading("Error");
-                            dlgOK.SetLine(1, string.Empty);
-                            dlgOK.SetLine(2, "No series found");
-                            dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-                            return;
-                        }
-						
-						// get a list of animes which closely match by name
-						List<AnimeSeries> suggestedSeries = new List<AnimeSeries>();
-						if (File.Exists(file.FileNameFull))
-						{
-							// check if this file is in the Drop Folder
-							FileInfo fi = new FileInfo(file.FileNameFull);
-
-							suggestedSeries.AddRange(AnimeSeries.BestEightLevenshteinDistanceMatches(fi.Name));
-						}
-						
-
-
-                        // now sort the series by name
-                        List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-                        sortCriteria.Add(new SortPropOrFieldAndDirection("SortName", false, SortType.eString));
-
-                        seriesList = Sorting.MultiSort<AnimeSeries>(seriesList, sortCriteria);
-
-						List<AnimeSeries> displayedSeries = new List<AnimeSeries>();
-
-                        // display the last selected series at the top
-                        if (curAnimeSeries != null)
-                        {
-                            pItem2 = new GUIListItem(curAnimeSeries.FormattedName);
-							displayedSeries.Add(curAnimeSeries);
-                            dlg2.Add(pItem2);
-                        }
-
-						// display suggestions
-						if (suggestedSeries.Count > 0)
-						{
-							pItem2 = new GUIListItem("------ Suggestions ------");
-							displayedSeries.Add(null);
-							dlg2.Add(pItem2);
-
-							foreach (AnimeSeries ser in suggestedSeries)
-							{
-								pItem2 = new GUIListItem(ser.FormattedName);
-								displayedSeries.Add(ser);
-								dlg2.Add(pItem2);
-							}
-						}
-
-
-						// display all series
-						pItem2 = new GUIListItem("----- Other Series -----");
-						displayedSeries.Add(null);
-						dlg2.Add(pItem2);
-
-                        foreach (AnimeSeries ser in seriesList)
-                        {
-                            pItem2 = new GUIListItem(ser.FormattedName);
-							displayedSeries.Add(ser);
-                            dlg2.Add(pItem2);
-                        }
-
-                        dlg2.DoModal(GUIWindowManager.ActiveWindow);
-
-                        if (dlg2.SelectedId > 0)
-                        {
-                            AnimeSeries selSeries = null;
-							selSeries = displayedSeries[dlg2.SelectedId - 1];
-							if (selSeries == null) return;
-
-							BaseConfig.MyAnimeLog.Write("Selected series: {0} - {1}", dlg2.SelectedId, selSeries);
-
-                            curAnimeSeries = selSeries;
-
-                            List<AnimeEpisode> episodeList = curAnimeSeries.Episodes;
-                            
-                            if (episodeList.Count == 0)
-                            {
-                                GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-                                if (null == dlgOK)
-                                    return;
-                                dlgOK.SetHeading("Error");
-                                dlgOK.SetLine(1, string.Empty);
-                                dlgOK.SetLine(2, "No episodes found");
-                                dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-                                return;
-                            }
-
-                            // ask the user which episode
-							bool showingMissing = true;
-							bool showMenu = true;
-							IDialogbox dlg3 = null;
-							List<AnimeEpisode> episodeListFinal = null;
-
-							while (showMenu)
-							{
-								episodeListFinal = new List<AnimeEpisode>();
-								dlg3 = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-								dlg3.Reset();
-								dlg3.SetHeading(curAnimeSeries.FormattedName);
-								GUIListItem pItem3 = null;
-
-								// exclude episodes where we already have a file
-								if (showingMissing)
-									pItem3 = new GUIListItem("Show All Episodes >>>");	
-								else
-									pItem3 = new GUIListItem("Show Missing Episodes >>>");
-								dlg3.Add(pItem3);
-
-								
-								if (showingMissing)
-								{
-									foreach (AnimeEpisode ep in episodeList)
-									{
-										if (ep.FileLocals.Count == 0)
-										{
-											episodeListFinal.Add(ep);
-										}
-									}
-								}
-								else
-								{
-									episodeListFinal = episodeList;
-								}
-
-								foreach (AnimeEpisode ep in episodeListFinal)
-								{
-									pItem3 = new GUIListItem(ep.DisplayNameAniDBPopup);
-									dlg3.Add(pItem3);
-								}
-
-								dlg3.DoModal(GUIWindowManager.ActiveWindow);
-								if (dlg3.SelectedId <= 0) showMenu = false;
-								if (dlg3.SelectedId == 1) showingMissing = !showingMissing;
-								if (dlg3.SelectedId > 1) showMenu = false;
-							}
-
-                            if (dlg3.SelectedId > 1)
-                            {
-								//BaseConfig.MyAnimeLog.Write("dlg3.SelectedId: {0}", dlg3.SelectedId);
-
-								AnimeEpisode selectedEp = episodeListFinal[dlg3.SelectedId - 2];
-                                CrossRef_Episode_FileHash.UpdateEpisode(selectedEp, file);
-								if (selectedEp.AniDB_EpisodeID.HasValue)
-									CrossRef_Episode_FileHash.AssignFileToEpisode(file.ED2KHash, selectedEp.AniDB_EpisodeID.Value);
-                                RefreshUnrecognizedFiles();
-                                return;
-                            }
-
-                        }
-                        return;
-                    }
-
-                    if (dlg.SelectedId == 2)
-                    {
-                        MainWindow.vidHandler.ResumeOrPlay(file);
-                        return;
-                    }
-
-                    if (dlg.SelectedId == 3)
-                    {
-                        FileHash fh = file.FileHash;
-                        if (fh!=null)
-                            fh.Delete();
-                        file.Delete();
-                        MainWindow.vidHasher.UpdateFileDataIfRequired(file.FileNameFull, false);
-                        return;
-                    }
-
-					if (dlg.SelectedId == 4)
-					{
-						if (!Utils.DialogConfirm("Are you sure you want to delete this file?")) return;
-
-						File.Delete(file.FileNameFull);
-						file.Delete();
-
-						RefreshUnrecognizedFiles();
-					}
+                if (dlg.SelectedId == 1)
+                {
+                    MainWindow.vidHandler.ResumeOrPlay(vid);
+                    return;
                 }
+
+                if (dlg.SelectedId == 2)
+                {
+                    //TODO
+                    return;
+                }
+
+				if (dlg.SelectedId == 3)
+				{
+					if (!Utils.DialogConfirm("Are you sure you want to delete this file?")) return;
+
+					//TODO
+					RefreshUnlinkedFiles();
+				}
 
             }
             catch (Exception ex)
             {
                 BaseConfig.MyAnimeLog.Write("Error in menu: {0}", ex);
-            }*/
+            }
         }
 
-		/*private void SearchTheTvDB(AnimeGroup grp)
-		{
-			string searchCriteria = "";
-			int aniDBID = -1;
-
-			searchCriteria = grp.GroupName;
-			if (grp.AniDB_ID.HasValue)
-				aniDBID = grp.AniDB_ID.Value;
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			dlg.Reset();
-
-			dlg.SetHeading("Search The TvDB");
-			dlg.Add("Search using:   " + searchCriteria);
-			dlg.Add("Manual Search");
-
-			TvDBSeries tvSeries = null;
-            if (BaseConfig.Settings.UseWebCache && BaseConfig.Settings.CommunityGetCrossRef && aniDBID > 1)
-			{
-
-				try
-				{
-					CrossRef_Series_AniDB_TvDB crossRef = XMLService.Get_CrossRefSeries(aniDBID);
-					if (crossRef != null)
-					{
-						XmlDocument doc = TVDB.GetSeriesInfoOnline(crossRef.TvDB_ID);
-						if (doc != null)
-						{
-							tvSeries = new TvDBSeries(doc);
-							dlg.Add("Community Says:   " + tvSeries.SeriesName);
-						}
-					}
-				}
-				catch (Exception)
-				{
-				}
-			}
-
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			if (dlg.SelectedId == 1)
-			{
-				SearchTheTvDB(grp, searchCriteria);
-			}
-			if (dlg.SelectedId == 2)
-			{
-				VirtualKeyboard keyBoard = (VirtualKeyboard)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_VIRTUAL_KEYBOARD);
-				if (keyBoard == null) return;
-				keyBoard.IsSearchKeyboard = true;
-				keyBoard.Reset();
-				keyBoard.Text = grp.FormattedName;
-				keyBoard.DoModal(GetID); // show it...
-				if (keyBoard.IsConfirmed)
-				{
-					SearchTheTvDB(grp, keyBoard.Text);
-				}
-			}
-			if (dlg.SelectedId == 3)
-			{
-				UseTvDBSearchResult(grp, int.Parse(tvSeries.Id));
-			}
-
-		}
-
-		private void SearchTheTvDB(AnimeGroup grp, string searchCriteria)
-		{
-			if (searchCriteria.Length == 0) return;
-
-			bool foundMatches = false;
-
-			List<TVDBSeriesSearchResult> results = MainWindow.tvHelper.SearchSeries(searchCriteria);
-			BaseConfig.MyAnimeLog.Write("Found {0} tvdb results for {1}", results.Count, searchCriteria);
-			if (results.Count == 0)
-			{
-				if (grp.AniDB_ID.HasValue)
-				{
-					AniDB_Anime anime = new AniDB_Anime();
-					if (anime.Load(grp.AniDB_ID.Value))
-					{
-						// lets try the the romaji title
-						if (searchCriteria.ToUpper() != anime.RomajiName.ToUpper() && anime.RomajiName.Trim().Length > 0)
-						{
-							results = MainWindow.tvHelper.SearchSeries(anime.RomajiName);
-							if (results.Count > 0) foundMatches = true;
-							BaseConfig.MyAnimeLog.Write("Found {0} tvdb results for RomajiName search {1}", results.Count, anime.RomajiName);
-						}
-
-						// lets try the the english title
-						if (!foundMatches && searchCriteria.ToUpper() != anime.EnglishName.ToUpper() && anime.EnglishName.Trim().Length > 0)
-						{
-							results = MainWindow.tvHelper.SearchSeries(anime.EnglishName);
-							if (results.Count > 0) foundMatches = true;
-							BaseConfig.MyAnimeLog.Write("Found {0} tvdb results for EnglishName search {1}", results.Count, anime.EnglishName);
-						}
-					}
-				}
-				
-			}
-			else
-				foundMatches = true;
-
-
-			if (foundMatches)
-			{
-				IDialogbox dlg = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null) return;
-
-				dlg.Reset();
-				dlg.SetHeading("Search Results");
-				GUIListItem pItem = null;
-
-				foreach (TVDBSeriesSearchResult res in results)
-				{
-					pItem = new GUIListItem(res.SeriesName); dlg.Add(pItem);
-				}
-
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-				if (dlg.SelectedId > 0)
-				{
-					TVDBSeriesSearchResult res = results[dlg.SelectedId - 1];
-					UseTvDBSearchResult(grp, res.SeriesID);
-				}
-			}
-			else
-			{
-				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-				if (null == dlgOK)
-					return;
-				dlgOK.SetHeading("Search Results");
-				dlgOK.SetLine(1, string.Empty);
-				dlgOK.SetLine(2, "No Results found");
-				dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-
-			}
-		}
-
-		private void SearchTheMovieDB(AnimeGroup grp)
-		{
-			string searchCriteria = "";
-			int aniDBID = -1;
-
-			searchCriteria = grp.GroupName;
-			if (grp.AniDB_ID.HasValue)
-				aniDBID = grp.AniDB_ID.Value;
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			dlg.Reset();
-
-			dlg.SetHeading("Search The MovieDB");
-			dlg.Add("Search using:   " + searchCriteria);
-			dlg.Add("Manual Search");
-
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			if (dlg.SelectedId == 1)
-			{
-				SearchTheMovieDB(grp, searchCriteria);
-				return;
-			}
-			if (dlg.SelectedId == 2)
-			{
-				VirtualKeyboard keyBoard = (VirtualKeyboard)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_VIRTUAL_KEYBOARD);
-				if (keyBoard == null) return;
-				keyBoard.IsSearchKeyboard = true;
-				keyBoard.Reset();
-				keyBoard.Text = grp.FormattedName;
-				keyBoard.DoModal(GetID); // show it...
-				if (keyBoard.IsConfirmed)
-				{
-					SearchTheMovieDB(grp, keyBoard.Text);
-				}
-				return;
-			}
-
-		}
-
-		private void SearchTheMovieDB(AnimeGroup grp, string searchCriteria)
-		{
-			if (searchCriteria.Length == 0) return;
-
-			int aniDBID = -1;
-			if (grp.AniDB_ID.HasValue)
-				aniDBID = grp.AniDB_ID.Value;
-
-			bool foundMatches = false;
-
-			List<MovieDBSearchResult> results = MovieDB.Search(searchCriteria);
-			BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for {1}", results.Count, searchCriteria);
-			if (results.Count == 0)
-			{
-				if (aniDBID > 1)
-				{
-					AniDB_Anime anime = new AniDB_Anime();
-					if (anime.Load(aniDBID))
-					{
-						// lets try the the romaji title
-						if (searchCriteria.ToUpper() != anime.RomajiName.ToUpper() && anime.RomajiName.Trim().Length > 0)
-						{
-							results = MovieDB.Search(anime.RomajiName);
-							if (results.Count > 0) foundMatches = true;
-							BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for RomajiName search {1}", results.Count, anime.RomajiName);
-						}
-
-						// lets try the the english title
-						if (!foundMatches && searchCriteria.ToUpper() != anime.EnglishName.ToUpper() && anime.EnglishName.Trim().Length > 0)
-						{
-							results = MovieDB.Search(anime.EnglishName);
-							if (results.Count > 0) foundMatches = true;
-							BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for EnglishName search {1}", results.Count, anime.EnglishName);
-						}
-					}
-				}
-
-			}
-			else
-				foundMatches = true;
-
-
-			if (foundMatches)
-			{
-				IDialogbox dlg = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null) return;
-
-				dlg.Reset();
-				dlg.SetHeading("Search Results");
-				GUIListItem pItem = null;
-
-				foreach (MovieDBSearchResult res in results)
-				{
-					pItem = new GUIListItem(res.Title); dlg.Add(pItem);
-				}
-
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-				if (dlg.SelectedId > 0)
-				{
-					MovieDBSearchResult res = results[dlg.SelectedId - 1];
-
-					MovieDB.UseSearchResult(grp, res.Id, res.Title);
-
-					ShowFanartWindow(grp);
-				}
-			}
-			else
-			{
-				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-				if (null == dlgOK)
-					return;
-				dlgOK.SetHeading("Search Results");
-				dlgOK.SetLine(1, string.Empty);
-				dlgOK.SetLine(2, "No Results found");
-				dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-			}
-		}
-
-		private void UseTvDBSearchResult(AnimeGroup grp, int tvDBID)
-		{
-
-			grp.TvDB_ID = tvDBID;
-			grp.TvDB_SeasonNumber = 1; // default
-			grp.Save();
-
-			// if this group's AniDB ID is the same as any child series
-			// and the series doesn't have a TvDB_ID yet, update that as well
-		   foreach (AnimeSeries ser in grp.Series)
-			{
-				if (!ser.TvDB_ID.HasValue && ser.AniDB_ID.HasValue && grp.AniDB_ID.HasValue)
-				{
-					if (ser.AniDB_ID.Value == grp.AniDB_ID.Value)
-					{
-						ser.TvDB_ID = tvDBID;
-						ser.TvDB_SeasonNumber = 1; // default
-						ser.Save();
-					}
-				}
-			}
-
-			// associate this AniDB_ID with the TVDB ID
-			CrossRef_Series_AniDB_TvDB crossref = new CrossRef_Series_AniDB_TvDB();
-			crossref.AniDB_ID = grp.AniDB_ID.Value;
-			crossref.TvDB_ID = tvDBID;
-			crossref.Save();
-
-			ShowFanartWindow(grp);
-		}*/
-
-        
 
         public static void setGUIProperty(string which, string value)
         {

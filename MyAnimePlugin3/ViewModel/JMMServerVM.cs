@@ -166,6 +166,11 @@ namespace MyAnimePlugin3.ViewModel
 				evt.HasherQueueCount = HasherQueueCount;
 				evt.HasherQueueRunning = HasherQueueRunning;
 				evt.HasherQueueState = HasherQueueState;
+
+				evt.ImagesQueueCount = status.ImagesQueueCount;
+				evt.ImagesQueueRunning = !status.ImagesQueueState.ToLower().Contains("pause");
+				evt.ImagesQueueState = status.ImagesQueueState;
+
 				evt.IsBanned = IsBanned;
 
 				OnServerStatusEvent(evt);

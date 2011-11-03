@@ -10905,7 +10905,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         MyAnimePlugin3.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response ToggleWatchedStatusOnEpisode(int animeEpisodeID, bool watchedStatus, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetVideoDetailed", ReplyAction="http://tempuri.org/IJMMServer/GetVideoDetailedResponse")]
-        MyAnimePlugin3.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID);
+        MyAnimePlugin3.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveImportFolder", ReplyAction="http://tempuri.org/IJMMServer/SaveImportFolderResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder_SaveResponse SaveImportFolder(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder contract);
@@ -11379,8 +11379,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
             return base.Channel.ToggleWatchedStatusOnEpisode(animeEpisodeID, watchedStatus, userID);
         }
         
-        public MyAnimePlugin3.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID) {
-            return base.Channel.GetVideoDetailed(videoLocalID);
+        public MyAnimePlugin3.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID, int userID) {
+            return base.Channel.GetVideoDetailed(videoLocalID, userID);
         }
         
         public MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder_SaveResponse SaveImportFolder(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder contract) {

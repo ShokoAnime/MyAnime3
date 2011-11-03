@@ -271,7 +271,7 @@
 			</control>
 			
 			<control>
-				<description>Scan Drop Folder</description>
+				<description>Re-scan Unlinked Files</description>
 				<type>button</type>
 				<id>7</id>
 				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
@@ -280,7 +280,7 @@
 				<height>64</height>
 				<textXOff>58</textXOff>
 				<textYOff>14</textYOff>
-				<label>Scan Drop Folder</label>
+				<label>Re-scan Unlinked Files</label>
 				<onleft>50</onleft>
 				<onright>50</onright>
 				<onup>6</onup>
@@ -607,14 +607,25 @@
 	
 	<!-- ************************** Server Status Page ***********************************-->	
 	
+	<control>
+		<type>image</type>
+		<posX>70</posX>
+		<posY>160</posY>
+		<width>270</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<width>32</width>
+		<height>32</height>
+		<texture>MyAnime3\anime3_anidb.png</texture>
+	</control>
+		
 	<control Style="InfoLabel">
 		<description>General Queue Label</description>
 		<type>fadelabel</type>
 	    <label>General Queue</label>
 		<id>0</id>
-		<posX>70</posX>
+		<posX>120</posX>
 		<posY>160</posY>
-		<width>270</width>
+		<width>210</width>
 	    <visible>Control.IsVisible(3511)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
@@ -656,6 +667,149 @@
 		<id>0</id>
 		<posX>650</posX>
 		<posY>160</posY>
+		<width>1200</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	
+	
+	
+	
+	
+	
+	<control>
+		<type>image</type>
+		<posX>70</posX>
+		<posY>210</posY>
+		<width>270</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<width>32</width>
+		<height>32</height>
+		<texture>MyAnime3\anime3_hash.png</texture>
+	</control>
+		
+	<control Style="InfoLabel">
+		<description>Hasher Queue Label</description>
+		<type>fadelabel</type>
+	    <label>Hasher Queue</label>
+		<id>0</id>
+		<posX>120</posX>
+		<posY>210</posY>
+		<width>210</width>
+	    <visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control Style="InfoValueSmall">
+		<description>Hasher Queue Count Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.Status.HasherQueueCount</label>
+		<id>0</id>
+		<posX>370</posX>
+		<posY>210</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+		
+	<control Style="InfoValueSmall">
+		<description>Hasher Queue Running Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.Status.HasherQueueRunning</label>
+		<id>0</id>
+		<posX>470</posX>
+		<posY>210</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<description>Hasher Queue State Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.Status.HasherQueueState</label>
+		<id>0</id>
+		<posX>650</posX>
+		<posY>210</posY>
+		<width>1200</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	
+	
+	
+	<control>
+		<type>image</type>
+		<posX>70</posX>
+		<posY>260</posY>
+		<width>270</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<width>32</width>
+		<height>32</height>
+		<texture>MyAnime3\anime3_image.png</texture>
+	</control>
+		
+	<control Style="InfoLabel">
+		<description>Images Queue Label</description>
+		<type>fadelabel</type>
+	    <label>Images Queue</label>
+		<id>0</id>
+		<posX>120</posX>
+		<posY>260</posY>
+		<width>210</width>
+	    <visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control Style="InfoValueSmall">
+		<description>Images Queue Count Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.Status.ImagesQueueCount</label>
+		<id>0</id>
+		<posX>370</posX>
+		<posY>260</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+		
+	<control Style="InfoValueSmall">
+		<description>Images Queue Running Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.Status.ImagesQueueRunning</label>
+		<id>0</id>
+		<posX>470</posX>
+		<posY>260</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3511)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<description>Images Queue State Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.Status.ImagesQueueState</label>
+		<id>0</id>
+		<posX>650</posX>
+		<posY>260</posY>
 		<width>1200</width>
 		<visible>Control.IsVisible(3511)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>

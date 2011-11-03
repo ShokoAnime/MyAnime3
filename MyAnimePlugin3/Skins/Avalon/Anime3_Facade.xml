@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+<controls>
+    <control>
+		<type>group</type>
+		<description>group element</description>
+		<id>28</id>
+		<layout>StackLayout</layout>
+    <control>
+        <description>composite control consisting of a list control and a thumbnail panel</description>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+        <type>facadeview</type>
+        <id>50</id>
+        <control>
+			<description>graphical list (series and seasons if set)</description>
+			<type>listcontrol</type>
+			<subtype>album</subtype>
+			<id>50</id>
+			<onleft>12</onleft>
+			<onright>50</onright>		
+        </control>
+    <control>
+		<description>graphical thumbpanel (series and/or seasons if set)</description>
+        <type>thumbnailpanel</type>
+		<dimColor>90ffffff</dimColor>
+        <id>50</id>
+        <posX>1210</posX>
+		<posY>162</posY>
+        <width>650</width>
+        <height>550</height>
+        <!-- up/down buttons & page # -->     
+		<onleft>12</onleft>
+        <onright>50</onright>		  
+        <!-- Textures -->
+        <imageFolder>-</imageFolder> 			
+        <!-- Text -->
+        <selectedColor>00ffffff</selectedColor>
+        <textcolor>ffffffff</textcolor>
+        <colordiffuse>ffffffff</colordiffuse>          
+        <suffix>|</suffix>
+        <itemWidthBig>623</itemWidthBig>
+        <itemHeightBig>129</itemHeightBig>
+        <!-- boxes -->
+        <textureWidthBig>623</textureWidthBig>
+        <textureHeightBig>129</textureHeightBig>
+        <!-- banners -->
+        <thumbWidthBig>623</thumbWidthBig>
+        <thumbHeightBig>129</thumbHeightBig>
+        <thumbPosXBig>0</thumbPosXBig>
+        <thumbPosYBig>0</thumbPosYBig>
+		<zoomXPixels>50</zoomXPixels>
+		<zoomYPixels>20</zoomYPixels>
+        <thumbZoom>yes</thumbZoom>
+        <!-- text (No banner) -->
+        <textXOff>0</textXOff>
+        <textYOff>0</textYOff>
+        <frame>-</frame>
+        <frameFocus>tvseries_listbanner_focus.png</frameFocus>
+		<frameNoFocus>tvseries_listbanner_nofocus.png</frameNoFocus>
+		<textureMask>tvseries_listbanner_mask.png</textureMask>
+        <keepaspectratio>no</keepaspectratio>
+        <enableFocusZoom>yes</enableFocusZoom>
+        <spinPosX>1832</spinPosX>
+        <spinPosY>730</spinPosY>
+    </control>
+		
+		<control>
+			<description>Filmstrip view</description>
+			<type>filmstrip</type>
+			<dimColor>90ffffff</dimColor>
+			<id>50</id>
+				<scrollOffset>3</scrollOffset>
+				<folderPrefix></folderPrefix>
+				<folderSuffix></folderSuffix>
+				<posX>70</posX>
+				<posY>186</posY>
+				<width>1920</width>
+				<height>768</height>
+				<onup>12</onup>
+				<ondown>12</ondown>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<thumbWidth>327</thumbWidth>
+				<thumbHeight>463</thumbHeight>
+				<thumbPosX>0</thumbPosX>
+				<thumbPosY>0</thumbPosY>
+				<itemWidth>355</itemWidth>
+				<itemHeight>463</itemHeight>
+				<textureWidth>327</textureWidth>
+				<textureHeight>463</textureHeight>
+				<textYOff>-2000</textYOff>
+				<imageFolderFocus>-</imageFolderFocus>
+				<frame>-</frame>
+				<frameFocus>-</frameFocus>
+				<background>-</background>
+				<thumbs flipY="true" diffuse="Thumb_Mask_test.png" mask="video_filmstrip_mask.png"></thumbs>
+				<showFrame>yes</showFrame>
+				<showFolder>no</showFolder>
+				<showBackGround>no</showBackGround>
+				<showInfoImage>no</showInfoImage>
+                <scrollbarBackground>-</scrollbarBackground>
+                <scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
+                <scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
+                <scrollbarWidth>689</scrollbarWidth>
+				<scrollbarHeight>4</scrollbarHeight>
+                <scrollbarYOff>522</scrollbarYOff>
+				<thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="108,108" center="0,500" time="200">focus</thumbAnimation>
+				<thumbAnimation effect="zoom" start="108,108" reversible="false" end="100,100" center="0,500" time="100">unfocus</thumbAnimation>
+		</control>
+		
+				<control>
+				  <description>Cover Flow view</description>
+				  <type>coverflow</type>
+				  <colordiffuse>90ffffff</colordiffuse>
+				  <dimColor>90ffffff</dimColor>
+				  <id>50</id>
+				  <onup>12</onup>
+				  <ondown>12</ondown>
+				  <onleft>50</onleft>
+				  <onright>50</onright>	  
+				  <posX>-10</posX>
+				  <posY>186</posY>
+				  <width>1920</width>
+				  <height>1080</height>	  
+				  <selectedCard>0</selectedCard>
+				  <cardWidth>337</cardWidth>
+				  <cardHeight>477</cardHeight>
+				  <angle>45</angle>
+				  <sideShift>310</sideShift>
+				  <sideGap>100</sideGap>
+				  <sideDepth>270</sideDepth>
+				  <offsetY>0</offsetY>
+				  <selectedOffsetY>0</selectedOffsetY>
+				  <speed>8</speed>
+				  <showFrame>yes</showFrame>
+				  <frame>-</frame>
+				  <frameFocus>-</frameFocus>
+				  <keepaspectratio>no</keepaspectratio>		  
+				  <frameWidth>327</frameWidth>
+				  <frameHeight>463</frameHeight>
+				  <spinSpeed>8</spinSpeed>
+				  <unfocusedAlpha>FF</unfocusedAlpha>
+				  <folderPrefix></folderPrefix>
+				  <folderSuffix></folderSuffix>
+				  <font1>font13</font1>
+				  <font2>font11</font2>
+				  <label1>#title</label1>
+				  <label2>#genre</label2>
+				  <textColor>FFFFFFFF</textColor>
+				  <remoteColor>FFFF0000</remoteColor>
+				  <playedColor>FFA0D0FF</playedColor>
+				  <downloadColor>FF00FF00</downloadColor>
+				  <selectedColor>FFFFFFFF</selectedColor>
+				  <shadowAngle>45</shadowAngle>
+				  <shadowDistance>1</shadowDistance>
+				  <shadowColor>FF000000</shadowColor>
+				  <label1YOff>1430</label1YOff>
+				  <label2YOff>1390</label2YOff>
+				  <pageSize>5</pageSize>
+                  <scrollbarBackground>-</scrollbarBackground>
+                  <scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
+                  <scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
+                  <scrollbarWidth>689</scrollbarWidth>
+				  <scrollbarHeight>4</scrollbarHeight>
+                  <scrollbarYOff>522</scrollbarYOff>
+				  <keepaspectratio>no</keepaspectratio>
+				  <cards flipY="true" diffuse="Thumb_Mask_test.png" mask="video_filmstrip_mask.png"></cards>
+				</control>
+		
+            <control>
+        		<description>Text List</description>
+        		<type>listcontrol</type>
+        		<id>50</id>
+        		<onleft>12</onleft>
+        		<onright>12</onright>
+        		<scrollOffset>1</scrollOffset>
+        		<posX>1166</posX>
+        		<posY>164</posY>
+        		<height>550</height>
+        		<width>684</width>
+        		<textureFocus>listcontrol_item_selected_small.png</textureFocus>
+        		<textureNoFocus>-</textureNoFocus>
+        		<textXOff>-100</textXOff>
+        		<textYOff>8</textYOff>
+        		<textXOff2>470</textXOff2>
+        		<textYOff2>8</textYOff2>
+        		<textXOff3>663</textXOff3>
+        		<textYOff3>14</textYOff3>
+                <textalign3>right</textalign3>
+                <font3>font2</font3>
+                <itemWidth>142</itemWidth>
+                <itemHeight>19</itemHeight>
+                <IconXOff>477</IconXOff>
+                <IconYOff>18</IconYOff>
+        		<textureHeight>55</textureHeight>
+        		<dimColor>ffffffff</dimColor>
+                <spinPosX>1832</spinPosX>
+                <spinPosY>730</spinPosY>
+			  <playedColor>FFA0D0FF</playedColor>
+           </control>
+      </control>
+    </control>
+</controls>
+</window>

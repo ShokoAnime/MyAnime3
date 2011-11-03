@@ -1,0 +1,940 @@
+﻿
+<window>
+  <id>6109</id>
+  <defaultcontrol>567</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <disabletopbar>yes</disabletopbar>
+	<define>#header.label:Anime Info - #Anime3.AnimeInfo.Info.Type</define>
+	<define>#header.hover:hover_my anime.png</define>
+    <define>#multiimagepath:TV</define>
+    <define>#backdrop:animations\TV\backdrop_tvseries.jpg</define>
+	<controls>
+	<!-- Import Dummy Controls to handle visibility -->
+		<import>anime3_Dummy.xml</import>
+		<import>common.window.bars.xml</import>
+		<import>common.time.xml</import>
+
+	<!-- Dummies -->
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for info page</description>
+	  <id>1500</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <textcolor>d4d2d2</textcolor>
+	  <font>font14</font>
+	  <label>
+	  </label>
+	  <visible>false</visible>
+	  <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1500)</visible> -->
+	  <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1500)</visible> -->
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for statistics page</description>
+	  <id>1501</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <textcolor>d4d2d2</textcolor>
+	  <font>font14</font>
+	  <label>
+	  </label>
+	  <visible>false</visible>
+	  <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1501)</visible> -->
+	  <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1501)</visible> -->
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for poster</description>
+	  <id>1502</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <textcolor>d4d2d2</textcolor>
+	  <font>font14</font>
+	  <label>
+	  </label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for groups page</description>
+	  <id>1503</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <textcolor>d4d2d2</textcolor>
+	  <font>font14</font>
+	  <label>
+	  </label>
+	  <visible>false</visible>
+	  <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1502)</visible> -->
+	  <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1502)</visible> -->
+	</control>
+
+	<!-- :::::::::::::::::::::::::::::: TITLE :::::::::::::::::::::::::::::: -->
+	<control Style="Title">
+	  <type>textboxscrollup</type>
+	  <description>Title</description>
+	  <id>0</id>
+	  <label>#Anime3.AnimeInfo.Info.AnidbTitle</label>
+	</control>
+	<control Style="Title2">
+	  <type>textboxscrollup</type>
+	  <description>Title</description>
+	  <id>0</id>
+	  <label>#Anime3.AnimeInfo.Info.ShortTitles</label>
+	</control>
+        <!-- <control Style="Title3">
+	  <type>textboxscrollup</type>
+	  <description>Anime Type Value</description>
+	  <id>0</id>
+	  <posY>124</posY>
+	  <label>#Anime3.AnimeInfo.Info.Type</label>
+	  <visible>Control.IsVisible(1500)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control> -->
+	<!-- <control>
+	  <id>104</id>
+	  <type>image</type>
+	  <posX>30</posX>
+	  <posY>108</posY>
+	  <width>24</width>
+	  <height>24</height>
+	  <texture>nav24_back.png</texture>
+	</control>
+	<control>
+	  <description>Characters</description>
+	  <type>button</type>
+	  <id>901</id>
+	  <label>Characters</label>
+	  <width>150</width>
+	  <posX>70</posX>
+	  <posY>110</posY>
+	  <align>left</align>
+	  <onleft>902</onleft>
+	  <onright>902</onright>
+	  <onup>901</onup>
+	  <ondown>803</ondown>
+	</control>
+	<control>
+	  <id>104</id>
+	  <type>image</type>
+	  <posX>670</posX>
+	  <posY>108</posY>
+	  <width>24</width>
+	  <height>24</height>
+	  <texture>nav24_next.png</texture>
+	</control>
+	<control>
+	  <description>Relations</description>
+	  <type>button</type>
+	  <id>902</id>
+	  <label>Relations</label>
+	  <width>150</width>
+	  <posX>505</posX>
+	  <posY>110</posY>
+	  <textalign>center</textalign>
+	  <onleft>901</onleft>
+	  <onright>901</onright>
+	  <onup>50</onup>
+	  <onup>902</onup>
+	  <ondown>802</ondown>
+	</control>
+	<control>
+	  <description>Downloads button</description>
+	  <type>button</type>
+	  <id>803</id>
+	  <label>Downloads</label>
+	  <width>150</width>
+	  <posX>70</posX>
+	  <posY>145</posY>
+	  <align>right</align>
+	  <textalign>center</textalign>
+	  <onleft>901</onleft>
+	  <onright>801</onright>
+	  <onup>901</onup>
+	  <ondown>100</ondown>
+	  <textYOff>1</textYOff>
+	</control>
+	<control>
+	  <description>AniDB Info button</description>
+	  <type>button</type>
+	  <id>801</id>
+	  <label>AniDB Info</label>
+	  <width>150</width>
+	  <posX>290</posX>
+	  <posY>145</posY>
+	  <align>right</align>
+	  <textalign>center</textalign>
+	  <onleft>803</onleft>
+	  <onright>802</onright>
+	  <onup>901</onup>
+	  <ondown>100</ondown>
+	  <textYOff>1</textYOff>
+	</control>
+	<control>
+	  <description>Statistics button</description>
+	  <type>button</type>
+	  <id>802</id>
+	  <label>Statistics</label>
+	  <width>150</width>
+	  <posX>505</posX>
+	  <posY>145</posY>
+	  <align>right</align>
+	  <textalign>center</textalign>
+	  <onleft>801</onleft>
+	  <onright>902</onright>
+	  <onup>901</onup>
+	  <ondown>100</ondown>
+	  <textYOff>1</textYOff>
+	</control> -->
+
+	<!--  ************** HIDDEN MENU *****************  -->
+        <control>
+            <type>button</type>
+            <description>Dummy for Menu</description>
+            <id>567</id>
+            <posX>-1000</posX>
+            <onleft>902</onleft>
+            <onright>902</onright>
+            <onup>902</onup>
+            <ondown>902</ondown>
+            <label />
+        </control>
+        <control>
+            <type>actiongroup</type>
+            <description>action menu</description>
+            <defaultcontrol>902</defaultcontrol>
+            <onexit>567</onexit>
+            <buttonX>0</buttonX>
+            <buttonY>35</buttonY>
+            <buttonwidth>45</buttonwidth>
+            <buttonheight>576</buttonheight>
+            <textureFocus>Action_focus.png</textureFocus>
+            <textureNoFocus>Action_nofocus.png</textureNoFocus>
+            <width>320</width>
+            <height>576</height>
+            <dimColor>ffffffff</dimColor>
+            <control>
+                <description>button group</description>
+                <type>group</type>
+                <animation effect="slide" time="450" start="-300,0">visible</animation>
+                <animation effect="slide" time="450" end="-300,0">hidden</animation>
+                <posX>20</posX>
+                <posY>170</posY>
+                <layout>StackLayout</layout>
+                <visible>!Control.HasFocus(567)</visible>
+                <control>
+                    <description>Relations</description>
+                    <type>button</type>
+                    <id>902</id>
+                    <label>Relations</label>
+                    <onleft>567</onleft>
+                    <onright>567</onright>
+                    <onup>803</onup>
+                    <ondown>901</ondown>
+                </control>
+                <control>
+                    <description>Characters</description>
+                    <type>button</type>
+                    <id>901</id>
+                    <label>Characters</label>
+                    <onleft>567</onleft>
+                    <onright>567</onright>
+                    <onup>902</onup>
+                    <ondown>801</ondown>
+                </control>
+                <control>
+                    <description>AniDB Info</description>
+                    <type>button</type>
+                    <id>801</id>
+                    <label>AniDB Info</label>
+                    <onleft>567</onleft>
+                    <onright>567</onright>
+                    <onup>901</onup>
+                    <ondown>802</ondown>
+                </control>
+                <control>
+                    <description>Statistics</description>
+                    <type>button</type>
+                    <id>802</id>
+                    <label>Statistics</label>
+                    <onleft>567</onleft>
+                    <onright>567</onright>
+                    <onup>801</onup>
+                    <ondown>803</ondown>
+                </control>
+                <control>
+                    <description>Groups button</description>
+                    <type>button</type>
+                    <id>803</id>
+                    <label>Groups</label>
+                    <onleft>567</onleft>
+                    <onright>567</onright>
+                    <onup>802</onup>
+                    <ondown>902</ondown>
+                </control>
+            </control>
+        </control>
+
+	<!-- POSTER -->
+		<control Style="Thumb">
+          <type>image</type>
+          <description>Series Poster (Fanart)</description>
+          <id>0</id>
+		  <posY>333</posY>
+		  <height>196</height>
+          <texture>#Anime3.AnimeInfo.Poster</texture>
+          <visible>Control.IsVisible(1502)</visible>
+        </control>
+
+	<!--		Pages 	-->
+	<!--		Info page	-->
+	<control>
+	  <type>label</type>
+	  <description>Is Restricted</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>150</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>R Rated</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Restricted Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>150</posY>
+	  <label>#Anime3.AnimeInfo.Info.Restricted</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Other Titles</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>180</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Other Titles</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Other Titles Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>180</posY>
+	  <label>#Anime3.AnimeInfo.Info.OtherTitles</label>
+	  <textcolor>ffdddddd</textcolor>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<!-- <control>
+	  <type>label</type>
+	  <description>Year</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>530</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Year</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control> -->
+	<control Style="Ticker2">
+	  <type>fadelabel</type>
+	  <description>Year Value</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>530</posY>
+	  <label>Year ::: #Anime3.AnimeInfo.Info.Year</label>
+	  <visible>Control.IsVisible(1500)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>fadelabel</type>
+	  <description>Episode count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>210</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Episodes/Specials/Other</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Episode count Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>210</posY>
+	  <textcolor>ffdddddd</textcolor>
+	  <label>#Anime3.AnimeInfo.Info.EpisodeSpecials</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>fadelabel</type>
+	  <description>Rating</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>240</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Rating(Votes)/Temp</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Rating Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>240</posY>
+	  <textcolor>ffdddddd</textcolor>
+	  <label>#Anime3.AnimeInfo.Info.Rating #Anime3.AnimeInfo.Info.MyRating</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<!-- <control>
+	  <type>label</type>
+	  <description>Rating Value</description>
+	  <id>0</id>
+	  <posX>20</posX>
+	  <posY>505</posY>
+	  <width>500</width>
+	  <label>#Anime3.AnimeInfo.Info.MyRating</label>
+	  <align>left</align>
+	  <textcolor>99ffffff</textcolor>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>  -->
+	<control>
+	  <type>label</type>
+	  <description>Reviews</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>270</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Reviews</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>label</type>
+	  <description>Reviews Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>270</posY>
+	  <textcolor>ffdddddd</textcolor>
+	  <label>#Anime3.AnimeInfo.Info.Reviews</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Relations</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>300</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Relations</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Relations Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>300</posY>
+	  <textcolor>ffdddddd</textcolor>
+	  <label>#Anime3.AnimeInfo.Info.Relations</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>fadelabel</type>
+	  <description>Awards list</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>330</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Awards</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Awards Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>330</posY>
+	  <label>#Anime3.AnimeInfo.Info.Awards</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>fadelabel</type>
+	  <description>Character count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>360</posY>
+	  <width>220</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Characters</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control Style="Ticker3">
+	  <type>fadelabel</type>
+	  <description>Characters Value</description>
+	  <id>0</id>
+	  <posX>295</posX>
+	  <posY>360</posY>
+	  <label>#Anime3.AnimeInfo.Info.CharacterCount (AniDB)</label>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<!-- <control>
+	  <type>label</type>
+	  <description>Description</description>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>410</posY>
+	  <width>150</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Description</label>
+	  <seperator>______________________________________</seperator>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control> -->
+	<control Style="Plot List">
+		<type>textboxscrollup</type>
+		<description>Description Value</description>
+		<id>0</id>
+		<label>#Anime3.AnimeInfo.Info.Description</label>
+		<font>font14</font>
+		<visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	</control>
+
+	<!-- ********** Genre (on Panel) ********** -->
+
+	<control Style="Plot List">
+		<description>Genre</description>
+		<type>textboxscrollup</type>
+		<id>0</id>
+		<label>#Anime3.AnimeInfo.Info.Genre</label>
+		<visible>Control.IsVisible(1500)+!Control.HasFocus(567)</visible>
+		<font>font14</font>
+		<textcolor>99ffffff</textcolor>
+	</control>
+
+	<!-- <control>
+	  <type>label</type>
+	  <description>Genre</description>
+	  <id>0</id>
+	  <posX>200</posX>
+	  <posY>300</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Genre</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control>
+	<control>
+	  <type>fadelabel</type>
+	  <description>Genre Value</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>505</posY>
+	  <width>530</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Genre ::: #Anime3.AnimeInfo.Info.Genre</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1500)+!Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
+	  <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+	</control> -->
+
+	<!-- statistics -->
+	<control Style="Slide 1">
+	  <description>Button group</description>
+	  <type>group</type>
+	  <dimColor>ffffffff</dimColor>
+	<control>
+	  <type>label</type>
+	  <description>Watched Count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>180</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Watched</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Watched count Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>180</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.WatchedCount</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Played count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>208</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Played</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Played count Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>208</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.PlayedCount</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Stopped count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>236</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Stopped</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Stopped count Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>236</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.StoppedCount</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Running Time</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>264</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Local running time</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Running Time Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>264</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.RunningTime</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Time spent watching</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>292</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Watched for</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Time spent watching Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>292</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.TimeSpentWatching</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Blinked count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>320</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>You blinked</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Blinked count Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>320</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.BlinkedCount</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Files count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>348</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Local files</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>fadelabel</type>
+	  <description>Files count Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>348</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.FileCount</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Missing Episodes</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>376</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Missing episodes</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Missing Episodes Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>376</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.MissingEpisodes</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Size count</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>404</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Total file size</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Size count Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>404</posY>
+	  <width>510</width>
+	  <label>#Anime3.AnimeInfo.Stats.AnimeFileSize</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Subtitle Languages</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>432</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Subtitle languages</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Subtitle Languages Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>432</posY>
+	  <width>250</width>
+	  <label>#Anime3.AnimeInfo.Stats.SubtitleLanguages</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Audio Languages</description>
+	  <id>0</id>
+	  <posX>35</posX>
+	  <posY>460</posY>
+	  <width>650</width>
+	  <textcolor>99ffffff</textcolor>
+	  <label>Audio languages</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Audio Languages Value</description>
+	  <id>0</id>
+	  <posX>280</posX>
+	  <posY>460</posY>
+	  <width>250</width>
+	  <label>#Anime3.AnimeInfo.Stats.AudioLanguages</label>
+	  <align>left</align>
+	  <visible>Control.IsVisible(1501)+Control.HasFocus(567)</visible>
+	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visiblechange</animation>
+	</control>
+	</control>
+	<!-- groups -->
+	<control Style="Plot List">
+	  <type>label</type>
+	  <label>My Groups:</label>
+	  <posY>240</posY>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <visible>Control.IsVisible(1503)+Control.hasfocus(567)</visible>
+	</control>
+	<control Style="Plot List">
+	  <type>textboxscrollup</type>
+	  <description>My Groups Desc</description>
+	  <id>0</id>
+	  <posY>270</posY>
+	  <font>font14</font>
+	  <label>#Anime3.AnimeInfo.Groups.MyGroupsDescription</label>
+	  <visible>Control.IsVisible(1503)+Control.hasfocus(567)</visible>
+	</control>
+	<control Style="Plot List">
+	  <type>label</type>
+	  <label>Other Groups:</label>
+	  <posY>370</posY>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <visible>Control.IsVisible(1503)+Control.hasfocus(567)</visible>
+	</control>
+	<control Style="Plot List">
+	  <type>textboxscrollup</type>
+	  <description>Other Groups Desc</description>
+	  <id>0</id>
+	  <posY>400</posY>
+	  <font>font14</font>
+	  <label>#Anime3.AnimeInfo.Groups.OtherGroupsDescription</label>
+	  <visible>Control.IsVisible(1503)+Control.hasfocus(567)</visible>
+	</control>
+	
+	<control>
+	  <description>ANIDB Status</description>
+	  <type>label</type>
+	  <id>114</id>
+	  <posX>20</posX>
+	  <posY>505</posY>
+	  <width>430</width>
+	  <label>#Anime3.AnimeInfo.Status</label>
+	  <align>left</align>
+	</control>
+	<control>
+	  <description>Status</description>
+	  <type>fadelabel</type>
+	  <id>115</id>
+	  <posX>490</posX>
+	  <posY>505</posY>
+	  <width>430</width>
+	  <label>#Anime3.AnimeInfo.ResultStatus</label>
+	  <align>Right</align>
+	</control>
+        <import>common.mediaoverlay.xml</import>
+  </controls>
+</window>

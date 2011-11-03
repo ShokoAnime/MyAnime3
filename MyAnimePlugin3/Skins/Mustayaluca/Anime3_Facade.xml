@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+	<controls>
+
+		<!-- listscroller -->
+		<control>
+			<description>listscroller bg</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>507</posY>
+			<width>70</width>
+			<height>67</height>
+			<texture>listscroller_bg.png</texture>
+			<colordiffuse>40ffffff</colordiffuse>
+			<visible>facadeview.list+string.contains(#scrolling.up,yes)|string.contains(#scrolling.down,yes)</visible>
+			<animation effect="slide" start="-70,0" end="0,0" tween="quadratic" easing="in" time="250">Visible</animation>
+			<animation effect="slide" start="0,0" end="-70,0" tween="quadratic" easing="in" time="250">Hidden</animation>
+		</control>
+
+		<control>
+			<type>label</type>
+			<id>1</id>
+			<posX>-3</posX>
+			<posY>510</posY>
+			<width>69</width>
+			<height>69</height>
+			<font>font7</font>
+			<textcolor>ffffffff</textcolor>
+			<label>#selecteditem.scrolllabel</label>
+			<visible>facadeview.list+string.contains(#scrolling.up,yes)|string.contains(#scrolling.down,yes)</visible>
+			<align>center</align>
+			<valign>middle</valign>
+			<animation effect="slide" start="-70,0" end="0,0" tween="quadratic" easing="in" time="250">Visible</animation>
+			<animation effect="slide" start="0,0" end="-70,0" tween="quadratic" easing="in" time="250">Hidden</animation>
+		</control>
+
+		<!-- facade container -->
+		<control>
+			<type>group</type>
+			<id>28</id>
+			<control>
+				<type>facadeview</type>
+				<id>50</id>
+				<!-- album -->
+				<control>	
+				
+					<type>listcontrol</type>
+					<subtype>album</subtype>
+					<id>50</id>
+				</control>
+				<!-- thumbnailpanel -->
+				<control>
+				  <description>Graphical Thumbpanel</description>
+				  <type>thumbnailpanel</type>
+				  <id>50</id>
+				  <dimColor>90ffffff</dimColor>
+				  <onleft>12</onleft>
+				  <onright>50</onright>
+				  <textureUp>-</textureUp>
+				  <textureDown>-</textureDown>
+				  <posX>70</posX>
+				  <posY>200</posY>
+				  <width>1850</width>
+				  <height>800</height>
+				  <scrollOffset>0</scrollOffset>
+				  
+				  <itemWidth>523</itemWidth>
+				  <itemHeight>109</itemHeight>
+				  <textureWidth>523</textureWidth>
+				  <textureHeight>109</textureHeight>
+				  <thumbWidth>523</thumbWidth>
+				  <thumbHeight>109</thumbHeight>
+				  <thumbPosX>0</thumbPosX>
+				  <thumbPosY>0</thumbPosY>
+				  
+				  <itemWidthBig>523</itemWidthBig>
+				  <itemHeightBig>109</itemHeightBig>
+				  <!-- boxes -->
+				  <textureWidthBig>523</textureWidthBig>
+				  <textureHeightBig>109</textureHeightBig>
+				  <!-- banners -->
+				  <thumbWidthBig>523</thumbWidthBig>
+				  <thumbHeightBig>109</thumbHeightBig>
+					
+				  <thumbPosXBig>0</thumbPosXBig>
+				  <thumbPosYBig>0</thumbPosYBig>
+				  <zoomXPixels>10</zoomXPixels>
+				  <zoomYPixels>14</zoomYPixels>
+				  <hideUnfocusTexture>yes</hideUnfocusTexture>
+				  <renderFocusText>no</renderFocusText>
+				  <renderUnfocusText>no</renderUnfocusText>
+				  <showFrame>true</showFrame>
+				  <thumbZoom>yes</thumbZoom>
+				  <enableFocusZoom>no</enableFocusZoom>
+				  <keepaspectratio>no</keepaspectratio>
+				  <textureMask>fanart_thumb_frame_mask.png</textureMask>
+				  <unfocusedAlpha>255</unfocusedAlpha>
+				  <frameNoFocus>pic_thumb_frame_nofocus.png</frameNoFocus>
+				  <frameFocus>pic_thumb_frame_focus.png</frameFocus>
+				  <imageFolder>-</imageFolder>
+				  <imageFolderFocus>-</imageFolderFocus>
+				  <dimColor>ffffffff</dimColor>
+				  <spinPosX>2500</spinPosX>
+				  <spinCanFocus>no</spinCanFocus>
+				  <scrollbarbg>scroll_bar_background.png</scrollbarbg>
+				  <scrollbartop>scrollbar_bar_nib_left_vert.png</scrollbartop>
+				  <scrollbarbottom>scrollbar_bar_nib_right_vert.png</scrollbarbottom>
+				  <scrollbarwidth>1</scrollbarwidth>
+				  <scrollbarXOff>-20</scrollbarXOff>
+				  <keepaspectratio>yes</keepaspectratio>
+				  <animation effect="slide" start="0" end="370" tween="back" ease="easeout" time="300" reversible="false">unfocus</animation>
+				  <animation effect="slide" start="370" end="0" tween="back" ease="easeout" time="300" reversible="false">focus</animation>
+				</control>
+				<!-- filmstrip -->
+				<control>
+					<description>Filmstrip view </description>
+					<type>filmstrip</type>
+					<id>50</id>					
+					<onup>12</onup>
+					<posX>70</posX>
+					<posY>575</posY>
+					<width>1920</width>
+					<textXOff>0</textXOff>
+					<textYOff>1500</textYOff>
+					<scrollOffset>3</scrollOffset>
+					<spinPosX>2100</spinPosX>
+					<spinCanFocus>no</spinCanFocus>
+					<itemWidth>255</itemWidth>
+					<itemHeight>370</itemHeight>
+					<textureWidth>245</textureWidth>
+					<textureHeight>360</textureHeight>
+					<thumbWidth>245</thumbWidth>
+					<thumbHeight>360</thumbHeight>
+					<thumbPosX>0</thumbPosX>
+					<thumbPosY>0</thumbPosY>
+					<font>font2</font>
+					<InfoImage></InfoImage>
+					<imageFolder>-</imageFolder>
+					<imageFolderFocus>-</imageFolderFocus>
+					<thumbs mask="video_thumb_frame_mask.png"></thumbs>
+					<InfoImage mask="video_thumb_frame_mask.png"></InfoImage>
+					<unfocusedAlpha>255</unfocusedAlpha>
+					<frame>video_thumb_frame_nofocus.png</frame>
+					<frameFocus>video_thumb_frame_filmstrip_focus.png</frameFocus>
+					<showFrame>yes</showFrame>
+					<showFolder>yes</showFolder>
+					<showBackGround>no</showBackGround>
+					<showInfoImage>no</showInfoImage>
+					<scrollbarbg>scroll_bar_background.png</scrollbarbg>
+					<scrollbarLeft>scrollbar_bar_nib_left_hor.png</scrollbarLeft>
+					<scrollbarRight>scrollbar_bar_nib_right_hor.png</scrollbarRight>
+					<scrollbarwidth>1</scrollbarwidth>
+					<scrollbarYOff>416</scrollbarYOff>
+					<keepaspectratio>no</keepaspectratio>
+					<thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="138,138" center="0,860" time="200">focus</thumbAnimation>
+					<thumbAnimation effect="zoom" start="138,138" reversible="false" end="100,100" center="0,860" time="100">unfocus</thumbAnimation>				
+					<animation effect="slide" start="0" end="370"  tween="back" ease="easeout" time="300" reversible="false">unfocus</animation>
+					<animation effect="slide" start="370" end="0"  tween="back" ease="easeout" time="300" reversible="false">focus</animation>
+				</control>
+				<!-- listcontrol -->
+				<control>
+				
+					<description>Text List (Groups/Series/Episode Views)</description>
+					<type>listcontrol</type>
+					<id>50</id>
+					<onleft>12</onleft>
+					<onright>12</onright>
+					<height>730</height>
+					<!-- Spin Controls -->
+					<spinPosX>2000</spinPosX>
+					<spinCanFocus>no</spinCanFocus>
+					<textXOff2>505</textXOff2>
+					<textXOff>-120</textXOff>
+					<textXOff3>547</textXOff3>
+					<IconYOff>16</IconYOff>
+					<IconXOff>500</IconXOff>
+					<itemWidth>132</itemWidth>
+					<itemHeight>36</itemHeight>
+					<scrollbarbg>-</scrollbarbg>
+					<scrollbartop>scrollbar_bar_nib_left_vert.png</scrollbartop>
+					<scrollbarbottom>scrollbar_bar_nib_right_vert.png</scrollbarbottom>
+					<scrollbarwidth>1</scrollbarwidth>
+					<scrollbarXOff>-5</scrollbarXOff>
+					
+
+				</control>
+				<!-- coverflow -->
+				<control>
+					<description>default cover flow</description>
+					<id>50</id>
+					<type>coverflow</type>
+					<colordiffuse>90ffffff</colordiffuse>
+					<dimColor>90ffffff</dimColor>
+					<posX>0</posX>
+					<posY>300</posY>
+					<width>1920</width>
+					<height>720</height>
+					<onup>12</onup>
+					<onleft>12</onleft>
+					<selectedCard>0</selectedCard>
+					<cardWidth>340</cardWidth>
+					<cardHeight>500</cardHeight>
+					<angle>30</angle>
+					<sideShift>270</sideShift>
+					<sideGap>75</sideGap>
+					<sideDepth>375</sideDepth>
+					<offsetY>0</offsetY>
+					<selectedOffsetY>0</selectedOffsetY>
+					<speed>8</speed>
+					<backgroundColor>000000FF</backgroundColor>
+					<backgroundHeight>1080</backgroundHeight>
+					<backgroundWidth>1920</backgroundWidth>
+					<backgroundX>0</backgroundX>
+					<backgroundY>0</backgroundY>
+					<backgroundDiffuse>FF000000</backgroundDiffuse>
+					<background>-</background>
+					<showForeground>yes</showForeground>
+					<foregroundHeight>1080</foregroundHeight>
+					<foregroundWidth>1920</foregroundWidth>
+					<foregroundX>0</foregroundX>
+					<foregroundY>0</foregroundY>
+					<foreground>-</foreground>
+					<showBackground>no</showBackground>
+					<frame>video_thumb_frame_nofocus.png</frame>
+					<frameFocus>video_thumb_frame_filmstrip_focus.png</frameFocus>
+					<showFrame>yes</showFrame>
+					<frameWidth>340</frameWidth>
+					<frameHeight>500</frameHeight>
+					<spinSpeed>8</spinSpeed>
+					<unfocusedAlpha>FF</unfocusedAlpha>
+					<folderPrefix />
+					<folderSuffix />
+					<font1>font2</font1>
+					<font2>font2</font2>
+					<label1>#title</label1>
+					<label2>#genre</label2>
+					<textColor>FFFFFFFF</textColor>
+					<remoteColor>FFFF0000</remoteColor>
+					<playedColor>FFA0D0FF</playedColor>
+					<downloadColor>FF00FF00</downloadColor>
+					<selectedColor>FFFFFFFF</selectedColor>
+					<label1YOff>2000</label1YOff>
+					<label2YOff>2000</label2YOff>
+					<pageSize>5</pageSize>
+					<scrollbarBackground>-</scrollbarBackground>
+					<scrollbarLeft>scrollbar_bar_nib_left.png</scrollbarLeft>
+					<scrollbarRight>scrollbar_bar_nib_right.png</scrollbarRight>
+					<scrollbarYOff>692</scrollbarYOff>
+					<showScrollbar>yes</showScrollbar>
+					<keepaspectratio>no</keepaspectratio>
+					<cards flipY="yes" diffuse="Thumb_Mask.png" mask="video_thumb_frame_mask.png"/>
+					<animation effect="slide" tween="circle" easing="out" time="200" start="900,0" reversible="false">visible</animation>
+					<animation effect="slide" tween="circle" easing="out" time="200" end="900,0" reversible="false">hidden</animation>
+					<subitems>
+						<subitem>
+							<![CDATA[
+							<controls>
+							  <control>
+								<description>background</description>
+								<type>image</type>
+								<posX>0</posX>
+								<posY>0</posY>
+								<width>340</width>
+								<height>500</height>
+								<texture flipY="yes" diffuse="Thumb_Mask.png" mask="video_thumb_frame_mask.png">video_thumb_frame_mask.png</texture>
+							  </control>
+							  <control>
+								<description>Series Details</description>
+								<type>label</type>
+								<posX>20</posX>
+								<posY>10</posY>
+								<width>320</width>
+								<label>Series Details</label>
+								<font>font13</font>
+								<textcolor>FFFFFFFF</textcolor>
+							  </control>
+							  <control>
+								<description>Genre</description>
+								<type>fadelabel</type>
+								<posX>20</posX>
+								<posY>40</posY>
+								<width>320</width>
+								<label>#Anime3.SeriesGroup.Genre</label>
+								<font>font13</font>
+								<textcolor>FFFFFFFF</textcolor>
+							  </control>
+							  <control>
+								<description>Year</description>
+								<type>label</type>
+								<posX>20</posX>
+								<posY>60</posY>
+								<width>320</width>
+								<label>#Anime3.SeriesGroup.Year</label>
+								<font>font13</font>
+								<textcolor>FFFFFFFF</textcolor>
+							  </control>
+							  <control>
+								<description>Episodes</description>
+								<type>label</type>
+								<posX>20</posX>
+								<posY>80</posY>
+								<width>320</width>
+								<label>#Anime3.SeriesGroup.Episodes</label>
+								<font>font13</font>
+								<textcolor>FFFFFFFF</textcolor>
+							  </control>
+							  <control>
+								<description>Rating</description>
+								<type>label</type>
+								<posX>20</posX>
+								<posY>100</posY>
+								<width>320</width>
+								<label>#Anime3.SeriesGroup.Rating</label>
+								<font>font13</font>
+								<textcolor>FFFFFFFF</textcolor>
+							  </control>                  
+							  <control>
+								<description>Summary</description>
+								<type>textboxscrollup</type>
+								<posX>20</posX>
+								<posY>120</posY>
+								<width>320</width>
+								<height>260</height>
+								<label>#Anime3.Description</label>
+								<font>font13</font>
+								<lineSpacing>2</lineSpacing>
+								<textcolor>gainsboro</textcolor>
+								<shadowAngle>0</shadowAngle>
+								<shadowDistance>0</shadowDistance>
+							  </control>
+							</controls>
+						  ]]>
+						</subitem>
+					</subitems>
+				</control>
+				<control>
+					<description>playlist listcontrol</description>
+					<type>playlistcontrol</type>
+					<id>50</id>
+					<onleft>2</onleft>
+					<onright>2</onright>
+					<scrollOffset>2</scrollOffset>
+				</control>
+			</control>
+		</control>
+
+	</controls>
+</window>

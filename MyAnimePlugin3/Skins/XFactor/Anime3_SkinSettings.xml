@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<logos>
+		<avc>Media\Logos\AVC.png</avc>
+		<divx>Media\Logos\DIVX.png</divx>
+		<xvid>Media\Logos\XVID.png</xvid>
+		<mpeg2>Media\Logos\mp2v.png</mpeg2>
+		<res720p>Media\Logos\HD 720P.png</res720p>
+		<res1080p>Media\Logos\HD 1080P.png</res1080p>
+	</logos>
+</settings>

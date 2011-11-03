@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+	<id>6103</id>
+	<defaultcontrol>50</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<define>#title.color:ffffffff</define>
+	<!-- Titles Color     Default: ffdedede-->
+	<define>#smalltitle.color:ffffffff</define>
+	<!-- Small Titles Color     Default: ff999999 -->
+	<define>#text.color:ffffffff</define>
+	<!-- Text Color     Default: ffffffff-->
+	<define>#default.color:ffffffff</define>
+	<!-- Normal List Color     Default: ffffffff-->
+	<define>#watched.color:ffffffff</define>
+	<!-- Watched List Color     Default: ff666666 -->
+	<define>#notpresent.color:ffffffff</define>
+	<!-- File Not Present in List Color     Default: ffef6d16 -->
+	
+		
+	<controls>
+		<control>
+			<type>label</type>
+			<description>Dummy Label for fullscreen preview</description>
+			<id>1400</id>
+			<posX>-50</posX>
+			<posY>-50</posY>
+			<width>620</width>
+			<textcolor>d4d2d2</textcolor>
+			<font>font14</font>
+			<label>
+			</label>
+			<visible>true</visible>
+			<!-- to make a control visible only when Fullscreen preview is on do this: <visible>Control.IsVisible(1400)</visible> -->
+			<!-- to make a control invisible when Fullscreen preview is off do this: <visible>!Control.IsVisible(1400)</visible> -->
+		</control>	
+		<!-- ~~~~~~~~~~~~~~~~~~~~ ALL BACKGROUNDS ~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>MyAnime3/anime3_DefaultBackground.jpg</texture>
+			<animation effect="fade" start="0" end="100" time="3000">WindowOpen</animation>
+			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+		</control>
+			
+		<control>
+			<description>preview</description>
+			<id>4560</id>
+			<type>image</type>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<texture>#Anime3.FanArt.SelectedPreview</texture>
+			<visible>true</visible>
+		</control>
+		<control>
+			<description>preview</description>
+			<id>0</id>
+			<type>image</type>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<texture>MyAnime3/anime3_background.png</texture>
+			<visible>Control.IsVisible(1400)</visible>
+		</control>
+		<control>
+			<id>0</id>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1208</width>
+			<height>720</height>
+			<dimColor>50ffffff</dimColor>
+			<texture>Backgroundtop.moretrans.png</texture>
+			<visible>Control.IsVisible(1400)</visible>
+		</control>
+
+		<control>
+			<type>fadelabel</type>
+			<description>Subtitle</description>
+			<id>0</id>
+			<posX>1150</posX>
+			<posY>1</posY>
+			<width>500</width>
+			<label>My Anime</label>
+			<font>font18</font>
+			<textcolor>20ffffff</textcolor>
+			<align>right</align>
+			<visible>Control.IsVisible(1400)</visible>
+		</control>
+		<!--<control>
+			<type>image</type>
+			<id>0</id>
+			<posX>1203</posX>
+			<posY>2</posY>
+			<width>80</width>
+			<height>70</height>
+			<texture>hover_my anime.png</texture>
+			<visible>Control.IsVisible(1400)</visible>
+		</control>-->
+
+		<control>
+			<description>Resolution</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>640</posX>
+			<posY>55</posY>
+			<font>font14</font>
+			<align>center</align>
+			<label>[#Anime3.FanArt.SelectedFanartResolution]</label>
+			<visible>Control.IsVisible(1400)</visible>
+		</control>
+		<control>
+			<description>Top title</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>15</posX>
+			<posY>35</posY>
+			<font>font16</font>
+			<textcolor>ffa9d0f7</textcolor>
+			<width>660</width>
+			<label>FanArt</label>
+			<visible>Control.IsVisible(1400)</visible>
+		</control>
+
+		<!--  ************** HIDDEN MENU *****************  -->
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>2</defaultcontrol>
+			<onexit>50</onexit>
+			<buttonX>0</buttonX>
+			<buttonY>0</buttonY>
+			<buttonwidth>106</buttonwidth>
+			<buttonheight>720</buttonheight>
+			<textureFocus>-</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>568</width>
+			<height>900</height>
+			<dimColor>00ffffff</dimColor>
+			<control>
+				<type>image</type>
+				<posX>26</posX>
+				<posY>78</posY>
+				<width>367</width>
+				<height>591</height>
+				<texture>hiddenmenu_left.png</texture>
+				<colorDiffuse>fffffffff</colorDiffuse>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<description>group element</description>
+				<type>group</type>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+				<visible>!Control.HasFocus(50)</visible>
+				<control>
+					<description>button group</description>
+					<type>group</type>
+					<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+					<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+					<posX>71</posX>
+					<posY>121</posY>
+					<layout>StackLayout</layout>
+					<visible>!Control.HasFocus(50)</visible>
+					<control>
+						<description>Change Layout</description>
+						<type>button</type>
+						<id>2</id>
+						<label>Change Layout</label>
+						<onup>141</onup>
+						<ondown>140</ondown>
+						<onleft>50</onleft>
+					</control>
+
+					<control>
+						<description>Posters</description>
+						<type>button</type>
+						<id>140</id>
+						<label>Posters</label>
+						<onleft>50</onleft>
+						<onup>2</onup>
+						<ondown>141</ondown>
+					</control>
+
+					<control>
+						<description>Wide Banners</description>
+						<type>button</type>
+						<id>141</id>
+						<label>Wide Banners</label>
+						<onleft>50</onleft>
+						<onup>140</onup>
+						<ondown>2</ondown>
+					</control>
+				</control>
+			</control>
+		</control>
+
+		<control>
+			<type>group</type>
+			<description>group element</description>
+			<id>28</id>
+			<layout>StackLayout</layout>
+			<posX>60</posX>
+			<posY>97</posY>
+			<control>
+				<description>composite control consisting of a list control and a thumbnail panel</description>
+				<type>facadeview</type>
+				<id>50</id>
+				<control>
+					<description>Graphical Thumbpanel</description>
+					<type>thumbnailpanel</type>
+					<id>50</id>
+					<posX>35</posX>
+					<posY>255</posY>
+					<width>1250</width>
+					<height>500</height>
+					<spinPosX>1145</spinPosX>
+					<spinPosY>675</spinPosY>
+					<imageFolderFocus>Picture_cover.png</imageFolderFocus>
+					<frame>Picture_cover.png</frame>
+					<frameFocus>Picture_cover.png</frameFocus>
+					<background>Coverbig.png</background>
+					<downloadColor>#default.color</downloadColor>
+					<remoteColor>#watched.color</remoteColor>
+					<textcolor>#notpresent.color</textcolor>
+					<textcolor2>#notpresent.color</textcolor2>
+					<textcolor3>#notpresent.color</textcolor3>
+					<!-- Large Thumbnails -->
+					<itemWidthBig>302</itemWidthBig>
+					<itemHeightBig>208</itemHeightBig>
+					<textureWidthBig>302</textureWidthBig>
+					<textureHeightBig>185</textureHeightBig>
+					<thumbWidthBig>271</thumbWidthBig>
+					<thumbHeightBig>152</thumbHeightBig>
+					<thumbPosXBig>14</thumbPosXBig>
+					<thumbPosYBig>14</thumbPosYBig>
+					<!-- Small Thumbnails -->
+					<itemWidth>211</itemWidth>
+					<itemHeight>146</itemHeight>
+					<textureWidth>211</textureWidth>
+					<textureHeight>130</textureHeight>
+					<thumbWidth>190</thumbWidth>
+					<thumbHeight>106</thumbHeight>
+					<thumbPosX>10</thumbPosX>
+					<thumbPosY>10</thumbPosY>
+					<thumbZoom>no</thumbZoom>
+					<spinCanFocus>no</spinCanFocus>
+					<enableFocusZoom>no</enableFocusZoom>
+					<textXOff>10</textXOff>
+					<textYOff>-5</textYOff>
+					<unfocusedAlpha>150</unfocusedAlpha>
+					<onleft>2</onleft>
+					<onright>2</onright>
+					<font>font11</font>
+					<visible>Control.IsVisible(1400)</visible>
+				</control>
+				<control>
+					<description>Filmstrip view</description>
+					<type>filmstrip</type>
+					<dimColor>90ffffff</dimColor>
+					<id>50</id>
+					<scrollOffset>2</scrollOffset>
+					<posX>0</posX>
+					<posY>400</posY>
+					<spinPosY>-50</spinPosY>
+					<spinPosX>-50</spinPosX>
+					<spinCanFocus>no</spinCanFocus>
+					<width>1244</width>
+					<height>720</height>
+					<onup>2</onup>
+					<onleft>2</onleft>
+					<thumbWidth>350</thumbWidth>
+					<thumbHeight>196</thumbHeight>
+					<thumbPosX>3</thumbPosX>
+					<thumbPosY>2</thumbPosY>
+					<itemWidth>350</itemWidth>
+					<itemHeight>196</itemHeight>
+					<textureWidth>362</textureWidth>
+					<textureHeight>200</textureHeight>
+					<imageFolderFocus>Picture_cover.png</imageFolderFocus>
+					<frame>Picture_cover.png</frame>
+					<frameFocus>Picture_cover.png</frameFocus>
+					<background>Coverbig.png</background>
+					<thumbs flipY="true" diffuse="Thumb_Mask.png"></thumbs>
+					<InfoImage flipY="true" diffuse="Thumb_Mask.png"></InfoImage>
+					<showFrame>yes</showFrame>
+					<showFolder>no</showFolder>
+					<showBackGround>no</showBackGround>
+					<showInfoImage>no</showInfoImage>
+					<visible>Control.IsVisible(1400)</visible>
+					<thumbAnimation effect="zoom" start="100,100" end="130,130" time="200">focus</thumbAnimation>
+					<thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
+					<animation effect="rotatey" start="20" end="0" center="525,0" tween="back" ease="easeout" time="500" reversible="false">unfocus</animation>
+					<animation effect="rotatey" start="0" end="20" center="525,0" tween="back" ease="easeout" time="500" reversible="false">focus</animation>
+				</control>
+			</control>
+		</control>
+		<import>common.time.xml</import>
+	</controls>
+</window>

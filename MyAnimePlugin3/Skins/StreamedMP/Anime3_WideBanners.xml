@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6106</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <define>#title.color:ffFFFFFF</define>
+  <define>#text.color:ffFFFFFF</define>
+  <define>#default.color:ffFFFFFF</define>
+  <define>#watched.color:ffa9d0f7</define>
+  <define>#notpresent.color:ffF87B72</define>
+  <controls>
+   <!-- :::::::::::::: BACKGROUNDS :::::::::::::: -->
+    <control>
+      <description>FanArt Overlay</description>
+      <type>image</type>
+      <posX>-2</posX>
+      <posY>0</posY>
+      <width>1284</width>
+      <height>722</height>
+      <texture>MyAnime3\anime3_background.png</texture>
+    </control>
+    <control>
+      <description>Top overlay bar</description>
+      <type>image</type>
+      <posX>0</posX>
+      <posY>-20</posY>
+      <width>1280</width>
+      <height>70</height>
+      <texture>MyAnime3\overlay_bar_top.png</texture>
+    </control>
+	
+	<!-- ************************** TOP BAR ***********************************-->
+    <control>
+      <description>title BG</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>77</posX>
+      <posY>11</posY>
+      <width>437</width>
+      <height>35</height>
+      <texture>tvtitlebg.png</texture>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <description>My Anime Label</description>
+      <id>0</id>
+      <posX>493</posX>
+      <posY>13</posY>
+      <width>350</width>
+      <font>mediastream12c</font>
+      <label>Wide Banners</label>
+      <align>right</align>
+    </control>
+	
+    <!-- :::::::::::::: INFO LABELS :::::::::::::: -->
+
+    <control Style="TVSeriesTitle">
+      <description>WideBanners Source Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>610</posY>
+      <width>700</width>
+      <label>Source</label>
+    </control>
+    <control Style="TVSeriesLabel">
+      <description>WideBanners Source</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>610</posY>
+      <width>700</width>
+      <label>#Anime3.WideBanners.SelectedSource</label>
+    </control>
+    <control Style="TVSeriesTitle">
+      <description>IsDisabled Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>640</posY>
+      <width>700</width>
+      <label>Is Disabled</label>
+    </control>
+    <control Style="TVSeriesLabel">
+      <description>IsDisabled</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>640</posY>
+      <width>700</width>
+      <label>#Anime3.WideBanners.SelectedBannerIsDisabled</label>
+    </control>
+    <control Style="TVSeriesTitle">
+      <description>Is Default Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>670</posY>
+      <width>700</width>
+      <label>Is Default</label>
+    </control>
+    <control Style="TVSeriesLabel">
+      <description>Is Default</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>670</posY>
+      <width>700</width>
+      <label>#Anime3.WideBanners.SelectedBannerIsDefault</label>
+    </control>
+    <!--  ************** HIDDEN MENU *****************  -->
+    <control>
+      <type>actiongroup</type>
+      <description>action menu</description>
+      <defaultcontrol>140</defaultcontrol>
+      <onexit>50</onexit>
+      <dimColor>00ffffff</dimColor>
+      <control>
+        <type>image</type>
+        <posX>1002</posX>
+        <posY>0</posY>
+        <width>278</width>
+        <height>720</height>
+        <texture>hiddenmenu_right.png</texture>
+        <visible>!Control.HasFocus(50)</visible>
+        <animation effect="slide" time="100" start="300,0">visible</animation>
+        <animation effect="slide" time="0" end="300,0">hidden</animation>
+      </control>
+      <control>
+        <id>0</id>
+        <label>MENU</label>
+        <type>label</type>
+        <font>mediastream12tc</font>
+        <posX>1040</posX>
+        <posY>225</posY>
+        <visible>!Control.HasFocus(50)</visible>
+        <animation effect="slide" time="100" start="300,0">visible</animation>
+        <animation effect="slide" time="0" end="300,0">hidden</animation>
+      </control>
+      <control>
+        <type>group</type>
+        <description>group element</description>
+        <visible>!Control.HasFocus(50)</visible>
+        <animation effect="slide" time="100" start="300,0">visible</animation>
+        <animation effect="slide" time="0" end="300,0">hidden</animation>
+        <posX>1040</posX>
+        <posY>250</posY>
+        <width>220</width>
+        <height>720</height>
+        <layout>StackLayout</layout>
+        
+        <control>
+          <description>Fanart</description>
+          <type>button</type>
+          <id>140</id>
+          <label>Fanart</label>
+          <onleft>50</onleft>
+          <onup>141</onup>
+          <ondown>141</ondown>
+        </control>
+        <control>
+          <description>Posters</description>
+          <type>button</type>
+          <id>141</id>
+          <label>Posters</label>
+          <onleft>50</onleft>
+          <onup>140</onup>
+          <ondown>140</ondown>
+        </control>
+      </control>
+    </control>
+    <!-- :::::::::::::: THUMBNAILPANEL :::::::::::::: -->
+    <control>
+      <type>group</type>
+      <description>group element</description>
+      <id>28</id>
+      <layout>StackLayout</layout>
+      <posX>60</posX>
+      <posY>97</posY>
+      <control>
+        <description>composite control consisting of a thumbnail panel</description>
+        <type>facadeview</type>
+        <id>50</id>
+        <control>
+          <description>graphical thumbpanel</description>
+          <type>thumbnailpanel</type>
+          <id>50</id>
+          <onleft>140</onleft>
+          <onright>140</onright>
+          <posX>13</posX>
+          <posY>92</posY>
+          <width>1280</width>
+          <height>620</height>
+          <spinPosX>1300</spinPosX>
+          <spinPosY>720</spinPosY>
+          <spinCanFocus>no</spinCanFocus>
+          <imageFolder>-</imageFolder>
+          <imageFolderFocus>widebannerborder.png</imageFolderFocus>
+          <downloadColor>#default.color</downloadColor>
+          <!-- not watched color (normal) -->
+          <remoteColor>#watched.color</remoteColor>
+          <!-- watched color -->
+          <textcolor>#notpresent.color</textcolor>
+          <!-- local file not present color -->
+          <textcolor2>#default.color</textcolor2>
+          <!-- local file not present color column 2-->
+          <textcolor3>#default.color</textcolor3>
+          <!-- local file not present color column 3-->
+          <keepaspectratio>no</keepaspectratio>
+          <enableFocusZoom>no</enableFocusZoom>
+          <scrollOffset>1</scrollOffset>
+          <unfocusedAlpha>150</unfocusedAlpha>
+          <!-- margin -->
+          <itemWidthBig>420</itemWidthBig>
+          <itemHeightBig>94</itemHeightBig>
+          <!-- frame texture -->
+          <textureWidthBig>414</textureWidthBig>
+          <textureHeightBig>88</textureHeightBig>
+          <!-- wide banners -->
+          <thumbWidthBig>400</thumbWidthBig>
+          <thumbHeightBig>74</thumbHeightBig>
+          <thumbPosXBig>7</thumbPosXBig>
+          <thumbPosYBig>7</thumbPosYBig>
+          <thumbZoom>no</thumbZoom>
+          <!-- text (when there is no banner) -->
+          <textXOff>60</textXOff>
+          <textYOff>25</textYOff>
+        </control>
+      </control>
+    </control>
+    <import>common.time.xml</import>
+  </controls>
+</window>
+<!--Checksum:ce00f09075c5e41d6afe6a32ff405057-->

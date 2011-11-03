@@ -1,0 +1,627 @@
+﻿<window>
+	<id>6105</id>
+	<defaultcontrol>902</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+
+	<controls>
+
+	  <!-- Import Dummy Controls to handle visibility -->
+
+	  <!-- Dummies -->
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for main character poster having height > width</description>
+		<id>5681</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+		<!-- this will be true when the main character poster has a heigh greater than its width -->
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for main actor poster having height > width</description>
+		<id>5682</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+		<!-- this will be true when the main actor poster has a heigh greater than its width -->
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for secondary character poster having height > width</description>
+		<id>5683</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+		<!-- this will be true when the secondary character poster has a heigh greater than its width -->
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for series poster having height > width</description>
+		<id>5684</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+		<!-- this will be true when the series poster has a heigh greater than its width -->
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for main character exists</description>
+		<id>5691</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for main actor exists</description>
+		<id>5692</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for secondary character exists</description>
+		<id>5693</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+	  </control>
+
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for series exists</description>
+		<id>5694</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>620</width>
+		<visible>false</visible>
+	  </control>
+
+
+		<!-- ********************** BACKGROUNDS************************************** -->
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>MyAnime3/anime3_DefaultBackground.jpg</texture>
+			<animation effect="fade" start="0" end="100" time="3000">WindowOpen</animation>
+			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+		</control>
+		
+		<!--<control>
+			<description>Background</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>Background.png</texture>
+		</control>-->
+
+		<control>
+			<description>Fanart Background #1</description>
+			<type>image</type>
+			<id>524</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>#Anime3.Character.Fanart</texture>
+			<animation effect="fade" start="0" end="100" time="3000">WindowOpen</animation>
+			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+		</control>
+
+		<control>
+			<description>FanArt Overlay</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>MyAnime3/anime3_background.png</texture>
+		</control>
+
+		
+		
+		
+
+
+
+		
+
+
+		<control>
+			<id>0</id>
+			<type>image</type>
+			<posX>15</posX>
+			<posY>70</posY>
+			<width>24</width>
+			<height>24</height>
+			<texture>MyAnime3/nav24_back.png</texture>
+		</control>
+
+		<control>
+			<description>Relations</description>
+			<type>button</type>
+			<id>901</id>
+			<label>Relations</label>
+			<width>150</width>
+			<posX>45</posX>
+			<posY>68</posY>
+			<align>center</align>
+			<onleft>902</onleft>
+			<onright>902</onright>
+			<onup>901</onup>
+			<ondown>50</ondown>
+		</control>
+
+		<control>
+			<id>0</id>
+			<type>image</type>
+			<posX>1240</posX>
+			<posY>70</posY>
+			<width>24</width>
+			<height>24</height>
+			<texture>MyAnime3/nav24_next.png</texture>
+		</control>
+
+		<control>
+			<description>Anime Info</description>
+			<type>button</type>
+			<id>902</id>
+			<label>Anime Info</label>
+			<width>150</width>
+			<posX>1110</posX>
+			<posY>68</posY>
+			<align>right</align>
+			<onleft>901</onleft>
+			<onright>901</onright>
+			<onup>902</onup>
+			<ondown>50</ondown>
+		</control>
+
+
+
+		<!-- :::::::::::::::::::::::::::::: TOP BAR :: TIME :: LOCATION :::::::::::::::::::::::::::::: -->
+		<control>
+			<type>fadelabel</type>
+			<description>Anime2 Label</description>
+			<id>0</id>
+			<posX>1286</posX>
+			<posY>10</posY>
+			<font>font18</font>
+			<textcolor>20ffffff</textcolor>
+			<align>right</align>
+			<label>My Anime</label>
+		</control>
+		<control>
+			<description>Current View BG</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>1306</posX>
+			<posY>20</posY>
+			<width>40</width>
+			<height>40</height>
+			<texture>hover_my anime.png</texture>
+		</control>
+		<control>
+			<type>fadelabel</type>
+			<description>Current View</description>
+			<id>0</id>
+			<posX>1271</posX>
+			<posY>35</posY>
+			<width>950</width>
+			<font>font14</font>
+			<align>right</align>
+			<label>Relations</label>
+		</control>
+		
+
+		<!--  ************** CHARACTER LABELS *****************  -->
+
+		<control>
+			<description>composite control consisting of a list control and a thumbnail panel</description>
+			<type>facadeview</type>
+			<id>50</id>
+
+			<control>
+				<description>listcontrol</description>
+				<type>listcontrol</type>
+				<id>50</id>
+				<posX>12</posX>
+				<posY>100</posY>
+				<onleft>901</onleft>
+				<onright>151</onright>
+				<spinPosX>240</spinPosX>
+				<spinPosY>700</spinPosY>
+				<width>300</width>
+				<height>580</height>
+				<spinCanFocus>no</spinCanFocus>
+				<scrollOffset>4</scrollOffset>
+				<spinWidth>18</spinWidth>
+				<spinHeight>18</spinHeight>
+				<spinPosX>-50</spinPosX>
+				<spinPosY>-50</spinPosY>
+				<textureFocus>menu_list_focus.png</textureFocus>
+				<textureNoFocus>button_green_nofocus_165x32.png</textureNoFocus>
+				<font>font10</font>
+				<font2>font10</font2>
+				<font3>font10</font3>
+				<textXOff>-90</textXOff>
+				<textYOff>4</textYOff>
+				<textXOff2>325</textXOff2>
+				<textYOff2>4</textYOff2>
+				<textXOff3>360</textXOff3>
+				<textYOff3>6</textYOff3>
+				<IconXOff>330</IconXOff>
+				<IconYOff>7</IconYOff>
+				<itemWidth>100</itemWidth>
+				<itemHeight>20</itemHeight>
+				<font>font11</font>
+				<spaceBetweenItems>1</spaceBetweenItems>
+				<!-- Text -->
+				<downloadColor>ffffffff</downloadColor>
+				<!-- not watched color (normal) -->
+				<remoteColor>ffffffff</remoteColor>
+				<!-- watched color -->
+				<textcolor>ffffffff</textcolor>
+				<!-- local file not present color -->
+				<textcolor2>ffffffff</textcolor2>
+				<!-- local file not present colorcolumn 2-->
+				<textcolor3>ffffffff</textcolor3>
+				<!-- local file not present color column 3-->
+			</control>
+		</control>
+	
+
+		<control>
+			<description>Character Name</description>
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>321</posX>
+			<posY>91</posY>
+			<textcolor>ffffffff</textcolor>
+			<font>font11</font>
+		  <shadowAngle>45</shadowAngle>
+		  <shadowDistance>3</shadowDistance>
+		  <shadowColor>ff000000</shadowColor>
+			<label>#Anime3.Character.Name</label>
+		</control>
+
+
+	  <!-- Character Poster when it is height > width -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>320</posX>
+		<posY>120</posY>
+		<height>352</height>
+		<width>242</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>Control.IsVisible(5681)+Control.IsVisible(5691)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>330</posX>
+		<posY>130</posY>
+		<height>330</height>
+		<width>220</width>
+		<texture>#Anime3.Character.PosterMainChar</texture>
+		<visible>Control.IsVisible(5681)+Control.IsVisible(5691)</visible>
+	  </control>
+
+	  <!-- Character Poster when it is width > height -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>320</posX>
+		<posY>120</posY>
+		<height>160</height>
+		<width>242</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>!Control.IsVisible(5681)+Control.IsVisible(5691)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>330</posX>
+		<posY>130</posY>
+		<height>138</height>
+		<width>220</width>
+		<texture>#Anime3.Character.PosterMainChar</texture>
+		<visible>!Control.IsVisible(5681)+Control.IsVisible(5691)</visible>
+	  </control>
+	  
+	  
+
+
+
+
+		<control>
+			<description>Actor Name</description>
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>641</posX>
+			<posY>91</posY>
+			<textcolor>ffffffff</textcolor>
+			<font>font11</font>
+		  <shadowAngle>45</shadowAngle>
+		  <shadowDistance>3</shadowDistance>
+		  <shadowColor>ff000000</shadowColor>
+			<label>#Anime3.Actor.Name</label>
+		</control>
+
+	  <!-- Actor Poster when it is height > width -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>640</posX>
+		<posY>120</posY>
+		<height>352</height>
+		<width>242</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>Control.IsVisible(5682)+Control.IsVisible(5692)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>650</posX>
+		<posY>130</posY>
+		<height>330</height>
+		<width>220</width>
+		<texture>#Anime3.Character.PosterMainActor</texture>
+		<visible>Control.IsVisible(5682)+Control.IsVisible(5692)</visible>
+	  </control>
+
+	  <!-- Actor Poster when it is width > height -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>640</posX>
+		<posY>120</posY>
+		<height>160</height>
+		<width>242</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>!Control.IsVisible(5682)+Control.IsVisible(5692)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>650</posX>
+		<posY>130</posY>
+		<height>138</height>
+		<width>220</width>
+		<texture>#Anime3.Character.PosterMainActor</texture>
+		<visible>!Control.IsVisible(5682)+Control.IsVisible(5692)</visible>
+	  </control>
+
+
+		<control>
+			<description>listcontrol</description>
+			<type>listcontrol</type>
+			<id>151</id>
+			<posX>640</posX>
+			<posY>500</posY>
+			<onleft>50</onleft>
+			<onright>902</onright>
+			<spinPosX>868</spinPosX>
+			<spinPosY>700</spinPosY>
+			<width>300</width>
+			<height>200</height>
+			<spinCanFocus>no</spinCanFocus>
+			<scrollOffset>4</scrollOffset>
+			<spinWidth>18</spinWidth>
+			<spinHeight>18</spinHeight>
+			<spinPosX>-50</spinPosX>
+			<spinPosY>-50</spinPosY>
+			<textureFocus>menu_list_focus.png</textureFocus>
+			<textureNoFocus>button_green_nofocus_165x32.png</textureNoFocus>
+			<font>font10</font>
+			<font2>font10</font2>
+			<font3>font10</font3>
+			<textXOff>-90</textXOff>
+			<textYOff>4</textYOff>
+			<textXOff2>325</textXOff2>
+			<textYOff2>4</textYOff2>
+			<textXOff3>360</textXOff3>
+			<textYOff3>6</textYOff3>
+			<IconXOff>330</IconXOff>
+			<IconYOff>7</IconYOff>
+			<itemWidth>100</itemWidth>
+			<itemHeight>20</itemHeight>
+			<spaceBetweenItems>1</spaceBetweenItems>
+			<!-- Text -->
+			<downloadColor>ffffffff</downloadColor>
+			<!-- not watched color (normal) -->
+			<remoteColor>ffffffff</remoteColor>
+			<!-- watched color -->
+			<textcolor>ffffffff</textcolor>
+			<!-- local file not present color -->
+			<textcolor2>ffffffff</textcolor2>
+			<!-- local file not present colorcolumn 2-->
+			<textcolor3>ffffffff</textcolor3>
+			<!-- local file not present color column 3-->
+		</control>
+
+	  <!-- Also as Actor Name -->
+	  <control>
+		<description>Actor Name</description>
+		<type>fadelabel</type>
+		<id>0</id>
+		<posX>1000</posX>
+		<posY>120</posY>
+		<textcolor>ffffffff</textcolor>
+		<font>font12b</font>
+		<shadowAngle>45</shadowAngle>
+		<shadowDistance>3</shadowDistance>
+		<shadowColor>ff000000</shadowColor>
+		<label>Also as #Anime3.Character.SeriesCharacter</label>
+		<visible>Control.IsVisible(5693)</visible>
+	  </control>
+
+
+
+	  <!-- Secondary Character Poster when it is height > width -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1000</posX>
+		<posY>160</posY>
+		<height>210</height>
+		<width>160</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>Control.IsVisible(5683)+Control.IsVisible(5693)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>1010</posX>
+		<posY>170</posY>
+		<height>190</height>
+		<width>140</width>
+		<texture>#Anime3.Character.PosterSecondChar</texture>
+		<visible>Control.IsVisible(5683)+Control.IsVisible(5693)</visible>
+	  </control>
+
+	  <!-- Secondary Character Poster when it is width > height -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1000</posX>
+		<posY>160</posY>
+		<height>100</height>
+		<width>160</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>!Control.IsVisible(5683)+Control.IsVisible(5693)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>1010</posX>
+		<posY>170</posY>
+		<height>80</height>
+		<width>140</width>
+		<texture>#Anime3.Character.PosterSecondChar</texture>
+		<visible>!Control.IsVisible(5683)+Control.IsVisible(5693)</visible>
+	  </control>
+
+
+
+	  <!-- Series Name -->
+	  <control>
+		<description>Series Name</description>
+		<type>fadelabel</type>
+		<id>0</id>
+		<posX>1000</posX>
+		<posY>410</posY>
+		<textcolor>ffffffff</textcolor>
+		<font>font12b</font>
+		<shadowAngle>45</shadowAngle>
+		<shadowDistance>3</shadowDistance>
+		<shadowColor>ff000000</shadowColor>
+		<label>in #Anime3.Character.SeriesName</label>
+		<visible>Control.IsVisible(5694)</visible>
+	  </control>
+
+
+	  <!-- Series Poster when it is height > width -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1000</posX>
+		<posY>440</posY>
+		<height>210</height>
+		<width>160</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>Control.IsVisible(5684)+Control.IsVisible(5694)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>1010</posX>
+		<posY>450</posY>
+		<height>190</height>
+		<width>140</width>
+		<texture>#Anime3.Character.PosterSeries</texture>
+		<visible>Control.IsVisible(5684)+Control.IsVisible(5694)</visible>
+	  </control>
+
+	  <!-- Series Poster when it is width > height -->
+	  <control>
+		<description>Thumb/Cover background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1000</posX>
+		<posY>440</posY>
+		<height>100</height>
+		<width>160</width>
+		<texture>defaultdvdcover.png</texture>
+		<visible>!Control.IsVisible(5684)+Control.IsVisible(5694)</visible>
+	  </control>
+	  <control>
+		<type>image</type>
+		<description>group image ( group image background )</description>
+		<id>0</id>
+		<posX>1010</posX>
+		<posY>450</posY>
+		<height>80</height>
+		<width>140</width>
+		<texture>#Anime3.Character.PosterSeries</texture>
+		<visible>!Control.IsVisible(5684)+Control.IsVisible(5694)</visible>
+	  </control>
+
+		<control>
+		  <description>ANIDB Status</description>
+		  <type>label</type>
+		  <id>114</id>
+		  <posX>60</posX>
+		  <posY>685</posY>
+		  <width>900</width>
+		  <label>#Anime3.Character.Status</label>
+		  <font>font10</font>
+		  <align>Left</align>
+		  <textcolor>ffffffff</textcolor>
+		</control>
+
+		<import>common.time.xml</import>
+
+	</controls>
+</window>

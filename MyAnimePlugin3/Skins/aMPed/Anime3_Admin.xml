@@ -1,0 +1,303 @@
+﻿<window>
+    <id>6102</id>
+    <defaultcontrol>50</defaultcontrol>
+    <allowoverlay>no</allowoverlay>
+    <define>#header.hover:hover_my anime.png</define>
+    <define>#header.label:Anime Utilities</define>
+    <define>#multiimagepath:TV</define>
+    <define>#backdrop:animations\TV\backdrop_tvseries.jpg</define>
+    <controls>
+        <import>common.window.bars.xml</import>
+        <import>common.window.backdrops.xml</import>
+        <import>common.time.xml</import>
+		<!-- Import Dummy controls to handle visibility -->
+		<import>anime3_Dummy.xml</import>
+		
+		<!-- Specific Dummy controls to handle visibility -->
+		<control>
+		  <type>label</type>
+		  <description>Dummy Label showing tvdb/moviedb groups</description>
+		  <id>3511</id>
+		  <posX>-50</posX>
+		  <posY>-50</posY>
+		  <width>0</width>
+		  <textcolor>d4d2d2</textcolor>
+		  <font>font14</font>
+		  <visible>false</visible>
+		</control>
+		<control>
+		  <type>label</type>
+		  <description>Dummy Label showing unlinked files</description>
+		  <id>3512</id>
+		  <posX>-50</posX>
+		  <posY>-50</posY>
+		  <width>0</width>
+		  <textcolor>d4d2d2</textcolor>
+		  <font>font14</font>
+		  <visible>false</visible>
+		</control>
+
+        <control Style="Title">
+            <type>textboxscrollup</type>
+            <id>0</id>
+            <label>Version: #Anime3.VersionNumber (DB: #Anime3.DBVersionNumber)</label>
+        </control>
+
+        <!-- Background for List Control/Menu  -->
+        <control Style="Backslide">
+            <type>image</type>
+            <posY>100</posY>
+            <width>400</width>
+            <height>405</height>
+            <texture>Backslide.png</texture>
+            <colorDiffuse>fffffffff</colorDiffuse>
+            <visible>!Control.hasfocus(50)+!Control.hasfocus(101)</visible>
+            <animation effect="slide" time="450" start="-300,0">visible</animation>
+            <animation effect="slide" time="450" end="-300,0">hidden</animation>
+        </control>
+        <!-- Groups Count  -->
+		<control>
+			<type>label</type>
+			<id>0</id>
+            <posX>30</posX>
+			<posY>505</posY>
+			<label>#selectedindex / #Anime3.MissingGroups #(L(1222))</label>
+            <textcolor>77ffffff</textcolor>
+            <visible>string.equals(#selectedindex)</visible>
+			<animation effect="fade" time="200">WindowOpen</animation>
+			<animation effect="fade" time="200">WindowClose</animation>
+		</control>
+		<control>
+			<type>label</type>
+			<id>0</id>
+            <posX>30</posX>
+			<posY>505</posY>
+			<label>#Anime3.MissingGroups #(L(1222))</label>
+            <textcolor>77ffffff</textcolor>
+            <visible>!string.equals(#selectedindex)</visible>
+			<animation effect="fade" time="200">WindowOpen</animation>
+			<animation effect="fade" time="200">WindowClose</animation>
+		</control>
+    <control Style="Slide 1">
+      <description>Button group</description>
+      <type>group</type>
+      <dimColor>ffffffff</dimColor>
+        <control>
+            <type>button</type>
+			<id>101</id>
+            <posX>30</posX>
+            <posY>110</posY>
+            <width>320</width>
+			<onleft>6</onleft>
+			<onright>102</onright>
+			<onup>50</onup>
+			<ondown>50</ondown>
+            <label>TvDB/MovieDB Groups</label>
+			<textalign>center</textalign>
+        </control>
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posX>30</posX>
+			<posY>112</posY>
+			<width>20</width>
+			<height>20</height>
+			<texture>check-box.png</texture>
+			<visible>Control.IsVisible(3511)</visible>
+		</control>
+        <control>
+            <type>group</type>
+            <description>group element</description>
+            <id>28</id>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+            <layout>StackLayout</layout>
+            <posX>30</posX>
+            <posY>70</posY>
+			<visible>!Control.HasFocus(6)+!Control.hasfocus(7)+!Control.hasfocus(8)+!Control.hasfocus(9)</visible>
+		<animation effect="fade" time="300" reversible="true">visiblechange</animation>
+            <control>
+                <id>50</id>
+                <description>composite control consisting of a list control and a thumbnail panel</description>
+                <type>facadeview</type>
+				<control Style="Ticker">
+                    <description>Text List</description>
+                    <type>listcontrol</type>
+                    <id>50</id>
+                    <posX>20</posX>
+                    <posY>150</posY>
+					<height>280</height>
+					<scrollOffset>3</scrollOffset>
+                    <onleft>6</onleft>
+                    <onright>101</onright>
+                </control>
+            </control>
+        </control>
+		<control>
+			<type>button</type>
+			<id>102</id>
+			<posX>375</posX>
+			<posY>110</posY>
+			<width>320</width>
+			<align>left</align>
+			<onleft>101</onleft>
+			<onright>6</onright>
+			<onup>50</onup>
+			<ondown>50</ondown>
+			<textalign>center</textalign>
+			<label>Unlinked Files</label>
+		</control>
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posX>375</posX>
+			<posY>110</posY>
+			<width>20</width>
+			<height>20</height>
+			<texture>check-box.png</texture>
+			<visible>Control.IsVisible(3512)</visible>
+		</control>
+	</control>
+		<!--  ************** HIDDEN MENU *****************  -->
+		<control>
+            <type>actiongroup</type>
+            <description>action menu</description>
+            <defaultcontrol>6</defaultcontrol>
+            <onexit>50</onexit>
+            <buttonX>0</buttonX>
+            <buttonY>35</buttonY>
+            <buttonwidth>45</buttonwidth>
+            <buttonheight>576</buttonheight>
+            <textureFocus>Action_focus.png</textureFocus>
+            <textureNoFocus>Action_nofocus.png</textureNoFocus>
+            <width>320</width>
+            <height>576</height>
+            <dimColor>ffffffff</dimColor>
+			<control>
+				<description>button group</description>
+				<type>group</type>
+				<animation effect="slide" time="450" start="-300,0">visible</animation>
+				<animation effect="slide" time="450" end="-300,0">hidden</animation>
+				<posX>20</posX>
+				<posY>170</posY>
+				<layout>StackLayout</layout>
+				<visible>!Control.HasFocus(50)+!Control.hasfocus(101)+!Control.hasfocus(102)</visible>
+				<control>
+					<description>Run Import</description>
+					<type>button</type>
+					<id>6</id>
+					<label>Run Import</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>9</onup>
+					<ondown>7</ondown>
+				</control>
+				<control>
+					<description>Import CD/DVD</description>
+					<type>button</type>
+					<id>7</id>
+					<label>Import CD/DVD</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>6</onup>
+					<ondown>8</ondown>
+				</control>
+				<control>
+					<description>Cleanup Database</description>
+					<type>button</type>
+					<id>8</id>
+					<label>Cleanup Database</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>7</onup>
+					<ondown>9</ondown>
+				</control>
+				<control>
+					<description>More Options</description>
+					<type>button</type>
+					<id>9</id>
+					<label>More Options</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>8</onup>
+					<ondown>6</ondown>
+				</control>
+			</control>
+		</control>
+    <control Style="Slide 2">
+      <description>Button group</description>
+      <type>group</type>
+      <dimColor>ffffffff</dimColor>
+	  <control>
+         <type>fadelabel</type>
+         <description>Status ticker</description>
+         <id>1</id>
+		 <posX>30</posX>
+         <posY>400</posY>
+		 <width>500</width>
+         <label>Hasher Queue: #Anime3.Utilities.HasherQueueCount #Anime3.Utilities.HasherQueueStatus</label>
+         <visible>!Player.hasmedia</visible>
+		<font>font14</font>
+		<textcolor>cca9d0f7</textcolor>
+        </control>
+	  <control>
+         <type>fadelabel</type>
+         <description>Status ticker</description>
+         <id>1</id>
+		 <posX>30</posX>
+         <posY>425</posY>
+		 <width>500</width>
+         <label>ANIDB Queue: #Anime3.Utilities.AniDBQueueCount #Anime3.Utilities.AniDBQueueStatus</label>
+         <visible>!Player.hasmedia</visible>
+		<font>font14</font>
+		<textcolor>cca9d0f7</textcolor>
+        </control>
+	  <control>
+         <type>fadelabel</type>
+         <description>Detail ticker</description>
+         <id>1</id>
+		 <posX>30</posX>
+         <posY>450</posY>
+		 <width>500</width>
+         <label>Image Queue: #Anime3.Utilities.ImageQueueCount #Anime3.Utilities.ImageQueueStatus</label>
+		<font>font14</font>
+		<textcolor>cca9d0f7</textcolor>
+        </control>
+	  <control>
+         <type>fadelabel</type>
+         <description>Detail ticker</description>
+         <id>1</id>
+		 <posX>30</posX>
+         <posY>475</posY>
+		 <width>500</width>
+         <label>TvDB Queue: #Anime3.Utilities.TvDBQueueCount #Anime3.Utilities.TvDBQueueStatus</label>
+		<font>font14</font>
+		<textcolor>cca9d0f7</textcolor>
+        </control>
+	</control>
+		<!--  ************** OTHER STATUS *****************  -->
+	  <control Style="Ticker">
+			<type>label</type>
+			<id>1</id>
+			<posX>20</posX>
+			<posY>535</posY>
+			<align>left</align>
+			<label>Import: #Anime3.Utilities.ImportProgress</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font14</font>
+			 <visible>string.equals(#Anime3.Utilities.ImportProgress)</visible>
+		</control>
+	  <control Style="Ticker">
+			<type>label</type>
+			<id>1</id>
+			<posX>20</posX>
+			<posY>535</posY>
+			<align>left</align>
+			<label> Misc: #Anime3.Utilities.MiscProgress</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font14</font>
+			 <visible>string.equals(#Anime3.Utilities.MiscProgress)</visible>
+		</control>
+        <import>common.mediaoverlay.xml</import>
+	</controls>
+</window>

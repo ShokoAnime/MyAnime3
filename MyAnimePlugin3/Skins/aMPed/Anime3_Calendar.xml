@@ -1,0 +1,207 @@
+﻿<window>
+  <id>6108</id>
+  <defaultcontrol>84</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+	<define>#header.hover:hover_my anime.png</define>
+	<define>#header.label:Anime Calendar</define>
+	<define>#header.hover:hover_my anime.png</define>
+    <define>#multiimagepath:TV</define>
+    <define>#backdrop:animations\TV\backdrop_tvseries.jpg</define>
+	<controls>
+		<import>common.window.bars.xml</import>
+		<import>common.time.xml</import>
+
+	<!-- ********************** DUMMY CONTROLS FOR VISIBILITY ************************************** -->
+	<control>
+	  <type>label</type>
+	  <description>Do any anime exist for the current month</description>
+	  <id>1401</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+
+	<!-- :::::::::::::::::::::::::::::: TOP BAR :: TIME :: LOCATION :::::::::::::::::::::::::::::: -->
+	<control>
+	  <description>composite control</description>
+	  <type>facadeview</type>
+	  <id>50</id>
+		<control>
+			<description>Filmstrip view</description>
+			<type>filmstrip</type>
+			<posY>175</posY>
+			<ondown>50</ondown>
+			<onup>84</onup>
+			<onleft>50</onleft>
+			<thumbAnimation effect="zoom" start="100,100" end="130,130" time="200">focus</thumbAnimation>
+			<thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
+		</control>
+	</control>
+
+	<!--  ************** BUTTONS TOOLBAR *****************  -->
+    <control Style="Title Label">
+	  <description>Current Month</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posY>70</posY>
+	  <font>font16</font>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <label>#Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
+	  <visible>Control.IsVisible(1401)</visible>
+	</control>
+    <control Style="Title Label">
+	  <description>Current Month</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posY>70</posY>
+	  <font>font16</font>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <label>Nothing found for #Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
+	  <visible>!Control.IsVisible(1401)</visible>
+	</control>
+    <control Style="Slide 1">
+      <description>Button group</description>
+      <type>group</type>
+      <dimColor>ffffffff</dimColor>
+		<control>
+		  <description>Month -2</description>
+		  <type>button</type>
+		  <id>82</id>
+		  <label>#Anime3.Calendar.MinusTwoMonth #Anime3.Calendar.MinusTwoYear</label>
+		  <width>130</width>
+		  <posX>30</posX>
+		  <posY>110</posY>
+		  <onleft>86</onleft>
+		  <onright>83</onright>
+		  <align>center</align>
+		  <ondown>50</ondown>
+		  <onup>50</onup>
+		</control>
+		<control>
+		  <description>Month -1</description>
+		  <type>button</type>
+		  <id>83</id>
+		  <label>#Anime3.Calendar.MinusOneMonth #Anime3.Calendar.MinusOneYear</label>
+		  <width>130</width>
+		  <posX>170</posX>
+		  <posY>110</posY>
+		  <onleft>82</onleft>
+		  <onright>84</onright>
+		  <align>center</align>
+		  <ondown>50</ondown>
+		  <onup>50</onup>
+		</control>
+		<control>
+		  <description>Month +1</description>
+		  <type>button</type>
+		  <id>84</id>
+		  <label>#Anime3.Calendar.PlusOneMonth #Anime3.Calendar.PlusOneYear</label>
+		  <width>130</width>
+		  <posX>300</posX>
+		  <posY>110</posY>
+		  <onleft>83</onleft>
+		  <onright>85</onright>
+		  <align>center</align>
+		  <ondown>50</ondown>
+		  <onup>50</onup>
+		</control>
+		<control>
+		  <description>Month +2</description>
+		  <type>button</type>
+		  <id>85</id>
+		  <label>#Anime3.Calendar.PlusTwoMonth #Anime3.Calendar.PlusTwoYear</label>
+		  <width>130</width>
+		  <posX>435</posX>
+		  <posY>110</posY>
+		  <onleft>84</onleft>
+		  <onright>86</onright>
+		  <align>center</align>
+		  <ondown>50</ondown>
+		  <onup>50</onup>
+		</control>
+		<control>
+		  <description>Month +3</description>
+		  <type>button</type>
+		  <id>86</id>
+		  <label>#Anime3.Calendar.PlusThreeMonth #Anime3.Calendar.PlusThreeYear</label>
+		  <width>130</width>
+		  <posX>570</posX>
+		  <posY>110</posY>
+		  <onleft>85</onleft>
+		  <onright>81</onright>
+		  <align>center</align>
+		  <ondown>50</ondown>
+		  <onup>50</onup>
+		</control>
+	</control>
+
+	<!--  ************** SELECTED SERIES *****************  -->
+	<control Style="Title">
+	  <type>textboxscrollup</type>
+	  <description>Series Title</description>
+	  <id>0</id>
+	  <posY>30</posY>
+	  <label>#Anime3.Calendar.Title</label>
+	  <visible>Control.IsVisible(1401)</visible>
+	</control>
+	<control Style="Plot Icons">
+		<description>Plot (Filmstrip)</description>
+		<type>textboxscrollup</type>
+		<id>1</id>
+		<label>#Anime3.Calendar.Description</label>
+		<visible>Control.IsVisible(1401)+!Player.HasMedia</visible>
+	</control>
+	<control Style="Plot Media">
+		<description>Plot (Filmstrip Media Playing)</description>
+		<type>textboxscrollup</type>
+		<id>631</id>
+		<label>#Anime3.Calendar.Description</label>
+		<visible>Control.IsVisible(1401)+Player.HasMedia</visible>
+	</control>
+	<control Style="Actors BG">
+		<description>Background</description>
+		<type>image</type>
+		<id>0</id>
+		<texture>backslide.png</texture>
+		<colordiffuse>ffffffff</colordiffuse>
+		<visible>string.equals(#Anime3.Calendar.AirDate)+Control.IsVisible(1401)</visible>
+	</control>
+	<control Style="Actors BG Glass">
+		<description> Background</description>
+		<type>image</type>
+		<id>0</id>
+		<texture>background_glass_menu_area.png</texture>
+		<colordiffuse>ffffffff</colordiffuse>
+		<visible>string.equals(#Anime3.Calendar.AirDate)+Control.IsVisible(1401)</visible>
+	</control>
+	<control Style="Actors">
+		<description>Airs Date (List Posters)</description>
+		<type>textboxscrollup</type>
+		<id>1</id>
+		<label>Airs: #Anime3.Calendar.AirDate</label>
+		<visible>Control.IsVisible(1401)</visible>
+	</control>
+	<control Style="Ticker">
+	  <description>Ticker</description>
+	  <type>fadelabel</type>
+	  <label>Genre: #Anime3.Calendar.Genre</label>
+	  <posX>30</posX>
+	  <posY>505</posY>
+	  <visible>Control.IsVisible(1401)+string.equals(#Anime3.Calendar.Genre)</visible>
+	</control>
+	<control>
+	  <description>ANIDB Status</description>
+	  <type>label</type>
+	  <id>114</id>
+	  <posX>30</posX>
+	  <posY>535</posY>
+	  <width>900</width>
+	  <label>#Anime3.Calendar.Status</label>
+	  <align>Left</align>
+	  <textcolor>ffffffff</textcolor>
+	</control>
+        <import>common.mediaoverlay.xml</import>
+  </controls>
+</window>

@@ -1,0 +1,1197 @@
+﻿<window>
+  <id>6101</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>yes</allowoverlay>
+  
+  <controls>
+
+	<!-- Import Dummy Controls to handle visibility -->
+	<import>Anime3_Dummy.xml</import>
+
+
+	<!-- ********************** BACKGROUNDS************************************** -->
+	<!-- Default Background -->
+	<control>
+	  <description>Default Background</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1280</width>
+	  <height>720</height>
+	  <texture>Background.png</texture>
+	</control>
+
+	<control>
+		  <description>Fanart Background #1</description>
+		  <type>image</type>
+		  <id>524</id>
+		  <posX>0</posX>
+		  <posY>0</posY>
+		  <width>1280</width>
+		  <height>720</height>
+		  <dimColor>50ffffff</dimColor>
+		  <texture>#Anime3.Fanart.1</texture>
+		  <visible>facadeview.list|facadeview.coverflow</visible>
+		  <animation effect="fade" start="0" end="100" time="3000">WindowOpen</animation>
+		  <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+		  <animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+		  <!-- Do not modify the visibility for this component. It is handled by the plug-in. -->
+	</control>
+
+	<control>
+	  <description>FanArt Overlay - List View</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>-2</posX>
+	  <posY>0</posY>
+	  <width>1284</width>
+	  <height>722</height>
+	  <texture>mainoverlay.png</texture>
+	  <visible>facadeview.list</visible>
+	</control>
+
+	<control>
+	  <description>FanArt Overlay - Filmstrip View</description>
+	  <id>0</id>
+	  <type>image</type>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1280</width>
+	  <height>720</height>
+	  <texture>filmstrip_overlay.png</texture>
+	  <visible>facadeview.filmstrip|facadeview.coverflow</visible>
+	</control>
+
+    
+
+	<!-- ************************** TOP BAR ***********************************-->
+
+	<control>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>5</posY>
+	  <width>34</width>
+	  <height>40</height>
+	  <texture>hover_my anime.png</texture>
+	  <visible>true</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>cur_view</description>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>10</posY>
+	  <width>900</width>
+	  <align>left</align>
+	  <font>font13</font>
+	  <textcolor>ffFFFFFF</textcolor>
+	  <label>#Anime3.SimpleCurrentView (#selectedindex/#Anime3.GroupCount)</label>
+	</control>
+
+	<control>
+	  <description>Date Time</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>1260</posX>
+	  <posY>1</posY>
+	  <label>#date / #time</label>
+	  <align>right</align>
+	  <font>font12</font>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+	
+	
+	
+	
+
+	
+	<control>
+		  <type>fadelabel</type>
+		  <description>Title  - series/groups in list mode</description>
+		  <id>640</id>
+		<posX>310</posX>
+		<posY>247</posY>
+		<width>900</width>
+		<font>font18</font>
+		<textcolor>ffFFFFFF</textcolor>
+		  <label>Groups: #Anime3.GroupFilter.GroupCount</label>
+		<shadowAngle>45</shadowAngle>
+		<shadowDistance>3</shadowDistance>
+		<shadowColor>ff000000</shadowColor>
+		<visible>[control.isvisible(1250)]</visible>
+	  </control>
+	
+
+    <!-- *********************** FIND PANEL *********************************** -->
+    <!-- List / banner view -->
+
+    <control>
+      <description>background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>720</posX>
+      <posY>110</posY>
+      <width>495</width>
+      <height>85</height>
+      <texture>menu_list_nofocus.png</texture>
+      <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
+    </control>
+
+    <control>
+      <description>Find Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>735</posX>
+      <posY>120</posY>
+      <width>200</width>
+      <font>font14</font>
+      <label>Find:</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
+    </control>
+
+    <control>
+      <description>find text background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>790</posX>
+      <posY>119</posY>
+      <width>415</width>
+      <height>42</height>
+      <texture>menu_list_nofocus.png</texture>
+      <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
+    </control>
+
+    <control>
+      <description>find text</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>800</posX>
+      <posY>122</posY>
+      <width>535</width>
+      <font>font12</font>
+      <label>#Anime3.FindText</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
+    </control>
+
+    <control>
+      <description>Find description *-key (T9)</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>795</posX>
+      <posY>158</posY>
+      <width>200</width>
+      <font>font8</font>
+      <label>*=#Anime3.FindAsteriskMode</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+    </control>
+
+    <control>
+      <description>Find description #-key (T9)</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>950</posX>
+      <posY>158</posY>
+      <width>200</width>
+      <font>font8</font>
+      <label>#=#Anime3.FindSharpMode</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+    </control>
+
+    <control>
+      <description>Find description C+W-key (text)</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>795</posX>
+      <posY>158</posY>
+      <width>200</width>
+      <font>font8</font>
+      <label>C+W=Start Word (#Anime3.FindStartWord)</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
+    </control>
+
+    <control>
+      <description>Find description tab-key (text)</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>950</posX>
+      <posY>158</posY>
+      <width>200</width>
+      <font>font8</font>
+      <label>TAB=Next Match</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
+    </control>
+
+    <control>
+      <description>Find description C+M-key</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>1070</posX>
+      <posY>158</posY>
+      <width>200</width>
+      <font>font8</font>
+      <label>C+M=Mode (#Anime3.FindMode)</label>
+      <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
+    </control>
+
+    <!-- *********************** LIST /GRAPHICAL VIEW*********************************** -->
+
+	<control>
+	  <description>composite control consisting of a list control and a thumbnail panel</description>
+	  <type>facadeview</type>
+	  <id>50</id>
+	  <control>
+		<description>listcontrol</description>
+		<type>listcontrol</type>
+		<id>50</id>
+		<onleft>12</onleft>
+		<onright>12</onright>
+		<posX>760</posX>
+		<posY>305</posY>
+		<width>510</width>
+		<height>390</height>
+		<scrollOffset>4</scrollOffset>
+		<spinWidth>18</spinWidth>
+		<spinHeight>18</spinHeight>
+		<spinPosX>-50</spinPosX>
+		<spinPosY>-50</spinPosY>
+		<spinCanFocus>no</spinCanFocus>
+		<font>font10</font>
+		<font2>font10</font2>
+		<font3>font10</font3>
+		<textXOff>-90</textXOff>
+		<textYOff>4</textYOff>
+		<textXOff2>378</textXOff2>
+		<textYOff2>4</textYOff2>
+		<textXOff3>410</textXOff3>
+		<textYOff3>4</textYOff3>
+		<IconXOff>378</IconXOff>
+		<IconYOff>6</IconYOff>
+		<itemWidth>96</itemWidth>
+		<itemHeight>24</itemHeight>
+		<spaceBetweenItems>1</spaceBetweenItems>
+	  </control>
+	  <control>
+		<description>Thumbnail Panel</description>
+		<type>thumbnailpanel</type>
+		<id>50</id>
+		<scrollOffset>0</scrollOffset>
+		<onleft>12</onleft>
+		<onright>12</onright>
+		<!--onup>2</onup>
+          <ondown>2</ondown-->
+	  </control>
+	  <control>
+		<description>Filmstrip view</description>
+		<type>filmstrip</type>
+		<id>50</id>
+		<onup>17</onup>
+		<posX>45</posX>
+		<posY>130</posY>
+		<onup>12</onup>
+		<onleft>50</onleft>
+		<width>1225</width>
+		<spinPosY>-50</spinPosY>
+		<spinPosX>-50</spinPosX>
+		<spinCanFocus>no</spinCanFocus>
+		<thumbWidth>231</thumbWidth>
+		<thumbHeight>342</thumbHeight>
+		<thumbPosX>13</thumbPosX>
+		<thumbPosY>11</thumbPosY>
+		<itemWidth>233</itemWidth>
+		<itemHeight>342</itemHeight>
+		<textureWidth>261</textureWidth>
+		<textureHeight>366</textureHeight>
+		<frame>-</frame>
+		<imageFolderFocus>Picture_cover.png</imageFolderFocus>
+		<frameFocus>Picture_cover.png</frameFocus>
+		<background>Coverbig.png</background>
+		<thumbs flipY="true" diffuse="Thumb_Mask.png"></thumbs>
+		<InfoImage flipY="true" diffuse="Thumb_Mask.png"></InfoImage>
+		<showFrame>yes</showFrame>
+		<showFolder>no</showFolder>
+		<showBackGround>no</showBackGround>
+		<showInfoImage>no</showInfoImage>
+		<thumbAnimation effect="zoom" start="100,100" end="130,130" time="200">focus</thumbAnimation>
+		<thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
+		<scrollOffset>3</scrollOffset>
+	  </control>
+	  <control>
+		<description>graphical thumbpanel (series and/or seasons if set)</description>
+		<type>thumbnailpanel</type>
+		<id>50</id>
+		<posX>13</posX>
+		<posY>92</posY>
+		<width>1280</width>
+		<height>500</height>
+		<!-- up/down buttons & page # -->
+		<onleft>12</onleft>
+		<onright>12</onright>
+		<spinPosX>-50</spinPosX>
+		<spinPosY>-50</spinPosY>
+		<spinCanFocus>no</spinCanFocus>
+		<spinColor>ffffffff</spinColor>
+		<!-- Textures -->
+		<imageFolder>-</imageFolder>
+		<!-- Text -->
+		<font>font10</font>
+		<selectedColor>00ffffff</selectedColor>
+		<colordiffuse>ffffffff</colordiffuse>
+		<suffix>|</suffix>
+		<itemWidthBig>412</itemWidthBig>
+		<itemHeightBig>86</itemHeightBig>
+		<!-- boxes -->
+		<textureWidthBig>424</textureWidthBig>
+		<textureHeightBig>79</textureHeightBig>
+		<!-- banners -->
+		<thumbWidthBig>400</thumbWidthBig>
+		<thumbHeightBig>74</thumbHeightBig>
+		<thumbPosXBig>7</thumbPosXBig>
+		<thumbPosYBig>2</thumbPosYBig>
+		<thumbZoom>no</thumbZoom>
+		<!-- text (No banner) -->
+		<textXOff>0</textXOff>
+		<textYOff>0</textYOff>
+		<keepaspectratio>no</keepaspectratio>
+		<enableFocusZoom>no</enableFocusZoom>
+		<scrollOffset>1</scrollOffset>
+		<unfocusedAlpha>150</unfocusedAlpha>
+	  </control>
+	  <control>
+          <description>Cover Flow view</description>
+          <type>coverflow</type>
+          <colordiffuse>90ffffff</colordiffuse>
+          <dimColor>90ffffff</dimColor>
+          <id>50</id>
+          <posX>0</posX>
+          <posY>200</posY>
+          <width>1280</width>
+          <height>720</height>
+          <onup>12</onup>
+          <onleft>12</onleft>
+          <selectedCard>0</selectedCard>
+          <cardWidth>250</cardWidth>
+          <cardHeight>360</cardHeight>
+          <angle>65</angle>
+          <sideShift>250</sideShift>
+          <sideGap>80</sideGap>
+          <sideDepth>150</sideDepth>
+          <offsetY>0</offsetY>
+          <selectedOffsetY>0</selectedOffsetY>
+          <speed>8</speed>
+          <backgroundHeight>250</backgroundHeight>
+          <backgroundWidth>1280</backgroundWidth>
+          <backgroundX>0</backgroundX>
+          <backgroundY>470</backgroundY>
+          <backgroundDiffuse>FF000000</backgroundDiffuse>
+          <background>-</background>
+          <showBackground>yes</showBackground>
+          <foregroundHeight>720</foregroundHeight>
+          <foregroundWidth>1280</foregroundWidth>
+          <foregroundX>0</foregroundX>
+          <foregroundY>0</foregroundY>
+          <foregroundDiffuse>FF000000</foregroundDiffuse>
+          <foreground>coverflow_foreground.png</foreground>
+          <showForeground>no</showForeground>
+          <showFrame>yes</showFrame>
+          <frame>Picture_cover2.png</frame>
+          <frameFocus>Picture_cover2.png</frameFocus>
+          <frameWidth>250</frameWidth>
+          <frameHeight>360</frameHeight>
+          <spinSpeed>8</spinSpeed>
+          <unfocusedAlpha>FF</unfocusedAlpha>
+          <folderPrefix>[</folderPrefix>
+          <folderSuffix>]</folderSuffix>
+          <font1>font14</font1>
+          <font2>font11</font2>
+          <label1>#Anime3.Title</label1>
+          <label2>#Anime3.SeriesGroup.Genre</label2>          
+          <shadowAngle>45</shadowAngle>
+          <shadowDistance>0</shadowDistance>
+          <shadowColor>FF000000</shadowColor>
+          <label1YOff>405</label1YOff>
+          <label2YOff>430</label2YOff>
+          <pageSize>5</pageSize>
+          <scrollbarBackground>bar_hor.png</scrollbarBackground>
+          <scrollbarLeft>mouse_left_horizontal.png</scrollbarLeft>
+          <scrollbarRight>mouse_right_horizontal.png</scrollbarRight>
+          <scrollbarYOff>480</scrollbarYOff>
+          <showScrollbar>yes</showScrollbar>
+          <cards flipY="yes" diffuse="Thumb_Mask.png" mask="video_poster_mask.png"></cards>
+          
+        </control>
+	</control>
+
+
+	<!--  ************** HIDDEN MENU *****************  -->
+
+	<control>
+	  <type>actiongroup</type>
+	  <description>action menu</description>
+	  <defaultcontrol>12</defaultcontrol>
+	  <onexit>50</onexit>
+	  <buttonX>0</buttonX>
+	  <buttonY>0</buttonY>
+	  <buttonwidth>106</buttonwidth>
+	  <buttonheight>720</buttonheight>
+	  <textureFocus>-</textureFocus>
+	  <textureNoFocus>-</textureNoFocus>
+	  <width>568</width>
+	  <height>900</height>
+	  <dimColor>00ffffff</dimColor>
+	  <control>
+		<type>image</type>
+		<posX>26</posX>
+		<posY>78</posY>
+		<width>367</width>
+		<height>591</height>
+		<texture>Backslide.png</texture>
+		<colorDiffuse>fffffffff</colorDiffuse>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+	  </control>
+	  <control>
+		<description>group element</description>
+		<type>group</type>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		<visible>!Control.HasFocus(50)</visible>
+		<control>
+		  <description>button group</description>
+		  <type>group</type>
+		  <animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		  <animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		  <posX>71</posX>
+		  <posY>121</posY>
+		  <layout>StackLayout</layout>
+		  <visible>!Control.HasFocus(50)</visible>
+		  <control>
+			<description>Switch User</description>
+			<type>button</type>
+			<id>12</id>
+			<label>Switch User</label>
+			<onleft>50</onleft>
+			<onright>50</onright>
+			<onup>667</onup>
+			<ondown>11</ondown>
+		  </control>
+		  <control>
+			<description>Change Layout</description>
+			<type>button</type>
+			<id>11</id>
+			<label>Change Layout</label>
+			<onleft>50</onleft>
+			<onright>50</onright>
+			<onup>12</onup>
+			<ondown>4</ondown>
+		  </control>
+		  <control>
+			<description>Options</description>
+			<type>button</type>
+			<id>4</id>
+			<label>Settings</label>
+			<onleft>50</onleft>
+			<onright>50</onright>
+			<onup>11</onup>
+			<ondown>5</ondown>
+		  </control>
+		  <control>
+			<description>Utilities</description>
+			<type>button</type>
+			<id>5</id>
+			<label>Utilities</label>
+			<onleft>50</onleft>
+			<onright>50</onright>
+			<onup>4</onup>
+			<ondown>8</ondown>
+		  </control>
+			<control>
+				<description>Calendar</description>
+				<type>button</type>
+				<id>8</id>
+				<label>Calendar</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>5</onup>
+			<ondown>9</ondown>
+			</control>
+			<control>
+				<description>Downloads</description>
+				<type>button</type>
+				<id>9</id>
+				<label>Downloads</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>8</onup>
+				<ondown>666</ondown>
+			</control>
+			<control>
+			  <description>Current Playlist</description>
+			  <type>button</type>
+			  <id>666</id>
+			  <label>Current Playlist</label>
+			  <onleft>50</onleft>
+			  <onright>50</onright>
+			  <onup>9</onup>
+			<ondown>667</ondown>
+			</control>
+			<control>
+				<description>My Playlists</description>
+				<type>button</type>
+				<id>667</id>
+				<label>My Playlists</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>666</onup>
+				<ondown>12</ondown>
+			</control>
+		</control>
+	  </control>
+	</control>
+
+	  <!-- ***************************************** INFORMATION IN LIST VIEW ***************************************************************** -->
+	  <control>
+		  <type>fadelabel</type>
+		  <description>Title  - series/groups in list mode</description>
+		  <id>640</id>
+		<posX>310</posX>
+		<posY>247</posY>
+		<width>900</width>
+		<font>font18</font>
+		<textcolor>ffFFFFFF</textcolor>
+		  <label>#Anime3.Title</label>
+		<shadowAngle>45</shadowAngle>
+		<shadowDistance>3</shadowDistance>
+		<shadowColor>ff000000</shadowColor>
+		<visible>[Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+
+	  <control>
+		<type>fadelabel</type>
+		<description>Title  - episode types in list mode</description>
+		<id>640</id>
+		<posX>310</posX>
+		<posY>247</posY>
+		<width>900</width>
+		<font>font18</font>
+		<textcolor>ffFFFFFF</textcolor>
+		<label>#Anime3.SeriesTitle</label>
+		<shadowAngle>45</shadowAngle>
+		<shadowDistance>3</shadowDistance>
+		<shadowColor>ff000000</shadowColor>
+		<visible>[Control.IsVisible(1240)|Control.IsVisible(1237)]+facadeview.list</visible>
+	  </control>
+
+	  <control>
+		  <type>textboxscrollup</type>
+		  <description>Description (Group / Series)</description>
+		  <id>631</id>
+		<posX>310</posX>
+		<posY>318</posY>
+		<width>445</width>
+		<height>223</height>
+		<textcolor>ffFFFFFF</textcolor>
+		<seperator>-----------------------------------------------------------------------------------</seperator>
+		<font>font10</font>
+		<scrollStartDelaySec>12</scrollStartDelaySec>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+		  <label>#Anime3.Description</label>
+	  </control>
+
+	  <!-- *****************************************  GROUP/SERIES/EPISODE TYPES/EPISODES POSTER ( LIST LAYOUT) ***************************************************************** -->
+
+	  <control>
+		  <description>Thumb/Cover background</description>
+		  <type>image</type>
+		  <id>67</id>
+		<posX>32</posX>
+		<posY>254</posY>
+		<width>228</width>
+		<height>177</height>
+		<texture>glassoverlay2.png</texture>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1250)]+facadeview.list</visible>
+	  </control>
+	  <control>
+		  <type>image</type>
+		  <description>group image ( group image background )</description>
+		  <id>46</id>
+		<posX>32</posX>
+		<posY>254</posY>
+		<width>256</width>
+		<height>380</height>
+		  <texture>#Anime3.GroupSeriesPoster</texture>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1250)]+facadeview.list</visible>
+	  </control>
+
+	<control>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>310</posX>
+	  <posY>282</posY>
+	  <width>430</width>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <label>#Anime3.SeriesGroup.Genre</label>
+	  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	</control>
+
+
+	  <!-- *********************** GROUP/SERIES TYPES INFO LABELS ( LIST LAYOUT) ************************** -->
+
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>310</posX>
+		<posY>562</posY>
+		<width>150</width>
+		<font>font11</font>
+		<textcolor>ffa9d0f7</textcolor>
+		  <label>YEAR</label>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>475</posX>
+		<posY>562</posY>
+		<width>260</width>
+		<font>font11</font>
+		<textcolor>ffFFFFFF</textcolor>
+		  <label>#Anime3.SeriesGroup.Year</label>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+
+	  
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>310</posX>
+		<posY>587</posY>
+		<width>150</width>
+		<font>font11</font>
+		<textcolor>ffa9d0f7</textcolor>
+		  <label>EPISODES</label>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>475</posX>
+		<posY>587</posY>
+		<width>260</width>
+		<font>font11</font>
+		<textcolor>ffFFFFFF</textcolor>
+		  <label>#Anime3.SeriesGroup.Episodes</label>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>310</posX>
+		<posY>612</posY>
+		<width>150</width>
+		<font>font11</font>
+		<textcolor>ffa9d0f7</textcolor>
+		  <label>RATING</label>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>475</posX>
+		<posY>612</posY>
+		<font>font11</font>
+		<width>260</width>
+		<textcolor>ffFFFFFF</textcolor>
+		  <label>#Anime3.SeriesGroup.Rating</label>
+		  <visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)]+facadeview.list</visible>
+	  </control>
+
+
+	  <!-- ***************************************** THUMB / EPISODE (LIST LAYOUT) ***************************************************************** -->
+
+	<control>
+	  <description>Default Episode Thumb</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>28</posX>
+	  <posY>254</posY>
+	  <width>354</width>
+	  <height>199</height>
+	  <texture>tv_background.png</texture>
+	  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  <animation effect="fade" time="150" delay="500">Visible</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	  <control>
+		  <description>Big Episode Thumb</description>
+		  <type>image</type>
+		  <id>67</id>
+		<posX>28</posX>
+		<posY>254</posY>
+		<width>354</width>
+		<height>200</height>
+		<keepaspectratio>yes</keepaspectratio>
+		<zoom>yes</zoom>
+		<texture flipY="true" diffuse="diffusemirrorwide.png">#Anime3.Episode.Image</texture>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+
+	  <control>
+		  <type>textboxscrollup</type>
+		  <description>Description (Group / Series)</description>
+		  <id>631</id>
+		<posX>30</posX>
+		<posY>480</posY>
+		<width>670</width>
+		<height>155</height>
+		<seperator>----------------------------------------------------------------------------------------------------</seperator>
+		<font>font11</font>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+		  <label>#Anime3.Episode.Description</label>
+	  </control>
+
+	  <!-- *********************** EPISODE INFO LABELS ( LIST LAYOUT) ************************** -->
+
+
+	<control>
+	  <description>SeriesTypeLabel</description>
+	  <type>label</type>
+	  <label>#Anime3.Episode.SeriesTypeLabel</label>
+	  <id>0</id>
+	  <posX>400</posX>
+	  <posY>249</posY>
+	  <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <label>#Anime3.Episode.EpisodeName</label>
+	  <id>0</id>
+	  <posX>400</posX>
+	  <posY>268</posY>
+	  <width>700</width>
+	  <height>100</height>
+	  <font>font14</font>
+	  <textcolor>ffffffff</textcolor>
+	  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
+	</control>
+	
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>400</posX>
+		  <posY>323</posY>
+		  <width>130</width>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <label>AIR DATE</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>540</posX>
+		  <posY>323</posY>
+		  <font>font11</font>
+		  <textcolor>ffFFFFFF</textcolor>
+		  <width>190</width>
+		  <label>#Anime3.Episode.AirDate</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>400</posX>
+		<posY>353</posY>
+		<width>130</width>
+		<font>font11</font>
+		<textcolor>ffa9d0f7</textcolor>
+		  <label>RATING</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>540</posX>
+		<posY>353</posY>
+		<font>font11</font>
+		<textcolor>ffFFFFFF</textcolor>
+		<width>190</width>
+		  <label>#Anime3.Episode.Rating</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>400</posX>
+		<posY>383</posY>
+		<width>130</width>
+		<font>font11</font>
+		<textcolor>ffa9d0f7</textcolor>
+		  <label>LENGTH</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>540</posX>
+		<posY>383</posY>
+		<font>font11</font>
+		<textcolor>ffFFFFFF</textcolor>
+		<width>190</width>
+		  <label>#Anime3.Episode.Length</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>400</posX>
+		<posY>413</posY>
+		<width>130</width>
+		<font>font11</font>
+		<textcolor>ffa9d0f7</textcolor>
+		  <label>FILE INFO</label>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		<posX>400</posX>
+		<posY>443</posY>
+		  <width>290</width>
+		  <label>#Anime3.Episode.FileInfo</label>
+		  <font>font11</font>
+		<textcolor>ffFFFFFF</textcolor>
+		  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  </control>
+
+	<!-- LOGOS -->
+	<control>
+	  <description>Logos</description>
+	  <type>image</type>
+	  <id>66</id>
+	  <posX>300</posX>
+	  <posY>660</posY>
+	  <width>900</width>
+	  <height>50</height>
+	  <texture>#Anime3.Logos</texture>
+	  <keepaspectratio>yes</keepaspectratio>
+	  <spaceBetweenItems>0</spaceBetweenItems>
+	  <visible>Control.IsVisible(1239)+facadeview.list+Control.IsVisible(1244)</visible>
+	</control>
+	
+	  
+
+	  <!-- *****************************************INFORMATION IN WIDE BANNER VIEW***************************************************************** -->
+	  <control>
+		  <type>fadelabel</type>
+		  <description>Title (Wide Banners)</description>
+		  <id>640</id>
+		  <posX>20</posX>
+		  <posY>50</posY>
+		  <width>650</width>
+		  <font>font16</font>
+		  <align>left</align>
+		  <label>#Anime3.Title</label>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+
+	  <control>
+		  <type>textboxscrollup</type>
+		  <description>Description (Wide Banners)</description>
+		  <id>632</id>
+		  <posX>20</posX>
+		  <posY>518</posY>
+		  <width>800</width>
+		  <height>190</height>
+		  <seperator>-----------------------------------------------------------------------------------------------------------------------</seperator>
+		  <textcolor>ffffffff</textcolor>
+		  <font>font12</font>
+		  <visible>facadeview.largeicons</visible>
+		  <label>#Anime3.Description</label>
+	  </control>
+
+	  <!-- *****************************************INFORMATION IN FILMSTRIP VIEW***************************************************************** -->
+
+	  <control>
+		  <type>fadelabel</type>
+		  <description>Title (Filmstrip)</description>
+		  <id>640</id>
+		  <posX>320</posX>
+		  <posY>35</posY>
+		  <width>650</width>
+		  <font>font16</font>
+		  <align>center</align>
+		  <label>#Anime3.Title</label>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+
+	  <control>
+		  <type>textboxscrollup</type>
+		  <description>Description (Filmstrip)</description>
+		  <id>632</id>
+		  <posX>20</posX>
+		  <posY>575</posY>
+		  <width>750</width>
+		  <height>135</height>
+		  <seperator>-----------------------------------------------------------------------------------------------------------------------</seperator>
+		  <textcolor>ffffffff</textcolor>
+		  <font>font11</font>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+		  <label>#Anime3.Description</label>
+	  </control>
+
+	  
+
+	  <!-- *********************** SERIES INFO LABELS  (WIDEBANNERS LAYOUT)************************** -->
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>930</posX>
+		  <posY>530</posY>
+		  <width>135</width>
+		  <label>RATING</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>!facadeview.list+Control.IsVisible(1242)</visible>
+	  </control>
+	  <control>
+		  <description>RATING</description>
+		  <type>label</type>
+		  <id>1</id>
+		  <posX>940</posX>
+		  <posY>530</posY>
+		  <width>280</width>
+		  <font>font11</font>
+		  <label>#Anime3.SeriesGroup.Rating</label>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+
+	  <control>
+		<description>RATING</description>
+		<type>label</type>
+		<id>1</id>
+		<posX>1120</posX>
+		<posY>530</posY>
+		<width>280</width>
+		<font>font11</font>
+		<label>#Anime3.SeriesGroup.MyRating</label>
+		<textcolor>F7FE2E</textcolor>
+		<visible>facadeview.largeicons</visible>
+	  </control>
+
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>930</posX>
+		  <posY>555</posY>
+		  <width>135</width>
+		  <label>YEAR</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+	  <control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>940</posX>
+		  <posY>555</posY>
+		  <width>280</width>
+		  <label>#Anime3.SeriesGroup.Year</label>
+		  <font>font11</font>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+	  
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>930</posX>
+		  <posY>580</posY>
+		  <width>135</width>
+		  <label>EPISODES</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+	  <control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>940</posX>
+		  <posY>580</posY>
+		  <width>250</width>
+		  <label>#Anime3.SeriesGroup.Episodes</label>
+		  <font>font11</font>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>930</posX>
+		  <posY>605</posY>
+		  <width>135</width>
+		  <label>GENRE</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+	  <control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>940</posX>
+		  <posY>605</posY>
+		  <width>250</width>
+		  <label>#Anime3.SeriesGroup.Genre</label>
+		  <font>font11</font>
+		  <visible>facadeview.largeicons</visible>
+	  </control>
+
+	  <control>
+		  <description>Fave Icon (Wide Banners View)</description>
+		  <id>611</id>
+		  <type>image</type>
+		  <posX>940</posX>
+		  <posY>635</posY>
+		  <width>48</width>
+		  <height>48</height>
+		  <texture>MyAnime3/anime3_heart1_48.png</texture>
+                  <visible>Control.IsVisible(1245)+facadeview.largeicons</visible>
+	  </control>
+
+	  <!-- *********************** SERIES/SEASON INFO LABELS  (FILMSTRIP LAYOUT)************************** -->
+
+	  
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>980</posX>
+		  <posY>595</posY>
+		  <width>135</width>
+		  <label>RATING</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+	  <control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>988</posX>
+		  <posY>595</posY>
+		  <width>250</width>
+		  <label>#Anime3.SeriesGroup.Rating</label>
+		  <font>font11</font>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+
+	  <control>
+		<type>fadelabel</type>
+		<id>0</id>
+		<posX>1170</posX>
+		<posY>595</posY>
+		<width>250</width>
+		<label>#Anime3.SeriesGroup.MyRating</label>
+		<font>font11</font>
+		<textcolor>F7FE2E</textcolor>
+		<visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+	  
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>980</posX>
+		  <posY>620</posY>
+		  <width>135</width>
+		  <label>YEAR</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+	  <control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>988</posX>
+		  <posY>620</posY>
+		  <width>250</width>
+		  <label>#Anime3.SeriesGroup.Year</label>
+		  <font>font11</font>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+	  
+	  <control>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>980</posX>
+		  <posY>645</posY>
+		  <width>135</width>
+		  <label>EPISODES</label>
+		  <align>right</align>
+		  <font>font11</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+	  <control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>988</posX>
+		  <posY>645</posY>
+		  <width>250</width>
+		  <label>#Anime3.SeriesGroup.Episodes</label>
+		  <font>font11</font>
+		  <visible>!facadeview.list+Control.IsVisible(1236)</visible>
+	  </control>
+	  
+	<!-- *********************** FAVE AND MISSING ICONS ************************** -->
+	
+	<control>
+	  <description>Fave Icon (List View)</description>
+      <id>601</id>
+      <type>image</type>
+      <posX>45</posX>
+      <posY>580</posY>
+      <width>48</width>
+      <height>48</height>
+      <texture>MyAnime3/anime3_heart1_48.png</texture>
+      <visible>Control.IsVisible(1245)+facadeview.list+[Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1240)]</visible>
+    </control>
+
+	  
+
+    <control>
+	  <description>Missing Icon (List View)</description>
+      <id>602</id>
+      <type>image</type>
+	  <posX>100</posX>
+      <posY>580</posY>
+      <width>48</width>
+      <height>48</height>
+      <texture>MyAnime3/anime3_ex_48.png</texture>
+      <visible>Control.IsVisible(1246)+facadeview.list+[Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1240)]</visible>
+    </control>
+	
+	<import>Anime3_QueueStatus.xml</import>
+	<import>Anime3_SkinSettings.xml</import>
+
+  </controls>
+</window>

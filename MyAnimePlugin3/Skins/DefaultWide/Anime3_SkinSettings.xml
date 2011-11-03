@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<logos>
+		<bluray>Media\Logos\BLURAY.png</bluray>
+		<dvd>Media\Logos\DVD.png</dvd>
+		<avc>Media\Logos\AVC.png</avc>
+		<divx>Media\Logos\DivX.png</divx>
+		<xvid>Media\Logos\xvid.png</xvid>
+		<mpeg2>Media\Logos\mp2v.png</mpeg2>
+		<res720p>Media\Logos\720p.png</res720p>
+		<res1080p>Media\Logos\1080p.png</res1080p>
+		<widescreen>Media\Logos\widescreen.png</widescreen>
+		<fullscreen>Media\Logos\fullscreen.png</fullscreen>
+	</logos>
+</settings>

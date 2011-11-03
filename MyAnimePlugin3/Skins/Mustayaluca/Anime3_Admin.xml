@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+
+	<id>6102</id>
+	<defaultcontrol>50</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	
+	<controls>
+	
+		<!-- Import Dummy controls to handle visibility -->
+		<import>Anime3_Dummy.xml</import>
+		
+		<!-- Specific Dummy controls to handle visibility -->
+		<control>
+		  <type>label</type>
+		  <description>Dummy Label showing tvdb/moviedb groups</description>
+		  <id>3511</id>
+		  <posX>-50</posX>
+		  <posY>-50</posY>
+		  <width>0</width>
+		  <textcolor>d4d2d2</textcolor>
+		  <font>font14</font>
+		  <visible>false</visible>
+		</control>
+		
+		<control>
+		  <type>label</type>
+		  <description>Dummy Label showing unlinked files</description>
+		  <id>3512</id>
+		  <posX>-50</posX>
+		  <posY>-50</posY>
+		  <width>0</width>
+		  <textcolor>d4d2d2</textcolor>
+		  <font>font14</font>
+		  <visible>false</visible>
+		</control>
+
+		<!-- Default Background -->
+		<control>
+			<description>Default Background</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1920</width>
+			<height>1080</height>
+			<texture>MyAnime3\anime3_DefaultBackground.jpg</texture>
+		</control>
+		
+		<!-- Backgrounds -->
+		<control>
+			<description>Backdrop Overlay</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1925</width>
+			<height>1085</height>
+			<texture>overlay_background.png</texture>
+			<visible>true</visible>
+		</control>
+
+		<control>
+			<description>Bottom - Backdrop Overlay Bar</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>998</posY>
+			<width>1920</width>
+			<height>82</height>
+			<texture>overlay_bar_bottom.png</texture>
+		</control>
+		
+		<control>
+			<description>Bottom - Backdrop Overlay Bar</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>660</posY>
+			<width>1920</width>
+			<height>82</height>
+			<texture>overlay_bar_bottom.png</texture>
+		</control>
+		
+		<control>
+			<description>Top - Backdrop Overlay Bar</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1920</width>
+			<height>125</height>
+			<texture>MyAnime3\overlay_bar_top.png</texture>
+		</control>
+	
+		
+		<!-- ********************** Bottom Bar ************************************** -->
+
+		<control Style="DetailText">
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>30</posX>
+			<posY>1030</posY>
+			<label>Version:   #Anime3.VersionNumber   (DB: #Anime3.DBVersionNumber)</label>
+		</control>
+
+		<control Style="DetailText">
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>400</posX>
+			<posY>1030</posY>
+			<textcolor>F7FE2E</textcolor>
+			<label>#Anime3.LatestVersionText</label>
+		</control>
+		
+		<!-- ********************** Hidden Menu ************************************** -->
+		
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>6</defaultcontrol>
+			<onexit>50</onexit>
+			<buttonX>0</buttonX>
+			<buttonY>0</buttonY>
+			<buttonwidth>106</buttonwidth>
+			<buttonheight>720</buttonheight>
+			<width>568</width>
+			<height>900</height>
+			<dimColor>00ffffff</dimColor>
+			<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			<control>
+				<type>image</type>
+				<posX>0</posX>
+				<posY>0</posY>
+				<width>400</width>
+				<height>998</height>
+				<texture>overlay_background.png</texture>
+				<colorDiffuse>fffffffff</colorDiffuse>
+				<visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<type>image</type>
+				<posX>0</posX>
+				<posY>0</posY>
+				<width>400</width>
+				<height>998</height>
+				<texture>hidden_menu_short_background.png</texture>
+				<colorDiffuse>fffffffff</colorDiffuse>
+				<visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<type>image</type>
+				<id>1</id>
+				<posX>262</posX>
+				<posY>60</posY>
+				<width>128</width>
+				<height>128</height>
+				<texture>hover_my anime.png</texture>
+				<visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<type>label</type>
+				<id>0</id>
+				<posX>370</posX>
+				<posY>178</posY>
+				<width>300</width>
+				<font>font3</font>
+				<label>Utilities</label>
+				<align>right</align>
+				<visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			
+			<control>
+				<description>group element</description>
+				<type>group</type>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+				<visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
+				<control>
+					<description>button group</description>
+					<type>group</type>
+					<posX>0</posX>
+					<posY>230</posY>
+					<layout>StackLayout(0, Vertical, true)</layout>
+					<visible>!Control.HasFocus(50)</visible>
+						<control>
+							<description>Run Import</description>
+							<type>button</type>
+							<id>6</id>
+							<label>Run Import</label>
+							<onleft>50</onleft>
+							<onright>50</onright>
+							<onup>9</onup>
+							<ondown>7</ondown>
+						</control>
+						  <control>
+							<description>Import CD/DVD</description>
+							<type>button</type>
+							<id>7</id>
+							<label>Import CD/DVD</label>
+							<onleft>50</onleft>
+							<onright>50</onright>
+							<onup>6</onup>
+							<ondown>8</ondown>
+						  </control>
+						  <control>
+							<description>Cleanup Database</description>
+							<type>button</type>
+							<id>8</id>
+							<label>Cleanup Database</label>
+							<onleft>50</onleft>
+							<onright>50</onright>
+							<onup>7</onup>
+							<ondown>9</ondown>
+						  </control>
+						<control>
+							<description>More Options</description>
+							<type>button</type>
+							<id>9</id>
+							<label>More Options</label>
+							<onleft>50</onleft>
+							<onright>50</onright>
+							<onup>8</onup>
+							<ondown>6</ondown>
+						</control>
+				</control>
+			</control>
+		</control>
+		
+		<!-- ********************** Top Menu ************************************** -->
+		
+		<control Style="Time">
+			<description>Date</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>1850</posX>
+			<posY>30</posY>
+			<label>#date / #time</label>
+			<align>right</align>
+		</control>
+		
+		<control Style="DetailText">
+			<description>Missing Groups count</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>1850</posX>
+			<posY>60</posY>
+			<label>#selectedindex / #Anime3.MissingGroups Groups</label>
+			<align>right</align>
+			<visible>Control.IsVisible(3511)</visible>
+		</control>
+		
+		<control Style="DetailText">
+			<description>Missing Groups count</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>1850</posX>
+			<posY>60</posY>
+			<label>#selectedindex / #Anime3.UnrecognizedFiles Files</label>
+			<align>right</align>
+			<visible>Control.IsVisible(3512)</visible>
+		</control>
+		
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posX>20</posX>
+			<posY>30</posY>
+			<width>450</width>
+			<height>90</height>
+			<texture>overlay_new.png</texture>
+			<visible>Control.IsVisible(3511)</visible>
+		</control>
+		
+		<control>
+			<description>TvDB/MovieDB Groups</description>
+			<type>button</type>
+			<id>101</id>
+			<posX>40</posX>
+			<posY>40</posY>
+			<label>TvDB/MovieDB Groups</label>
+			<width>350</width>
+			<onleft>6</onleft>
+			<onright>102</onright>
+			<onup>50</onup>
+			<ondown>50</ondown>
+			<textureFocus>-</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<textcolor>F7FE2E</textcolor>
+			<textcolorNoFocus>ffffffff</textcolorNoFocus>
+			<font>font2</font>
+		</control>
+		
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posX>420</posX>
+			<posY>30</posY>
+			<width>450</width>
+			<height>90</height>
+			<texture>overlay_new.png</texture>
+			<visible>Control.IsVisible(3512)</visible>
+		</control>
+		
+		<control>
+			<description>Unlinked Files</description>
+			<type>button</type>
+			<id>102</id>
+			<posX>420</posX>
+			<posY>40</posY>
+			<label>Unlinked Files</label>
+			<width>350</width>
+			<onleft>101</onleft>
+			<onright>6</onright>
+			<onup>50</onup>
+			<ondown>50</ondown>
+			<textureFocus>-</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<textcolor>F7FE2E</textcolor>
+			<textcolorNoFocus>ffffffff</textcolorNoFocus>
+			<font>font2</font>
+		</control>
+		
+		<!-- ********************** List for Unlinked Files and groups without TvDB cross refs etc ************************************** -->
+		<control>
+			<description>List for Unlinked Files and groups without TvDB cross refs etc</description>
+			<type>facadeview</type>
+			<id>50</id>
+			<control>
+				<description>Textlist </description>
+				<type>listcontrol</type>
+				<id>50</id>
+				<posX>30</posX>
+				<posY>130</posY>
+				<width>1700</width>
+				<height>550</height>
+				<onleft>101</onleft>
+				<onright>102</onright>
+				<spinPosX>50</spinPosX>
+				<spinPosY>620</spinPosY>
+				
+				<textXOff>-95</textXOff>
+				<textXOff2>405</textXOff2>
+				<textYOff2>8</textYOff2>
+				<textXOff3>450</textXOff3>
+				<textYOff3>11</textYOff3>
+				<font>font12</font>
+				<font2>font10</font2>
+				<font3>font10</font3>
+				<IconYOff>12</IconYOff>
+				<IconXOff>415</IconXOff>
+				<itemWidth>100</itemWidth>
+				<itemHeight>20</itemHeight>
+				<spinCanFocus>no</spinCanFocus>
+				
+				<scrollbarbg>-</scrollbarbg>
+				<scrollbartop>scrollbar_bar_nib_left_vert.png</scrollbartop>
+				<scrollbarbottom>scrollbar_bar_nib_right_vert.png</scrollbarbottom>
+				<scrollbarwidth>1</scrollbarwidth>
+				<scrollbarXOff>-5</scrollbarXOff>
+			</control>
+		</control>
+
+		<!--  ************** HASHER STATUS *****************  -->
+		
+		<control>
+		  <type>image</type>
+		  <posX>40</posX>
+			<posY>700</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>MyAnime3\anime3_hash.png</texture>
+		</control>
+		
+		<control Style="DetailText">
+			<type>label</type>
+			<posX>90</posX>
+			<posY>700</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>HASHER QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+		</control>
+
+		<control Style="DetailText">
+			<description>Vid Hasher Queue</description>
+			<type>label</type>
+			<posX>350</posX>
+			<posY>700</posY>
+			<label>#Anime3.Utilities.HasherQueueCount</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+
+		<control Style="DetailText">
+			<description>Vid Hasher Status</description>
+			<type>label</type>
+			<posX>450</posX>
+			<posY>700</posY>
+			<width>1300</width>
+			<label>#Anime3.Utilities.HasherQueueStatus</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<!--  ************** ANIDB STATUS *****************  -->
+
+		<control>
+		  <type>image</type>
+		  <posX>40</posX>
+			<posY>750</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>MyAnime3\anime3_anidb.png</texture>
+		</control>
+		
+		<control Style="DetailText">
+			<type>label</type>
+			<posX>90</posX>
+			<posY>750</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>ANIDB QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+		</control>
+
+		<control Style="DetailText">
+			<description>ANIDB Queue</description>
+			<type>label</type>
+			<posX>350</posX>
+			<posY>750</posY>
+			<label>#Anime3.Utilities.AniDBQueueCount</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<control Style="DetailText">
+			<description>ANIDB Status</description>
+			<type>label</type>
+			<posX>450</posX>
+			<posY>750</posY>
+			<width>1300</width>
+			<label>#Anime3.Utilities.AniDBQueueStatus</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<!--  ************** IMAGE DOWNLOAD STATUS *****************  -->
+
+		<control>
+		  <type>image</type>
+		  <posX>40</posX>
+			<posY>800</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>MyAnime3\anime3_image.png</texture>
+		</control>
+		
+		<control Style="DetailText">
+			<type>label</type>
+			<posX>90</posX>
+			<posY>800</posY>
+			<width>200</width>
+			<align>left</align>
+			<label>IMAGE QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+		</control>
+
+		<control Style="DetailText">
+			<description>IMAGE Queue</description>
+			<type>label</type>
+			<posX>350</posX>
+			<posY>800</posY>
+			<label>#Anime3.Utilities.ImageQueueCount</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+
+		<control Style="DetailText">
+			<description>IMAGE Status</description>
+			<type>label</type>
+			<posX>450</posX>
+			<posY>800</posY>
+			<width>1300</width>
+			<label>#Anime3.Utilities.ImageQueueStatus</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<!--  ************** TvDB STATUS *****************  -->
+
+		<control Style="DetailText">
+			<type>label</type>
+			<posX>90</posX>
+			<posY>850</posY>
+			<width>200</width>
+			<align>left</align>
+			<label>TvDB QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+		</control>
+
+		<control Style="DetailText">
+			<description>TvDB Queue</description>
+			<type>label</type>
+			<posX>350</posX>
+			<posY>850</posY>
+			<label>#Anime3.Utilities.TvDBQueueCount</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+
+		<control Style="DetailText">
+			<description>TvDB Status</description>
+			<type>label</type>
+			<posX>450</posX>
+			<posY>850</posY>
+			<width>1300</width>
+			<label>#Anime3.Utilities.TvDBQueueStatus</label>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+	  <!--  ************** OTHER STATUS *****************  -->
+
+	  <control Style="DetailText">
+		<type>label</type>
+		<posX>90</posX>
+		<posY>900</posY>
+		<width>300</width>
+		<align>left</align>
+		<label>IMPORT PROGRESS</label>
+		<textcolor>ffa9d0f7</textcolor>
+	  </control>
+
+	  <control Style="DetailText">
+		<description>scan progress value</description>
+		<type>label</type>
+		<posX>350</posX>
+		<posY>900</posY>
+		  <width>1300</width>
+		<label>#Anime3.Utilities.ImportProgress</label>
+		<align>Left</align>
+		<textcolor>ffffffff</textcolor>
+	  </control>
+
+	  <control Style="DetailText">
+		<type>label</type>
+		<posX>90</posX>
+		<posY>950</posY>
+		<width>290</width>
+		<align>left</align>
+		<label>MISC</label>
+		<textcolor>ffa9d0f7</textcolor>
+	  </control>
+
+	  <control Style="DetailText">
+		<description>cleanup status value</description>
+		<type>label</type>
+		<posX>350</posX>
+		<posY>950</posY>
+		  <width>1300</width>
+		<label>#Anime3.Utilities.MiscProgress</label>
+		<align>Left</align>
+		<textcolor>ffffffff</textcolor>
+	  </control>
+		
+	</controls>
+</window>

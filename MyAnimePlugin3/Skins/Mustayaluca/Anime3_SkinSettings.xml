@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<logos>
+		<bluray>Media\Logos\Aspect\BLURAY.png</bluray>
+		<dvd>Media\Logos\Aspect\DVD.png</dvd>
+		<avc>Media\Logos\Video\AVC.png</avc>
+		<divx>Media\Logos\Video\DIVX.png</divx>
+		<xvid>Media\Logos\Video\XVID.png</xvid>
+		<mpeg2>Media\Logos\Video\mp2v.png</mpeg2>
+		<res720p>Media\Logos\Aspect\720p.png</res720p>
+		<res1080p>Media\Logos\Aspect\1080p.png</res1080p>
+		<widescreen>Media\Logos\Aspect\WIDESCREEN.png</widescreen>
+		<fullscreen>Media\Logos\Aspect\FULLSCREEN.png</fullscreen>
+	</logos>
+</settings>

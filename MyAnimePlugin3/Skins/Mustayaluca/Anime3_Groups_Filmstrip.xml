@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+	<controls>	
+
+		<control Style="BigTitle">
+			<description>Group/Series Title</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>70</posX>
+			<posY>45</posY>
+			<width>1220</width>
+			<label>#Anime3.Title</label>
+			<visible>facadeview.filmstrip+control.isvisible(50)+Control.HasFocus(50)+!player.hasmedia</visible>
+			<animation effect="fade" time="250">visiblechange</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="BigTitle">
+			<type>label</type>
+			<id>0</id>
+			<posX>1850</posX>
+			<posY>45</posY>
+			<width>1220</width>
+			<align>right</align>
+			<label>#selectedindex/#Anime3.GroupCount</label>
+			<visible>facadeview.filmstrip+control.isvisible(50)+control.isvisible(1238)+!player.hasmedia</visible>
+			<animation effect="fade" time="250">visiblechange</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+		
+
+	</controls>
+</window>

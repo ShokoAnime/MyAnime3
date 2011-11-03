@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<window>
+  <id>6108</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <disabletopbar>yes</disabletopbar>
+  <controls>
+    
+    <!--            :: Backgrounds ::            -->
+	<control>
+	  <description>DEFAULT BACKGROUND</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>background.png</texture>
+	  <shouldCache>true</shouldCache>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>filmstrip_default_overlay.png</texture>
+	</control>
+	
+	<!-- ********************** DUMMY CONTROLS FOR VISIBILITY ************************************** -->
+    <control>
+      <type>label</type>
+      <description>Do any anime exist for the current month</description>
+      <id>1401</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>5</width>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+
+	<!--            :: Top title ::            -->
+	<control>
+	  <description>Top title</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>185</posX>
+	  <posY>38</posY>
+	  <width>500</width>
+	  <textcolor>6aa5cb</textcolor>
+	  <font>font22</font>
+	  <label>Calendar</label>
+	</control>
+	
+	
+    <!--            :: HIDDEN MENU ::            -->
+
+	<control>
+	  <animation effect="slide" start="-60,0" end="0,0" tween="quadratic" easing="in" time="250" delay="400">WindowOpen</animation>
+	  <animation effect="slide" start="0,0" end="-60,0" tween="quadratic" easing="in" time="250" delay="100">WindowClose</animation>
+	  <id>1</id>
+	  <type>image</type>
+	  <posX>0</posX>
+	  <posY>440</posY>
+	  <width>64</width>
+	  <height>199</height>
+	  <texture>hiddenmenu_tab.png</texture>
+	  <visible>Control.HasFocus(50)|Control.HasFocus(83)|Control.HasFocus(84)</visible>
+	</control>
+
+	<control>
+		<type>actiongroup</type>
+		<description>action menu</description>
+		<defaultcontrol>920</defaultcontrol>
+		<onexit>50</onexit>
+		<dimColor>00ffffff</dimColor>
+		<buttonX>0</buttonX>
+		<buttonY>0</buttonY>
+		<buttonwidth>497</buttonwidth>
+		<buttonheight>1080</buttonheight>
+		
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<width>1920</width>
+			<height>1080</height>
+			<texture>semi_trans_back_hidden_menu.png</texture>
+			<visible>!Control.HasFocus(50)+!Control.HasFocus(83)+!Control.HasFocus(84)</visible>
+			<animation effect="fade" time="450">visible</animation>
+			<animation effect="fade" time="400">hidden</animation>
+		</control>
+	
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posY>15</posY>
+			<posX>0</posX>
+			<width>631</width>
+			<height>1044</height>
+			<texture>menu_bg.png</texture>
+			<visible>!Control.HasFocus(50)+!Control.HasFocus(83)+!Control.HasFocus(84)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+		</control>
+		
+		<control>
+			<description>Menu label</description>
+			<type>label</type>
+			<id>1</id>
+			<posX>128</posX>
+			<posY>114</posY>
+			<label>Menu</label>
+			<font>fontB12</font>
+			<textcolor>ffffff</textcolor>
+			<visible>!Control.HasFocus(50)+!Control.HasFocus(83)+!Control.HasFocus(84)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+    	</control>
+		
+          <control>
+            <type>group</type>
+            <description>group element</description>
+ 			<visible>!Control.HasFocus(50)+!Control.HasFocus(83)+!Control.HasFocus(84)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+            <posX>69</posX>
+            <posY>155</posY>
+            <layout>StackLayout(0, Vertical, true)</layout>	
+		
+			
+            <control>
+				<description>Continue Watching...</description>
+				<type>button</type>
+				<id>920</id>
+				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+				<textureNoFocus>-</textureNoFocus>
+				<width>497</width>
+				<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+				<label>Continue Watching...</label>
+				<onleft>50</onleft>
+                <onright>50</onright>
+				<onup>923</onup>
+				<ondown>921</ondown>
+            </control>
+            
+            <control>
+	            <description>Utilities</description>
+    		    <type>button</type>
+    		    <id>921</id>
+    		    <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+    		    <textureNoFocus>-</textureNoFocus>
+    		    <width>497</width>
+    		    <height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+    		    <label>Utilities</label>
+				<onleft>50</onleft>
+                <onright>50</onright>
+				<onup>920</onup>
+				<ondown>923</ondown>
+            </control>	
+			
+			<control>
+    		    <description>Downloads</description>
+ 		        <type>button</type>
+    			<id>923</id>
+    			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+    			<textureNoFocus>-</textureNoFocus>
+    			<width>497</width>
+    			<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+    			<label>Downloads</label>
+				<onleft>50</onleft>
+                <onright>50</onright>
+				<onup>921</onup>
+				<ondown>920</ondown>
+            </control>
+            
+                
+        </control>
+    </control>
+    
+    
+	
+	
+	<control>
+	  <type>group</type>
+	  <description>group element</description>
+	  <id>28</id>
+	  <layout>StackLayout</layout>
+	  <posX>60</posX>
+	  <posY>97</posY>
+	  <control>
+		<description>composite control consisting of a list control and a thumbnail panel</description>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+		<type>facadeview</type>
+		<id>50</id>
+		
+		<control>
+		  <description>Filmstrip view</description>
+		  <type>filmstrip</type>
+		  <dimColor>90ffffff</dimColor>
+		  <id>50</id>
+		  <scrollOffset>3</scrollOffset>
+		  <folderPrefix></folderPrefix>
+		  <folderSuffix></folderSuffix>
+		  <posX>70</posX>
+		  <posY>186</posY>
+		  <width>1920</width>
+		  <height>768</height>
+		  <onup>84</onup>
+		  <ondown>84</ondown>
+		  <onleft>920</onleft>
+		  <onright>920</onright>
+		  <thumbWidth>327</thumbWidth>
+		  <thumbHeight>463</thumbHeight>
+		  <thumbPosX>0</thumbPosX>
+		  <thumbPosY>0</thumbPosY>
+		  <itemWidth>355</itemWidth>
+		  <itemHeight>463</itemHeight>
+		  <textureWidth>327</textureWidth>
+		  <textureHeight>463</textureHeight>
+		  <textYOff>-2000</textYOff>
+		  <imageFolderFocus>-</imageFolderFocus>
+		  <frame>-</frame>
+		  <frameFocus>-</frameFocus>
+		  <background>-</background>
+		  <thumbs flipY="true" diffuse="Thumb_Mask_test.png" mask="video_filmstrip_mask.png"></thumbs>
+		  <showFrame>yes</showFrame>
+		  <showFolder>no</showFolder>
+		  <showBackGround>no</showBackGround>
+		  <showInfoImage>no</showInfoImage>
+		  <scrollbarBackground>-</scrollbarBackground>
+		  <scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
+		  <scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
+		  <scrollbarWidth>689</scrollbarWidth>
+		  <scrollbarHeight>4</scrollbarHeight>
+		  <scrollbarYOff>522</scrollbarYOff>
+		  <thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="108,108" center="0,500" time="200">focus</thumbAnimation>
+		  <thumbAnimation effect="zoom" start="108,108" reversible="false" end="100,100" center="0,500" time="100">unfocus</thumbAnimation>
+		</control>
+	  </control>
+	</control>
+	
+	
+	
+    <!--  ************** BUTTONS TOOLBAR *****************  -->
+    
+	<control>
+		<description>MinusOneMonth</description>
+		<type>button</type>
+		<id>83</id>
+		<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		<textureNoFocus>-</textureNoFocus>
+		<width>170</width>
+		<height>64</height>
+		<textYOff>14</textYOff>
+		<label>#Anime3.Calendar.MinusOneMonth #Anime3.Calendar.MinusOneYear</label>
+		<onleft>920</onleft>
+		<onright>84</onright>
+		<ondown>50</ondown>
+		<onup>50</onup>
+		<align>center</align>
+		<posX>600</posX>
+        <posY>60</posY>
+	</control>
+	
+	<control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>CurrentMonth</description>
+		<id>640</id>
+		<posX>800</posX>
+        <posY>60</posY>
+		<width>180</width>
+		<label>#Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
+	
+	<control>
+		<description>PlusOneMonth</description>
+		<type>button</type>
+		<id>84</id>
+		<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		<textureNoFocus>-</textureNoFocus>
+		<width>170</width>
+		<height>64</height>
+		<textYOff>14</textYOff>
+		<label>#Anime3.Calendar.PlusOneMonth #Anime3.Calendar.PlusOneYear</label>
+		<onleft>83</onleft>
+		<onright>920</onright>
+		<ondown>50</ondown>
+		<onup>50</onup>
+		<align>center</align>
+		<posX>1000</posX>
+        <posY>60</posY>
+	</control>
+	
+	<control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Nothing found for</description>
+		<id>640</id>
+		<posX>0</posX>
+        <posY>400</posY>
+		<width>1920</width>
+		<align>center</align>
+		<label>Nothing found for #Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
+		<visible>!Control.IsVisible(1401)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+
+    <!--  ************** SELECTED SERIES *****************  -->
+	
+	<control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Title Series View</description>
+		<id>640</id>
+		<posX>70</posX>
+		<posY>730</posY>
+		<width>1560</width>
+		<label>#Anime3.Calendar.Title</label>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
+    <control Style="InfoLabel">
+		<description>Air Date Label</description>
+		<type>fadelabel</type>
+	    <label>Air Date</label>
+		<id>0</id>
+		<posX>70</posX>
+		<posY>800</posY>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control Style="InfoValueSmall">
+		<description>Air Date Value</description>
+		<type>label</type>
+	    <label>#Anime3.Calendar.AirDate</label>
+		<id>0</id>
+		<posX>240</posX>
+		<posY>800</posY>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="InfoLabel">
+		<description>Categories Label</description>
+		<type>label</type>
+		<label>Categories</label>
+		<id>0</id>
+		<posX>70</posX>
+		<posY>840</posY>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+			
+	<control Style="InfoValueSmall">
+		<description>Categories Value</description>
+		<type>fadelabel</type>
+	    <label>#Anime3.Calendar.GenreShort</label>
+		<id>0</id>
+		<posX>240</posX>
+		<posY>840</posY>
+		<width>560</width>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+		<type>textboxscrollup</type>
+		<description>Description</description>
+		<id>1025</id>
+		<posX>880</posX>
+		<posY>800</posY>
+		<width>1000</width>
+		<height>230</height>
+		<label>#Anime3.Calendar.Description</label>
+		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+   
+
+    
+    <import>common.time.xml</import>
+  </controls>
+</window>
+<!--Checksum:8933db03e9c01c0706d0006eca259200-->

@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6106</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <disabletopbar>no</disabletopbar>
+  <controls>
+    <!-- :::::::::::::: BACKGROUNDS :::::::::::::: -->
+    <control>
+      <description>Default Background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1920</width>
+      <height>1080</height>
+      <texture>background.png</texture>
+      <animation effect="fade" time="400" delay="0">WindowOpen</animation>
+    </control>
+    <control>
+      <description>Backdrop Overlay</description>
+      <type>image</type>
+      <id>1</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1925</width>
+      <height>1085</height>
+      <texture>overlay_background.png</texture>
+      <visible>!facadeview.filmstrip</visible>
+    </control>
+    <control>
+      <description>Backdrop Overlay - Filmstrip</description>
+      <type>image</type>
+      <id>1</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1925</width>
+      <height>1085</height>
+      <texture>overlay_filmstrip.png</texture>
+      <visible>facadeview.filmstrip</visible>
+    </control>
+    <control>
+      <description>Backdrop Overlay - Filmstrip/Coverflow</description>
+      <type>image</type>
+      <id>1</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1925</width>
+      <height>1085</height>
+      <texture>overlay_background_top.png</texture>
+      <visible>facadeview.filmstrip</visible>
+    </control>
+    <control>
+      <description>Backdrop Overlay - Thumbs View</description>
+      <type>image</type>
+      <id>1</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1925</width>
+      <height>1085</height>
+      <texture>overlay_thumbs.png</texture>
+      <visible>[facadeview.smallicons|facadeview.largeicons]</visible>
+    </control>
+    <control>
+      <description>Backdrop Overlay Bar</description>
+      <type>image</type>
+      <id>1</id>
+      <posX>0</posX>
+      <posY>998</posY>
+      <width>1920</width>
+      <height>82</height>
+      <texture>overlay_bar_bottom.png</texture>
+    </control>
+    <!-- :::::::::::::: TOP BAR :::::::::::::: -->
+		
+    <control Style="BigTitle">
+      <description>Page Title</description>
+      <type>label</type>
+      <id>1</id>
+      <posX>70</posX>
+      <posY>45</posY>
+      <width>1220</width>
+      <label>Banners</label>
+      <visible>control.HasFocus(50)+!player.hasmedia</visible>
+    </control>
+    <control Style="Time">
+      <description>Date</description>
+      <type>label</type>
+      <id>1</id>
+      <posX>70</posX>
+      <posY>120</posY>
+      <label>#date / #time</label>
+      <visible>control.hasfocus(50)</visible>
+    </control>
+    
+
+    <!--      :: HIDDEN MENU ::      -->
+    <control>
+      <type>actiongroup</type>
+      <description>action menu</description>
+      <defaultcontrol>140</defaultcontrol>
+      <onexit>50</onexit>
+      <buttonX>0</buttonX>
+      <buttonY>0</buttonY>
+      <buttonwidth>106</buttonwidth>
+      <buttonheight>720</buttonheight>
+      <width>568</width>
+      <height>900</height>
+      <dimColor>00ffffff</dimColor>
+      <animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+      <animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+      <control>
+        <type>image</type>
+        <posX>0</posX>
+        <posY>0</posY>
+        <width>400</width>
+        <height>998</height>
+        <texture>hidden_menu_short_background.png</texture>
+        <colorDiffuse>fffffffff</colorDiffuse>
+        <visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
+        <animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+        <animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+      </control>
+      <control>
+        <type>label</type>
+        <id>0</id>
+        <posX>370</posX>
+        <posY>178</posY>
+        <width>300</width>
+        <font>font3</font>
+        <label>Banners</label>
+        <align>right</align>
+        <visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
+        <animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+        <animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+      </control>
+      <control>
+        <description>group element</description>
+        <type>group</type>
+        <animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+        <animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+        <visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
+        <control>
+          <description>button group</description>
+          <type>group</type>
+          <posX>0</posX>
+          <posY>230</posY>
+          <layout>StackLayout(0, Vertical, true)</layout>
+          <visible>!Control.HasFocus(50)</visible>
+
+		  <control>
+            <description>Fanart</description>
+            <type>button</type>
+            <id>140</id>
+            <label>Fanart</label>
+            <onleft>50</onleft>
+            <onright>50</onright>
+			<onup>141</onup>
+			<ondown>141</ondown>
+          </control>
+		  <control>
+            <description>Posters</description>
+            <type>button</type>
+            <id>141</id>
+            <label>Posters</label>
+            <onleft>50</onleft>
+            <onright>50</onright>
+			<onup>140</onup>
+			<ondown>140</ondown>
+          </control>
+		  
+        </control>
+      </control>
+    </control>
+    <!-- Selected Facade Item -->
+    <control Style="DetailText">
+      <description>Number of Files Label</description>
+      <type>label</type>
+      <label>#Anime3.WideBanners.SelectedSource | Default: #Anime3.WideBanners.SelectedBannerIsDefault | Disabled: #Anime3.WideBanners.SelectedBannerIsDisabled</label>
+      <posX>70</posX>
+      <posY>1030</posY>
+      <width>1000</width>
+      <align>left</align>
+      <visible>control.isvisible(50)</visible>
+    </control>
+
+    <!-- :::::::::::::: FACADE :::::::::::::: -->
+    <control>
+      <type>group</type>
+      <description>group element</description>
+      <id>28</id>
+      <layout>StackLayout0, Vertical, true</layout>
+      <control>
+        <description>composite control consisting of a list control and a thumbnail panel</description>
+        <type>facadeview</type>
+        <id>50</id>
+        <control>
+          <description>Graphical Thumbpanel</description>
+          <type>thumbnailpanel</type>
+          <id>50</id>
+          <dimColor>90ffffff</dimColor>
+          <onleft>140</onleft>
+          <onright>50</onright>
+          <textureUp>-</textureUp>
+          <textureDown>-</textureDown>
+          <posX>70</posX>
+          <posY>200</posY>
+          <width>1850</width>
+          <height>800</height>
+          <scrollOffset>0</scrollOffset>
+		  
+          <itemWidth>523</itemWidth>
+          <itemHeight>109</itemHeight>
+          <textureWidth>523</textureWidth>
+          <textureHeight>109</textureHeight>
+          <thumbWidth>523</thumbWidth>
+          <thumbHeight>109</thumbHeight>
+          <thumbPosX>0</thumbPosX>
+          <thumbPosY>0</thumbPosY>
+		  
+		  <itemWidthBig>523</itemWidthBig>
+		  <itemHeightBig>109</itemHeightBig>
+		  <!-- boxes -->
+		  <textureWidthBig>523</textureWidthBig>
+		  <textureHeightBig>109</textureHeightBig>
+		  <!-- banners -->
+		  <thumbWidthBig>523</thumbWidthBig>
+		  <thumbHeightBig>109</thumbHeightBig>
+			
+          <thumbPosXBig>0</thumbPosXBig>
+          <thumbPosYBig>0</thumbPosYBig>
+          <zoomXPixels>10</zoomXPixels>
+          <zoomYPixels>14</zoomYPixels>
+          <hideUnfocusTexture>yes</hideUnfocusTexture>
+          <renderFocusText>no</renderFocusText>
+          <renderUnfocusText>no</renderUnfocusText>
+          <showFrame>true</showFrame>
+          <thumbZoom>yes</thumbZoom>
+          <enableFocusZoom>no</enableFocusZoom>
+          <keepaspectratio>no</keepaspectratio>
+          <textureMask>fanart_thumb_frame_mask.png</textureMask>
+          <unfocusedAlpha>255</unfocusedAlpha>
+          <frameNoFocus>pic_thumb_frame_nofocus.png</frameNoFocus>
+          <frameFocus>pic_thumb_frame_focus.png</frameFocus>
+          <imageFolder>-</imageFolder>
+          <imageFolderFocus>-</imageFolderFocus>
+          <dimColor>ffffffff</dimColor>
+          <spinPosX>2500</spinPosX>
+          <spinCanFocus>no</spinCanFocus>
+          <scrollbarbg>scroll_bar_background.png</scrollbarbg>
+          <scrollbartop>scrollbar_bar_nib_left_vert.png</scrollbartop>
+          <scrollbarbottom>scrollbar_bar_nib_right_vert.png</scrollbarbottom>
+          <scrollbarwidth>1</scrollbarwidth>
+          <scrollbarXOff>-20</scrollbarXOff>
+          <keepaspectratio>yes</keepaspectratio>
+          <animation effect="slide" start="0" end="370" tween="back" ease="easeout" time="300" reversible="false">unfocus</animation>
+          <animation effect="slide" start="370" end="0" tween="back" ease="easeout" time="300" reversible="false">focus</animation>
+        </control>
+        
+      </control>
+    </control>
+    <import>common.overlay.xml</import>
+  </controls>
+</window>
+<!--Checksum:7abc2182de90fa0efcdf134b57749155-->

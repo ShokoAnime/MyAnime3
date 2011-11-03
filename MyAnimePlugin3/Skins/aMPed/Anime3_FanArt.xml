@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+	<id>6103</id>
+	<defaultcontrol>50</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<disabletopbar>yes</disabletopbar>
+	<define>#title.color:ffffffff</define>
+	<define>#title.color:ffffffff</define>        <!-- Titles Color                       Default: ffdedede-->
+	<define>#text.color:ffffffff</define>         <!-- Text Color                         Default: ffffffff-->
+	<define>#default.color:ffffffff</define>      <!-- Normal List Color                  Default: ffffffff-->
+	<define>#watched.color:ff808080</define>      <!-- Watched List Color                 Default: ff666666 -->
+	<define>#notpresent.color:ffF87B72</define>   <!-- File Not Present in List Color     Default: ffef6d16 -->  
+	<define>#header.hover:hover_my anime.png</define>
+	<define>#header.label:Anime Fanart</define>
+	<controls>
+		<import>common.window.bars.xml</import>
+		<import>common.time.xml</import>
+		<control>
+			<type>label</type>
+			<description>Dummy Label for fullscreen preview</description>
+			<id>1400</id>
+			<posX>-50</posX>
+			<posY>-50</posY>
+			<width>620</width>
+			<textcolor>d4d2d2</textcolor>
+			<font>font14</font>
+			<label>
+			</label>
+			<visible>true</visible>
+			<!-- to make a control visible only when Fullscreen preview is on do this: <visible>Control.IsVisible(1400)</visible> -->
+			<!-- to make a control invisible when Fullscreen preview is off do this: <visible>!Control.IsVisible(1400)</visible> -->
+		</control>
+	
+		<!-- :::::::::::::: BACKGROUNDS ::::::::::::::  -->
+
+		<control>
+			<description>preview</description>
+			<id>4560</id>
+			<type>image</type>
+			<posY>100</posY>
+			<width>720</width>
+			<height>405</height>
+			<texture>#Anime3.FanArt.SelectedPreview</texture>
+			<colordiffuse>ffffffff</colordiffuse>
+			<visible>true</visible>
+			<keepaspectratio>yes</keepaspectratio>
+		</control>
+	   <control>
+			<description>Overlay for Filmstrip</description>
+			<id>0</id>
+			<type>image</type>
+			<posY>100</posY>
+			<width>720</width>
+			<height>405</height>
+			<dimColor>50ffffff</dimColor>
+			<colordiffuse>ffffffff</colordiffuse>
+			<texture>fanart_overlay.png</texture>
+			<visible>facadeview.filmstrip</visible>
+		</control>
+	   <control>
+			<description>Overlay for Icons</description>
+			<id>0</id>
+			<type>image</type>
+			<posY>100</posY>
+			<width>720</width>
+			<height>405</height>
+			<dimColor>50ffffff</dimColor>
+			<colordiffuse>ccffffff</colordiffuse>
+			<texture>background.png</texture>
+			<visible>!facadeview.filmstrip</visible>
+		</control>
+        <control Style="Backslide">
+			<type>image</type>
+			<posX>0</posX>
+			<posY>100</posY>
+			<width>300</width>
+			<height>405</height>
+			<texture>Backslide.png</texture>
+			<colorDiffuse>fffffffff</colorDiffuse>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0">visible</animation>
+			<animation effect="slide" time="450" end="-300,0">hidden</animation>
+		</control>
+		<control>
+            <description>Left Vertical Line</description>
+            <id>0</id>
+            <type>image</type>
+            <posY>100</posY>
+            <width>5</width>
+            <height>405</height>
+            <texture>vbar1.png</texture>
+            <colordiffuse>ffffffff</colordiffuse>
+            <keepaspectratio>no</keepaspectratio>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+        <control>
+            <description>Right Vertical Line</description>
+            <type>image</type>
+            <id>0</id>
+            <posX>994</posX>
+            <posY>100</posY>
+            <width>10</width>
+            <height>405</height>
+            <texture>vbar.png</texture>
+            <colordiffuse>ffffffff</colordiffuse>
+            <keepaspectratio>no</keepaspectratio>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+		<control Style="Fanart">
+			<type>image</type>
+			<description>Cover on Fanart Widescreen only</description>
+			<id>1</id>
+			<posX>30</posX>
+			<posY>130</posY>
+			<width>224</width>
+			<height>345</height>
+			<keepaspectratio>yes</keepaspectratio>
+			<texture>#Anime3.GroupSeriesPoster</texture>
+			<border texture="image_border.png" textureRotate="yes" textureRepeat="no">5</border>
+		</control>
+
+        <!-- :::::::::::::: INFO LABELS :::::::::::::: -->
+		<control Style="Title Label">
+            <description>Disabled Label</description>
+            <type>label</type>
+            <id>0</id>
+			<posX>20</posX>
+            <posY>540</posY>
+            <font>font14</font>
+			<align>left</align>
+            <textcolor>99ffffff</textcolor>
+            <label>Disabled</label>
+            <visible>Control.IsVisible(1400)</visible>
+        </control>
+		<control>
+            <description>Disabled Value</description>
+            <type>label</type>
+            <id>0</id>
+            <posX>120</posX>
+            <posY>540</posY>
+            <font>font14</font>
+            <label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
+            <visible>Control.IsVisible(1400)</visible>
+        </control>
+		
+		<control Style="Title Label">
+            <description>Default Label</description>
+            <type>label</type>
+            <id>0</id>
+			<posX>200</posX>
+            <posY>540</posY>
+            <font>font14</font>
+			<align>left</align>
+            <textcolor>99ffffff</textcolor>
+            <label>Default</label>
+            <visible>Control.IsVisible(1400)</visible>
+        </control>
+		
+        <control>
+            <description>Default Value</description>
+            <type>label</type>
+            <id>0</id>
+			<posX>300</posX>
+            <posY>540</posY>
+            <font>font14</font>
+            <label>#Anime3.FanArt.SelectedFanartIsDefault</label>
+            <visible>Control.IsVisible(1400)</visible>
+        </control>
+        
+        <control Style="Title Label">
+            <description>FanArt Resolution</description>
+            <type>label</type>
+            <id>0</id>
+			<posX>20</posX>
+            <posY>510</posY>
+            <align>left</align>
+            <font>font16</font>
+            <textcolor>99ffffff</textcolor>
+            <label>Resolution: #Anime3.FanArt.SelectedFanartResolution</label>
+            <visible>Control.IsVisible(1400)</visible>
+        </control>
+        <control Style="Title Label">
+            <description>Thumbnail Text</description>
+            <type>label</type>
+            <id>0</id>
+            <posY>540</posY>
+            <font>font16</font>
+            <textcolor>99a9d0f7</textcolor>
+            <label>#selecteditem</label>
+            <visible>Control.IsVisible(1400)</visible>
+        </control>
+
+		<!--  ************** HIDDEN MENU *****************  -->
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>2</defaultcontrol>
+			<onexit>50</onexit>
+			<buttonX>0</buttonX>
+			<buttonY>35</buttonY>
+			<buttonwidth>45</buttonwidth>
+			<buttonheight>576</buttonheight>
+            <textureFocus>Action_focus.png</textureFocus>
+            <textureNoFocus>Action_nofocus.png</textureNoFocus>
+			<width>320</width>
+			<height>576</height>
+			<dimColor>ffffffff</dimColor>
+			<control>
+				<description>button group</description>
+				<type>group</type>
+				<animation effect="slide" time="450" start="-300,0">visible</animation>
+				<animation effect="slide" time="450" end="-300,0">hidden</animation>
+				<posX>20</posX>
+				<posY>140</posY>
+				<layout>StackLayout</layout>
+				<visible>!Control.HasFocus(50)</visible>
+				<control>
+					<description>Change Layout</description>
+					<type>button</type>
+					<id>2</id>
+					<label>Change Layout</label>
+					<onup>141</onup>
+					<ondown>140</ondown>
+					<onleft>50</onleft>
+				        <onright>50</onright>
+				</control>
+
+				<control>
+					<description>Posters</description>
+					<type>button</type>
+					<id>140</id>
+					<label>Posters</label>
+					<onleft>50</onleft>
+				        <onright>50</onright>
+					<onup>2</onup>
+					<ondown>141</ondown>
+				</control>
+				<control>
+					<description>Wide Banners</description>
+					<type>button</type>
+					<id>141</id>
+					<label>Wide Banners</label>
+					<onleft>50</onleft>
+				        <onright>50</onright>
+					<onup>140</onup>
+					<ondown>2</ondown>
+				</control>
+			</control>
+		</control>
+
+        <!-- :::::::::::::: FACADE :::::::::::::: -->
+        <control>
+            <type>group</type>
+            <description>group element</description>
+            <id>28</id>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+            <visible>Control.HasFocus(50)</visible>
+            <layout>StackLayout</layout>
+            <posX>50</posX>
+            <posY>90</posY>
+			<control Style="Slide 2">
+                <description>composite control consisting of a list control and a thumbnail panel</description>
+                <type>facadeview</type>
+                <id>50</id>
+                <control Style="Wide Thumbs">
+                    <description>Thumbnail Panel</description>
+                    <type>thumbnailpanel</type>
+                    <posY>110</posY>
+					<width>715</width>
+                    <height>450</height>
+                    <itemWidth>132</itemWidth>
+                    <itemHeight>78</itemHeight>
+                    <textureWidth>128</textureWidth>
+                    <textureHeight>76</textureHeight>
+                    <thumbWidth>120</thumbWidth>
+                    <thumbHeight>72</thumbHeight>
+                    <thumbPosX>3</thumbPosX>
+                    <thumbPosY>1</thumbPosY>
+                    <itemWidthBig>224</itemWidthBig>
+                    <itemHeightBig>132</itemHeightBig>
+                    <textureWidthBig>220</textureWidthBig>
+                    <textureHeightBig>128</textureHeightBig>
+                    <thumbWidthBig>204</thumbWidthBig>
+                    <thumbHeightBig>124</thumbHeightBig>
+                    <thumbPosXBig>5</thumbPosXBig>
+                    <thumbPosYBig>1</thumbPosYBig>
+                    <unfocusedAlpha>100</unfocusedAlpha>
+                    <height>450</height>
+                    <onleft>2</onleft>
+                    <onright>2</onright>
+                    <onup>2</onup>
+					<animation effect="fade" time="250">Focus</animation>
+					<animation effect="fade" time="250">UnFocus</animation>
+                 </control>
+                <control Style="Wide Filmstrip">
+                    <description>Filmstrip view</description>
+                    <type>filmstrip</type>
+                    <dimColor>90ffffff</dimColor>
+                    <id>50</id>
+                    <posX>50</posX>
+                    <posY>390</posY>
+                    <width>670</width>
+                    <height>200</height>
+                    <onup>2</onup>
+                    <onleft>2</onleft>
+                    <onright>2</onright>
+                    <thumbPosX>5</thumbPosX>
+                    <thumbPosY>4</thumbPosY>
+                    <thumbWidth>181</thumbWidth>
+                    <thumbHeight>104</thumbHeight>
+                    <itemWidth>216</itemWidth>
+                    <itemHeight>120</itemHeight>
+                    <textureWidth>194</textureWidth>
+                    <textureHeight>112</textureHeight>
+                    <imageFolderFocus>Picture_cover.png</imageFolderFocus>
+                    <frame>Picture_cover.png</frame>
+                    <frameFocus>Picture_cover.png</frameFocus>
+                    <background>Coverbig.png</background>
+                    <thumbs flipY="true" diffuse="Thumb_Mask.png"></thumbs>
+                    <InfoImage flipY="true" diffuse="Thumb_Mask.png"></InfoImage>
+                    <showFrame>yes</showFrame>
+                    <showFolder>yes</showFolder>
+                    <showBackGround>no</showBackGround>
+                    <showInfoImage>no</showInfoImage>
+                    <visible>facadeview.filmstrip</visible>
+                    <thumbAnimation effect="zoom" start="100,100" end="130,130" time="200">focus</thumbAnimation>
+                    <thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
+					<animation effect="fade" time="250">Focus</animation>
+					<animation effect="fade" time="250">UnFocus</animation>
+                    <textYOff>505</textYOff>
+                </control>
+            </control>
+        </control>
+    </controls>
+</window>

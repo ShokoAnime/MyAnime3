@@ -207,7 +207,7 @@
 				<label>Torrent Monitor</label>
 				<onleft>50</onleft>
 				<onright>50</onright>
-				<onup>922</onup>
+				<onup>925</onup>
                 <ondown>802</ondown>
 			</control>
 			
@@ -305,6 +305,23 @@
 				<onleft>50</onleft>
                 <onright>50</onright>
 				<onup>921</onup>
+				<ondown>925</ondown>
+            </control>
+			
+			<control>
+    		    <description>Recommendations</description>
+ 		        <type>button</type>
+    			<id>925</id>
+    			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+    			<textureNoFocus>-</textureNoFocus>
+    			<width>497</width>
+    			<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+    			<label>Recommendations</label>
+				<onleft>50</onleft>
+                <onright>50</onright>
+				<onup>922</onup>
 				<ondown>801</ondown>
             </control>
             
@@ -321,6 +338,7 @@
 		<description>group element</description>
 		<id>28</id>
 		<layout>StackLayout</layout>
+		<visible>Control.IsVisible(1600)</visible>
     <control>
         <description>composite control consisting of a list control and a thumbnail panel</description>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>

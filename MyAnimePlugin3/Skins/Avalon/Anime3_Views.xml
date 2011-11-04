@@ -245,7 +245,7 @@
 		<posY>816</posY>
 		<width>900</width>
 		<height>38</height>
-	  <texture>#Anime3.Logos</texture>
+	    <texture>#Anime3.Logos</texture>
 		<keepaspectratio>yes</keepaspectratio>
 		<visible>facadeview.list+Control.IsVisible(1239)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>

@@ -164,7 +164,7 @@
 				<onleft>50</onleft>
 				<onright>50</onright>
                 <ondown>11</ondown>
-                <onup>5</onup>
+                <onup>925</onup>
 			</control>
             
             <control>
@@ -240,7 +240,7 @@
     			<label>983</label>
     			<onleft>50</onleft>
     			<onright>50</onright>
-    			<ondown>8</ondown>
+    			<ondown>920</ondown>
             </control>
                 
             <control>
@@ -256,53 +256,89 @@
             </control>
 			
 			<control>
-				<description>Calendar</description>
+				<description>Continue Watching...</description>
 				<type>button</type>
-				<id>8</id>
+				<id>920</id>
 				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
 				<textureNoFocus>-</textureNoFocus>
 				<width>497</width>
 				<height>64</height>
 				<textXOff>58</textXOff>
 				<textYOff>14</textYOff>
-				<label>Calendar</label>
+				<label>Continue Watching...</label>
 				<onleft>50</onleft>
                 <onright>50</onright>
 				<onup>667</onup>
+				<ondown>921</ondown>
 			</control>
             
 			<control>
-				<description>Downloads</description>
+				<description>Utilities</description>
 				<type>button</type>
-				<id>9</id>
+				<id>921</id>
 				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
 				<textureNoFocus>-</textureNoFocus>
 				<width>497</width>
 				<height>64</height>
 				<textXOff>58</textXOff>
 				<textYOff>14</textYOff>
-				<label>Downloads</label>
+				<label>Utilities</label>
 				<onleft>50</onleft>
                 <onright>50</onright>
+				<onup>920</onup>
+				<ondown>922</ondown>
 			</control>
 
 			<control>
-			  <description>Utilities</description>
+			  <description>Calendar</description>
 			  <type>button</type>
-			  <id>5</id>
+			  <id>922</id>
 			  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
 			  <textureNoFocus>-</textureNoFocus>
 			  <width>497</width>
 			  <height>64</height>
 			  <textXOff>58</textXOff>
 			  <textYOff>14</textYOff>
-			  <label>Utilities</label>
+			  <label>Calendar</label>
 			  <onleft>50</onleft>
 			  <onright>50</onright>
-			  <ondown>12</ondown>
+			  <onup>921</onup>
+			  <ondown>923</ondown>
+			</control>
+			
+			<control>
+			  <description>Downloads</description>
+			  <type>button</type>
+			  <id>923</id>
+			  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			  <textureNoFocus>-</textureNoFocus>
+			  <width>497</width>
+			  <height>64</height>
+			  <textXOff>58</textXOff>
+			  <textYOff>14</textYOff>
+			  <label>Downloads</label>
+			  <onleft>50</onleft>
+			  <onright>50</onright>
+			  <onup>922</onup>
+			  <ondown>925</ondown>
 			</control>
             
-
+			<control>
+			  <description>Recommendations</description>
+			  <type>button</type>
+			  <id>925</id>
+			  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			  <textureNoFocus>-</textureNoFocus>
+			  <width>497</width>
+			  <height>64</height>
+			  <textXOff>58</textXOff>
+			  <textYOff>14</textYOff>
+			  <label>Recommendations</label>
+			  <onleft>50</onleft>
+			  <onright>50</onright>
+			  <onup>923</onup>
+			  <ondown>12</ondown>
+			</control>
 
         </control>
 </control>

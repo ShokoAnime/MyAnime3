@@ -34,6 +34,7 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(922)] protected GUIButtonControl btnWindowCalendar = null;
 		[SkinControlAttribute(923)] protected GUIButtonControl btnWindowDownloads = null;
 		//[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
+		[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
 
 		private static readonly string SkinImportProgress = "#Anime3.Utilities.ImportProgress";
 		private static readonly string SkinMiscProgress = "#Anime3.Utilities.MiscProgress";
@@ -186,7 +187,7 @@ namespace MyAnimePlugin3.Windows
 
 			if (this.btnRetryUnlinkedFiles != null && control == this.btnRetryUnlinkedFiles)
 			{
-				this.btnRunImport.IsFocused = false;
+				this.btnRetryUnlinkedFiles.IsFocused = false;
 				m_Facade.Focus = true;
 
 				JMMServerVM.Instance.clientBinaryHTTP.RescanUnlinkedFiles();
@@ -201,6 +202,8 @@ namespace MyAnimePlugin3.Windows
 			if (this.btnMoreOptions != null && control == this.btnMoreOptions)
 			{
 				ShowMoreOptionsMenu();
+				this.btnMoreOptions.IsFocused = false;
+				m_Facade.Focus = true;
 			}
 
 

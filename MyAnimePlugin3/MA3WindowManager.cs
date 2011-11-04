@@ -14,12 +14,14 @@ namespace MyAnimePlugin3
 		public const int AnimeFanart = 913;
 		public const int AnimePosters = 914;
 		public const int AnimeWideBanners = 915;
+		public const int AnimeSimilar = 916;
 
 		public const int ContinueWatching = 920;
 		public const int Utilities = 921;
 		public const int Calendar = 922;
 		public const int Downloads = 923;
 		public const int CollectionStats = 924;
+		public const int Recommendations = 925;
 
 		public static bool HandleWindowChangeButton(GUIControl control)
 		{
@@ -59,6 +61,11 @@ namespace MyAnimePlugin3
 					GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
 					return true;
 
+				case AnimeSimilar:
+					GUIWindowManager.CloseCurrentWindow();
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.SIMILAR, false);
+					return true;
+
 				case ContinueWatching:
 					GUIWindowManager.CloseCurrentWindow();
 					GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING, false);
@@ -82,6 +89,11 @@ namespace MyAnimePlugin3
 				case CollectionStats:
 					GUIWindowManager.CloseCurrentWindow();
 					GUIWindowManager.ActivateWindow(Constants.WindowIDs.COLLECTION, false);
+					return true;
+
+				case Recommendations:
+					GUIWindowManager.CloseCurrentWindow();
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RECOMMENDATIONS, false);
 					return true;
 			}
 

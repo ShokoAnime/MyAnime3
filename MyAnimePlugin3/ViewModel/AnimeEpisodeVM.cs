@@ -34,6 +34,18 @@ namespace MyAnimePlugin3.ViewModel
 		public string EpisodeOverview { get; set; }
 		public string EpisodeImageLocation { get; set; }
 
+		private AnimeSeriesVM animeSeries = null;
+		public AnimeSeriesVM AnimeSeries
+		{
+			get
+			{
+				if (animeSeries == null)
+					animeSeries = JMMServerHelper.GetSeries(this.AnimeSeriesID);
+		
+				return animeSeries;
+			}
+		}
+
 		public enEpisodeType EpisodeTypeEnum
 		{
 			get
@@ -214,6 +226,9 @@ namespace MyAnimePlugin3.ViewModel
 		public void SetTvDBImageAndOverview(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons,
 			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef)
 		{
+			this.EpisodeOverview = "Episode Overview Not Available";
+			this.EpisodeImageLocation = "";
+
 			// now do stuff to improve performance
 			if (this.EpisodeTypeEnum == enEpisodeType.Episode)
 			{

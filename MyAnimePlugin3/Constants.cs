@@ -53,6 +53,8 @@ namespace MyAnimePlugin3
             public static readonly int BROWSER = 6112;
             public static readonly int NEWS = 6113;
 			public static readonly int WATCHING = 6113;
+			public static readonly int RECOMMENDATIONS = 6114;
+			public static readonly int SIMILAR = 6115;
 
 			public static readonly int RELATIONS_OLD = 610711;
 

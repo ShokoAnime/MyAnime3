@@ -32,22 +32,21 @@ namespace MyAnimePlugin3
 		//[SkinControlAttribute(3)] protected GUIButtonControl btnLayout = null;
 		[SkinControlAttribute(4)]
 		protected GUIButtonControl btnSettings = null;
-		[SkinControlAttribute(5)]
-		protected GUIButtonControl btnUtilities = null;
 		[SkinControlAttribute(6)]
 		protected GUIButtonControl btnRunImport = null;
 		[SkinControlAttribute(7)]
 		protected GUIButtonControl btnImportCDDVD = null;
-		[SkinControlAttribute(8)]
-		protected GUIButtonControl btnCalendar = null;
-		[SkinControlAttribute(9)]
-		protected GUIButtonControl btnDownloads = null;
-		[SkinControlAttribute(10)]
-		protected GUIButtonControl btnCollection = null;
 		[SkinControlAttribute(11)]
 		protected GUIButtonControl btnChangeLayout = null;
 		[SkinControlAttribute(12)]
 		protected GUIButtonControl btnSwitchUser = null;
+
+		[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
+		[SkinControlAttribute(921)] protected GUIButtonControl btnWindowUtilities = null;
+		[SkinControlAttribute(922)] protected GUIButtonControl btnWindowCalendar = null;
+		[SkinControlAttribute(923)] protected GUIButtonControl btnWindowDownloads = null;
+		//[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
+		[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
 
 		[SkinControlAttribute(50)]
 		protected GUIFacadeControl m_Facade = null;
@@ -2660,7 +2659,6 @@ namespace MyAnimePlugin3
 
 		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
 		{
-
 			if (actionType == MediaPortal.GUI.Library.Action.ActionType.ACTION_MOUSE_DOUBLECLICK)
 			{
 				OnShowContextMenu();
@@ -2690,42 +2688,51 @@ namespace MyAnimePlugin3
 				return;*/
 			}
 
-			if (this.btnUtilities != null && control == this.btnUtilities)
+			if (this.btnWindowUtilities != null && control == this.btnWindowUtilities)
 			{
-				SetImageIDs();
+				SetGlobalIDs();
 				GUIWindowManager.ActivateWindow(Constants.WindowIDs.ADMIN);
 
-				this.btnUtilities.IsFocused = false;
+				this.btnWindowUtilities.IsFocused = false;
 
 				return;
 			}
 
-			if (this.btnCalendar != null && control == this.btnCalendar)
+			if (this.btnWindowCalendar != null && control == this.btnWindowCalendar)
 			{
-				SetImageIDs();
+				SetGlobalIDs();
 				GUIWindowManager.ActivateWindow(Constants.WindowIDs.CALENDAR);
 				//GUIWindowManager.ActivateWindow(Constants.WindowIDs.BROWSER);
 
-				this.btnCalendar.IsFocused = false;
+				this.btnWindowCalendar.IsFocused = false;
 
 				return;
 			}
 
-			if (this.btnCollection != null && control == this.btnCollection)
+			if (this.btnWindowDownloads != null && control == this.btnWindowDownloads)
 			{
-				SetImageIDs();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.COLLECTION);
-
-				this.btnCollection.IsFocused = false;
-				return;
-			}
-
-			if (this.btnDownloads != null && control == this.btnDownloads)
-			{
-				SetImageIDs();
+				SetGlobalIDs();
 				GUIWindowManager.ActivateWindow(Constants.WindowIDs.DOWNLOADS);
 
-				this.btnDownloads.IsFocused = false;
+				this.btnWindowDownloads.IsFocused = false;
+				return;
+			}
+
+			if (this.btnWindowContinueWatching != null && control == this.btnWindowContinueWatching)
+			{
+				SetGlobalIDs();
+				GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING);
+
+				this.btnWindowContinueWatching.IsFocused = false;
+				return;
+			}
+
+			if (this.btnWindowRecommendations != null && control == this.btnWindowRecommendations)
+			{
+				SetGlobalIDs();
+				GUIWindowManager.ActivateWindow(Constants.WindowIDs.RECOMMENDATIONS);
+
+				this.btnWindowRecommendations.IsFocused = false;
 				return;
 			}
 
@@ -5670,19 +5677,19 @@ namespace MyAnimePlugin3
 
 		private void ShowRelationsWindow()
 		{
-			SetImageIDs();
+			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.RELATIONS, false);
 		}
 
 		private void ShowCharacterWindow()
 		{
-			SetImageIDs();
+			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.CHARACTERS, false);
 		}
 
 		private void ShowAnimeInfoWindow()
 		{
-			SetImageIDs();
+			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.ANIMEINFO, false);
 		}
 
@@ -6614,7 +6621,7 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private void SetImageIDs()
+		private void SetGlobalIDs()
 		{
 			GlobalSeriesID = -1;
 
@@ -6636,19 +6643,19 @@ namespace MyAnimePlugin3
 
 		private void ShowFanartWindow()
 		{
-			SetImageIDs();
+			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.FANART, false);
 		}
 
 		private void ShowPostersWindow()
 		{
-			SetImageIDs();
+			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.POSTERS, false);
 		}
 
 		private void ShowWideBannersWindow()
 		{
-			SetImageIDs();
+			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
 		}
 

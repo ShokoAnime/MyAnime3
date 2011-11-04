@@ -31,6 +31,7 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(922)] protected GUIButtonControl btnWindowCalendar = null;
 		//[SkinControlAttribute(923)] protected GUIButtonControl btnWindowDownloads = null;
 		//[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
+		[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
 
 		private Torrent curTorrent = null;
 		private TorrentSource curBrowseSource = TorrentSource.TokyoToshokan;

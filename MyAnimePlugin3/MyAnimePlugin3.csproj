@@ -443,8 +443,8 @@
     <Content Include="Skins\aMPed\Anime3_WideBanners.xml" />
     <Content Include="Skins\Avalon\Anime3_Admin.xml" />
     <Content Include="Skins\Avalon\Anime3_AnimeInfo.xml" />
-    <Content Include="Skins\Avalon\Anime3_Background.fanart.oriented.xml" />
     <Content Include="Skins\Avalon\Anime3_Background.xml" />
+    <Content Include="Skins\Avalon\Anime3_Background.standard.xml" />
     <Content Include="Skins\Avalon\Anime3_Calendar.xml" />
     <Content Include="Skins\Avalon\Anime3_Char.xml" />
     <Content Include="Skins\Avalon\Anime3_Downloads.xml" />
@@ -463,8 +463,8 @@
     <Content Include="Skins\Avalon\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avalon\Anime3_Relations.xml" />
     <Content Include="Skins\Avalon\Anime3_SkinSettings.xml" />
-    <Content Include="Skins\Avalon\Anime3_Views.fanart.oriented.xml" />
-    <Content Include="Skins\Avalon\Anime3_Views.xml">
+    <Content Include="Skins\Avalon\Anime3_Views.xml" />
+    <Content Include="Skins\Avalon\Anime3_Views.standard.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skins\Avalon\Anime3_Watching.xml" />

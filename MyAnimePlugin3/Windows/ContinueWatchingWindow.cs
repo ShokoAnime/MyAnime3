@@ -24,12 +24,12 @@ namespace MyAnimePlugin3.Windows
 
 		[SkinControlAttribute(801)] protected GUIButtonControl btnRefresh = null;
 
-		[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
+		//[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
 		[SkinControlAttribute(921)] protected GUIButtonControl btnWindowUtilities = null;
 		[SkinControlAttribute(922)] protected GUIButtonControl btnWindowCalendar = null;
 		[SkinControlAttribute(923)] protected GUIButtonControl btnWindowDownloads = null;
 		//[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
-		//[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
+		[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
 
 		[SkinControlAttribute(1451)] protected GUILabelControl dummyAnyRecords = null;
 
@@ -37,7 +37,7 @@ namespace MyAnimePlugin3.Windows
 		{
 			// get ID of windowplugin belonging to this setup
 			// enter your own unique code
-			GetID = Constants.WindowIDs.CALENDAR;
+			GetID = Constants.WindowIDs.WATCHING;
 
 			setGUIProperty("Watching.Status", "-");
 

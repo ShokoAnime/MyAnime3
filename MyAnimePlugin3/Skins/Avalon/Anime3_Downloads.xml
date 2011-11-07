@@ -47,6 +47,16 @@
 	  <visible>false</visible>
 	</control>
 	
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for search page - where we looking for a specified episode</description>
+	  <id>1604</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <label>torrents</label>
+	  <visible>false</visible>
+	</control>
+	
 	<!--            :: Backgrounds ::            -->
 	<control>
 	  <description>DEFAULT BACKGROUND</description>
@@ -357,7 +367,7 @@
 			<posX>50</posX>
 			<posY>164</posY>
 			<height>850</height>
-			<width>1080</width>
+			<width>1000</width>
 			<textureFocus>listcontrol_item_selected_small.png</textureFocus>
 			<textureNoFocus>-</textureNoFocus>
 			<textXOff>-130</textXOff>
@@ -1250,13 +1260,72 @@
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
 	
+	<!-- :::::::::::::::::::::::::::::: SEARCH PAGE - Sub Group Details :::::::::::::::::::::::::::::: -->
+	
+	<control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Sub Group Details</description>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>550</posY>
+		<label>Sub Group Details</label>
+	    <visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
+	<control Style="InfoLabel">
+		<description>Anime Name</description>
+		<type>label</type>
+	    <label>#Anime3.SubGroup.AnimeName</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>600</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="InfoLabel">
+		<description>Episode Name</description>
+		<type>label</type>
+	    <label>#Anime3.SubGroup.EpisodeName</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>640</posY>
+		<width>720</width>
+		<visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+		<type>textboxscrollup</type>
+		<description>Summary (list)</description>
+		<id>1025</id>
+		<posX>1150</posX>
+		<posY>690</posY>
+		<width>750</width>
+		<height>230</height>
+		<label>#Anime3.SubGroup.FileDetails</label>
+		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
+	    <visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
 	<control Style="InfoLabel">
 		<description>Help Label</description>
 		<type>fadelabel</type>
 	    <label>Press F9 or ENTER or the Info button on your remote for options</label>
 		<id>0</id>
 		<posX>1150</posX>
-		<posY>890</posY>
+		<posY>920</posY>
 		<width>700</width>
 	    <visible>Control.IsVisible(1601)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>

@@ -10,6 +10,8 @@ using MediaPortal.Dialogs;
 using System.ComponentModel;
 using System.IO;
 using Action = MediaPortal.GUI.Library.Action;
+using MyAnimePlugin3.ViewModel;
+using BinaryNorthwest;
 
 namespace MyAnimePlugin3.Windows
 {
@@ -21,6 +23,7 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(1601)] protected GUILabelControl dummyPageSearch = null;
 		[SkinControlAttribute(1602)] protected GUILabelControl dummyPageBrowse = null;
 		[SkinControlAttribute(1603)] protected GUILabelControl dummyPageTorrentFiles = null;
+		[SkinControlAttribute(1604)] protected GUILabelControl dummyEpisodeSearch = null;
 
 		[SkinControlAttribute(801)] protected GUIButtonControl btnTorrentsUIPage = null;
 		[SkinControlAttribute(802)] protected GUIButtonControl btnSearchPage = null;
@@ -115,6 +118,7 @@ namespace MyAnimePlugin3.Windows
 			dummyPageTorrentFiles.Visible = false;
 			dummyPageSearch.Visible = false;
 			dummyPageBrowse.Visible = false;
+			dummyEpisodeSearch.Visible = false;
 			m_Facade.Clear();
 			LoadUTorrentListAsync();
 			
@@ -139,9 +143,48 @@ namespace MyAnimePlugin3.Windows
 			dummyPageTorrentFiles.Visible = true;
 			dummyPageSearch.Visible = false;
 			dummyPageBrowse.Visible = false;
+			dummyEpisodeSearch.Visible = false;
 			m_Facade.Clear();
 			LoadUTorrentFileList(torFiles);
             m_Facade.SelectedListItemIndex = SelectedItem;
+		}
+
+		private void ShowEpisodeDetails(AnimeEpisodeVM ep)
+		{
+			dummyEpisodeSearch.Visible = false;
+			AnimeSeriesVM series = JMMServerHelper.GetSeries(ep.AnimeSeriesID);
+			if (series != null && series.AniDB_Anime != null)
+			{
+				setGUIProperty("SubGroup.AnimeName", series.AniDB_Anime.MainTitle);
+				setGUIProperty("SubGroup.EpisodeName", ep.EpisodeNumberAndName);
+				setGUIProperty("SubGroup.FileDetails", "-");
+
+				List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
+				List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID);
+				foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
+				{
+					GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
+					videoQualityRecords.Add(vidQual);
+				}
+
+				// apply sorting
+				if (videoQualityRecords.Count > 0)
+				{
+					List<SortPropOrFieldAndDirection> sortlist = new List<SortPropOrFieldAndDirection>();
+					sortlist.Add(new SortPropOrFieldAndDirection("FileCountNormal", true, SortType.eInteger));
+					videoQualityRecords = Sorting.MultiSort<GroupVideoQualityVM>(videoQualityRecords, sortlist);
+
+					string fileDetails = "";
+					foreach (GroupVideoQualityVM gvq in videoQualityRecords)
+						fileDetails += string.Format("{0}({1}) - {2} Files ({3})", gvq.GroupNameShort, gvq.Resolution, gvq.FileCountNormal, gvq.NormalEpisodeNumberSummary)
+							+ Environment.NewLine;
+
+
+					setGUIProperty("SubGroup.FileDetails", fileDetails);
+				}
+
+				dummyEpisodeSearch.Visible = true;
+			}
 		}
 
 		private void ShowPageSearch(bool showPreviousSearch)
@@ -159,6 +202,7 @@ namespace MyAnimePlugin3.Windows
 			dummyPageTorrentFiles.Visible = false;
 			dummyPageSearch.Visible = true;
 			dummyPageBrowse.Visible = false;
+			dummyEpisodeSearch.Visible = false;
 			m_Facade.Clear();
 
 			try
@@ -377,6 +421,14 @@ namespace MyAnimePlugin3.Windows
 			if (!dummyPageSearch.Visible) return;
 
 			m_Facade.Clear();
+
+			if (dsc.SearchType == DownloadSearchType.Episode)
+			{
+				AnimeEpisodeVM ep = dsc.SearchParameter as AnimeEpisodeVM;
+				ShowEpisodeDetails(ep);
+			}
+			else
+				dummyEpisodeSearch.Visible = false;
 
 			setGUIProperty("Search.Summary", string.Format("{0}", dsc.ToString()));
 

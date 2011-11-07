@@ -221,6 +221,7 @@
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
     <Compile Include="ViewModel\MovieDB_PosterVM.cs" />
     <Compile Include="ViewModel\PosterContainer.cs" />
+    <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
     <Compile Include="ViewModel\Trakt_EpisodeVM.cs" />
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
@@ -249,6 +250,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Windows\PosterWindow.cs" />
+    <Compile Include="Windows\RecommendationsWindow.cs" />
     <Compile Include="Windows\RelationsWindow.cs" />
     <Compile Include="Windows\RelationsWindow_Old.cs" />
     <Compile Include="Windows\WideBannerWindow.cs" />
@@ -458,6 +460,7 @@
     <Content Include="Skins\Avalon\Anime3_Posters.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\Avalon\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avalon\Anime3_Relations.xml" />
     <Content Include="Skins\Avalon\Anime3_SkinSettings.xml" />
     <Content Include="Skins\Avalon\Anime3_Views.fanart.oriented.xml" />

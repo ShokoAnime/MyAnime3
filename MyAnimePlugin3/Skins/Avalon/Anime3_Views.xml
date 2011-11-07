@@ -90,6 +90,7 @@
 		<posX>714</posX>
 		<posY>810</posY>
 		<label>#Anime3.Title</label>
+		<width>1100</width>
 	    <visible>[Control.IsVisible(1238)]</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
@@ -116,7 +117,7 @@
 		<id>0</id>
 		<posX>714</posX>
 		<posY>872</posY>
-	    <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]+facadeview.list</visible>
+	    <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>

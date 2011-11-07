@@ -90,6 +90,7 @@
 	  <posX>714</posX>
 	  <posY>810</posY>
 	  <label>#Anime3.Title</label>
+	  <width>1100</width>
 	  <visible>[Control.IsVisible(1238)]</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>

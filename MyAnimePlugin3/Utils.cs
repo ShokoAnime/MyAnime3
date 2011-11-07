@@ -467,6 +467,12 @@ namespace MyAnimePlugin3
             
         }
 
+		public static string FormatPercentage(double val)
+		{
+			return String.Format("{0:0.0}%", val);
+
+		}
+
 		public static string FormatFileSize(long bytes)
 		{
 			double mb = (bytes / 1024f) / 1024f;

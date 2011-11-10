@@ -35,43 +35,40 @@ namespace MyAnimePlugin3.Downloads
 
 			List<string> episodeGroupParms = new List<string>();
 
-			if (BaseConfig.Settings.TorrentPreferOwnGroups)
+			// lets do something special for episodes
+			if (BaseConfig.Settings.TorrentPreferOwnGroups && search.SearchType == DownloadSearchType.Episode)
 			{
-				// lets do something special for episodes
-				if (search.SearchType == DownloadSearchType.Episode)
+				AnimeEpisodeVM ep = search.SearchParameter as AnimeEpisodeVM;
+
+				AnimeSeriesVM series = JMMServerHelper.GetSeries(ep.AnimeSeriesID);
+				if (series != null && series.AniDB_Anime != null)
 				{
-					AnimeEpisodeVM ep = search.SearchParameter as AnimeEpisodeVM;
 
-					AnimeSeriesVM series = JMMServerHelper.GetSeries(ep.AnimeSeriesID);
-					if (series != null && series.AniDB_Anime != null)
+					List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
+					List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID);
+					foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
 					{
+						GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
+						videoQualityRecords.Add(vidQual);
+					}
 
-						List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
-						List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID);
-						foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
-						{
-							GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
-							videoQualityRecords.Add(vidQual);
-						}
+					// apply sorting
+					if (videoQualityRecords.Count > 0)
+					{
+						List<SortPropOrFieldAndDirection> sortlist = new List<SortPropOrFieldAndDirection>();
+						sortlist.Add(new SortPropOrFieldAndDirection("FileCountNormal", true, SortType.eInteger));
+						videoQualityRecords = Sorting.MultiSort<GroupVideoQualityVM>(videoQualityRecords, sortlist);
+					}
 
-						// apply sorting
-						if (videoQualityRecords.Count > 0)
+					//only use the first 2
+					int i = 0;
+					foreach (GroupVideoQualityVM gvq in videoQualityRecords)
+					{
+						if (i == 2) break;
+						if (!episodeGroupParms.Contains(gvq.GroupNameShort))
 						{
-							List<SortPropOrFieldAndDirection> sortlist = new List<SortPropOrFieldAndDirection>();
-							sortlist.Add(new SortPropOrFieldAndDirection("FileCountNormal", true, SortType.eInteger));
-							videoQualityRecords = Sorting.MultiSort<GroupVideoQualityVM>(videoQualityRecords, sortlist);
-						}
-
-						//only use the first 2
-						int i = 0;
-						foreach (GroupVideoQualityVM gvq in videoQualityRecords)
-						{
-							if (i == 2) break;
-							if (!episodeGroupParms.Contains(gvq.GroupNameShort))
-							{
-								episodeGroupParms.Add(gvq.GroupNameShort);
-								i++;
-							}
+							episodeGroupParms.Add(gvq.GroupNameShort);
+							i++;
 						}
 					}
 				}

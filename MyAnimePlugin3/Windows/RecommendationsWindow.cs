@@ -94,7 +94,7 @@ namespace MyAnimePlugin3.Windows
 				recType = 2;
 
 			List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(10, JMMServerVM.Instance.CurrentUser.JMMUserID, recType);
+					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, recType);
 
 			foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
 			{
@@ -239,6 +239,15 @@ namespace MyAnimePlugin3.Windows
 							else
 							{
 								Utils.DialogMsg("Error", "Could not find the first episode");
+							}
+						}
+
+						if (dummyModeDownload != null && dummyModeDownload.Visible)
+						{
+							AniDB_AnimeVM recanime = rec.Recommended_AniDB_Anime;
+							if (recanime != null)
+							{
+								DownloadHelper.SearchAnime(recanime);
 							}
 						}
 					}

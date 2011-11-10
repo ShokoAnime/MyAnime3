@@ -457,6 +457,7 @@ namespace MyAnimePlugin3.ConfigFiles
 				BaseConfig.Settings.GroupDisplayFormat = txtFormatGroup.Text.Trim();
 
 				BaseConfig.Settings.HidePlot = chkHidePlot.Checked;
+				BaseConfig.Settings.ShowOnlyAvailableEpisodes = chkShowAvailableEpsOnly.Checked;
 
 				BaseConfig.Settings.HideRestrictedSeries = chkRestricted.Checked;
 				BaseConfig.Settings.MenuDeleteFiles = chkDeleteFiles.Checked;

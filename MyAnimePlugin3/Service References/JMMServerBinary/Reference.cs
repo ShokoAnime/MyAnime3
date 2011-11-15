@@ -4285,6 +4285,958 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_MissingFile", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_MissingFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries AnimeSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnimeTitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AnimeID {
+            get {
+                return this.AnimeIDField;
+            }
+            set {
+                if ((this.AnimeIDField.Equals(value) != true)) {
+                    this.AnimeIDField = value;
+                    this.RaisePropertyChanged("AnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries AnimeSeries {
+            get {
+                return this.AnimeSeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeSeriesField, value) != true)) {
+                    this.AnimeSeriesField = value;
+                    this.RaisePropertyChanged("AnimeSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnimeTitle {
+            get {
+                return this.AnimeTitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeTitleField, value) != true)) {
+                    this.AnimeTitleField = value;
+                    this.RaisePropertyChanged("AnimeTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeID {
+            get {
+                return this.EpisodeIDField;
+            }
+            set {
+                if ((this.EpisodeIDField.Equals(value) != true)) {
+                    this.EpisodeIDField = value;
+                    this.RaisePropertyChanged("EpisodeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeNumber {
+            get {
+                return this.EpisodeNumberField;
+            }
+            set {
+                if ((this.EpisodeNumberField.Equals(value) != true)) {
+                    this.EpisodeNumberField = value;
+                    this.RaisePropertyChanged("EpisodeNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeType {
+            get {
+                return this.EpisodeTypeField;
+            }
+            set {
+                if ((this.EpisodeTypeField.Equals(value) != true)) {
+                    this.EpisodeTypeField = value;
+                    this.RaisePropertyChanged("EpisodeType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileID {
+            get {
+                return this.FileIDField;
+            }
+            set {
+                if ((this.FileIDField.Equals(value) != true)) {
+                    this.FileIDField = value;
+                    this.RaisePropertyChanged("FileID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_MissingEpisode", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_MissingEpisode : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries AnimeSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnimeTitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupFileSummaryField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AnimeID {
+            get {
+                return this.AnimeIDField;
+            }
+            set {
+                if ((this.AnimeIDField.Equals(value) != true)) {
+                    this.AnimeIDField = value;
+                    this.RaisePropertyChanged("AnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries AnimeSeries {
+            get {
+                return this.AnimeSeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeSeriesField, value) != true)) {
+                    this.AnimeSeriesField = value;
+                    this.RaisePropertyChanged("AnimeSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnimeTitle {
+            get {
+                return this.AnimeTitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeTitleField, value) != true)) {
+                    this.AnimeTitleField = value;
+                    this.RaisePropertyChanged("AnimeTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeID {
+            get {
+                return this.EpisodeIDField;
+            }
+            set {
+                if ((this.EpisodeIDField.Equals(value) != true)) {
+                    this.EpisodeIDField = value;
+                    this.RaisePropertyChanged("EpisodeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeNumber {
+            get {
+                return this.EpisodeNumberField;
+            }
+            set {
+                if ((this.EpisodeNumberField.Equals(value) != true)) {
+                    this.EpisodeNumberField = value;
+                    this.RaisePropertyChanged("EpisodeNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeType {
+            get {
+                return this.EpisodeTypeField;
+            }
+            set {
+                if ((this.EpisodeTypeField.Equals(value) != true)) {
+                    this.EpisodeTypeField = value;
+                    this.RaisePropertyChanged("EpisodeType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupFileSummary {
+            get {
+                return this.GroupFileSummaryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupFileSummaryField, value) != true)) {
+                    this.GroupFileSummaryField = value;
+                    this.RaisePropertyChanged("GroupFileSummary");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Friend", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterCondition>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterCondition))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_DefaultImage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MovieDB_Fanart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MovieDB_Poster))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TvDB_ImageFanart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TvDB_ImagePoster))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TvDB_ImageWideBanner))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImageFanart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImagePoster))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_Similar>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_Similar))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_Relation>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_Relation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Recommendation>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Recommendation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDBReleaseGroup>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBReleaseGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Seiyuu))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingFile>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MissingFile))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingEpisode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MissingEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Friend>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_WatchedEpisode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_WatchedEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TraktTVShowResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MovieDB_Poster>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MovieDB_Fanart>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_JMMUser>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_JMMUser))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImageFanart>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImagePoster>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TraktResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Trakt))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_TraktTVShowResponse>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_DuplicateFile>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_DuplicateFile))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupVideoQuality>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupVideoQuality))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoDetailed>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoDetailed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ReleaseGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_AnimeCrossRefs))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MovieDB_Movie))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Show))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Season>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Season))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_TvDB_Episode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TvDB_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_TvDB_ImageFanart>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_TvDB_ImagePoster>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_TvDB_ImageWideBanner>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TvDB_Series))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_TVDBSeriesSearchResult>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_TVDBSeriesSearchResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MovieDBMovieSearchResult>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MovieDBMovieSearchResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ServerSettings))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ServerSettings_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup_Save))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries_Save))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_AnimeDetailed>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_AnimeDetailed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeTitle>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeTitle))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeCategory>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeCategory))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeTag>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBVote))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ServerStatus))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    public partial class Contract_Trakt_Friend : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AboutField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object AgeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AvatarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Full_nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int JoinedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> JoinedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Trakt_FriendIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_WatchedEpisode> WatchedEpisodesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string About {
+            get {
+                return this.AboutField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AboutField, value) != true)) {
+                    this.AboutField = value;
+                    this.RaisePropertyChanged("About");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Age {
+            get {
+                return this.AgeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AgeField, value) != true)) {
+                    this.AgeField = value;
+                    this.RaisePropertyChanged("Age");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Avatar {
+            get {
+                return this.AvatarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvatarField, value) != true)) {
+                    this.AvatarField = value;
+                    this.RaisePropertyChanged("Avatar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Full_name {
+            get {
+                return this.Full_nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Full_nameField, value) != true)) {
+                    this.Full_nameField = value;
+                    this.RaisePropertyChanged("Full_name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Gender {
+            get {
+                return this.GenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenderField, value) != true)) {
+                    this.GenderField = value;
+                    this.RaisePropertyChanged("Gender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Joined {
+            get {
+                return this.JoinedField;
+            }
+            set {
+                if ((this.JoinedField.Equals(value) != true)) {
+                    this.JoinedField = value;
+                    this.RaisePropertyChanged("Joined");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> JoinedDate {
+            get {
+                return this.JoinedDateField;
+            }
+            set {
+                if ((this.JoinedDateField.Equals(value) != true)) {
+                    this.JoinedDateField = value;
+                    this.RaisePropertyChanged("JoinedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Trakt_FriendID {
+            get {
+                return this.Trakt_FriendIDField;
+            }
+            set {
+                if ((this.Trakt_FriendIDField.Equals(value) != true)) {
+                    this.Trakt_FriendIDField = value;
+                    this.RaisePropertyChanged("Trakt_FriendID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Url {
+            get {
+                return this.UrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UrlField, value) != true)) {
+                    this.UrlField = value;
+                    this.RaisePropertyChanged("Url");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_WatchedEpisode> WatchedEpisodes {
+            get {
+                return this.WatchedEpisodesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WatchedEpisodesField, value) != true)) {
+                    this.WatchedEpisodesField = value;
+                    this.RaisePropertyChanged("WatchedEpisodes");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_WatchedEpisode", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_Trakt_WatchedEpisode : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime AnimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AnimeSeriesIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Episode_NumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Episode_OverviewField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Episode_ScreenshotField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Episode_SeasonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Episode_TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Episode_UrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_TraktTVShowResponse TraktShowField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WatchedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> WatchedDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime Anime {
+            get {
+                return this.AnimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeField, value) != true)) {
+                    this.AnimeField = value;
+                    this.RaisePropertyChanged("Anime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AnimeSeriesID {
+            get {
+                return this.AnimeSeriesIDField;
+            }
+            set {
+                if ((this.AnimeSeriesIDField.Equals(value) != true)) {
+                    this.AnimeSeriesIDField = value;
+                    this.RaisePropertyChanged("AnimeSeriesID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Episode_Number {
+            get {
+                return this.Episode_NumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Episode_NumberField, value) != true)) {
+                    this.Episode_NumberField = value;
+                    this.RaisePropertyChanged("Episode_Number");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Episode_Overview {
+            get {
+                return this.Episode_OverviewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Episode_OverviewField, value) != true)) {
+                    this.Episode_OverviewField = value;
+                    this.RaisePropertyChanged("Episode_Overview");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Episode_Screenshot {
+            get {
+                return this.Episode_ScreenshotField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Episode_ScreenshotField, value) != true)) {
+                    this.Episode_ScreenshotField = value;
+                    this.RaisePropertyChanged("Episode_Screenshot");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Episode_Season {
+            get {
+                return this.Episode_SeasonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Episode_SeasonField, value) != true)) {
+                    this.Episode_SeasonField = value;
+                    this.RaisePropertyChanged("Episode_Season");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Episode_Title {
+            get {
+                return this.Episode_TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Episode_TitleField, value) != true)) {
+                    this.Episode_TitleField = value;
+                    this.RaisePropertyChanged("Episode_Title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Episode_Url {
+            get {
+                return this.Episode_UrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Episode_UrlField, value) != true)) {
+                    this.Episode_UrlField = value;
+                    this.RaisePropertyChanged("Episode_Url");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_TraktTVShowResponse TraktShow {
+            get {
+                return this.TraktShowField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TraktShowField, value) != true)) {
+                    this.TraktShowField = value;
+                    this.RaisePropertyChanged("TraktShow");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Watched {
+            get {
+                return this.WatchedField;
+            }
+            set {
+                if ((this.WatchedField.Equals(value) != true)) {
+                    this.WatchedField = value;
+                    this.RaisePropertyChanged("Watched");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> WatchedDate {
+            get {
+                return this.WatchedDateField;
+            }
+            set {
+                if ((this.WatchedDateField.Equals(value) != true)) {
+                    this.WatchedDateField = value;
+                    this.RaisePropertyChanged("WatchedDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_TraktTVShowResponse", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_TraktTVShowResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string countryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string first_airedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string overviewField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string titleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string tvdb_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string urlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string yearField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string country {
+            get {
+                return this.countryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.countryField, value) != true)) {
+                    this.countryField = value;
+                    this.RaisePropertyChanged("country");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string first_aired {
+            get {
+                return this.first_airedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.first_airedField, value) != true)) {
+                    this.first_airedField = value;
+                    this.RaisePropertyChanged("first_aired");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string overview {
+            get {
+                return this.overviewField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.overviewField, value) != true)) {
+                    this.overviewField = value;
+                    this.RaisePropertyChanged("overview");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string title {
+            get {
+                return this.titleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.titleField, value) != true)) {
+                    this.titleField = value;
+                    this.RaisePropertyChanged("title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string tvdb_id {
+            get {
+                return this.tvdb_idField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tvdb_idField, value) != true)) {
+                    this.tvdb_idField = value;
+                    this.RaisePropertyChanged("tvdb_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string url {
+            get {
+                return this.urlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.urlField, value) != true)) {
+                    this.urlField = value;
+                    this.RaisePropertyChanged("url");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string year {
+            get {
+                return this.yearField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.yearField, value) != true)) {
+                    this.yearField = value;
+                    this.RaisePropertyChanged("year");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeEpisode", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeEpisode : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -5150,147 +6102,6 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.TraktSeasonNumberField.Equals(value) != true)) {
                     this.TraktSeasonNumberField = value;
                     this.RaisePropertyChanged("TraktSeasonNumber");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_TraktTVShowResponse", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_TraktTVShowResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string countryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string first_airedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string overviewField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string titleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string tvdb_idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string urlField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string yearField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string country {
-            get {
-                return this.countryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.countryField, value) != true)) {
-                    this.countryField = value;
-                    this.RaisePropertyChanged("country");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string first_aired {
-            get {
-                return this.first_airedField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.first_airedField, value) != true)) {
-                    this.first_airedField = value;
-                    this.RaisePropertyChanged("first_aired");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string overview {
-            get {
-                return this.overviewField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.overviewField, value) != true)) {
-                    this.overviewField = value;
-                    this.RaisePropertyChanged("overview");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string title {
-            get {
-                return this.titleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.titleField, value) != true)) {
-                    this.titleField = value;
-                    this.RaisePropertyChanged("title");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string tvdb_id {
-            get {
-                return this.tvdb_idField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.tvdb_idField, value) != true)) {
-                    this.tvdb_idField = value;
-                    this.RaisePropertyChanged("tvdb_id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string url {
-            get {
-                return this.urlField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.urlField, value) != true)) {
-                    this.urlField = value;
-                    this.RaisePropertyChanged("url");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string year {
-            get {
-                return this.yearField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.yearField, value) != true)) {
-                    this.yearField = value;
-                    this.RaisePropertyChanged("year");
                 }
             }
         }
@@ -7600,39 +8411,27 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_TvDB_Series", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Season", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
-    public partial class Contract_TvDB_Series : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Contract_Trakt_Season : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BannerField;
+        private System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode> EpisodesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FanartField;
+        private int SeasonField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastupdatedField;
+        private int Trakt_SeasonIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string OverviewField;
+        private int Trakt_ShowIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PosterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SeriesIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SeriesNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StatusField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TvDB_SeriesIDField;
+        private string URLField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -7645,118 +8444,66 @@ namespace MyAnimePlugin3.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Banner {
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode> Episodes {
             get {
-                return this.BannerField;
+                return this.EpisodesField;
             }
             set {
-                if ((object.ReferenceEquals(this.BannerField, value) != true)) {
-                    this.BannerField = value;
-                    this.RaisePropertyChanged("Banner");
+                if ((object.ReferenceEquals(this.EpisodesField, value) != true)) {
+                    this.EpisodesField = value;
+                    this.RaisePropertyChanged("Episodes");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Fanart {
+        public int Season {
             get {
-                return this.FanartField;
+                return this.SeasonField;
             }
             set {
-                if ((object.ReferenceEquals(this.FanartField, value) != true)) {
-                    this.FanartField = value;
-                    this.RaisePropertyChanged("Fanart");
+                if ((this.SeasonField.Equals(value) != true)) {
+                    this.SeasonField = value;
+                    this.RaisePropertyChanged("Season");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Lastupdated {
+        public int Trakt_SeasonID {
             get {
-                return this.LastupdatedField;
+                return this.Trakt_SeasonIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.LastupdatedField, value) != true)) {
-                    this.LastupdatedField = value;
-                    this.RaisePropertyChanged("Lastupdated");
+                if ((this.Trakt_SeasonIDField.Equals(value) != true)) {
+                    this.Trakt_SeasonIDField = value;
+                    this.RaisePropertyChanged("Trakt_SeasonID");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Overview {
+        public int Trakt_ShowID {
             get {
-                return this.OverviewField;
+                return this.Trakt_ShowIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.OverviewField, value) != true)) {
-                    this.OverviewField = value;
-                    this.RaisePropertyChanged("Overview");
+                if ((this.Trakt_ShowIDField.Equals(value) != true)) {
+                    this.Trakt_ShowIDField = value;
+                    this.RaisePropertyChanged("Trakt_ShowID");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Poster {
+        public string URL {
             get {
-                return this.PosterField;
+                return this.URLField;
             }
             set {
-                if ((object.ReferenceEquals(this.PosterField, value) != true)) {
-                    this.PosterField = value;
-                    this.RaisePropertyChanged("Poster");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SeriesID {
-            get {
-                return this.SeriesIDField;
-            }
-            set {
-                if ((this.SeriesIDField.Equals(value) != true)) {
-                    this.SeriesIDField = value;
-                    this.RaisePropertyChanged("SeriesID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SeriesName {
-            get {
-                return this.SeriesNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SeriesNameField, value) != true)) {
-                    this.SeriesNameField = value;
-                    this.RaisePropertyChanged("SeriesName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Status {
-            get {
-                return this.StatusField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TvDB_SeriesID {
-            get {
-                return this.TvDB_SeriesIDField;
-            }
-            set {
-                if ((this.TvDB_SeriesIDField.Equals(value) != true)) {
-                    this.TvDB_SeriesIDField = value;
-                    this.RaisePropertyChanged("TvDB_SeriesID");
+                if ((object.ReferenceEquals(this.URLField, value) != true)) {
+                    this.URLField = value;
+                    this.RaisePropertyChanged("URL");
                 }
             }
         }
@@ -8026,27 +8773,39 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Season", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_TvDB_Series", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
-    public partial class Contract_Trakt_Season : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Contract_TvDB_Series : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode> EpisodesField;
+        private string BannerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SeasonField;
+        private string FanartField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Trakt_SeasonIDField;
+        private string LastupdatedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Trakt_ShowIDField;
+        private string OverviewField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string URLField;
+        private string PosterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SeriesIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeriesNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TvDB_SeriesIDField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -8059,66 +8818,118 @@ namespace MyAnimePlugin3.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode> Episodes {
+        public string Banner {
             get {
-                return this.EpisodesField;
+                return this.BannerField;
             }
             set {
-                if ((object.ReferenceEquals(this.EpisodesField, value) != true)) {
-                    this.EpisodesField = value;
-                    this.RaisePropertyChanged("Episodes");
+                if ((object.ReferenceEquals(this.BannerField, value) != true)) {
+                    this.BannerField = value;
+                    this.RaisePropertyChanged("Banner");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Season {
+        public string Fanart {
             get {
-                return this.SeasonField;
+                return this.FanartField;
             }
             set {
-                if ((this.SeasonField.Equals(value) != true)) {
-                    this.SeasonField = value;
-                    this.RaisePropertyChanged("Season");
+                if ((object.ReferenceEquals(this.FanartField, value) != true)) {
+                    this.FanartField = value;
+                    this.RaisePropertyChanged("Fanart");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Trakt_SeasonID {
+        public string Lastupdated {
             get {
-                return this.Trakt_SeasonIDField;
+                return this.LastupdatedField;
             }
             set {
-                if ((this.Trakt_SeasonIDField.Equals(value) != true)) {
-                    this.Trakt_SeasonIDField = value;
-                    this.RaisePropertyChanged("Trakt_SeasonID");
+                if ((object.ReferenceEquals(this.LastupdatedField, value) != true)) {
+                    this.LastupdatedField = value;
+                    this.RaisePropertyChanged("Lastupdated");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Trakt_ShowID {
+        public string Overview {
             get {
-                return this.Trakt_ShowIDField;
+                return this.OverviewField;
             }
             set {
-                if ((this.Trakt_ShowIDField.Equals(value) != true)) {
-                    this.Trakt_ShowIDField = value;
-                    this.RaisePropertyChanged("Trakt_ShowID");
+                if ((object.ReferenceEquals(this.OverviewField, value) != true)) {
+                    this.OverviewField = value;
+                    this.RaisePropertyChanged("Overview");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string URL {
+        public string Poster {
             get {
-                return this.URLField;
+                return this.PosterField;
             }
             set {
-                if ((object.ReferenceEquals(this.URLField, value) != true)) {
-                    this.URLField = value;
-                    this.RaisePropertyChanged("URL");
+                if ((object.ReferenceEquals(this.PosterField, value) != true)) {
+                    this.PosterField = value;
+                    this.RaisePropertyChanged("Poster");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SeriesID {
+            get {
+                return this.SeriesIDField;
+            }
+            set {
+                if ((this.SeriesIDField.Equals(value) != true)) {
+                    this.SeriesIDField = value;
+                    this.RaisePropertyChanged("SeriesID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeriesName {
+            get {
+                return this.SeriesNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesNameField, value) != true)) {
+                    this.SeriesNameField = value;
+                    this.RaisePropertyChanged("SeriesName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TvDB_SeriesID {
+            get {
+                return this.TvDB_SeriesIDField;
+            }
+            set {
+                if ((this.TvDB_SeriesIDField.Equals(value) != true)) {
+                    this.TvDB_SeriesIDField = value;
+                    this.RaisePropertyChanged("TvDB_SeriesID");
                 }
             }
         }
@@ -10109,83 +10920,6 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDBVote", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_AniDBVote : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int EntityIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int VoteTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal VoteValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EntityID {
-            get {
-                return this.EntityIDField;
-            }
-            set {
-                if ((this.EntityIDField.Equals(value) != true)) {
-                    this.EntityIDField = value;
-                    this.RaisePropertyChanged("EntityID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int VoteType {
-            get {
-                return this.VoteTypeField;
-            }
-            set {
-                if ((this.VoteTypeField.Equals(value) != true)) {
-                    this.VoteTypeField = value;
-                    this.RaisePropertyChanged("VoteType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal VoteValue {
-            get {
-                return this.VoteValueField;
-            }
-            set {
-                if ((this.VoteValueField.Equals(value) != true)) {
-                    this.VoteValueField = value;
-                    this.RaisePropertyChanged("VoteValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeTitle", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeTitle : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -10561,6 +11295,83 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDBVote", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_AniDBVote : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EntityIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VoteTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal VoteValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EntityID {
+            get {
+                return this.EntityIDField;
+            }
+            set {
+                if ((this.EntityIDField.Equals(value) != true)) {
+                    this.EntityIDField = value;
+                    this.RaisePropertyChanged("EntityID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VoteType {
+            get {
+                return this.VoteTypeField;
+            }
+            set {
+                if ((this.VoteTypeField.Equals(value) != true)) {
+                    this.VoteTypeField = value;
+                    this.RaisePropertyChanged("VoteType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal VoteValue {
+            get {
+                return this.VoteValueField;
+            }
+            set {
+                if ((this.VoteValueField.Equals(value) != true)) {
+                    this.VoteValueField = value;
+                    this.RaisePropertyChanged("VoteValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_ServerStatus", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_ServerStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -10759,6 +11570,30 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCharactersForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetCharactersForAnimeResponse")]
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character> GetCharactersForAnime(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ForceAddFileToMyList", ReplyAction="http://tempuri.org/IJMMServer/ForceAddFileToMyListResponse")]
+        void ForceAddFileToMyList(string hash);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetMyListFilesForRemoval", ReplyAction="http://tempuri.org/IJMMServer/GetMyListFilesForRemovalResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingFile> GetMyListFilesForRemoval(int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveMissingMyListFiles", ReplyAction="http://tempuri.org/IJMMServer/RemoveMissingMyListFilesResponse")]
+        void RemoveMissingMyListFiles(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingFile> myListFiles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFiles", ReplyAction="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFilesResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries> GetSeriesWithoutAnyFiles(int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteFileFromMyList", ReplyAction="http://tempuri.org/IJMMServer/DeleteFileFromMyListResponse")]
+        void DeleteFileFromMyList(int fileID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetMissingEpisodes", ReplyAction="http://tempuri.org/IJMMServer/GetMissingEpisodesResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingEpisode> GetMissingEpisodes(int userID, bool onlyMyGroups, bool regularEpisodesOnly);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/IgnoreAnime", ReplyAction="http://tempuri.org/IJMMServer/IgnoreAnimeResponse")]
+        void IgnoreAnime(int animeID, int ignoreType, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktFriendInfo", ReplyAction="http://tempuri.org/IJMMServer/GetTraktFriendInfoResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Friend> GetTraktFriendInfo();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBOther", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse")]
         string LinkAniDBOther(int animeID, int movieID, int crossRefType);
         
@@ -10787,7 +11622,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode> GetEpisodesToWatch_RecentlyWatched(int maxRecords, int jmmuserID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteAnimeSeries", ReplyAction="http://tempuri.org/IJMMServer/DeleteAnimeSeriesResponse")]
-        string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles);
+        string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles, bool deleteParentGroup);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteAnimeGroup", ReplyAction="http://tempuri.org/IJMMServer/DeleteAnimeGroupResponse")]
         string DeleteAnimeGroup(int animeGroupID, bool deleteFiles);
@@ -11175,6 +12010,38 @@ namespace MyAnimePlugin3.JMMServerBinary {
             return base.Channel.GetCharactersForAnime(animeID);
         }
         
+        public void ForceAddFileToMyList(string hash) {
+            base.Channel.ForceAddFileToMyList(hash);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingFile> GetMyListFilesForRemoval(int userID) {
+            return base.Channel.GetMyListFilesForRemoval(userID);
+        }
+        
+        public void RemoveMissingMyListFiles(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingFile> myListFiles) {
+            base.Channel.RemoveMissingMyListFiles(myListFiles);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries> GetSeriesWithoutAnyFiles(int userID) {
+            return base.Channel.GetSeriesWithoutAnyFiles(userID);
+        }
+        
+        public void DeleteFileFromMyList(int fileID) {
+            base.Channel.DeleteFileFromMyList(fileID);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MissingEpisode> GetMissingEpisodes(int userID, bool onlyMyGroups, bool regularEpisodesOnly) {
+            return base.Channel.GetMissingEpisodes(userID, onlyMyGroups, regularEpisodesOnly);
+        }
+        
+        public void IgnoreAnime(int animeID, int ignoreType, int userID) {
+            base.Channel.IgnoreAnime(animeID, ignoreType, userID);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Friend> GetTraktFriendInfo() {
+            return base.Channel.GetTraktFriendInfo();
+        }
+        
         public string LinkAniDBOther(int animeID, int movieID, int crossRefType) {
             return base.Channel.LinkAniDBOther(animeID, movieID, crossRefType);
         }
@@ -11211,8 +12078,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
             return base.Channel.GetEpisodesToWatch_RecentlyWatched(maxRecords, jmmuserID);
         }
         
-        public string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles) {
-            return base.Channel.DeleteAnimeSeries(animeSeriesID, deleteFiles);
+        public string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles, bool deleteParentGroup) {
+            return base.Channel.DeleteAnimeSeries(animeSeriesID, deleteFiles, deleteParentGroup);
         }
         
         public string DeleteAnimeGroup(int animeGroupID, bool deleteFiles) {

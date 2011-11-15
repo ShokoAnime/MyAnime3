@@ -165,6 +165,45 @@ namespace MyAnimePlugin3.Windows
 
 		}
 
+		protected override void OnShowContextMenu()
+		{
+			GUIListItem currentitem = this.m_Facade.SelectedListItem;
+			if (currentitem == null) return;
+
+			if (currentitem.TVTag.GetType() == typeof(RecommendationVM))
+			{
+				RecommendationVM rec = currentitem.TVTag as RecommendationVM;
+				if (rec != null)
+				{
+					GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+					if (dlg == null)
+						return;
+
+					dlg.Reset();
+					dlg.SetHeading(rec.Recommended_DisplayName);
+					dlg.Add("Don't Show This Anime (Ignore)");
+
+					dlg.DoModal(GUIWindowManager.ActiveWindow);
+
+					switch (dlg.SelectedLabel)
+					{
+						case 0:
+
+							int recType = 1;
+							if (dummyModeDownload != null && dummyModeDownload.Visible)
+								recType = 2;
+
+							JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, recType,
+								JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+							LoadData();
+							break;
+
+					}
+				}
+			}
+		}
+
 		private void SetRec(RecommendationVM rec)
 		{
 			if (rec == null) return;

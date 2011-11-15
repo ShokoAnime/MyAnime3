@@ -294,9 +294,6 @@ namespace MyAnimePlugin3.Windows
 
 
 			base.OnPageLoad();
-			//TODO
-            //if (!workerPluginVersion.IsBusy)
-			//    workerPluginVersion.RunWorkerAsync();
 
 			if (dummyServerStatus != null) dummyServerStatus.Visible = false;
 			if (dummyListUnlinkedFiles != null) dummyListUnlinkedFiles.Visible = true;
@@ -308,31 +305,6 @@ namespace MyAnimePlugin3.Windows
 				JMMServerVM.Instance.ServerStatusEvent += new JMMServerVM.ServerStatusEventHandler(Instance_ServerStatusEvent);
 				FirstLoad = false;
 			}
-		}
-
-		void workerPluginVersion_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			PluginVersion pVersion = e.Result as PluginVersion;
-			if (pVersion != null)
-			{
-				System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-				if (a != null)
-				{
-					if (pVersion.VersionNumber.Trim().Length > 0)
-					{
-						MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.LatestVersionNumber", pVersion.VersionNumber.Trim());
-						if (Utils.GetApplicationVersion(a) != pVersion.VersionNumber.Trim())
-							MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.LatestVersionText", "Version " + pVersion.VersionNumber.Trim() + " Available");
-					}
-				}
-			}
-		}
-
-		void workerPluginVersion_DoWork(object sender, DoWorkEventArgs e)
-		{
-			//PluginVersion pVersion = XMLService.Get_PluginVersion();
-			//e.Result = pVersion;
-			
 		}
 
 		#region TvDB
@@ -460,8 +432,9 @@ namespace MyAnimePlugin3.Windows
 
 				dlg.SetHeading("File options");			
 				dlg.Add("Play file");
-				//dlg.Add("Rehash file");
-				//dlg.Add("Delete file from disk");
+				dlg.Add("Rehash file");
+				dlg.Add("Ignore file");
+				dlg.Add("Delete file from disk");
 
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
                    
@@ -473,15 +446,23 @@ namespace MyAnimePlugin3.Windows
 
                 if (dlg.SelectedId == 2)
                 {
-                    //TODO
+					JMMServerVM.Instance.clientBinaryHTTP.RehashFile(vid.VideoLocalID);
+					Utils.DialogMsg("Done", "Action has been queued on server");
                     return;
                 }
 
 				if (dlg.SelectedId == 3)
 				{
+					JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(vid.VideoLocalID, true);
+					RefreshUnlinkedFiles();
+					return;
+				}
+
+				if (dlg.SelectedId == 4)
+				{
 					if (!Utils.DialogConfirm("Are you sure you want to delete this file?")) return;
 
-					//TODO
+					JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
 					RefreshUnlinkedFiles();
 				}
 

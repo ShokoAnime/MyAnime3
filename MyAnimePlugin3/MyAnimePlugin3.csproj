@@ -195,6 +195,7 @@
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
     <Compile Include="ViewModel\FanartContainer.cs" />
     <Compile Include="ViewModel\GroupFilterConditionVM.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
+    <Compile Include="ViewModel\TVDBSeriesSearchResultVM.cs" />
     <Compile Include="ViewModel\TvDB_EpisodeVM.cs" />
     <Compile Include="ViewModel\TvDB_ImageFanartVM.cs" />
     <Compile Include="ViewModel\TvDB_ImagePosterVM.cs" />

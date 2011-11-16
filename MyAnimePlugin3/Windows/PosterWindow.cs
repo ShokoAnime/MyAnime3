@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using MediaPortal.GUI.Library;
 using MyAnimePlugin3.DataHelpers;
-using MyAnimePlugin3.Providers.TheTvDB;
-using MyAnimePlugin3.Providers.TheMovieDB;
 using Action = MediaPortal.GUI.Library.Action;
 using MyAnimePlugin3.ViewModel;
 using System.IO;

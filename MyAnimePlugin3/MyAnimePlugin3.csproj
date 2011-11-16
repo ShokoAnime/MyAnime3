@@ -121,12 +121,6 @@
     <Compile Include="ImageManagement\ImageDownloadRequest.cs" />
     <Compile Include="ImageManagement\QueueUpdateEventArgs.cs" />
     <Compile Include="MA3WindowManager.cs" />
-    <Compile Include="Providers\TheMovieDB\MovieDBImageFanart.cs" />
-    <Compile Include="Providers\TheMovieDB\MovieDBImagePoster.cs" />
-    <Compile Include="Providers\TheTvDB\TvDBEpisode.cs" />
-    <Compile Include="Providers\TheTvDB\TvDBImageFanart.cs" />
-    <Compile Include="Providers\TheTvDB\TvDBImagePoster.cs" />
-    <Compile Include="Providers\TheTvDB\TvDBImageWideBanner.cs" />
     <Compile Include="DataHelpers\BlockingList.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -178,15 +172,12 @@
     </Compile>
     <Compile Include="ShellDll.cs" />
     <Compile Include="ShellItem.cs" />
-    <Compile Include="Providers\TheMovieDB\MovieDBSearchResult.cs" />
-    <Compile Include="Providers\TheTvDB\TVDBSeriesSearchResult.cs" />
     <Compile Include="ImageSwapper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Providers\TheTvDB\TvDBSeries.cs" />
     <Compile Include="SkinSettings.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="VideoHandler.cs" />
@@ -744,7 +735,9 @@
     <WCFMetadataStorage Include="Service References\JMMImageServer\" />
     <WCFMetadataStorage Include="Service References\JMMServerBinary\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Providers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

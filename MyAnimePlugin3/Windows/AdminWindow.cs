@@ -5,9 +5,7 @@ using MyAnimePlugin3.DataHelpers;
 using System.IO;
 using System.ComponentModel;
 using MediaPortal.Dialogs;
-using MyAnimePlugin3.Providers.TheTvDB;
 using System.Xml;
-using MyAnimePlugin3.Providers.TheMovieDB;
 using BinaryNorthwest;
 using Action = MediaPortal.GUI.Library.Action;
 using MyAnimePlugin3.ImageManagement;
@@ -286,8 +284,6 @@ namespace MyAnimePlugin3.Windows
 
 			setGUIProperty("Utilities.CurrentView", "Unlinked Files");
 
-			//TODO
-            //MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.DBVersionNumber", Database.DBVersion.ToString());
 
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.LatestVersionNumber", "-");
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.LatestVersionText", "Plugin up to date");

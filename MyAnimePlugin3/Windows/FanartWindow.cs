@@ -5,8 +5,6 @@ using MediaPortal.GUI.Library;
 using System.ComponentModel;
 
 using MyAnimePlugin3.DataHelpers;
-using MyAnimePlugin3.Providers.TheMovieDB;
-using MyAnimePlugin3.Providers.TheTvDB;
 using Action = MediaPortal.GUI.Library.Action;
 using MyAnimePlugin3.ViewModel;
 using System.IO;

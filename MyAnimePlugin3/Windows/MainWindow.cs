@@ -11,9 +11,7 @@ using Cornerstone.MP;
 using System.ComponentModel;
 using System.Threading;
 using System.Xml;
-using MyAnimePlugin3.Providers.TheTvDB;
 using BinaryNorthwest;
-using MyAnimePlugin3.Providers.TheMovieDB;
 using System.Runtime.InteropServices;
 using MyAnimePlugin3.Downloads;
 using Action = MediaPortal.GUI.Library.Action;
@@ -93,6 +91,8 @@ namespace MyAnimePlugin3
 		protected GUILabelControl dummyFave = null;
 		[SkinControlAttribute(1246)]
 		protected GUILabelControl dummyMissingEps = null;
+		[SkinControlAttribute(1247)]
+		protected GUILabelControl dummyUserHasVotedSeries = null;
 
 		[SkinControlAttribute(3401)]
 		protected GUILabelControl dummyQueueAniDB = null;
@@ -370,10 +370,6 @@ namespace MyAnimePlugin3
 				vidHandler.DefaultAudioLanguage = settings.DefaultAudioLanguage;
 				vidHandler.DefaultSubtitleLanguage = settings.DefaultSubtitleLanguage;
 
-				setGUIProperty(guiProperty.QueueCountAniDB, "0");
-				setGUIProperty(guiProperty.QueueCountHasher, "0");
-				setGUIProperty(guiProperty.QueueCountImages, "0");
-
 			}
 			catch (Exception ex)
 			{
@@ -381,6 +377,25 @@ namespace MyAnimePlugin3
 			}
 
 			return Load(GUIGraphicsContext.Skin + @"\Anime3_Main.xml");
+		}
+
+		void Instance_ServerStatusEvent(Events.ServerStatusEventArgs ev)
+		{
+			setGUIProperty("HasherQueueCount", ev.HasherQueueCount.ToString());
+			setGUIProperty("HasherQueueState", ev.HasherQueueState);
+			setGUIProperty("HasherQueueRunning", ev.HasherQueueRunning ? "Running" : "Paused");
+
+			setGUIProperty("GeneralQueueCount", ev.GeneralQueueCount.ToString());
+			setGUIProperty("GeneralQueueState", ev.GeneralQueueState);
+			setGUIProperty("GeneralQueueRunning", ev.GeneralQueueRunning ? "Running" : "Paused");
+
+			setGUIProperty("ImagesQueueCount", ev.ImagesQueueCount.ToString());
+			setGUIProperty("ImagesQueueState", ev.ImagesQueueState);
+			setGUIProperty("ImagesQueueRunning", ev.ImagesQueueRunning ? "Running" : "Paused");
+
+			if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = ev.GeneralQueueCount > 0;
+			if (dummyQueueHasher != null) dummyQueueHasher.Visible = ev.HasherQueueCount > 0;
+			if (dummyQueueImages != null) dummyQueueImages.Visible = ev.ImagesQueueCount > 0;
 		}
 
 
@@ -499,16 +514,7 @@ namespace MyAnimePlugin3
 				//BaseConfig.MyAnimeLog.Write("EvaluateVisibility:: {0} - {1} - {2}", imgListFave != null, curAnimeGroup.IsFave, dummyLayoutListMode.Visible);
 			}
 
-			//TODO
-			/*
-			if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = MainWindow.anidbProcessor.QueueCount > 0;
-			if (dummyQueueHasher != null) dummyQueueHasher.Visible = MainWindow.vidHasher.QueueCount > 0;
-			if (dummyQueueImages != null) dummyQueueImages.Visible = MainWindow.imageDownloader.QueueCount > 0;*/
-
-			/* // for skin testing
-			if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = true;
-			if (dummyQueueHasher != null) dummyQueueHasher.Visible = true;
-			if (dummyQueueImages != null) dummyQueueImages.Visible = true;*/
+			//EvaluateServerStatus();
 		}
 
 		protected override void OnPageDestroy(int new_windowId)
@@ -899,7 +905,6 @@ namespace MyAnimePlugin3
 					#region Group Filters
 					case Listlevel.GroupFilter:
 						{
-							// TODO get the default display options from settings
 							// List/Poster/Banner
 
 							setGUIProperty("SimpleCurrentView", "Group Filters");
@@ -967,7 +972,6 @@ namespace MyAnimePlugin3
 					#region Groups
 					case Listlevel.Group:
 						{
-							// TODO get the default display options from settings
 							// List/Poster/Banner
 
 							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
@@ -2216,321 +2220,7 @@ namespace MyAnimePlugin3
 
 		#endregion
 
-		private bool ShowViewContentsGenresMenu(string previousMenu)
-		{
-			return false;
-			//TODO
-			/*
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			List<Genre> allGenres = Genre.GetAll();
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "View Contents - Genres";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				foreach (Genre gen in allGenres)
-				{
-					GUIListItem item = new GUIListItem(gen.GenreLarge);
-					item.Label2 = View.ShowTypeToString(currentView.ShowTypeGenre[gen.GenreLarge]);
-					dlg.Add(item);
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				if (selection == 0)
-				{
-					//show previous
-					settings.Save();
-					return true;
-				}
-				else if (selection > 0 && selection <= allGenres.Count)
-				{
-					Genre gen = allGenres[selection - 1];
-					View.eShowType Type = View.NextShowType(currentView.ShowTypeGenre[gen.GenreLarge]);
-					currentView.ShowTypeGenre[gen.GenreLarge] = Type;
-					currentView.UpdateDefault(Type);
-					currentView.isEdited = true;
-				}
-				else
-				{
-					//close menu
-					settings.Save();
-					LoadFacade();
-					return false;
-				}
-			}*/
-		}
-
-		private bool ShowViewContentsYearsMenu(string previousMenu)
-		{
-			return false;
-
-			//TODO
-			/*
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			List<string> allYears = new List<string>();
-			try
-			{
-				allYears = AniDB_Anime.GetAllYearsInCollection();
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(ex.ToString());
-			}
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "View Contents - Genres";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				foreach (string year in allYears)
-				{
-					GUIListItem item = new GUIListItem(year);
-					item.Label2 = View.ShowTypeToString(currentView.ShowTypeYear[year]);
-					dlg.Add(item);
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				if (selection == 0)
-				{
-					//show previous
-					settings.Save();
-					return true;
-				}
-				else if (selection > 0 && selection <= allYears.Count)
-				{
-					string year = allYears[selection - 1];
-					View.eShowType Type = View.NextShowType(currentView.ShowTypeYear[year]);
-					currentView.ShowTypeYear[year] = Type;
-					currentView.UpdateDefault(Type);
-					currentView.isEdited = true;
-				}
-				else
-				{
-					//close menu
-					settings.Save();
-					LoadFacade();
-					return false;
-				}
-			}*/
-		}
-
-		private bool ShowViewContentsAudioLanguagesMenu(string previousMenu)
-		{
-			//TODO
-			return false;
-
-			/*
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			List<String> AudioLanguages = new List<string>();
-
-			foreach (Language lang in CrossRef_Languages_AnimeSeries.GetAllLanguages())
-			{
-				AudioLanguages.Add(lang.LanguageName.Substring(0, 1).ToUpper() + lang.LanguageName.Substring(1));
-			}
-
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "View Contents - Audio Languages";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				foreach (String AudioLanguage in AudioLanguages)
-				{
-					GUIListItem item = new GUIListItem(AudioLanguage);
-					item.Label2 = View.ShowTypeToString(currentView.ShowTypeAudioLanguages[AudioLanguage]);
-					dlg.Add(item);
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				if (selection == 0)
-				{
-					//show previous
-					settings.Save();
-					return true;
-				}
-				else if (selection > 0 && selection <= AudioLanguages.Count)
-				{
-					string AudioLanguage = AudioLanguages[selection - 1];
-					View.eShowType Type = View.NextShowType(currentView.ShowTypeAudioLanguages[AudioLanguage]);
-					currentView.ShowTypeAudioLanguages[AudioLanguage] = Type;
-					currentView.UpdateDefault(Type);
-					currentView.isEdited = true;
-				}
-				else
-				{
-					//close menu
-					settings.Save();
-					LoadFacade();
-					return false;
-				}
-
-			}*/
-		}
-
-		private bool ShowViewContentsAnimeTypesMenu(string previousMenu)
-		{
-			//TODO
-			return false;
-
-			/*
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			List<String> AnimeTypes = new List<string>();
-			foreach (MyAnimePlugin3.Persistence.AniDB_Anime.AnimeTypes AnimeType in Enum.GetValues(typeof(MyAnimePlugin3.Persistence.AniDB_Anime.AnimeTypes)))
-			{
-				AnimeTypes.Add(AnimeType.ToString().Replace('_', ' '));
-			}
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "View Contents - Anime Types";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				foreach (String AnimeType in AnimeTypes)
-				{
-					GUIListItem item = new GUIListItem(AnimeType);
-					item.Label2 = View.ShowTypeToString(currentView.ShowTypeAnimeTypes[AnimeType]); //currentView.ShowTypeSubtitleLanguages[SubtitleLanguage]);
-					dlg.Add(item);
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				if (selection == 0)
-				{
-					//show previous
-					settings.Save();
-					return true;
-				}
-				else if (selection > 0 && selection <= AnimeTypes.Count)
-				{
-					string AnimeType = AnimeTypes[selection - 1];
-					View.eShowType Type = View.NextShowType(currentView.ShowTypeAnimeTypes[AnimeType]); //currentView.ShowTypeSubtitleLanguages[SubtitleLanguage]);
-					currentView.ShowTypeAnimeTypes[AnimeType] = Type; // currentView.ShowTypeSubtitleLanguages[SubtitleLanguage] = Type;
-					currentView.UpdateDefault(Type);
-					currentView.isEdited = true;
-				}
-				else
-				{
-					//close menu
-					settings.Save();
-					LoadFacade();
-					return false;
-				}
-
-			}*/
-
-		}
-
-		private bool ShowViewContentsSubtitleLanguagesMenu(string previousMenu)
-		{
-			return false;
-
-			//TODO
-
-			/*
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			List<String> SubtitleLanguages = new List<string>();
-			foreach (Language lang in CrossRef_Subtitles_AnimeSeries.GetAllLanguages())
-			{
-				SubtitleLanguages.Add(lang.LanguageName.Substring(0, 1).ToUpper() + lang.LanguageName.Substring(1));
-			}
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "View Contents - Subtitle Languages";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				foreach (String SubtitleLanguage in SubtitleLanguages)
-				{
-					GUIListItem item = new GUIListItem(SubtitleLanguage);
-					item.Label2 = View.ShowTypeToString(currentView.ShowTypeSubtitleLanguages[SubtitleLanguage]);
-					dlg.Add(item);
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				if (selection == 0)
-				{
-					//show previous
-					settings.Save();
-					return true;
-				}
-				else if (selection > 0 && selection <= SubtitleLanguages.Count)
-				{
-					string SubtitleLanguage = SubtitleLanguages[selection - 1];
-					View.eShowType Type = View.NextShowType(currentView.ShowTypeSubtitleLanguages[SubtitleLanguage]);
-					currentView.ShowTypeSubtitleLanguages[SubtitleLanguage] = Type;
-					currentView.UpdateDefault(Type);
-					currentView.isEdited = true;
-				}
-				else
-				{
-					//close menu
-					settings.Save();
-					LoadFacade();
-					return false;
-				}
-
-			}*/
-		}
+	
 
 
 		private void ChangeView(View v)
@@ -3649,6 +3339,8 @@ namespace MyAnimePlugin3
 				}
 			}
 
+			JMMServerVM.Instance.ServerStatusEvent += new JMMServerVM.ServerStatusEventHandler(Instance_ServerStatusEvent);
+
 			isFirstInitDone = true;
 		}
 
@@ -3689,7 +3381,6 @@ namespace MyAnimePlugin3
 			List<AnimeGroupVM> groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
 			if (groups.Count > 0)
 			{
-				//TODO pick a random group
 				grp = groups[groupRandom.Next(0, groups.Count - 1)];
 			}
 			setGUIProperty("GroupFilter.GroupCount", groups.Count.ToString());
@@ -3872,9 +3563,6 @@ namespace MyAnimePlugin3
 			setGUIProperty("SeriesGroup.Genre", anAnime.CategoriesFormatted);
 			setGUIProperty("SeriesGroup.GenreShort", anAnime.CategoriesFormattedShort);
 
-			// TODO get a summary of all episode information for all series
-			// including the amount the user has
-
 			string eps = anAnime.EpisodeCountNormal.ToString() + " (" + anAnime.EpisodeCountSpecial.ToString() + " Specials)";
 			setGUIProperty("SeriesGroup.Episodes", eps);
 
@@ -3955,7 +3643,7 @@ namespace MyAnimePlugin3
 			setGUIProperty(guiProperty.Description, ser.AniDB_Anime.ParsedDescription);
 
 
-
+			//TODO
 			//decimal userRating = ser.UserRating;
 			//if (userRating > 0)
 			//	setGUIProperty("SeriesGroup.MyRating", Utils.FormatAniDBRating((double)userRating));
@@ -3973,9 +3661,6 @@ namespace MyAnimePlugin3
 			setGUIProperty("SeriesGroup.Genre", anAnime.CategoriesFormatted);
 			setGUIProperty("SeriesGroup.GenreShort", anAnime.CategoriesFormattedShort);
 
-
-			// TODO get a summary of all episode information for all series
-			// including the amount the user has
 
 			string eps = anAnime.EpisodeCountNormal.ToString() + " (" + anAnime.EpisodeCountSpecial.ToString() + " Specials)";
 			setGUIProperty("SeriesGroup.Episodes", eps);
@@ -4146,10 +3831,7 @@ namespace MyAnimePlugin3
 			NotificationLine1,
 			NotificationLine2,
 			NotificationIcon,
-			NotificationAction,
-			QueueCountAniDB,
-			QueueCountHasher,
-			QueueCountImages
+			NotificationAction
 		}
 
 		private string getGUIProperty(guiProperty which)

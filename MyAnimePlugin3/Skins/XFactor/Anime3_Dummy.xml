@@ -9,7 +9,6 @@
 			<posY>-50</posY>
 			<width>620</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -24,7 +23,6 @@
 			<posY>-50</posY>
 			<width>620</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -39,7 +37,6 @@
 			<posY>-50</posY>
 			<width>620</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -54,7 +51,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -69,7 +65,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -84,7 +79,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -99,13 +93,26 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
 			<!-- to make a control visible only when you are in GROUP VIEW do this: <visible>Control.IsVisible(1238)</visible> -->
 			<!-- to make a control invisible when you are in GROUP VIEW do this: <visible>!Control.IsVisible(1238)</visible> -->
 		</control>
+	  <control>
+		<type>label</type>
+		<description>Dummy Label for Group Filters View</description>
+		<id>1250</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>0</width>
+		<textcolor>d4d2d2</textcolor>
+		<label>
+		</label>
+		<visible>false</visible>
+		<!-- to make a control visible only when you are in GROUP FILTERS VIEW do this: <visible>Control.IsVisible(1250)</visible> -->
+		<!-- to make a control invisible when you are in GROUP FILTERS VIEW do this: <visible>!Control.IsVisible(1250)</visible> -->
+	  </control>
 		<control>
 			<type>label</type>
 			<description>Dummy Label for Episode View</description>
@@ -114,7 +121,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -129,7 +135,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -144,7 +149,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -159,7 +163,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -173,7 +176,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -188,7 +190,6 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
@@ -203,28 +204,69 @@
 			<posY>-50</posY>
 			<width>0</width>
 			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
 			<label>
 			</label>
 			<visible>false</visible>
 			<!-- to make a control visible only when Series/Group/Episode is favorite do this: <visible>Control.IsVisible(1245)</visible> -->
 			<!-- to make a control invisible only when Series/Group/Episode is favorite do this: <visible>!Control.IsVisible(1245)</visible> -->
 		</control>
-		<control>
-			<type>label</type>
-			<description>Dummy Label for Missing Episodes Flag</description>
-			<id>1246</id>
-			<posX>-50</posX>
-			<posY>-50</posY>
-			<width>0</width>
-			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
-			<label>
-			</label>
-			<visible>false</visible>
-			<!-- to make a control visible only when Series/Group/Episode have episodes missing do thiis: <visible>Control.IsVisible(1246)</visible> -->
-			<!-- to make a control invisible oonly when Series/Group/Episode have episodes missing do this: <visible>!Control.IsVisible(1246)</visible> -->
-		</control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for Missing Episodes Flag</description>
+      <id>1246</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>0</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+      <!-- to make a control visible only when Series/Group/Episode have episodes missing do this: <visible>Control.IsVisible(1246)</visible> -->
+      <!-- to make a control invisible only when Series/Group/Episode have episodes missing do this: <visible>!Control.IsVisible(1246)</visible> -->
+    </control>
+	<control>
+		<type>label</type>
+		<description>Dummy Label for User Has Voted for Series Flag</description>
+		<id>1247</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>0</width>
+		<textcolor>d4d2d2</textcolor>
+		<label>
+		</label>
+		<visible>false</visible>
+	  </control>
+	<control>
+      <type>label</type>
+      <description>Dummy Label for Queue Count - AniDB (greater than 0)</description>
+      <id>3401</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>0</width>
+      <textcolor>d4d2d2</textcolor>
+      <visible>false</visible>
+    </control>
+	<control>
+      <type>label</type>
+      <description>Dummy Label for Queue Count - Hasher (greater than 0)</description>
+      <id>3402</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>0</width>
+      <textcolor>d4d2d2</textcolor>
+      <font>mediastream13</font>
+      <visible>false</visible>
+    </control>
+	<control>
+      <type>label</type>
+      <description>Dummy Label for Queue Count - Images (greater than 0)</description>
+      <id>3403</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>0</width>
+      <textcolor>d4d2d2</textcolor>
+      <visible>false</visible>
+    </control>
     <control>
       <type>label</type>
       <description>Dummy Label for find</description>
@@ -233,7 +275,6 @@
       <posY>-50</posY>
       <width>0</width>
       <textcolor>d4d2d2</textcolor>
-      <font>font14</font>
       <label>
       </label>
       <visible>false</visible>
@@ -248,7 +289,6 @@
       <posY>-50</posY>
       <width>0</width>
       <textcolor>d4d2d2</textcolor>
-      <font>font14</font>
       <label>
       </label>
       <visible>false</visible>
@@ -263,7 +303,6 @@
       <posY>-50</posY>
       <width>0</width>
       <textcolor>d4d2d2</textcolor>
-      <font>font14</font>
       <label>
       </label>
       <visible>false</visible>

@@ -188,6 +188,7 @@
     <Compile Include="ViewModel\AniDB_Anime_RelationVM.cs" />
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
+    <Compile Include="ViewModel\AniDB_VoteVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeTypeVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeVM.cs" />
     <Compile Include="ViewModel\AnimeGroupVM.cs" />
@@ -273,6 +274,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDBReleaseGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDBVote.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_AnimeCrossRefs.datasource">
@@ -674,6 +678,7 @@
     <Content Include="Skins\[ Media ]\MyAnime3\nav24_next.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\nav32_back.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\nav32_next.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\user.png" />
     <Content Include="ToDo.txt" />
     <None Include="Service References\JMMServerBinary\JMMServerBinary.xsd">
       <SubType>Designer</SubType>

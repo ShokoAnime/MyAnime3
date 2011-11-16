@@ -11,12 +11,23 @@ namespace MyAnimePlugin3.ViewModel
 		public string Username { get; set; }
 		public string Password { get; set; }
 		public int IsAdmin { get; set; }
-		public int HideHentai { get; set; }
+		public int IsAniDBUser { get; set; }
+		public int IsTraktUser { get; set; }
 		public string HideCategories { get; set; }
 
 		public bool IsAdminUser
 		{
 			get { return IsAdmin == 1; }
+		}
+
+		public bool IsAniDBUserBool
+		{
+			get { return IsAniDBUser == 1; }
+		}
+
+		public bool IsTraktUserBool
+		{
+			get { return IsTraktUser == 1; }
 		}
 
 		public JMMUserVM()
@@ -29,13 +40,14 @@ namespace MyAnimePlugin3.ViewModel
 			this.Username = contract.Username;
 			this.Password = contract.Password;
 			this.IsAdmin = contract.IsAdmin;
-			this.HideHentai = 0;
+			this.IsAniDBUser = contract.IsAniDBUser;
+			this.IsTraktUser = contract.IsTraktUser;
 			this.HideCategories = contract.HideCategories;
 		}
 
 		public override string ToString()
 		{
-			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, HideHentai, HideCategories);
+			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdminUser, IsAniDBUserBool, HideCategories);
 		}
 	}
 }

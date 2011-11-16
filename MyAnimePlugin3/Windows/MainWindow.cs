@@ -3486,6 +3486,30 @@ namespace MyAnimePlugin3
 			else
 				AniDBRating = totalRating / (decimal)totalVotes / (decimal)100;
 
+			if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = false;
+			// Only AniDB users have votes
+			BaseConfig.MyAnimeLog.Write("IsAniDBUserBool : " + JMMServerVM.Instance.CurrentUser.IsAniDBUserBool.ToString());
+			if (JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
+			{
+				BaseConfig.MyAnimeLog.Write("seriesList.Count : " + seriesList.Count.ToString());
+				if (seriesList.Count == 1)
+				{
+					AniDB_AnimeVM anAnime = seriesList[0].AniDB_Anime;
+					string myRating = anAnime.UserVoteFormatted;
+					if (string.IsNullOrEmpty(myRating))
+						clearGUIProperty("SeriesGroup.MyRating");
+					else
+					{
+						setGUIProperty("SeriesGroup.MyRating", myRating);
+						if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
+
+						BaseConfig.MyAnimeLog.Write("myRating : " + myRating.ToString());
+						BaseConfig.MyAnimeLog.Write("dummyUserHasVotedSeries.Visible : " + dummyUserHasVotedSeries.Visible.ToString());
+					}
+				}
+				
+			}
+
 
 			string rating = Utils.FormatAniDBRating((double)AniDBRating) + " (" + totalVotes.ToString() + " votes)";
 			setGUIProperty("SeriesGroup.RawRating", Utils.FormatAniDBRating((double)AniDBRating));
@@ -3643,10 +3667,7 @@ namespace MyAnimePlugin3
 			setGUIProperty(guiProperty.Description, ser.AniDB_Anime.ParsedDescription);
 
 
-			//TODO
-			//decimal userRating = ser.UserRating;
-			//if (userRating > 0)
-			//	setGUIProperty("SeriesGroup.MyRating", Utils.FormatAniDBRating((double)userRating));
+			
 
 
 			// set info properties
@@ -3654,6 +3675,20 @@ namespace MyAnimePlugin3
 			// we need to find all the series for this group
 
 			AniDB_AnimeVM anAnime = ser.AniDB_Anime;
+
+			if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = false;
+			// Only AniDB users have votes
+			if (JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
+			{
+				string myRating = anAnime.UserVoteFormatted;
+				if (string.IsNullOrEmpty(myRating))
+					clearGUIProperty("SeriesGroup.MyRating");
+				else
+				{
+					setGUIProperty("SeriesGroup.MyRating", myRating);
+					if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
+				}
+			}
 
 			BaseConfig.MyAnimeLog.Write(anAnime.ToString());
 

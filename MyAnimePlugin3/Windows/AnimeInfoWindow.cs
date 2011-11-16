@@ -38,6 +38,8 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(914)] protected GUIButtonControl btnAnimePosters = null;
 		[SkinControlAttribute(915)] protected GUIButtonControl btnAnimeWideBanners = null;
 
+		[SkinControlAttribute(1247)] protected GUILabelControl dummyUserHasVotedSeries = null;
+
 
         AniDB_AnimeVM MainAnime = null;
         AnimeSeriesVM serMain = null;
@@ -225,9 +227,19 @@ namespace MyAnimePlugin3.Windows
             setGUIProperty("AnimeInfo.Info.Restricted", "-");
             setGUIProperty("AnimeInfo.Info.Description", "-");
 
-			//TODO
-			//if (serMain != null)
-			//	setGUIProperty("AnimeInfo.Info.MyRating", MainAnime.us);
+			if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = false;
+			// Only AniDB users have votes
+			if (JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
+			{
+				string myRating = MainAnime.UserVoteFormatted;
+				if (string.IsNullOrEmpty(myRating))
+					clearGUIProperty("AnimeInfo.Info.MyRating");
+				else
+				{
+					setGUIProperty("AnimeInfo.Info.MyRating", myRating);
+					if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
+				}
+			}
 
             setGUIProperty("AnimeInfo.Info.AnidbTitle", string.Format("{0} (AID {1})", MainAnime.MainTitle, MainAnime.AnimeID));
             setGUIProperty("AnimeInfo.Info.EpisodeSpecials", strEpisodeCount);
@@ -716,21 +728,6 @@ namespace MyAnimePlugin3.Windows
 			string othergroupsData = "";
 
 			List<AniDBReleaseGroupVM> allGrps = JMMServerHelper.GetReleaseGroupsForAnime(MainAnime.AnimeID);
-
-			/*
-			List<AniDB_GroupStatus> allgrps = MainAnime.GroupsStatus;
-
-			// if no groups are found, try updating the info
-			if (allgrps.Count == 0)
-			{
-				MainWindow.anidbProcessor.UpdateGroupStatus(MainAnime.AnimeID, true);
-				MainWindow.anidbProcessor.UpdateAnimeInfo(MainAnime.AnimeID, true, false);
-
-				setGUIProperty("AnimeInfo.Groups.MyGroupsDescription", "Downloading Information...");
-				setGUIProperty("AnimeInfo.Groups.OtherGroupsDescription", "Downloading Information...");
-
-				return;
-			}*/
 
 			List<AniDBReleaseGroupVM> mygrps = new List<AniDBReleaseGroupVM>();
 			List<AniDBReleaseGroupVM> othergrps = new List<AniDBReleaseGroupVM>();

@@ -553,6 +553,34 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
+		public AniDB_VoteVM UserVote
+		{
+			get
+			{
+				JMMServerBinary.Contract_AniDBVote contract = JMMServerVM.Instance.clientBinaryHTTP.GetUserVote(this.AnimeID);
+				if (contract == null) return null;
+
+				return new AniDB_VoteVM(contract);
+			}
+		}
+
+		public string UserVoteFormatted
+		{
+			get
+			{
+				AniDB_VoteVM vote = this.UserVote;
+				if (vote == null)
+				{
+					BaseConfig.MyAnimeLog.Write("No vote for : " + this.AnimeID);
+					return "";
+				}
+				else
+				{
+					return string.Format("{0}", Utils.FormatAniDBRating((double)vote.VoteValue));
+				}
+			}
+		}
+
 		public override string ToString()
 		{
 			return string.Format("ANIME: {0} - {1}", AnimeID, MainTitle);

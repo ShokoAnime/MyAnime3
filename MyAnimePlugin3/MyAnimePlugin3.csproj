@@ -103,7 +103,6 @@
     <Compile Include="ConfigFiles\DragHelper.cs" />
     <Compile Include="ConfigFiles\FileBrowserObject.cs" />
     <Compile Include="ConfigFiles\View.cs" />
-    <Compile Include="DataHelpers\FFDShowHelper.cs" />
     <Compile Include="DataHelpers\JSONHelper.cs" />
     <Compile Include="DataHelpers\MessageHelper.cs" />
     <Compile Include="DataHelpers\PriorityQueue.cs" />
@@ -111,6 +110,7 @@
     <Compile Include="DataHelpers\XMLBase.cs" />
     <Compile Include="Downloads\TorrentsNyaa.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Events\GotAnimeEventArgs.cs" />
     <Compile Include="Events\GotAnimeForRelatedEventArgs.cs" />
     <Compile Include="Events\GotCharacterCreatorImagesEventArgs.cs" />
     <Compile Include="Events\ServerStatusEventArgs.cs" />
@@ -462,6 +462,7 @@
     <Content Include="Skins\Avalon\Anime3_Posters.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\Avalon\Anime3_QueueStatus.xml" />
     <Content Include="Skins\Avalon\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avalon\Anime3_Relations.xml" />
     <Content Include="Skins\Avalon\Anime3_SkinSettings.xml" />

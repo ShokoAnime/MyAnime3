@@ -514,12 +514,6 @@ namespace MyAnimePlugin3
 
                 // really stupid, you have to wait until the player itself sets the properties (a few seconds) and after that set them
                 w.RunWorkerAsync(false);
-
-                // ffdshow preset auto loading
-                FFDShowHelper ffdshowHelper = new FFDShowHelper();
-                // ASync call to avoid mediaportal video treatment sleep 
-				//TODO
-                /*ffdshowHelper.loadPlayingPresetASync(curEpisode, filename);*/
             }
         }
         #endregion

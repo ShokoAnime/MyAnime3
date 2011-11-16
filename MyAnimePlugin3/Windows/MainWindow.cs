@@ -1777,41 +1777,6 @@ namespace MyAnimePlugin3
 			return false;
 		}
 
-		private void ShowViewYearMenu()
-		{
-			//TODO
-			/*
-			IDialogbox dlg = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			dlg.Reset();
-			dlg.SetHeading("Select Year");
-
-			GUIListItem pItem = null;
-			List<string> allYears = new List<string>();
-			try
-			{
-				allYears = AniDB_Anime.GetAllYearsInCollection();
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(string.Format("Error in ShowViewYearMenu: {0}", ex.ToString()));
-			}
-
-
-			foreach (string thisYear in allYears)
-			{
-				pItem = new GUIListItem(thisYear); dlg.Add(pItem);
-			}
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-
-
-			if (dlg.SelectedId > 0)
-			{
-				string yr = allYears[dlg.SelectedId - 1];
-				ChangeStaticView(ViewClassification.StaticYears, yr);
-				LoadFacade();
-			}*/
-		}
 
 		private bool ShowDisplayOptionsMenu(string previousMenu)
 		{
@@ -3781,14 +3746,6 @@ namespace MyAnimePlugin3
 					setGUIProperty("Episode.Description", curAnimeEpisode.EpisodeOverview);
 			}
 
-
-			//TODO
-			/*
-			decimal userRating = epFresh.UserRating;
-			if (userRating > 0)
-				setGUIProperty("Episode.MyRating", Utils.FormatAniDBRating((double)userRating));*/
-
-
 			setGUIProperty("Episode.EpisodeName", curAnimeEpisode.EpisodeName);
 			setGUIProperty("Episode.EpisodeDisplayName", curAnimeEpisode.DisplayName);
 			setGUIProperty("Episode.SeriesTypeLabel", GetSeriesTypeLabel());
@@ -4448,14 +4405,7 @@ namespace MyAnimePlugin3
 				dlg.Add("Mark ALL PREVIOUS as Unwatched");
 				dlg.Add("Associate File With This Episode");
 				dlg.Add("Remove File From This Episode");
-				//dlg.Add("Show notification for this epsiode");
-				//dlg.Add("Test notifications");
 				dlg.Add("Download this epsiode");
-				dlg.Add("Post-processing >>>");
-				dlg.Add("Update local file(s) information");
-
-				if (curAnimeSeries != null && curAnimeSeries.CrossRef_AniDB_TvDB != null)
-					dlg.Add("The TV DB >>>");
 
 				if (settings.MenuDeleteFiles)
 					dlg.Add("Delete associated files");
@@ -4594,35 +4544,8 @@ namespace MyAnimePlugin3
 					case 8:
 						DownloadHelper.SearchEpisode(curAnimeEpisode);
 						return false;
+
 					case 9:
-						if (!ShowContextMenuPostProcessing(currentMenu))
-							return false;
-						break;
-					case 10:
-						
-						break;
-					case 11:
-
-						//TODO
-						/*
-						if (curAnimeSeriesOld != null && curAnimeSeriesOld.TvDB_ID.HasValue)
-						{
-							if (!ShowContextMenuTVDB(currentMenu))
-								return false;
-						}
-						else if (settings.MenuDeleteFiles)
-						{
-							PromptDeleteFilesForEpisode(curAnimeEpisode);
-							return false;
-						}
-						else if (settings.SendMALUpdates)
-						{
-							DeleteMALAssociationCache(curAnimeEpisode);
-							return false;
-						}*/
-						break;
-
-					case 12:
 
 						//TODO
 						/*
@@ -4691,7 +4614,6 @@ namespace MyAnimePlugin3
 			int mnuPrevious = -1;
 			int mnuTvDB = -1;
 			int mnuMovieDB = -1;
-			int mnuAniDBSub = -1;
 			int mnuTvDBSub = -1;
 			int mnuMovieDBSub = -1;
 			int mnuWC = -1;
@@ -4741,15 +4663,6 @@ namespace MyAnimePlugin3
 					curMenu++; mnuMovieDB = curMenu;
 				}
 
-				dlg.Add("AniDB >>>");
-				curMenu++; mnuAniDBSub = curMenu;
-
-				if (ser != null && ser.CrossRef_AniDB_TvDB != null)
-				{
-					dlg.Add("The TV DB >>>");
-					curMenu++; mnuTvDBSub = curMenu;
-				}
-
 				if (ser != null && ser.CrossRef_AniDB_MovieDB != null)
 				{
 					dlg.Add("The Movie DB >>>");
@@ -4774,12 +4687,6 @@ namespace MyAnimePlugin3
 				if (selectedLabel == mnuMovieDB)
 				{
 					if (!SearchTheMovieDBMenu(currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuAniDBSub)
-				{
-					if (!ShowContextMenuAniDB(currentMenu))
 						return false;
 				}
 
@@ -4937,240 +4844,6 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private bool ShowContextMenuVote(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			string currentMenu = "Vote for anime";
-			int selectedLabel = 0;
-
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-				{
-					dlg.Add("<<< " + previousMenu);
-				}
-
-
-				dlg.Add("Permanent Vote");
-				dlg.Add("Temporary Vote");
-				dlg.Add("Revoke Vote");
-
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-
-				switch (selection)
-				{
-					case 0:
-						return true;
-
-					case 1:
-						decimal rating = Utils.PromptAniDBRating();
-						if (rating > 0)
-						{
-							//TODO
-							/*
-							if (listLevel == Listlevel.Group)
-							{
-								MainWindow.anidbProcessor.VoteAnime(curAnimeGroupOld.AniDB_Anime.AnimeID, rating);
-								foreach (AnimeSeries ser in curAnimeGroupOld.Series)
-									RateSeriesEvent(ser, rating.ToString());
-							}
-							else if (listLevel == Listlevel.Series)
-							{
-								MainWindow.anidbProcessor.VoteAnime(curAnimeSeriesOld.AniDB_ID.Value, rating);
-								RateSeriesEvent(curAnimeSeriesOld, rating.ToString());
-							}*/
-
-						}
-						break;
-
-					case 2:
-						decimal ratingTemp = Utils.PromptAniDBRating();
-						if (ratingTemp > 0)
-						{
-							//TODO
-							/*
-							if (listLevel == Listlevel.Group)
-							{
-								MainWindow.anidbProcessor.VoteAnimeTemp(curAnimeGroupOld.AniDB_Anime.AnimeID, ratingTemp);
-								foreach (AnimeSeries ser in curAnimeGroupOld.Series)
-									RateSeriesEvent(ser, ratingTemp.ToString());
-							}
-							else if (listLevel == Listlevel.Series)
-							{
-								MainWindow.anidbProcessor.VoteAnimeTemp(curAnimeSeriesOld.AniDB_ID.Value, ratingTemp);
-								RateSeriesEvent(curAnimeSeriesOld, ratingTemp.ToString());
-							}*/
-						}
-						break;
-
-					case 3:
-						//TODO
-						/*
-						AnimeSeries anime4vote = new AnimeSeries();
-						if (listLevel == Listlevel.Group)
-						{
-							anime4vote.LoadUsingAniDBSeriesID(curAnimeGroupOld.AniDB_ID.Value);
-						}
-						else if (listLevel == Listlevel.Series)
-							anime4vote = curAnimeSeriesOld;
-
-						if (anime4vote.AniDB_ID.HasValue)
-						{
-							AniDB_Vote vote = anime4vote.GetUserRatingRecord();
-							if (vote != null)
-							{
-								if (vote.VoteType == 1) // 1 is an anime vote.
-									MainWindow.anidbProcessor.VoteAnimeRevoke(anime4vote.AniDB_ID.Value);
-								else
-									MainWindow.anidbProcessor.VoteAnimeTempRevoke(anime4vote.AniDB_ID.Value);
-							}
-						}*/
-						break;
-					default:
-						return false;
-
-				}
-
-			}
-
-		}
-
-		private bool ShowContextMenuPostProcessing(string previousMenu)
-		{
-			return false;
-			//TODO
-			/*
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			AnimeGroup grp = currentitem.TVTag as AnimeGroup;
-			List<AnimeEpisode> episodes = new List<AnimeEpisode>();
-			if (grp == null)
-			{
-				AnimeSeries ser = currentitem.TVTag as AnimeSeries;
-				if (ser == null)
-				{
-					AnimeEpisode ep = currentitem.TVTag as AnimeEpisode;
-					episodes.Add(ep);
-				}
-				else
-				{
-					foreach (AnimeEpisode ep in ser.Episodes)
-					{
-						episodes.Add(ep);
-					}
-				}
-			}
-			else
-			{
-				List<AnimeSeries> seriesList = grp.Series;
-				foreach (AnimeSeries ser in seriesList)
-				{
-					foreach (AnimeEpisode ep in ser.Episodes)
-					{
-						episodes.Add(ep);
-					}
-				}
-
-			}
-
-			if (episodes == null)
-				return true;
-
-
-			//keep showing the dialog until the user closes it
-			string currentMenu = "Associate with a ffdshow raw preset";
-			int selectedLabel = 0;
-			int intLabel = 0;
-
-			FFDShowHelper ffdshowHelper = new FFDShowHelper();
-			List<string> presets = ffdshowHelper.Presets;
-
-			string selectedPreset = ffdshowHelper.findSelectedPresetForMenu(episodes);
-
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-				{
-					dlg.Add("<<< " + previousMenu);
-					intLabel++;
-				}
-
-
-				dlg.Add("Remove old preset association");
-				intLabel++;
-				foreach (string preset in presets)
-				{
-					dlg.Add("Set preset: " + preset);
-					// preset selected
-					if (selectedPreset == preset)
-						selectedLabel = intLabel;
-
-					intLabel++;
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-
-				if (selection == 0)
-				{
-					//show previous
-					return true;
-				}
-				else if (selection == -1)
-				{
-					//close menu
-					return false;
-				}
-				else
-				{
-					string message = "";
-					if (selection == 1)
-					{
-						//DB remove preset
-						ffdshowHelper.deletePreset(episodes);
-						message = "Old preset successfully removed.";
-					}
-					else
-					{
-						//DB associate serie/group with preset
-						string choosenPreset = presets.ToArray()[selection - 2];
-						ffdshowHelper.addPreset(episodes, choosenPreset);
-						message = "Preset \"" + choosenPreset + "\" successfully added.";
-					}
-					Utils.DialogMsg("Confirmation", message);
-					return false;
-				}
-			}*/
-		}
-
 
 		//TODO
 		/*
@@ -5323,8 +4996,6 @@ namespace MyAnimePlugin3
 					dlg.Add("Databases >>>");
 					dlg.Add("Images >>>");
 					dlg.Add("Series Information");
-					dlg.Add("Post-processing >>>");
-					dlg.Add("Vote >>>");
 				}
 
 				dlg.SelectedLabel = selectedLabel;
@@ -5375,16 +5046,7 @@ namespace MyAnimePlugin3
 						break;
 					case 7:
 						ShowAnimeInfoWindow();
-						//ShowRelationsWindow();
 						return false;
-					case 8:
-						if (!ShowContextMenuPostProcessing(currentMenu))
-							return false;
-						break;
-					case 9:
-						if (!ShowContextMenuVote(currentMenu))
-							return false;
-						break;
 					default:
 						//close menu
 						return false;
@@ -5500,135 +5162,6 @@ namespace MyAnimePlugin3
 			dlgOK.DoModal(GUIWindowManager.ActiveWindow);
 
 			return;
-		}
-
-		private bool ShowContextMenuAniDB(string previousMenu)
-		{
-			return false;
-
-			//TODO
-			/*
-			int anidbid = -1;
-			if (listLevel == Listlevel.Group && curAnimeGroupOld != null)
-			{
-				anidbid = curAnimeGroupOld.AniDB_ID.Value;
-			}
-			else
-			{
-				if (curAnimeSeriesOld != null)
-					anidbid = curAnimeSeriesOld.AniDB_ID.Value;
-			}
-
-			if (anidbid <= 0)
-			{
-				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-				if (null != dlgOK)
-				{
-					dlgOK.SetHeading("Error");
-					dlgOK.SetLine(1, string.Empty);
-					dlgOK.SetLine(2, "Not associated with an AniDB Series");
-					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-				}
-				return true;
-			}
-
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "AniDB";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Update info from AniDB");
-				dlg.Add("Check for Missing Episodes");
-				dlg.Add("Rename from AniDB Data >>>");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						//anidbProcessor.UpdateAnimeInfo(anidbid, true, true);
-
-						if (listLevel == Listlevel.Group && curAnimeGroupOld != null)
-						{
-							foreach (AnimeSeries ser in curAnimeGroupOld.Series)
-							{
-								if (ser.AniDB_ID.HasValue)
-								{
-									anidbProcessor.UpdateAnimeInfoHTTP(ser.AniDB_ID.Value, true, true);
-
-									// we do this to get the extra infor like creator list
-									anidbProcessor.UpdateAnimeInfo(ser.AniDB_ID.Value, true, true);
-								}
-							}
-						}
-						else
-						{
-							if (curAnimeSeriesOld != null)
-							{
-								if (curAnimeSeriesOld.AniDB_ID.HasValue)
-								{
-									anidbProcessor.UpdateAnimeInfoHTTP(curAnimeSeriesOld.AniDB_ID.Value, true, true);
-									anidbProcessor.UpdateAnimeInfo(curAnimeSeriesOld.AniDB_ID.Value, true, true);
-								}
-							}
-						}
-						return false;
-					case 2:
-						if (listLevel == Listlevel.Group && curAnimeGroupOld != null)
-						{
-							foreach (AnimeSeries ser in curAnimeGroupOld.Series)
-							{
-								if (ser.AniDB_ID.HasValue)
-								{
-									anidbProcessor.UpdateAnimeInfoHTTP(ser.AniDB_ID.Value, true, true);
-
-									// we do this to get the extra infor like creator list
-									anidbProcessor.UpdateAnimeInfo(ser.AniDB_ID.Value, true, true);
-								}
-							}
-						}
-						else
-						{
-							if (curAnimeSeriesOld != null)
-							{
-								if (curAnimeSeriesOld.AniDB_ID.HasValue)
-								{
-									anidbProcessor.UpdateAnimeInfoHTTP(curAnimeSeriesOld.AniDB_ID.Value, true, true);
-
-									// we do this to get the extra infor like creator list
-									anidbProcessor.UpdateAnimeInfo(curAnimeSeriesOld.AniDB_ID.Value, true, true);
-								}
-							}
-						}
-						return false;
-					case 3:
-						if (!ShowContextMenuAniDBRename(anidbid, currentMenu))
-							return false;
-						break;
-					default:
-						//close menu
-						return false;
-				}
-			}*/
 		}
 
 
@@ -6006,10 +5539,7 @@ namespace MyAnimePlugin3
 				dlg.Add("Set Default Subtitle language");
 				dlg.Add("Delete This Series/Episodes");
 				dlg.Add("Change Group");
-				dlg.Add("Make Seperate Group");
-				dlg.Add("Rename Manually >>>");
-				if (ser.AniDB_ID.HasValue)
-					dlg.Add("Rename from AniDB Data >>>");
+				dlg.Add("Move to New Group");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -6110,26 +5640,6 @@ namespace MyAnimePlugin3
 							LoadFacade();
 							return false;
 						}
-					case 7:
-						{
-							string name = ser.SeriesName;
-							if (Utils.DialogText(ref name, GetID) && name != string.Empty)
-							{
-								if (name != ser.SeriesName)
-								{
-									ser.SeriesName = name;
-									ser.SortName = Utils.GetSortName(name);
-									ser.Save();
-									LoadFacade();
-								}
-								return false;
-							}
-						}
-						break;
-					case 8:
-						if (!ShowContextMenuAniDBRename(ser.AniDB_ID.Value, previousMenu))
-							return false;
-						break;
 					default:
 						//close menu
 						return false;
@@ -6175,7 +5685,6 @@ namespace MyAnimePlugin3
 					dlg.Add("<<< " + previousMenu);
 				dlg.Add(tvdbText);
 				dlg.Add(moviedbText);
-				dlg.Add("AniDB >>>");
 				dlg.Add("The TV DB >>>");
 				dlg.Add("The Movie DB >>>");
 
@@ -6226,10 +5735,6 @@ namespace MyAnimePlugin3
 							return false;
 						break;
 					case 3:
-						if (!ShowContextMenuAniDB(currentMenu))
-							return false;
-						break;
-					case 4:
 						if (curAnimeSeriesOld != null && curAnimeSeriesOld.TvDB_ID.HasValue)
 						{
 							if (!ShowContextMenuTVDB(currentMenu))
@@ -6241,7 +5746,7 @@ namespace MyAnimePlugin3
 							return false;
 						}
 						break;
-					case 5:
+					case 4:
 						if (!ShowContextMenuMovieDB(currentMenu))
 							return false;
 						break;
@@ -6282,8 +5787,6 @@ namespace MyAnimePlugin3
 				dlg.Add("Databases >>>");
 				dlg.Add("Images >>>");
 				dlg.Add("Edit Series >>>");
-				dlg.Add("Post-processing >>>");
-				dlg.Add("Vote >>>");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -6321,14 +5824,6 @@ namespace MyAnimePlugin3
 						break;
 					case 6:
 						if (!ShowContextMenuSeriesEdit(currentMenu))
-							return false;
-						break;
-					case 7:
-						if (!ShowContextMenuPostProcessing(currentMenu))
-							return false;
-						break;
-					case 8:
-						if (!ShowContextMenuVote(currentMenu))
 							return false;
 						break;
 					default:

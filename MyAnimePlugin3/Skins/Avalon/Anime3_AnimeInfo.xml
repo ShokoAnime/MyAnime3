@@ -15,7 +15,6 @@
       <posY>-50</posY>
       <width>620</width>
       <textcolor>d4d2d2</textcolor>
-      <font>mediastream13</font>
       <label>
       </label>
       <visible>false</visible>
@@ -30,7 +29,6 @@
       <posY>-50</posY>
       <width>620</width>
       <textcolor>d4d2d2</textcolor>
-      <font>mediastream13</font>
       <label>
       </label>
       <visible>false</visible>
@@ -45,7 +43,6 @@
       <posY>-50</posY>
       <width>620</width>
       <textcolor>d4d2d2</textcolor>
-      <font>mediastream13</font>
       <label>
       </label>
       <visible>false</visible>
@@ -60,13 +57,25 @@
       <posY>-50</posY>
       <width>620</width>
       <textcolor>d4d2d2</textcolor>
-      <font>mediastream13</font>
       <label>
       </label>
       <visible>false</visible>
       <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1502)</visible> -->
       <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1502)</visible> -->
     </control>
+	
+	<control>
+		<type>label</type>
+		<description>Dummy Label for User Has Voted for Series Flag</description>
+		<id>1247</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>0</width>
+		<textcolor>d4d2d2</textcolor>
+		<label>
+		</label>
+		<visible>false</visible>
+	  </control>
 	
 	<!--            :: Backgrounds ::            -->
 	<control>
@@ -449,6 +458,34 @@
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
     </control>
 	
+	<control>
+	  <type>image</type>
+	   <posX>1500</posX>
+      <posY>260</posY>
+	  <width>32</width>
+	  <height>32</height>
+	  <texture>MyAnime3\user.png</texture>
+	  <visible>Control.IsVisible(1247)</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="InfoValueSmall">
+      <type>fadelabel</type>
+      <description>My Rating Value</description>
+      <id>0</id>
+      <posX>1540</posX>
+      <posY>260</posY>
+      <width>850</width>
+      <label>#Anime3.AnimeInfo.Info.MyRating</label>
+      <align>left</align>
+      <visible>Control.IsVisible(1247)</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
 	
 	<control Style="InfoLabel">
       <type>fadelabel</type>
@@ -685,6 +722,19 @@
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
 
+	<control Style="InfoLabel">
+		<description>Status Label</description>
+		<type>fadelabel</type>
+	    <label>#Anime3.AnimeInfo.DownloadStatus</label>
+		<id>0</id>
+		<posX>70</posX>
+		<posY>1000</posY>
+		<width>500</width>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
 	<import>common.time.xml</import>
   </controls>
 </window>

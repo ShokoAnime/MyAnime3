@@ -57,99 +57,21 @@ namespace MyAnimePlugin3.Windows
         public AnimeInfoWindow()
         {
             GetID = Constants.WindowIDs.ANIMEINFO;
+
+			MainWindow.ServerHelper.GotAnimeEvent += new JMMServerHelper.GotAnimeEventHandler(ServerHelper_GotAnimeEvent);
+
+			setGUIProperty("AnimeInfo.DownloadStatus", "-");
         }
 
-		//TODO
-		/*
-		void anidbProcessor_GroupStatusCompleteEvent(GroupStatusCompleteEventArgs ev)
+		void ServerHelper_GotAnimeEvent(Events.GotAnimeEventArgs ev)
 		{
 			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.ANIMEINFO) return;
-
-			int aid = ev.animeID;
-
-			// check if this anime the same one we are looking at
-			if (aid != MainAnime.AnimeID) return;
-
-			MainAnime = new AniDB_Anime();
-			MainAnime.Load(aid);
-
-			LoadGroups();
-			
-			setGUIProperty("AnimeInfo.ResultStatus", ev.message);
-		}
-
-		private void anidbProcessor_VoteCompleteEvent(VoteCompleteEventArgs ev)
-		{
-			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.ANIMEINFO) return;
-
-			int aid = ev.animeID;
-
-			// check if this anime the same one we are looking at
-			if (aid != MainAnime.AnimeID) return;
-			
-			MainAnime = new AniDB_Anime();
-			MainAnime.Load(aid);
-
+			setGUIProperty("AnimeInfo.DownloadStatus", "-");
+			int aid = ev.AnimeID;
 			LoadInfo();
 			SetSkinProperties();
 			InfoPage();
-
-			HideControls();
-			setGUIProperty("AnimeInfo.ResultStatus", ev.message);
 		}
-
-		private void anidbProcessor_GotAnimeInfoEvent(GotAnimeInfoEventArgs ev)
-		{
-			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.ANIMEINFO) return;
-
-			int aid = ev.animeID;
-
-			// check if this anime the same one we are looking at
-			if (aid != MainAnime.AnimeID) return;
-
-			MainAnime = new AniDB_Anime();
-			MainAnime.Load(aid);
-
-			LoadInfo();
-            FormatTextPerEpisodeData();
-			SetSkinProperties();
-			InfoPage();
-            StatsPage();
-
-			dummyPageInfo.Visible = true;
-		}
-
-		private void anidbProcessor_AniDBStatusEvent(AniDBStatusEventArgs ev)
-		{
-			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.ANIMEINFO) return;
-
-			try
-			{
-				BaseConfig.MyAnimeLog.Write("ev.evType: {0}", ev.evType);
-
-				string cmdDesc = "";
-				switch (ev.evType)
-				{
-					case enHelperActivityType.GettingAnimeInfo:
-						cmdDesc = "Getting anime info: " + ev.Status; break;
-					case enHelperActivityType.GettingAnimeDesc:
-						cmdDesc = "Getting description: " + ev.Status; break;
-					case enHelperActivityType.AddingVote:
-						cmdDesc = "Adding Vote: " + ev.Status; break;
-					case enHelperActivityType.GettingGroupStatus:
-						cmdDesc = "Getting group status: " + ev.Status; break;
-					case enHelperActivityType.LoggingIn:
-						cmdDesc = "Logging in..."; break;
-					case enHelperActivityType.LoggingOut:
-						cmdDesc = "Logging out..."; break;
-					default:
-						cmdDesc = ""; break;
-				}
-
-				setGUIProperty("AnimeInfo.Status", cmdDesc);
-			}
-			catch { }
-		}*/
 
 		public override int GetID
         {
@@ -344,77 +266,86 @@ namespace MyAnimePlugin3.Windows
 				if (dlg == null)
 					return;
 
+				int mnuUpdate = -1;
+				int mnuSearch = -1;
+				int mnuVotePerm = -1;
+				int mnuVoteTemp = -1;
+				int mnuVoteRevoke = -1;
+
+				int curMenu = -1;
+
+				AniDB_VoteVM userVote = MainAnime.UserVote;
+
 				dlg.Reset();
 				dlg.SetHeading(MainAnime.MainTitle);
 				dlg.Add("Update Series Info From AniDB");
-				dlg.Add("Update Group Info From AniDB");
+				curMenu++; mnuUpdate = curMenu;
+
 				dlg.Add("Search for Torrents");
-				dlg.Add("Permanent Vote");
-				dlg.Add("Temporary Vote");
-				dlg.Add("Revoke Vote");
+				curMenu++; mnuSearch = curMenu;
+
+				if (userVote == null && JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
+				{
+					dlg.Add("Permanent Vote");
+					curMenu++; mnuVotePerm = curMenu;
+
+					dlg.Add("Temporary Vote");
+					curMenu++; mnuVoteTemp = curMenu;
+				}
+
+				if (userVote != null && JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
+				{
+					dlg.Add("Revoke Vote");
+					curMenu++; mnuVoteRevoke = curMenu;
+				}
 				
 		
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 
-				//TODO
-				/*
-				switch (dlg.SelectedId)
+				int selectedLabel = dlg.SelectedLabel;
+
+				if (selectedLabel == mnuUpdate)
 				{
-					case 1:
+					MainWindow.ServerHelper.UpdateAnime(MainAnime.AnimeID);
+					setGUIProperty("AnimeInfo.DownloadStatus", "Waiting on server...");
+				}
 
-						MainWindow.anidbProcessor.UpdateAnimeInfoHTTP(MainAnime.AnimeID, true, false);
+				if (selectedLabel == mnuSearch)
+				{
+					DownloadHelper.SearchAnime(MainAnime);
+				}
 
-						// we do this to get the extra infor like creator list
-						MainWindow.anidbProcessor.UpdateAnimeInfo(MainAnime.AnimeID, true, false);
-						break;
+				if (selectedLabel == mnuVotePerm)
+				{
+					decimal rating = Utils.PromptAniDBRating();
+					if (rating > 0)
+					{
+						JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(MainAnime.AnimeID, rating, (int)VoteType.AnimePermanent);
+						LoadInfo();
+						SetSkinProperties();
+						InfoPage();
+					}
+				}
 
-					case 2:
+				if (selectedLabel == mnuVoteTemp)
+				{
+					decimal ratingTemp = Utils.PromptAniDBRating();
+					if (ratingTemp > 0)
+					{
+						JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(MainAnime.AnimeID, ratingTemp, (int)VoteType.AnimeTemporary);
+						LoadInfo();
+						SetSkinProperties();
+						InfoPage();
+					}
+				}
 
-						MainWindow.anidbProcessor.UpdateGroupStatus(MainAnime.AnimeID, true);
-
-						// we do this to get the extra infor like creator list
-						MainWindow.anidbProcessor.UpdateAnimeInfo(MainAnime.AnimeID, true, false);
-						break;
-
-					case 3:
-
-						DownloadHelper.SearchAnime(MainAnime);
-						break;
-
-					case 4:
-						decimal rating = Utils.PromptAniDBRating();
-						if (rating > 0)
-						{
-							MainWindow.anidbProcessor.VoteAnime(MainAnime.AnimeID, rating);
-						}
-						break;
-
-					case 5:
-						decimal ratingTemp = Utils.PromptAniDBRating();
-						if (ratingTemp > 0)
-						{
-							MainWindow.anidbProcessor.VoteAnimeTemp(MainAnime.AnimeID, ratingTemp);
-						}
-						break;
-
-					case 6:
-
-						if (serMain != null)
-						{
-							AniDB_Vote vote = serMain.GetUserRatingRecord();
-							if (vote != null)
-							{
-								if (vote.VoteType == (int)enAniDBVoteType.Anime)
-									MainWindow.anidbProcessor.VoteAnimeRevoke(MainAnime.AnimeID);
-								else
-									MainWindow.anidbProcessor.VoteAnimeTempRevoke(MainAnime.AnimeID);
-							}
-						}
-						break;
-
-					
-					
-				}*/
+				if (selectedLabel == mnuVoteRevoke)
+				{
+					JMMServerVM.Instance.clientBinaryHTTP.VoteAnimeRevoke(MainAnime.AnimeID);
+					LoadInfo();
+					SetSkinProperties();
+					InfoPage();
+				}
 			}
 			catch (Exception ex)
 			{

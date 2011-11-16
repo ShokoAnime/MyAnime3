@@ -13,6 +13,7 @@ namespace MyAnimePlugin3.ViewModel
 	public class JMMServerHelper
 	{
 		private BackgroundWorker downloadRelatedAnimeWorker = new BackgroundWorker();
+		private BackgroundWorker downloadAnimeWorker = new BackgroundWorker();
 		private BackgroundWorker downloadCharacterCreatorImagesWorker = new BackgroundWorker();
 
 		public JMMServerHelper()
@@ -22,10 +23,12 @@ namespace MyAnimePlugin3.ViewModel
 
 			downloadCharacterCreatorImagesWorker.DoWork += new DoWorkEventHandler(downloadCharacterCreatorImagesWorker_DoWork);
 			downloadCharacterCreatorImagesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(downloadCharacterCreatorImagesWorker_RunWorkerCompleted);
+
+			downloadAnimeWorker.DoWork += new DoWorkEventHandler(downloadAnimeWorker_DoWork);
+			downloadAnimeWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(downloadAnimeWorker_RunWorkerCompleted);
 		}
 
 		
-
 		public delegate void GotCharacterCreatorImagesEventHandler(GotCharacterCreatorImagesEventArgs ev);
 		public event GotCharacterCreatorImagesEventHandler GotCharacterCreatorImagesEvent;
 		protected void OnGotCharacterCreatorImagesEvent(GotCharacterCreatorImagesEventArgs ev)
@@ -46,16 +49,47 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
+		public delegate void GotAnimeEventHandler(GotAnimeEventArgs ev);
+		public event GotAnimeEventHandler GotAnimeEvent;
+		protected void OnGotAnimeEvent(GotAnimeEventArgs ev)
+		{
+			if (GotAnimeEvent != null)
+			{
+				GotAnimeEvent(ev);
+			}
+		}
+
 		public void DownloadRelatedAnime(int animeID)
 		{
 			if (downloadRelatedAnimeWorker.IsBusy) return;
 			downloadRelatedAnimeWorker.RunWorkerAsync(animeID);
 		}
 
+		public void UpdateAnime(int animeID)
+		{
+			if (downloadAnimeWorker.IsBusy) return;
+			downloadAnimeWorker.RunWorkerAsync(animeID);
+		}
+
 		public void DownloadCharacterCreatorImages(AniDB_AnimeVM anime)
 		{
 			if (downloadCharacterCreatorImagesWorker.IsBusy) return;
 			downloadCharacterCreatorImagesWorker.RunWorkerAsync(anime);
+		}
+
+		void downloadAnimeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			
+		}
+
+		void downloadAnimeWorker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			int animeID = int.Parse(e.Argument.ToString());
+
+			BaseConfig.MyAnimeLog.Write("Updating data for anime: " + animeID.ToString());
+			JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(animeID);
+
+			OnGotAnimeEvent(new GotAnimeEventArgs(animeID));
 		}
 
 		void downloadCharacterCreatorImagesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

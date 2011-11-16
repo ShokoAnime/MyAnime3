@@ -125,4 +125,10 @@ namespace MyAnimePlugin3
 		Fanart = 2,
 		WideBanner = 3
 	}
+
+	public enum VoteType
+	{
+		AnimePermanent = 1,
+		AnimeTemporary = 2
+	}
 }

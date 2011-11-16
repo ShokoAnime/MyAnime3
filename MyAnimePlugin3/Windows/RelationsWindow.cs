@@ -274,22 +274,15 @@ namespace MyAnimePlugin3.Windows
 
 				dlg.Reset();
 				dlg.SetHeading("Relations");
-				dlg.Add("Go To Episode List");
 				dlg.Add("Search for Torrents");
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 
-				//TODO
-				/*
 				switch (dlg.SelectedId)
 				{
 					case 1:
-						Utils.ShowEpisodesForAnime(mainAnime);
-						break;
-
-					case 2:
 						DownloadHelper.SearchAnime(mainAnime);
 						break;
-				}*/
+				}
 			}
 			catch (Exception ex)
 			{
@@ -301,31 +294,7 @@ namespace MyAnimePlugin3.Windows
 		{
 			//BaseConfig.MyAnimeLog.Write("OnClicked: {0}", controlId.ToString());
 
-			//TODO
-			/*
-			if (control == this.btnMain)
-			{
-				foreach (AniDB_RelatedAnime rel in relations)
-				{
-                    AniDB_Anime anime = rel.RelatedAnime;
-                    if (anime == null)
-                    {
-                        MainWindow.anidbProcessor.UpdateAnimeInfoHTTP(rel.AnimeRelID, true, false);
-						MainWindow.anidbProcessor.UpdateAnimeInfo(rel.AnimeRelID, true, false);
-					}
-                    else
-                    {
-                        // this means it is not a full record - downloaded from titles
-                        if (anime.AnimeType==-1)
-                        {
-							MainWindow.anidbProcessor.UpdateAnimeInfoHTTP(rel.AnimeRelID, true, false);
-							MainWindow.anidbProcessor.UpdateAnimeInfo(rel.AnimeRelID, true, false);
-                        }
-                    }
-				}
-
-				return;
-			}*/
+			
 
 			if (control == this.m_Facade)
 			{

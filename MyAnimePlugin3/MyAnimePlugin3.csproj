@@ -193,7 +193,9 @@
     <Compile Include="ViewModel\AnimeEpisodeVM.cs" />
     <Compile Include="ViewModel\AnimeGroupVM.cs" />
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
@@ -208,12 +210,14 @@
     <Compile Include="ViewModel\JMMServerHelper.cs" />
     <Compile Include="ViewModel\JMMServerVM.cs" />
     <Compile Include="ViewModel\JMMUserVM.cs" />
+    <Compile Include="ViewModel\MovieDBMovieSearchResultVM.cs" />
     <Compile Include="ViewModel\MovieDB_FanartVM.cs" />
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
     <Compile Include="ViewModel\MovieDB_PosterVM.cs" />
     <Compile Include="ViewModel\PosterContainer.cs" />
     <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
+    <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
     <Compile Include="ViewModel\Trakt_EpisodeVM.cs" />
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />

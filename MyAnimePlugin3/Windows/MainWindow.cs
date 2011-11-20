@@ -4001,7 +4001,76 @@ namespace MyAnimePlugin3
 					{
 						TVDBSeriesSearchResultVM res = TVDBSeriesSearchResults[selection - 1];
 
-						LinkAniDBToTVDB(aniDBID, res.SeriesID, 1);
+						LinkAniDBToTVDB(ser, aniDBID, res.SeriesID, 1);
+						return false;
+					}
+
+					return true;
+				}
+			}
+			else
+			{
+				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
+				if (null != dlgOK)
+				{
+					dlgOK.SetHeading("Search Results");
+					dlgOK.SetLine(1, string.Empty);
+					dlgOK.SetLine(2, "No results found");
+					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
+				}
+				return true;
+			}
+		}
+
+		private bool SearchTrakt(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
+		{
+			if (searchCriteria.Length == 0)
+				return true;
+
+			int aniDBID = ser.AniDB_Anime.AnimeID;
+
+			List<TraktTVShowResponseVM> TraktSeriesSearchResults = new List<TraktTVShowResponseVM>();
+			List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(searchCriteria);
+			foreach (JMMServerBinary.Contract_TraktTVShowResponse traktResult in traktResults)
+				TraktSeriesSearchResults.Add(new TraktTVShowResponseVM(traktResult));
+
+			BaseConfig.MyAnimeLog.Write("Found {0} trakt results for {1}", TraktSeriesSearchResults.Count, searchCriteria);
+			if (TraktSeriesSearchResults.Count > 0)
+			{
+				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+				if (dlg == null)
+					return true;
+
+				//keep showing the dialog until the user closes it
+				int selectedLabel = 0;
+				while (true)
+				{
+					dlg.Reset();
+					dlg.SetHeading("Trakt Search Results");
+
+					if (previousMenu != string.Empty)
+						dlg.Add("<<< " + previousMenu);
+
+
+					foreach (TraktTVShowResponseVM res in TraktSeriesSearchResults)
+					{
+						string disp = string.Format("{0} ({1})", res.title, res.year);
+						dlg.Add(disp);
+					}
+
+					dlg.SelectedLabel = selectedLabel;
+					dlg.DoModal(GUIWindowManager.ActiveWindow);
+					selectedLabel = dlg.SelectedLabel;
+
+					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+					if (selection == 0)
+						return true; // previous menu
+
+					if (selection > 0 && selection <= TraktSeriesSearchResults.Count)
+					{
+						TraktTVShowResponseVM res = TraktSeriesSearchResults[selection - 1];
+
+						LinkAniDBToTrakt(ser, aniDBID, res.TraktID, 1);
 						return false;
 					}
 
@@ -4077,7 +4146,7 @@ namespace MyAnimePlugin3
 						}
 						break;
 					case 3:
-						LinkAniDBToTVDB(ser.AniDB_Anime.AnimeID, CrossRef_AniDB_TvDBResult.TvDBID, CrossRef_AniDB_TvDBResult.TvDBSeasonNumber);
+						LinkAniDBToTVDB(ser, ser.AniDB_Anime.AnimeID, CrossRef_AniDB_TvDBResult.TvDBID, CrossRef_AniDB_TvDBResult.TvDBSeasonNumber);
 						return false;
 					default:
 						//close menu
@@ -4086,37 +4155,100 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private void LinkAniDBToTVDB(int animeID, int tvDBID, int season)
+		private bool SearchTraktMenu(AnimeSeriesVM ser, string previousMenu)
+		{
+			//string searchCriteria = "";
+			int aniDBID = ser.AniDB_Anime.AnimeID;
+
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return true;
+
+			//keep showing the dialog until the user closes it
+			int selectedLabel = 0;
+			string currentMenu = "Search Trakt";
+			while (true)
+			{
+				dlg.Reset();
+				dlg.SetHeading(currentMenu);
+
+				if (previousMenu != string.Empty)
+					dlg.Add("<<< " + previousMenu);
+				dlg.Add("Search using:   " + ser.AniDB_Anime.MainTitle);
+				dlg.Add("Manual Search");
+
+				CrossRef_AniDB_TraktResultVM webCacheResult = null;
+				JMMServerBinary.Contract_CrossRef_AniDB_TraktResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(aniDBID);
+				if (xref != null)
+				{
+					webCacheResult = new CrossRef_AniDB_TraktResultVM(xref);
+					dlg.Add("Community Says:   " + webCacheResult.ShowName);
+				}
+
+
+				dlg.SelectedLabel = selectedLabel;
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				selectedLabel = dlg.SelectedLabel;
+
+				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+				switch (selection)
+				{
+					case 0:
+						//show previous
+						return true;
+					case 1:
+						if (!SearchTrakt(ser, ser.AniDB_Anime.MainTitle, currentMenu))
+							return false;
+						break;
+					case 2:
+						{
+							if (Utils.DialogText(ref searchText, GetID))
+							{
+								if (!SearchTrakt(ser, searchText, currentMenu))
+									return false;
+							}
+						}
+						break;
+					case 3:
+						LinkAniDBToTrakt(ser, ser.AniDB_Anime.AnimeID, webCacheResult.TraktID, webCacheResult.TraktSeasonNumber);
+						return false;
+					default:
+						//close menu
+						return false;
+				}
+			}
+		}
+
+		private void LinkAniDBToTrakt(AnimeSeriesVM ser, int animeID, string traktID, int season)
+		{
+			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTrakt(animeID, traktID, season);
+			if (res.Length > 0)
+				Utils.DialogMsg("Error", res);
+
+			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
+		}
+
+		private void LinkAniDBToTVDB(AnimeSeriesVM ser, int animeID, int tvDBID, int season)
 		{
 			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDB(animeID, tvDBID, season);
 			if (res.Length > 0)
 				Utils.DialogMsg("Error", res);
+
+			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
 		}
 
-		private bool SearchTheMovieDBMenu(string previousMenu)
+		private void LinkAniDBToMovieDB(AnimeSeriesVM ser, int animeID, int movieID)
 		{
-			return false;
+			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBOther(animeID, movieID, (int)CrossRefType.MovieDB);
+			if (res.Length > 0)
+				Utils.DialogMsg("Error", res);
 
-			/*string searchCriteria = "";
-			int aniDBID = -1;
-			if (listLevel == Listlevel.Group)
-			{
-				if (curAnimeGroupOld != null)
-				{
-					searchCriteria = curAnimeGroupOld.GroupName;
-					if (curAnimeGroupOld.AniDB_ID.HasValue)
-						aniDBID = curAnimeGroupOld.AniDB_ID.Value;
-				}
-			}
-			if (listLevel == Listlevel.Series)
-			{
-				if (curAnimeSeriesOld != null)
-				{
-					searchCriteria = curAnimeSeriesOld.SeriesName;
-					if (curAnimeSeriesOld.AniDB_ID.HasValue)
-						aniDBID = curAnimeSeriesOld.AniDB_ID.Value;
-				}
-			}
+			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
+		}
+
+		private bool SearchTheMovieDBMenu(AnimeSeriesVM ser, string previousMenu)
+		{
+			int aniDBID = ser.AniDB_Anime.AnimeID;
 
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
 			if (dlg == null)
@@ -4132,8 +4264,16 @@ namespace MyAnimePlugin3
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + searchCriteria);
+				dlg.Add("Search using:   " + ser.AniDB_Anime.MainTitle);
 				dlg.Add("Manual Search");
+
+				CrossRef_AniDB_OtherResultVM CrossRef_AniDB_OtherResult = null;
+				JMMServerBinary.Contract_CrossRef_AniDB_OtherResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetOtherAnimeCrossRefWebCache(aniDBID, (int)CrossRefType.MovieDB);
+				if (xref != null)
+				{
+					CrossRef_AniDB_OtherResult = new CrossRef_AniDB_OtherResultVM(xref);
+					dlg.Add("Community Says:   " + CrossRef_AniDB_OtherResult.CrossRefID.ToString());
+				}
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -4146,88 +4286,44 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						if (!SearchTheMovieDB(searchCriteria, currentMenu))
+						if (!SearchTheMovieDB(ser, ser.AniDB_Anime.MainTitle, currentMenu))
 							return false;
 						break;
 					case 2:
 						{
-							string searchText = curAnimeGroupOld.GroupName;
+							string searchText = ser.AniDB_Anime.MainTitle;
 							if (Utils.DialogText(ref searchText, GetID))
 							{
-								if (!SearchTheMovieDB(searchText, currentMenu))
+								if (!SearchTheMovieDB(ser, searchText, currentMenu))
 									return false;
 							}
 						}
 						break;
+					case 3:
+						LinkAniDBToMovieDB(ser, CrossRef_AniDB_OtherResult.AnimeID, int.Parse(CrossRef_AniDB_OtherResult.CrossRefID));
+						return false;
 					default:
 						//close menu
 						return false;
 				}
-			}*/
+			}
 		}
 
-		private bool SearchTheMovieDB(string searchCriteria, string previousMenu)
+		private bool SearchTheMovieDB(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
 		{
-			return false;
-
-			//TODO
-			/*
 			if (searchCriteria.Length == 0)
 				return true;
 
-			int aniDBID = -1;
-			if (listLevel == Listlevel.Group)
-			{
-				if (curAnimeGroupOld != null)
-				{
-					if (curAnimeGroupOld.AniDB_ID.HasValue)
-						aniDBID = curAnimeGroupOld.AniDB_ID.Value;
-				}
-			}
-			if (listLevel == Listlevel.Series)
-			{
-				if (curAnimeSeriesOld != null)
-				{
-					if (curAnimeSeriesOld.AniDB_ID.HasValue)
-						aniDBID = curAnimeSeriesOld.AniDB_ID.Value;
-				}
-			}
+			int aniDBID = ser.AniDB_Anime.AnimeID;
 
-			bool foundMatches = false;
+			List<MovieDBMovieSearchResultVM> MovieDBSeriesSearchResults = new List<MovieDBMovieSearchResultVM>();
+			List<JMMServerBinary.Contract_MovieDBMovieSearchResult> movieResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(searchCriteria.Trim());
+			foreach (JMMServerBinary.Contract_MovieDBMovieSearchResult movieResult in movieResults)
+				MovieDBSeriesSearchResults.Add(new MovieDBMovieSearchResultVM(movieResult));
 
-			List<MovieDBSearchResult> results = MovieDB.Search(searchCriteria);
-			BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for {1}", results.Count, searchCriteria);
-			if (results.Count == 0)
-			{
-				if (aniDBID > 1)
-				{
-					AniDB_Anime anime = new AniDB_Anime();
-					if (anime.Load(aniDBID))
-					{
-						// lets try the the romaji title
-						if (searchCriteria.ToUpper() != anime.RomajiName.ToUpper() && anime.RomajiName.Trim().Length > 0)
-						{
-							results = MovieDB.Search(anime.RomajiName);
-							if (results.Count > 0) foundMatches = true;
-							BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for RomajiName search {1}", results.Count, anime.RomajiName);
-						}
+			BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for {1}", MovieDBSeriesSearchResults.Count, searchCriteria);
 
-						// lets try the the english title
-						if (!foundMatches && searchCriteria.ToUpper() != anime.EnglishName.ToUpper() && anime.EnglishName.Trim().Length > 0)
-						{
-							results = MovieDB.Search(anime.EnglishName);
-							if (results.Count > 0) foundMatches = true;
-							BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for EnglishName search {1}", results.Count, anime.EnglishName);
-						}
-					}
-				}
-
-			}
-			else
-				foundMatches = true;
-
-
-			if (foundMatches)
+			if (MovieDBSeriesSearchResults.Count > 0)
 			{
 				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
 				if (dlg == null)
@@ -4242,8 +4338,8 @@ namespace MyAnimePlugin3
 
 					if (previousMenu != string.Empty)
 						dlg.Add("<<< " + previousMenu);
-					foreach (MovieDBSearchResult res in results)
-						dlg.Add(res.Title);
+					foreach (MovieDBMovieSearchResultVM res in MovieDBSeriesSearchResults)
+						dlg.Add(res.MovieName);
 
 					dlg.SelectedLabel = selectedLabel;
 					dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -4253,17 +4349,11 @@ namespace MyAnimePlugin3
 					if (selection == 0)
 						return true; //previous menu
 
-					if (selection > 0 && selection <= results.Count)
+					if (selection > 0 && selection <= MovieDBSeriesSearchResults.Count)
 					{
-						MovieDBSearchResult res = results[selection - 1];
+						MovieDBMovieSearchResultVM res = MovieDBSeriesSearchResults[selection - 1];
 
-						if (listLevel == Listlevel.Group)
-							MovieDB.UseSearchResult(curAnimeGroupOld, res.Id, res.Title);
-
-						if (listLevel == Listlevel.Series)
-							MovieDB.UseSearchResult(curAnimeSeriesOld, res.Id, res.Title);
-
-						ShowFanartWindow();
+						LinkAniDBToMovieDB(ser, aniDBID, res.MovieID);
 						return false;
 					}
 
@@ -4281,7 +4371,7 @@ namespace MyAnimePlugin3
 					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
 				}
 				return true;
-			}*/
+			}
 		}
 
 		private bool ShowContextMenuEpisode(string previousMenu)
@@ -4481,31 +4571,6 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		//TODO
-		/*
-		private void DeleteMALAssociationCache(AnimeEpisode ep)
-		{
-			if (!Utils.DialogConfirm("Are you sure you want to delete MAL association cache related to this episode type + anime series ?")) return;
-			MALHelper.deleteMALAssociationCache(ep);
-		}*/
-
-		//TODO
-		/*
-		private void PromptDeleteFilesForEpisode(AnimeEpisode ep)
-		{
-			if (!Utils.DialogConfirm("Are you sure you want to delete \nthe file(s) for this episode?")) return;
-
-			foreach (FileLocal fl in ep.FileLocals)
-			{
-				if (File.Exists(fl.FileNameFull))
-				{
-					File.Delete(fl.FileNameFull);
-					fl.Delete();
-				}
-			}
-
-			LoadFacade();
-		}*/
 
 		private bool ShowContextMenuDatabases(AnimeSeriesVM ser, string previousMenu)
 		{
@@ -4518,12 +4583,19 @@ namespace MyAnimePlugin3
 			int mnuMovieDB = -1;
 			int mnuTvDBSub = -1;
 			int mnuMovieDBSub = -1;
+			int mnuTrakt = -1;
+			int mnuTraktSub = -1;
 
 			int curMenu = -1;
 
 			//keep showing the dialog until the user closes it
 			int selectedLabel = 0;
 			string currentMenu = ser.SeriesName + " Databases";
+
+			bool hasTvDBLink = ser.CrossRef_AniDB_TvDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries != null;
+			bool hasMovieDBLink = ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null;
+			bool hasTraktLink = ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow != null;
+
 			while (true)
 			{
 				dlg.Reset();
@@ -4531,18 +4603,18 @@ namespace MyAnimePlugin3
 
 				string tvdbText = "Search The TvDB";
 				string moviedbText = "Search The MovieDB";
+				string traktText = "Search Trakt.tv";
 
 				if (ser != null)
 				{
-					if (ser.CrossRef_AniDB_TvDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries != null)
-					{
+					if (hasTvDBLink)
 						tvdbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries.SeriesName + ")";
-					}
 
-					if (ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null)
-					{
+					if (hasMovieDBLink)
 						moviedbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName + ")";
-					}
+
+					if (hasTraktLink)
+						traktText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow.Title + ")";
 				}
 
 				if (previousMenu != string.Empty)
@@ -4552,25 +4624,34 @@ namespace MyAnimePlugin3
 				}
 
 
-				if (ser != null && ser.CrossRef_AniDB_MovieDB == null)
+				if (ser != null && !hasMovieDBLink)
 				{
 					dlg.Add(tvdbText);
 					curMenu++; mnuTvDB = curMenu;
+
+					dlg.Add(traktText);
+					curMenu++; mnuTrakt = curMenu;
 				}
 
-				if (ser != null && ser.CrossRef_AniDB_TvDB == null)
+				if (ser != null && !hasTvDBLink && !hasTraktLink)
 				{
 					dlg.Add(moviedbText);
 					curMenu++; mnuMovieDB = curMenu;
 				}
 
-				if (ser != null && ser.CrossRef_AniDB_TvDB != null)
+				if (ser != null && hasTvDBLink)
 				{
 					dlg.Add("The Tv DB >>>");
 					curMenu++; mnuTvDBSub = curMenu;
 				}
 
-				if (ser != null && ser.CrossRef_AniDB_MovieDB != null)
+				if (ser != null && hasTraktLink)
+				{
+					dlg.Add("Trakt.tv >>>");
+					curMenu++; mnuTraktSub = curMenu;
+				}
+
+				if (ser != null && hasMovieDBLink)
 				{
 					dlg.Add("The Movie DB >>>");
 					curMenu++; mnuMovieDBSub = curMenu;
@@ -4588,9 +4669,15 @@ namespace MyAnimePlugin3
 						return false;
 				}
 
+				if (selectedLabel == mnuTrakt)
+				{
+					if (!SearchTraktMenu(ser, currentMenu))
+						return false;
+				}
+
 				if (selectedLabel == mnuMovieDB)
 				{
-					if (!SearchTheMovieDBMenu(currentMenu))
+					if (!SearchTheMovieDBMenu(ser, currentMenu))
 						return false;
 				}
 
@@ -4600,9 +4687,15 @@ namespace MyAnimePlugin3
 						return false;
 				}
 
+				if (selectedLabel == mnuTraktSub)
+				{
+					if (!ShowContextMenuTrakt(ser, currentMenu))
+						return false;
+				}
+
 				if (selectedLabel == mnuMovieDBSub)
 				{
-					if (!ShowContextMenuMovieDB(currentMenu))
+					if (!ShowContextMenuMovieDB(ser, currentMenu))
 						return false;
 				}
 
@@ -5035,33 +5128,6 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private void ShowTvDBWarning()
-		{
-			GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-			if (null == dlgOK)
-				return;
-			dlgOK.SetHeading("Error");
-			dlgOK.SetLine(1, string.Empty);
-			dlgOK.SetLine(2, "Please associate a TvDB series first");
-			dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-
-			return;
-		}
-
-		private void ShowMovieDBWarning()
-		{
-
-			GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-			if (null == dlgOK)
-				return;
-			dlgOK.SetHeading("Error");
-			dlgOK.SetLine(1, string.Empty);
-			dlgOK.SetLine(2, "Please associate a Movie DB entry first");
-			dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-
-			return;
-		}
-
 
 		private bool ShowContextMenuTVDB(AnimeSeriesVM ser, string previousMenu)
 		{
@@ -5116,7 +5182,7 @@ namespace MyAnimePlugin3
 						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDB(ser.AniDB_Anime.AnimeID);
 						break;
 					case 2:
-						if (!ShowSeasonSelectionMenu(ser.AniDB_Anime.AnimeID, tvdbid, currentMenu))
+						if (!ShowSeasonSelectionMenuTvDB(ser, ser.AniDB_Anime.AnimeID, tvdbid, currentMenu))
 							return false;
 						break;
 					
@@ -5127,12 +5193,73 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private bool ShowContextMenuMovieDB(string previousMenu)
+		private bool ShowContextMenuTrakt(AnimeSeriesVM ser, string previousMenu)
 		{
-			return false;
+			GUIListItem currentitem = this.m_Facade.SelectedListItem;
+			if (currentitem == null)
+				return true;
 
-			//TODO
-			/*
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return true;
+
+			string traktID = "";
+			int season = -1;
+			string displayName = "";
+
+			if (ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt != null 
+				&& ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow != null)
+			{
+				displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow.Title;
+				traktID = ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID;
+				season = ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktSeasonNumber;
+			}
+			else
+				return false;
+
+
+			//keep showing the dialog until the user closes it
+			int selectedLabel = 0;
+			string currentMenu = displayName;
+			while (true)
+			{
+				dlg.Reset();
+				dlg.SetHeading(currentMenu);
+
+				if (previousMenu != string.Empty)
+					dlg.Add("<<< " + previousMenu);
+				dlg.Add("Remove Trakt Association");
+				dlg.Add("Switch Season (Current is " + season.ToString() + ")");
+
+
+				dlg.SelectedLabel = selectedLabel;
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				selectedLabel = dlg.SelectedLabel;
+
+				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+				switch (selection)
+				{
+					case 0:
+						//show previous
+						return true;
+					case 1:
+
+						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTrakt(ser.AniDB_Anime.AnimeID);
+						break;
+					case 2:
+						if (!ShowSeasonSelectionMenuTrakt(ser, ser.AniDB_Anime.AnimeID, traktID, currentMenu))
+							return false;
+						break;
+
+					default:
+						//close menu
+						return false;
+				}
+			}
+		}
+
+		private bool ShowContextMenuMovieDB(AnimeSeriesVM ser, string previousMenu)
+		{
 			GUIListItem currentitem = this.m_Facade.SelectedListItem;
 			if (currentitem == null)
 				return true;
@@ -5143,16 +5270,13 @@ namespace MyAnimePlugin3
 
 			//int moviedbid = -1;
 			string displayName = "";
-			if (listLevel == Listlevel.Group)
+
+			if (ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null)
 			{
-				//moviedbid = curAnimeGroup.MovieDB_ID.Value;
-				displayName = curAnimeGroupOld.GroupName;
+				displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName;
 			}
 			else
-			{
-				//moviedbid = curAnimeSeries.MovieDB_ID.Value;
-				displayName = curAnimeSeriesOld.SeriesName;
-			}
+				return false;
 
 			//keep showing the dialog until the user closes it
 			int selectedLabel = 0;
@@ -5177,19 +5301,16 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						if (listLevel == Listlevel.Group)
-							MovieDB.RemoveMovieDBAssociation(curAnimeGroupOld.MovieDB_ID.Value, true);
-						else
-							MovieDB.RemoveMovieDBAssociation(curAnimeSeriesOld.MovieDB_ID.Value, false);
+						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBOther(ser.AniDB_Anime.AnimeID, (int)CrossRefType.MovieDB);
 						return false;
 					default:
 						//close menu
 						return false;
 				}
-			}*/
+			}
 		}
 
-		private bool ShowSeasonSelectionMenu(int animeID, int tvdbid, string previousMenu)
+		private bool ShowSeasonSelectionMenuTvDB(AnimeSeriesVM ser, int animeID, int tvdbid, string previousMenu)
 		{
 			try
 			{
@@ -5236,7 +5357,68 @@ namespace MyAnimePlugin3
 					if (selection > 0 && selection <= seasons.Count)
 					{
 						int selectedSeason = seasons[selection - 1];
-						LinkAniDBToTVDB(animeID, tvdbid, selectedSeason);
+						LinkAniDBToTVDB(ser, animeID, tvdbid, selectedSeason);
+					}
+
+					return false;
+				}
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write("Error in ShowSeasonSelectionMenu:: {0}", ex);
+			}
+
+			return true;
+		}
+
+		private bool ShowSeasonSelectionMenuTrakt(AnimeSeriesVM ser, int animeID, string traktID, string previousMenu)
+		{
+			try
+			{
+				List<int> seasons = JMMServerVM.Instance.clientBinaryHTTP.GetSeasonNumbersForTrakt(traktID);
+				if (seasons.Count == 0)
+				{
+					GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
+					if (null != dlgOK)
+					{
+						dlgOK.SetHeading("Season Results");
+						dlgOK.SetLine(1, string.Empty);
+						dlgOK.SetLine(2, "No seasons found");
+						dlgOK.DoModal(GUIWindowManager.ActiveWindow);
+					}
+
+					return true;
+				}
+
+				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+				if (dlg == null)
+					return true;
+
+				//keep showing the dialog until the user closes it
+				int selectedLabel = 0;
+				string currentMenu = "Select Season";
+				while (true)
+				{
+					dlg.Reset();
+					dlg.SetHeading(currentMenu);
+
+					if (previousMenu != string.Empty)
+						dlg.Add("<<< " + previousMenu);
+					foreach (int season in seasons)
+						dlg.Add("Season " + season.ToString());
+
+					dlg.SelectedLabel = selectedLabel;
+					dlg.DoModal(GUIWindowManager.ActiveWindow);
+					selectedLabel = dlg.SelectedLabel;
+
+					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+					if (selection == 0)
+						return true; //previous menu
+
+					if (selection > 0 && selection <= seasons.Count)
+					{
+						int selectedSeason = seasons[selection - 1];
+						LinkAniDBToTrakt(ser, animeID, traktID, selectedSeason);
 					}
 
 					return false;
@@ -5252,10 +5434,6 @@ namespace MyAnimePlugin3
 
 		private bool ShowContextMenuSeriesEdit(string previousMenu)
 		{
-			return false;
-
-			//TODO
-			/*
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
 			if (dlg == null)
 				return true;
@@ -5264,7 +5442,7 @@ namespace MyAnimePlugin3
 			if (currentitem == null)
 				return true;
 
-			AnimeSeries ser = currentitem.TVTag as AnimeSeries;
+			AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
 			if (ser == null)
 				return true;
 
@@ -5278,12 +5456,9 @@ namespace MyAnimePlugin3
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Change Sort Name");
 				dlg.Add("Set Default Audio Language");
 				dlg.Add("Set Default Subtitle language");
 				dlg.Add("Delete This Series/Episodes");
-				dlg.Add("Change Group");
-				dlg.Add("Move to New Group");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -5297,98 +5472,42 @@ namespace MyAnimePlugin3
 						return true;
 					case 1:
 						{
-							string sortName = ser.SortName;
-							if (Utils.DialogText(ref sortName, GetID))
-							{
-								ser.SortName = sortName;
-								ser.Save();
-								LoadFacade();
-								return false;
-							}
-							break;
-						}
-					case 2:
-						{
-							String language = ser.DefaultAudioLanguage;
+							//TODO
+							/*String language = ser.DefaultAudioLanguage;
 							if (Utils.DialogLanguage(ref language, false))
 							{
 								ser.DefaultAudioLanguage = language;
 								ser.Save();
 								return false;
-							}
+							}*/
 						}
 						break;
-					case 3:
+					case 2:
 						{
-							String language = ser.DefaultSubtitleLanguage;
+							//TODO
+							/*String language = ser.DefaultSubtitleLanguage;
 							if (Utils.DialogLanguage(ref language, true))
 							{
 								ser.DefaultSubtitleLanguage = language;
 								ser.Save();
 								return false;
-							}
+							}*/
 						}
 						break;
-					case 4:
+					case 3:
 						if (Utils.DialogConfirm("Are you sure?"))
 						{
-							// delete all the episodes in this series
-							foreach (AnimeEpisode ep in ser.Episodes)
-							{
-								List<FileLocal> locFiles = ep.FileLocals;
-
-								BaseConfig.MyAnimeLog.Write("Deleting episode: {0}", ep);
-								ep.Delete();
-
-								// update the EpisodeID on all file records for this episode
-								// we need to do this after the episode delete so that the AnimeEpisodeID
-								// is not re-populated on the save
-								foreach (FileLocal fl in locFiles)
-								{
-									BaseConfig.MyAnimeLog.Write("Removing EpisodeID for FileLocal: {0}", fl);
-									CrossRef_Episode_FileHash.Delete(fl, ep.AnimeSeriesID);
-								}
-							}
-							BaseConfig.MyAnimeLog.Write("Deleting series: {0}", ser);
-							ser.Delete();
-
+							JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, false, false);
 							LoadFacade();
 
 							return false;
 						}
 						break;
-					case 5:
-						{
-							AnimeGroup grpNew = SelectGroup(ser.AniDB_ID);
-							if (grpNew == null)
-								return true;
-
-							ser.AnimeGroupID = grpNew.AnimeGroupID;
-							ser.Save();
-
-							LoadFacade();
-							return false;
-						}
-					case 6:
-						{
-							AnimeGroup grpNew = new AnimeGroup(ser);
-							if (grpNew == null)
-								return true;
-
-							grpNew.Save();
-
-
-							ser.AnimeGroupID = grpNew.AnimeGroupID;
-							ser.Save();
-
-							LoadFacade();
-							return false;
-						}
 					default:
 						//close menu
 						return false;
 				}
-			}*/
+			}
 		}
 
 		private bool ShowContextMenuSeries(string previousMenu)

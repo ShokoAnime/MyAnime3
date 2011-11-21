@@ -143,4 +143,11 @@ namespace MyAnimePlugin3
 		CrunchRoll = 7,
 		Konachan = 8
 	}
+
+	public enum StatCountType
+	{
+		Watched = 1,
+		Played = 2,
+		Stopped = 3
+	}
 }

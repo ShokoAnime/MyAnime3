@@ -315,6 +315,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="IncrementEpisodeStats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeEpisodeID" type="xs:int" />
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="statCountType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IncrementEpisodeStatsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="LinkAniDBOther">
     <xs:complexType>
       <xs:sequence>

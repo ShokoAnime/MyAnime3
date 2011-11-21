@@ -95,7 +95,7 @@ namespace MyAnimePlugin3
 				int timeMovieStopped = 0;
 				if (!File.Exists(fileToPlay.FullPath))
 				{
-					// TODO let user know
+					Utils.DialogMsg("Error", "File could not be found!");
 					return false;
 				}
 
@@ -176,35 +176,10 @@ namespace MyAnimePlugin3
 
 				BaseConfig.MyAnimeLog.Write("Filetoplay: {0}", fileToPlay.FullPath);
 
-				//TODO
-				/*
-                if (fileToPlay.IsCDDVD == 1)
-                {
-                    if (!File.Exists(fileToPlay.FileNameFull))
-                    {
-                        CDSummary cdSumm = new CDSummary();
-                        if (!cdSumm.Load(fileToPlay.CDSummaryID.Value)) return false;
-
-                        // ask the user to input cd/dvd whatever
-                        GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-                        if (null == dlgOK)
-                            return false;
-                        dlgOK.SetHeading("Insert Disk");
-                        dlgOK.SetLine(1, string.Empty);
-                        dlgOK.SetLine(2, cdSumm.DisplayName + " (" + cdSumm.VolumeLabel + ")");
-                        dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-
-                        if (!File.Exists(fileToPlay.FileNameFull))
-                        {
-                            return false; // still not found, return to list
-                        }
-                    }
-                }
-				*/
 
                     if (!File.Exists(fileToPlay.FullPath))
                     {
-                        // TODO let user know
+						Utils.DialogMsg("Error", "File could not be found!");
                         return false;
                     }
 					BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
@@ -239,35 +214,9 @@ namespace MyAnimePlugin3
                 }
                 #endregion
 
-				//TODO
-				/*
-                if (timeMovieStopped == 0)
-                {
-
-                    List<CrossRef_Episode_FileHash> list = CrossRef_Episode_FileHash.GetAll(fileToPlay);
-                    if (list.Count > 0)
-                    {
-                        foreach (CrossRef_Episode_FileHash h in list)
-                        {
-                            AnimeEpisode ep = h.Episode;
-                            if (ep != null)
-                            {
-                                if (ep.EpisodeNumber < curEpisode.EpisodeNumber)
-                                {
-                                    AniDB_Episode e = ep.AniDB_Episode;
-                                    if (e != null)
-                                    {
-                                        timeMovieStopped += e.LengthSeconds*100/h.Percent;
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                }*/
+			
 
                 Play(timeMovieStopped, curEpisode.DefaultAudioLanguage, curEpisode.DefaultSubtitleLanguage);
-				//Play(timeMovieStopped, "", "");
                 return true;
             }
             catch (Exception e)
@@ -310,18 +259,6 @@ namespace MyAnimePlugin3
 			string imgNameSeries = "";
 			string displayName = curEpisode.EpisodeNumberAndName;
 
-			//TODO
-			/*
-			if (curEpisode.AnimeSeriesID.HasValue)
-			{
-				AnimeSeriesVM ser = new AnimeSeries();
-				if (ser.Load(curEpisode.AnimeSeriesID.Value))
-				{
-					imgNameSeries = ImageAllocator.GetPosterAsFileName(ser.AniDB_Anime);
-					displayName = ser.SeriesName + " - " + displayName;
-				}
-			}
-			*/
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Title", clear ? "" : displayName);
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Plot", clear ? "" : curEpisode.Description);
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Thumb", clear ? "" : curEpisode.EpisodeImageLocation);
@@ -333,10 +270,6 @@ namespace MyAnimePlugin3
         void MarkEpisodeAsWatched(AnimeEpisodeVM episode)
         {
 			episode.ToggleWatchedStatus(true);
-
-			//TODO
-			/*
-            episode.IncreaseWatchedCount();*/
         }
 
         /// <summary>
@@ -417,9 +350,8 @@ namespace MyAnimePlugin3
 					if (timeMovieStopped > 0)
 						g_Player.SeekAbsolute(timeMovieStopped);
 
-					//TODO
-					//if (curEpisode != null)
-					//	curEpisode.IncreasePlayedCount();
+					if (curEpisode != null)
+						curEpisode.IncrementEpisodeStats(StatCountType.Played);
 
 					g_Player.Pause();
 
@@ -560,6 +492,9 @@ namespace MyAnimePlugin3
 				if (curEpisode == null)
 					return;
 
+				if (curEpisode != null)
+					curEpisode.IncrementEpisodeStats(StatCountType.Stopped);
+
 				//save watched status
 				if (countAsWatched || curEpisode.IsWatched == 1)
 				{
@@ -568,32 +503,9 @@ namespace MyAnimePlugin3
                     {
                         MarkEpisodeAsWatched(curEpisode);
 
-                        // Update MAL list if set in settings
-						//TODO
-                        //MALHelper.updateMALASync(curEpisode);
-
                     }
 				}
-				// increase watched count
-				//TODO
-				//curEpisode.IncreaseStoppedCount();
-
-				//increase the time spent watching count.
-				//TODO
-				/*
-				List<AnimeSeries> seriesList = AnimeSeries.GetAll();
-				foreach (AnimeSeries series in seriesList)
-				{
-					if (series.AnimeSeriesID == curEpisode.AnimeSeriesID)
-					{
-						series.TimeSpentWatching += (GetTimeStopped(curFileName) - timeMovieStopped);
-						series.Save();
-					}
-				}*/
-
-				//set last watched
-				//TODO
-				//curEpisode.SetLastWatched();
+				
                 
                 SetGUIProperties(true); // clear GUI Properties     
 			}

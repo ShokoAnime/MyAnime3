@@ -9419,6 +9419,12 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AniDB_AVDumpClientPortField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AniDB_AVDumpKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AniDB_Anime_UpdateFrequencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -9569,6 +9575,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AniDB_AVDumpClientPort {
+            get {
+                return this.AniDB_AVDumpClientPortField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AniDB_AVDumpClientPortField, value) != true)) {
+                    this.AniDB_AVDumpClientPortField = value;
+                    this.RaisePropertyChanged("AniDB_AVDumpClientPort");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AniDB_AVDumpKey {
+            get {
+                return this.AniDB_AVDumpKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AniDB_AVDumpKeyField, value) != true)) {
+                    this.AniDB_AVDumpKeyField = value;
+                    this.RaisePropertyChanged("AniDB_AVDumpKey");
+                }
             }
         }
         
@@ -11597,6 +11629,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetUserVote", ReplyAction="http://tempuri.org/IJMMServer/GetUserVoteResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/IncrementEpisodeStats", ReplyAction="http://tempuri.org/IJMMServer/IncrementEpisodeStatsResponse")]
+        void IncrementEpisodeStats(int animeEpisodeID, int userID, int statCountType);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBOther", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse")]
         string LinkAniDBOther(int animeID, int movieID, int crossRefType);
         
@@ -12047,6 +12082,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         public MyAnimePlugin3.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID) {
             return base.Channel.GetUserVote(animeID);
+        }
+        
+        public void IncrementEpisodeStats(int animeEpisodeID, int userID, int statCountType) {
+            base.Channel.IncrementEpisodeStats(animeEpisodeID, userID, statCountType);
         }
         
         public string LinkAniDBOther(int animeID, int movieID, int crossRefType) {

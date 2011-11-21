@@ -232,12 +232,9 @@
     <Compile Include="ViewModel\VideoDetailedVM.cs" />
     <Compile Include="ViewModel\VideoLocalVM.cs" />
     <Compile Include="Windows\AdminWindow.cs" />
-    <Compile Include="Windows\AnimeBrowserWindow.cs" />
     <Compile Include="Windows\AnimeInfoWindow.cs" />
-    <Compile Include="Windows\AnimeNewsWindow.cs" />
     <Compile Include="Windows\CalendarWindow.cs" />
     <Compile Include="Windows\CharWindow.cs" />
-    <Compile Include="Windows\CollectionWindow.cs" />
     <Compile Include="Windows\ContinueWatchingWindow.cs" />
     <Compile Include="Windows\DownloadsWindow.cs" />
     <Compile Include="Windows\FanartWindow.cs" />
@@ -248,7 +245,6 @@
     <Compile Include="Windows\PosterWindow.cs" />
     <Compile Include="Windows\RecommendationsWindow.cs" />
     <Compile Include="Windows\RelationsWindow.cs" />
-    <Compile Include="Windows\RelationsWindow_Old.cs" />
     <Compile Include="Windows\WideBannerWindow.cs" />
   </ItemGroup>
   <ItemGroup>

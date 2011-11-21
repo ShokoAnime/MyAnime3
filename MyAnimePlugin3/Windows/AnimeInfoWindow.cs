@@ -94,8 +94,6 @@ namespace MyAnimePlugin3.Windows
             LoadFanart();
 			LoadGroups();
 
-            GetLanguageStrings();
-            FormatTextPerEpisodeData();
             SetSkinProperties();
             InfoPage();
             StatsPage();
@@ -204,59 +202,16 @@ namespace MyAnimePlugin3.Windows
 				setGUIProperty("AnimeInfo.Stats.WatchedCount", serMain.WatchedCount.ToString());
 				setGUIProperty("AnimeInfo.Stats.FileCount", iFileCount.ToString());
 				setGUIProperty("AnimeInfo.Stats.AnimeFileSize", strFileSize);
-				setGUIProperty("AnimeInfo.Stats.TimeSpentWatching", FormatTextTimeSpentWatching());
 				setGUIProperty("AnimeInfo.Stats.MissingEpisodes", iMissingEpisodeCount.ToString());
 
                 setGUIProperty("AnimeInfo.Stats.SubtitleLanguages", strSubtitleLanguages);
                 setGUIProperty("AnimeInfo.Stats.AudioLanguages", strAudioLanguages);
 
 				setGUIProperty("AnimeInfo.Stats.RunningTime", strRunningTime);
-
-				//TODO
-				//setGUIProperty("AnimeInfo.Stats.BlinkedCount", ((serMain.TimeSpentWatching / 60) / 4).ToString());
 			}
         }
 
         #endregion
-
-        private void GetLanguageStrings()
-        {
-			//TODO
-			/*
-            //Get Subtitle Languages
-            List<CrossRef_Subtitles_AnimeSeries> SubtitleLanguages = DBProxy.GetFromQuery<CrossRef_Subtitles_AnimeSeries>("AnimeSeriesID=" + serMain.AnimeSeriesID.Value.ToString());
-
-            foreach (CrossRef_Subtitles_AnimeSeries CrossRefLan in SubtitleLanguages)
-            {
-                List<Language> Lan = DBProxy.GetFromQuery<Language>("LanguageID=" + CrossRefLan.LanguageID.ToString());
-
-                if (!string.IsNullOrEmpty(strSubtitleLanguages))
-                    strSubtitleLanguages += " ";
-
-                strSubtitleLanguages += Lan[0].LanguageName;
-            }
-
-            if(String.IsNullOrEmpty(strSubtitleLanguages))
-                strSubtitleLanguages = "None Found";
-
-
-            //Get Audio Languages
-            List<CrossRef_Languages_AnimeSeries> AudioLanguages = DBProxy.GetFromQuery<CrossRef_Languages_AnimeSeries>("AnimeSeriesID=" + serMain.AnimeSeriesID.Value.ToString());
-
-            foreach (CrossRef_Languages_AnimeSeries CrossRefLan in AudioLanguages)
-            {
-                List<Language> Lan = DBProxy.GetFromQuery<Language>("LanguageID=" + CrossRefLan.LanguageID.ToString());
-
-                if (!string.IsNullOrEmpty(strAudioLanguages))
-                    strAudioLanguages += " ";
-
-                strAudioLanguages += Lan[0].LanguageName;
-            }
-
-            if (String.IsNullOrEmpty(strAudioLanguages))
-                strAudioLanguages = "None Found";
-			*/
-        }
 
 		protected override void OnShowContextMenu()
 		{
@@ -457,127 +412,6 @@ namespace MyAnimePlugin3.Windows
             setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
         }
 
-        private void FormatTextPerEpisodeData()
-        {
-			//TODO
-			/*
-            iFileCount = 0;
-            iMissingEpisodeCount = 0;
-            
-            strEpisodeCount = "";
-
-            AnimeEpisodeList seriesEps = null;
-
-            if (serMain != null)
-                seriesEps = serMain.Episodes;
-
-            int specials = 0;
-            int normal = 0;
-            int other = 0;
-
-            int HasNormal = 0;
-            int HasSpecials = 0;
-            int HasOther = 0;
-            long iFilesize = 0;
-            int iRunningTime = 0;
-            int iEpisodeRunningTime = 0;
-
-            if (serMain != null)
-            {
-                foreach (AnimeEpisode Episode in seriesEps)
-                {
-                    // get types
-                    switch (Episode.EpisodeType)
-                    {
-                        case "2":
-                            specials++;
-                            if (Episode.FileLocals.Count != 0)
-                                HasSpecials++;
-                            break;
-                        case "1":
-                            normal++;
-                            if (Episode.FileLocals.Count != 0)
-                            {
-                                HasNormal++;
-                            }
-                            break;
-                        default:
-                            BaseConfig.MyAnimeLog.Write(Episode.EpisodeType);
-                            other++;
-                            if (Episode.FileLocals.Count != 0)
-                                HasOther++;
-                            break;
-                    }
-
-                    List<FileLocal> files = Episode.FileLocals;
-                    iFileCount += files.Count;
-
-                    // add each file FileSize to total file FileSize for anime
-                    // also get each files audio and subtitle languages and add them to the shows lamgauge lists.
-                    // Note on logic:: Instead of counting how many episodes and how many files, then checking if
-                    // this is the last file, just to see if we should add another forward slash, this just adds
-                    // one everytime, then after to loop we are guaranteed to have a left over slash, and we simply
-                    // remove it.
-                    bool FoundFile = false;
-                    foreach (FileLocal file in files)
-                    {
-                        iFilesize += file.FileSize;
-                        if (file.FileHash==null)
-                            continue;
-                      
-                        // if a normal episode, add file duration to shows duration.
-                        if (!FoundFile)
-                        {
-                            iRunningTime += file.FileHash.Duration;
-                            FoundFile = true;
-
-                            if (Episode.EpisodeType == "2")
-                                iEpisodeRunningTime += file.FileHash.Duration;
-                        }
-                    }
-
-                }
-            }
-            else
-            {
-                normal = MainAnime.EpisodeCountNormal;
-                specials = MainAnime.EpisodeCountSpecial;
-                other = 0;
-            }
-
-
-      
-            // turn into MegaBytes
-            iFilesize = (iFilesize / 1000) / 1000;
-
-            strFileSize = iFilesize.ToString();
-            
-            // add comma if it is a GB or bigger
-            if (strFileSize.Length > 3)
-            {
-                strFileSize = strFileSize.Insert((iFilesize.ToString().Length - 3), ",");
-            }
-
-            strFileSize += " MB's";
-
-            // create number of episodes string
-            strEpisodeCount = normal.ToString() + "/" + specials.ToString() + "/" + other.ToString() + " | You have: " + HasNormal.ToString() + "/" + HasSpecials.ToString() + "/" + HasOther.ToString();
-
-            // Create missing episodes string
-            iMissingEpisodeCount = normal - HasNormal;
-
-            // Create Running time string
-            int Hours, Minutes, Seconds = 0;
-            
-            Hours = (int)Math.Floor((double)iRunningTime / 3600000);
-            iRunningTime = iRunningTime - (3600000 * Hours);
-            Minutes = (int)Math.Floor((double)iRunningTime / 60000);
-            iRunningTime = iRunningTime - (60000 * Minutes);
-            Seconds = (int)Math.Floor((double)iRunningTime / 1000);
-
-            strRunningTime = Hours.ToString() + " Hours " + Minutes.ToString() + " Minutes " + Seconds.ToString() + " Seconds";*/
-        }
-
         private string FormatTextYear()
         {
 			return MainAnime.AirDateAsString;
@@ -627,30 +461,6 @@ namespace MyAnimePlugin3.Windows
                 return "No";
             else
                 return "Yes";
-        }
-
-        private string FormatTextTimeSpentWatching()
-        {
-			//TODO
-			return "";
-			/*
-			if (serMain != null)
-			{
-				int iTimeSpent = serMain.TimeSpentWatching;
-
-				// Create Time Spent Watching string
-
-				int Hours, Minutes, Seconds = 0;
-
-				Hours = (int)Math.Floor((decimal)iTimeSpent / 3600);
-				iTimeSpent = iTimeSpent - (3600 * Hours);
-				Minutes = (int)Math.Floor((decimal)iTimeSpent / 60);
-				iTimeSpent = iTimeSpent - (60 * Minutes);
-				Seconds = iTimeSpent;
-
-				return Hours.ToString() + " Hours " + Minutes.ToString() + " Minutes " + Seconds.ToString() + " Seconds";
-			}
-			else return "";*/
         }
 
 		private void LoadGroups()

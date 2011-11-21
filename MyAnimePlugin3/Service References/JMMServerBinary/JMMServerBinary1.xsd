@@ -938,6 +938,8 @@
   <xs:element name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
   <xs:complexType name="Contract_ServerSettings">
     <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_AVDumpClientPort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_AVDumpKey" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_Anime_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_Calendar_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_ClientPort" nillable="true" type="xs:string" />

@@ -156,9 +156,7 @@ namespace MyAnimePlugin3
 
 		public static bool IsRunningFromConfig()
 		{
-            //TODO RESTORE
 		    return false;
-			return GUIWindowManager.ActiveWindow == 0;
 		}
 
 

@@ -336,7 +336,6 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
-				//TODO Get From Runtime
 				AnimePluginSettings settings = new AnimePluginSettings();
 				string newName = settings.EpisodeDisplayFormat;
 
@@ -360,6 +359,12 @@ namespace MyAnimePlugin3.ViewModel
 				BaseConfig.MyAnimeLog.Write("Error in ToggleWatchedStatus: " + response.ErrorMessage);
 				return;
 			}
+		}
+
+		public void IncrementEpisodeStats(StatCountType statCountType)
+		{
+			JMMServerVM.Instance.clientBinaryHTTP.IncrementEpisodeStats(this.AnimeEpisodeID, JMMServerVM.Instance.CurrentUser.JMMUserID, 
+				(int)statCountType);
 		}
 	}
 }

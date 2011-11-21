@@ -436,20 +436,5 @@ namespace MyAnimePlugin3.ViewModel
 			}
 
 		}
-
-		//TODO
-		/*
-		public FileFfdshowPreset FileFfdshowPreset
-		{
-			get
-			{
-				
-				
-				FileFfdshowPreset fp = new FileFfdshowPreset();
-				if (fp.Load(this))
-					return fp;
-				return null;
-			}
-		}*/
 	}
 }

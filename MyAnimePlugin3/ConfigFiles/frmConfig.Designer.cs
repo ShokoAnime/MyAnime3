@@ -66,6 +66,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage11 = new System.Windows.Forms.TabPage();
 			this.groupBox19 = new System.Windows.Forms.GroupBox();
+			this.chkTorrentPreferOwnGroups = new System.Windows.Forms.CheckBox();
 			this.label59 = new System.Windows.Forms.Label();
 			this.label58 = new System.Windows.Forms.Label();
 			this.label57 = new System.Windows.Forms.Label();
@@ -85,24 +86,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label53 = new System.Windows.Forms.Label();
 			this.txtUTorrentAddress = new System.Windows.Forms.TextBox();
 			this.label54 = new System.Windows.Forms.Label();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.groupBox16 = new System.Windows.Forms.GroupBox();
-			this.label80 = new System.Windows.Forms.Label();
-			this.txtFfdshowNotificationsLockTime = new System.Windows.Forms.TextBox();
-			this.chkFfdshowNotificationsLock = new System.Windows.Forms.CheckBox();
-			this.txtFfdshowNotificationsAutoCloseTime = new System.Windows.Forms.TextBox();
-			this.label82 = new System.Windows.Forms.Label();
-			this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
-			this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
-			this.groupBox20 = new System.Windows.Forms.GroupBox();
-			this.chkDeleteFiles = new System.Windows.Forms.CheckBox();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.label92 = new System.Windows.Forms.Label();
-			this.udWideBannerQuality = new System.Windows.Forms.NumericUpDown();
-			this.label91 = new System.Windows.Forms.Label();
-			this.udPosterQuality = new System.Windows.Forms.NumericUpDown();
-			this.label21 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.groupBox13 = new System.Windows.Forms.GroupBox();
 			this.chkFindFilterItems = new System.Windows.Forms.CheckBox();
@@ -112,7 +95,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox15 = new System.Windows.Forms.GroupBox();
 			this.chkShowMissingGroups = new System.Windows.Forms.CheckBox();
 			this.chkShowMissing = new System.Windows.Forms.CheckBox();
-			this.chkRestricted = new System.Windows.Forms.CheckBox();
 			this.chkHideWatchedFiles = new System.Windows.Forms.CheckBox();
 			this.chkShowAvailableEpsOnly = new System.Windows.Forms.CheckBox();
 			this.chkHidePlot = new System.Windows.Forms.CheckBox();
@@ -124,21 +106,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label43 = new System.Windows.Forms.Label();
 			this.cboLabelStyleGroups = new System.Windows.Forms.ComboBox();
 			this.label44 = new System.Windows.Forms.Label();
-			this.groupBox9 = new System.Windows.Forms.GroupBox();
-			this.btnAddSeriesFormat = new System.Windows.Forms.Button();
-			this.cboSeriesFormat = new System.Windows.Forms.ComboBox();
-			this.txtFormatSeries = new System.Windows.Forms.TextBox();
-			this.lblSeriesFormat = new System.Windows.Forms.Label();
-			this.groupBox8 = new System.Windows.Forms.GroupBox();
-			this.btnAddGroupFormat = new System.Windows.Forms.Button();
-			this.cboGroupFormat = new System.Windows.Forms.ComboBox();
-			this.txtFormatGroup = new System.Windows.Forms.TextBox();
-			this.lblGroupFormat2 = new System.Windows.Forms.Label();
-			this.groupBox6 = new System.Windows.Forms.GroupBox();
-			this.cboLangEpisode = new System.Windows.Forms.ComboBox();
-			this.label37 = new System.Windows.Forms.Label();
-			this.cboLangSeries = new System.Windows.Forms.ComboBox();
-			this.label36 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.btnAddFileFormat = new System.Windows.Forms.Button();
 			this.cboFileFormat = new System.Windows.Forms.ComboBox();
@@ -173,16 +140,21 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.txtPluginName = new System.Windows.Forms.TextBox();
 			this.txtImagesLocation = new System.Windows.Forms.TextBox();
 			this.label49 = new System.Windows.Forms.Label();
+			this.cboImagesLocation = new System.Windows.Forms.ComboBox();
+			this.btnImagesLocation = new System.Windows.Forms.Button();
+			this.label46 = new System.Windows.Forms.Label();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.label92 = new System.Windows.Forms.Label();
+			this.udWideBannerQuality = new System.Windows.Forms.NumericUpDown();
+			this.label91 = new System.Windows.Forms.Label();
+			this.udPosterQuality = new System.Windows.Forms.NumericUpDown();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
 			this.groupBox17 = new System.Windows.Forms.GroupBox();
 			this.cboSubtitleLanguage = new System.Windows.Forms.ComboBox();
 			this.cboAudioLanguage = new System.Windows.Forms.ComboBox();
 			this.label47 = new System.Windows.Forms.Label();
 			this.label48 = new System.Windows.Forms.Label();
-			this.cboImagesLocation = new System.Windows.Forms.ComboBox();
-			this.btnImagesLocation = new System.Windows.Forms.Button();
-			this.label46 = new System.Windows.Forms.Label();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.chkTorrentPreferOwnGroups = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
@@ -191,28 +163,21 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage11.SuspendLayout();
 			this.groupBox19.SuspendLayout();
 			this.groupBox18.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			this.groupBox16.SuspendLayout();
-			this.groupBox20.SuspendLayout();
-			this.tabPage4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).BeginInit();
 			this.tabPage3.SuspendLayout();
 			this.groupBox13.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudFindTimeout)).BeginInit();
 			this.groupBox15.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.udWatched)).BeginInit();
 			this.groupBox12.SuspendLayout();
-			this.groupBox9.SuspendLayout();
-			this.groupBox8.SuspendLayout();
-			this.groupBox6.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			this.groupBox17.SuspendLayout();
 			this.tabControl1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).BeginInit();
+			this.groupBox17.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -577,7 +542,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage11.Controls.Add(this.groupBox18);
 			this.tabPage11.Location = new System.Drawing.Point(4, 22);
 			this.tabPage11.Name = "tabPage11";
-			this.tabPage11.Size = new System.Drawing.Size(747, 544);
+			this.tabPage11.Size = new System.Drawing.Size(747, 478);
 			this.tabPage11.TabIndex = 7;
 			this.tabPage11.Text = "Downloads";
 			this.tabPage11.UseVisualStyleBackColor = true;
@@ -600,6 +565,16 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox19.TabIndex = 1;
 			this.groupBox19.TabStop = false;
 			this.groupBox19.Text = "Torrent Sources";
+			// 
+			// chkTorrentPreferOwnGroups
+			// 
+			this.chkTorrentPreferOwnGroups.AutoSize = true;
+			this.chkTorrentPreferOwnGroups.Location = new System.Drawing.Point(9, 160);
+			this.chkTorrentPreferOwnGroups.Name = "chkTorrentPreferOwnGroups";
+			this.chkTorrentPreferOwnGroups.Size = new System.Drawing.Size(362, 17);
+			this.chkTorrentPreferOwnGroups.TabIndex = 61;
+			this.chkTorrentPreferOwnGroups.Text = "Prefer the release groups I am collecting when downloading an episode";
+			this.chkTorrentPreferOwnGroups.UseVisualStyleBackColor = true;
 			// 
 			// label59
 			// 
@@ -704,7 +679,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox18.Controls.Add(this.label53);
 			this.groupBox18.Controls.Add(this.txtUTorrentAddress);
 			this.groupBox18.Controls.Add(this.label54);
-			this.groupBox18.Location = new System.Drawing.Point(15, 15);
+			this.groupBox18.Location = new System.Drawing.Point(16, 15);
 			this.groupBox18.Name = "groupBox18";
 			this.groupBox18.Size = new System.Drawing.Size(250, 171);
 			this.groupBox18.TabIndex = 0;
@@ -792,220 +767,24 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label54.TabIndex = 37;
 			this.label54.Text = "IP Address";
 			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.groupBox16);
-			this.tabPage2.Controls.Add(this.groupBox20);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(747, 544);
-			this.tabPage2.TabIndex = 6;
-			this.tabPage2.Text = "Advanced Options";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// groupBox16
-			// 
-			this.groupBox16.Controls.Add(this.label80);
-			this.groupBox16.Controls.Add(this.txtFfdshowNotificationsLockTime);
-			this.groupBox16.Controls.Add(this.chkFfdshowNotificationsLock);
-			this.groupBox16.Controls.Add(this.txtFfdshowNotificationsAutoCloseTime);
-			this.groupBox16.Controls.Add(this.label82);
-			this.groupBox16.Controls.Add(this.chkFfdshowNotificationsAutoClose);
-			this.groupBox16.Controls.Add(this.chkFfdshowNotificationsShow);
-			this.groupBox16.Location = new System.Drawing.Point(472, 111);
-			this.groupBox16.Name = "groupBox16";
-			this.groupBox16.Size = new System.Drawing.Size(269, 97);
-			this.groupBox16.TabIndex = 16;
-			this.groupBox16.TabStop = false;
-			this.groupBox16.Text = "ffdshow Raw Post-processing";
-			// 
-			// label80
-			// 
-			this.label80.AutoSize = true;
-			this.label80.Location = new System.Drawing.Point(195, 70);
-			this.label80.Name = "label80";
-			this.label80.Size = new System.Drawing.Size(63, 13);
-			this.label80.TabIndex = 6;
-			this.label80.Text = "milliseconds";
-			// 
-			// txtFfdshowNotificationsLockTime
-			// 
-			this.txtFfdshowNotificationsLockTime.AccessibleDescription = "";
-			this.txtFfdshowNotificationsLockTime.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
-			this.txtFfdshowNotificationsLockTime.Location = new System.Drawing.Point(143, 67);
-			this.txtFfdshowNotificationsLockTime.Name = "txtFfdshowNotificationsLockTime";
-			this.txtFfdshowNotificationsLockTime.Size = new System.Drawing.Size(47, 20);
-			this.txtFfdshowNotificationsLockTime.TabIndex = 5;
-			// 
-			// chkFfdshowNotificationsLock
-			// 
-			this.chkFfdshowNotificationsLock.AutoSize = true;
-			this.chkFfdshowNotificationsLock.Location = new System.Drawing.Point(14, 69);
-			this.chkFfdshowNotificationsLock.Name = "chkFfdshowNotificationsLock";
-			this.chkFfdshowNotificationsLock.Size = new System.Drawing.Size(126, 17);
-			this.chkFfdshowNotificationsLock.TabIndex = 4;
-			this.chkFfdshowNotificationsLock.Text = "Wait ffdshow load for";
-			this.chkFfdshowNotificationsLock.UseVisualStyleBackColor = true;
-			// 
-			// txtFfdshowNotificationsAutoCloseTime
-			// 
-			this.txtFfdshowNotificationsAutoCloseTime.Location = new System.Drawing.Point(112, 44);
-			this.txtFfdshowNotificationsAutoCloseTime.Name = "txtFfdshowNotificationsAutoCloseTime";
-			this.txtFfdshowNotificationsAutoCloseTime.Size = new System.Drawing.Size(45, 20);
-			this.txtFfdshowNotificationsAutoCloseTime.TabIndex = 3;
-			// 
-			// label82
-			// 
-			this.label82.AutoSize = true;
-			this.label82.Location = new System.Drawing.Point(161, 47);
-			this.label82.Name = "label82";
-			this.label82.Size = new System.Drawing.Size(63, 13);
-			this.label82.TabIndex = 2;
-			this.label82.Text = "milliseconds";
-			// 
-			// chkFfdshowNotificationsAutoClose
-			// 
-			this.chkFfdshowNotificationsAutoClose.AutoSize = true;
-			this.chkFfdshowNotificationsAutoClose.Location = new System.Drawing.Point(14, 46);
-			this.chkFfdshowNotificationsAutoClose.Name = "chkFfdshowNotificationsAutoClose";
-			this.chkFfdshowNotificationsAutoClose.Size = new System.Drawing.Size(103, 17);
-			this.chkFfdshowNotificationsAutoClose.TabIndex = 1;
-			this.chkFfdshowNotificationsAutoClose.Text = "Auto close after ";
-			this.chkFfdshowNotificationsAutoClose.UseVisualStyleBackColor = true;
-			// 
-			// chkFfdshowNotificationsShow
-			// 
-			this.chkFfdshowNotificationsShow.AutoSize = true;
-			this.chkFfdshowNotificationsShow.Location = new System.Drawing.Point(14, 23);
-			this.chkFfdshowNotificationsShow.Name = "chkFfdshowNotificationsShow";
-			this.chkFfdshowNotificationsShow.Size = new System.Drawing.Size(167, 17);
-			this.chkFfdshowNotificationsShow.TabIndex = 0;
-			this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
-			this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
-			// 
-			// groupBox20
-			// 
-			this.groupBox20.Controls.Add(this.chkDeleteFiles);
-			this.groupBox20.Location = new System.Drawing.Point(6, 446);
-			this.groupBox20.Name = "groupBox20";
-			this.groupBox20.Size = new System.Drawing.Size(460, 92);
-			this.groupBox20.TabIndex = 15;
-			this.groupBox20.TabStop = false;
-			this.groupBox20.Text = "Other";
-			// 
-			// chkDeleteFiles
-			// 
-			this.chkDeleteFiles.AutoSize = true;
-			this.chkDeleteFiles.Location = new System.Drawing.Point(14, 23);
-			this.chkDeleteFiles.Name = "chkDeleteFiles";
-			this.chkDeleteFiles.Size = new System.Drawing.Size(215, 17);
-			this.chkDeleteFiles.TabIndex = 0;
-			this.chkDeleteFiles.Text = "Option to delete files from Episode menu";
-			this.chkDeleteFiles.UseVisualStyleBackColor = true;
-			// 
-			// tabPage4
-			// 
-			this.tabPage4.Controls.Add(this.label92);
-			this.tabPage4.Controls.Add(this.udWideBannerQuality);
-			this.tabPage4.Controls.Add(this.label91);
-			this.tabPage4.Controls.Add(this.udPosterQuality);
-			this.tabPage4.Controls.Add(this.label21);
-			this.tabPage4.Controls.Add(this.label20);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(747, 544);
-			this.tabPage4.TabIndex = 4;
-			this.tabPage4.Text = "Online DB\'s";
-			this.tabPage4.UseVisualStyleBackColor = true;
-			// 
-			// label92
-			// 
-			this.label92.AutoSize = true;
-			this.label92.Location = new System.Drawing.Point(88, 194);
-			this.label92.Name = "label92";
-			this.label92.Size = new System.Drawing.Size(133, 13);
-			this.label92.TabIndex = 43;
-			this.label92.Text = "Image quality (Percentage)";
-			// 
-			// udWideBannerQuality
-			// 
-			this.udWideBannerQuality.Location = new System.Drawing.Point(31, 192);
-			this.udWideBannerQuality.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.udWideBannerQuality.Name = "udWideBannerQuality";
-			this.udWideBannerQuality.Size = new System.Drawing.Size(51, 20);
-			this.udWideBannerQuality.TabIndex = 42;
-			this.udWideBannerQuality.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-			// 
-			// label91
-			// 
-			this.label91.AutoSize = true;
-			this.label91.Location = new System.Drawing.Point(323, 192);
-			this.label91.Name = "label91";
-			this.label91.Size = new System.Drawing.Size(133, 13);
-			this.label91.TabIndex = 41;
-			this.label91.Text = "Image quality (Percentage)";
-			// 
-			// udPosterQuality
-			// 
-			this.udPosterQuality.Location = new System.Drawing.Point(266, 190);
-			this.udPosterQuality.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.udPosterQuality.Name = "udPosterQuality";
-			this.udPosterQuality.Size = new System.Drawing.Size(51, 20);
-			this.udPosterQuality.TabIndex = 40;
-			this.udPosterQuality.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label21.Location = new System.Drawing.Point(257, 161);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(49, 13);
-			this.label21.TabIndex = 31;
-			this.label21.Text = "Posters";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label20.Location = new System.Drawing.Point(17, 161);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(86, 13);
-			this.label20.TabIndex = 28;
-			this.label20.Text = "Wide Banners";
-			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.groupBox17);
+			this.tabPage3.Controls.Add(this.label92);
+			this.tabPage3.Controls.Add(this.udWideBannerQuality);
+			this.tabPage3.Controls.Add(this.label91);
+			this.tabPage3.Controls.Add(this.udPosterQuality);
+			this.tabPage3.Controls.Add(this.label21);
+			this.tabPage3.Controls.Add(this.label20);
 			this.tabPage3.Controls.Add(this.groupBox13);
 			this.tabPage3.Controls.Add(this.groupBox15);
 			this.tabPage3.Controls.Add(this.groupBox12);
-			this.tabPage3.Controls.Add(this.groupBox9);
-			this.tabPage3.Controls.Add(this.groupBox8);
-			this.tabPage3.Controls.Add(this.groupBox6);
 			this.tabPage3.Controls.Add(this.groupBox4);
 			this.tabPage3.Controls.Add(this.groupBox3);
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-			this.tabPage3.Size = new System.Drawing.Size(747, 544);
+			this.tabPage3.Size = new System.Drawing.Size(747, 478);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Display";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -1017,7 +796,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox13.Controls.Add(this.label8);
 			this.groupBox13.Controls.Add(this.label45);
 			this.groupBox13.Controls.Add(this.nudFindTimeout);
-			this.groupBox13.Location = new System.Drawing.Point(378, 219);
+			this.groupBox13.Location = new System.Drawing.Point(379, 120);
 			this.groupBox13.Name = "groupBox13";
 			this.groupBox13.Size = new System.Drawing.Size(349, 70);
 			this.groupBox13.TabIndex = 37;
@@ -1069,16 +848,15 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox15.Controls.Add(this.chkShowMissingGroups);
 			this.groupBox15.Controls.Add(this.chkShowMissing);
-			this.groupBox15.Controls.Add(this.chkRestricted);
 			this.groupBox15.Controls.Add(this.chkHideWatchedFiles);
 			this.groupBox15.Controls.Add(this.chkShowAvailableEpsOnly);
 			this.groupBox15.Controls.Add(this.chkHidePlot);
 			this.groupBox15.Controls.Add(this.label33);
 			this.groupBox15.Controls.Add(this.udWatched);
 			this.groupBox15.Controls.Add(this.label35);
-			this.groupBox15.Location = new System.Drawing.Point(377, 295);
+			this.groupBox15.Location = new System.Drawing.Point(378, 196);
 			this.groupBox15.Name = "groupBox15";
-			this.groupBox15.Size = new System.Drawing.Size(350, 201);
+			this.groupBox15.Size = new System.Drawing.Size(350, 165);
 			this.groupBox15.TabIndex = 22;
 			this.groupBox15.TabStop = false;
 			this.groupBox15.Text = "Other";
@@ -1102,16 +880,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.chkShowMissing.TabIndex = 29;
 			this.chkShowMissing.Text = "Show indicator for missing episodes";
 			this.chkShowMissing.UseVisualStyleBackColor = true;
-			// 
-			// chkRestricted
-			// 
-			this.chkRestricted.AutoSize = true;
-			this.chkRestricted.Location = new System.Drawing.Point(19, 166);
-			this.chkRestricted.Name = "chkRestricted";
-			this.chkRestricted.Size = new System.Drawing.Size(158, 17);
-			this.chkRestricted.TabIndex = 37;
-			this.chkRestricted.Text = "Hide Restricted (R18) series";
-			this.chkRestricted.UseVisualStyleBackColor = true;
 			// 
 			// chkHideWatchedFiles
 			// 
@@ -1190,7 +958,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox12.Controls.Add(this.label43);
 			this.groupBox12.Controls.Add(this.cboLabelStyleGroups);
 			this.groupBox12.Controls.Add(this.label44);
-			this.groupBox12.Location = new System.Drawing.Point(378, 117);
+			this.groupBox12.Location = new System.Drawing.Point(378, 18);
 			this.groupBox12.Name = "groupBox12";
 			this.groupBox12.Size = new System.Drawing.Size(350, 96);
 			this.groupBox12.TabIndex = 36;
@@ -1232,160 +1000,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label44.Size = new System.Drawing.Size(75, 13);
 			this.label44.TabIndex = 18;
 			this.label44.Text = "Groups/Series";
-			// 
-			// groupBox9
-			// 
-			this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox9.Controls.Add(this.btnAddSeriesFormat);
-			this.groupBox9.Controls.Add(this.cboSeriesFormat);
-			this.groupBox9.Controls.Add(this.txtFormatSeries);
-			this.groupBox9.Controls.Add(this.lblSeriesFormat);
-			this.groupBox9.Location = new System.Drawing.Point(22, 279);
-			this.groupBox9.Name = "groupBox9";
-			this.groupBox9.Size = new System.Drawing.Size(350, 115);
-			this.groupBox9.TabIndex = 12;
-			this.groupBox9.TabStop = false;
-			this.groupBox9.Text = "Series Display";
-			// 
-			// btnAddSeriesFormat
-			// 
-			this.btnAddSeriesFormat.Image = global::MyAnimePlugin3.Properties.Resources.Plus_10;
-			this.btnAddSeriesFormat.Location = new System.Drawing.Point(10, 58);
-			this.btnAddSeriesFormat.Name = "btnAddSeriesFormat";
-			this.btnAddSeriesFormat.Size = new System.Drawing.Size(22, 21);
-			this.btnAddSeriesFormat.TabIndex = 14;
-			this.btnAddSeriesFormat.UseVisualStyleBackColor = true;
-			// 
-			// cboSeriesFormat
-			// 
-			this.cboSeriesFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboSeriesFormat.FormattingEnabled = true;
-			this.cboSeriesFormat.Location = new System.Drawing.Point(38, 58);
-			this.cboSeriesFormat.Name = "cboSeriesFormat";
-			this.cboSeriesFormat.Size = new System.Drawing.Size(152, 21);
-			this.cboSeriesFormat.TabIndex = 15;
-			// 
-			// txtFormatSeries
-			// 
-			this.txtFormatSeries.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtFormatSeries.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtFormatSeries.Location = new System.Drawing.Point(11, 32);
-			this.txtFormatSeries.Name = "txtFormatSeries";
-			this.txtFormatSeries.Size = new System.Drawing.Size(315, 20);
-			this.txtFormatSeries.TabIndex = 13;
-			// 
-			// lblSeriesFormat
-			// 
-			this.lblSeriesFormat.AutoSize = true;
-			this.lblSeriesFormat.Location = new System.Drawing.Point(35, 91);
-			this.lblSeriesFormat.Name = "lblSeriesFormat";
-			this.lblSeriesFormat.Size = new System.Drawing.Size(35, 13);
-			this.lblSeriesFormat.TabIndex = 16;
-			this.lblSeriesFormat.Text = "label7";
-			// 
-			// groupBox8
-			// 
-			this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox8.Controls.Add(this.btnAddGroupFormat);
-			this.groupBox8.Controls.Add(this.cboGroupFormat);
-			this.groupBox8.Controls.Add(this.txtFormatGroup);
-			this.groupBox8.Controls.Add(this.lblGroupFormat2);
-			this.groupBox8.Location = new System.Drawing.Point(22, 400);
-			this.groupBox8.Name = "groupBox8";
-			this.groupBox8.Size = new System.Drawing.Size(350, 105);
-			this.groupBox8.TabIndex = 22;
-			this.groupBox8.TabStop = false;
-			this.groupBox8.Text = "Group Display";
-			// 
-			// btnAddGroupFormat
-			// 
-			this.btnAddGroupFormat.Image = global::MyAnimePlugin3.Properties.Resources.Plus_10;
-			this.btnAddGroupFormat.Location = new System.Drawing.Point(8, 50);
-			this.btnAddGroupFormat.Name = "btnAddGroupFormat";
-			this.btnAddGroupFormat.Size = new System.Drawing.Size(22, 21);
-			this.btnAddGroupFormat.TabIndex = 24;
-			this.btnAddGroupFormat.UseVisualStyleBackColor = true;
-			// 
-			// cboGroupFormat
-			// 
-			this.cboGroupFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboGroupFormat.FormattingEnabled = true;
-			this.cboGroupFormat.Location = new System.Drawing.Point(36, 50);
-			this.cboGroupFormat.Name = "cboGroupFormat";
-			this.cboGroupFormat.Size = new System.Drawing.Size(152, 21);
-			this.cboGroupFormat.TabIndex = 25;
-			// 
-			// txtFormatGroup
-			// 
-			this.txtFormatGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtFormatGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtFormatGroup.Location = new System.Drawing.Point(9, 24);
-			this.txtFormatGroup.Name = "txtFormatGroup";
-			this.txtFormatGroup.Size = new System.Drawing.Size(315, 20);
-			this.txtFormatGroup.TabIndex = 23;
-			// 
-			// lblGroupFormat2
-			// 
-			this.lblGroupFormat2.AutoSize = true;
-			this.lblGroupFormat2.Location = new System.Drawing.Point(33, 83);
-			this.lblGroupFormat2.Name = "lblGroupFormat2";
-			this.lblGroupFormat2.Size = new System.Drawing.Size(35, 13);
-			this.lblGroupFormat2.TabIndex = 27;
-			this.lblGroupFormat2.Text = "label7";
-			// 
-			// groupBox6
-			// 
-			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox6.Controls.Add(this.cboLangEpisode);
-			this.groupBox6.Controls.Add(this.label37);
-			this.groupBox6.Controls.Add(this.cboLangSeries);
-			this.groupBox6.Controls.Add(this.label36);
-			this.groupBox6.Location = new System.Drawing.Point(378, 18);
-			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(350, 93);
-			this.groupBox6.TabIndex = 17;
-			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "Display Language for";
-			// 
-			// cboLangEpisode
-			// 
-			this.cboLangEpisode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboLangEpisode.FormattingEnabled = true;
-			this.cboLangEpisode.Location = new System.Drawing.Point(71, 55);
-			this.cboLangEpisode.Name = "cboLangEpisode";
-			this.cboLangEpisode.Size = new System.Drawing.Size(266, 21);
-			this.cboLangEpisode.TabIndex = 21;
-			// 
-			// label37
-			// 
-			this.label37.AutoSize = true;
-			this.label37.Location = new System.Drawing.Point(15, 58);
-			this.label37.Name = "label37";
-			this.label37.Size = new System.Drawing.Size(50, 13);
-			this.label37.TabIndex = 20;
-			this.label37.Text = "Episodes";
-			// 
-			// cboLangSeries
-			// 
-			this.cboLangSeries.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboLangSeries.FormattingEnabled = true;
-			this.cboLangSeries.Location = new System.Drawing.Point(71, 29);
-			this.cboLangSeries.Name = "cboLangSeries";
-			this.cboLangSeries.Size = new System.Drawing.Size(266, 21);
-			this.cboLangSeries.TabIndex = 19;
-			// 
-			// label36
-			// 
-			this.label36.AutoSize = true;
-			this.label36.Location = new System.Drawing.Point(15, 32);
-			this.label36.Name = "label36";
-			this.label36.Size = new System.Drawing.Size(36, 13);
-			this.label36.TabIndex = 18;
-			this.label36.Text = "Series";
 			// 
 			// groupBox4
 			// 
@@ -1516,14 +1130,13 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage1.Controls.Add(this.txtPluginName);
 			this.tabPage1.Controls.Add(this.txtImagesLocation);
 			this.tabPage1.Controls.Add(this.label49);
-			this.tabPage1.Controls.Add(this.groupBox17);
 			this.tabPage1.Controls.Add(this.cboImagesLocation);
 			this.tabPage1.Controls.Add(this.btnImagesLocation);
 			this.tabPage1.Controls.Add(this.label46);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(747, 544);
+			this.tabPage1.Size = new System.Drawing.Size(747, 478);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Main";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -1671,7 +1284,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// ManualLink
 			// 
 			this.ManualLink.AutoSize = true;
-			this.ManualLink.Location = new System.Drawing.Point(535, 489);
+			this.ManualLink.Location = new System.Drawing.Point(528, 385);
 			this.ManualLink.Name = "ManualLink";
 			this.ManualLink.Size = new System.Drawing.Size(201, 13);
 			this.ManualLink.TabIndex = 44;
@@ -1682,7 +1295,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// label62
 			// 
 			this.label62.AutoSize = true;
-			this.label62.Location = new System.Drawing.Point(490, 489);
+			this.label62.Location = new System.Drawing.Point(483, 385);
 			this.label62.Name = "label62";
 			this.label62.Size = new System.Drawing.Size(45, 13);
 			this.label62.TabIndex = 43;
@@ -1691,7 +1304,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// ForumLink
 			// 
 			this.ForumLink.AutoSize = true;
-			this.ForumLink.Location = new System.Drawing.Point(275, 489);
+			this.ForumLink.Location = new System.Drawing.Point(268, 385);
 			this.ForumLink.Name = "ForumLink";
 			this.ForumLink.Size = new System.Drawing.Size(131, 13);
 			this.ForumLink.TabIndex = 42;
@@ -1702,7 +1315,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// label61
 			// 
 			this.label61.AutoSize = true;
-			this.label61.Location = new System.Drawing.Point(237, 489);
+			this.label61.Location = new System.Drawing.Point(230, 385);
 			this.label61.Name = "label61";
 			this.label61.Size = new System.Drawing.Size(39, 13);
 			this.label61.TabIndex = 41;
@@ -1711,7 +1324,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// WebsiteLink
 			// 
 			this.WebsiteLink.AutoSize = true;
-			this.WebsiteLink.Location = new System.Drawing.Point(64, 489);
+			this.WebsiteLink.Location = new System.Drawing.Point(57, 385);
 			this.WebsiteLink.Name = "WebsiteLink";
 			this.WebsiteLink.Size = new System.Drawing.Size(100, 13);
 			this.WebsiteLink.TabIndex = 40;
@@ -1722,7 +1335,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// label60
 			// 
 			this.label60.AutoSize = true;
-			this.label60.Location = new System.Drawing.Point(16, 489);
+			this.label60.Location = new System.Drawing.Point(9, 385);
 			this.label60.Name = "label60";
 			this.label60.Size = new System.Drawing.Size(51, 13);
 			this.label60.TabIndex = 39;
@@ -1755,16 +1368,128 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label49.TabIndex = 37;
 			this.label49.Text = "Plugin Name";
 			// 
+			// cboImagesLocation
+			// 
+			this.cboImagesLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboImagesLocation.FormattingEnabled = true;
+			this.cboImagesLocation.Location = new System.Drawing.Point(110, 33);
+			this.cboImagesLocation.Name = "cboImagesLocation";
+			this.cboImagesLocation.Size = new System.Drawing.Size(98, 21);
+			this.cboImagesLocation.TabIndex = 34;
+			// 
+			// btnImagesLocation
+			// 
+			this.btnImagesLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnImagesLocation.Image = global::MyAnimePlugin3.Properties.Resources.folder_10;
+			this.btnImagesLocation.Location = new System.Drawing.Point(705, 31);
+			this.btnImagesLocation.Name = "btnImagesLocation";
+			this.btnImagesLocation.Size = new System.Drawing.Size(28, 23);
+			this.btnImagesLocation.TabIndex = 33;
+			this.btnImagesLocation.UseVisualStyleBackColor = true;
+			// 
+			// label46
+			// 
+			this.label46.AutoSize = true;
+			this.label46.Location = new System.Drawing.Point(16, 35);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(88, 13);
+			this.label46.TabIndex = 31;
+			this.label46.Text = "Images Location:";
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Controls.Add(this.tabPage11);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(5, 5);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(755, 504);
+			this.tabControl1.TabIndex = 0;
+			// 
+			// label92
+			// 
+			this.label92.AutoSize = true;
+			this.label92.Location = new System.Drawing.Point(79, 408);
+			this.label92.Name = "label92";
+			this.label92.Size = new System.Drawing.Size(133, 13);
+			this.label92.TabIndex = 49;
+			this.label92.Text = "Image quality (Percentage)";
+			// 
+			// udWideBannerQuality
+			// 
+			this.udWideBannerQuality.Location = new System.Drawing.Point(22, 406);
+			this.udWideBannerQuality.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.udWideBannerQuality.Name = "udWideBannerQuality";
+			this.udWideBannerQuality.Size = new System.Drawing.Size(51, 20);
+			this.udWideBannerQuality.TabIndex = 48;
+			this.udWideBannerQuality.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			// 
+			// label91
+			// 
+			this.label91.AutoSize = true;
+			this.label91.Location = new System.Drawing.Point(318, 408);
+			this.label91.Name = "label91";
+			this.label91.Size = new System.Drawing.Size(133, 13);
+			this.label91.TabIndex = 47;
+			this.label91.Text = "Image quality (Percentage)";
+			// 
+			// udPosterQuality
+			// 
+			this.udPosterQuality.Location = new System.Drawing.Point(261, 406);
+			this.udPosterQuality.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.udPosterQuality.Name = "udPosterQuality";
+			this.udPosterQuality.Size = new System.Drawing.Size(51, 20);
+			this.udPosterQuality.TabIndex = 46;
+			this.udPosterQuality.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Location = new System.Drawing.Point(258, 377);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(49, 13);
+			this.label21.TabIndex = 45;
+			this.label21.Text = "Posters";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.Location = new System.Drawing.Point(18, 377);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(86, 13);
+			this.label20.TabIndex = 44;
+			this.label20.Text = "Wide Banners";
+			// 
 			// groupBox17
 			// 
 			this.groupBox17.Controls.Add(this.cboSubtitleLanguage);
 			this.groupBox17.Controls.Add(this.cboAudioLanguage);
 			this.groupBox17.Controls.Add(this.label47);
 			this.groupBox17.Controls.Add(this.label48);
-			this.groupBox17.Location = new System.Drawing.Point(399, 395);
+			this.groupBox17.Location = new System.Drawing.Point(21, 279);
 			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(334, 82);
-			this.groupBox17.TabIndex = 36;
+			this.groupBox17.Size = new System.Drawing.Size(350, 82);
+			this.groupBox17.TabIndex = 50;
 			this.groupBox17.TabStop = false;
 			this.groupBox17.Text = "Language";
 			// 
@@ -1806,63 +1531,11 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label48.TabIndex = 41;
 			this.label48.Text = "Default Audio Language:";
 			// 
-			// cboImagesLocation
-			// 
-			this.cboImagesLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboImagesLocation.FormattingEnabled = true;
-			this.cboImagesLocation.Location = new System.Drawing.Point(110, 33);
-			this.cboImagesLocation.Name = "cboImagesLocation";
-			this.cboImagesLocation.Size = new System.Drawing.Size(98, 21);
-			this.cboImagesLocation.TabIndex = 34;
-			// 
-			// btnImagesLocation
-			// 
-			this.btnImagesLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnImagesLocation.Image = global::MyAnimePlugin3.Properties.Resources.folder_10;
-			this.btnImagesLocation.Location = new System.Drawing.Point(705, 31);
-			this.btnImagesLocation.Name = "btnImagesLocation";
-			this.btnImagesLocation.Size = new System.Drawing.Size(28, 23);
-			this.btnImagesLocation.TabIndex = 33;
-			this.btnImagesLocation.UseVisualStyleBackColor = true;
-			// 
-			// label46
-			// 
-			this.label46.AutoSize = true;
-			this.label46.Location = new System.Drawing.Point(16, 35);
-			this.label46.Name = "label46";
-			this.label46.Size = new System.Drawing.Size(88, 13);
-			this.label46.TabIndex = 31;
-			this.label46.Text = "Images Location:";
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage3);
-			this.tabControl1.Controls.Add(this.tabPage4);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Controls.Add(this.tabPage11);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.Location = new System.Drawing.Point(5, 5);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(755, 570);
-			this.tabControl1.TabIndex = 0;
-			// 
-			// chkTorrentPreferOwnGroups
-			// 
-			this.chkTorrentPreferOwnGroups.AutoSize = true;
-			this.chkTorrentPreferOwnGroups.Location = new System.Drawing.Point(9, 160);
-			this.chkTorrentPreferOwnGroups.Name = "chkTorrentPreferOwnGroups";
-			this.chkTorrentPreferOwnGroups.Size = new System.Drawing.Size(362, 17);
-			this.chkTorrentPreferOwnGroups.TabIndex = 61;
-			this.chkTorrentPreferOwnGroups.Text = "Prefer the release groups I am collecting when downloading an episode";
-			this.chkTorrentPreferOwnGroups.UseVisualStyleBackColor = true;
-			// 
 			// frmConfig
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(765, 580);
+			this.ClientSize = new System.Drawing.Size(765, 514);
 			this.Controls.Add(this.tabControl1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Name = "frmConfig";
@@ -1880,16 +1553,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox19.PerformLayout();
 			this.groupBox18.ResumeLayout(false);
 			this.groupBox18.PerformLayout();
-			this.tabPage2.ResumeLayout(false);
-			this.groupBox16.ResumeLayout(false);
-			this.groupBox16.PerformLayout();
-			this.groupBox20.ResumeLayout(false);
-			this.groupBox20.PerformLayout();
-			this.tabPage4.ResumeLayout(false);
-			this.tabPage4.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).EndInit();
 			this.tabPage3.ResumeLayout(false);
+			this.tabPage3.PerformLayout();
 			this.groupBox13.ResumeLayout(false);
 			this.groupBox13.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudFindTimeout)).EndInit();
@@ -1898,12 +1563,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			((System.ComponentModel.ISupportInitialize)(this.udWatched)).EndInit();
 			this.groupBox12.ResumeLayout(false);
 			this.groupBox12.PerformLayout();
-			this.groupBox9.ResumeLayout(false);
-			this.groupBox9.PerformLayout();
-			this.groupBox8.ResumeLayout(false);
-			this.groupBox8.PerformLayout();
-			this.groupBox6.ResumeLayout(false);
-			this.groupBox6.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -1914,9 +1573,11 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).EndInit();
 			this.groupBox17.ResumeLayout(false);
 			this.groupBox17.PerformLayout();
-			this.tabControl1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -1982,11 +1643,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.TextBox txtPluginName;
 		private System.Windows.Forms.TextBox txtImagesLocation;
 		private System.Windows.Forms.Label label49;
-		private System.Windows.Forms.GroupBox groupBox17;
-		private System.Windows.Forms.ComboBox cboSubtitleLanguage;
-		private System.Windows.Forms.ComboBox cboAudioLanguage;
-		private System.Windows.Forms.Label label47;
-		private System.Windows.Forms.Label label48;
 		private System.Windows.Forms.ComboBox cboImagesLocation;
 		private System.Windows.Forms.Button btnImagesLocation;
 		private System.Windows.Forms.Label label46;
@@ -1999,7 +1655,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.GroupBox groupBox15;
 		private System.Windows.Forms.CheckBox chkShowMissingGroups;
 		private System.Windows.Forms.CheckBox chkShowMissing;
-		private System.Windows.Forms.CheckBox chkRestricted;
 		private System.Windows.Forms.CheckBox chkHideWatchedFiles;
 		private System.Windows.Forms.CheckBox chkShowAvailableEpsOnly;
 		private System.Windows.Forms.CheckBox chkHidePlot;
@@ -2011,21 +1666,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label43;
 		private System.Windows.Forms.ComboBox cboLabelStyleGroups;
 		private System.Windows.Forms.Label label44;
-		private System.Windows.Forms.GroupBox groupBox9;
-		private System.Windows.Forms.Button btnAddSeriesFormat;
-		private System.Windows.Forms.ComboBox cboSeriesFormat;
-		private System.Windows.Forms.TextBox txtFormatSeries;
-		private System.Windows.Forms.Label lblSeriesFormat;
-		private System.Windows.Forms.GroupBox groupBox8;
-		private System.Windows.Forms.Button btnAddGroupFormat;
-		private System.Windows.Forms.ComboBox cboGroupFormat;
-		private System.Windows.Forms.TextBox txtFormatGroup;
-		private System.Windows.Forms.Label lblGroupFormat2;
-		private System.Windows.Forms.GroupBox groupBox6;
-		private System.Windows.Forms.ComboBox cboLangEpisode;
-		private System.Windows.Forms.Label label37;
-		private System.Windows.Forms.ComboBox cboLangSeries;
-		private System.Windows.Forms.Label label36;
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.Button btnAddFileFormat;
 		private System.Windows.Forms.ComboBox cboFileFormat;
@@ -2037,24 +1677,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.ComboBox cboEpisodeFormat;
 		private System.Windows.Forms.TextBox txtFormatEp;
 		private System.Windows.Forms.Label lblDisplayEpsDesc;
-		private System.Windows.Forms.TabPage tabPage4;
-		private System.Windows.Forms.Label label92;
-		private System.Windows.Forms.NumericUpDown udWideBannerQuality;
-		private System.Windows.Forms.Label label91;
-		private System.Windows.Forms.NumericUpDown udPosterQuality;
-		private System.Windows.Forms.Label label21;
-		private System.Windows.Forms.Label label20;
-		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.GroupBox groupBox16;
-		private System.Windows.Forms.Label label80;
-		private System.Windows.Forms.TextBox txtFfdshowNotificationsLockTime;
-		private System.Windows.Forms.CheckBox chkFfdshowNotificationsLock;
-		private System.Windows.Forms.TextBox txtFfdshowNotificationsAutoCloseTime;
-		private System.Windows.Forms.Label label82;
-		private System.Windows.Forms.CheckBox chkFfdshowNotificationsAutoClose;
-		private System.Windows.Forms.CheckBox chkFfdshowNotificationsShow;
-		private System.Windows.Forms.GroupBox groupBox20;
-		private System.Windows.Forms.CheckBox chkDeleteFiles;
 		private System.Windows.Forms.TabPage tabPage11;
 		private System.Windows.Forms.GroupBox groupBox19;
 		private System.Windows.Forms.Label label59;
@@ -2077,5 +1699,16 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.TextBox txtUTorrentAddress;
 		private System.Windows.Forms.Label label54;
 		private System.Windows.Forms.CheckBox chkTorrentPreferOwnGroups;
+		private System.Windows.Forms.Label label92;
+		private System.Windows.Forms.NumericUpDown udWideBannerQuality;
+		private System.Windows.Forms.Label label91;
+		private System.Windows.Forms.NumericUpDown udPosterQuality;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.GroupBox groupBox17;
+		private System.Windows.Forms.ComboBox cboSubtitleLanguage;
+		private System.Windows.Forms.ComboBox cboAudioLanguage;
+		private System.Windows.Forms.Label label47;
+		private System.Windows.Forms.Label label48;
     }
 }

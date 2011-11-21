@@ -125,7 +125,7 @@ namespace MyAnimePlugin3
 				}
 				#endregion
 
-				Play(timeMovieStopped, null, null);
+				Play(timeMovieStopped, fileToPlay.DefaultAudioLanguage, fileToPlay.DefaultSubtitleLanguage);
 				return true;
 			}
 			catch (Exception ex)
@@ -266,9 +266,8 @@ namespace MyAnimePlugin3
                     }
                 }*/
 
-				//TODO
-                //Play(timeMovieStopped, curEpisode.DefaultAudioLanguage, curEpisode.DefaultSubtitleLanguage);
-				Play(timeMovieStopped, "", "");
+                Play(timeMovieStopped, curEpisode.DefaultAudioLanguage, curEpisode.DefaultSubtitleLanguage);
+				//Play(timeMovieStopped, "", "");
                 return true;
             }
             catch (Exception e)

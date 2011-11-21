@@ -30,10 +30,6 @@ namespace MyAnimePlugin3
 		//[SkinControlAttribute(3)] protected GUIButtonControl btnLayout = null;
 		[SkinControlAttribute(4)]
 		protected GUIButtonControl btnSettings = null;
-		[SkinControlAttribute(6)]
-		protected GUIButtonControl btnRunImport = null;
-		[SkinControlAttribute(7)]
-		protected GUIButtonControl btnImportCDDVD = null;
 		[SkinControlAttribute(11)]
 		protected GUIButtonControl btnChangeLayout = null;
 		[SkinControlAttribute(12)]
@@ -153,7 +149,6 @@ namespace MyAnimePlugin3
 		private List<GUIListItem> itemsForDelayedImgLoading = null;
 
 		private BackgroundWorker workerFacade = null;
-		public static BackgroundWorker workerScan = new BackgroundWorker(); // Changed construction, AdminWindow Null Pointer if AdminWindow created first by the plugin manager.
 		private BackgroundWorker downloadImagesWorker = new BackgroundWorker();
 		public static ImageDownloader imageHelper = null;
 
@@ -214,12 +209,6 @@ namespace MyAnimePlugin3
 			fanartTexture = new AsyncImageResource();
 			fanartTexture.Property = "#Anime3.Fanart.1";
 			fanartTexture.Delay = artworkDelay;
-
-			
-
-			workerScan.WorkerReportsProgress = true;
-			workerScan.WorkerSupportsCancellation = true;
-			workerScan.DoWork += new DoWorkEventHandler(workerScan_DoWork);
 
 			//searching
 			searchTimer = new System.Timers.Timer();
@@ -2084,7 +2073,6 @@ namespace MyAnimePlugin3
 				string labelsGroup = string.Format("Default Label Style - Groups/Series");
 				string labelsEps = string.Format("Default Label Style - Episodes");
 				string findFilter = string.Format("Find - Only Show Matches ({0})", settings.FindFilter ? "On" : "Off");
-				string r18 = string.Format("Hide R18 Content ({0})", settings.HideRestrictedSeries ? "On" : "Off");
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
@@ -2093,7 +2081,6 @@ namespace MyAnimePlugin3
 				dlg.Add(labelsGroup);
 				dlg.Add(labelsEps);
 				dlg.Add(findFilter);
-				dlg.Add(r18);
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -2128,10 +2115,6 @@ namespace MyAnimePlugin3
 							SaveOrRestoreFacadeItems(false);
 							DoSearch(m_Facade.SelectedListItemIndex);
 						}
-						break;
-					case 6:
-						settings.HideRestrictedSeries = !settings.HideRestrictedSeries;
-						LoadFacade();
 						break;
 					default:
 						//close menu
@@ -2335,14 +2318,6 @@ namespace MyAnimePlugin3
 				return;
 			}
 
-			if (this.btnImportCDDVD != null && control == this.btnImportCDDVD)
-			{
-				//TODO
-				/*
-				vidHasher.ImportCDMedia();
-				return;*/
-			}
-
 			if (this.btnWindowUtilities != null && control == this.btnWindowUtilities)
 			{
 				SetGlobalIDs();
@@ -2431,15 +2406,6 @@ namespace MyAnimePlugin3
 
 				this.btnSettings.IsFocused = false;
 
-				return;
-			}
-
-			if (this.btnRunImport != null && control == this.btnRunImport)
-			{
-				if (!workerScan.IsBusy)
-					workerScan.RunWorkerAsync();
-
-				this.btnRunImport.IsFocused = false;
 				return;
 			}
 
@@ -4411,9 +4377,6 @@ namespace MyAnimePlugin3
 				dlg.Add("Remove File From This Episode");
 				dlg.Add("Download this epsiode");
 
-				if (settings.MenuDeleteFiles)
-					dlg.Add("Delete associated files");
-
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 				selectedLabel = dlg.SelectedLabel;
@@ -4510,10 +4473,8 @@ namespace MyAnimePlugin3
 						}
 					case 7: // remove associated file
 						{
-							//TODO
-							/*
-							List<FileLocal> fileLocalList = episode.FileLocals;
-							if (fileLocalList.Count == 0)
+							List<VideoDetailedVM> vidList = episode.FilesForEpisode;
+							if (vidList.Count == 0)
 							{
 								GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
 								if (null != dlgOK)
@@ -4531,38 +4492,27 @@ namespace MyAnimePlugin3
 							dlg2.Reset();
 							dlg2.SetHeading("Select File");
 
-							foreach (FileLocal fl in fileLocalList)
-								dlg2.Add(Path.GetFileName(fl.FileNameFull) + " - " + Path.GetDirectoryName(fl.FileNameFull));
+							foreach (VideoDetailedVM fl in vidList)
+								dlg2.Add(Path.GetFileName(fl.FileName));
 
 							dlg2.DoModal(GUIWindowManager.ActiveWindow);
 
 							if (dlg2.SelectedId > 0)
 							{
-								FileLocal selectedFile = fileLocalList[dlg2.SelectedId - 1];
-								CrossRef_Episode_FileHash.Delete(selectedFile, episode.AnimeSeriesID);
+								VideoDetailedVM selectedFile = vidList[dlg2.SelectedId - 1];
+								string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveAssociationOnFile(selectedFile.VideoLocalID, episode.AniDB_EpisodeID);
+								if (!string.IsNullOrEmpty(res))
+									Utils.DialogMsg("Error", res);
+
 								LoadFacade();
 								return false;
-							}*/
+							}
 							break;
 						}
 					case 8:
 						DownloadHelper.SearchEpisode(curAnimeEpisode);
 						return false;
 
-					case 9:
-
-						//TODO
-						/*
-						if (settings.MenuDeleteFiles)
-						{
-							PromptDeleteFilesForEpisode(curAnimeEpisode);
-							return false;
-						}
-						else if (settings.SendMALUpdates)
-						{
-							DeleteMALAssociationCache(curAnimeEpisode);
-							return false;
-						}*/
 						break;
 					default:
 						//close menu
@@ -4795,8 +4745,7 @@ namespace MyAnimePlugin3
 					}
 				}
 
-				//TODO
-				/*if (selectedLabel == mnuAudioLanguage)
+				if (selectedLabel == mnuAudioLanguage)
 				{
 					String language = equalSeries.DefaultAudioLanguage;
 					if (Utils.DialogLanguage(ref language, false))
@@ -4816,7 +4765,7 @@ namespace MyAnimePlugin3
 						equalSeries.Save();
 						return false;
 					}
-				}*/
+				}
 
 				if (selectedLabel == mnuDelete)
 				{
@@ -5472,26 +5421,24 @@ namespace MyAnimePlugin3
 						return true;
 					case 1:
 						{
-							//TODO
-							/*String language = ser.DefaultAudioLanguage;
+							String language = ser.DefaultAudioLanguage;
 							if (Utils.DialogLanguage(ref language, false))
 							{
 								ser.DefaultAudioLanguage = language;
 								ser.Save();
 								return false;
-							}*/
+							}
 						}
 						break;
 					case 2:
 						{
-							//TODO
-							/*String language = ser.DefaultSubtitleLanguage;
+							String language = ser.DefaultSubtitleLanguage;
 							if (Utils.DialogLanguage(ref language, true))
 							{
 								ser.DefaultSubtitleLanguage = language;
 								ser.Save();
 								return false;
-							}*/
+							}
 						}
 						break;
 					case 3:
@@ -5622,19 +5569,6 @@ namespace MyAnimePlugin3
 		{
 			SetGlobalIDs();
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
-		}
-
-		void workerScan_DoWork(object sender, DoWorkEventArgs e)
-		{
-			try
-			{
-				//TODO - call JMM server import
-
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write("Error: {0}", ex);
-			}
 		}
 	}
 

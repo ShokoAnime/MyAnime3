@@ -54,6 +54,24 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
+		public string DefaultAudioLanguage
+		{
+			get
+			{
+				if (AnimeSeries == null) return string.Empty;
+				return AnimeSeries.DefaultAudioLanguage;
+			}
+		}
+
+		public string DefaultSubtitleLanguage
+		{
+			get
+			{
+				if (AnimeSeries == null) return string.Empty;
+				return AnimeSeries.DefaultSubtitleLanguage;
+			}
+		}
+
 		public bool Watched
 		{
 			get { return IsWatched == 1; }

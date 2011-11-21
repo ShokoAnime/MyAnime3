@@ -367,5 +367,38 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			Populate(contract);
 		}
+
+		public bool Save()
+		{
+			try
+			{
+				JMMServerBinary.Contract_AnimeSeries_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.SaveSeries(this.ToContract(),
+					JMMServerVM.Instance.CurrentUser.JMMUserID);
+				if (!string.IsNullOrEmpty(response.ErrorMessage))
+					return false;
+				else
+				{
+					this.Populate(response.AnimeSeries);
+					return true;
+				}
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ex.ToString());
+				return false;
+			}
+		}
+
+		public JMMServerBinary.Contract_AnimeSeries_Save ToContract()
+		{
+			JMMServerBinary.Contract_AnimeSeries_Save contract = new JMMServerBinary.Contract_AnimeSeries_Save();
+			contract.AniDB_ID = this.AniDB_ID;
+			contract.AnimeGroupID = this.AnimeGroupID;
+			contract.AnimeSeriesID = this.AnimeSeriesID;
+			contract.DefaultAudioLanguage = this.DefaultAudioLanguage;
+			contract.DefaultSubtitleLanguage = this.DefaultSubtitleLanguage;
+
+			return contract;
+		}
 	}
 }

@@ -108,5 +108,27 @@ namespace MyAnimePlugin3.ViewModel
 
 			return eps;
 		}
+
+		public string DefaultAudioLanguage
+		{
+			get
+			{
+				List<AnimeEpisodeVM> eps = GetEpisodes();
+				if (eps.Count == 0) return string.Empty;
+
+				return eps[0].DefaultAudioLanguage;
+			}
+		}
+
+		public string DefaultSubtitleLanguage
+		{
+			get
+			{
+				List<AnimeEpisodeVM> eps = GetEpisodes();
+				if (eps.Count == 0) return string.Empty;
+
+				return eps[0].DefaultSubtitleLanguage;
+			}
+		}
 	}
 }

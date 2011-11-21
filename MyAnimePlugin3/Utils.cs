@@ -676,10 +676,7 @@ namespace MyAnimePlugin3
 		public static bool DialogLanguage(ref String language, bool allowNone)
 		{
 			//get list of languages (sorted by name)
-			List<string> lstLanguages = new List<string>();
-			foreach (System.Globalization.CultureInfo cultureInformation in System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.NeutralCultures))
-				lstLanguages.Add(cultureInformation.EnglishName);
-			lstLanguages.Sort(StringComparer.OrdinalIgnoreCase);
+			List<string> lstLanguages = Utils.GetAllAudioSubtitleLanaguages();
 
 			//show the selection dialog
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
@@ -881,6 +878,32 @@ namespace MyAnimePlugin3
 				Directory.CreateDirectory(filePath);
 
 			return filePath;
+		}
+
+		public static List<string> GetAllAudioSubtitleLanaguages()
+		{
+			List<string> lstPrefLanguages = new List<string>();
+			List<string> lstLanguages = new List<string>();
+			foreach (System.Globalization.CultureInfo cultureInformation in System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.NeutralCultures))
+			{
+				if (cultureInformation.ThreeLetterISOLanguageName.Equals("eng", StringComparison.InvariantCultureIgnoreCase) ||
+					cultureInformation.ThreeLetterISOLanguageName.Equals("jpn", StringComparison.InvariantCultureIgnoreCase))
+				{
+					lstPrefLanguages.Add(cultureInformation.EnglishName);
+				}
+				else
+				{
+					lstLanguages.Add(cultureInformation.EnglishName);
+				}
+			}
+
+			lstLanguages.Sort(StringComparer.OrdinalIgnoreCase);
+
+			// add back preferred languages
+			foreach (string lan in lstPrefLanguages)
+				lstLanguages.Insert(0, lan);
+
+			return lstLanguages;
 		}
 	}
 }

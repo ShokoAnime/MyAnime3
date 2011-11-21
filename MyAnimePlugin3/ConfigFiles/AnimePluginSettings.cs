@@ -120,11 +120,6 @@ namespace MyAnimePlugin3
 
 		public RenamingType fileRenameType = RenamingType.Raw;
 		public string EpisodeDisplayFormat = "";
-        public string SeriesDisplayFormat = "";
-		public string GroupDisplayFormat = "";
-
-		public RenamingLanguage DefaultSeriesLanguage = RenamingLanguage.Romaji;
-		public RenamingLanguage DefaultEpisodeLanguage = RenamingLanguage.English;
 
 		public View LastView = null;
 		public ViewClassification LastViewClassification = ViewClassification.Views;
@@ -148,7 +143,6 @@ namespace MyAnimePlugin3
 		public View.eLabelStyleGroups LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
 		public View.eLabelStyleEpisodes LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsDate;
 
-		public bool HideRestrictedSeries = true;
 		public bool MenuDeleteFiles = false;
 
 		public string PluginName = "My Anime 3";
@@ -171,12 +165,6 @@ namespace MyAnimePlugin3
 		public List<string> TorrentSources = new List<string>();
 
 		public bool TorrentPreferOwnGroups = true;
-
-        public bool FfdshowNotificationsShow = true;
-        public bool FfdshowNotificationsAutoClose = true;
-        public bool FfdshowNotificationsLock = true;
-        public int FfdshowNotificationsAutoCloseTime = 3000;
-        public int FfdshowNotificationsLockTime = 5000;
 
 		public int PosterSizePct = 50; // percent of poster size
 		public int BannerSizePct = 50; // percent of banner size
@@ -330,20 +318,9 @@ namespace MyAnimePlugin3
 
 			EpisodeDisplayFormat = xmlreader.GetValueAsString("Anime2", "EpisodeDisplayFormat", @"<EpNo>: <EpName>");
             fileSelectionDisplayFormat = xmlreader.GetValueAsString("Anime2", "FileSelectionDisplayFormat", @"<AnGroupShort> - <FileRes> (<FileSource>)");
-			SeriesDisplayFormat = xmlreader.GetValueAsString("Anime2", "SeriesDisplayFormat", @"<SeriesName>");
-			GroupDisplayFormat = xmlreader.GetValueAsString("Anime2", "GroupDisplayFormat", @"<GroupName>");
 
 			ShowMissing = GetBooleanSetting(ref xmlreader, "ShowMissing", true);
 			ShowMissingMyGroupsOnly = GetBooleanSetting(ref xmlreader, "ShowMissingMyGroupsOnly", false);
-			
-
-			string seriesLang = "";
-			seriesLang = xmlreader.GetValueAsString("Anime2", "DefaultSeriesLanguage", "1");
-			DefaultSeriesLanguage = (RenamingLanguage)int.Parse(seriesLang);
-
-			string epLang = "";
-			epLang = xmlreader.GetValueAsString("Anime2", "DefaultEpisodeLanguage", "2");
-			DefaultEpisodeLanguage = (RenamingLanguage)int.Parse(epLang);
 
 			string viewMode = "";
 			viewMode = xmlreader.GetValueAsString("Anime3", "LastGroupViewMode", "0");
@@ -397,12 +374,6 @@ namespace MyAnimePlugin3
 				BannerSizePct = tmpBanner;
 			else
 				BannerSizePct = 50;
-
-			FfdshowNotificationsShow = GetBooleanSetting(ref xmlreader, "FfdshowNotificationsShow", true);
-			FfdshowNotificationsAutoClose = GetBooleanSetting(ref xmlreader, "FfdshowNotificationsAutoClose", true);
-			FfdshowNotificationsLock = GetBooleanSetting(ref xmlreader, "FfdshowNotificationsLock", true);
-            FfdshowNotificationsAutoCloseTime = int.Parse(xmlreader.GetValueAsString("Anime2", "FfdshowNotificationsAutoCloseTime", "3000"));
-            FfdshowNotificationsLockTime = int.Parse(xmlreader.GetValueAsString("Anime2", "FfdshowNotificationsLockTime", "5000"));
 
 
 			xmlreader.Dispose();
@@ -465,9 +436,6 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "FindStartWord", FindStartWord ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "FindFilter", FindFilter ? "1" : "0");
 
-				xmlwriter.SetValue("Anime3", "DefaultSeriesLanguage", ((int)DefaultSeriesLanguage).ToString());
-				xmlwriter.SetValue("Anime3", "DefaultEpisodeLanguage", ((int)DefaultEpisodeLanguage).ToString());
-
 				xmlwriter.SetValue("Anime3", "LastGroupViewMode", ((int)LastGroupViewMode).ToString());
 				xmlwriter.SetValue("Anime3", "LastFanartViewMode", ((int)LastFanartViewMode).ToString());
 				xmlwriter.SetValue("Anime3", "LastPosterViewMode", ((int)LastPosterViewMode).ToString());
@@ -476,22 +444,13 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "ShowOnlyAvailableEpisodes", ShowOnlyAvailableEpisodes ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "HidePlot", HidePlot ? "1" : "0");
 
-				xmlwriter.SetValue("Anime3", "HideRestrictedSeries", HideRestrictedSeries ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "MenuDeleteFiles", MenuDeleteFiles ? "1" : "0");
 
 				xmlwriter.SetValue("Anime3", "PosterSizePct", PosterSizePct.ToString());
 				xmlwriter.SetValue("Anime3", "BannerSizePct", BannerSizePct.ToString());
 
-				xmlwriter.SetValue("Anime3", "FfdshowNotificationsShow", FfdshowNotificationsShow ? "1" : "0");
-				xmlwriter.SetValue("Anime3", "FfdshowNotificationsAutoClose", FfdshowNotificationsAutoClose ? "1" : "0");
-				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLock", FfdshowNotificationsLock ? "1" : "0");
-				xmlwriter.SetValue("Anime3", "FfdshowNotificationsAutoCloseTime", ((int)FfdshowNotificationsAutoCloseTime).ToString());
-				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLockTime", ((int)FfdshowNotificationsLockTime).ToString());
-
 				xmlwriter.SetValue("Anime3", "EpisodeDisplayFormat", EpisodeDisplayFormat);
 				xmlwriter.SetValue("Anime3", "FileSelectionDisplayFormat", fileSelectionDisplayFormat);
-				xmlwriter.SetValue("Anime3", "SeriesDisplayFormat", SeriesDisplayFormat);
-				xmlwriter.SetValue("Anime3", "GroupDisplayFormat", GroupDisplayFormat);
 				
 
 				

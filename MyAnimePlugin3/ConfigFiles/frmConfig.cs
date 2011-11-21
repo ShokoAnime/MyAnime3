@@ -44,29 +44,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			btnTorrentUp.Click += new EventHandler(btnTorrentUp_Click);
 			btnTorrentDown.Click += new EventHandler(btnTorrentDown_Click);
 
-			// Group naming
-			cboGroupFormat.Items.Clear();
-			cboGroupFormat.Items.Add(Constants.GroupDisplayString.GroupName);
-			cboGroupFormat.Items.Add(Constants.GroupDisplayString.AniDBNameRomaji);
-			cboGroupFormat.Items.Add(Constants.GroupDisplayString.AniDBNameEnglish);
-			cboGroupFormat.Items.Add(Constants.GroupDisplayString.AnimeYear);
-
-			cboGroupFormat.SelectedIndexChanged += new EventHandler(cboGroupFormat_SelectedIndexChanged);
-			cboGroupFormat.SelectedIndex = 0;
-
-			btnAddGroupFormat.Click += new EventHandler(btnAddGroupFormat_Click);
-
-			// Series naming
-			cboSeriesFormat.Items.Clear();
-			cboSeriesFormat.Items.Add(Constants.SeriesDisplayString.SeriesName);
-			cboSeriesFormat.Items.Add(Constants.SeriesDisplayString.AniDBNameRomaji);
-			cboSeriesFormat.Items.Add(Constants.SeriesDisplayString.AniDBNameEnglish);
-			cboSeriesFormat.Items.Add(Constants.SeriesDisplayString.TvDBSeason);
-			cboSeriesFormat.Items.Add(Constants.SeriesDisplayString.AnimeYear);
-
-			cboSeriesFormat.SelectedIndexChanged += new EventHandler(cboSeriesFormat_SelectedIndexChanged);
-			cboSeriesFormat.SelectedIndex = 0;
-
 			cboLabelStyleGroups.Items.Clear();
 			cboLabelStyleGroups.Items.Add(Constants.GroupLabelStyle.WatchedUnwatched); 
 			cboLabelStyleGroups.Items.Add(Constants.GroupLabelStyle.Unwatched); // 
@@ -77,8 +54,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			cboLabelStyleEpisodes.Items.Add(Constants.EpisodeLabelStyle.IconsDate);
 			cboLabelStyleEpisodes.Items.Add(Constants.EpisodeLabelStyle.IconsOnly);
 			cboLabelStyleEpisodes.SelectedIndex = 0;
-
-			btnAddSeriesFormat.Click += new EventHandler(btnAddSeriesFormat_Click);
 
 			// File naming
 			cboFileFormat.Items.Clear();
@@ -104,22 +79,13 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			btnAddEpisodeFormat.Click += new EventHandler(btnAddEpisodeFormat_Click);
 
-			cboLangSeries.Items.Clear();
-			cboLangSeries.Items.Add("Romaji");
-			cboLangSeries.Items.Add("English");
-
-			cboLangEpisode.Items.Clear();
-			cboLangEpisode.Items.Add("Romaji");
-			cboLangEpisode.Items.Add("English");
-
 
 			//get list of languages (sorted by name)
-			List<string> lstLanguages = new List<string>();
-			foreach (System.Globalization.CultureInfo cultureInformation in System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.NeutralCultures))
-				lstLanguages.Add(cultureInformation.EnglishName);
-			lstLanguages.Sort(StringComparer.OrdinalIgnoreCase);
+			List<string> lstLanguages = Utils.GetAllAudioSubtitleLanaguages();
+			
 
 			//add them to the combo boxes
+			// audio languages
 			cboAudioLanguage.Items.Clear();
 			cboAudioLanguage.Items.Add("< Use File Default >");
 			foreach (string lang in lstLanguages)
@@ -128,6 +94,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			cboSubtitleLanguage.Items.Clear();
 			cboSubtitleLanguage.Items.Add("< Use File Default >");
 			cboSubtitleLanguage.Items.Add("< No Subtitles >");
+
+			// subtitle languages
 			foreach (string lang in lstLanguages)
 				cboSubtitleLanguage.Items.Add(lang);
 
@@ -327,28 +295,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			txtFormatEp.Text += cboEpisodeFormat.SelectedItem.ToString();
 		}
 
-		void cboSeriesFormat_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			switch (cboSeriesFormat.SelectedIndex)
-			{
-				case 0:
-					lblSeriesFormat.Text = "Manually specified name"; break;
-				case 1:
-					lblSeriesFormat.Text = "Underlying AniDB Romaji Name"; break;
-				case 2:
-					lblSeriesFormat.Text = "Underlying AniDB English Name"; break;
-				case 3:
-					lblSeriesFormat.Text = "TvDB Season Number"; break;
-				case 4:
-					lblSeriesFormat.Text = "Anime Year"; break;
-			}
-		}
-
-		void btnAddSeriesFormat_Click(object sender, EventArgs e)
-		{
-			txtFormatSeries.Text += cboSeriesFormat.SelectedItem.ToString();
-		}
-
 		void btnAddFileFormat_Click(object sender, EventArgs e)
 		{
 			txtFileSelection.Text += cboFileFormat.SelectedItem.ToString(); ;
@@ -372,26 +318,6 @@ namespace MyAnimePlugin3.ConfigFiles
 					lblFileSelectionVars.Text = "File Source (e.g DVD)"; break;
 			}
 		}
-
-		void btnAddGroupFormat_Click(object sender, EventArgs e)
-		{
-			txtFormatGroup.Text += cboGroupFormat.SelectedItem.ToString();
-		}
-
-		void cboGroupFormat_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			switch (cboGroupFormat.SelectedIndex)
-			{
-				case 0:
-					lblGroupFormat2.Text = "Manually specified name"; break;
-				case 1:
-					lblGroupFormat2.Text = "Underlying AniDB Romaji Name"; break;
-				case 2:
-					lblGroupFormat2.Text = "Underlying AniDB English Name"; break;
-				case 3:
-					lblGroupFormat2.Text = "Anime Year"; break;
-			}
-        }
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -429,47 +355,29 @@ namespace MyAnimePlugin3.ConfigFiles
 				if (cboAudioLanguage.SelectedIndex == 0)
 					BaseConfig.Settings.DefaultAudioLanguage = "<file>";
 				else
-					BaseConfig.Settings.DefaultAudioLanguage = cboAudioLanguage.SelectedText;
+					BaseConfig.Settings.DefaultAudioLanguage = cboAudioLanguage.SelectedItem.ToString();
+
 				if (cboSubtitleLanguage.SelectedIndex == 0)
 					BaseConfig.Settings.DefaultSubtitleLanguage = "<file>";
 				else if (cboSubtitleLanguage.SelectedIndex == 1)
 					BaseConfig.Settings.DefaultSubtitleLanguage = "<none>";
 				else
-					BaseConfig.Settings.DefaultSubtitleLanguage = cboSubtitleLanguage.SelectedText;
+					BaseConfig.Settings.DefaultSubtitleLanguage = cboSubtitleLanguage.SelectedItem.ToString();
 
 				BaseConfig.Settings.FindTimeout_s = (int)nudFindTimeout.Value;
 				BaseConfig.Settings.FindFilter = chkFindFilterItems.Checked;
 
-                if (cboLangSeries.SelectedIndex == 0)
-					BaseConfig.Settings.DefaultSeriesLanguage = RenamingLanguage.Romaji;
-                if (cboLangSeries.SelectedIndex == 1)
-					BaseConfig.Settings.DefaultSeriesLanguage = RenamingLanguage.English;
-
-                if (cboLangEpisode.SelectedIndex == 0)
-					BaseConfig.Settings.DefaultEpisodeLanguage = RenamingLanguage.Romaji;
-                if (cboLangEpisode.SelectedIndex == 1)
-					BaseConfig.Settings.DefaultEpisodeLanguage = RenamingLanguage.English;
-
 
 				BaseConfig.Settings.EpisodeDisplayFormat = txtFormatEp.Text.Trim();
 				BaseConfig.Settings.fileSelectionDisplayFormat = txtFileSelection.Text.Trim();
-				BaseConfig.Settings.SeriesDisplayFormat = txtFormatSeries.Text.Trim();
-				BaseConfig.Settings.GroupDisplayFormat = txtFormatGroup.Text.Trim();
 
 				BaseConfig.Settings.HidePlot = chkHidePlot.Checked;
 				BaseConfig.Settings.ShowOnlyAvailableEpisodes = chkShowAvailableEpsOnly.Checked;
 
-				BaseConfig.Settings.HideRestrictedSeries = chkRestricted.Checked;
-				BaseConfig.Settings.MenuDeleteFiles = chkDeleteFiles.Checked;
 
 				BaseConfig.Settings.PosterSizePct = (int)udPosterQuality.Value;
 				BaseConfig.Settings.BannerSizePct = (int)udWideBannerQuality.Value;
 
-				BaseConfig.Settings.FfdshowNotificationsShow = chkFfdshowNotificationsShow.Checked;
-				BaseConfig.Settings.FfdshowNotificationsAutoClose = chkFfdshowNotificationsAutoClose.Checked;
-				BaseConfig.Settings.FfdshowNotificationsLock = chkFfdshowNotificationsLock.Checked;
-				BaseConfig.Settings.FfdshowNotificationsAutoCloseTime = int.Parse(txtFfdshowNotificationsAutoCloseTime.Text);
-				BaseConfig.Settings.FfdshowNotificationsLockTime = int.Parse(txtFfdshowNotificationsLockTime.Text);
 
 
 				if (cboLabelStyleGroups.SelectedIndex == 0)
@@ -537,36 +445,15 @@ namespace MyAnimePlugin3.ConfigFiles
 			nudFindTimeout.Value = (decimal)BaseConfig.Settings.FindTimeout_s;
 			chkFindFilterItems.Checked = BaseConfig.Settings.FindFilter;
 
-			if (BaseConfig.Settings.DefaultSeriesLanguage == RenamingLanguage.Romaji)
-                cboLangSeries.SelectedIndex = 0;
-            else
-                cboLangSeries.SelectedIndex = 1;
-
-			if (BaseConfig.Settings.DefaultEpisodeLanguage == RenamingLanguage.Romaji)
-                cboLangEpisode.SelectedIndex = 0;
-            else
-                cboLangEpisode.SelectedIndex = 1;
-
 
 			txtFormatEp.Text = BaseConfig.Settings.EpisodeDisplayFormat;
 			txtFileSelection.Text = BaseConfig.Settings.fileSelectionDisplayFormat;
-			txtFormatSeries.Text = BaseConfig.Settings.SeriesDisplayFormat;
-			txtFormatGroup.Text = BaseConfig.Settings.GroupDisplayFormat;
 
 			chkShowAvailableEpsOnly.Checked = BaseConfig.Settings.ShowOnlyAvailableEpisodes;
 			chkHidePlot.Checked = BaseConfig.Settings.HidePlot;
 
-			chkRestricted.Checked = BaseConfig.Settings.HideRestrictedSeries;
-			chkDeleteFiles.Checked = BaseConfig.Settings.MenuDeleteFiles;
-
 			udPosterQuality.Value = (decimal)BaseConfig.Settings.PosterSizePct;
 			udWideBannerQuality.Value = (decimal)BaseConfig.Settings.BannerSizePct;
-
-			chkFfdshowNotificationsShow.Checked = BaseConfig.Settings.FfdshowNotificationsShow;
-			chkFfdshowNotificationsAutoClose.Checked = BaseConfig.Settings.FfdshowNotificationsAutoClose;
-			chkFfdshowNotificationsLock.Checked = BaseConfig.Settings.FfdshowNotificationsLock;
-			txtFfdshowNotificationsAutoCloseTime.Text = BaseConfig.Settings.FfdshowNotificationsAutoCloseTime.ToString();
-			txtFfdshowNotificationsLockTime.Text = BaseConfig.Settings.FfdshowNotificationsLockTime.ToString(); ;
 
 
 			if (BaseConfig.Settings.LabelStyleGroups == View.eLabelStyleGroups.WatchedUnwatched)

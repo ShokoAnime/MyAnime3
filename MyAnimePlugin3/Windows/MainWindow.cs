@@ -4678,6 +4678,8 @@ namespace MyAnimePlugin3
 			int mnuSubLanguage = -1;
 			int mnuDelete = -1;
 			int mnuRename = -1;
+			int mnuRemDefault = -1;
+			int mnuAddDefault = -1;
 
 			int curMenu = -1;
 
@@ -4705,6 +4707,18 @@ namespace MyAnimePlugin3
 
 					dlg.Add("Set Default Subtitle language");
 					curMenu++; mnuSubLanguage = curMenu;
+				}
+
+				if (grp.DefaultAnimeSeriesID.HasValue)
+				{
+					dlg.Add("Remove Default Series");
+					curMenu++; mnuRemDefault = curMenu;
+				}
+
+				if (allSeries.Count > 1)
+				{
+					dlg.Add("Set Default Series");
+					curMenu++; mnuAddDefault = curMenu;
 				}
 
 				dlg.Add("Delete This Group/Series/Episodes");
@@ -4753,6 +4767,22 @@ namespace MyAnimePlugin3
 						equalSeries.DefaultAudioLanguage = language;
 						equalSeries.Save();
 						return false;
+					}
+				}
+
+				if (selectedLabel == mnuRemDefault)
+				{
+					JMMServerVM.Instance.clientBinaryHTTP.RemoveDefaultSeriesForGroup(grp.AnimeGroupID);
+					grp.DefaultAnimeSeriesID = null;
+				}
+
+				if (selectedLabel == mnuAddDefault)
+				{
+					AnimeSeriesVM ser = null;
+					if (Utils.DialogSelectSeries(ref ser, allSeries))
+					{
+						grp.DefaultAnimeSeriesID = ser.AnimeSeriesID;
+						JMMServerVM.Instance.clientBinaryHTTP.SetDefaultSeriesForGroup(grp.AnimeGroupID, ser.AnimeSeriesID.Value);
 					}
 				}
 

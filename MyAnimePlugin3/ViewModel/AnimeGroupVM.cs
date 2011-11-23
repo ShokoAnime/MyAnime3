@@ -11,6 +11,7 @@ namespace MyAnimePlugin3.ViewModel
 		// Data from AnimeGroup
 		public int AnimeGroupID { get; set; }
 		public int? AnimeGroupParentID { get; set; }
+		public int? DefaultAnimeSeriesID { get; set; }
 		public string GroupName { get; set; }
 		public string Description { get; set; }
 		public int IsFave { get; set; }
@@ -98,6 +99,15 @@ namespace MyAnimePlugin3.ViewModel
 					if (i == 6) break;
 				}
 				return ret;
+			}
+		}
+
+		public AnimeSeriesVM DefaultSeries
+		{
+			get
+			{
+				if (!this.DefaultAnimeSeriesID.HasValue) return null;
+				return JMMServerHelper.GetSeries(this.DefaultAnimeSeriesID.Value);
 			}
 		}
 
@@ -364,6 +374,7 @@ namespace MyAnimePlugin3.ViewModel
 			// readonly members
 			this.AnimeGroupID = contract.AnimeGroupID;
 			this.AnimeGroupParentID = contract.AnimeGroupParentID;
+			this.DefaultAnimeSeriesID = contract.DefaultAnimeSeriesID;
 			this.DateTimeUpdated = contract.DateTimeUpdated;
 			this.MissingEpisodeCount = contract.MissingEpisodeCount;
 			this.MissingEpisodeCountGroups = contract.MissingEpisodeCountGroups;

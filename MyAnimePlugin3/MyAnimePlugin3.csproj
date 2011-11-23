@@ -344,6 +344,9 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_GroupVideoQuality.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_IgnoreAnime.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

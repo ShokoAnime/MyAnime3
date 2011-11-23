@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Reflection;
 using MediaPortal.Dialogs;
 using MediaPortal.Configuration;
+using MyAnimePlugin3.ViewModel;
 
 namespace MyAnimePlugin3
 {
@@ -710,6 +711,32 @@ namespace MyAnimePlugin3
 				language = "<none>";
 			else
 				language = dlg.SelectedLabelText;
+
+			return true;
+		}
+
+		public static bool DialogSelectSeries(ref AnimeSeriesVM ser, List<AnimeSeriesVM> seriesList)
+		{
+			//show the selection dialog
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return false;
+
+			dlg.Reset();
+			dlg.SetHeading("Select Series");
+
+			int index = 0;
+			foreach (AnimeSeriesVM serTemp in seriesList)
+			{
+				dlg.Add(serTemp.SeriesName);
+				index++;
+			}
+
+			dlg.DoModal(GUIWindowManager.ActiveWindow);
+
+			if (dlg.SelectedLabel < 0)
+				return false;
+			ser = seriesList[dlg.SelectedLabel];
 
 			return true;
 		}

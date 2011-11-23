@@ -66,11 +66,23 @@ namespace MyAnimePlugin3
 			{
 				AnimeGroupVM grp = fanartObject as AnimeGroupVM;
 
-				// get all the series for this group
-				foreach (AnimeSeriesVM ser in grp.AllSeries)
+				if (grp.DefaultAnimeSeriesID.HasValue)
 				{
-					AniDB_AnimeVM anime = ser.AniDB_Anime;
-					allFanarts.AddRange(GetFanartFilenames(anime));
+					AnimeSeriesVM ser = grp.DefaultSeries;
+					if (ser != null)
+					{
+						AniDB_AnimeVM anime = ser.AniDB_Anime;
+						allFanarts.AddRange(GetFanartFilenames(anime));
+					}
+				}
+				else
+				{
+					// get all the series for this group
+					foreach (AnimeSeriesVM ser in grp.AllSeries)
+					{
+						AniDB_AnimeVM anime = ser.AniDB_Anime;
+						allFanarts.AddRange(GetFanartFilenames(anime));
+					}
 				}
 			}
 			else if (fanartObject.GetType() == typeof(AnimeSeriesVM))

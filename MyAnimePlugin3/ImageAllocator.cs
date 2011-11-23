@@ -224,15 +224,30 @@ namespace MyAnimePlugin3
 		public static string GetWideBannerAsFileName(AnimeGroupVM grp)
 		{
 			List<string> allBanners = new List<string>();
-			
-			// get all the series for this group
-			foreach (AnimeSeriesVM ser in grp.AllSeries)
-			{
-				AniDB_AnimeVM anime = ser.AniDB_Anime;
 
-				string fileName = GetWideBannerAsFileName(anime);
-				if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
-					allBanners.Add(fileName);
+			if (grp.DefaultAnimeSeriesID.HasValue)
+			{
+				AnimeSeriesVM ser = grp.DefaultSeries;
+				if (ser != null)
+				{
+					AniDB_AnimeVM anime = ser.AniDB_Anime;
+
+					string fileName = GetWideBannerAsFileName(anime);
+					if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+						allBanners.Add(fileName);
+				}
+			}
+			else
+			{
+				// get all the series for this group
+				foreach (AnimeSeriesVM ser in grp.AllSeries)
+				{
+					AniDB_AnimeVM anime = ser.AniDB_Anime;
+
+					string fileName = GetWideBannerAsFileName(anime);
+					if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+						allBanners.Add(fileName);
+				}
 			}
 
 			if (allBanners.Count == 0) return "";
@@ -262,14 +277,28 @@ namespace MyAnimePlugin3
 			List<string> allPosters = new List<string>();
 			string fileName = "";
 
-			// get all the series for this group
-			foreach (AnimeSeriesVM ser in grp.AllSeries)
+			if (grp.DefaultAnimeSeriesID.HasValue)
 			{
-				AniDB_AnimeVM anime = ser.AniDB_Anime;
+				AnimeSeriesVM ser = grp.DefaultSeries;
+				if (ser != null)
+				{
+					AniDB_AnimeVM anime = ser.AniDB_Anime;
+					fileName = GetPosterAsFileName(anime);
+					if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+						allPosters.Add(fileName);
+				}
+			}
+			else
+			{
+				// get all the series for this group
+				foreach (AnimeSeriesVM ser in grp.AllSeries)
+				{
+					AniDB_AnimeVM anime = ser.AniDB_Anime;
 
-				fileName = GetPosterAsFileName(anime);
-				if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
-					allPosters.Add(fileName);
+					fileName = GetPosterAsFileName(anime);
+					if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+						allPosters.Add(fileName);
+				}
 			}
 
 			if (allPosters.Count > 0)

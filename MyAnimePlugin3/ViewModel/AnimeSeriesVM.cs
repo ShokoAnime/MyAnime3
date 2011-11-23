@@ -139,10 +139,11 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
-				if (JMMServerVM.Instance.SeriesDescriptionSource == DataSourceType.AniDB)
+				if (JMMServerVM.Instance.SeriesNameSource == DataSourceType.AniDB)
 					return AniDB_Anime.FormattedTitle;
 
-				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName))
+				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName) &&
+					!TvDBSeries.SeriesName.ToUpper().Contains("**DUPLICATE"))
 					return TvDBSeries.SeriesName;
 				else
 					return AniDB_Anime.FormattedTitle;

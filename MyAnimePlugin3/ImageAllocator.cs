@@ -316,7 +316,7 @@ namespace MyAnimePlugin3
 
 			if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
 			{
-				string msg = string.Format("POSTER MISSING: {0} ({1}) - {2}", anime.MainTitle, anime.AnimeID, fileName);
+				string msg = string.Format("POSTER MISSING: {0} ({1}) - {2}", anime.FormattedTitle, anime.AnimeID, fileName);
 				return fileName;
 			}
 			

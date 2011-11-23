@@ -230,7 +230,7 @@ namespace MyAnimePlugin3.Windows
 
 			if (anime == null) return;
 
-			setGUIProperty("Calendar.Title", anime.MainTitle);
+			setGUIProperty("Calendar.Title", anime.FormattedTitle);
 			setGUIProperty("Calendar.Description", anime.ParsedDescription);
 			setGUIProperty("Calendar.AirDate", anime.AirDateAsString);
 			setGUIProperty("Calendar.Genre", anime.CategoriesFormatted);

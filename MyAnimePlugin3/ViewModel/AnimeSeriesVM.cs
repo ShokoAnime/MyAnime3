@@ -43,6 +43,7 @@ namespace MyAnimePlugin3.ViewModel
 		public AniDB_AnimeVM AniDB_Anime { get; set; }
 		public CrossRef_AniDB_TvDBVM CrossRef_AniDB_TvDB { get; set; }
 		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB { get; set; }
+		public TvDB_SeriesVM TvDBSeries { get; set; }
 
 		public decimal AniDBRating
 		{
@@ -61,7 +62,7 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
-				return AniDB_Anime.FormattedTitle;
+				return SeriesName;
 			}
 		}
 
@@ -138,7 +139,27 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
-				return AniDB_Anime.FormattedTitle;
+				if (JMMServerVM.Instance.SeriesDescriptionSource == DataSourceType.AniDB)
+					return AniDB_Anime.FormattedTitle;
+
+				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName))
+					return TvDBSeries.SeriesName;
+				else
+					return AniDB_Anime.FormattedTitle;
+			}
+		}
+
+		public string Description
+		{
+			get
+			{
+				if (JMMServerVM.Instance.SeriesDescriptionSource == DataSourceType.AniDB)
+					return AniDB_Anime.ParsedDescription;
+
+				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.Overview))
+					return TvDBSeries.Overview;
+				else
+					return AniDB_Anime.ParsedDescription;
 			}
 		}
 
@@ -216,7 +237,7 @@ namespace MyAnimePlugin3.ViewModel
 				// Normal episodes
 				foreach (AnimeEpisodeVM ep in JMMServerHelper.GetEpisodesForSeries(this.AnimeSeriesID.Value))
 				{
-					ep.SetTvDBImageAndOverview(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+					ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
 					allEpisodes.Add(ep);
 				}
 
@@ -329,6 +350,11 @@ namespace MyAnimePlugin3.ViewModel
 				CrossRef_AniDB_TvDB = new CrossRef_AniDB_TvDBVM(contract.CrossRefAniDBTvDB);
 			else
 				CrossRef_AniDB_TvDB = null;
+
+			if (contract.TvDB_Series != null)
+				TvDBSeries = new TvDB_SeriesVM(contract.TvDB_Series);
+			else
+				TvDBSeries = null;
 
 			if (contract.CrossRefAniDBMovieDB != null)
 				CrossRef_AniDB_MovieDB = new CrossRef_AniDB_OtherVM(contract.CrossRefAniDBMovieDB);

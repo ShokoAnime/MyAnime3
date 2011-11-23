@@ -155,7 +155,7 @@ namespace MyAnimePlugin3.Windows
 			AnimeSeriesVM series = JMMServerHelper.GetSeries(ep.AnimeSeriesID);
 			if (series != null && series.AniDB_Anime != null)
 			{
-				setGUIProperty("SubGroup.AnimeName", series.AniDB_Anime.MainTitle);
+				setGUIProperty("SubGroup.AnimeName", series.AniDB_Anime.FormattedTitle);
 				setGUIProperty("SubGroup.EpisodeName", ep.EpisodeNumberAndName);
 				setGUIProperty("SubGroup.FileDetails", "-");
 

@@ -583,7 +583,7 @@ namespace MyAnimePlugin3.ViewModel
 
 		public override string ToString()
 		{
-			return string.Format("ANIME: {0} - {1}", AnimeID, MainTitle);
+			return string.Format("ANIME: {0} - {1}", AnimeID, FormattedTitle);
 		}
 
 		private CrossRef_AniDB_TvDBVM crossRefTvDB = null;

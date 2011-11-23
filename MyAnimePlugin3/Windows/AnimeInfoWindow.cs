@@ -161,7 +161,7 @@ namespace MyAnimePlugin3.Windows
 				}
 			}
 
-            setGUIProperty("AnimeInfo.Info.AnidbTitle", string.Format("{0} (AID {1})", MainAnime.MainTitle, MainAnime.AnimeID));
+			setGUIProperty("AnimeInfo.Info.AnidbTitle", string.Format("{0} (AID {1})", MainAnime.FormattedTitle, MainAnime.AnimeID));
             setGUIProperty("AnimeInfo.Info.EpisodeSpecials", strEpisodeCount);
             setGUIProperty("AnimeInfo.Info.Year", FormatTextYear());
             setGUIProperty("AnimeInfo.Info.Rating", FormatTextRating());
@@ -176,7 +176,7 @@ namespace MyAnimePlugin3.Windows
 			setGUIProperty("AnimeInfo.Info.EpisodeSpecials", eps);
 
             setGUIProperty("AnimeInfo.Info.Restricted", FormatTextRestricted());
-     		setGUIProperty("AnimeInfo.Info.Description", MainAnime.ParsedDescription);
+			setGUIProperty("AnimeInfo.Info.Description", serMain.Description);
 			
             dummyPoster.Visible = true;
         }
@@ -232,7 +232,7 @@ namespace MyAnimePlugin3.Windows
 				AniDB_VoteVM userVote = MainAnime.UserVote;
 
 				dlg.Reset();
-				dlg.SetHeading(MainAnime.MainTitle);
+				dlg.SetHeading(MainAnime.FormattedTitle);
 				dlg.Add("Update Series Info From AniDB");
 				curMenu++; mnuUpdate = curMenu;
 

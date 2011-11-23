@@ -173,7 +173,7 @@ namespace MyAnimePlugin3.Windows
 			Dictionary<int, int> dictTvDBSeasons = anime.DictTvDBSeasons;
 			Dictionary<int, int> dictTvDBSeasonsSpecials = anime.DictTvDBSeasonsSpecials;
 			CrossRef_AniDB_TvDBVM tvDBCrossRef = anime.CrossRefTvDB;
-			ep.SetTvDBImageAndOverview(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+			ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
 
 
 			clearGUIProperty("Watching.Series.Title");
@@ -189,8 +189,8 @@ namespace MyAnimePlugin3.Windows
 			clearGUIProperty("Watching.Episode.Logos");
 
 
-			setGUIProperty("Watching.Series.Title", anime.MainTitle);
-			setGUIProperty("Watching.Series.Description", anime.ParsedDescription);
+			setGUIProperty("Watching.Series.Title", ep.AnimeSeries.SeriesName);
+			setGUIProperty("Watching.Series.Description", ep.AnimeSeries.Description);
 			setGUIProperty("Watching.Series.LastWatched", ep.AnimeSeries.WatchedDate.HasValue ? ep.AnimeSeries.WatchedDate.Value.ToString("dd MMM yy", Globals.Culture) : "-");
 			setGUIProperty("Watching.Series.EpisodesAvailable", ep.AnimeSeries.UnwatchedEpisodeCount.ToString());
 

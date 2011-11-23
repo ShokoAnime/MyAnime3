@@ -150,4 +150,10 @@ namespace MyAnimePlugin3
 		Played = 2,
 		Stopped = 3
 	}
+
+	public enum DataSourceType
+	{
+		AniDB = 1,
+		TheTvDB = 2
+	}
 }

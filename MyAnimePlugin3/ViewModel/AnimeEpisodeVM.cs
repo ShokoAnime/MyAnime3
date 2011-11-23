@@ -85,16 +85,7 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public string EpisodeName
-		{
-			get
-			{
-				if (AniDB_EnglishName.Trim().Length > 0)
-					return AniDB_EnglishName;
-				else
-					return AniDB_RomajiName;
-			}
-		}
+		public string EpisodeName { get ; set;}
 
 		public string EpisodeNumberAndName
 		{
@@ -222,6 +213,11 @@ namespace MyAnimePlugin3.ViewModel
 				this.EpisodeOverview = "";
 				this.EpisodeImageLocation = "";
 
+				if (AniDB_EnglishName.Trim().Length > 0)
+					EpisodeName = AniDB_EnglishName;
+				else
+					EpisodeName = AniDB_RomajiName;
+
 			}
 			catch (Exception ex)
 			{
@@ -241,7 +237,7 @@ namespace MyAnimePlugin3.ViewModel
 			SetTvDBImageAndOverview(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
 		}*/
 
-		public void SetTvDBImageAndOverview(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons,
+		public void SetTvDBInfo(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons,
 			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef)
 		{
 			this.EpisodeOverview = "Episode Overview Not Available";
@@ -268,6 +264,9 @@ namespace MyAnimePlugin3.ViewModel
 								this.EpisodeImageLocation = "";
 							else
 								this.EpisodeImageLocation = tvep.FullImagePath;
+
+							if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+								EpisodeName = tvep.EpisodeName;
 						}
 					}
 				}
@@ -293,6 +292,9 @@ namespace MyAnimePlugin3.ViewModel
 								this.EpisodeImageLocation = "";
 							else
 								this.EpisodeImageLocation = tvep.FullImagePath;
+
+							if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+								EpisodeName = tvep.EpisodeName;
 						}
 					}
 				}

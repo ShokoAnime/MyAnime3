@@ -36,6 +36,10 @@ namespace MyAnimePlugin3.ViewModel
 		public bool HasherQueueRunning { get; set; }
 		public bool GeneralQueueRunning { get; set; }
 
+		public DataSourceType EpisodeTitleSource { get; set; }
+		public DataSourceType SeriesDescriptionSource { get; set; }
+		public DataSourceType SeriesNameSource { get; set; }
+
 		public delegate void ServerStatusEventHandler(ServerStatusEventArgs ev);
 		public event ServerStatusEventHandler ServerStatusEvent;
 		protected void OnServerStatusEvent(ServerStatusEventArgs ev)
@@ -264,6 +268,7 @@ namespace MyAnimePlugin3.ViewModel
 				JMMServerBinary.Contract_ServerStatus status = JMMServerVM.Instance.clientBinaryHTTP.GetServerStatus();
 				ServerOnline = true;
 
+				GetServerSettings();
 				RefreshImportFolders();
 
 				BaseConfig.MyAnimeLog.Write("JMM Server Status: " + status.GeneralQueueState);
@@ -276,6 +281,17 @@ namespace MyAnimePlugin3.ViewModel
 				BaseConfig.MyAnimeLog.Write(ex.ToString());
 				return false;
 			}
+
+		}
+
+		private void GetServerSettings()
+		{
+			JMMServerBinary.Contract_ServerSettings contract = _clientBinaryHTTP.GetServerSettings();
+
+			// Language
+			this.EpisodeTitleSource = (DataSourceType)contract.EpisodeTitleSource;
+			this.SeriesDescriptionSource = (DataSourceType)contract.SeriesDescriptionSource;
+			this.SeriesNameSource = (DataSourceType)contract.SeriesNameSource;
 
 		}
 

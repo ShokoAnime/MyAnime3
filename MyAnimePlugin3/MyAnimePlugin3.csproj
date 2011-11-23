@@ -401,6 +401,9 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImagePoster.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_TvDBLanguage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_TVDBSeriesSearchResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

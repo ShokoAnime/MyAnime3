@@ -3376,11 +3376,10 @@ namespace MyAnimePlugin3
 
 			if (curAnimeGroup == null) return;
 
-			setGUIProperty(guiProperty.SeriesTitle, curAnimeGroup.GroupName);
-			setGUIProperty(guiProperty.Title, curAnimeGroup.GroupName);
+			
 			setGUIProperty(guiProperty.Subtitle, "");
 
-			setGUIProperty(guiProperty.Description, curAnimeGroup.ParsedDescription);
+			
 			if (curAnimeGroup.Stat_UserVoteOverall.HasValue)
 				setGUIProperty("SeriesGroup.MyRating", Utils.FormatAniDBRating((double)curAnimeGroup.Stat_UserVoteOverall.Value));
 
@@ -3401,6 +3400,20 @@ namespace MyAnimePlugin3
 			int epCountSpecial = 0;
 
 			List<AnimeSeriesVM> seriesList = curAnimeGroup.ChildSeries;
+
+			if (seriesList.Count == 1)
+			{
+				setGUIProperty(guiProperty.SeriesTitle, seriesList[0].SeriesName);
+				setGUIProperty(guiProperty.Title, seriesList[0].SeriesName);
+				setGUIProperty(guiProperty.Description, seriesList[0].Description);
+			}
+			else
+			{
+				setGUIProperty(guiProperty.SeriesTitle, curAnimeGroup.GroupName);
+				setGUIProperty(guiProperty.Title, curAnimeGroup.GroupName);
+				setGUIProperty(guiProperty.Description, curAnimeGroup.ParsedDescription);
+			}
+
 			foreach (AnimeSeriesVM ser in seriesList)
 			{
 				totalRating += ((decimal)ser.AniDB_Anime.Rating * ser.AniDB_Anime.VoteCount);
@@ -3508,7 +3521,7 @@ namespace MyAnimePlugin3
 
 			setGUIProperty(guiProperty.SeriesTitle, curAnimeSeries.SeriesName);
 			setGUIProperty(guiProperty.Subtitle, "");
-			setGUIProperty(guiProperty.Description, anAnime.ParsedDescription);
+			setGUIProperty(guiProperty.Description, curAnimeSeries.Description);
 
 			// set info properties
 			// most of these properties actually come from the anidb_anime record
@@ -3595,7 +3608,7 @@ namespace MyAnimePlugin3
 
 			setGUIProperty(guiProperty.SeriesTitle, ser.SeriesName);
 			setGUIProperty(guiProperty.Subtitle, "");
-			setGUIProperty(guiProperty.Description, ser.AniDB_Anime.ParsedDescription);
+			setGUIProperty(guiProperty.Description, ser.Description);
 
 
 			
@@ -4076,7 +4089,7 @@ namespace MyAnimePlugin3
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + ser.AniDB_Anime.MainTitle);
+				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
 				dlg.Add("Manual Search");
 
 				CrossRef_AniDB_TvDBResultVM CrossRef_AniDB_TvDBResult = null;
@@ -4099,7 +4112,7 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						if (!SearchTheTvDB(ser, ser.AniDB_Anime.MainTitle, currentMenu))
+						if (!SearchTheTvDB(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
 							return false;
 						break;
 					case 2:
@@ -4140,7 +4153,7 @@ namespace MyAnimePlugin3
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + ser.AniDB_Anime.MainTitle);
+				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
 				dlg.Add("Manual Search");
 
 				CrossRef_AniDB_TraktResultVM webCacheResult = null;
@@ -4163,7 +4176,7 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						if (!SearchTrakt(ser, ser.AniDB_Anime.MainTitle, currentMenu))
+						if (!SearchTrakt(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
 							return false;
 						break;
 					case 2:
@@ -4230,7 +4243,7 @@ namespace MyAnimePlugin3
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + ser.AniDB_Anime.MainTitle);
+				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
 				dlg.Add("Manual Search");
 
 				CrossRef_AniDB_OtherResultVM CrossRef_AniDB_OtherResult = null;
@@ -4252,12 +4265,12 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						if (!SearchTheMovieDB(ser, ser.AniDB_Anime.MainTitle, currentMenu))
+						if (!SearchTheMovieDB(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
 							return false;
 						break;
 					case 2:
 						{
-							string searchText = ser.AniDB_Anime.MainTitle;
+							string searchText = ser.AniDB_Anime.FormattedTitle;
 							if (Utils.DialogText(ref searchText, GetID))
 							{
 								if (!SearchTheMovieDB(ser, searchText, currentMenu))

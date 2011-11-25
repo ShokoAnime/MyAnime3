@@ -103,7 +103,7 @@
 			<posY>2</posY>
 			<width>80</width>
 			<height>70</height>
-			<texture>hover_my anime.png</texture>
+			<texture>hover_My Anime3.png</texture>
 			<visible>Control.IsVisible(1400)</visible>
 		</control>-->
 

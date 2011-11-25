@@ -474,7 +474,9 @@
     <Content Include="Skins\Avalon\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avalon\Anime3_Relations.xml" />
     <Content Include="Skins\Avalon\Anime3_SkinSettings.xml" />
-    <Content Include="Skins\Avalon\Anime3_Views.xml" />
+    <Content Include="Skins\Avalon\Anime3_Views.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_Views.standard.xml">
       <SubType>Designer</SubType>
     </Content>

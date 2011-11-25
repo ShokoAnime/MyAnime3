@@ -740,6 +740,38 @@ namespace MyAnimePlugin3
 
 			return true;
 		}
+
+		public static bool DialogSelectGFQuickSort(ref string sortType, string previousMenu)
+		{
+			//show the selection dialog
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return false;
+
+			List<string> sortTypes = GroupFilterHelper.GetQuickSortTypes();
+
+			dlg.Reset();
+			dlg.SetHeading("Quick Sort");
+
+			dlg.Add("<<< " + previousMenu);
+
+			int index = 0;
+			foreach (string srt in sortTypes)
+			{
+				dlg.Add(srt);
+				index++;
+			}
+
+			dlg.DoModal(GUIWindowManager.ActiveWindow);
+			int selection = dlg.SelectedLabel;
+
+			if (selection <= 0)
+				return true;
+
+			sortType = sortTypes[selection - 1];
+
+			return false;
+		}
 		
 
 		public static string GetBaseImagesPath()

@@ -160,7 +160,7 @@
 				<posY>60</posY>
 				<width>128</width>
 				<height>128</height>
-				<texture>hover_my anime.png</texture>
+				<texture>hover_My Anime3.png</texture>
 				<visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>

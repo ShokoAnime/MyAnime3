@@ -45,14 +45,56 @@ namespace MyAnimePlugin3.ViewModel
 		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB { get; set; }
 		public TvDB_SeriesVM TvDBSeries { get; set; }
 
+		#region Sorting properties
+
+		// These properties are used when sorting group filters, and must match the names on the AnimeGroupVM
+
 		public decimal AniDBRating
 		{
-			get { return AniDB_Anime.AniDBRating; }
+			get
+			{
+				try
+				{
+					return AniDB_Anime.AniDBRating;
+
+				}
+				catch (Exception ex)
+				{
+					return 0;
+				}
+			}
 		}
 
-		public DateTime? AirDate
+		public DateTime? Stat_AirDate_Min
 		{
-			get { return AniDB_Anime.AirDate; }
+			get
+			{
+				try
+				{
+					return AniDB_Anime.AirDate;
+
+				}
+				catch (Exception ex)
+				{
+					return null;
+				}
+			}
+		}
+
+		public DateTime? Stat_AirDate_Max
+		{
+			get
+			{
+				try
+				{
+					return AniDB_Anime.AirDate;
+
+				}
+				catch (Exception ex)
+				{
+					return null;
+				}
+			}
 		}
 
 		public DateTime? EpisodeAddedDate { get; set; }
@@ -65,6 +107,52 @@ namespace MyAnimePlugin3.ViewModel
 				return SeriesName;
 			}
 		}
+
+		public string GroupName
+		{
+			get
+			{
+				return SeriesName;
+			}
+		}
+
+
+		public DateTime? Stat_SeriesCreatedDate
+		{
+			get
+			{
+				return DateTimeCreated;
+			}
+		}
+
+		public decimal? Stat_UserVoteOverall
+		{
+			get
+			{
+				AniDB_VoteVM vote = AniDB_Anime.UserVote;
+				if (vote == null) return 0;
+
+				return vote.VoteValue;
+			}
+		}
+
+		public int AllSeriesCount
+		{
+			get
+			{
+				return 1;
+			}
+		}
+
+		#endregion
+
+
+		public DateTime? AirDate
+		{
+			get { return AniDB_Anime.AirDate; }
+		}
+
+
 
 
 		private int missingEpisodeCount = 0;

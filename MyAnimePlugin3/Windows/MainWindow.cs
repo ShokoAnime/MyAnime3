@@ -163,6 +163,8 @@ namespace MyAnimePlugin3
 		public static AnimeEpisodeTypeVM curAnimeEpisodeType = null;
 		private AnimeEpisodeVM curAnimeEpisode = null;
 
+		Dictionary<int, string> GroupFilterQuickSorts = null;
+
 		
 
 		private System.Timers.Timer searchTimer = null;
@@ -209,6 +211,8 @@ namespace MyAnimePlugin3
 			fanartTexture = new AsyncImageResource();
 			fanartTexture.Property = "#Anime3.Fanart.1";
 			fanartTexture.Delay = artworkDelay;
+
+			GroupFilterQuickSorts = new Dictionary<int, string>();
 
 			//searching
 			searchTimer = new System.Timers.Timer();
@@ -987,6 +991,16 @@ namespace MyAnimePlugin3
 								return;
 
 							groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
+
+							// re-sort if user has set a quick sort
+							if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
+							{
+								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value]);
+								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterSortDirection.Asc);
+								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+								sortCriteria.Add(sortProp);
+								groups = Sorting.MultiSort<AnimeGroupVM>(groups, sortCriteria);
+							}
 
 							/*if (currentViewClassification == ViewClassification.Views)
 							{
@@ -2301,6 +2315,12 @@ namespace MyAnimePlugin3
 			{
 				OnShowContextMenu();
 				return;
+			}
+
+			if (actionType == MediaPortal.GUI.Library.Action.ActionType.ACTION_PLAY)
+			{
+				if (MediaPortal.Player.g_Player.Playing == false)
+					BaseConfig.MyAnimeLog.Write("Pressed the play button");
 			}
 
 			if (this.btnDisplayOptions != null && control == this.btnDisplayOptions)
@@ -4887,11 +4907,26 @@ namespace MyAnimePlugin3
 			if (grp == null)
 				return true;
 
+			int mnuPrev = -1;
+			int mnuFave = -1;
+			int mnuWatched = -1;
+			int mnuUnwatched = -1;
+			int mnuEdit = -1;
+			int mnuQuickSort = -1;
+			int mnuRemoveQuickSort = -1;
+			int mnuDatabases = -1;
+			int mnuImages = -1;
+			int mnuSeries = -1;
+
+			
+
 			//keep showing the dialog until the user closes it
 			int selectedLabel = 0;
 			string currentMenu = grp.GroupName;
 			while (true)
 			{
+				int curMenu = -1;
+
 				dlg.Reset();
 				dlg.SetHeading(currentMenu);
 
@@ -4900,72 +4935,115 @@ namespace MyAnimePlugin3
 					faveText = "Remove from Favorites";
 
 				if (previousMenu != string.Empty)
+				{
 					dlg.Add("<<< " + previousMenu);
+					curMenu++; mnuPrev = curMenu;
+				}
 				dlg.Add(faveText);
+				curMenu++; mnuFave = curMenu;
+
 				dlg.Add("Mark ALL as Watched");
+				curMenu++; mnuWatched = curMenu;
+
 				dlg.Add("Mark ALL as Unwatched");
+				curMenu++; mnuUnwatched = curMenu;
+
 				dlg.Add("Edit Group >>>");
+				curMenu++; mnuEdit = curMenu;
+
+				dlg.Add("Quick Sort >>>");
+				curMenu++; mnuQuickSort = curMenu;
+
+				if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
+				{
+					dlg.Add("Remove Quick Sort");
+					curMenu++; mnuRemoveQuickSort = curMenu;
+				}
 
 				if (grp.AllSeries.Count == 1)
 				{
 					dlg.Add("Databases >>>");
+					curMenu++; mnuDatabases = curMenu;
 					dlg.Add("Images >>>");
+					curMenu++; mnuImages = curMenu;
 					dlg.Add("Series Information");
+					curMenu++; mnuSeries = curMenu;
 				}
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 				selectedLabel = dlg.SelectedLabel;
 
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
+				if (selectedLabel == mnuPrev) return true;
+				if (selectedLabel == mnuFave)
 				{
-					case 0:
-						//show previous
-						return true;
-					case 1: // Mark as favorite
+					grp.IsFave = grp.IsFave == 1 ? 0 : 1;
+					grp.Save();
 
-						grp.IsFave = grp.IsFave == 1 ? 0 : 1;
-						grp.Save();
-						
-						EvaluateVisibility();
-						return false;
-					case 2: // Mark ALL as Watched
-						{
-							foreach (AnimeSeriesVM ser in grp.AllSeries)
-								JMMServerHelper.SetWatchedStatusOnSeries(true, int.MaxValue, ser.AnimeSeriesID.Value);
-							
-							LoadFacade();
-						}
-						return false;
+					EvaluateVisibility();
+					return false;
+				}
 
-					case 3: // Mark ALL as Unwatched
-						{
-							foreach (AnimeSeriesVM ser in grp.AllSeries)
-								JMMServerHelper.SetWatchedStatusOnSeries(false, int.MaxValue, ser.AnimeSeriesID.Value);
+				if (selectedLabel == mnuWatched)
+				{
+					foreach (AnimeSeriesVM ser in grp.AllSeries)
+						JMMServerHelper.SetWatchedStatusOnSeries(true, int.MaxValue, ser.AnimeSeriesID.Value);
 
-							LoadFacade();
-						}
-						return false;
-					case 4:
-						if (!ShowContextMenuGroupEdit(currentMenu))
-							return false;
-						break;
-					case 5:
-						if (!ShowContextMenuDatabases(grp.AllSeries[0], "Group Menu"))
-							return false;
-						break;
-					case 6:
-						if (!ShowContextMenuImages(currentMenu))
-							return false;
-						break;
-					case 7:
-						ShowAnimeInfoWindow();
-						return false;
-					default:
-						//close menu
+					LoadFacade();
+					return false;
+				}
+
+				if (selectedLabel == mnuUnwatched)
+				{
+					foreach (AnimeSeriesVM ser in grp.AllSeries)
+						JMMServerHelper.SetWatchedStatusOnSeries(false, int.MaxValue, ser.AnimeSeriesID.Value);
+
+					LoadFacade();
+					return false;
+				}
+
+				if (selectedLabel == mnuEdit)
+				{
+					if (!ShowContextMenuGroupEdit(currentMenu))
 						return false;
 				}
+
+				if (selectedLabel == mnuQuickSort)
+				{
+					string sortType = "";
+					if (!Utils.DialogSelectGFQuickSort(ref sortType, curGroupFilter.GroupFilterName))
+					{
+						GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value] = sortType;
+						LoadFacade();
+						return false;
+					}
+				}
+
+				if (selectedLabel == mnuRemoveQuickSort)
+				{
+					GroupFilterQuickSorts.Remove(curGroupFilter.GroupFilterID.Value);
+					LoadFacade();
+					return false;
+				}
+
+				if (selectedLabel == mnuDatabases)
+				{
+					if (!ShowContextMenuDatabases(grp.AllSeries[0], "Group Menu"))
+						return false;
+				}
+
+				if (selectedLabel == mnuImages)
+				{
+					if (!ShowContextMenuImages(currentMenu))
+						return false;
+				}
+
+				if (selectedLabel == mnuSeries)
+				{
+					ShowAnimeInfoWindow();
+					return false;
+				}
+				
 			}
 		}
 

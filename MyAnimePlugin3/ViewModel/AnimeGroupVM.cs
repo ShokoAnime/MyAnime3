@@ -102,6 +102,68 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
+		public decimal AniDBTotalRating
+		{
+			get
+			{
+				try
+				{
+					decimal totalRating = 0;
+					foreach (AnimeSeriesVM series in AllSeries)
+					{
+						totalRating += ((decimal)series.AniDB_Anime.Rating * series.AniDB_Anime.VoteCount);
+						totalRating += ((decimal)series.AniDB_Anime.TempRating * series.AniDB_Anime.TempVoteCount);
+					}
+
+					return totalRating;
+				}
+				catch (Exception ex)
+				{
+					return 0;
+				}
+			}
+		}
+
+		public int AniDBTotalVotes
+		{
+			get
+			{
+				try
+				{
+					int cnt = 0;
+					foreach (AnimeSeriesVM series in AllSeries)
+					{
+						cnt += series.AniDB_Anime.AniDBTotalVotes;
+					}
+
+					return cnt;
+				}
+				catch (Exception ex)
+				{
+					return 0;
+				}
+			}
+		}
+
+		public decimal AniDBRating
+		{
+			get
+			{
+				try
+				{
+					if (AniDBTotalVotes == 0)
+						return 0;
+					else
+						return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;
+
+				}
+				catch (Exception ex)
+				{
+					return 0;
+				}
+			}
+		}
+
 		public AnimeSeriesVM DefaultSeries
 		{
 			get

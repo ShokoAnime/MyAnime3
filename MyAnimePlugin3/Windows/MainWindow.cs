@@ -18,6 +18,7 @@ using Action = MediaPortal.GUI.Library.Action;
 using System.Collections;
 using MyAnimePlugin3.ViewModel;
 using MyAnimePlugin3.ImageManagement;
+using MyAnimePlugin3.MultiSortLib;
 
 namespace MyAnimePlugin3
 {
@@ -163,7 +164,7 @@ namespace MyAnimePlugin3
 		public static AnimeEpisodeTypeVM curAnimeEpisodeType = null;
 		private AnimeEpisodeVM curAnimeEpisode = null;
 
-		Dictionary<int, string> GroupFilterQuickSorts = null;
+		Dictionary<int, QuickSort> GroupFilterQuickSorts = null;
 
 		
 
@@ -212,7 +213,7 @@ namespace MyAnimePlugin3
 			fanartTexture.Property = "#Anime3.Fanart.1";
 			fanartTexture.Delay = artworkDelay;
 
-			GroupFilterQuickSorts = new Dictionary<int, string>();
+			GroupFilterQuickSorts = new Dictionary<int, QuickSort>();
 
 			//searching
 			searchTimer = new System.Timers.Timer();
@@ -995,8 +996,8 @@ namespace MyAnimePlugin3
 							// re-sort if user has set a quick sort
 							if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
 							{
-								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value]);
-								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterSortDirection.Asc);
+								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortType);
+								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection);
 								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
 								sortCriteria.Add(sortProp);
 								groups = Sorting.MultiSort<AnimeGroupVM>(groups, sortCriteria);
@@ -5011,9 +5012,16 @@ namespace MyAnimePlugin3
 				if (selectedLabel == mnuQuickSort)
 				{
 					string sortType = "";
-					if (!Utils.DialogSelectGFQuickSort(ref sortType, curGroupFilter.GroupFilterName))
+					GroupFilterSortDirection sortDirection = GroupFilterSortDirection.Asc;
+					if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
+						sortDirection = GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection;
+
+					if (!Utils.DialogSelectGFQuickSort(ref sortType, ref sortDirection, curGroupFilter.GroupFilterName))
 					{
-						GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value] = sortType;
+						if (!GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
+							GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value] = new QuickSort();
+						GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortType = sortType;
+						GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection = sortDirection;
 						LoadFacade();
 						return false;
 					}

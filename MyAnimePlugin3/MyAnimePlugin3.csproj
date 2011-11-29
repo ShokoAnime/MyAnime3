@@ -156,6 +156,7 @@
     <Compile Include="Logos.cs" />
     <Compile Include="MediaInfo.cs" />
     <Compile Include="MultiSortLib\MultiSort.cs" />
+    <Compile Include="MultiSortLib\QuickSort.cs" />
     <Compile Include="MultiSortLib\SortSearchCriteria.cs" />
     <Compile Include="MultiSortLib\ValueComparison.cs" />
     <Compile Include="MyAnimeLog.cs" />
@@ -451,7 +452,9 @@
     <Content Include="Skins\aMPed\Anime3_Relations.xml" />
     <Content Include="Skins\aMPed\Anime3_SkinSettings.xml" />
     <Content Include="Skins\aMPed\Anime3_WideBanners.xml" />
-    <Content Include="Skins\Avalon\Anime3_Admin.xml" />
+    <Content Include="Skins\Avalon\Anime3_Admin.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_AnimeInfo.xml" />
     <Content Include="Skins\Avalon\Anime3_Background.xml" />
     <Content Include="Skins\Avalon\Anime3_Background.standard.xml" />
@@ -463,7 +466,9 @@
     <Content Include="Skins\Avalon\Anime3_FanArt.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Skins\Avalon\Anime3_Hiddenmenu.xml" />
+    <Content Include="Skins\Avalon\Anime3_Hiddenmenu.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_Main.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -11,6 +11,7 @@ using System.Reflection;
 using MediaPortal.Dialogs;
 using MediaPortal.Configuration;
 using MyAnimePlugin3.ViewModel;
+using BinaryNorthwest;
 
 namespace MyAnimePlugin3
 {
@@ -741,7 +742,7 @@ namespace MyAnimePlugin3
 			return true;
 		}
 
-		public static bool DialogSelectGFQuickSort(ref string sortType, string previousMenu)
+		public static bool DialogSelectGFQuickSort(ref string sortType, ref GroupFilterSortDirection sortDirection, string previousMenu)
 		{
 			//show the selection dialog
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
@@ -750,17 +751,56 @@ namespace MyAnimePlugin3
 
 			List<string> sortTypes = GroupFilterHelper.GetQuickSortTypes();
 
+			while (true)
+			{
+				dlg.Reset();
+				dlg.SetHeading("Quick Sort");
+
+				dlg.Add("<<< " + previousMenu);
+
+				string menu = string.Format("Sort Direction ({0}) >>>", sortDirection == GroupFilterSortDirection.Asc ? "Asc" : "Desc");
+				dlg.Add(menu);
+
+				int index = 0;
+				foreach (string srt in sortTypes)
+				{
+					dlg.Add(srt);
+					index++;
+				}
+
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				int selection = dlg.SelectedLabel;
+
+				if (selection <= 0)
+					return true;
+
+				if (selection == 1)
+				{
+					Utils.DialogSelectGFQuickSortDirection(ref sortDirection, "Quick Sort");
+					// display quick sort again
+				}
+				else
+				{
+					sortType = sortTypes[selection - 2];
+					return false;
+				}
+			}
+
+		}
+
+		public static bool DialogSelectGFQuickSortDirection(ref GroupFilterSortDirection sortDirection, string previousMenu)
+		{
+			//show the selection dialog
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return false;
+
 			dlg.Reset();
-			dlg.SetHeading("Quick Sort");
+			dlg.SetHeading("Sort Direction");
 
 			dlg.Add("<<< " + previousMenu);
-
-			int index = 0;
-			foreach (string srt in sortTypes)
-			{
-				dlg.Add(srt);
-				index++;
-			}
+			dlg.Add("Ascending");
+			dlg.Add("Descending");
 
 			dlg.DoModal(GUIWindowManager.ActiveWindow);
 			int selection = dlg.SelectedLabel;
@@ -768,9 +808,10 @@ namespace MyAnimePlugin3
 			if (selection <= 0)
 				return true;
 
-			sortType = sortTypes[selection - 1];
+			if (selection == 1) sortDirection = GroupFilterSortDirection.Asc;
+			if (selection == 2) sortDirection = GroupFilterSortDirection.Desc;
 
-			return false;
+			return true;
 		}
 		
 

@@ -31,17 +31,35 @@
 	</control>
 
 	<!--            :: labels for fimstrip ::            -->
-
+	
 	<control>
 	  <description>Source</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>60</posX>
-	  <posY>900</posY>
+	  <posX>80</posX>
+	  <posY>770</posY>
 	  <width>300</width>
 	  <align>left</align>
-	  <font>fontB20</font>
+	  <font>fontB16</font>
+	  <label>Source</label>
+	  <visible>facadeview.filmstrip</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  <description>Source Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>770</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB16</font>
 	  <label>#Anime3.Posters.SelectedSource</label>
+	  <textcolor>6aa5cb</textcolor>
+	  <visible>facadeview.filmstrip</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
@@ -51,11 +69,12 @@
 	  <description>Disabled</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>500</posX>
-	  <posY>900</posY>
+	  <posX>80</posX>
+	  <posY>840</posY>
 	  <align>left</align>
-	  <font>fontB20</font>
+	  <font>fontB16</font>
 	  <label>Disabled</label>
+	  <visible>facadeview.filmstrip</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
@@ -65,12 +84,13 @@
 	  <description>Disabled Value</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>800</posX>
-	  <posY>900</posY>
+	  <posX>300</posX>
+	  <posY>840</posY>
 	  <align>left</align>
-	  <font>fontB20</font>
+	  <font>fontB16</font>
 	  <textcolor>6aa5cb</textcolor>
 	  <label>#Anime3.Posters.SelectedPosterIsDisabled</label>
+	  <visible>facadeview.filmstrip</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
@@ -80,11 +100,12 @@
 	  <description>Default</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>1100</posX>
-	  <posY>900</posY>
+	  <posX>80</posX>
+	  <posY>910</posY>
 	  <align>left</align>
-	  <font>fontB20</font>
+	  <font>fontB16</font>
 	  <label>Default</label>
+	  <visible>facadeview.filmstrip</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
@@ -94,12 +115,110 @@
 	  <description>Default Value</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>1400</posX>
-	  <posY>900</posY>
+	  <posX>300</posX>
+	  <posY>910</posY>
 	  <align>left</align>
-	  <font>fontB20</font>
+	  <font>fontB16</font>
 	  <textcolor>6aa5cb</textcolor>
 	  <label>#Anime3.Posters.SelectedPosterIsDefault</label>
+	  <visible>facadeview.filmstrip</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<!--            :: labels for small icons / large icons ::            -->
+	
+	<control>
+	  <description>Source</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>80</posX>
+	  <posY>920</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB16</font>
+	  <label>Source</label>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  <description>Source Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>220</posX>
+	  <posY>920</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB16</font>
+	  <label>#Anime3.Posters.SelectedSource</label>
+	  <textcolor>6aa5cb</textcolor>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  <description>Disabled</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>450</posX>
+	  <posY>920</posY>
+	  <align>left</align>
+	  <font>fontB16</font>
+	  <label>Disabled</label>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  <description>Disabled Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>630</posX>
+	  <posY>920</posY>
+	  <align>left</align>
+	  <font>fontB16</font>
+	  <textcolor>6aa5cb</textcolor>
+	  <label>#Anime3.Posters.SelectedPosterIsDisabled</label>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  <description>Default</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>780</posX>
+	  <posY>920</posY>
+	  <align>left</align>
+	  <font>fontB16</font>
+	  <label>Default</label>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  <description>Default Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>950</posX>
+	  <posY>920</posY>
+	  <align>left</align>
+	  <font>fontB16</font>
+	  <textcolor>6aa5cb</textcolor>
+	  <label>#Anime3.Posters.SelectedPosterIsDefault</label>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>

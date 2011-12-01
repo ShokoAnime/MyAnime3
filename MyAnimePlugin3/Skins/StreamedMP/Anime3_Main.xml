@@ -102,50 +102,10 @@
 
 	<!-- :::::::::::::::::::::::::::::: Icons - List View :::::::::::::::::::::::::::::: -->
 
-	<control>
-	  <description>Fave Icon (List View)</description>
-	  <id>601</id>
-	  <type>image</type>
-	  <posX>27</posX>
-	  <posY>225</posY>
-	  <width>48</width>
-	  <height>48</height>
-	  <texture>MyAnime3/anime3_heart1_48.png</texture>
-	  <visible>facadeview.list+Control.IsVisible(1245)</visible>
-	</control>
-	<control>
-	  <id>602</id>
-	  <type>image</type>
-	  <posX>77</posX>
-	  <posY>225</posY>
-	  <width>48</width>
-	  <height>48</height>
-	  <texture>MyAnime3/anime3_ex_48.png</texture>
-	  <visible>facadeview.list+Control.IsVisible(1246)</visible>
-	</control>
+
 
 	<!-- :::::::::::::::::::::::::::::: Icons - Fimstrip :::::::::::::::::::::::::::::: -->
 
-	<control>
-	  <description>Fave Icon (List View)</description>
-	  <id>601</id>
-	  <type>image</type>
-	  <posX>410</posX>
-	  <posY>440</posY>
-	  <width>48</width>
-	  <height>48</height>
-	  <texture>MyAnime3/anime3_heart1_48.png</texture>
-	  <visible>facadeview.filmstrip+Control.IsVisible(1245)</visible>
-	</control>
-	<control>
-	  <type>image</type>
-	  <posX>465</posX>
-	  <posY>440</posY>
-	  <width>48</width>
-	  <height>48</height>
-	  <texture>MyAnime3/anime3_ex_48.png</texture>
-	  <visible>facadeview.filmstrip+Control.IsVisible(1246)</visible>
-	</control>
 
 	<!-- :::::::::::::::::::::::::::::: TOP BAR :: TIME :: LOCATION :::::::::::::::::::::::::::::: -->
 	<control>
@@ -172,7 +132,7 @@
 	</control>
 	<control>
 	  <type>fadelabel</type>
-	  <description>Series Name in Season/Episode View</description>
+	  <description>Series Name in Group View</description>
 	  <id>0</id>
 	  <posX>493</posX>
 	  <posY>13</posY>
@@ -180,20 +140,50 @@
 	  <font>mediastream12c</font>
 	  <label>#Anime3.Title</label>
 	  <align>right</align>
-	  <visible>Control.IsVisible(1237)|Control.IsVisible(1239)</visible>
+	  <visible>Control.IsVisible(1238)</visible>
 	</control>
+	
+	<control>
+	  <type>fadelabel</type>
+	  <description>Series Name in Series/Episode Types/Episode View</description>
+	  <id>0</id>
+	  <posX>493</posX>
+	  <posY>13</posY>
+	  <width>350</width>
+	  <font>mediastream12c</font>
+	  <label>#Anime3.Title</label>
+	  <align>right</align>
+	  <visible>Control.IsVisible(1237)|Control.IsVisible(1239)|Control.IsVisible(1240)</visible>
+	</control>
+	
 	<control>
 	  <description>Current View Label</description>
 	  <type>label</type>
-	  <label>#Anime3.SimpleCurrentView  (#selectedindex/#Anime3.GroupCount)</label>
+	  <label>#Anime3.GroupFilter.FilterName  (#selectedindex/#Anime3.GroupCount)</label>
 	  <id>0</id>
 	  <posX>1255</posX>
 	  <posY>15</posY>
 	  <width>500</width>
 	  <font>mediastream10tc</font>
 	  <align>right</align>
+	  <visible>[control.isvisible(1238)]</visible>
 	  <textcolor>ffFFFFFF</textcolor>
 	</control>
+	
+	<control>
+	  <description>Looking at group filters</description>
+	  <type>label</type>
+	  <label>Groups: #Anime3.GroupFilter.GroupCount</label>
+	  <id>0</id>
+	  <posX>1255</posX>
+	  <posY>15</posY>
+	  <width>500</width>
+	  <font>mediastream10tc</font>
+	  <align>right</align>
+	  <visible>[control.isvisible(1250)]</visible>
+	  <textcolor>ffFFFFFF</textcolor>
+	</control>
+	
 	<import>common.time.xml</import>
 	<!-- *********************** FIND PANEL *********************************** -->
 	<control>
@@ -487,11 +477,11 @@
 	  </control>
 	  <control>
 		<id>0</id>
-		<label>DATA</label>
+		<label>OTHER</label>
 		<type>label</type>
 		<font>mediastream12tc</font>
 		<posX>1040</posX>
-		<posY>426</posY>
+		<posY>340</posY>
 		<visible>!Control.HasFocus(50)</visible>
 		<animation effect="slide" time="100" start="300,0">visible</animation>
 		<animation effect="slide" time="0" end="300,0">hidden</animation>
@@ -513,7 +503,7 @@
 		  <id>12</id>
 		  <label>Switch User</label>
 		  <onleft>50</onleft>
-		  <onup>6</onup>
+		  <onup>925</onup>
 		  <ondown>11</ondown>
 		</control>
 		<control>
@@ -523,45 +513,17 @@
 		  <label>Change Layout</label>
 		  <onleft>50</onleft>
 		  <onup>12</onup>
-		  <ondown>2</ondown>
-		</control>
-		<control>
-		  <description>Display Options</description>
-		  <type>button</type>
-		  <id>2</id>
-		  <label>Display Options</label>
-		  <onleft>50</onleft>
-		  <onup>11</onup>
 		  <ondown>4</ondown>
 		</control>
 		<control>
-		  <description>Settings</description>
+		  <description>Options</description>
 		  <type>button</type>
 		  <id>4</id>
-		  <label>Settings</label>
-		  <onleft>50</onleft>
-		  <onup>2</onup>
-		  <ondown>8</ondown>
-		</control>
-		<control>
-		  <description>Calendar</description>
-		  <type>button</type>
-		  <id>8</id>
-		  <label>Calendar</label>
+		  <label>Options</label>
 		  <onleft>50</onleft>
 		  <onright>50</onright>
-		  <onup>4</onup>
-		  <ondown>9</ondown>
-		</control>
-		<control>
-		  <description>Downloads</description>
-		  <type>button</type>
-		  <id>9</id>
-		  <label>Downloads</label>
-		  <onleft>50</onleft>
-		  <onright>50</onright>
-		  <onup>8</onup>
-		  <ondown>5</ondown>
+		  <onup>11</onup>
+		  <ondown>920</ondown>
 		</control>
 		<control>
 		  <description>Empty button</description>
@@ -571,22 +533,52 @@
 		  <visible>false</visible>
 		</control>
 		<control>
-		  <description>Utilities</description>
+		  <description>Continue Watching...</description>
 		  <type>button</type>
-		  <id>5</id>
-		  <label>Utilities</label>
-		  <onleft>50</onleft>
-		  <onup>9</onup>
-		  <ondown>6</ondown>
-		</control>
-		<control>
-		  <description>Run Import</description>
-		  <type>button</type>
-		  <id>6</id>
-		  <label>Run Import</label>
+		  <id>920</id>
+		  <label>Continue Watching...</label>
 		  <onleft>50</onleft>
 		  <onright>50</onright>
-		  <onup>5</onup>
+		  <onup>4</onup>
+		  <ondown>921</ondown>
+		</control>
+		<control>
+		  <description>Utilities</description>
+		  <type>button</type>
+		  <id>921</id>
+		  <label>Utilities</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>920</onup>
+		  <ondown>922</ondown>
+		</control>
+		<control>
+		  <description>Calendar</description>
+		  <type>button</type>
+		  <id>922</id>
+		  <label>Calendar</label>
+		  <onleft>50</onleft>
+		  <onup>921</onup>
+		  <ondown>923</ondown>
+		</control>
+		<control>
+		  <description>Downloads</description>
+		  <type>button</type>
+		  <id>923</id>
+		  <label>Downloads</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>922</onup>
+		  <ondown>925</ondown>
+		</control>
+		<control>
+		  <description>Recommendations</description>
+		  <type>button</type>
+		  <id>925</id>
+		  <label>Recommendations</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>923</onup>
 		  <ondown>12</ondown>
 		</control>
 	  </control>
@@ -594,40 +586,6 @@
 	<!-- ***************************************** INFORMATION IN LIST VIEW ***************************************************************** -->
 
 	<!-- *****************************************  GROUP FILTER Data  ***************************************************************** -->
-
-	<control>
-	  <description>Default Cover Art</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>27</posX>
-	  <posY>272</posY>
-	  <width>266</width>
-	  <height>390</height>
-	  <texture>defaultdvdcover.png</texture>
-	  <visible>Control.IsVisible(1250)</visible>
-	</control>
-	<control>
-	  <description>Cover Art (in series view)</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>32</posX>
-	  <posY>274</posY>
-	  <width>256</width>
-	  <height>380</height>
-	  <texture>#Anime3.GroupSeriesPoster</texture>
-	  <visible>Control.IsVisible(1250)</visible>
-	</control>
-	<control>
-	  <description>Cover Art Glass Overlay</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>32</posX>
-	  <posY>274</posY>
-	  <width>228</width>
-	  <height>177</height>
-	  <texture>glassoverlay2.png</texture>
-	  <visible>Control.IsVisible(1250)</visible>
-	</control>
 
 	<control>
 	  <description>Filter Title</description>
@@ -667,7 +625,7 @@
 	  <width>266</width>
 	  <height>390</height>
 	  <texture>defaultdvdcover.png</texture>
-	  <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
+	  <visible>[control.isvisible(1237)|control.isvisible(1238)|control.isvisible(1240)] +facadeview.list</visible>
 	</control>
 	<control>
 	  <description>Cover Art (in series view)</description>
@@ -678,7 +636,7 @@
 	  <width>256</width>
 	  <height>380</height>
 	  <texture>#Anime3.GroupSeriesPoster</texture>
-	  <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
+	  <visible>[control.isvisible(1237)|control.isvisible(1238)|control.isvisible(1240)] +facadeview.list</visible>
 	</control>
 	<control>
 	  <description>Cover Art Glass Overlay</description>
@@ -689,7 +647,7 @@
 	  <width>228</width>
 	  <height>177</height>
 	  <texture>glassoverlay2.png</texture>
-	  <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
+	 <visible>[control.isvisible(1237)|control.isvisible(1238)|control.isvisible(1240)] +facadeview.list</visible>
 	</control>
 	<!-- *********************** GROUP/SERIES/EPISODE TYPES INFO LABELS ( LIST LAYOUT) ************************** -->
 	<control>

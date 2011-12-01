@@ -9,43 +9,57 @@
   <define>#watched.color:ffa9d0f7</define>
   <define>#notpresent.color:ffF87B72</define>
   <controls>
-    <!-- ********************** DUMMY CONTROLS FOR VISIBILITY ************************************** -->
+    <!-- Import Dummy Controls to handle visibility -->
     <control>
-      <type>label</type>
-      <description>Dummy Label for torrents page</description>
-      <id>1600</id>
-      <posX>-50</posX>
-      <posY>-50</posY>
-      <label>torrents</label>
-      <visible>false</visible>
-    </control>
-    <control>
-      <type>label</type>
-      <description>Dummy Label for search page</description>
-      <id>1601</id>
-      <posX>-50</posX>
-      <posY>-50</posY>
-      <label>torrents</label>
-      <visible>false</visible>
-    </control>
-    <control>
-      <type>label</type>
-      <description>Dummy Label for browse torrents page</description>
-      <id>1602</id>
-      <posX>-50</posX>
-      <posY>-50</posY>
-      <label>torrents</label>
-      <visible>false</visible>
-    </control>
-    <control>
-      <type>label</type>
-      <description>Dummy Label for torrent files page</description>
-      <id>1603</id>
-      <posX>-50</posX>
-      <posY>-50</posY>
-      <label>torrents</label>
-      <visible>false</visible>
-    </control>
+	  <type>label</type>
+	  <description>Dummy Label for torrents page</description>
+	  <id>1600</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <label>torrents</label>
+	  <visible>false</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for search page</description>
+	  <id>1601</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <label>torrents</label>
+	  <visible>false</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for browse torrents page</description>
+	  <id>1602</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <label>torrents</label>
+	  <visible>false</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for torrent files page</description>
+	  <id>1603</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <label>torrents</label>
+	  <visible>false</visible>
+	</control>
+	
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for search page - where we looking for a specified episode</description>
+	  <id>1604</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <label>torrents</label>
+	  <visible>false</visible>
+	</control>
+	
 	
 	
     <!-- ********************** BACKGROUNDS************************************** -->
@@ -115,6 +129,8 @@
       <align>right</align>
     </control>
 	
+	<!--  ************** Facade *****************  -->
+	
     <control>
       <description>composite control </description>
       <type>facadeview</type>
@@ -123,12 +139,12 @@
         <description>listcontrol</description>
         <type>listcontrol</type>
         <id>50</id>
-        <posX>30</posX>
-        <posY>200</posY>
+        <posX>15</posX>
+        <posY>80</posY>
         <onleft>801</onleft>
-        <onright>803</onright>
+		<onright>801</onright>
         <width>700</width>
-        <height>470</height>
+        <height>620</height>
         <scrollOffset>4</scrollOffset>
         <spinWidth>18</spinWidth>
         <spinHeight>18</spinHeight>
@@ -164,23 +180,171 @@
         <!-- local file not present color column 3-->
       </control>
     </control>
+	
+	<!--  ************** HIDDEN MENU *****************  -->
+
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>801</defaultcontrol>
+			<onexit>50</onexit>
+			<dimColor>00ffffff</dimColor>
+			<control>
+				<type>image</type>
+				<posX>1002</posX>
+				<posY>0</posY>
+				<width>278</width>
+				<height>720</height>
+				<texture>hiddenmenu_right.png</texture>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+			</control>
+			<control>
+				<id>0</id>
+				<label>MENU</label>
+				<type>label</type>
+				<font>mediastream12tc</font>
+				<posX>1040</posX>
+				<posY>225</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+			</control>
+			<control>
+				<id>0</id>
+				<label>OTHER</label>
+				<type>label</type>
+				<font>mediastream12tc</font>
+				<posX>1040</posX>
+				<posY>340</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+			</control>
+			<control>
+				<type>group</type>
+				<description>group element</description>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+				<posX>1040</posX>
+				<posY>250</posY>
+				<width>220</width>
+				<height>720</height>
+				<layout>StackLayout</layout>
+				<control>
+					<description>Torrent Monitor</description>
+					<type>button</type>
+					<id>801</id>
+					<label>Torrent Monitor</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>925</onup>
+					<ondown>802</ondown>
+				</control>
+				<control>
+					<description>Search</description>
+					<type>button</type>
+					<id>802</id>
+					<label>Search</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>801</onup>
+					<ondown>803</ondown>
+				</control>
+				<control>
+					<description>Browse Torrents</description>
+					<type>button</type>
+					<id>803</id>
+					<label>Browse Torrents</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>802</onup>
+					<ondown>920</ondown>
+				</control>
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<label>-</label>
+					<visible>false</visible>
+				</control>
+				
+				<control>
+					<description>Continue Watching...</description>
+					<type>button</type>
+					<id>920</id>
+					<label>Continue Watching...</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>803</onup>
+					<ondown>921</ondown>
+				</control>
+				<control>
+					<description>Utilities</description>
+					<type>button</type>
+					<id>921</id>
+					<label>Utilities</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>920</onup>
+					<ondown>922</ondown>
+				</control>
+				<control>
+					<description>Calendar</description>
+					<type>button</type>
+					<id>922</id>
+					<label>Calendar</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>921</onup>
+					<ondown>925</ondown>
+				</control>
+				<control>
+					<description>Recommendations</description>
+					<type>button</type>
+					<id>925</id>
+					<label>Recommendations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>922</onup>
+					<ondown>801</ondown>
+				</control>
+			</control>
+		</control>
+	
+	
+	
     <!-- :::::::::::::::::::::::::::::: TORRENTS PAGE :::::::::::::::::::::::::::::: -->
     <control Style="smallTitleB">
       <type>label</type>
       <label>Torrents</label>
-      <posX>30</posX>
-      <posY>160</posY>
+      <posX>770</posX>
+      <posY>80</posY>
       <visible>Control.IsVisible(1600)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Torrent.Summary</label>
-      <posX>170</posX>
-      <posY>160</posY>
-      <width>550</width>
+      <posX>920</posX>
+      <posY>80</posY>
+      <width>250</width>
       <visible>Control.IsVisible(1600)</visible>
     </control>
+	
+	
     <!-- :::::::::::::::::::::::::::::: TORRENT DETAILS :::::::::::::::::::::::::::::: -->
+	
+	<control>
+      <type>label</type>
+      <label>Torrent Details</label>
+      <posX>770</posX>
+      <posY>150</posY>
+	  <font>mediastream14tc</font>
+      <visible>Control.IsVisible(1600)</visible>
+    </control>
+	
     <control Style="smallTitleB">
       <type>label</type>
       <label>Name</label>
@@ -331,23 +495,46 @@
       <width>360</width>
       <visible>Control.IsVisible(1600)</visible>
     </control>
-    <!-- :::::::::::::::::::::::::::::: TORRENT FILES PAGE :::::::::::::::::::::::::::::: -->
-    <control Style="smallTitleB">
+	
+	<control Style="smallTitle">
       <type>label</type>
-      <label>Torrent Files</label>
+      <label>Press F9 or the Info button on your remote for options (hit enter to view files for the torrent)</label>
       <posX>30</posX>
-      <posY>160</posY>
+      <posY>685</posY>
+	  <width>1000</width>
+      <visible>Control.IsVisible(1600)</visible>
+    </control>
+	
+	
+	
+	 <!-- :::::::::::::::::::::::::::::: TORRENT FILES PAGE :::::::::::::::::::::::::::::: -->
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Torrent Files For</label>
+      <posX>770</posX>
+      <posY>80</posY>
       <visible>Control.IsVisible(1603)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.TorrentFile.Summary</label>
-      <posX>170</posX>
-      <posY>160</posY>
-      <width>550</width>
+      <posX>770</posX>
+      <posY>110</posY>
+      <width>450</width>
       <visible>Control.IsVisible(1603)</visible>
     </control>
+  
     <!-- :::::::::::::::::::::::::::::: TORRENT FILE DETAILS :::::::::::::::::::::::::::::: -->
+	<control>
+      <type>label</type>
+      <label>File Details</label>
+      <posX>770</posX>
+      <posY>150</posY>
+	  <font>mediastream14tc</font>
+      <visible>Control.IsVisible(1603)</visible>
+    </control>
+	
     <control Style="smallTitleB">
       <type>label</type>
       <label>Name</label>
@@ -412,158 +599,285 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>Current Search</label>
-      <posX>30</posX>
-      <posY>160</posY>
+      <posX>770</posX>
+      <posY>80</posY>
       <visible>Control.IsVisible(1601)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Search.Summary</label>
-      <posX>200</posX>
-      <posY>160</posY>
-      <width>550</width>
+      <posX>935</posX>
+      <posY>80</posY>
+      <width>450</width>
       <visible>Control.IsVisible(1601)</visible>
     </control>
-    <control Style="smallTitleB">
+	
+	<control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Search.ResultDescription</label>
-      <posX>30</posX>
-      <posY>640</posY>
-      <width>500</width>
+      <posX>770</posX>
+      <posY>110</posY>
       <visible>Control.IsVisible(1601)</visible>
     </control>
-    <!-- :::::::::::::::::::::::::::::: BROWSE TORRENTS PAGE :::::::::::::::::::::::::::::: -->
-    <control Style="smallTitleB">
+	
+	<control>
+      <type>label</type>
+      <label>Torrent Details</label>
+      <posX>770</posX>
+      <posY>150</posY>
+	  <font>mediastream14tc</font>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+	
+	<control Style="smallTitleB">
       <type>label</type>
       <label>Source</label>
+      <posX>770</posX>
+      <posY>190</posY>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.SourceLong</label>
+      <posX>920</posX>
+      <posY>190</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Name</label>
+      <posX>770</posX>
+      <posY>220</posY>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Name</label>
+      <posX>920</posX>
+      <posY>220</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Size</label>
+      <posX>770</posX>
+      <posY>250</posY>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Size</label>
+      <posX>920</posX>
+      <posY>250</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Seeders</label>
+      <posX>770</posX>
+      <posY>280</posY>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Seeders</label>
+      <posX>920</posX>
+      <posY>280</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Leechers</label>
+      <posX>770</posX>
+      <posY>310</posY>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Leechers</label>
+      <posX>920</posX>
+      <posY>310</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+	<!-- :::::::::::::::::::::::::::::: SEARCH PAGE - Sub Group Details :::::::::::::::::::::::::::::: -->
+	
+	<control>
+      <type>label</type>
+      <label>Sub Group Details</label>
+      <posX>770</posX>
+      <posY>340</posY>
+	  <font>mediastream14tc</font>
+      <visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>#Anime3.SubGroup.AnimeName</label>
+      <posX>770</posX>
+      <posY>380</posY>
+	  <width>420</width>
+      <visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>#Anime3.SubGroup.EpisodeName</label>
+      <posX>770</posX>
+      <posY>410</posY>
+	  <width>420</width>
+      <visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+    </control>
+	
+	<control>
+      <type>textboxscrollup</type>
+      <description>Description Value</description>
+      <id>0</id>
+      <posX>770</posX>
+      <posY>440</posY>
+      <width>890</width>
+      <height>230</height>
+      <textcolor>ffffffff</textcolor>
+      <font>mediastream11</font>
+      <label>#Anime3.SubGroup.FileDetails</label>
+      <seperator>-----------------------------------------------------------------------------------------------------</seperator>
+      <align>left</align>
+      <visible>Control.IsVisible(1601)+Control.IsVisible(1604)</visible>
+	  <scrollStartDelaySec>1</scrollStartDelaySec>
+    </control>
+	
+	<control Style="smallTitle">
+      <type>label</type>
+      <label>Press F9 or ENTER or the Info button on your remote for options</label>
       <posX>30</posX>
-      <posY>160</posY>
+      <posY>685</posY>
+	  <width>1000</width>
+      <visible>Control.IsVisible(1601)</visible>
+    </control>
+	
+    <!-- :::::::::::::::::::::::::::::: BROWSE TORRENTS PAGE :::::::::::::::::::::::::::::: -->
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Source</label>
+      <posX>770</posX>
+      <posY>80</posY>
       <visible>Control.IsVisible(1602)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Browse.Source</label>
-      <posX>200</posX>
-      <posY>160</posY>
-      <width>550</width>
+      <posX>920</posX>
+      <posY>80</posY>
+      <width>450</width>
       <visible>Control.IsVisible(1602)</visible>
     </control>
-    <control Style="smallTitleB">
+	
+	<control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Browse.ResultDescription</label>
-      <posX>30</posX>
-      <posY>640</posY>
-      <width>500</width>
+      <posX>770</posX>
+      <posY>110</posY>
       <visible>Control.IsVisible(1602)</visible>
     </control>
-    <!-- :::::::::::::::::::::::::::::: NAVIGATION BAR :::::::::::::::::::::::::::::: -->
-    <control>
-      <id>104</id>
-      <type>image</type>
-      <posX>15</posX>
-      <posY>70</posY>
-      <width>24</width>
-      <height>24</height>
-      <texture>MyAnime3/nav24_back.png</texture>
-    </control>
-    <control>
-      <description>Calendar</description>
-      <type>button</type>
-      <id>901</id>
-      <label>Calendar</label>
-      <width>150</width>
-      <posX>45</posX>
-      <posY>68</posY>
-      <align>center</align>
-      <onleft>902</onleft>
-      <onright>801</onright>
-      <onup>50</onup>
-      <ondown>801</ondown>
-    </control>
-    <control>
-      <id>104</id>
-      <type>image</type>
-      <posX>1240</posX>
-      <posY>70</posY>
-      <width>24</width>
-      <height>24</height>
-      <texture>MyAnime3/nav24_next.png</texture>
-    </control>
-    <control>
-      <description>Collection</description>
-      <type>button</type>
-      <id>902</id>
-      <label>Collection</label>
-      <width>150</width>
-      <posX>1110</posX>
-      <posY>68</posY>
-      <align>right</align>
-      <onleft>803</onleft>
-      <onright>901</onright>
-      <onup>50</onup>
-      <ondown>801</ondown>
-    </control>
-    <!--  ************** BUTTONS TOOLBAR *****************  -->
-    <control>
-      <description>uTorrent button</description>
-      <type>button</type>
-      <id>801</id>
-      <label>Torrent Monitor</label>
-      <width>200</width>
-      <posX>320</posX>
-      <posY>87</posY>
-      <align>right</align>
-      <textalign>center</textalign>
-      <onleft>901</onleft>
-      <onright>802</onright>
-      <onup>901</onup>
-      <ondown>50</ondown>
-      <textYOff>1</textYOff>
-    </control>
-    <control>
-      <description>Search</description>
-      <type>button</type>
-      <id>802</id>
-      <label>Search</label>
-      <width>200</width>
-      <posX>552</posX>
-      <posY>87</posY>
-      <align>right</align>
-      <textalign>center</textalign>
-      <onleft>801</onleft>
-      <onright>803</onright>
-      <onup>901</onup>
-      <ondown>50</ondown>
-      <textYOff>1</textYOff>
-    </control>
-    <control>
-      <description>Browse Torrents</description>
-      <type>button</type>
-      <id>803</id>
-      <label>Browse Torrents</label>
-      <width>200</width>
-      <posX>810</posX>
-      <posY>87</posY>
-      <align>right</align>
-      <textalign>center</textalign>
-      <onleft>802</onleft>
-      <onright>902</onright>
-      <onup>901</onup>
-      <ondown>50</ondown>
-      <textYOff>1</textYOff>
-    </control>
-    <control>
-      <description>File Copy Status</description>
+	
+	<control>
       <type>label</type>
-      <id>114</id>
-      <posX>60</posX>
-      <posY>685</posY>
-      <width>900</width>
-      <label>#Anime3.Download.Status</label>
-      <font>mediastream10</font>
-      <align>Left</align>
-      <textcolor>ffffffff</textcolor>
+      <label>Torrent Details</label>
+      <posX>770</posX>
+      <posY>150</posY>
+	  <font>mediastream14tc</font>
+      <visible>Control.IsVisible(1602)</visible>
     </control>
+	
+	
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Name</label>
+      <posX>770</posX>
+      <posY>190</posY>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Name</label>
+      <posX>920</posX>
+      <posY>190</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+	
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Size</label>
+      <posX>770</posX>
+      <posY>220</posY>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Size</label>
+      <posX>920</posX>
+      <posY>220</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Seeders</label>
+      <posX>770</posX>
+      <posY>250</posY>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Seeders</label>
+      <posX>920</posX>
+      <posY>250</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+	
+	
+	<control Style="smallTitleB">
+      <type>label</type>
+      <label>Leechers</label>
+      <posX>770</posX>
+      <posY>280</posY>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+    <control Style="smallTitle">
+      <type>label</type>
+      <label>#Anime3.TorrentLink.Leechers</label>
+      <posX>920</posX>
+      <posY>280</posY>
+      <width>320</width>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+	
+	<control Style="smallTitle">
+      <type>label</type>
+      <label>Press F9 or ENTER or the Info button on your remote for options</label>
+      <posX>30</posX>
+      <posY>685</posY>
+	  <width>1000</width>
+      <visible>Control.IsVisible(1602)</visible>
+    </control>
+    
+    
     <import>common.time.xml</import>
   </controls>
 </window>

@@ -7,6 +7,7 @@
   <controls>
 
 	<import>Anime3_Dummy.xml</import>
+	<import>Anime3_Notification.xml</import>
 
 	<!-- ********************** BACKGROUNDS************************************** -->
 	
@@ -72,6 +73,7 @@
 	<import>Anime3_Hiddenmenu.xml</import>
 	<import>common.overlay.xml</import>
 	<import tag="Facade">Anime3_Facade.xml</import>
+	<import>Anime3_QueueStatus.xml</import>
 	
 		<!-- *********************** FIND PANEL *********************************** -->
         <control>

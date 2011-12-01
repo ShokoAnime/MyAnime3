@@ -455,13 +455,21 @@
     <Content Include="Skins\Avalon\Anime3_Admin.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Skins\Avalon\Anime3_AnimeInfo.xml" />
+    <Content Include="Skins\Avalon\Anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_Background.xml" />
     <Content Include="Skins\Avalon\Anime3_Background.standard.xml" />
-    <Content Include="Skins\Avalon\Anime3_Calendar.xml" />
-    <Content Include="Skins\Avalon\Anime3_Char.xml" />
+    <Content Include="Skins\Avalon\Anime3_Calendar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Char.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_Downloads.xml" />
-    <Content Include="Skins\Avalon\Anime3_Dummy.xml" />
+    <Content Include="Skins\Avalon\Anime3_Dummy.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_Facade.xml" />
     <Content Include="Skins\Avalon\Anime3_FanArt.xml">
       <SubType>Designer</SubType>
@@ -563,7 +571,6 @@
     </Content>
     <Content Include="Skins\streamedmp\Anime3_Calendar.xml" />
     <Content Include="Skins\streamedmp\Anime3_Char.xml" />
-    <Content Include="Skins\streamedmp\Anime3_Collection.xml" />
     <Content Include="Skins\streamedmp\Anime3_Downloads.xml" />
     <Content Include="Skins\streamedmp\Anime3_Dummy.xml">
       <SubType>Designer</SubType>

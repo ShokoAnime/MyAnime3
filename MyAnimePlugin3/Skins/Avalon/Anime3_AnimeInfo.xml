@@ -18,8 +18,6 @@
       <label>
       </label>
       <visible>false</visible>
-      <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1500)</visible> -->
-      <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1500)</visible> -->
     </control>
     <control>
       <type>label</type>
@@ -32,8 +30,6 @@
       <label>
       </label>
       <visible>false</visible>
-      <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1501)</visible> -->
-      <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1501)</visible> -->
     </control>
     <control>
       <type>label</type>
@@ -46,8 +42,6 @@
       <label>
       </label>
       <visible>false</visible>
-      <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1501)</visible> -->
-      <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1501)</visible> -->
     </control>
     <control>
       <type>label</type>
@@ -60,8 +54,6 @@
       <label>
       </label>
       <visible>false</visible>
-      <!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1502)</visible> -->
-      <!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1502)</visible> -->
     </control>
 	
 	<control>

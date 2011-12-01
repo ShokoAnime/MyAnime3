@@ -77,20 +77,6 @@
     		<animation effect="fade" time="50">visible</animation>
     		<animation effect="fade" time="0">hidden</animation>
 		</control>
-		<control>
-			<type>image</type>
-			<id>0</id>
-			<posY>550</posY>
-			<posX>128</posX>
-			<width>376</width>
-			<height>1</height>
-			<texture>hiddenmenu_separator.png</texture>
-			<visible>!Control.HasFocus(50)</visible>
-    		<animation effect="fade" time="0">WindowClose</animation>
-    		<animation effect="slide" start="-150,0" time="100">visible</animation>
-    		<animation effect="fade" time="50">visible</animation>
-    		<animation effect="fade" time="0">hidden</animation>
-		</control>
 		
 		<control>
 			<description>Menu label</description>
@@ -108,26 +94,11 @@
     		<animation effect="fade" time="0">hidden</animation>
     	</control>
 		<control>
-			<description>Playlist label</description>
-			<type>label</type>
-			<id>1</id>
-			<posX>128</posX>
-			<posY>370</posY>
-			<label>136</label>
-			<font>fontB12</font>
-			<textcolor>ffffff</textcolor>
- 			<visible>!Control.HasFocus(50)</visible>
-    		<animation effect="fade" time="0">WindowClose</animation>
-    		<animation effect="slide" start="-150,0" time="100">visible</animation>
-    		<animation effect="fade" time="50">visible</animation>
-    		<animation effect="fade" time="0">hidden</animation>
-		</control>
-		<control>
 			<description>Other label</description>
 			<type>label</type>
 			<id>1</id>
 			<posX>128</posX>
-			<posY>560</posY>
+			<posY>370</posY>
 			<label>Other</label>
 			<font>fontB12</font>
 			<textcolor>ffffff</textcolor>
@@ -195,53 +166,9 @@
 				<label>496</label>
 				<onleft>50</onleft>
 				<onright>50</onright>
-				<ondown>666</ondown>
+				<ondown>920</ondown>
             </control>
             
-            <control>
-                <description>Empty button</description>
-                <type>button</type>
-                <id>0</id>
-			    <textureFocus>-</textureFocus>
-			    <textureNoFocus>-</textureNoFocus>
-		        <width>497</width>
-			    <height>64</height>
-                <label>-</label>
-                <visible>true</visible>
-            </control>
-            
-            <control>
-	            <description>Current Playlist</description>
-    		    <type>button</type>
-    		    <id>666</id>
-    		    <textureFocus>hiddenmenu_item_selected.png</textureFocus>
-    		    <textureNoFocus>-</textureNoFocus>
-    		    <width>497</width>
-    		    <height>64</height>
-				<textXOff>58</textXOff>
-				<textYOff>14</textYOff>
-    		    <label>4555</label>
-    		    <action>33</action>
-    		    <onleft>50</onleft>
-    		    <onright>50</onright>
-    		    <onup>4</onup>
-            </control>	
-            
-            <control>
-    		    <description>My Playlists</description>
- 		        <type>button</type>
-    			<id>667</id>
-    			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
-    			<textureNoFocus>-</textureNoFocus>
-    			<width>497</width>
-    			<height>64</height>
-				<textXOff>58</textXOff>
-				<textYOff>14</textYOff>
-    			<label>983</label>
-    			<onleft>50</onleft>
-    			<onright>50</onright>
-    			<ondown>920</ondown>
-            </control>
                 
             <control>
               <description>Empty button</description>
@@ -268,7 +195,7 @@
 				<label>Continue Watching...</label>
 				<onleft>50</onleft>
                 <onright>50</onright>
-				<onup>667</onup>
+				<onup>4</onup>
 				<ondown>921</ondown>
 			</control>
             

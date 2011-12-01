@@ -1854,8 +1854,8 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						if (!ShowOptionsAniDBMenu(currentMenu))
-							return false;
+						//if (!ShowOptionsAniDBMenu(currentMenu))
+						//	return false;
 						break;
 					case 2:
 						if (!ShowOptionsDisplayMenu(currentMenu))
@@ -1868,206 +1868,6 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private bool ShowViewLabelStyleGroupMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Label Style";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("< System Default >");
-				dlg.Add("Watched and Unwatched Episode Counts");
-				dlg.Add("Unwatched Episode Count Only");
-				dlg.Add("Total Episode Count");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						currentView.LabelStyleGroups = View.eLabelStyleGroups.SystemDefault;
-						currentView.isEdited = true;
-						break;
-					case 2:
-						currentView.LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
-						currentView.isEdited = true;
-						break;
-					case 3:
-						currentView.LabelStyleGroups = View.eLabelStyleGroups.Unwatched;
-						currentView.isEdited = true;
-						break;
-					case 4:
-						currentView.LabelStyleGroups = View.eLabelStyleGroups.TotalEpisodes;
-						currentView.isEdited = true;
-						break;
-					default:
-						//close menu
-						return false;
-				}
-
-				settings.Save();
-			}
-		}
-
-		private bool ShowViewLabelStyleEpisodeMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Label Style";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("< System Default >");
-				dlg.Add("Icons and Date");
-				dlg.Add("Icons Only");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						currentView.LabelStyleEpisodes = View.eLabelStyleEpisodes.SystemDefault;
-						currentView.isEdited = true;
-						break;
-					case 2:
-						currentView.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsDate;
-						currentView.isEdited = true;
-						break;
-					case 3:
-						currentView.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsOnly;
-						currentView.isEdited = true;
-						break;
-					default:
-						//close menu
-						return false;
-				}
-
-				settings.Save();
-			}
-		}
-
-		private bool ShowOptionsLabelStyleGroupMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Label Style";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Watched and Unwatched Episode Counts");
-				dlg.Add("Unwatched Episode Count Only");
-				dlg.Add("Total Episode Count");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						settings.LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
-						break;
-					case 2:
-						settings.LabelStyleGroups = View.eLabelStyleGroups.Unwatched;
-						break;
-					case 3:
-						settings.LabelStyleGroups = View.eLabelStyleGroups.TotalEpisodes;
-						break;
-					default:
-						//close menu
-						return false;
-				}
-
-				settings.Save();
-				LoadFacade();
-			}
-		}
-
-		private bool ShowOptionsLabelStyleEpisodeMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Label Style";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Icons and Date");
-				dlg.Add("Icons Only");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsDate;
-						break;
-					case 2:
-						settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsOnly;
-						break;
-					default:
-						//close menu
-						return false;
-				}
-
-				settings.Save();
-				LoadFacade();
-			}
-		}
 
 		private bool ShowOptionsDisplayMenu(string previousMenu)
 		{
@@ -2085,16 +1885,12 @@ namespace MyAnimePlugin3
 
 				string showEps = string.Format("Only Show Available Episodes ({0})", settings.ShowOnlyAvailableEpisodes ? "On" : "Off");
 				string hideWatched = string.Format("Hide Watched Episodes ({0})", settings.HideWatchedFiles ? "On" : "Off");
-				string labelsGroup = string.Format("Default Label Style - Groups/Series");
-				string labelsEps = string.Format("Default Label Style - Episodes");
 				string findFilter = string.Format("Find - Only Show Matches ({0})", settings.FindFilter ? "On" : "Off");
 
 				if (previousMenu != string.Empty)
 					dlg.Add("<<< " + previousMenu);
 				dlg.Add(showEps);
 				dlg.Add(hideWatched);
-				dlg.Add(labelsGroup);
-				dlg.Add(labelsEps);
 				dlg.Add(findFilter);
 
 				dlg.SelectedLabel = selectedLabel;
@@ -2116,14 +1912,6 @@ namespace MyAnimePlugin3
 						LoadFacade();
 						break;
 					case 3:
-						if (!ShowOptionsLabelStyleGroupMenu(currentMenu))
-							return false;
-						break;
-					case 4:
-						if (!ShowOptionsLabelStyleEpisodeMenu(currentMenu))
-							return false;
-						break;
-					case 5:
 						settings.FindFilter = !settings.FindFilter;
 						if (searchTimer.Enabled)
 						{
@@ -2137,47 +1925,6 @@ namespace MyAnimePlugin3
 				}
 
 				settings.Save();
-			}
-		}
-
-		private bool ShowOptionsAniDBMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "AniDB Options";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				string autoEpsSubbed = string.Format("Auto Download Subbed Episode Information ({0})", settings.AniDBAutoEpisodesSubbed ? "On" : "Off");
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add(autoEpsSubbed);
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						settings.AniDBAutoEpisodesSubbed = !settings.AniDBAutoEpisodesSubbed;
-						settings.Save();
-						break;
-					default:
-						//close menu
-						return false;
-				}
 			}
 		}
 
@@ -2419,7 +2166,7 @@ namespace MyAnimePlugin3
 			{
 				hook.IsEnabled = false;
 
-				ShowOptionsMenu("");
+				ShowOptionsDisplayMenu("");
 				btnDisplayOptions.Focus = false;
 
 				Thread.Sleep(100); //make sure key-up's from the context menu aren't cought by the hook

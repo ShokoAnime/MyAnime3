@@ -3,11 +3,6 @@
   <id>6106</id>
   <defaultcontrol>50</defaultcontrol>
   <allowoverlay>no</allowoverlay>
-  <define>#title.color:ffFFFFFF</define>
-  <define>#text.color:ffFFFFFF</define>
-  <define>#default.color:ffFFFFFF</define>
-  <define>#watched.color:ffa9d0f7</define>
-  <define>#notpresent.color:ffF87B72</define>
   <controls>
    <!-- :::::::::::::: BACKGROUNDS :::::::::::::: -->
     <control>
@@ -52,9 +47,133 @@
       <align>right</align>
     </control>
 	
+	<!--  ************** HIDDEN MENU *****************  -->
+
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>2</defaultcontrol>
+			<onexit>50</onexit>
+			<dimColor>00ffffff</dimColor>
+			<control>
+				<type>image</type>
+				<posX>1002</posX>
+				<posY>0</posY>
+				<width>278</width>
+				<height>720</height>
+				<texture>hiddenmenu_right.png</texture>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+			</control>
+			<control>
+				<id>0</id>
+				<label>MENU</label>
+				<type>label</type>
+				<font>mediastream12tc</font>
+				<posX>1040</posX>
+				<posY>225</posY>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+			</control>
+			<control>
+				<id>0</id>
+				<label>OTHER</label>
+				<type>label</type>
+				<font>mediastream12tc</font>
+				<posX>1040</posX>
+				<posY>285</posY>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+			</control>
+			<control>
+				<type>group</type>
+				<description>group element</description>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="100" start="300,0">visible</animation>
+				<animation effect="slide" time="0" end="300,0">hidden</animation>
+				<posX>1040</posX>
+				<posY>250</posY>
+				<width>220</width>
+				<height>720</height>
+				<layout>StackLayout</layout>
+				<control>
+					<description>Change Layout</description>
+					<type>button</type>
+					<id>2</id>
+					<label>Change Layout</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>914</onup>
+					<ondown>910</ondown>
+				</control>
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<label>-</label>
+					<visible>false</visible>
+				</control>
+				
+				<control>
+					<description>Series Info</description>
+					<type>button</type>
+					<id>910</id>
+					<label>Series Info</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>2</onup>
+					<ondown>911</ondown>
+				</control>
+				<control>
+					<description>Characters</description>
+					<type>button</type>
+					<id>911</id>
+					<label>Characters</label>
+					<onleft>801</onleft>
+					<onright>801</onright>
+					<onup>910</onup>
+					<ondown>912</ondown>
+				</control>
+				<control>
+					<description>Relations</description>
+					<type>button</type>
+					<id>912</id>
+					<label>Relations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>911</onup>
+					<ondown>913</ondown>
+				</control>
+				<control>
+					<description>Fanart</description>
+					<type>button</type>
+					<id>913</id>
+					<label>Fanart</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>912</onup>
+					<ondown>914</ondown>
+				</control>
+				<control>
+					<description>Posters</description>
+					<type>button</type>
+					<id>914</id>
+					<label>Posters</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>913</onup>
+					<ondown>2</ondown>
+				</control>
+				
+			</control>
+		</control>
+	
     <!-- :::::::::::::: INFO LABELS :::::::::::::: -->
 
-    <control Style="TVSeriesTitle">
+    <control Style="smallTitleB">
       <description>WideBanners Source Label</description>
       <type>label</type>
       <id>0</id>
@@ -63,7 +182,7 @@
       <width>700</width>
       <label>Source</label>
     </control>
-    <control Style="TVSeriesLabel">
+    <control Style="smallTitle">
       <description>WideBanners Source</description>
       <type>label</type>
       <id>0</id>
@@ -72,7 +191,7 @@
       <width>700</width>
       <label>#Anime3.WideBanners.SelectedSource</label>
     </control>
-    <control Style="TVSeriesTitle">
+    <control Style="smallTitleB">
       <description>IsDisabled Label</description>
       <type>label</type>
       <id>0</id>
@@ -81,7 +200,7 @@
       <width>700</width>
       <label>Is Disabled</label>
     </control>
-    <control Style="TVSeriesLabel">
+    <control Style="smallTitle">
       <description>IsDisabled</description>
       <type>label</type>
       <id>0</id>
@@ -90,7 +209,7 @@
       <width>700</width>
       <label>#Anime3.WideBanners.SelectedBannerIsDisabled</label>
     </control>
-    <control Style="TVSeriesTitle">
+    <control Style="smallTitleB">
       <description>Is Default Label</description>
       <type>label</type>
       <id>0</id>
@@ -99,7 +218,7 @@
       <width>700</width>
       <label>Is Default</label>
     </control>
-    <control Style="TVSeriesLabel">
+    <control Style="smallTitle">
       <description>Is Default</description>
       <type>label</type>
       <id>0</id>
@@ -108,67 +227,7 @@
       <width>700</width>
       <label>#Anime3.WideBanners.SelectedBannerIsDefault</label>
     </control>
-    <!--  ************** HIDDEN MENU *****************  -->
-    <control>
-      <type>actiongroup</type>
-      <description>action menu</description>
-      <defaultcontrol>140</defaultcontrol>
-      <onexit>50</onexit>
-      <dimColor>00ffffff</dimColor>
-      <control>
-        <type>image</type>
-        <posX>1002</posX>
-        <posY>0</posY>
-        <width>278</width>
-        <height>720</height>
-        <texture>hiddenmenu_right.png</texture>
-        <visible>!Control.HasFocus(50)</visible>
-        <animation effect="slide" time="100" start="300,0">visible</animation>
-        <animation effect="slide" time="0" end="300,0">hidden</animation>
-      </control>
-      <control>
-        <id>0</id>
-        <label>MENU</label>
-        <type>label</type>
-        <font>mediastream12tc</font>
-        <posX>1040</posX>
-        <posY>225</posY>
-        <visible>!Control.HasFocus(50)</visible>
-        <animation effect="slide" time="100" start="300,0">visible</animation>
-        <animation effect="slide" time="0" end="300,0">hidden</animation>
-      </control>
-      <control>
-        <type>group</type>
-        <description>group element</description>
-        <visible>!Control.HasFocus(50)</visible>
-        <animation effect="slide" time="100" start="300,0">visible</animation>
-        <animation effect="slide" time="0" end="300,0">hidden</animation>
-        <posX>1040</posX>
-        <posY>250</posY>
-        <width>220</width>
-        <height>720</height>
-        <layout>StackLayout</layout>
-        
-        <control>
-          <description>Fanart</description>
-          <type>button</type>
-          <id>140</id>
-          <label>Fanart</label>
-          <onleft>50</onleft>
-          <onup>141</onup>
-          <ondown>141</ondown>
-        </control>
-        <control>
-          <description>Posters</description>
-          <type>button</type>
-          <id>141</id>
-          <label>Posters</label>
-          <onleft>50</onleft>
-          <onup>140</onup>
-          <ondown>140</ondown>
-        </control>
-      </control>
-    </control>
+    
     <!-- :::::::::::::: THUMBNAILPANEL :::::::::::::: -->
     <control>
       <type>group</type>
@@ -185,8 +244,8 @@
           <description>graphical thumbpanel</description>
           <type>thumbnailpanel</type>
           <id>50</id>
-          <onleft>140</onleft>
-          <onright>140</onright>
+          <onleft>2</onleft>
+          <onright>2</onright>
           <posX>13</posX>
           <posY>92</posY>
           <width>1280</width>

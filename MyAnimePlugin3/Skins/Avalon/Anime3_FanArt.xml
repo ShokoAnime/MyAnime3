@@ -84,90 +84,11 @@
 	  <visible>facadeview.filmstrip + Control.IsVisible(50)</visible>
 	</control>
 
-	<!--            :: labels for small icons and large icons ::            -->
-
-	<control>
-	  <description>Disabled</description>
-	  <type>label</type>
-	  <id>0</id>
-	  <posX>60</posX>
-	  <posY>945</posY>
-	  <align>left</align>
-	  <font>fontB20</font>
-	  <label>Disabled</label>
-	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
-
-	<control>
-	  <description>Disabled Value</description>
-	  <type>label</type>
-	  <id>0</id>
-	  <posX>360</posX>
-	  <posY>945</posY>
-	  <align>left</align>
-	  <font>fontB20</font>
-	  <textcolor>6aa5cb</textcolor>
-	  <label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
-	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
-
-	<control>
-	  <description>Default</description>
-	  <type>label</type>
-	  <id>0</id>
-	  <posX>560</posX>
-	  <posY>945</posY>
-	  <align>left</align>
-	  <font>fontB20</font>
-	  <label>Default</label>
-	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
-
-	<control>
-	  <description>Default Value</description>
-	  <type>label</type>
-	  <id>0</id>
-	  <posX>860</posX>
-	  <posY>945</posY>
-	  <align>left</align>
-	  <font>fontB20</font>
-	  <textcolor>6aa5cb</textcolor>
-	  <label>#Anime3.FanArt.SelectedFanartIsDefault</label>
-	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
-
-	<control>
-	  <description>Fanart Resolution</description>
-	  <type>label</type>
-	  <id>0</id>
-	  <posX>1856</posX>
-	  <posY>945</posY>
-	  <width>1170</width>
-	  <align>right</align>
-	  <font>fontB20</font>
-	  <label>#Anime3.FanArt.SelectedFanartResolution</label>
-	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
 
 	<!--            :: labels for fimstrip ::            -->
 
 	<control>
-	  <description>Fanart Resolution</description>
+	  <description>Source</description>
 	  <type>label</type>
 	  <id>0</id>
 	  <posX>60</posX>
@@ -175,70 +96,117 @@
 	  <width>300</width>
 	  <align>left</align>
 	  <font>fontB20</font>
-	  <label>#Anime3.FanArt.SelectedFanartResolution</label>
-	  <visible>facadeview.filmstrip</visible>
+	  <label>Source</label>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
-
+	
+	<control>
+	  <description>Source Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>900</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>#Anime3.FanArt.Source</label>
+	  <textcolor>6aa5cb</textcolor>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Fanart Resolution</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>970</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>Resolution</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Fanart Resolution Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>970</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>#Anime3.FanArt.SelectedFanartResolution</label>
+	  <textcolor>6aa5cb</textcolor>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
 	<control>
 	  <description>Disabled</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>500</posX>
+	  <posX>610</posX>
 	  <posY>900</posY>
+	  <width>300</width>
 	  <align>left</align>
 	  <font>fontB20</font>
 	  <label>Disabled</label>
-	  <visible>facadeview.filmstrip</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
-
+	
 	<control>
 	  <description>Disabled Value</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>800</posX>
+	  <posX>810</posX>
 	  <posY>900</posY>
+	  <width>300</width>
 	  <align>left</align>
 	  <font>fontB20</font>
-	  <textcolor>6aa5cb</textcolor>
 	  <label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
-	  <visible>facadeview.filmstrip</visible>
+	  <textcolor>6aa5cb</textcolor>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
-
+	
+	
 	<control>
 	  <description>Default</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>1100</posX>
-	  <posY>900</posY>
+	  <posX>610</posX>
+	  <posY>970</posY>
+	  <width>300</width>
 	  <align>left</align>
 	  <font>fontB20</font>
 	  <label>Default</label>
-	  <visible>facadeview.filmstrip</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
-
+	
 	<control>
 	  <description>Default Value</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>1400</posX>
-	  <posY>900</posY>
+	  <posX>810</posX>
+	  <posY>970</posY>
+	  <width>300</width>
 	  <align>left</align>
 	  <font>fontB20</font>
-	  <textcolor>6aa5cb</textcolor>
 	  <label>#Anime3.FanArt.SelectedFanartIsDefault</label>
-	  <visible>facadeview.filmstrip</visible>
+	  <textcolor>6aa5cb</textcolor>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>

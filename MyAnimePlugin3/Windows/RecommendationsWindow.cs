@@ -44,9 +44,19 @@ namespace MyAnimePlugin3.Windows
 			GetID = Constants.WindowIDs.RECOMMENDATIONS;
 
 			setGUIProperty("Recommendations.Status", "-");
+			setGUIProperty("Recommendations.DownloadStatus", "-");
 
 			getDataWorker.DoWork += new DoWorkEventHandler(getDataWorker_DoWork);
 			getDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getDataWorker_RunWorkerCompleted);
+
+			MainWindow.ServerHelper.GotRecommendedAnimeEvent += new JMMServerHelper.GotRecommendedAnimeEventHandler(ServerHelper_GotRecommendedAnimeEvent);
+		}
+
+		void ServerHelper_GotRecommendedAnimeEvent(Events.GotAnimeForRecommendedEventArgs ev)
+		{
+			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.RECOMMENDATIONS) return;
+			setGUIProperty("Recommendations.DownloadStatus", "-");
+			LoadData();
 		}
 
 		void getDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -219,10 +229,23 @@ namespace MyAnimePlugin3.Windows
 			setGUIProperty("Recommendations.Rec.Title", rec.Recommended_DisplayName);
 			setGUIProperty("Recommendations.Rec.Description", rec.Recommended_Description);
 			setGUIProperty("Recommendations.Rec.ApprovalRating", rec.Recommended_ApprovalRating);
+			setGUIProperty("Recommendations.Rec.Image", rec.Recommended_PosterPath);
+
+			try
+			{
+				if (rec.Recommended_AniDB_Anime != null)
+					setGUIProperty("Recommendations.Rec.AniDBRating", rec.Recommended_AniDB_Anime.AniDBRatingFormatted);
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ex.ToString());
+			}
 
 			setGUIProperty("Recommendations.BasedOn.Title", rec.BasedOn_DisplayName);
 			setGUIProperty("Recommendations.BasedOn.VoteValue", rec.BasedOn_VoteValueFormatted);
 			setGUIProperty("Recommendations.BasedOn.Image", rec.BasedOn_PosterPath);
+
+			
 		}
 
 		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
@@ -254,6 +277,15 @@ namespace MyAnimePlugin3.Windows
 				setGUIProperty("Recommendations.CurrentView", "Download");
 
 				LoadData();
+			}
+
+			if (this.btnGetMissingInfo != null && control == this.btnGetMissingInfo)
+			{
+				MainWindow.ServerHelper.DownloadRecommendedAnime();
+				setGUIProperty("Recommendations.DownloadStatus", "Waiting on server...");
+				GUIControl.FocusControl(GetID, 50);
+
+				return;
 			}
 
 			if (control == this.m_Facade)

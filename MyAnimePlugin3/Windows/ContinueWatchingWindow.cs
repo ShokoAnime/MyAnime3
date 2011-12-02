@@ -197,10 +197,25 @@ namespace MyAnimePlugin3.Windows
 			setGUIProperty("Watching.Episode.Title", ep.EpisodeNumberAndNameWithType);
 			setGUIProperty("Watching.Episode.AirDate", ep.AirDateAsString);
 			setGUIProperty("Watching.Episode.RunTime", Utils.FormatSecondsToDisplayTime(ep.AniDB_LengthSeconds));
-			
+
+
+			setGUIProperty("Watching.Series.Poster", ImageAllocator.GetSeriesImageAsFileName(ep.AnimeSeries, GUIFacadeControl.Layout.List));
 
 			if (ep.EpisodeImageLocation.Length > 0)
 				setGUIProperty("Watching.Episode.Image", ep.EpisodeImageLocation);
+
+			try
+			{
+				Fanart fanart = new Fanart(ep.AnimeSeries);
+				if (!string.IsNullOrEmpty(fanart.FileName))
+					setGUIProperty("Watching.Series.Fanart", fanart.FileName);
+				else
+					setGUIProperty("Watching.Series.Fanart", "-");
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ep.AnimeSeries.SeriesName + " - "  + ex.ToString());
+			}
 
 			// Overview
 			string overview = ep.EpisodeOverview;

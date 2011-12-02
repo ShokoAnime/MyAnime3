@@ -242,7 +242,7 @@
 					<onleft>801</onleft>
 					<onright>801</onright>
 					<onup>910</onup>
-					<ondown>912</ondown>
+					<ondown>913</ondown>
 				</control>
 				<control>
 					<description>Fanart</description>
@@ -251,7 +251,7 @@
 					<label>Fanart</label>
 					<onleft>50</onleft>
 					<onright>50</onright>
-					<onup>912</onup>
+					<onup>911</onup>
 					<ondown>914</ondown>
 				</control>
 				<control>

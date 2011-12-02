@@ -126,6 +126,7 @@ namespace MyAnimePlugin3.ViewModel
 			{
 				if (aniDB_AnimeCrossRefs != null) return aniDB_AnimeCrossRefs;
 				RefreshAnimeCrossRefs();
+
 				AniDB_AnimeCrossRefs.AllPosters.Insert(0, new PosterContainer(ImageEntityType.AniDB_Cover, this));
 				return aniDB_AnimeCrossRefs;
 			}
@@ -187,9 +188,9 @@ namespace MyAnimePlugin3.ViewModel
 		public void RefreshAnimeCrossRefs()
 		{
 			JMMServerBinary.Contract_AniDB_AnimeCrossRefs xrefDetails = JMMServerVM.Instance.clientBinaryHTTP.GetCrossRefDetails(this.AnimeID);
-			if (xrefDetails == null) return;
-
 			aniDB_AnimeCrossRefs = new AniDB_AnimeCrossRefsVM();
+
+			if (xrefDetails == null) return;
 			aniDB_AnimeCrossRefs.Populate(xrefDetails);
 		}
 

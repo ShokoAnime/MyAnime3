@@ -11,6 +11,25 @@ namespace MyAnimePlugin3.ViewModel
 
 		public AniDB_AnimeCrossRefsVM()
 		{
+			CrossRef_AniDB_TvDB = null;
+			TvDBSeries = null;
+			TvDBEpisodes = new List<TvDB_EpisodeVM>();
+			TvDBImageFanarts = new List<TvDB_ImageFanartVM>();
+			TvDBImagePosters = new List<TvDB_ImagePosterVM>();
+			TvDBImageWideBanners = new List<TvDB_ImageWideBannerVM>();
+
+			CrossRef_AniDB_MovieDB = null;
+			MovieDB_Movie = null;
+			MovieDBPosters = new List<MovieDB_PosterVM>();
+			MovieDBFanarts = new List<MovieDB_FanartVM>();
+
+			CrossRef_AniDB_Trakt = null;
+			TraktShow = null;
+			TraktImageFanart = null;
+			TraktImagePoster = null;
+
+			AllPosters = new List<PosterContainer>();
+			AllFanarts = new List<FanartContainer>();
 		}
 
 		private bool tvDBCrossRefExists = false;
@@ -62,25 +81,7 @@ namespace MyAnimePlugin3.ViewModel
 			AniDB_AnimeVM anime = JMMServerHelper.GetAnime(AnimeID);
 			if (anime == null) return;
 			
-			CrossRef_AniDB_TvDB = null;
-			TvDBSeries = null;
-			TvDBEpisodes = new List<TvDB_EpisodeVM>();
-			TvDBImageFanarts = new List<TvDB_ImageFanartVM>();
-			TvDBImagePosters = new List<TvDB_ImagePosterVM>();
-			TvDBImageWideBanners = new List<TvDB_ImageWideBannerVM>();
-
-			CrossRef_AniDB_MovieDB = null;
-			MovieDB_Movie = null;
-			MovieDBPosters = new List<MovieDB_PosterVM>();
-			MovieDBFanarts = new List<MovieDB_FanartVM>();
-
-			CrossRef_AniDB_Trakt = null;
-			TraktShow = null;
-			TraktImageFanart = null;
-			TraktImagePoster = null;
-
-			AllPosters = new List<PosterContainer>();
-			AllFanarts = new List<FanartContainer>();
+			
 
 			// Trakt
 			if (details.CrossRef_AniDB_Trakt != null)

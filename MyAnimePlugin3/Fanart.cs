@@ -43,7 +43,7 @@ namespace MyAnimePlugin3
 				}
 			}
 
-			
+			//if (anime.AniDB_AnimeCrossRefs != nul
 			foreach (FanartContainer fanart in anime.AniDB_AnimeCrossRefs.AllFanarts)
 			{
 				if (!fanart.IsImageEnabled) continue;

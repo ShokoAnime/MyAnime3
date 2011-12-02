@@ -15,6 +15,7 @@ namespace MyAnimePlugin3.ViewModel
 		private BackgroundWorker downloadRelatedAnimeWorker = new BackgroundWorker();
 		private BackgroundWorker downloadAnimeWorker = new BackgroundWorker();
 		private BackgroundWorker downloadCharacterCreatorImagesWorker = new BackgroundWorker();
+		private BackgroundWorker downloadRecommendedAnimeWorker = new BackgroundWorker();
 
 		public JMMServerHelper()
 		{
@@ -26,7 +27,12 @@ namespace MyAnimePlugin3.ViewModel
 
 			downloadAnimeWorker.DoWork += new DoWorkEventHandler(downloadAnimeWorker_DoWork);
 			downloadAnimeWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(downloadAnimeWorker_RunWorkerCompleted);
+
+			downloadRecommendedAnimeWorker.DoWork += new DoWorkEventHandler(downloadRecommendedAnimeWorker_DoWork);
+			downloadRecommendedAnimeWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(downloadRecommendedAnimeWorker_RunWorkerCompleted);
 		}
+
+		
 
 		
 		public delegate void GotCharacterCreatorImagesEventHandler(GotCharacterCreatorImagesEventArgs ev);
@@ -49,6 +55,16 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
+		public delegate void GotRecommendedAnimeEventHandler(GotAnimeForRecommendedEventArgs ev);
+		public event GotRecommendedAnimeEventHandler GotRecommendedAnimeEvent;
+		protected void OnGotRecommendedAnimeEvent(GotAnimeForRecommendedEventArgs ev)
+		{
+			if (GotRecommendedAnimeEvent != null)
+			{
+				GotRecommendedAnimeEvent(ev);
+			}
+		}
+
 		public delegate void GotAnimeEventHandler(GotAnimeEventArgs ev);
 		public event GotAnimeEventHandler GotAnimeEvent;
 		protected void OnGotAnimeEvent(GotAnimeEventArgs ev)
@@ -57,6 +73,12 @@ namespace MyAnimePlugin3.ViewModel
 			{
 				GotAnimeEvent(ev);
 			}
+		}
+
+		public void DownloadRecommendedAnime()
+		{
+			if (downloadRecommendedAnimeWorker.IsBusy) return;
+			downloadRecommendedAnimeWorker.RunWorkerAsync();
 		}
 
 		public void DownloadRelatedAnime(int animeID)
@@ -75,6 +97,68 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			if (downloadCharacterCreatorImagesWorker.IsBusy) return;
 			downloadCharacterCreatorImagesWorker.RunWorkerAsync(anime);
+		}
+
+		void downloadRecommendedAnimeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+
+		}
+
+		void downloadRecommendedAnimeWorker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			List<JMMServerBinary.Contract_Recommendation> contracts =
+					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, 2); // downloads only
+
+
+			foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+			{
+				RecommendationVM rec = new RecommendationVM();
+				rec.Populate(contract);
+
+				if (rec.Recommended_AniDB_Anime == null)
+				{
+					BaseConfig.MyAnimeLog.Write("Updating data for anime: " + rec.RecommendedAnimeID.ToString());
+					JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
+				}
+			}
+
+			// refresh the data
+			List<RecommendationVM> tempRecs = new List<RecommendationVM>();
+			contracts = JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, 2); // downloads only
+			foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+			{
+				RecommendationVM rec = new RecommendationVM();
+				rec.Populate(contract);
+				if (rec.Recommended_AniDB_Anime == null) tempRecs.Add(rec);
+			}
+
+			// lets try and download the images
+			DateTime start = DateTime.Now;
+			bool imagesAvailable = false;
+			bool timeOut = false;
+
+			while (!imagesAvailable && !timeOut)
+			{
+				BaseConfig.MyAnimeLog.Write("Checking for images...");
+				bool foundAllImages = true;
+				foreach (RecommendationVM rec in tempRecs)
+				{
+					if (!File.Exists(rec.Recommended_AniDB_Anime.PosterPathNoDefault))
+					{
+						BaseConfig.MyAnimeLog.Write("Downloading image for : " + rec.Recommended_AniDB_Anime.AnimeID.ToString());
+						MainWindow.imageHelper.DownloadAniDBCover(rec.Recommended_AniDB_Anime, false);
+						foundAllImages = false;
+					}
+				}
+				TimeSpan ts = DateTime.Now - start;
+				if (ts.TotalSeconds > 15) timeOut = true;
+				imagesAvailable = foundAllImages;
+
+				Thread.Sleep(2000);
+			}
+
+
+			OnGotRecommendedAnimeEvent(new GotAnimeForRecommendedEventArgs());
 		}
 
 		void downloadAnimeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

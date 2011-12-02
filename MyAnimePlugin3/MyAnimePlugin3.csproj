@@ -111,6 +111,7 @@
     <Compile Include="Downloads\TorrentsNyaa.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Events\GotAnimeEventArgs.cs" />
+    <Compile Include="Events\GotAnimeForRecommendedEventArgs.cs" />
     <Compile Include="Events\GotAnimeForRelatedEventArgs.cs" />
     <Compile Include="Events\GotCharacterCreatorImagesEventArgs.cs" />
     <Compile Include="Events\ServerStatusEventArgs.cs" />
@@ -485,7 +486,9 @@
     </Content>
     <Content Include="Skins\Avalon\Anime3_QueueStatus.xml" />
     <Content Include="Skins\Avalon\Anime3_Recommendations.xml" />
-    <Content Include="Skins\Avalon\Anime3_Relations.xml" />
+    <Content Include="Skins\Avalon\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_SkinSettings.xml" />
     <Content Include="Skins\Avalon\Anime3_Views.xml">
       <SubType>Designer</SubType>
@@ -493,7 +496,9 @@
     <Content Include="Skins\Avalon\Anime3_Views.standard.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Skins\Avalon\Anime3_Watching.xml" />
+    <Content Include="Skins\Avalon\Anime3_Watching.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_WideBanners.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -580,11 +585,13 @@
     </Content>
     <Content Include="Skins\streamedmp\Anime3_Posters.xml" />
     <Content Include="Skins\streamedmp\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\streamedmp\Anime3_Recommendations.xml" />
     <Content Include="Skins\streamedmp\Anime3_Relations.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skins\streamedmp\Anime3_FanArt.xml" />
     <Content Include="Skins\streamedmp\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\streamedmp\Anime3_Watching.xml" />
     <Content Include="Skins\streamedmp\Anime3_WideBanners.xml" />
     <Content Include="Skins\streamedmp\Media\MyAnime3\anime3_focusframe.png" />
     <Content Include="Skins\streamedmp\Media\hover_My Anime3.png" />

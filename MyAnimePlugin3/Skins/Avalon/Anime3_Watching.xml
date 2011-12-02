@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <window>
-  <id>WATCHING</id>
+  <id>6113</id>
   <defaultcontrol>50</defaultcontrol>
   <allowoverlay>no</allowoverlay>
   <disabletopbar>yes</disabletopbar>
@@ -360,7 +360,7 @@
 		<id>640</id>
 		<posX>50</posX>
 		<posY>730</posY>
-		<width>1560</width>
+		<width>770</width>
 		<label>#Anime3.Watching.Series.Title</label>
 		<visible>Control.IsVisible(1451)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>

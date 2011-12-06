@@ -379,6 +379,7 @@ namespace MyAnimePlugin3.ConfigFiles
 				BaseConfig.Settings.BannerSizePct = (int)udWideBannerQuality.Value;
 
 
+				BaseConfig.Settings.InfoDelay = (int)udInfoDelay.Value;
 
 				if (cboLabelStyleGroups.SelectedIndex == 0)
 					BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
@@ -444,7 +445,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			nudFindTimeout.Value = (decimal)BaseConfig.Settings.FindTimeout_s;
 			chkFindFilterItems.Checked = BaseConfig.Settings.FindFilter;
-
+			udInfoDelay.Value = (decimal)BaseConfig.Settings.InfoDelay;
 
 			txtFormatEp.Text = BaseConfig.Settings.EpisodeDisplayFormat;
 			txtFileSelection.Text = BaseConfig.Settings.fileSelectionDisplayFormat;

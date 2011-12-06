@@ -3055,7 +3055,7 @@ namespace MyAnimePlugin3
 
 			displayGrpFilterTimer = new System.Timers.Timer();
 			displayGrpFilterTimer.AutoReset = false;
-			displayGrpFilterTimer.Interval = 250; // 250ms
+			displayGrpFilterTimer.Interval = BaseConfig.Settings.InfoDelay; // 250ms
 			displayGrpFilterTimer.Elapsed += new System.Timers.ElapsedEventHandler(displayGrpFilterTimer_Elapsed);
 			displayGrpFilterTimer.Enabled = true;
 		}
@@ -3109,7 +3109,7 @@ namespace MyAnimePlugin3
 
 			displayGrpTimer = new System.Timers.Timer();
 			displayGrpTimer.AutoReset = false;
-			displayGrpTimer.Interval = 250; // 250ms
+			displayGrpTimer.Interval = BaseConfig.Settings.InfoDelay; // 250ms
 			displayGrpTimer.Elapsed += new System.Timers.ElapsedEventHandler(displayGrpTimer_Elapsed);
 			displayGrpTimer.Enabled = true;
 		}

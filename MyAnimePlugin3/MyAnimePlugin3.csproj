@@ -485,7 +485,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skins\Avalon\Anime3_QueueStatus.xml" />
-    <Content Include="Skins\Avalon\Anime3_Recommendations.xml" />
+    <Content Include="Skins\Avalon\Anime3_Recommendations.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\Avalon\Anime3_Relations.xml">
       <SubType>Designer</SubType>
     </Content>

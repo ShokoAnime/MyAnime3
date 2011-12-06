@@ -117,6 +117,7 @@ namespace MyAnimePlugin3
 		public bool FindFilter = false;
 
 		public int WatchedPercentage = 90;
+		public int InfoDelay = 150;
 
 		public RenamingType fileRenameType = RenamingType.Raw;
 		public string EpisodeDisplayFormat = "";
@@ -354,6 +355,9 @@ namespace MyAnimePlugin3
 			HidePlot = GetBooleanSetting(ref xmlreader, "HidePlot", true);
 			MenuDeleteFiles = GetBooleanSetting(ref xmlreader, "MenuDeleteFiles", false);
 
+			string infodel = "";
+			infodel = xmlreader.GetValueAsString("Anime3", "InfoDelay", "150");
+			InfoDelay = int.Parse(infodel);
 
 			string postpct = "";
 			postpct = xmlreader.GetValueAsString("Anime3", "PosterSizePct", "50");
@@ -377,6 +381,8 @@ namespace MyAnimePlugin3
 
 
 			xmlreader.Dispose();
+
+
 
 			// parse the list of torrent sources
 			if (TorrentSourcesRaw.Length > 0)
@@ -435,6 +441,8 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "FindMode", (int)FindMode);
 				xmlwriter.SetValue("Anime3", "FindStartWord", FindStartWord ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "FindFilter", FindFilter ? "1" : "0");
+
+				xmlwriter.SetValue("Anime3", "InfoDelay", InfoDelay.ToString());
 
 				xmlwriter.SetValue("Anime3", "LastGroupViewMode", ((int)LastGroupViewMode).ToString());
 				xmlwriter.SetValue("Anime3", "LastFanartViewMode", ((int)LastFanartViewMode).ToString());

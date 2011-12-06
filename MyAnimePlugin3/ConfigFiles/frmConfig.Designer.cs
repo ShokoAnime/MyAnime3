@@ -87,6 +87,17 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.txtUTorrentAddress = new System.Windows.Forms.TextBox();
 			this.label54 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.groupBox17 = new System.Windows.Forms.GroupBox();
+			this.cboSubtitleLanguage = new System.Windows.Forms.ComboBox();
+			this.cboAudioLanguage = new System.Windows.Forms.ComboBox();
+			this.label47 = new System.Windows.Forms.Label();
+			this.label48 = new System.Windows.Forms.Label();
+			this.label92 = new System.Windows.Forms.Label();
+			this.udWideBannerQuality = new System.Windows.Forms.NumericUpDown();
+			this.label91 = new System.Windows.Forms.Label();
+			this.udPosterQuality = new System.Windows.Forms.NumericUpDown();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
 			this.groupBox13 = new System.Windows.Forms.GroupBox();
 			this.chkFindFilterItems = new System.Windows.Forms.CheckBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -144,17 +155,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.btnImagesLocation = new System.Windows.Forms.Button();
 			this.label46 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.label92 = new System.Windows.Forms.Label();
-			this.udWideBannerQuality = new System.Windows.Forms.NumericUpDown();
-			this.label91 = new System.Windows.Forms.Label();
-			this.udPosterQuality = new System.Windows.Forms.NumericUpDown();
-			this.label21 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.groupBox17 = new System.Windows.Forms.GroupBox();
-			this.cboSubtitleLanguage = new System.Windows.Forms.ComboBox();
-			this.cboAudioLanguage = new System.Windows.Forms.ComboBox();
-			this.label47 = new System.Windows.Forms.Label();
-			this.label48 = new System.Windows.Forms.Label();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.udInfoDelay = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
@@ -164,6 +168,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox19.SuspendLayout();
 			this.groupBox18.SuspendLayout();
 			this.tabPage3.SuspendLayout();
+			this.groupBox17.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).BeginInit();
 			this.groupBox13.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudFindTimeout)).BeginInit();
 			this.groupBox15.SuspendLayout();
@@ -175,9 +182,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).BeginInit();
-			this.groupBox17.SuspendLayout();
+			this.groupBox5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udInfoDelay)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -769,6 +775,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.groupBox5);
 			this.tabPage3.Controls.Add(this.groupBox17);
 			this.tabPage3.Controls.Add(this.label92);
 			this.tabPage3.Controls.Add(this.udWideBannerQuality);
@@ -788,6 +795,129 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Display";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// groupBox17
+			// 
+			this.groupBox17.Controls.Add(this.cboSubtitleLanguage);
+			this.groupBox17.Controls.Add(this.cboAudioLanguage);
+			this.groupBox17.Controls.Add(this.label47);
+			this.groupBox17.Controls.Add(this.label48);
+			this.groupBox17.Location = new System.Drawing.Point(21, 279);
+			this.groupBox17.Name = "groupBox17";
+			this.groupBox17.Size = new System.Drawing.Size(350, 82);
+			this.groupBox17.TabIndex = 50;
+			this.groupBox17.TabStop = false;
+			this.groupBox17.Text = "Language";
+			// 
+			// cboSubtitleLanguage
+			// 
+			this.cboSubtitleLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboSubtitleLanguage.FormattingEnabled = true;
+			this.cboSubtitleLanguage.Location = new System.Drawing.Point(150, 46);
+			this.cboSubtitleLanguage.Name = "cboSubtitleLanguage";
+			this.cboSubtitleLanguage.Size = new System.Drawing.Size(178, 21);
+			this.cboSubtitleLanguage.TabIndex = 44;
+			// 
+			// cboAudioLanguage
+			// 
+			this.cboAudioLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboAudioLanguage.FormattingEnabled = true;
+			this.cboAudioLanguage.Location = new System.Drawing.Point(150, 19);
+			this.cboAudioLanguage.Name = "cboAudioLanguage";
+			this.cboAudioLanguage.Size = new System.Drawing.Size(178, 21);
+			this.cboAudioLanguage.TabIndex = 42;
+			// 
+			// label47
+			// 
+			this.label47.AutoSize = true;
+			this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label47.Location = new System.Drawing.Point(11, 48);
+			this.label47.Name = "label47";
+			this.label47.Size = new System.Drawing.Size(133, 13);
+			this.label47.TabIndex = 43;
+			this.label47.Text = "Default Subtitle Language:";
+			// 
+			// label48
+			// 
+			this.label48.AutoSize = true;
+			this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label48.Location = new System.Drawing.Point(11, 22);
+			this.label48.Name = "label48";
+			this.label48.Size = new System.Drawing.Size(125, 13);
+			this.label48.TabIndex = 41;
+			this.label48.Text = "Default Audio Language:";
+			// 
+			// label92
+			// 
+			this.label92.AutoSize = true;
+			this.label92.Location = new System.Drawing.Point(184, 377);
+			this.label92.Name = "label92";
+			this.label92.Size = new System.Drawing.Size(133, 13);
+			this.label92.TabIndex = 49;
+			this.label92.Text = "Image quality (Percentage)";
+			// 
+			// udWideBannerQuality
+			// 
+			this.udWideBannerQuality.Location = new System.Drawing.Point(123, 375);
+			this.udWideBannerQuality.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.udWideBannerQuality.Name = "udWideBannerQuality";
+			this.udWideBannerQuality.Size = new System.Drawing.Size(51, 20);
+			this.udWideBannerQuality.TabIndex = 48;
+			this.udWideBannerQuality.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			// 
+			// label91
+			// 
+			this.label91.AutoSize = true;
+			this.label91.Location = new System.Drawing.Point(184, 409);
+			this.label91.Name = "label91";
+			this.label91.Size = new System.Drawing.Size(133, 13);
+			this.label91.TabIndex = 47;
+			this.label91.Text = "Image quality (Percentage)";
+			// 
+			// udPosterQuality
+			// 
+			this.udPosterQuality.Location = new System.Drawing.Point(123, 407);
+			this.udPosterQuality.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.udPosterQuality.Name = "udPosterQuality";
+			this.udPosterQuality.Size = new System.Drawing.Size(51, 20);
+			this.udPosterQuality.TabIndex = 46;
+			this.udPosterQuality.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Location = new System.Drawing.Point(18, 409);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(49, 13);
+			this.label21.TabIndex = 45;
+			this.label21.Text = "Posters";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label20.Location = new System.Drawing.Point(18, 377);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(86, 13);
+			this.label20.TabIndex = 44;
+			this.label20.Text = "Wide Banners";
 			// 
 			// groupBox13
 			// 
@@ -1408,128 +1538,53 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.Size = new System.Drawing.Size(755, 504);
 			this.tabControl1.TabIndex = 0;
 			// 
-			// label92
+			// groupBox5
 			// 
-			this.label92.AutoSize = true;
-			this.label92.Location = new System.Drawing.Point(79, 408);
-			this.label92.Name = "label92";
-			this.label92.Size = new System.Drawing.Size(133, 13);
-			this.label92.TabIndex = 49;
-			this.label92.Text = "Image quality (Percentage)";
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.label4);
+			this.groupBox5.Controls.Add(this.label5);
+			this.groupBox5.Controls.Add(this.udInfoDelay);
+			this.groupBox5.Location = new System.Drawing.Point(379, 367);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(349, 70);
+			this.groupBox5.TabIndex = 51;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Info Delay";
 			// 
-			// udWideBannerQuality
+			// label4
 			// 
-			this.udWideBannerQuality.Location = new System.Drawing.Point(22, 406);
-			this.udWideBannerQuality.Minimum = new decimal(new int[] {
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(92, 42);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(63, 13);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "milliseconds";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(15, 21);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(214, 13);
+			this.label5.TabIndex = 1;
+			this.label5.Text = "Display group info after you stop scrolling for";
+			// 
+			// udInfoDelay
+			// 
+			this.udInfoDelay.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-			this.udWideBannerQuality.Name = "udWideBannerQuality";
-			this.udWideBannerQuality.Size = new System.Drawing.Size(51, 20);
-			this.udWideBannerQuality.TabIndex = 48;
-			this.udWideBannerQuality.Value = new decimal(new int[] {
-            50,
+			this.udInfoDelay.Location = new System.Drawing.Point(19, 40);
+			this.udInfoDelay.Maximum = new decimal(new int[] {
+            2000,
             0,
             0,
             0});
-			// 
-			// label91
-			// 
-			this.label91.AutoSize = true;
-			this.label91.Location = new System.Drawing.Point(318, 408);
-			this.label91.Name = "label91";
-			this.label91.Size = new System.Drawing.Size(133, 13);
-			this.label91.TabIndex = 47;
-			this.label91.Text = "Image quality (Percentage)";
-			// 
-			// udPosterQuality
-			// 
-			this.udPosterQuality.Location = new System.Drawing.Point(261, 406);
-			this.udPosterQuality.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.udPosterQuality.Name = "udPosterQuality";
-			this.udPosterQuality.Size = new System.Drawing.Size(51, 20);
-			this.udPosterQuality.TabIndex = 46;
-			this.udPosterQuality.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label21.Location = new System.Drawing.Point(258, 377);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(49, 13);
-			this.label21.TabIndex = 45;
-			this.label21.Text = "Posters";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label20.Location = new System.Drawing.Point(18, 377);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(86, 13);
-			this.label20.TabIndex = 44;
-			this.label20.Text = "Wide Banners";
-			// 
-			// groupBox17
-			// 
-			this.groupBox17.Controls.Add(this.cboSubtitleLanguage);
-			this.groupBox17.Controls.Add(this.cboAudioLanguage);
-			this.groupBox17.Controls.Add(this.label47);
-			this.groupBox17.Controls.Add(this.label48);
-			this.groupBox17.Location = new System.Drawing.Point(21, 279);
-			this.groupBox17.Name = "groupBox17";
-			this.groupBox17.Size = new System.Drawing.Size(350, 82);
-			this.groupBox17.TabIndex = 50;
-			this.groupBox17.TabStop = false;
-			this.groupBox17.Text = "Language";
-			// 
-			// cboSubtitleLanguage
-			// 
-			this.cboSubtitleLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboSubtitleLanguage.FormattingEnabled = true;
-			this.cboSubtitleLanguage.Location = new System.Drawing.Point(150, 46);
-			this.cboSubtitleLanguage.Name = "cboSubtitleLanguage";
-			this.cboSubtitleLanguage.Size = new System.Drawing.Size(178, 21);
-			this.cboSubtitleLanguage.TabIndex = 44;
-			// 
-			// cboAudioLanguage
-			// 
-			this.cboAudioLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboAudioLanguage.FormattingEnabled = true;
-			this.cboAudioLanguage.Location = new System.Drawing.Point(150, 19);
-			this.cboAudioLanguage.Name = "cboAudioLanguage";
-			this.cboAudioLanguage.Size = new System.Drawing.Size(178, 21);
-			this.cboAudioLanguage.TabIndex = 42;
-			// 
-			// label47
-			// 
-			this.label47.AutoSize = true;
-			this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label47.Location = new System.Drawing.Point(11, 48);
-			this.label47.Name = "label47";
-			this.label47.Size = new System.Drawing.Size(133, 13);
-			this.label47.TabIndex = 43;
-			this.label47.Text = "Default Subtitle Language:";
-			// 
-			// label48
-			// 
-			this.label48.AutoSize = true;
-			this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label48.Location = new System.Drawing.Point(11, 22);
-			this.label48.Name = "label48";
-			this.label48.Size = new System.Drawing.Size(125, 13);
-			this.label48.TabIndex = 41;
-			this.label48.Text = "Default Audio Language:";
+			this.udInfoDelay.Name = "udInfoDelay";
+			this.udInfoDelay.Size = new System.Drawing.Size(67, 20);
+			this.udInfoDelay.TabIndex = 0;
 			// 
 			// frmConfig
 			// 
@@ -1555,6 +1610,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox18.PerformLayout();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
+			this.groupBox17.ResumeLayout(false);
+			this.groupBox17.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).EndInit();
 			this.groupBox13.ResumeLayout(false);
 			this.groupBox13.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudFindTimeout)).EndInit();
@@ -1574,10 +1633,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).EndInit();
-			this.groupBox17.ResumeLayout(false);
-			this.groupBox17.PerformLayout();
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udInfoDelay)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -1710,5 +1768,9 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.ComboBox cboAudioLanguage;
 		private System.Windows.Forms.Label label47;
 		private System.Windows.Forms.Label label48;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.NumericUpDown udInfoDelay;
     }
 }

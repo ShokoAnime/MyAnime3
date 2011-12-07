@@ -7527,6 +7527,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private long VideoInfo_DurationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoInfo_VideoBitDepthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VideoInfo_VideoBitrateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7971,6 +7974,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.VideoInfo_DurationField.Equals(value) != true)) {
                     this.VideoInfo_DurationField = value;
                     this.RaisePropertyChanged("VideoInfo_Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VideoInfo_VideoBitDepth {
+            get {
+                return this.VideoInfo_VideoBitDepthField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VideoInfo_VideoBitDepthField, value) != true)) {
+                    this.VideoInfo_VideoBitDepthField = value;
+                    this.RaisePropertyChanged("VideoInfo_VideoBitDepth");
                 }
             }
         }

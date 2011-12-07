@@ -222,10 +222,10 @@ namespace MyAnimePlugin3.Windows
 				dlg.Reset();
 				dlg.SetHeading("Options");
 
+				dlg.Add("Scan Drop Folder(s)");
 				dlg.Add("Remove records without physical file");
 				dlg.Add("Sync Votes from AniDB");
 				dlg.Add("Sync MyList from AniDB");
-				dlg.Add("Sync Trakt Info");
 				
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 
@@ -234,29 +234,32 @@ namespace MyAnimePlugin3.Windows
 				switch (dlg.SelectedLabel)
 				{
 					case 0:
-                       
+
+						JMMServerVM.Instance.clientBinaryHTTP.ScanDropFolders();
+						Utils.DialogMsg("Done", "Files have been queued for processing");
+						m_Facade.Focus = true;
 						return;
 
 					case 1:
-						
+
+						JMMServerVM.Instance.clientBinaryHTTP.RemoveMissingFiles();
+						Utils.DialogMsg("Done", "Process is running on the server");
 						m_Facade.Focus = true;
 						return;
 
 					case 2:
-						
+
+						JMMServerVM.Instance.clientBinaryHTTP.SyncVotes();
+						Utils.DialogMsg("Done", "Process is running on the server");
 						m_Facade.Focus = true;
 						return;
 
 					case 3:
-						
-						m_Facade.Focus = true;
-						return;
 
-					case 4:
-						
+						JMMServerVM.Instance.clientBinaryHTTP.SyncMyList();
+						Utils.DialogMsg("Done", "Process is running on the server");
 						m_Facade.Focus = true;
-						return;
-                        
+						return; 
 
 					default:
 						//don't reopen dialog

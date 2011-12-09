@@ -317,8 +317,8 @@ namespace MyAnimePlugin3
 
 			WatchedPercentage = int.Parse(xmlreader.GetValueAsString("Anime3", "WatchedPercentage", "90"));
 
-			EpisodeDisplayFormat = xmlreader.GetValueAsString("Anime2", "EpisodeDisplayFormat", @"<EpNo>: <EpName>");
-            fileSelectionDisplayFormat = xmlreader.GetValueAsString("Anime2", "FileSelectionDisplayFormat", @"<AnGroupShort> - <FileRes> (<FileSource>)");
+			EpisodeDisplayFormat = xmlreader.GetValueAsString("Anime3", "EpisodeDisplayFormat", @"<EpNo>: <EpName>");
+			fileSelectionDisplayFormat = xmlreader.GetValueAsString("Anime3", "FileSelectionDisplayFormat", @"<AnGroupShort> - <FileRes> / <FileSource> / <VideoBitDepth>bit");
 
 			ShowMissing = GetBooleanSetting(ref xmlreader, "ShowMissing", true);
 			ShowMissingMyGroupsOnly = GetBooleanSetting(ref xmlreader, "ShowMissingMyGroupsOnly", false);

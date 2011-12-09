@@ -7259,6 +7259,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private bool SpecialsCompleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VideoBitDepthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VideoSourceField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -7397,6 +7400,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.SpecialsCompleteField.Equals(value) != true)) {
                     this.SpecialsCompleteField = value;
                     this.RaisePropertyChanged("SpecialsComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VideoBitDepth {
+            get {
+                return this.VideoBitDepthField;
+            }
+            set {
+                if ((this.VideoBitDepthField.Equals(value) != true)) {
+                    this.VideoBitDepthField = value;
+                    this.RaisePropertyChanged("VideoBitDepth");
                 }
             }
         }
@@ -11868,6 +11884,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo", ReplyAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse")]
+        void RefreshAllMediaInfo();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -12318,6 +12337,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         public void ScanDropFolders() {
             base.Channel.ScanDropFolders();
+        }
+        
+        public void RefreshAllMediaInfo() {
+            base.Channel.RefreshAllMediaInfo();
         }
         
         public MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

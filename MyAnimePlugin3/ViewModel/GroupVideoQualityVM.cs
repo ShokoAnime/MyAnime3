@@ -12,6 +12,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int Ranking { get; set; }
 		public string Resolution { get; set; }
 		public string VideoSource { get; set; }
+		public int VideoBitDepth { get; set; }
 		public int FileCountNormal { get; set; }
 		public bool NormalComplete { get; set; }
 		public int FileCountSpecials { get; set; }
@@ -41,6 +42,8 @@ namespace MyAnimePlugin3.ViewModel
 			this.SpecialsComplete = contract.SpecialsComplete;
 			this.NormalEpisodeNumbers = contract.NormalEpisodeNumbers;
 			this.NormalEpisodeNumberSummary = contract.NormalEpisodeNumberSummary;
+
+			this.VideoBitDepth = contract.VideoBitDepth;
 		}
 
 		public string PrettyDescription

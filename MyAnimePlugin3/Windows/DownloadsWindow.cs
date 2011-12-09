@@ -176,7 +176,7 @@ namespace MyAnimePlugin3.Windows
 
 					string fileDetails = "";
 					foreach (GroupVideoQualityVM gvq in videoQualityRecords)
-						fileDetails += string.Format("{0}({1}) - {2} Files ({3})", gvq.GroupNameShort, gvq.Resolution, gvq.FileCountNormal, gvq.NormalEpisodeNumberSummary)
+						fileDetails += string.Format("{0}({1}/{2}/{3}bit) - {4} Files ({5})", gvq.GroupNameShort, gvq.Resolution, gvq.VideoSource, gvq.VideoBitDepth, gvq.FileCountNormal, gvq.NormalEpisodeNumberSummary)
 							+ Environment.NewLine;
 
 

@@ -113,6 +113,7 @@ namespace MyAnimePlugin3
             public static readonly string FileRes = "<FileRes>";
             public static readonly string FileCodec = "<FileCodec>";
             public static readonly string AudioCodec = "<AudioCodec>";
+			public static readonly string VideoBitDepth = "<VideoBitDepth>";
         }
 
 		public struct EpisodeDisplayString

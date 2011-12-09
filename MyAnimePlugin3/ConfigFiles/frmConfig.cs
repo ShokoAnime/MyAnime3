@@ -63,6 +63,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			cboFileFormat.Items.Add(Constants.FileSelectionDisplayString.FileCodec);
 			cboFileFormat.Items.Add(Constants.FileSelectionDisplayString.FileRes);
 			cboFileFormat.Items.Add(Constants.FileSelectionDisplayString.FileSource);
+			cboFileFormat.Items.Add(Constants.FileSelectionDisplayString.VideoBitDepth);
 
 			cboFileFormat.SelectedIndexChanged += new EventHandler(cboFileFormat_SelectedIndexChanged);
 			cboFileFormat.SelectedIndex = 0;

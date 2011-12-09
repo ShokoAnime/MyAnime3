@@ -31,6 +31,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int VideoInfo_VideoInfoID { get; set; }
 		public string VideoInfo_VideoCodec { get; set; }
 		public string VideoInfo_VideoBitrate { get; set; }
+		public string VideoInfo_VideoBitDepth { get; set; }
 		public string VideoInfo_VideoFrameRate { get; set; }
 		public string VideoInfo_VideoResolution { get; set; }
 		public string VideoInfo_AudioCodec { get; set; }
@@ -360,6 +361,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.VideoInfo_VideoInfoID = contract.VideoInfo_VideoInfoID;
 			this.VideoInfo_VideoCodec = contract.VideoInfo_VideoCodec;
 			this.VideoInfo_VideoBitrate = contract.VideoInfo_VideoBitrate;
+			this.VideoInfo_VideoBitDepth = contract.VideoInfo_VideoBitDepth;
 			this.VideoInfo_VideoFrameRate = contract.VideoInfo_VideoFrameRate;
 			this.VideoInfo_VideoResolution = contract.VideoInfo_VideoResolution;
 			this.VideoInfo_AudioCodec = contract.VideoInfo_AudioCodec;
@@ -409,6 +411,7 @@ namespace MyAnimePlugin3.ViewModel
 					ret = ret.Replace(Constants.FileSelectionDisplayString.AudioCodec, this.AudioCodec);
 					ret = ret.Replace(Constants.FileSelectionDisplayString.FileCodec, this.VideoCodec);
 					ret = ret.Replace(Constants.FileSelectionDisplayString.FileRes, this.VideoResolution);
+					ret = ret.Replace(Constants.FileSelectionDisplayString.VideoBitDepth, this.VideoInfo_VideoBitDepth);
 
 					ret = ret.Replace(Constants.FileSelectionDisplayString.FileSource, AniDB_File_Source.Trim());
 					ret = ret.Replace(Constants.FileSelectionDisplayString.Group, AniDB_Anime_GroupName.Trim());

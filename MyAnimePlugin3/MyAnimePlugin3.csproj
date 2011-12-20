@@ -391,10 +391,10 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_TraktTVShowResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode.datasource">
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Activity.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Friend.datasource">
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImageFanart.datasource">

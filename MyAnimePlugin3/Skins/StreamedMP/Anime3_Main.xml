@@ -676,7 +676,7 @@
 	</control>
 	<control>
 	  <description>Genre below the series title</description>
-	  <type>label</type>
+	  <type>fadelabel</type>
 	  <label>#Anime3.SeriesGroup.Genre</label>
 	  <id>0</id>
 	  <posX>310</posX>

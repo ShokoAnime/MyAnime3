@@ -533,7 +533,7 @@
       <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
     </control>
     <control Style="smallTitle">
-      <type>label</type>
+      <type>fadelabel</type>
       <description>Categories Value</description>
       <id>0</id>
       <posX>600</posX>

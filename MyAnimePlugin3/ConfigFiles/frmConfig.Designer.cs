@@ -87,6 +87,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.txtUTorrentAddress = new System.Windows.Forms.TextBox();
 			this.label54 = new System.Windows.Forms.Label();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.udInfoDelay = new System.Windows.Forms.NumericUpDown();
 			this.groupBox17 = new System.Windows.Forms.GroupBox();
 			this.cboSubtitleLanguage = new System.Windows.Forms.ComboBox();
 			this.cboAudioLanguage = new System.Windows.Forms.ComboBox();
@@ -155,10 +159,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.btnImagesLocation = new System.Windows.Forms.Button();
 			this.label46 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.udInfoDelay = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
@@ -168,6 +168,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox19.SuspendLayout();
 			this.groupBox18.SuspendLayout();
 			this.tabPage3.SuspendLayout();
+			this.groupBox5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udInfoDelay)).BeginInit();
 			this.groupBox17.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.udPosterQuality)).BeginInit();
@@ -182,8 +184,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
-			this.groupBox5.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.udInfoDelay)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -795,6 +795,54 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Display";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox5.Controls.Add(this.label4);
+			this.groupBox5.Controls.Add(this.label5);
+			this.groupBox5.Controls.Add(this.udInfoDelay);
+			this.groupBox5.Location = new System.Drawing.Point(379, 367);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(349, 70);
+			this.groupBox5.TabIndex = 51;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Info Delay";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(92, 42);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(63, 13);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "milliseconds";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(15, 21);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(214, 13);
+			this.label5.TabIndex = 1;
+			this.label5.Text = "Display group info after you stop scrolling for";
+			// 
+			// udInfoDelay
+			// 
+			this.udInfoDelay.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.udInfoDelay.Location = new System.Drawing.Point(19, 40);
+			this.udInfoDelay.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+			this.udInfoDelay.Name = "udInfoDelay";
+			this.udInfoDelay.Size = new System.Drawing.Size(67, 20);
+			this.udInfoDelay.TabIndex = 0;
 			// 
 			// groupBox17
 			// 
@@ -1414,38 +1462,38 @@ namespace MyAnimePlugin3.ConfigFiles
 			// ManualLink
 			// 
 			this.ManualLink.AutoSize = true;
-			this.ManualLink.Location = new System.Drawing.Point(528, 385);
+			this.ManualLink.Location = new System.Drawing.Point(57, 440);
 			this.ManualLink.Name = "ManualLink";
-			this.ManualLink.Size = new System.Drawing.Size(201, 13);
+			this.ManualLink.Size = new System.Drawing.Size(208, 13);
 			this.ManualLink.TabIndex = 44;
 			this.ManualLink.TabStop = true;
-			this.ManualLink.Text = "www.otakumm.com/Anime2Wiki/Manual";
+			this.ManualLink.Text = "http://jmmanager.wordpress.com/support/";
 			this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
 			// 
 			// label62
 			// 
 			this.label62.AutoSize = true;
-			this.label62.Location = new System.Drawing.Point(483, 385);
+			this.label62.Location = new System.Drawing.Point(9, 440);
 			this.label62.Name = "label62";
-			this.label62.Size = new System.Drawing.Size(45, 13);
+			this.label62.Size = new System.Drawing.Size(44, 13);
 			this.label62.TabIndex = 43;
-			this.label62.Text = "Manual:";
+			this.label62.Text = "Support";
 			// 
 			// ForumLink
 			// 
 			this.ForumLink.AutoSize = true;
-			this.ForumLink.Location = new System.Drawing.Point(268, 385);
+			this.ForumLink.Location = new System.Drawing.Point(57, 415);
 			this.ForumLink.Name = "ForumLink";
-			this.ForumLink.Size = new System.Drawing.Size(131, 13);
+			this.ForumLink.Size = new System.Drawing.Size(380, 13);
 			this.ForumLink.TabIndex = 42;
 			this.ForumLink.TabStop = true;
-			this.ForumLink.Text = "www.otakumm.com/forum";
+			this.ForumLink.Text = "http://forum.team-mediaportal.com/mediaportal-plugins-47/my-anime-2-a-60793";
 			this.ForumLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForumLink_LinkClicked);
 			// 
 			// label61
 			// 
 			this.label61.AutoSize = true;
-			this.label61.Location = new System.Drawing.Point(230, 385);
+			this.label61.Location = new System.Drawing.Point(9, 415);
 			this.label61.Name = "label61";
 			this.label61.Size = new System.Drawing.Size(39, 13);
 			this.label61.TabIndex = 41;
@@ -1456,10 +1504,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.WebsiteLink.AutoSize = true;
 			this.WebsiteLink.Location = new System.Drawing.Point(57, 385);
 			this.WebsiteLink.Name = "WebsiteLink";
-			this.WebsiteLink.Size = new System.Drawing.Size(100, 13);
+			this.WebsiteLink.Size = new System.Drawing.Size(168, 13);
 			this.WebsiteLink.TabIndex = 40;
 			this.WebsiteLink.TabStop = true;
-			this.WebsiteLink.Text = "www.otakumm.com";
+			this.WebsiteLink.Text = "http://jmmanager.wordpress.com/";
 			this.WebsiteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WebsiteLink_LinkClicked);
 			// 
 			// label60
@@ -1538,54 +1586,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.Size = new System.Drawing.Size(755, 504);
 			this.tabControl1.TabIndex = 0;
 			// 
-			// groupBox5
-			// 
-			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox5.Controls.Add(this.label4);
-			this.groupBox5.Controls.Add(this.label5);
-			this.groupBox5.Controls.Add(this.udInfoDelay);
-			this.groupBox5.Location = new System.Drawing.Point(379, 367);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(349, 70);
-			this.groupBox5.TabIndex = 51;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Info Delay";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(92, 42);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(63, 13);
-			this.label4.TabIndex = 2;
-			this.label4.Text = "milliseconds";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(15, 21);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(214, 13);
-			this.label5.TabIndex = 1;
-			this.label5.Text = "Display group info after you stop scrolling for";
-			// 
-			// udInfoDelay
-			// 
-			this.udInfoDelay.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.udInfoDelay.Location = new System.Drawing.Point(19, 40);
-			this.udInfoDelay.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-			this.udInfoDelay.Name = "udInfoDelay";
-			this.udInfoDelay.Size = new System.Drawing.Size(67, 20);
-			this.udInfoDelay.TabIndex = 0;
-			// 
 			// frmConfig
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1610,6 +1610,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox18.PerformLayout();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
+			this.groupBox5.ResumeLayout(false);
+			this.groupBox5.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.udInfoDelay)).EndInit();
 			this.groupBox17.ResumeLayout(false);
 			this.groupBox17.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.udWideBannerQuality)).EndInit();
@@ -1633,9 +1636,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox5.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.udInfoDelay)).EndInit();
 			this.ResumeLayout(false);
 
         }

@@ -501,6 +501,7 @@ namespace MyAnimePlugin3
 					//MPTVSeriesLog.Write("This episode counts as watched");
                     if (countAsWatched)
                     {
+						BaseConfig.MyAnimeLog.Write("Marking episode as watched...");
                         MarkEpisodeAsWatched(curEpisode);
 
                     }

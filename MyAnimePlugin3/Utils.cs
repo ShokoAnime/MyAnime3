@@ -448,6 +448,7 @@ namespace MyAnimePlugin3
             }
             return val.Trim();
         }
+
         public static string FormatSecondsToDisplayTime(int secs)
         {
             TimeSpan t = TimeSpan.FromSeconds(secs);

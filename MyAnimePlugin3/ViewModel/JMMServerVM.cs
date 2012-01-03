@@ -237,11 +237,18 @@ namespace MyAnimePlugin3.ViewModel
 				BaseConfig.MyAnimeLog.Write("JMM Server URL: " + url);
 
 				BinaryMessageEncodingBindingElement encoding = new BinaryMessageEncodingBindingElement();
+				encoding.ReaderQuotas.MaxArrayLength = int.MaxValue;
+				encoding.ReaderQuotas.MaxBytesPerRead = int.MaxValue;
+				encoding.ReaderQuotas.MaxDepth = int.MaxValue;
+				encoding.ReaderQuotas.MaxNameTableCharCount = int.MaxValue;
+				encoding.ReaderQuotas.MaxStringContentLength = int.MaxValue;
+
 				HttpTransportBindingElement transport = new HttpTransportBindingElement();
 				transport.MaxReceivedMessageSize = int.MaxValue;
 				transport.MaxBufferPoolSize = int.MaxValue;
 				transport.MaxBufferSize = int.MaxValue;
 				transport.MaxReceivedMessageSize = int.MaxValue;
+
 
 				Binding binding = new CustomBinding(encoding, transport);
 

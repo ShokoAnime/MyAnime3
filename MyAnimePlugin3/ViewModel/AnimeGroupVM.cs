@@ -243,7 +243,18 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
-				return Utils.ReparseDescription(Description);
+				string desc = Description;
+				if (DefaultAnimeSeriesID.HasValue)
+				{
+					AnimeSeriesVM ser = DefaultSeries;
+					if (ser != null)
+					{
+						AniDB_AnimeVM anime = ser.AniDB_Anime;
+						desc = anime.Description;
+					}
+				}
+
+				return Utils.ReparseDescription(desc);
 
 			}
 			set

@@ -56,6 +56,30 @@
   <wsdl:message name="IJMMServer_ChangePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_PostShoutShow_InputMessage">
+    <wsdl:part name="parameters" element="tns:PostShoutShow" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_PostShoutShow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostShoutShowResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RefreshTraktFriendInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshTraktFriendInfo" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RefreshTraktFriendInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshTraktFriendInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeriesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -921,6 +945,22 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ChangePassword" message="tns:IJMMServer_ChangePassword_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ChangePasswordResponse" message="tns:IJMMServer_ChangePassword_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTraktShoutsForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" message="tns:IJMMServer_GetTraktShoutsForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnimeResponse" message="tns:IJMMServer_GetTraktShoutsForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PostShoutShow">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/PostShoutShow" message="tns:IJMMServer_PostShoutShow_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/PostShoutShowResponse" message="tns:IJMMServer_PostShoutShow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshTraktFriendInfo">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo" message="tns:IJMMServer_RefreshTraktFriendInfo_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfoResponse" message="tns:IJMMServer_RefreshTraktFriendInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLevelGroupForSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" message="tns:IJMMServer_GetTopLevelGroupForSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse" message="tns:IJMMServer_GetTopLevelGroupForSeries_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1532,6 +1572,42 @@
     </wsdl:operation>
     <wsdl:operation name="ChangePassword">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktShoutsForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostShoutShow">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/PostShoutShow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshTraktFriendInfo">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLevelGroupForSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

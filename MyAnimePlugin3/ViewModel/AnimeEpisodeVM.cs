@@ -325,10 +325,19 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
-				if (filesForEpisode == null)
+				/*if (filesForEpisode == null)
 				{
 					RefreshFilesForEpisode();
-				}
+				}*/
+
+				List<VideoDetailedVM> filesForEpisode = new List<VideoDetailedVM>();
+				List<JMMServerBinary.Contract_VideoDetailed> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(AnimeEpisodeID,
+					JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+				foreach (JMMServerBinary.Contract_VideoDetailed fi in contracts)
+				{
+					filesForEpisode.Add(new VideoDetailedVM(fi));
+				}  
 
 				return filesForEpisode;
 			}
@@ -354,12 +363,31 @@ namespace MyAnimePlugin3.ViewModel
 
 		public void ToggleWatchedStatus(bool watched)
 		{
+			ToggleWatchedStatus(watched, true);
+		}
+
+		public void ToggleWatchedStatus(bool watched, bool promptForRating)
+		{
+			bool currentStatus = IsWatched == 1;
+			if (currentStatus == watched) return;
+
 			JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response response = JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnEpisode(AnimeEpisodeID, watched,
 				JMMServerVM.Instance.CurrentUser.JMMUserID);
 			if (!string.IsNullOrEmpty(response.ErrorMessage))
 			{
 				BaseConfig.MyAnimeLog.Write("Error in ToggleWatchedStatus: " + response.ErrorMessage);
 				return;
+			}
+
+			if (promptForRating && BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+			{
+				JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(response.AnimeEpisode.AnimeSeriesID,
+					JMMServerVM.Instance.CurrentUser.JMMUserID);
+				if (contract != null)
+				{
+					AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+					Utils.PromptToRateSeriesOnCompletion(ser);
+				}
 			}
 		}
 

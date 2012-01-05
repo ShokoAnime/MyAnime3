@@ -19,6 +19,7 @@ using System.Collections;
 using MyAnimePlugin3.ViewModel;
 using MyAnimePlugin3.ImageManagement;
 using MyAnimePlugin3.MultiSortLib;
+using MediaPortal.Player;
 
 namespace MyAnimePlugin3
 {
@@ -117,6 +118,7 @@ namespace MyAnimePlugin3
 		private System.Timers.Timer displayGrpFilterTimer = null;
 		private System.Timers.Timer displayGrpTimer = null;
 
+		public static int? animeSeriesIDToBeRated = null;
 
 		public static AnimePluginSettings settings = null;
 		public static JMMServerHelper ServerHelper = new JMMServerHelper();
@@ -236,7 +238,11 @@ namespace MyAnimePlugin3
 			downloadImagesWorker.DoWork += new DoWorkEventHandler(downloadImagesWorker_DoWork);
 
 			this.OnToggleWatched += new OnToggleWatchedHandler(MainWindow_OnToggleWatched);
+
+			g_Player.PlayBackEnded += new g_Player.EndedHandler(g_Player_PlayBackEnded);	
 		}
+
+		
 
 		void MainWindow_OnToggleWatched(List<AnimeEpisodeVM> episodes, bool state)
 		{
@@ -1388,6 +1394,19 @@ namespace MyAnimePlugin3
 
 				
 				#endregion
+
+				if (animeSeriesIDToBeRated.HasValue && BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+				{
+					JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(animeSeriesIDToBeRated.Value,
+						JMMServerVM.Instance.CurrentUser.JMMUserID);
+					if (contract != null)
+					{
+						AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+						Utils.PromptToRateSeriesOnCompletion(ser);
+					}
+				
+					animeSeriesIDToBeRated = null;
+				}
 
 			}
 
@@ -2949,12 +2968,18 @@ namespace MyAnimePlugin3
 						//-- Need to reload the GUI to display changes 
 						//-- if episode is classified as watched
 						LoadFacade();
+
 					}
 					return true;
 
 				default:
 					return base.OnMessage(message);
 			}
+		}
+
+		void g_Player_PlayBackEnded(g_Player.MediaType type, string filename)
+		{
+			
 		}
 
 		static bool isFirstInitDone = false;
@@ -4184,6 +4209,17 @@ namespace MyAnimePlugin3
 							JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(curAnimeSeries.AnimeSeriesID.Value,
 								true, int.MaxValue, (int)curAnimeEpisodeType.EpisodeType, JMMServerVM.Instance.CurrentUser.JMMUserID);
 
+							if (BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+							{
+								JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(curAnimeSeries.AnimeSeriesID.Value,
+									JMMServerVM.Instance.CurrentUser.JMMUserID);
+								if (contract != null)
+								{
+									AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+									Utils.PromptToRateSeriesOnCompletion(ser);
+								}
+							}
+
 							LoadFacade();
 							return false;
 						}
@@ -4202,6 +4238,14 @@ namespace MyAnimePlugin3
 
 							JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(curAnimeSeries.AnimeSeriesID.Value,
 								true, episode.EpisodeNumber, (int)curAnimeEpisodeType.EpisodeType, JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+							JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(curAnimeSeries.AnimeSeriesID.Value,
+								JMMServerVM.Instance.CurrentUser.JMMUserID);
+							if (contract != null)
+							{
+								AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+								Utils.PromptToRateSeriesOnCompletion(ser);
+							}
 
 							LoadFacade();
 							return false;
@@ -4736,6 +4780,8 @@ namespace MyAnimePlugin3
 				{
 					foreach (AnimeSeriesVM ser in grp.AllSeries)
 						JMMServerHelper.SetWatchedStatusOnSeries(true, int.MaxValue, ser.AnimeSeriesID.Value);
+
+					
 
 					LoadFacade();
 					return false;
@@ -5312,6 +5358,15 @@ namespace MyAnimePlugin3
 					case 2: // Mark ALL as Watched
 						{
 							JMMServerHelper.SetWatchedStatusOnSeries(true, int.MaxValue, ser.AnimeSeriesID.Value);
+
+							JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value,
+								JMMServerVM.Instance.CurrentUser.JMMUserID);
+							if (contract != null)
+							{
+								AnimeSeriesVM serTemp = new AnimeSeriesVM(contract);
+								Utils.PromptToRateSeriesOnCompletion(serTemp);
+							}
+
 							LoadFacade();
 						}
 						break;

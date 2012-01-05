@@ -43,7 +43,7 @@ namespace MyAnimePlugin3
     public class VideoHandler
     {
         #region Vars
-		private AnimeEpisodeVM curEpisode;
+		public AnimeEpisodeVM curEpisode;
         private string curFileName = "";
         int timeMovieStopped = 0;
 		private BackgroundWorker w = new BackgroundWorker();
@@ -269,7 +269,8 @@ namespace MyAnimePlugin3
 
         void MarkEpisodeAsWatched(AnimeEpisodeVM episode)
         {
-			episode.ToggleWatchedStatus(true);
+			episode.ToggleWatchedStatus(true, false);
+			MainWindow.animeSeriesIDToBeRated = episode.AnimeSeriesID;
         }
 
         /// <summary>

@@ -272,7 +272,7 @@ namespace MyAnimePlugin3.Windows
 
 				if (selectedLabel == mnuVotePerm)
 				{
-					decimal rating = Utils.PromptAniDBRating();
+					decimal rating = Utils.PromptAniDBRating(MainAnime.FormattedTitle);
 					if (rating > 0)
 					{
 						JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(MainAnime.AnimeID, rating, (int)VoteType.AnimePermanent);
@@ -284,7 +284,7 @@ namespace MyAnimePlugin3.Windows
 
 				if (selectedLabel == mnuVoteTemp)
 				{
-					decimal ratingTemp = Utils.PromptAniDBRating();
+					decimal ratingTemp = Utils.PromptAniDBRating(MainAnime.FormattedTitle);
 					if (ratingTemp > 0)
 					{
 						JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(MainAnime.AnimeID, ratingTemp, (int)VoteType.AnimeTemporary);

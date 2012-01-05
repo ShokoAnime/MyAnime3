@@ -159,6 +159,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.btnImagesLocation = new System.Windows.Forms.Button();
 			this.label46 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.chkRateSeries = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
@@ -802,7 +803,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox5.Controls.Add(this.label4);
 			this.groupBox5.Controls.Add(this.label5);
 			this.groupBox5.Controls.Add(this.udInfoDelay);
-			this.groupBox5.Location = new System.Drawing.Point(379, 367);
+			this.groupBox5.Location = new System.Drawing.Point(379, 400);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(349, 70);
 			this.groupBox5.TabIndex = 51;
@@ -1024,6 +1025,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// groupBox15
 			// 
 			this.groupBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox15.Controls.Add(this.chkRateSeries);
 			this.groupBox15.Controls.Add(this.chkShowMissingGroups);
 			this.groupBox15.Controls.Add(this.chkShowMissing);
 			this.groupBox15.Controls.Add(this.chkHideWatchedFiles);
@@ -1034,7 +1036,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox15.Controls.Add(this.label35);
 			this.groupBox15.Location = new System.Drawing.Point(378, 196);
 			this.groupBox15.Name = "groupBox15";
-			this.groupBox15.Size = new System.Drawing.Size(350, 165);
+			this.groupBox15.Size = new System.Drawing.Size(350, 198);
 			this.groupBox15.TabIndex = 22;
 			this.groupBox15.TabStop = false;
 			this.groupBox15.Text = "Other";
@@ -1062,7 +1064,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// chkHideWatchedFiles
 			// 
 			this.chkHideWatchedFiles.AutoSize = true;
-			this.chkHideWatchedFiles.Location = new System.Drawing.Point(19, 117);
+			this.chkHideWatchedFiles.Location = new System.Drawing.Point(19, 140);
 			this.chkHideWatchedFiles.Name = "chkHideWatchedFiles";
 			this.chkHideWatchedFiles.Size = new System.Drawing.Size(225, 17);
 			this.chkHideWatchedFiles.TabIndex = 30;
@@ -1092,7 +1094,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// label33
 			// 
 			this.label33.AutoSize = true;
-			this.label33.Location = new System.Drawing.Point(15, 142);
+			this.label33.Location = new System.Drawing.Point(17, 170);
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(141, 13);
 			this.label33.TabIndex = 32;
@@ -1105,7 +1107,7 @@ namespace MyAnimePlugin3.ConfigFiles
             0,
             0,
             0});
-			this.udWatched.Location = new System.Drawing.Point(162, 140);
+			this.udWatched.Location = new System.Drawing.Point(164, 168);
 			this.udWatched.Minimum = new decimal(new int[] {
             5,
             0,
@@ -1123,7 +1125,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// label35
 			// 
 			this.label35.AutoSize = true;
-			this.label35.Location = new System.Drawing.Point(209, 142);
+			this.label35.Location = new System.Drawing.Point(211, 170);
 			this.label35.Name = "label35";
 			this.label35.Size = new System.Drawing.Size(15, 13);
 			this.label35.TabIndex = 34;
@@ -1586,6 +1588,16 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.Size = new System.Drawing.Size(755, 504);
 			this.tabControl1.TabIndex = 0;
 			// 
+			// chkRateSeries
+			// 
+			this.chkRateSeries.AutoSize = true;
+			this.chkRateSeries.Location = new System.Drawing.Point(20, 117);
+			this.chkRateSeries.Name = "chkRateSeries";
+			this.chkRateSeries.Size = new System.Drawing.Size(271, 17);
+			this.chkRateSeries.TabIndex = 39;
+			this.chkRateSeries.Text = "Prompt to rate series when all episodes are watched";
+			this.chkRateSeries.UseVisualStyleBackColor = true;
+			// 
 			// frmConfig
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1772,5 +1784,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.NumericUpDown udInfoDelay;
+		private System.Windows.Forms.CheckBox chkRateSeries;
     }
 }

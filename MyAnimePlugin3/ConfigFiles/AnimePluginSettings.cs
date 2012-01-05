@@ -18,6 +18,7 @@ namespace MyAnimePlugin3
 		public bool HideEpisodeOverviewWhenUnwatched = false;
 		public string ImportFolderMappingsList = "";
 		public string CurrentJMMUserID = "";
+		public bool DisplayRatingDialogOnCompletion = true;
 
 
 		public Dictionary<int, string> ImportFolderMappings
@@ -322,6 +323,7 @@ namespace MyAnimePlugin3
 
 			ShowMissing = GetBooleanSetting(ref xmlreader, "ShowMissing", true);
 			ShowMissingMyGroupsOnly = GetBooleanSetting(ref xmlreader, "ShowMissingMyGroupsOnly", false);
+			DisplayRatingDialogOnCompletion = GetBooleanSetting(ref xmlreader, "DisplayRatingDialogOnCompletion", true);
 
 			string viewMode = "";
 			viewMode = xmlreader.GetValueAsString("Anime3", "LastGroupViewMode", "0");
@@ -431,6 +433,7 @@ namespace MyAnimePlugin3
 
                 xmlwriter.SetValue("Anime3", "ShowMissing", ShowMissing ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "ShowMissingMyGroupsOnly", ShowMissingMyGroupsOnly ? "1" : "0");
+				xmlwriter.SetValue("Anime3", "DisplayRatingDialogOnCompletion", DisplayRatingDialogOnCompletion ? "1" : "0");
 
                 xmlwriter.SetValue("Anime3", "HideWatchedFiles", HideWatchedFiles ? "1" : "0");
 

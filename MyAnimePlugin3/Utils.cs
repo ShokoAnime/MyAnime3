@@ -264,15 +264,51 @@ namespace MyAnimePlugin3
         {
             TimeSpan sp = date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0));
             return ((long)sp.TotalSeconds).ToString();
+
+
         }
-		public static decimal PromptAniDBRating()
+
+		public static void PromptToRateSeriesOnCompletion(AnimeSeriesVM ser)
+		{
+			try
+			{
+				if (!BaseConfig.Settings.DisplayRatingDialogOnCompletion) return;
+
+				// if the user doesn't have all the episodes return
+				if (ser.MissingEpisodeCount > 0) return;
+
+				// only prompt the user if the series has finished airing
+				// and the user has watched all the episodes
+				if (!ser.AniDB_Anime.FinishedAiring || ser.UnwatchedEpisodeCount > 0) return;
+
+				// don't prompt if the user has already rated this
+				AniDB_VoteVM UserVote = ser.AniDB_Anime.UserVote;
+				if (UserVote != null) return;
+
+				decimal rating = Utils.PromptAniDBRating(ser.AniDB_Anime.FormattedTitle);
+				if (rating > 0)
+				{
+					JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(ser.AniDB_ID, rating, (int)VoteType.AnimePermanent);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ex.ToString());
+			}
+		}
+
+		public static decimal PromptAniDBRating(string title)
 		{
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
 			if (dlg == null)
 				return 0;
 
 			dlg.Reset();
-			dlg.SetHeading("User Rating");
+			if (string.IsNullOrEmpty(title))
+				dlg.SetHeading("User Rating");
+			else
+				dlg.SetHeading("User Rating - " + title);
 			dlg.Add("      1");
 			dlg.Add("      1.5");
 			dlg.Add("      2");

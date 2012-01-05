@@ -352,6 +352,7 @@ namespace MyAnimePlugin3.ConfigFiles
 				BaseConfig.Settings.ShowMissing = chkShowMissing.Checked;
 				BaseConfig.Settings.ShowMissingMyGroupsOnly = chkShowMissingGroups.Checked;
 				BaseConfig.Settings.HideWatchedFiles = chkHideWatchedFiles.Checked;
+				BaseConfig.Settings.DisplayRatingDialogOnCompletion = chkRateSeries.Checked;
 
 				if (cboAudioLanguage.SelectedIndex == 0)
 					BaseConfig.Settings.DefaultAudioLanguage = "<file>";
@@ -426,6 +427,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			chkShowMissing.Checked = BaseConfig.Settings.ShowMissing;
 			chkShowMissingGroups.Checked = BaseConfig.Settings.ShowMissingMyGroupsOnly;
+			chkRateSeries.Checked = BaseConfig.Settings.DisplayRatingDialogOnCompletion;
 
 			if (!BaseConfig.Settings.ShowMissing) chkShowMissingGroups.Enabled = false;
 

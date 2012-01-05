@@ -86,6 +86,19 @@ namespace MyAnimePlugin3.Windows
 					SetEpisode(ep);
 				}
 			}
+
+			if (MainWindow.animeSeriesIDToBeRated.HasValue && BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+			{
+				JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(MainWindow.animeSeriesIDToBeRated.Value,
+					JMMServerVM.Instance.CurrentUser.JMMUserID);
+				if (contract != null)
+				{
+					AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+					Utils.PromptToRateSeriesOnCompletion(ser);
+				}
+
+				MainWindow.animeSeriesIDToBeRated = null;
+			}
 		}
 
 		void getDataWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -97,6 +110,14 @@ namespace MyAnimePlugin3.Windows
 			foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
 			{
 				AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+
+				AniDB_AnimeVM anime = ep.AnimeSeries.AniDB_Anime;
+				Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = anime.DictTvDBEpisodes;
+				Dictionary<int, int> dictTvDBSeasons = anime.DictTvDBSeasons;
+				Dictionary<int, int> dictTvDBSeasonsSpecials = anime.DictTvDBSeasonsSpecials;
+				CrossRef_AniDB_TvDBVM tvDBCrossRef = anime.CrossRefTvDB;
+				ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+
 				tempEpisodes.Add(ep);
 			}
 
@@ -167,13 +188,13 @@ namespace MyAnimePlugin3.Windows
 		{
 			if (ep == null) return;
 
-			AniDB_AnimeVM anime = ep.AnimeSeries.AniDB_Anime;
+			/*AniDB_AnimeVM anime = ep.AnimeSeries.AniDB_Anime;
 
 			Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = anime.DictTvDBEpisodes;
 			Dictionary<int, int> dictTvDBSeasons = anime.DictTvDBSeasons;
 			Dictionary<int, int> dictTvDBSeasonsSpecials = anime.DictTvDBSeasonsSpecials;
 			CrossRef_AniDB_TvDBVM tvDBCrossRef = anime.CrossRefTvDB;
-			ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+			ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);*/
 
 
 			clearGUIProperty("Watching.Series.Title");

@@ -4018,6 +4018,15 @@ namespace MyAnimePlugin3
 			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
 		}
 
+		private void LinkAniDBToMAL(AnimeSeriesVM ser, int animeID, int malID, string malTitle)
+		{
+			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(animeID, malID, malTitle);
+			if (res.Length > 0)
+				Utils.DialogMsg("Error", res);
+
+			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
+		}
+
 		private bool SearchTheMovieDBMenu(AnimeSeriesVM ser, string previousMenu)
 		{
 			int aniDBID = ser.AniDB_Anime.AnimeID;
@@ -4081,6 +4090,8 @@ namespace MyAnimePlugin3
 			}
 		}
 
+		
+
 		private bool SearchTheMovieDB(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
 		{
 			if (searchCriteria.Length == 0)
@@ -4126,6 +4137,134 @@ namespace MyAnimePlugin3
 						MovieDBMovieSearchResultVM res = MovieDBSeriesSearchResults[selection - 1];
 
 						LinkAniDBToMovieDB(ser, aniDBID, res.MovieID);
+						return false;
+					}
+
+					return true;
+				}
+			}
+			else
+			{
+				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
+				if (null != dlgOK)
+				{
+					dlgOK.SetHeading("Search Results");
+					dlgOK.SetLine(1, string.Empty);
+					dlgOK.SetLine(2, "No results found");
+					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
+				}
+				return true;
+			}
+		}
+
+		private bool SearchMALMenu(AnimeSeriesVM ser, string previousMenu)
+		{
+			int aniDBID = ser.AniDB_Anime.AnimeID;
+
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return true;
+
+			//keep showing the dialog until the user closes it
+			int selectedLabel = 0;
+			string currentMenu = "Search MAL";
+			while (true)
+			{
+				dlg.Reset();
+				dlg.SetHeading(currentMenu);
+
+				if (previousMenu != string.Empty)
+					dlg.Add("<<< " + previousMenu);
+				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
+				dlg.Add("Manual Search");
+
+				CrossRef_AniDB_MALResultVM CrossRef_AniDB_MALResult = null;
+				JMMServerBinary.Contract_CrossRef_AniDB_MALResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetMALCrossRefWebCache(aniDBID);
+				if (xref != null)
+				{
+					CrossRef_AniDB_MALResult = new CrossRef_AniDB_MALResultVM(xref);
+					dlg.Add(string.Format("Community Says:  {0} ({1})", CrossRef_AniDB_MALResult.MALTitle, CrossRef_AniDB_MALResult.MALID));
+				}
+
+				dlg.SelectedLabel = selectedLabel;
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				selectedLabel = dlg.SelectedLabel;
+
+				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+				switch (selection)
+				{
+					case 0:
+						//show previous
+						return true;
+					case 1:
+						if (!SearchMAL(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
+							return false;
+						break;
+					case 2:
+						{
+							string searchText = ser.AniDB_Anime.FormattedTitle;
+							if (Utils.DialogText(ref searchText, GetID))
+							{
+								if (!SearchMAL(ser, searchText, currentMenu))
+									return false;
+							}
+						}
+						break;
+					case 3:
+						LinkAniDBToMAL(ser, CrossRef_AniDB_MALResult.AnimeID, CrossRef_AniDB_MALResult.MALID, CrossRef_AniDB_MALResult.MALTitle);
+						return false;
+					default:
+						//close menu
+						return false;
+				}
+			}
+		}
+
+		private bool SearchMAL(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
+		{
+			if (searchCriteria.Length == 0)
+				return true;
+
+			int aniDBID = ser.AniDB_Anime.AnimeID;
+
+			List<MALSearchResultVM> MALSearchResults = new List<MALSearchResultVM>();
+			List<JMMServerBinary.Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(searchCriteria.Trim());
+			foreach (JMMServerBinary.Contract_MALAnimeResponse malResult in malResults)
+				MALSearchResults.Add(new MALSearchResultVM(malResult));
+
+			BaseConfig.MyAnimeLog.Write("Found {0} MAL results for {1}", MALSearchResults.Count, searchCriteria);
+
+			if (MALSearchResults.Count > 0)
+			{
+				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+				if (dlg == null)
+					return true;
+
+				//keep showing the dialog until the user closes it
+				int selectedLabel = 0;
+				while (true)
+				{
+					dlg.Reset();
+					dlg.SetHeading("Search Results");
+
+					if (previousMenu != string.Empty)
+						dlg.Add("<<< " + previousMenu);
+					foreach (MALSearchResultVM res in MALSearchResults)
+						dlg.Add(string.Format("{0} ({1} Eps)", res.title, res.episodes));
+
+					dlg.SelectedLabel = selectedLabel;
+					dlg.DoModal(GUIWindowManager.ActiveWindow);
+					selectedLabel = dlg.SelectedLabel;
+
+					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+					if (selection == 0)
+						return true; //previous menu
+
+					if (selection > 0 && selection <= MALSearchResults.Count)
+					{
+						MALSearchResultVM res = MALSearchResults[selection - 1];
+
+						LinkAniDBToMAL(ser, aniDBID, res.id, res.title);
 						return false;
 					}
 
@@ -4360,6 +4499,8 @@ namespace MyAnimePlugin3
 			int mnuMovieDBSub = -1;
 			int mnuTrakt = -1;
 			int mnuTraktSub = -1;
+			int mnuMAL = -1;
+			int mnuMALSub = -1;
 
 			int curMenu = -1;
 
@@ -4370,6 +4511,7 @@ namespace MyAnimePlugin3
 			bool hasTvDBLink = ser.CrossRef_AniDB_TvDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries != null;
 			bool hasMovieDBLink = ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null;
 			bool hasTraktLink = ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow != null;
+			bool hasMALLink = ser.CrossRef_AniDB_MAL != null;
 
 			while (true)
 			{
@@ -4379,6 +4521,7 @@ namespace MyAnimePlugin3
 				string tvdbText = "Search The TvDB";
 				string moviedbText = "Search The MovieDB";
 				string traktText = "Search Trakt.tv";
+				string malText = "Search MAL";
 
 				if (ser != null)
 				{
@@ -4390,6 +4533,9 @@ namespace MyAnimePlugin3
 
 					if (hasTraktLink)
 						traktText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow.Title + ")";
+
+					if (hasMALLink)
+						malText += "    (Current: " + ser.CrossRef_AniDB_MAL.MALTitle + ")";
 				}
 
 				if (previousMenu != string.Empty)
@@ -4406,6 +4552,9 @@ namespace MyAnimePlugin3
 
 					dlg.Add(traktText);
 					curMenu++; mnuTrakt = curMenu;
+
+					dlg.Add(malText);
+					curMenu++; mnuMAL = curMenu;
 				}
 
 				if (ser != null && !hasTvDBLink && !hasTraktLink)
@@ -4424,6 +4573,12 @@ namespace MyAnimePlugin3
 				{
 					dlg.Add("Trakt.tv >>>");
 					curMenu++; mnuTraktSub = curMenu;
+				}
+
+				if (ser != null && hasMALLink)
+				{
+					dlg.Add("MAL >>>");
+					curMenu++; mnuMALSub = curMenu;
 				}
 
 				if (ser != null && hasMovieDBLink)
@@ -4450,6 +4605,12 @@ namespace MyAnimePlugin3
 						return false;
 				}
 
+				if (selectedLabel == mnuMAL)
+				{
+					if (!SearchMALMenu(ser, currentMenu))
+						return false;
+				}
+
 				if (selectedLabel == mnuMovieDB)
 				{
 					if (!SearchTheMovieDBMenu(ser, currentMenu))
@@ -4465,6 +4626,12 @@ namespace MyAnimePlugin3
 				if (selectedLabel == mnuTraktSub)
 				{
 					if (!ShowContextMenuTrakt(ser, currentMenu))
+						return false;
+				}
+
+				if (selectedLabel == mnuMALSub)
+				{
+					if (!ShowContextMenuMAL(ser, currentMenu))
 						return false;
 				}
 
@@ -5105,6 +5272,56 @@ namespace MyAnimePlugin3
 						return true;
 					case 1:
 						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBOther(ser.AniDB_Anime.AnimeID, (int)CrossRefType.MovieDB);
+						return false;
+					default:
+						//close menu
+						return false;
+				}
+			}
+		}
+
+		private bool ShowContextMenuMAL(AnimeSeriesVM ser, string previousMenu)
+		{
+			GUIListItem currentitem = this.m_Facade.SelectedListItem;
+			if (currentitem == null)
+				return true;
+
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return true;
+
+			//int moviedbid = -1;
+			string displayName = "";
+
+			if (ser.CrossRef_AniDB_MAL != null)
+				displayName = ser.CrossRef_AniDB_MAL.MALTitle;
+			else
+				return false;
+
+			//keep showing the dialog until the user closes it
+			int selectedLabel = 0;
+			string currentMenu = displayName;
+			while (true)
+			{
+				dlg.Reset();
+				dlg.SetHeading(currentMenu);
+
+				if (previousMenu != string.Empty)
+					dlg.Add("<<< " + previousMenu);
+				dlg.Add("Remove MAL Association");
+
+				dlg.SelectedLabel = selectedLabel;
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				selectedLabel = dlg.SelectedLabel;
+
+				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+				switch (selection)
+				{
+					case 0:
+						//show previous
+						return true;
+					case 1:
+						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(ser.AniDB_Anime.AnimeID);
 						return false;
 					default:
 						//close menu

@@ -195,6 +195,8 @@
     <Compile Include="ViewModel\AnimeEpisodeVM.cs" />
     <Compile Include="ViewModel\AnimeGroupVM.cs" />
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_MALResultVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
@@ -212,6 +214,7 @@
     <Compile Include="ViewModel\JMMServerHelper.cs" />
     <Compile Include="ViewModel\JMMServerVM.cs" />
     <Compile Include="ViewModel\JMMUserVM.cs" />
+    <Compile Include="ViewModel\MALSearchResultVM.cs" />
     <Compile Include="ViewModel\MovieDBMovieSearchResultVM.cs" />
     <Compile Include="ViewModel\MovieDB_FanartVM.cs" />
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
@@ -313,6 +316,9 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries_SaveResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -356,6 +362,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_JMMUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_MissingEpisode.datasource">

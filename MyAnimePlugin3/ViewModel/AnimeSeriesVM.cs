@@ -43,6 +43,7 @@ namespace MyAnimePlugin3.ViewModel
 		public AniDB_AnimeVM AniDB_Anime { get; set; }
 		public CrossRef_AniDB_TvDBVM CrossRef_AniDB_TvDB { get; set; }
 		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB { get; set; }
+		public CrossRef_AniDB_MALVM CrossRef_AniDB_MAL { get; set; }
 		public TvDB_SeriesVM TvDBSeries { get; set; }
 
 		#region Sorting properties
@@ -449,6 +450,11 @@ namespace MyAnimePlugin3.ViewModel
 				CrossRef_AniDB_MovieDB = new CrossRef_AniDB_OtherVM(contract.CrossRefAniDBMovieDB);
 			else
 				CrossRef_AniDB_MovieDB = null;
+
+			if (contract.CrossRefAniDBMAL != null)
+				CrossRef_AniDB_MAL = new CrossRef_AniDB_MALVM(contract.CrossRefAniDBMAL);
+			else
+				CrossRef_AniDB_MAL = null;
 
 			// read only members
 			this.AniDB_ID = contract.AniDB_ID;

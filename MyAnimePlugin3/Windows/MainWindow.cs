@@ -4020,7 +4020,13 @@ namespace MyAnimePlugin3
 
 		private void LinkAniDBToMAL(AnimeSeriesVM ser, int animeID, int malID, string malTitle)
 		{
-			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(animeID, malID, malTitle);
+			if (ser.CrossRef_AniDB_MAL != null)
+			{
+				foreach (CrossRef_AniDB_MALVM xref in ser.CrossRef_AniDB_MAL)
+					JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(xref.AnimeID, xref.StartEpisodeType, xref.StartEpisodeNumber);
+			}
+
+			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(animeID, malID, malTitle, 1, 1);
 			if (res.Length > 0)
 				Utils.DialogMsg("Error", res);
 
@@ -4178,14 +4184,6 @@ namespace MyAnimePlugin3
 				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
 				dlg.Add("Manual Search");
 
-				CrossRef_AniDB_MALResultVM CrossRef_AniDB_MALResult = null;
-				JMMServerBinary.Contract_CrossRef_AniDB_MALResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetMALCrossRefWebCache(aniDBID);
-				if (xref != null)
-				{
-					CrossRef_AniDB_MALResult = new CrossRef_AniDB_MALResultVM(xref);
-					dlg.Add(string.Format("Community Says:  {0} ({1})", CrossRef_AniDB_MALResult.MALTitle, CrossRef_AniDB_MALResult.MALID));
-				}
-
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 				selectedLabel = dlg.SelectedLabel;
@@ -4210,9 +4208,6 @@ namespace MyAnimePlugin3
 							}
 						}
 						break;
-					case 3:
-						LinkAniDBToMAL(ser, CrossRef_AniDB_MALResult.AnimeID, CrossRef_AniDB_MALResult.MALID, CrossRef_AniDB_MALResult.MALTitle);
-						return false;
 					default:
 						//close menu
 						return false;
@@ -4511,7 +4506,7 @@ namespace MyAnimePlugin3
 			bool hasTvDBLink = ser.CrossRef_AniDB_TvDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries != null;
 			bool hasMovieDBLink = ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null;
 			bool hasTraktLink = ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow != null;
-			bool hasMALLink = ser.CrossRef_AniDB_MAL != null;
+			bool hasMALLink = ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0;
 
 			while (true)
 			{
@@ -4535,7 +4530,12 @@ namespace MyAnimePlugin3
 						traktText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow.Title + ")";
 
 					if (hasMALLink)
-						malText += "    (Current: " + ser.CrossRef_AniDB_MAL.MALTitle + ")";
+					{
+						if (ser.CrossRef_AniDB_MAL.Count == 1)
+							malText += "    (Current: " + ser.CrossRef_AniDB_MAL[0].MALTitle + ")";
+						else
+							malText += "    (Current: Multiple Links)";
+					}
 				}
 
 				if (previousMenu != string.Empty)
@@ -5293,8 +5293,13 @@ namespace MyAnimePlugin3
 			//int moviedbid = -1;
 			string displayName = "";
 
-			if (ser.CrossRef_AniDB_MAL != null)
-				displayName = ser.CrossRef_AniDB_MAL.MALTitle;
+			if (ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0)
+			{
+				if (ser.CrossRef_AniDB_MAL.Count == 1)
+					displayName = ser.CrossRef_AniDB_MAL[0].MALTitle;
+				else
+					displayName = "Multiple Links!";
+			}
 			else
 				return false;
 
@@ -5321,7 +5326,10 @@ namespace MyAnimePlugin3
 						//show previous
 						return true;
 					case 1:
-						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(ser.AniDB_Anime.AnimeID);
+						foreach (CrossRef_AniDB_MALVM xref in ser.CrossRef_AniDB_MAL)
+						{
+							JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(xref.AnimeID, xref.StartEpisodeType, xref.StartEpisodeNumber);
+						}
 						return false;
 					default:
 						//close menu

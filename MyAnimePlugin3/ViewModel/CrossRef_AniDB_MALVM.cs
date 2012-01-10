@@ -12,6 +12,8 @@ namespace MyAnimePlugin3.ViewModel
 		public int MALID { get; set; }
 		public string MALTitle { get; set; }
 		public int CrossRefSource { get; set; }
+		public int StartEpisodeType { get; set; }
+		public int StartEpisodeNumber { get; set; }
 
 		public CrossRef_AniDB_MALVM()
 		{
@@ -24,6 +26,8 @@ namespace MyAnimePlugin3.ViewModel
 			this.MALID = contract.MALID;
 			this.MALTitle = contract.MALTitle;
 			this.CrossRefSource = contract.CrossRefSource;
+			this.StartEpisodeType = contract.StartEpisodeType;
+			this.StartEpisodeNumber = contract.StartEpisodeNumber;
 		}
 
 		public override string ToString()

@@ -335,6 +335,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBReleaseGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
@@ -344,6 +345,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB))]
@@ -2813,6 +2815,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private bool Stat_HasFinishedAiringField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Stat_HasMALLinkField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool Stat_HasMovieDBLinkField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3162,6 +3167,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.Stat_HasFinishedAiringField.Equals(value) != true)) {
                     this.Stat_HasFinishedAiringField = value;
                     this.RaisePropertyChanged("Stat_HasFinishedAiring");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Stat_HasMALLink {
+            get {
+                return this.Stat_HasMALLinkField;
+            }
+            set {
+                if ((this.Stat_HasMALLinkField.Equals(value) != true)) {
+                    this.Stat_HasMALLinkField = value;
+                    this.RaisePropertyChanged("Stat_HasMALLink");
                 }
             }
         }
@@ -4087,6 +4105,12 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MALTitleField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StartEpisodeNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StartEpisodeTypeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -4145,6 +4169,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.MALTitleField, value) != true)) {
                     this.MALTitleField = value;
                     this.RaisePropertyChanged("MALTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartEpisodeNumber {
+            get {
+                return this.StartEpisodeNumberField;
+            }
+            set {
+                if ((this.StartEpisodeNumberField.Equals(value) != true)) {
+                    this.StartEpisodeNumberField = value;
+                    this.RaisePropertyChanged("StartEpisodeNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartEpisodeType {
+            get {
+                return this.StartEpisodeTypeField;
+            }
+            set {
+                if ((this.StartEpisodeTypeField.Equals(value) != true)) {
+                    this.StartEpisodeTypeField = value;
+                    this.RaisePropertyChanged("StartEpisodeType");
                 }
             }
         }
@@ -4492,7 +4542,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private int AnimeSeriesIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL CrossRefAniDBMALField;
+        private System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL> CrossRefAniDBMALField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other CrossRefAniDBMovieDBField;
@@ -4611,7 +4661,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL CrossRefAniDBMAL {
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL> CrossRefAniDBMAL {
             get {
                 return this.CrossRefAniDBMALField;
             }
@@ -4891,6 +4941,12 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MALTitleField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StartEpisodeNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StartEpisodeTypeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -4962,6 +5018,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.MALTitleField, value) != true)) {
                     this.MALTitleField = value;
                     this.RaisePropertyChanged("MALTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartEpisodeNumber {
+            get {
+                return this.StartEpisodeNumberField;
+            }
+            set {
+                if ((this.StartEpisodeNumberField.Equals(value) != true)) {
+                    this.StartEpisodeNumberField = value;
+                    this.RaisePropertyChanged("StartEpisodeNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StartEpisodeType {
+            get {
+                return this.StartEpisodeTypeField;
+            }
+            set {
+                if ((this.StartEpisodeTypeField.Equals(value) != true)) {
+                    this.StartEpisodeTypeField = value;
+                    this.RaisePropertyChanged("StartEpisodeType");
                 }
             }
         }
@@ -6834,6 +6916,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBReleaseGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
@@ -6843,6 +6926,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB))]
@@ -7175,6 +7259,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBReleaseGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
@@ -7184,6 +7269,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB))]
@@ -10105,7 +10191,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private int AnimeIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL CrossRef_AniDB_MALField;
+        private System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL> CrossRef_AniDB_MALField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_Other CrossRef_AniDB_MovieDBField;
@@ -10173,7 +10259,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL CrossRef_AniDB_MAL {
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MAL> CrossRef_AniDB_MAL {
             get {
                 return this.CrossRef_AniDB_MALField;
             }
@@ -13715,13 +13801,13 @@ namespace MyAnimePlugin3.JMMServerBinary {
         string TestMALLogin();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache", ReplyAction="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse")]
-        MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult GetMALCrossRefWebCache(int animeID);
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult> GetMALCrossRefWebCache(int animeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBMALResponse")]
-        string LinkAniDBMAL(int animeID, int malID, string malTitle);
+        string LinkAniDBMAL(int animeID, int malID, string malTitle, int epType, int epNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse")]
-        string RemoveLinkAniDBMAL(int animeID);
+        string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
@@ -14223,16 +14309,16 @@ namespace MyAnimePlugin3.JMMServerBinary {
             return base.Channel.TestMALLogin();
         }
         
-        public MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult GetMALCrossRefWebCache(int animeID) {
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult> GetMALCrossRefWebCache(int animeID) {
             return base.Channel.GetMALCrossRefWebCache(animeID);
         }
         
-        public string LinkAniDBMAL(int animeID, int malID, string malTitle) {
-            return base.Channel.LinkAniDBMAL(animeID, malID, malTitle);
+        public string LinkAniDBMAL(int animeID, int malID, string malTitle, int epType, int epNumber) {
+            return base.Channel.LinkAniDBMAL(animeID, malID, malTitle, epType, epNumber);
         }
         
-        public string RemoveLinkAniDBMAL(int animeID) {
-            return base.Channel.RemoveLinkAniDBMAL(animeID);
+        public string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber) {
+            return base.Channel.RemoveLinkAniDBMAL(animeID, epType, epNumber);
         }
         
         public MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

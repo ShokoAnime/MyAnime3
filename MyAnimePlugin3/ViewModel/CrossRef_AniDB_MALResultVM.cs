@@ -11,6 +11,8 @@ namespace MyAnimePlugin3.ViewModel
 		public int MALID { get; set; }
 		public int CrossRefSource { get; set; }
 		public string MALTitle { get; set; }
+		public int StartEpisodeType { get; set; }
+		public int StartEpisodeNumber { get; set; }
 
 		public string SiteURL
 		{
@@ -30,6 +32,8 @@ namespace MyAnimePlugin3.ViewModel
 			this.MALID = contract.MALID;
 			this.CrossRefSource = contract.CrossRefSource;
 			this.MALTitle = contract.MALTitle;
+			this.StartEpisodeType = contract.StartEpisodeType;
+			this.StartEpisodeNumber = contract.StartEpisodeNumber;
 
 		}
 

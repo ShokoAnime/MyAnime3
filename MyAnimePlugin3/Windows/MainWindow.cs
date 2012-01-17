@@ -2419,6 +2419,38 @@ namespace MyAnimePlugin3
 					GUIWindowManager.ShowPreviousWindow();
 					break;
 
+				case MediaPortal.GUI.Library.Action.ActionType.ACTION_PLAY:
+					BaseConfig.MyAnimeLog.Write("Received PLAY action");
+
+					try
+					{
+						if (listLevel == Listlevel.Group)
+						{
+							if (curAnimeGroup == null) return;
+							JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(curAnimeGroup.AnimeGroupID,
+								JMMServerVM.Instance.CurrentUser.JMMUserID);
+							if (contract == null) return;
+							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+							vidHandler.ResumeOrPlay(ep);
+						}
+
+						if (listLevel == Listlevel.Series)
+						{
+							//curAnimeSeries = null;
+							if (curAnimeSeries == null) return;
+							JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(curAnimeSeries.AnimeSeriesID.Value,
+								JMMServerVM.Instance.CurrentUser.JMMUserID);
+							if (contract == null) return;
+							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+							vidHandler.ResumeOrPlay(ep);
+						}
+					}
+					catch (Exception ex)
+					{
+						BaseConfig.MyAnimeLog.Write(ex.ToString());
+					}
+					break;
+
 				case MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU:
 					if (searchTimer.Enabled)
 					{

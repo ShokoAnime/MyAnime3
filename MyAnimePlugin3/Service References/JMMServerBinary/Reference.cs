@@ -11573,6 +11573,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private bool LanguageUseSynonymsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool MAL_NeverDecreaseWatchedNumsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MAL_PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12032,6 +12035,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.LanguageUseSynonymsField.Equals(value) != true)) {
                     this.LanguageUseSynonymsField = value;
                     this.RaisePropertyChanged("LanguageUseSynonyms");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool MAL_NeverDecreaseWatchedNums {
+            get {
+                return this.MAL_NeverDecreaseWatchedNumsField;
+            }
+            set {
+                if ((this.MAL_NeverDecreaseWatchedNumsField.Equals(value) != true)) {
+                    this.MAL_NeverDecreaseWatchedNumsField = value;
+                    this.RaisePropertyChanged("MAL_NeverDecreaseWatchedNums");
                 }
             }
         }
@@ -13809,6 +13825,15 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse")]
         string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBMALUpdated", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBMALUpdatedResponse")]
+        string LinkAniDBMALUpdated(int animeID, int malID, string malTitle, int oldEpType, int oldEpNumber, int newEpType, int newEpNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SyncMALUpload", ReplyAction="http://tempuri.org/IJMMServer/SyncMALUploadResponse")]
+        void SyncMALUpload();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SyncMALDownload", ReplyAction="http://tempuri.org/IJMMServer/SyncMALDownloadResponse")]
+        void SyncMALDownload();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -14319,6 +14344,18 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         public string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber) {
             return base.Channel.RemoveLinkAniDBMAL(animeID, epType, epNumber);
+        }
+        
+        public string LinkAniDBMALUpdated(int animeID, int malID, string malTitle, int oldEpType, int oldEpNumber, int newEpType, int newEpNumber) {
+            return base.Channel.LinkAniDBMALUpdated(animeID, malID, malTitle, oldEpType, oldEpNumber, newEpType, newEpNumber);
+        }
+        
+        public void SyncMALUpload() {
+            base.Channel.SyncMALUpload();
+        }
+        
+        public void SyncMALDownload() {
+            base.Channel.SyncMALDownload();
         }
         
         public MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

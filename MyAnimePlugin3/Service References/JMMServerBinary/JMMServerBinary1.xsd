@@ -235,6 +235,7 @@
       <xs:element minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Stat_EpisodeCount" type="xs:int" />
       <xs:element minOccurs="0" name="Stat_HasFinishedAiring" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasMALLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasMovieDBLink" type="xs:boolean" />
@@ -1184,6 +1185,8 @@
       <xs:element minOccurs="0" name="TvDB_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="VideoExtensions" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WebCache_Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WebCache_AniDB_File_Get" type="xs:boolean" />
+      <xs:element minOccurs="0" name="WebCache_AniDB_File_Send" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_Anonymous" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Get" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Send" type="xs:boolean" />

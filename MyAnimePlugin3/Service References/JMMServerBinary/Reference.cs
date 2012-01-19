@@ -2812,6 +2812,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private System.Nullable<System.DateTime> Stat_EndDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Stat_EpisodeCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool Stat_HasFinishedAiringField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3154,6 +3157,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.Stat_EndDateField.Equals(value) != true)) {
                     this.Stat_EndDateField = value;
                     this.RaisePropertyChanged("Stat_EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Stat_EpisodeCount {
+            get {
+                return this.Stat_EpisodeCountField;
+            }
+            set {
+                if ((this.Stat_EpisodeCountField.Equals(value) != true)) {
+                    this.Stat_EpisodeCountField = value;
+                    this.RaisePropertyChanged("Stat_EpisodeCount");
                 }
             }
         }
@@ -11639,6 +11655,12 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private string WebCache_AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool WebCache_AniDB_File_GetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool WebCache_AniDB_File_SendField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool WebCache_AnonymousField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12321,6 +12343,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.WebCache_AddressField, value) != true)) {
                     this.WebCache_AddressField = value;
                     this.RaisePropertyChanged("WebCache_Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool WebCache_AniDB_File_Get {
+            get {
+                return this.WebCache_AniDB_File_GetField;
+            }
+            set {
+                if ((this.WebCache_AniDB_File_GetField.Equals(value) != true)) {
+                    this.WebCache_AniDB_File_GetField = value;
+                    this.RaisePropertyChanged("WebCache_AniDB_File_Get");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool WebCache_AniDB_File_Send {
+            get {
+                return this.WebCache_AniDB_File_SendField;
+            }
+            set {
+                if ((this.WebCache_AniDB_File_SendField.Equals(value) != true)) {
+                    this.WebCache_AniDB_File_SendField = value;
+                    this.RaisePropertyChanged("WebCache_AniDB_File_Send");
                 }
             }
         }

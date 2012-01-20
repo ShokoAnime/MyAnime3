@@ -53,7 +53,9 @@
         <ParentGroup>Skins</ParentGroup>
         <DisplayName>Avalon</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Avalon</Description>
+        <Description>Avalon
+
+Posters will only be shown when a fanart cannot be found</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -1448,6 +1450,32 @@
           </Items>
         </Files>
       </GroupItem>
+      <GroupItem Name="Avalon Standard">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>Avalon Standard Layout</DisplayName>
+        <DefaulChecked>false</DefaulChecked>
+        <Description>Avalon Standard
+
+Posters will always be shown, even when a fanart exists</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bce335fc-0cfb-488d-bfd9-41ce74f2f624}-Anime3_Background.standard.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Anime3_Background.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.standard.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2e34f16a-f030-4297-96bd-55d07152a493}-Anime3_Views.standard.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Anime3_Views.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
     </Items>
   </Groups>
   <Sections>
@@ -1517,6 +1545,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <IncludedGroups>
           <string>Skins</string>
           <string>Avalon</string>
+          <string>Avalon Standard</string>
           <string>StreamedMP</string>
         </IncludedGroups>
         <PanelName>Tree View Selector</PanelName>
@@ -1555,6 +1584,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <IncludedGroups>
           <string>Skins</string>
           <string>Avalon</string>
+          <string>Avalon Standard</string>
           <string>StreamedMP</string>
         </IncludedGroups>
         <PanelName>Install Section</PanelName>

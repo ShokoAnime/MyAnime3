@@ -1560,8 +1560,8 @@ namespace MyAnimePlugin3
 			}
 			else
 			{
-				string sIconList = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_ListIcon.png";
-				string sUnWatchedFilename = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_UnWatched_left.png";
+				string sIconList = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_ListIcon.png"; // MyAnime3\anime3_ListIcon
+				//string sUnWatchedFilename = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_UnWatched_left.png";
 				item = new GUIListItem(grp.GroupName);
 
 				View.eLabelStyleGroups style = View.eLabelStyleGroups.WatchedUnwatched;
@@ -1575,6 +1575,7 @@ namespace MyAnimePlugin3
 						string watched = grp.WatchedEpisodeCount.ToString();
 						string space = " ";
 
+						//item.Label3 = space + watched.ToString().PadLeft(3, '0');
 						item.Label3 = space + watched.ToString().PadLeft(3, '0');
 						item.IconImage = sIconList;
 						item.Label2 = unwatched.ToString().PadLeft(3, '0');

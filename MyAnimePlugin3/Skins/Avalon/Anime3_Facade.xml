@@ -168,38 +168,38 @@
 				  <keepaspectratio>no</keepaspectratio>
 				  <cards flipY="true" diffuse="Thumb_Mask_test.png" mask="video_filmstrip_mask.png"></cards>
 				</control>
-		
-            <control>
-        		<description>Text List</description>
-        		<type>listcontrol</type>
-        		<id>50</id>
-        		<onleft>12</onleft>
-        		<onright>12</onright>
-        		<scrollOffset>1</scrollOffset>
-        		<posX>1166</posX>
-        		<posY>164</posY>
-        		<height>550</height>
-        		<width>684</width>
-        		<textureFocus>listcontrol_item_selected_small.png</textureFocus>
-        		<textureNoFocus>-</textureNoFocus>
-        		<textXOff>-100</textXOff>
-        		<textYOff>8</textYOff>
-        		<textXOff2>470</textXOff2>
-        		<textYOff2>8</textYOff2>
-        		<textXOff3>663</textXOff3>
-        		<textYOff3>14</textYOff3>
-                <textalign3>right</textalign3>
-                <font3>font2</font3>
-                <itemWidth>142</itemWidth>
-                <itemHeight>19</itemHeight>
-                <IconXOff>477</IconXOff>
-                <IconYOff>18</IconYOff>
-        		<textureHeight>55</textureHeight>
-        		<dimColor>ffffffff</dimColor>
-                <spinPosX>1832</spinPosX>
-                <spinPosY>730</spinPosY>
-			  <playedColor>FFA0D0FF</playedColor>
-           </control>
+
+		  <control>
+			<description>Text List</description>
+			<type>listcontrol</type>
+			<id>50</id>
+			<onleft>12</onleft>
+			<onright>12</onright>
+			<scrollOffset>1</scrollOffset>
+			<posX>1166</posX>
+			<posY>164</posY>
+			<height>550</height>
+			<width>684</width>
+			<textureFocus>listcontrol_item_selected_small.png</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<textXOff>-100</textXOff>
+			<textYOff>8</textYOff>
+			<textXOff2>600</textXOff2>
+			<textYOff2>8</textYOff2>
+			<textXOff3>900</textXOff3>
+			<textYOff3>14</textYOff3>
+			<textalign3>right</textalign3>
+			<font3>font2</font3>
+			<itemWidth>142</itemWidth>
+			<itemHeight>19</itemHeight>
+			<IconXOff>540</IconXOff>
+			<IconYOff>14</IconYOff>
+			<textureHeight>55</textureHeight>
+			<dimColor>ffffffff</dimColor>
+			<spinPosX>1832</spinPosX>
+			<spinPosY>730</spinPosY>
+			<playedColor>FFA0D0FF</playedColor>
+		  </control>
       </control>
     </control>
 </controls>

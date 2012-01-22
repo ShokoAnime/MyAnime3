@@ -49,6 +49,7 @@ namespace MyAnimePlugin3.ViewModel
 		public string Stat_AudioLanguages { get; set; }
 		public string Stat_SubtitleLanguages { get; set; }
 		public int Stat_SeriesCount { get; set; }
+		public decimal Stat_AniDBRating { get; set; }
 
 		public int CompareTo(AnimeGroupVM obj)
 		{
@@ -151,10 +152,12 @@ namespace MyAnimePlugin3.ViewModel
 			{
 				try
 				{
-					if (AniDBTotalVotes == 0)
+					/*if (AniDBTotalVotes == 0)
 						return 0;
 					else
-						return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;
+						return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;*/
+
+					return Stat_AniDBRating / (decimal)100;
 
 				}
 				catch (Exception ex)

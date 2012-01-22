@@ -58,84 +58,118 @@
 	
 	
 	<control>
-	  <description>Default Background</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>0</posX>
-	  <posY>0</posY>
-	  <width>1280</width>
-	  <height>720</height>
-	  <texture>hover_My Anime3.png</texture>
-	  <animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
-	</control>
-
+			<description>Background</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>Background.png</texture>
+		</control>
+		
+		
+	
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>-450</posY>
+			<width>1280</width>
+			<height>1500</height>
+			<texture>mainoverlay.png</texture>
+		</control>
+	
 	<control>
-	  <description>Filmstrip Black Background</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>0</posX>
-	  <posY>504</posY>
-	  <width>1280</width>
-	  <height>221</height>
-	  <colordiffuse>ffFFFFFF</colordiffuse>
-	  <texture>black.png</texture>
-	  <visible>facadeview.filmstrip+control.isvisible(50)</visible>
-	</control>
-	<control>
-	  <description>FanArt Overlay (Graphical View)</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>-2</posX>
-	  <posY>-2</posY>
-	  <width>1284</width>
-	  <height>726</height>
-	  <colordiffuse>ffffffff</colordiffuse>
-	  <texture>movieviewbg.png</texture>
-	  <visible>facadeview.filmstrip</visible>
-	</control>
+			<description>Top overlay bar</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>-20</posY>
+			<width>1280</width>
+			<height>70</height>
+			<texture>MyAnime3\overlay_bar_top.png</texture>
+		</control>
+		
+		<control>
+			<description>Bottom overlay bar</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>680</posY>
+			<width>1280</width>
+			<height>70</height>
+			<texture>MyAnime3\overlay_bar_bottom.png</texture>
+		</control>
+		
+		<control>
+			<description>Middle overlay bar</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>500</posY>
+			<width>1280</width>
+			<height>70</height>
+			<texture>MyAnime3\overlay_bar_bottom.png</texture>
+		</control>
 		
 		
      <!-- ************************** TOP BAR ***********************************-->	
 	
 	<control>
-      <description>title BG</description>
-      <type>image</type>
-      <id>0</id>
-      <posX>77</posX>
-      <posY>11</posY>
-      <width>437</width>
-      <height>35</height>
-      <texture>tvtitlebg.png</texture>
-    </control>
-    <control>
-      <type>fadelabel</type>
-      <description>Recommendations Label</description>
-      <id>0</id>
-      <posX>493</posX>
-      <posY>13</posY>
-      <width>350</width>
-      <font>mediastream12c</font>
-      <label>Recommendations</label>
-      <align>right</align>
-    </control>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>5</posY>
+	  <width>34</width>
+	  <height>40</height>
+	  <texture>hover_My Anime3.png</texture>
+	  <visible>true</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Recommendations</description>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>10</posY>
+	  <width>900</width>
+	  <align>left</align>
+	  <font>font13</font>
+	  <textcolor>ffFFFFFF</textcolor>
+	  <label>Recommendations</label>
+	</control>
+	
 	
 	<control>
       <type>fadelabel</type>
       <description>Recommendations Label</description>
       <id>0</id>
-      <posX>520</posX>
-      <posY>13</posY>
+      <posX>300</posX>
+	  <posY>10</posY>
       <width>350</width>
-      <font>mediastream12c</font>
+      <font>font13</font>
+	  <textcolor>ffFFFFFF</textcolor>
       <label>#Anime3.Recommendations.CurrentView</label>
       <align>left</align>
     </control>
 	
-	<control Style="smallTitleB">
+	<control>
+		<description>Date Time</description>
+		<type>label</type>
+		<id>0</id>
+		<posX>1260</posX>
+		<posY>10</posY>
+		<label>#date / #time</label>
+		<align>right</align>
+		<font>font12</font>
+		<textcolor>ffa9d0f7</textcolor>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	
+	<control>
       <type>label</type>
       <label>#Anime3.Recommendations.DownloadStatus</label>
       <posX>650</posX>
       <posY>16</posY>
+	  <font>font12</font>
+	  <textcolor>ffFFFFFF</textcolor>
 	  <width>450</width>
     </control>
 	
@@ -147,7 +181,7 @@
       <posX>0</posX>
       <width>1280</width>
       <posY>250</posY>
-      <font>mediastream14tc</font>
+      <font>font13</font>
       <textcolor>ffffffff</textcolor>
       <label>#Anime3.Recommendations.Status</label>
 	  <visible>!Control.IsVisible(1461)</visible>
@@ -155,59 +189,72 @@
     </control>
 	
 	<!--  ************** HIDDEN MENU *****************  -->
-
+	
+	
+	<control>
+	  <type>actiongroup</type>
+	  <description>action menu</description>
+	  <defaultcontrol>12</defaultcontrol>
+	  <onexit>50</onexit>
+	  <buttonX>0</buttonX>
+	  <buttonY>0</buttonY>
+	  <buttonwidth>106</buttonwidth>
+	  <buttonheight>720</buttonheight>
+	  <textureFocus>-</textureFocus>
+	  <textureNoFocus>-</textureNoFocus>
+	  <width>568</width>
+	  <height>900</height>
+	  <dimColor>00ffffff</dimColor>
+	  <control>
+		<type>image</type>
+		<posX>26</posX>
+		<posY>78</posY>
+		<width>367</width>
+		<height>591</height>
+		<texture>Backslide.png</texture>
+		<colorDiffuse>fffffffff</colorDiffuse>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+	  </control>
+	  <control>
+			<id>0</id>
+			<label>MENU</label>
+			<type>label</type>
+			<font>font12</font>
+			<posX>71</posX>
+			<posY>120</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		</control>
 		<control>
-			<type>actiongroup</type>
-			<description>action menu</description>
-			<defaultcontrol>801</defaultcontrol>
-			<onexit>50</onexit>
-			<dimColor>00ffffff</dimColor>
-			<control>
-				<type>image</type>
-				<posX>1002</posX>
-				<posY>0</posY>
-				<width>278</width>
-				<height>720</height>
-				<texture>hiddenmenu_right.png</texture>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="100" start="300,0">visible</animation>
-				<animation effect="slide" time="0" end="300,0">hidden</animation>
-			</control>
-			<control>
-				<id>0</id>
-				<label>MENU</label>
-				<type>label</type>
-				<font>mediastream12tc</font>
-				<posX>1040</posX>
-				<posY>225</posY>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="100" start="300,0">visible</animation>
-				<animation effect="slide" time="0" end="300,0">hidden</animation>
-			</control>
-			<control>
-				<id>0</id>
-				<label>OTHER</label>
-				<type>label</type>
-				<font>mediastream12tc</font>
-				<posX>1040</posX>
-				<posY>340</posY>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="100" start="300,0">visible</animation>
-				<animation effect="slide" time="0" end="300,0">hidden</animation>
-			</control>
-			
-			<control>
-				<type>group</type>
-				<description>group element</description>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="100" start="300,0">visible</animation>
-				<animation effect="slide" time="0" end="300,0">hidden</animation>
-				<posX>1040</posX>
-				<posY>250</posY>
-				<width>220</width>
-				<height>720</height>
-				<layout>StackLayout</layout>
-				<control>
+			<id>0</id>
+			<label>OTHER</label>
+			<type>label</type>
+			<font>font12</font>
+			<posX>71</posX>
+			<posY>290</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		</control>
+	  <control>
+		<description>group element</description>
+		<type>group</type>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		<visible>!Control.HasFocus(50)</visible>
+		<control>
+		  <description>button group</description>
+		  <type>group</type>
+		  <animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		  <animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		  <posX>71</posX>
+		  <posY>150</posY>
+		  <layout>StackLayout</layout>
+		  <visible>!Control.HasFocus(50)</visible>
+		  <control>
 					<description>Recommendations to Watch</description>
 					<type>button</type>
 					<id>801</id>
@@ -284,8 +331,12 @@
 					<onup>922</onup>
 					<ondown>801</ondown>
 				</control>
-			</control>
 		</control>
+	  </control>
+	</control>
+	
+	
+	
 	
 	
 	<!-- :::::::::::::::::::::::::::::: Facade :::::::::::::::::::::::::::::: -->
@@ -323,17 +374,19 @@
 		<InfoImage>
 		</InfoImage>
 		<imageFolder>-</imageFolder>
-		<imageFolderFocus>thumbborder.png</imageFolderFocus>
 		<frame>-</frame>
-		<frameFocus>thumbborder.png</frameFocus>
 		<showFrame>no</showFrame>
 		<showFolder>yes</showFolder>
 		<showBackGround>no</showBackGround>
 		<showInfoImage>no</showInfoImage>
 		<thumbAnimation effect="zoom" start="100,100" end="120,120" tween="quadratic" time="0">focus</thumbAnimation>
+		<imageFolderFocus>Picture_cover.png</imageFolderFocus>
+		<frameFocus>Picture_cover.png</frameFocus>
+		<background>Coverbig.png</background>
 	  </control>
       
     </control>
+
     
 	<!--  ************** Recommended Anime *****************  -->
 	
@@ -364,17 +417,7 @@
 	  <texture>#Anime3.Recommendations.Rec.Image</texture>
 	  <visible>Control.IsVisible(1461)</visible>
 	</control>
-	<control>
-	  <description>Cover Art Glass Overlay</description>
-	  <type>image</type>
-	  <id>0</id>
-	  <posX>55</posX>
-	  <posY>73</posY>
-	  <width>228</width>
-	  <height>170</height>
-	  <texture>glassoverlay2.png</texture>
-	  <visible>Control.IsVisible(1461)</visible>
-	</control>
+
 	
     <!--  ************** SELECTED SERIES *****************  -->
 	
@@ -388,41 +431,52 @@
 	  <posY>70</posY>
       <width>800</width>
       <height>100</height>
-      <font>mediastream14tc</font>
-      <textcolor>ffffffff</textcolor>
+      <font>font18</font>
+      <textcolor>ffFFFFFF</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
       <label>#Anime3.Recommendations.Rec.Title</label>
 	  <visible>Control.IsVisible(1461)</visible>
     </control>
 	
-	<control Style="smallTitleB">
+	<control>
       <type>label</type>
       <label>Approval</label>
       <posX>380</posX>
-      <posY>110</posY>
+      <posY>120</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
       <visible>Control.IsVisible(1461)</visible>
     </control>
-    <control Style="smallTitle">
+    <control>
       <type>label</type>
       <label>#Anime3.Recommendations.Rec.ApprovalRating</label>
       <posX>510</posX>
-      <posY>110</posY>
+      <posY>120</posY>
       <width>250</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
       <visible>Control.IsVisible(1461)</visible>
     </control>
 	
-	<control Style="smallTitleB">
+	<control>
       <type>label</type>
       <label>Rating</label>
       <posX>640</posX>
-      <posY>110</posY>
+      <posY>120</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
       <visible>Control.IsVisible(1461)</visible>
     </control>
-    <control Style="smallTitle">
+    <control>
       <type>label</type>
       <label>#Anime3.Recommendations.Rec.AniDBRating</label>
       <posX>720</posX>
-      <posY>110</posY>
+      <posY>120</posY>
       <width>250</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
       <visible>Control.IsVisible(1461)</visible>
     </control>
 	
@@ -433,11 +487,11 @@
 	  <type>textboxscrollup</type>
 	  <id>631</id>
 	  <posX>380</posX>
-	  <posY>140</posY>
+	  <posY>150</posY>
 	  <width>860</width>
-	  <height>190</height>
+	  <height>170</height>
 	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
-	  <font>mediastream11</font>
+	  <font>font11</font>
 	  <visible>Control.IsVisible(1461)</visible>
 	  <label>#Anime3.Recommendations.Rec.Description</label>
 	</control>
@@ -455,24 +509,27 @@
 	  <visible>Control.IsVisible(1461)</visible>
 	</control>
 	
-	<control Style="smallTitleB">
+	<control>
       <type>label</type>
       <label>Based on your vote of #Anime3.Recommendations.BasedOn.VoteValue</label>
       <posX>485</posX>
       <posY>345</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
       <visible>Control.IsVisible(1461)</visible>
     </control>
 	
-	<control Style="smallTitle">
+	<control>
       <type>label</type>
       <label>#Anime3.Recommendations.BasedOn.Title</label>
       <posX>485</posX>
       <posY>375</posY>
       <width>700</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
       <visible>Control.IsVisible(1461)</visible>
     </control>
     
-    <import>common.time.xml</import>
   </controls>
 </window>
 <!--Checksum:8933db03e9c01c0706d0006eca259200-->

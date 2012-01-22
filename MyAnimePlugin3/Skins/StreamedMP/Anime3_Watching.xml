@@ -446,31 +446,49 @@
 	  <spaceBetweenItems>2</spaceBetweenItems>
 	  <visible>Control.IsVisible(1451)</visible>
 	</control>
-	
+
 	<control Style="smallTitleB">
-      <type>label</type>
-      <label>Aired</label>
-      <posX>380</posX>
-      <posY>400</posY>
-      <visible>Control.IsVisible(1451)</visible>
-    </control>
-	
-	<control Style="smallTitleB">
-      <type>label</type>
-      <label>Run Time</label>
-      <posX>380</posX>
-      <posY>430</posY>
-      <visible>Control.IsVisible(1451)</visible>
-    </control>
-	
+	  <type>label</type>
+	  <label>Aired</label>
+	  <posX>380</posX>
+	  <posY>400</posY>
+	  <visible>Control.IsVisible(1451)</visible>
+	</control>
+
 	<control Style="smallTitle">
-      <type>label</type>
-      <label>#Anime3.Watching.Episode.FileInfo</label>
-      <posX>380</posX>
-      <posY>460</posY>
-      <visible>Control.IsVisible(1451)</visible>
+	  <type>label</type>
+	  <label>#Anime3.Watching.Episode.AirDate</label>
+	  <posX>500</posX>
+	  <posY>400</posY>
+	  <width>250</width>
+	  <visible>Control.IsVisible(1451)</visible>
+	</control>
+
+	<control Style="smallTitleB">
+	  <type>label</type>
+	  <label>Run Time</label>
+	  <posX>380</posX>
+	  <posY>430</posY>
+	  <visible>Control.IsVisible(1451)</visible>
+	</control>
+
+	<control Style="smallTitle">
+	  <type>label</type>
+	  <label>#Anime3.Watching.Episode.RunTime</label>
+	  <posX>500</posX>
+	  <posY>430</posY>
+	  <width>250</width>
+	  <visible>Control.IsVisible(1451)</visible>
+	</control>
+
+	<control Style="smallTitle">
+	  <type>label</type>
+	  <label>#Anime3.Watching.Episode.FileInfo</label>
+	  <posX>380</posX>
+	  <posY>460</posY>
+	  <visible>Control.IsVisible(1451)</visible>
 	  <width>314</width>
-    </control>
+	</control>
 	
     
     <import>common.time.xml</import>

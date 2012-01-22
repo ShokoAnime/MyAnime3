@@ -535,8 +535,10 @@
     </Content>
     <Content Include="Skins\DefaultWide\Anime3_Posters.xml" />
     <Content Include="Skins\DefaultWide\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Recommendations.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Relations.xml" />
     <Content Include="Skins\DefaultWide\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Watching.xml" />
     <Content Include="Skins\DefaultWide\Anime3_WideBanners.xml" />
     <Content Include="Skins\DefaultWide\Media\background.png" />
     <Content Include="Skins\DefaultWide\Media\filmstrip_overlay.png" />

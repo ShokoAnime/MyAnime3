@@ -2806,6 +2806,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private string Stat_AllVideoQuality_EpisodesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal Stat_AniDBRatingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Stat_AudioLanguagesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3131,6 +3134,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.Stat_AllVideoQuality_EpisodesField, value) != true)) {
                     this.Stat_AllVideoQuality_EpisodesField = value;
                     this.RaisePropertyChanged("Stat_AllVideoQuality_Episodes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Stat_AniDBRating {
+            get {
+                return this.Stat_AniDBRatingField;
+            }
+            set {
+                if ((this.Stat_AniDBRatingField.Equals(value) != true)) {
+                    this.Stat_AniDBRatingField = value;
+                    this.RaisePropertyChanged("Stat_AniDBRating");
                 }
             }
         }
@@ -13882,6 +13898,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SyncMALDownload", ReplyAction="http://tempuri.org/IJMMServer/SyncMALDownloadResponse")]
         void SyncMALDownload();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RecreateAllGroups", ReplyAction="http://tempuri.org/IJMMServer/RecreateAllGroupsResponse")]
+        void RecreateAllGroups();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -13943,7 +13962,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         void IgnoreAnime(int animeID, int ignoreType, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktFriendInfo", ReplyAction="http://tempuri.org/IJMMServer/GetTraktFriendInfoResponse")]
-        MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly);
+        MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly, bool getShouts, bool getScrobbles);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetUserVote", ReplyAction="http://tempuri.org/IJMMServer/GetUserVoteResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID);
@@ -14406,6 +14425,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
             base.Channel.SyncMALDownload();
         }
         
+        public void RecreateAllGroups() {
+            base.Channel.RecreateAllGroups();
+        }
+        
         public MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
             return base.Channel.GetGroupFilterExtended(groupFilterID, userID);
         }
@@ -14486,8 +14509,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
             base.Channel.IgnoreAnime(animeID, ignoreType, userID);
         }
         
-        public MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly) {
-            return base.Channel.GetTraktFriendInfo(maxResults, animeOnly);
+        public MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly, bool getShouts, bool getScrobbles) {
+            return base.Channel.GetTraktFriendInfo(maxResults, animeOnly, getShouts, getScrobbles);
         }
         
         public MyAnimePlugin3.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID) {

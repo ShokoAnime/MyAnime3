@@ -51,7 +51,7 @@
 				<width>278</width>
 				<height>720</height>
 				<texture>hiddenmenu_right.png</texture>
-				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<visible>!Control.HasFocus(50)</visible>
 				<animation effect="slide" time="100" start="300,0">visible</animation>
 				<animation effect="slide" time="0" end="300,0">hidden</animation>
 			</control>
@@ -62,7 +62,7 @@
 				<font>mediastream12tc</font>
 				<posX>1040</posX>
 				<posY>225</posY>
-				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<visible>!Control.HasFocus(50)</visible>
 				<animation effect="slide" time="100" start="300,0">visible</animation>
 				<animation effect="slide" time="0" end="300,0">hidden</animation>
 			</control>
@@ -73,14 +73,14 @@
 				<font>mediastream12tc</font>
 				<posX>1040</posX>
 				<posY>285</posY>
-				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<visible>!Control.HasFocus(50)</visible>
 				<animation effect="slide" time="100" start="300,0">visible</animation>
 				<animation effect="slide" time="0" end="300,0">hidden</animation>
 			</control>
 			<control>
 				<type>group</type>
 				<description>group element</description>
-				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<visible>!Control.HasFocus(50)</visible>
 				<animation effect="slide" time="100" start="300,0">visible</animation>
 				<animation effect="slide" time="0" end="300,0">hidden</animation>
 				<posX>1040</posX>

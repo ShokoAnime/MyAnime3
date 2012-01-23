@@ -436,9 +436,15 @@ namespace MyAnimePlugin3.Windows
 			{
 				GUIListItem item = null;
 				item = new GUIListItem();
-				item.Label = string.Format("({0}) {1} ({2})", link.Source, link.TorrentName, link.Size);
+
+				string tname = link.TorrentName;
+				if (tname.Length > 50) tname = tname.Substring(0, 50) + "...";
+
+				item.Label = string.Format("({0}) {1} ({2})", link.Source, tname, link.Size);
 				item.TVTag = link;
 				m_Facade.Add(item);
+
+				BaseConfig.MyAnimeLog.Write("TORRENT: " + item.Label);
 			}
 
 			setGUIProperty("Search.ResultDescription", string.Format("{0} Results", results.Count));

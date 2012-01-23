@@ -17,6 +17,16 @@
 			<dimColor>50ffffff</dimColor>
 			<texture>Background.png</texture>
 		</control>
+		
+		<control>
+			<description>FanArt Overlay</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>filmstrip_overlay.png</texture>
+		</control>
 
 	  <!-- ************************** TOP BAR ***********************************-->
 
@@ -49,7 +59,7 @@
 		<type>label</type>
 		<id>0</id>
 		<posX>1260</posX>
-		<posY>1</posY>
+		<posY>10</posY>
 		<label>#date / #time</label>
 		<align>right</align>
 		<font>font12</font>
@@ -57,145 +67,215 @@
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
 	  
-		<!-- :::::::::::::: INFO LABELS :::::::::::::: -->
+	  <!--  ************** HIDDEN MENU *****************  -->
 
-		<control>
-			<description>Poster Source Label</description>
-			<type>label</type>
+	<control>
+	  <type>actiongroup</type>
+	  <description>action menu</description>
+	  <defaultcontrol>2</defaultcontrol>
+	  <onexit>50</onexit>
+	  <buttonX>0</buttonX>
+	  <buttonY>0</buttonY>
+	  <buttonwidth>106</buttonwidth>
+	  <buttonheight>720</buttonheight>
+	  <textureFocus>-</textureFocus>
+	  <textureNoFocus>-</textureNoFocus>
+	  <width>568</width>
+	  <height>900</height>
+	  <dimColor>00ffffff</dimColor>
+	  <control>
+		<type>image</type>
+		<posX>26</posX>
+		<posY>78</posY>
+		<width>367</width>
+		<height>591</height>
+		<texture>Backslide.png</texture>
+		<colorDiffuse>fffffffff</colorDiffuse>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+	  </control>
+	  <control>
 			<id>0</id>
-			<posX>40</posX>
-			<posY>610</posY>
-			<width>700</width>
+			<label>MENU</label>
+			<type>label</type>
 			<font>font12</font>
-			<label>Source:</label>
+			<posX>71</posX>
+			<posY>120</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 		</control>
 		<control>
-			<description>Poster Source</description>
-			<type>label</type>
 			<id>0</id>
-			<posX>300</posX>
-			<posY>610</posY>
-			<width>700</width>
-			<font>font12</font>
-			<label>#Anime3.Posters.SelectedSource</label>
-		</control>
-
-		<control>
-			<description>IsDisabled Label</description>
+			<label>OTHER</label>
 			<type>label</type>
-			<id>0</id>
-			<posX>40</posX>
-			<posY>640</posY>
-			<width>700</width>
 			<font>font12</font>
-			<label>Is Disabled:</label>
+			<posX>71</posX>
+			<posY>210</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 		</control>
+	  <control>
+		<description>group element</description>
+		<type>group</type>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		<visible>!Control.HasFocus(50)</visible>
 		<control>
-			<description>IsDisabled</description>
-			<type>label</type>
-			<id>0</id>
-			<posX>300</posX>
-			<posY>640</posY>
-			<width>700</width>
-			<font>font12</font>
-			<label>#Anime3.Posters.SelectedPosterIsDisabled</label>
-		</control>
-
-		<control>
-			<description>Is Default Label</description>
-			<type>label</type>
-			<id>0</id>
-			<posX>40</posX>
-			<posY>670</posY>
-			<width>700</width>
-			<font>font12</font>
-			<label>Is Default</label>
-		</control>
-		<control>
-			<description>Is Default:</description>
-			<type>label</type>
-			<id>0</id>
-			<posX>300</posX>
-			<posY>670</posY>
-			<width>700</width>
-			<font>font12</font>
-			<label>#Anime3.Posters.SelectedPosterIsDefault</label>
-		</control>
-
-		<!--  ************** HIDDEN MENU *****************  -->
-		<control>
-			<type>actiongroup</type>
-			<description>action menu</description>
-			<defaultcontrol>2</defaultcontrol>
-			<onexit>50</onexit>
-			<buttonX>0</buttonX>
-			<buttonY>0</buttonY>
-			<buttonwidth>106</buttonwidth>
-			<buttonheight>720</buttonheight>
-			<textureFocus>-</textureFocus>
-			<textureNoFocus>-</textureNoFocus>
-			<width>568</width>
-			<height>900</height>
-			<dimColor>00ffffff</dimColor>
-			<control>
-				<type>image</type>
-				<posX>26</posX>
-				<posY>78</posY>
-				<width>367</width>
-				<height>591</height>
-				<texture>Backslide.png</texture>
-				<colorDiffuse>fffffffff</colorDiffuse>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
-				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
-			</control>
-			<control>
-				<description>group element</description>
-				<type>group</type>
-				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
-				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
-				<visible>!Control.HasFocus(50)</visible>
-				<control>
-					<description>button group</description>
-					<type>group</type>
-					<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
-					<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
-					<posX>71</posX>
-					<posY>121</posY>
-					<layout>StackLayout</layout>
-					<visible>!Control.HasFocus(50)</visible>
-					<control>
-						<description>Change Layout</description>
-						<type>button</type>
-						<id>2</id>
-						<label>Change Layout</label>
-						<onup>141</onup>
-						<ondown>140</ondown>
-						<onleft>50</onleft>
-					</control>
-
-					<control>
-						<description>Fanart</description>
-						<type>button</type>
-						<id>140</id>
-						<label>Fanart</label>
-						<onleft>50</onleft>
-						<onup>2</onup>
-						<ondown>141</ondown>
-					</control>
-
-					<control>
-						<description>Wide Banners</description>
-						<type>button</type>
-						<id>141</id>
-						<label>Wide Banners</label>
-						<onleft>50</onleft>
-						<onup>140</onup>
-						<ondown>2</ondown>
-					</control>
+		  <description>button group</description>
+		  <type>group</type>
+		  <animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		  <animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		  <posX>71</posX>
+		  <posY>150</posY>
+		  <layout>StackLayout</layout>
+		  <visible>!Control.HasFocus(50)</visible>
+		  <control>
+					<description>Change Layout</description>
+					<type>button</type>
+					<id>2</id>
+					<label>Change Layout</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>915</onup>
+					<ondown>910</ondown>
 				</control>
-			</control>
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<label>-</label>
+					<visible>false</visible>
+				</control>
+				
+				<control>
+					<description>Series Info</description>
+					<type>button</type>
+					<id>910</id>
+					<label>Series Info</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>2</onup>
+					<ondown>911</ondown>
+				</control>
+				<control>
+					<description>Characters</description>
+					<type>button</type>
+					<id>911</id>
+					<label>Characters</label>
+					<onleft>801</onleft>
+					<onright>801</onright>
+					<onup>910</onup>
+					<ondown>912</ondown>
+				</control>
+				<control>
+					<description>Relations</description>
+					<type>button</type>
+					<id>912</id>
+					<label>Relations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>911</onup>
+					<ondown>913</ondown>
+				</control>
+				<control>
+					<description>Fanart</description>
+					<type>button</type>
+					<id>913</id>
+					<label>Fanart</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>912</onup>
+					<ondown>915</ondown>
+				</control>
+				<control>
+					<description>Wide Banners</description>
+					<type>button</type>
+					<id>915</id>
+					<label>Wide Banners</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>913</onup>
+					<ondown>2</ondown>
+				</control>
 		</control>
+	  </control>
+	</control>
+	
+	  
+		<!-- :::::::::::::: INFO LABELS :::::::::::::: -->
+    
+    <control>
+      <description>Poster Source Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>610</posY>
+      <width>700</width>
+      <label>Source</label>
+	   <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>Poster Source</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>610</posY>
+      <width>700</width>
+      <label>#Anime3.Posters.SelectedSource</label>
+	  <font>font10</font>
+    </control>
+	
+	
+    <control>
+      <description>IsDisabled Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>640</posY>
+      <width>700</width>
+      <label>Is Disabled</label>
+	   <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>IsDisabled</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>640</posY>
+      <width>700</width>
+      <label>#Anime3.Posters.SelectedPosterIsDisabled</label>
+	  <font>font10</font>
+    </control>
+	
+	
+    <control>
+      <description>Is Default Label</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>670</posY>
+      <width>700</width>
+      <label>Is Default</label>
+	   <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>Is Default</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>670</posY>
+      <width>700</width>
+      <label>#Anime3.Posters.SelectedPosterIsDefault</label>
+	  <font>font10</font>
+    </control>
+
+	
 
 		<!-- :::::::::::::: THUMBNAILPANEL :::::::::::::: -->
 		<control>
@@ -254,28 +334,25 @@
 				<control>
 					<description>Filmstrip view</description>
 					<type>filmstrip</type>
-					<dimColor>90ffffff</dimColor>
 					<id>50</id>
-					<scrollOffset>2</scrollOffset>
-					<posX>60</posX>
-					<posY>120</posY>
+					<onup>2</onup>
+					<onleft>50</onleft>
+					<posX>45</posX>
+					<posY>130</posY>
+					<width>1225</width>
 					<spinPosY>-50</spinPosY>
 					<spinPosX>-50</spinPosX>
 					<spinCanFocus>no</spinCanFocus>
-					<width>1244</width>
-					<height>720</height>
-					<onup>2</onup>
-					<onleft>2</onleft>
-					<thumbWidth>243</thumbWidth>
-					<thumbHeight>360</thumbHeight>
+					<thumbWidth>231</thumbWidth>
+					<thumbHeight>342</thumbHeight>
 					<thumbPosX>13</thumbPosX>
 					<thumbPosY>11</thumbPosY>
-					<itemWidth>245</itemWidth>
-					<itemHeight>360</itemHeight>
-					<textureWidth>275</textureWidth>
-					<textureHeight>395</textureHeight>
+					<itemWidth>233</itemWidth>
+					<itemHeight>342</itemHeight>
+					<textureWidth>261</textureWidth>
+					<textureHeight>366</textureHeight>
+					<frame>-</frame>
 					<imageFolderFocus>Picture_cover.png</imageFolderFocus>
-					<frame>Picture_cover.png</frame>
 					<frameFocus>Picture_cover.png</frameFocus>
 					<background>Coverbig.png</background>
 					<thumbs flipY="true" diffuse="Thumb_Mask.png"></thumbs>
@@ -284,10 +361,10 @@
 					<showFolder>no</showFolder>
 					<showBackGround>no</showBackGround>
 					<showInfoImage>no</showInfoImage>
-					<visible>facadeview.filmstrip</visible>
 					<thumbAnimation effect="zoom" start="100,100" end="130,130" time="200">focus</thumbAnimation>
 					<thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
-				</control>
+					<scrollOffset>3</scrollOffset>
+				  </control>
 			</control>
 		</control>
 

@@ -526,7 +526,6 @@
     <Content Include="Skins\DefaultWide\Anime3_Char.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Skins\DefaultWide\Anime3_Collection.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Downloads.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Dummy.xml" />
     <Content Include="Skins\DefaultWide\Anime3_FanArt.xml" />

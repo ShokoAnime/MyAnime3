@@ -14,12 +14,17 @@ namespace MyAnimePlugin3.Downloads
 		{
 			get 
 			{
+
 				string newName = "";
 				foreach (char chr in torrentName.ToCharArray())
 				{
+					if ((int)chr >= 34 && (int)chr <= 40) continue;
+					if ((int)chr >= 58 && (int)chr <= 64) continue;
+
 					if ((int)chr <= 128)
 						newName += chr.ToString();
 				}
+
 
 				return newName; 
 			}

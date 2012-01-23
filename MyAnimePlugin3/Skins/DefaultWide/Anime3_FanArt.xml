@@ -5,21 +5,6 @@
 	<allowoverlay>no</allowoverlay>
   
 	<controls>
-		<control>
-			<type>label</type>
-			<description>Dummy Label for fullscreen preview</description>
-			<id>1400</id>
-			<posX>-50</posX>
-			<posY>-50</posY>
-			<width>620</width>
-			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
-			<label>
-			</label>
-			<visible>true</visible>
-			<!-- to make a control visible only when Fullscreen preview is on do this: <visible>Control.IsVisible(1400)</visible> -->
-			<!-- to make a control invisible when Fullscreen preview is off do this: <visible>!Control.IsVisible(1400)</visible> -->
-		</control>
 
 	  <!-- ********************** BACKGROUNDS************************************** -->
 	  <control>
@@ -86,7 +71,7 @@
 		<type>label</type>
 		<id>0</id>
 		<posX>1260</posX>
-		<posY>1</posY>
+		<posY>10</posY>
 		<label>#date / #time</label>
 		<align>right</align>
 		<font>font12</font>
@@ -94,112 +79,142 @@
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
 	  
-		<!-- ~~~~~~~~~~~~~~~~~~~~ ALL BACKGROUNDS ~~~~~~~~~~~~~~~~~~~~ -->
-		
-
-		<control>
-			<type>fadelabel</type>
-			<description>Subtitle</description>
-			<id>0</id>
-			<posX>1150</posX>
-			<posY>5</posY>
-			<width>500</width>
-			<label>1400</label>
-			<font>font18</font>
-			<textcolor>20ffffff</textcolor>
-			<align>right</align>
-			<visible>Control.IsVisible(1400)</visible>
-		</control>
-
-
-		
-		<control>
-			<description>Status</description>
-			<type>label</type>
-			<id>0</id>
-			<posX>640</posX>
-			<posY>65</posY>
-			<font>font14</font>
-			<align>center</align>
-			<label>[#Anime3.FanArt.SelectedFanartResolution]</label>
-			<visible>Control.IsVisible(1400)</visible>
-		</control>
-
-
 		<!--  ************** HIDDEN MENU *****************  -->
-		<control>
-			<type>actiongroup</type>
-			<description>action menu</description>
-			<defaultcontrol>2</defaultcontrol>
-			<onexit>50</onexit>
-			<buttonX>0</buttonX>
-			<buttonY>0</buttonY>
-			<buttonwidth>106</buttonwidth>
-			<buttonheight>720</buttonheight>
-			<textureFocus>-</textureFocus>
-			<textureNoFocus>-</textureNoFocus>
-			<width>568</width>
-			<height>900</height>
-			<dimColor>00ffffff</dimColor>
-			<control>
-				<type>image</type>
-				<posX>26</posX>
-				<posY>78</posY>
-				<width>367</width>
-				<height>591</height>
-				<texture>Backslide.png</texture>
-				<colorDiffuse>fffffffff</colorDiffuse>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
-				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
-			</control>
-			<control>
-				<description>group element</description>
-				<type>group</type>
-				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
-				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
-				<visible>!Control.HasFocus(50)</visible>
-				<control>
-					<description>button group</description>
-					<type>group</type>
-					<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
-					<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
-					<posX>71</posX>
-					<posY>121</posY>
-					<layout>StackLayout</layout>
-					<visible>!Control.HasFocus(50)</visible>
-					<control>
-						<description>Change Layout</description>
-						<type>button</type>
-						<id>2</id>
-						<label>Change Layout</label>
-						<onup>141</onup>
-						<ondown>140</ondown>
-						<onleft>50</onleft>
-					</control>
 
-					<control>
-						<description>Posters</description>
-						<type>button</type>
-						<id>140</id>
-						<label>Posters</label>
-						<onleft>50</onleft>
-						<onup>2</onup>
-						<ondown>141</ondown>
-					</control>
-
-					<control>
-						<description>Wide Banners</description>
-						<type>button</type>
-						<id>141</id>
-						<label>Wide Banners</label>
-						<onleft>50</onleft>
-						<onup>140</onup>
-						<ondown>2</ondown>
-					</control>
-				</control>
-			</control>
+	<control>
+	  <type>actiongroup</type>
+	  <description>action menu</description>
+	  <defaultcontrol>2</defaultcontrol>
+	  <onexit>50</onexit>
+	  <buttonX>0</buttonX>
+	  <buttonY>0</buttonY>
+	  <buttonwidth>106</buttonwidth>
+	  <buttonheight>720</buttonheight>
+	  <textureFocus>-</textureFocus>
+	  <textureNoFocus>-</textureNoFocus>
+	  <width>568</width>
+	  <height>900</height>
+	  <dimColor>00ffffff</dimColor>
+	  <control>
+		<type>image</type>
+		<posX>26</posX>
+		<posY>78</posY>
+		<width>367</width>
+		<height>591</height>
+		<texture>Backslide.png</texture>
+		<colorDiffuse>fffffffff</colorDiffuse>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+	  </control>
+	  <control>
+			<id>0</id>
+			<label>MENU</label>
+			<type>label</type>
+			<font>font12</font>
+			<posX>71</posX>
+			<posY>120</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 		</control>
+		<control>
+			<id>0</id>
+			<label>OTHER</label>
+			<type>label</type>
+			<font>font12</font>
+			<posX>71</posX>
+			<posY>210</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		</control>
+	  <control>
+		<description>group element</description>
+		<type>group</type>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		<visible>!Control.HasFocus(50)</visible>
+		<control>
+		  <description>button group</description>
+		  <type>group</type>
+		  <animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		  <animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		  <posX>71</posX>
+		  <posY>150</posY>
+		  <layout>StackLayout</layout>
+		  <visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+		  <control>
+					<description>Change Layout</description>
+					<type>button</type>
+					<id>2</id>
+					<label>Change Layout</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>915</onup>
+					<ondown>910</ondown>
+				</control>
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<label>-</label>
+					<visible>false</visible>
+				</control>
+				
+				<control>
+					<description>Series Info</description>
+					<type>button</type>
+					<id>910</id>
+					<label>Series Info</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>2</onup>
+					<ondown>911</ondown>
+				</control>
+				<control>
+					<description>Characters</description>
+					<type>button</type>
+					<id>911</id>
+					<label>Characters</label>
+					<onleft>801</onleft>
+					<onright>801</onright>
+					<onup>910</onup>
+					<ondown>912</ondown>
+				</control>
+				<control>
+					<description>Relations</description>
+					<type>button</type>
+					<id>912</id>
+					<label>Relations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>911</onup>
+					<ondown>914</ondown>
+				</control>
+				<control>
+					<description>Posters</description>
+					<type>button</type>
+					<id>914</id>
+					<label>Posters</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>912</onup>
+					<ondown>915</ondown>
+				</control>
+				<control>
+					<description>Wide Banners</description>
+					<type>button</type>
+					<id>915</id>
+					<label>Wide Banners</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>914</onup>
+					<ondown>2</ondown>
+				</control>
+		</control>
+	  </control>
+	</control>
 
 		
 		<!-- :::::::::::::: FACADE :::::::::::::: -->
@@ -260,7 +275,10 @@
 					<spinPosY>650</spinPosY>
 					<spinAlign>Right</spinAlign>			
 					<spinWidth>30</spinWidth>
-					<spinHeight>30</spinHeight>			
+					<spinHeight>30</spinHeight>	
+					<imageFolderFocus>Picture_cover.png</imageFolderFocus>
+					<frameFocus>Picture_cover.png</frameFocus>
+					<background>Coverbig.png</background>					
 				</control>
 				<control>
 					<description>Filmstrip view</description>
@@ -309,51 +327,97 @@
 		</control>
 		
 		
-		<control>
-			<type>label</type>
-			<id>0</id>
-			<posX>30</posX>
-			<posY>630</posY>
-			<width>150</width>
-			<font>font11</font>
-			<textcolor>ffa9d0f7</textcolor>
-			<label>Disabled:</label>
-			<visible>Control.IsVisible(1400)</visible>
-	  </control>
-	  
-	  <control>
-			<type>label</type>
-			<posX>200</posX>
-			<posY>630</posY>
-			<width>260</width>
-			<font>font11</font>
-			<textcolor>ffFFFFFF</textcolor>
-			<label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
-			<visible>Control.IsVisible(1400)</visible>
-	  </control>
-	  
-	  <control>
-			<type>label</type>
-			<id>0</id>
-			<posX>30</posX>
-			<posY>660</posY>
-			<width>150</width>
-			<font>font11</font>
-			<textcolor>ffa9d0f7</textcolor>
-			<label>Default:</label>
-			<visible>Control.IsVisible(1400)</visible>
-	  </control>
-	  
-	  <control>
-			<type>label</type>
-			<posX>200</posX>
-			<posY>660</posY>
-			<width>260</width>
-			<font>font11</font>
-			<textcolor>ffFFFFFF</textcolor>
-			<label>#Anime3.FanArt.SelectedFanartIsDefault</label>
-			<visible>Control.IsVisible(1400)</visible>
-	  </control>
+		<!-- :::::::::::::: INFO LABELS :::::::::::::: -->
+    
+	
+    <control>
+      <description>FanArt Resolution Label</description>
+      <type>label</type>
+      <id>11</id>
+      <posX>50</posX>
+      <posY>630</posY>
+      <label>Resolution:</label>
+      <align>left</align>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>FanArt Resolution Value</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>630</posY>
+      <label>#Anime3.FanArt.SelectedFanartResolution</label>
+      <align>left</align>
+	  <font>font10</font>
+    </control>
+	
+	<control>
+      <description>Source Label</description>
+      <type>label</type>
+      <id>11</id>
+      <posX>350</posX>
+      <posY>630</posY>
+      <label>Source:</label>
+      <align>left</align>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>Source Value</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>450</posX>
+      <posY>630</posY>
+      <label>#Anime3.FanArt.Source</label>
+      <align>left</align>
+	  <font>font10</font>
+    </control>
+	
+    <control>
+      <description>FanArt Disabled</description>
+      <type>label</type>
+      <id>14</id>
+      <posX>50</posX>
+      <posY>655</posY>
+      <label>Disabled:</label>
+      <align>left</align>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>FanArt Disabled</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>655</posY>
+      <label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
+      <align>left</align>
+	  <font>font10</font>
+    </control>
+	
+	
+    <control>
+      <description>FanArt Default</description>
+      <type>label</type>
+      <id>15</id>
+      <posX>50</posX>
+      <posY>680</posY>
+      <label>Default:</label>
+      <align>left</align>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+    <control>
+      <description>FanArt Default</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>200</posX>
+      <posY>680</posY>
+      <label>#Anime3.FanArt.SelectedFanartIsDefault</label>
+      <align>left</align>
+	  <font>font10</font>
+    </control>
 		
 	</controls>
 </window>

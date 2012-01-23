@@ -393,9 +393,9 @@ namespace MyAnimePlugin3
 			setGUIProperty("ImagesQueueState", ev.ImagesQueueState);
 			setGUIProperty("ImagesQueueRunning", ev.ImagesQueueRunning ? "Running" : "Paused");
 
-			if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = ev.GeneralQueueCount > 0;
-			if (dummyQueueHasher != null) dummyQueueHasher.Visible = ev.HasherQueueCount > 0;
-			if (dummyQueueImages != null) dummyQueueImages.Visible = ev.ImagesQueueCount > 0;
+			if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = ev.GeneralQueueCount >= 0;
+			if (dummyQueueHasher != null) dummyQueueHasher.Visible = ev.HasherQueueCount >= 0;
+			if (dummyQueueImages != null) dummyQueueImages.Visible = ev.ImagesQueueCount >= 0;
 		}
 
 

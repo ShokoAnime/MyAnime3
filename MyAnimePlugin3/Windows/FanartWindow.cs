@@ -101,9 +101,6 @@ namespace MyAnimePlugin3.Windows
 
 			// update skin controls
 			UpdateLayoutButton();
-			if (labelResolution != null) labelResolution.Label = "Resolution:";
-			if (labelDefault != null) labelDefault.Label = "Chosen";
-			if (labelDisabled != null) labelDisabled.Label = "Disabled";
 
 			ClearProperties();
 

@@ -382,6 +382,12 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_MovieDB_Poster.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Playlist.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Playlist_SaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Recommendation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

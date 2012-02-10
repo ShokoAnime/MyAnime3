@@ -18,7 +18,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int WatchedEpisodeCount { get; set; }
 		public string DefaultAudioLanguage { get; set; }
 		public string DefaultSubtitleLanguage { get; set; }
-
+		public string SeriesNameOverride { get; set; }
 
 		public int PlayedCount { get; set; }
 		public int WatchedCount { get; set; }
@@ -228,6 +228,9 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			get
 			{
+				if (!string.IsNullOrEmpty(SeriesNameOverride))
+					return SeriesNameOverride;
+
 				if (JMMServerVM.Instance.SeriesNameSource == DataSourceType.AniDB)
 					return AniDB_Anime.FormattedTitle;
 
@@ -468,6 +471,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.DateTimeCreated = contract.DateTimeCreated;
 			this.DefaultAudioLanguage = contract.DefaultAudioLanguage;
 			this.DefaultSubtitleLanguage = contract.DefaultSubtitleLanguage;
+			this.SeriesNameOverride = contract.SeriesNameOverride;
 
 			this.LatestLocalEpisodeNumber = contract.LatestLocalEpisodeNumber;
 			this.PlayedCount = contract.PlayedCount;

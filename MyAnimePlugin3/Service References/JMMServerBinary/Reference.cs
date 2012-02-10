@@ -340,6 +340,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Playlist>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Playlist))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Playlist_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AppVersions))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterCondition>))]
@@ -4432,6 +4433,131 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AppVersions", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_AppVersions : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JMMDesktopDownloadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JMMDesktopVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JMMServerDownloadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JMMServerVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MyAnime3DownloadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MyAnime3VersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JMMDesktopDownload {
+            get {
+                return this.JMMDesktopDownloadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JMMDesktopDownloadField, value) != true)) {
+                    this.JMMDesktopDownloadField = value;
+                    this.RaisePropertyChanged("JMMDesktopDownload");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JMMDesktopVersion {
+            get {
+                return this.JMMDesktopVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JMMDesktopVersionField, value) != true)) {
+                    this.JMMDesktopVersionField = value;
+                    this.RaisePropertyChanged("JMMDesktopVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JMMServerDownload {
+            get {
+                return this.JMMServerDownloadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JMMServerDownloadField, value) != true)) {
+                    this.JMMServerDownloadField = value;
+                    this.RaisePropertyChanged("JMMServerDownload");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JMMServerVersion {
+            get {
+                return this.JMMServerVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JMMServerVersionField, value) != true)) {
+                    this.JMMServerVersionField = value;
+                    this.RaisePropertyChanged("JMMServerVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MyAnime3Download {
+            get {
+                return this.MyAnime3DownloadField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MyAnime3DownloadField, value) != true)) {
+                    this.MyAnime3DownloadField = value;
+                    this.RaisePropertyChanged("MyAnime3Download");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MyAnime3Version {
+            get {
+                return this.MyAnime3VersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MyAnime3VersionField, value) != true)) {
+                    this.MyAnime3VersionField = value;
+                    this.RaisePropertyChanged("MyAnime3Version");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilterExtended", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_GroupFilterExtended : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -4799,6 +4925,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private int PlayedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeriesNameOverrideField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StoppedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5033,6 +5162,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.PlayedCountField.Equals(value) != true)) {
                     this.PlayedCountField = value;
                     this.RaisePropertyChanged("PlayedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeriesNameOverride {
+            get {
+                return this.SeriesNameOverrideField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesNameOverrideField, value) != true)) {
+                    this.SeriesNameOverrideField = value;
+                    this.RaisePropertyChanged("SeriesNameOverride");
                 }
             }
         }
@@ -7142,6 +7284,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Playlist>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Playlist))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Playlist_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AppVersions))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterCondition>))]
@@ -7488,6 +7631,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Playlist>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Playlist))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Playlist_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AppVersions))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterCondition>))]
@@ -13242,6 +13386,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DefaultSubtitleLanguageField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeriesNameOverrideField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -13313,6 +13460,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.DefaultSubtitleLanguageField, value) != true)) {
                     this.DefaultSubtitleLanguageField = value;
                     this.RaisePropertyChanged("DefaultSubtitleLanguage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeriesNameOverride {
+            get {
+                return this.SeriesNameOverrideField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesNameOverrideField, value) != true)) {
+                    this.SeriesNameOverrideField = value;
+                    this.RaisePropertyChanged("SeriesNameOverride");
                 }
             }
         }
@@ -14108,6 +14268,15 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetPlaylist", ReplyAction="http://tempuri.org/IJMMServer/GetPlaylistResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_Playlist GetPlaylist(int playlistID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAppVersions", ReplyAction="http://tempuri.org/IJMMServer/GetAppVersionsResponse")]
+        MyAnimePlugin3.JMMServerBinary.Contract_AppVersions GetAppVersions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateFileData", ReplyAction="http://tempuri.org/IJMMServer/UpdateFileDataResponse")]
+        string UpdateFileData(int videoLocalID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RescanFile", ReplyAction="http://tempuri.org/IJMMServer/RescanFileResponse")]
+        string RescanFile(int videoLocalID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -14650,6 +14819,18 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         public MyAnimePlugin3.JMMServerBinary.Contract_Playlist GetPlaylist(int playlistID) {
             return base.Channel.GetPlaylist(playlistID);
+        }
+        
+        public MyAnimePlugin3.JMMServerBinary.Contract_AppVersions GetAppVersions() {
+            return base.Channel.GetAppVersions();
+        }
+        
+        public string UpdateFileData(int videoLocalID) {
+            return base.Channel.UpdateFileData(videoLocalID);
+        }
+        
+        public string RescanFile(int videoLocalID) {
+            return base.Channel.RescanFile(videoLocalID);
         }
         
         public MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

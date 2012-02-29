@@ -248,6 +248,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Windows\PosterWindow.cs" />
+    <Compile Include="Windows\RandomWindow.cs" />
     <Compile Include="Windows\RecommendationsWindow.cs" />
     <Compile Include="Windows\RelationsWindow.cs" />
     <Compile Include="Windows\WideBannerWindow.cs" />
@@ -609,6 +610,7 @@
     </Content>
     <Content Include="Skins\streamedmp\Anime3_Posters.xml" />
     <Content Include="Skins\streamedmp\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\streamedmp\Anime3_Random.xml" />
     <Content Include="Skins\streamedmp\Anime3_Recommendations.xml" />
     <Content Include="Skins\streamedmp\Anime3_Relations.xml">
       <SubType>Designer</SubType>
@@ -669,6 +671,8 @@
     <Content Include="Skins\[ Media ]\MyAnime3\anime3_blankchar.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\anime3_cross_48.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\Anime3_DefaultBackground.jpg" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_dice.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_episodelist.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\anime3_episode_background.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\anime3_ex_48.png" />
     <Content Include="Skins\[ Media ]\MyAnime3\anime3_fanart_focus.png" />

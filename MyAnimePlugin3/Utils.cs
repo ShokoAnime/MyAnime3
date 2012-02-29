@@ -1040,5 +1040,33 @@ namespace MyAnimePlugin3
 
 			return lstLanguages;
 		}
+
+		public static string PromptSelectCategory(string title)
+		{
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return "";
+
+			List<string> allCategories = new List<string>();
+			allCategories = JMMServerVM.Instance.clientBinaryHTTP.GetAllCategoryNames();
+			allCategories.Sort();
+
+			dlg.Reset();
+			if (string.IsNullOrEmpty(title))
+				dlg.SetHeading("Select Category");
+			else
+				dlg.SetHeading(title);
+
+			foreach (string cat in allCategories)
+				dlg.Add(cat);
+
+			dlg.DoModal(GUIWindowManager.ActiveWindow);
+
+			if (dlg.SelectedId > 0)
+				return allCategories[dlg.SelectedId - 1];
+			else
+				return "";
+
+		}
 	}
 }

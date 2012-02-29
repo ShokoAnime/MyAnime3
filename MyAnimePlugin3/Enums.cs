@@ -156,4 +156,18 @@ namespace MyAnimePlugin3
 		AniDB = 1,
 		TheTvDB = 2
 	}
+
+	public enum RandomSeriesEpisodeLevel
+	{
+		All = 1,
+		GroupFilter = 2,
+		Group = 3,
+		Series = 4
+	}
+
+	public enum RandomObjectType
+	{
+		Series = 1,
+		Episode = 2
+	}
 }

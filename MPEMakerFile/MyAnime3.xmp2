@@ -772,6 +772,13 @@ Posters will only be shown when a fanart cannot be found</Description>
               <ZipFileName>Installer{CopyFile}\{dafe4c08-e48a-4c10-8fbd-0663c1417827}-anime3_ListIcon.png</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_dice.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2de82d10-9106-4d75-b41e-d8f03b0e5997}-anime3_dice.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\anime3_dice.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -1446,6 +1453,13 @@ Posters will only be shown when a fanart cannot be found</Description>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Media\MyAnime3\overlay_bar_top.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{b5c97b79-385d-43c4-8d66-e0c36dfcdd7b}-overlay_bar_top.png</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Media\MyAnime3\overlay_bar_top.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_dice.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7b8dd86d-0937-49ee-8cac-52adbfcc7dc2}-anime3_dice.png</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Media\MyAnime3\anime3_dice.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -2182,6 +2196,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Media\MyAnime3\overlay_bar_top.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{3ddf7165-0ff3-4876-ad39-4ecc4d4daab9}-overlay_bar_top.png</ZipFileName>
               <DestinationFilename>%Skin%\DefaultWide\Media\MyAnime3\overlay_bar_top.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_dice.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{317846c5-25ec-452b-ac3f-74221c768a2c}-anime3_dice.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\MyAnime3\anime3_dice.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -3179,6 +3200,13 @@ This plugin does not run independently, but instead relies on using JMM Server a
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_dice.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2de82d10-9106-4d75-b41e-d8f03b0e5997}-anime3_dice.png</ZipFileName>
+        <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\anime3_dice.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Admin.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{160e5113-711c-4362-b5c6-a9497adc01a7}-Anime3_Admin.xml</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Anime3_Admin.xml</DestinationFilename>
@@ -3495,46 +3523,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
   </UniqueFileList>
   <ProjectSettings>
     <FolderGroups>
-      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{0a392425-1a49-472f-8820-ba35486d18df}-</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Media</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
-        <Group>Avalon</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
-      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{e0007ab8-58f3-4bd2-ae8c-fbc687bfb4da}-</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon</Folder>
-        <Group>Avalon</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
-      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{a2e9ed7b-02f8-426d-ac18-31d4514bcbbb}-</ZipFileName>
-        <DestinationFilename>%Skin%\StreamedMP\Media</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
-        <Group>StreamedMP</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
-      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{01ac52d1-692c-4974-b0dd-ee83eed7e214}-</ZipFileName>
-        <DestinationFilename>%Skin%\StreamedMP</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP</Folder>
-        <Group>StreamedMP</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
       <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>

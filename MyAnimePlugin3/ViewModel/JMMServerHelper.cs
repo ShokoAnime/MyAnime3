@@ -410,8 +410,8 @@ namespace MyAnimePlugin3.ViewModel
 					allSeries.Add(new AnimeSeriesVM(contract));
 
 				TimeSpan ts = DateTime.Now - start;
-				string msg = string.Format("Got series for group Recursive: {0} - {1} in {2} ms", grp.GroupName, allSeries.Count, ts.TotalMilliseconds);
-				BaseConfig.MyAnimeLog.Write(msg);
+				//string msg = string.Format("Got series for group Recursive: {0} - {1} in {2} ms", grp.GroupName, allSeries.Count, ts.TotalMilliseconds);
+				//BaseConfig.MyAnimeLog.Write(msg);
 			}
 			catch (Exception ex)
 			{

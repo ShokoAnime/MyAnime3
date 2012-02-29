@@ -214,7 +214,7 @@
 					<label>... to Watch</label>
 					<onleft>50</onleft>
 					<onright>50</onright>
-					<onup>923</onup>
+					<onup>926</onup>
 					<ondown>802</ondown>
 				</control>
 				<control>
@@ -282,7 +282,17 @@
 					<onleft>50</onleft>
 					<onright>50</onright>
 					<onup>922</onup>
-					<ondown>801</ondown>
+					<ondown>926</ondown>
+				</control>
+				<control>
+				  <description>Something Random</description>
+				  <type>button</type>
+				  <id>926</id>
+				  <label>Something Random</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>923</onup>
+				  <ondown>801</ondown>
 				</control>
 			</control>
 		</control>

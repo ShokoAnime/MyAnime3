@@ -117,6 +117,13 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
+		public string CategoriesString
+		{
+			get
+			{
+				return AniDB_Anime.AllCategories;
+			}
+		}
 
 		public DateTime? Stat_SeriesCreatedDate
 		{
@@ -154,7 +161,47 @@ namespace MyAnimePlugin3.ViewModel
 		}
 
 
+		public bool IsComplete
+		{
+			get
+			{
+				if (!AniDB_Anime.EndDate.HasValue) return false; // ongoing
 
+				// all series have finished airing and the user has all the episodes
+				if (AniDB_Anime.EndDate.Value < DateTime.Now && !HasMissingEpisodesAny) return true;
+
+				return false;
+			}
+		}
+
+		public bool FinishedAiring
+		{
+			get
+			{
+				if (!AniDB_Anime.EndDate.HasValue) return false; // ongoing
+
+				// all series have finished airing
+				if (AniDB_Anime.EndDate.Value < DateTime.Now) return true;
+
+				return false;
+			}
+		}
+
+		public bool AllFilesWatched
+		{
+			get
+			{
+				return UnwatchedEpisodeCount == 0;
+			}
+		}
+
+		public bool AnyFilesWatched
+		{
+			get
+			{
+				return WatchedEpisodeCount > 0;
+			}
+		}
 
 		private int missingEpisodeCount = 0;
 		public int MissingEpisodeCount

@@ -43,6 +43,8 @@ namespace MyAnimePlugin3
 		[SkinControlAttribute(923)] protected GUIButtonControl btnWindowDownloads = null;
 		//[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
 		[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
+		[SkinControlAttribute(926)] protected GUIButtonControl btnWindowRandom = null;
+		[SkinControlAttribute(927)] protected GUIButtonControl btnWindowPlaylists = null;
 
 		[SkinControlAttribute(50)]
 		protected GUIFacadeControl m_Facade = null;
@@ -111,6 +113,25 @@ namespace MyAnimePlugin3
 		public static Listlevel listLevel = Listlevel.GroupFilter;
 		public static object parentLevelObject = null;
 		private static Random groupRandom = new Random();
+
+		public static RandomSeriesEpisodeLevel RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.All;
+		public static RandomObjectType RandomWindow_RandomType = RandomObjectType.Series;
+		public static object RandomWindow_LevelObject = null;
+		public static AnimeSeriesVM RandomWindow_CurrentSeries = null;
+		public static AnimeEpisodeVM RandomWindow_CurrentEpisode = null;
+		public static int RandomWindow_MatchesFound = 0;
+
+		public static bool RandomWindow_SeriesWatched = true;
+		public static bool RandomWindow_SeriesUnwatched = true;
+		public static bool RandomWindow_SeriesPartiallyWatched = true;
+		public static bool RandomWindow_SeriesOnlyComplete = true;
+		public static bool RandomWindow_SeriesAllCategories = true;
+		public static string RandomWindow_SeriesCategories = "";
+
+		public static bool RandomWindow_EpisodeWatched = true;
+		public static bool RandomWindow_EpisodeUnwatched = true;
+		public static bool RandomWindow_EpisodeAllCategories = true;
+		public static string RandomWindow_EpisodeCategories = "";
 
 		//private bool fanartSet = false;
 
@@ -1271,6 +1292,8 @@ namespace MyAnimePlugin3
 								}
 								count++;
 							}
+
+							SetFanartForEpisodes();
 						}
 						setGUIProperty(guiProperty.EpisodeCount, count.ToString());
 						break;
@@ -2154,6 +2177,19 @@ namespace MyAnimePlugin3
 				return;
 			}
 
+			if (this.btnWindowRandom != null && control == this.btnWindowRandom)
+			{
+
+				RandomWindow_LevelObject = GroupFilterHelper.AllGroupsFilter;
+				RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+				RandomWindow_RandomType = RandomObjectType.Series;
+
+				GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+
+				this.btnWindowRandom.IsFocused = false;
+				return;
+			}
+
 			if (this.btnChangeLayout != null && control == this.btnChangeLayout)
 			{
 				ShowLayoutMenu("");
@@ -2361,7 +2397,7 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		private void SetFanartForEpisodes()
+		public void SetFanartForEpisodes()
 		{
 			// do this so that after an episode is played and the page is reloaded, we will always show the correct fanart
 			if (curAnimeSeries == null) return;
@@ -3731,6 +3767,9 @@ namespace MyAnimePlugin3
 
 				switch (listLevel)
 				{
+					case Listlevel.GroupFilter:
+						ShowContextMenuGroupFilter("");
+						break;
 					case Listlevel.Group:
 						ShowContextMenuGroup("");
 						break;
@@ -4885,6 +4924,82 @@ namespace MyAnimePlugin3
 			}
 		}
 
+		private bool ShowContextMenuGroupFilter(string previousMenu)
+		{
+			GUIListItem currentitem = this.m_Facade.SelectedListItem;
+			if (currentitem == null)
+				return true;
+
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return true;
+
+			GroupFilterVM gf = currentitem.TVTag as GroupFilterVM;
+			if (gf == null)
+				return true;
+
+			int mnuPrev = -1;
+			int mnuRandomSeries = -1;
+			int mnuRandomEpisode = -1;
+
+			//keep showing the dialog until the user closes it
+			int selectedLabel = 0;
+			string currentMenu = gf.GroupFilterName;
+			while (true)
+			{
+				int curMenu = -1;
+
+				dlg.Reset();
+				dlg.SetHeading(currentMenu);
+
+
+				if (previousMenu != string.Empty)
+				{
+					dlg.Add("<<< " + previousMenu);
+					curMenu++; mnuPrev = curMenu;
+				}
+				dlg.Add("Random Series");
+				curMenu++; mnuRandomSeries = curMenu;
+
+				dlg.Add("Random Episode");
+				curMenu++; mnuRandomEpisode = curMenu;
+
+				dlg.SelectedLabel = selectedLabel;
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				selectedLabel = dlg.SelectedLabel;
+
+				if (selectedLabel == mnuPrev) return true;
+				if (selectedLabel == mnuRandomSeries)
+				{
+					RandomWindow_CurrentEpisode = null;
+					RandomWindow_CurrentSeries = null;
+
+					RandomWindow_LevelObject = gf;
+					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+					RandomWindow_RandomType = RandomObjectType.Series;
+
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+
+					return false;
+				}
+
+				if (selectedLabel == mnuRandomEpisode)
+				{
+					RandomWindow_CurrentEpisode = null;
+					RandomWindow_CurrentSeries = null;
+
+					RandomWindow_LevelObject = gf;
+					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+					RandomWindow_RandomType = RandomObjectType.Episode;
+
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+
+					return false;
+				}
+
+			}
+		}
+
 		private bool ShowContextMenuGroup(string previousMenu)
 		{
 			GUIListItem currentitem = this.m_Facade.SelectedListItem;
@@ -4909,7 +5024,8 @@ namespace MyAnimePlugin3
 			int mnuDatabases = -1;
 			int mnuImages = -1;
 			int mnuSeries = -1;
-
+			int mnuRandomSeries = -1;
+			int mnuRandomEpisode = -1;
 			
 
 			//keep showing the dialog until the user closes it
@@ -4961,6 +5077,12 @@ namespace MyAnimePlugin3
 					dlg.Add("Series Information");
 					curMenu++; mnuSeries = curMenu;
 				}
+
+				dlg.Add("Random Series");
+				curMenu++; mnuRandomSeries = curMenu;
+
+				dlg.Add("Random Episode");
+				curMenu++; mnuRandomEpisode = curMenu;
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -5042,6 +5164,34 @@ namespace MyAnimePlugin3
 				if (selectedLabel == mnuSeries)
 				{
 					ShowAnimeInfoWindow();
+					return false;
+				}
+
+				if (selectedLabel == mnuRandomSeries)
+				{
+					RandomWindow_CurrentEpisode = null;
+					RandomWindow_CurrentSeries = null;
+
+					RandomWindow_LevelObject = grp;
+					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
+					RandomWindow_RandomType = RandomObjectType.Series;
+
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+
+					return false;
+				}
+
+				if (selectedLabel == mnuRandomEpisode)
+				{
+					RandomWindow_CurrentEpisode = null;
+					RandomWindow_CurrentSeries = null;
+
+					RandomWindow_LevelObject = grp;
+					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
+					RandomWindow_RandomType = RandomObjectType.Episode;
+
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+
 					return false;
 				}
 				
@@ -5599,6 +5749,7 @@ namespace MyAnimePlugin3
 				dlg.Add("Databases >>>");
 				dlg.Add("Images >>>");
 				dlg.Add("Edit Series >>>");
+				dlg.Add("Random Episode");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -5647,6 +5798,17 @@ namespace MyAnimePlugin3
 						if (!ShowContextMenuSeriesEdit(currentMenu))
 							return false;
 						break;
+					case 7:
+						RandomWindow_CurrentEpisode = null;
+						RandomWindow_CurrentSeries = null;
+
+						RandomWindow_LevelObject = ser;
+						RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Series;
+						RandomWindow_RandomType = RandomObjectType.Episode;
+
+						GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+						return true;
+
 					default:
 						//close menu
 						return false;

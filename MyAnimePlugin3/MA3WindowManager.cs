@@ -22,6 +22,8 @@ namespace MyAnimePlugin3
 		public const int Downloads = 923;
 		public const int CollectionStats = 924;
 		public const int Recommendations = 925;
+		public const int RandomSerEp = 926;
+		public const int Playlists = 927;
 
 		public static bool HandleWindowChangeButton(GUIControl control)
 		{
@@ -94,6 +96,16 @@ namespace MyAnimePlugin3
 				case Recommendations:
 					GUIWindowManager.CloseCurrentWindow();
 					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RECOMMENDATIONS, false);
+					return true;
+
+				case RandomSerEp:
+					GUIWindowManager.CloseCurrentWindow();
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM, false);
+					return true;
+
+				case Playlists:
+					GUIWindowManager.CloseCurrentWindow();
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.PLAYLISTS, false);
 					return true;
 			}
 

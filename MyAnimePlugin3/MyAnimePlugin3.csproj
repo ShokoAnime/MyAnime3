@@ -507,6 +507,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skins\Avalon\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\Avalon\Anime3_Random.xml" />
     <Content Include="Skins\Avalon\Anime3_Recommendations.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -610,7 +611,9 @@
     </Content>
     <Content Include="Skins\streamedmp\Anime3_Posters.xml" />
     <Content Include="Skins\streamedmp\Anime3_QueueStatus.xml" />
-    <Content Include="Skins\streamedmp\Anime3_Random.xml" />
+    <Content Include="Skins\streamedmp\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\streamedmp\Anime3_Recommendations.xml" />
     <Content Include="Skins\streamedmp\Anime3_Relations.xml">
       <SubType>Designer</SubType>

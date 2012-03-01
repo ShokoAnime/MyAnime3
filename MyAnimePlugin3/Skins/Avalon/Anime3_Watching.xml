@@ -180,7 +180,7 @@
 				<label>Refresh</label>
 				<onleft>50</onleft>
 				<onright>50</onright>
-				<onup>925</onup>
+				<onup>926</onup>
                 <ondown>921</ondown>
 			</control>
 			
@@ -263,9 +263,25 @@
 			  <onleft>50</onleft>
 			  <onright>50</onright>
 			  <onup>923</onup>
-			  <ondown>801</ondown>
+			  <ondown>926</ondown>
 			</control>
             
+			<control>
+			  <description>Something Random</description>
+			  <type>button</type>
+			  <id>926</id>
+			  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			  <textureNoFocus>-</textureNoFocus>
+			  <width>497</width>
+			  <height>64</height>
+			  <textXOff>58</textXOff>
+			  <textYOff>14</textYOff>
+			  <label>Something Random</label>
+			  <onleft>50</onleft>
+			  <onright>50</onright>
+			  <onup>925</onup>
+			  <ondown>801</ondown>
+			</control>
                 
         </control>
     </control>

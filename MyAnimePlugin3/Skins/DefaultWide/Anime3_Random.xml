@@ -1,0 +1,954 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<window>
+  <id>6116</id>
+  <defaultcontrol>801</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <controls>
+    <!-- ********************** DUMMY CONTROLS FOR VISIBILITY ************************************** -->
+	
+    <control>
+      <type>label</type>
+      <description>Random Series</description>
+      <id>1551</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>5</width>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <description>Random Episode</description>
+      <id>1552</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>5</width>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <description>No Data</description>
+      <id>1553</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>5</width>
+      <label>
+      </label>
+      <visible>true</visible>
+    </control>
+	
+    <!-- ********************** BACKGROUNDS************************************** -->
+
+	
+	
+		
+	<control>
+			<description>Background</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>Background.png</texture>
+		</control>
+		
+		
+	
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>-450</posY>
+			<width>1280</width>
+			<height>1500</height>
+			<texture>mainoverlay.png</texture>
+		</control>
+	
+	<control>
+			<description>Top overlay bar</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>-20</posY>
+			<width>1280</width>
+			<height>70</height>
+			<texture>MyAnime3\overlay_bar_top.png</texture>
+		</control>
+		
+		
+		<control>
+			<description>Middle overlay bar</description>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>500</posY>
+			<width>1280</width>
+			<height>70</height>
+			<texture>MyAnime3\overlay_bar_bottom.png</texture>
+		</control>
+		
+     <!-- ************************** TOP BAR ***********************************-->	
+	 
+	 <control>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>5</posY>
+	  <width>34</width>
+	  <height>40</height>
+	  <texture>hover_My Anime3.png</texture>
+	  <visible>true</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Random Label</description>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>10</posY>
+	  <width>900</width>
+	  <align>left</align>
+	  <font>font13</font>
+	  <textcolor>ffFFFFFF</textcolor>
+	  <label>Random Series</label>
+	  <visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+	  <type>label</type>
+	  <description>Random Label</description>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>10</posY>
+	  <width>900</width>
+	  <align>left</align>
+	  <font>font13</font>
+	  <textcolor>ffFFFFFF</textcolor>
+	  <label>Random Episode</label>
+	  <visible>Control.IsVisible(1552)</visible>
+	</control>
+
+	<control>
+	  <description>Status</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>320</posX>
+	  <posY>10</posY>
+	  <label>#Anime3.Random.Status</label>
+	  <visible>Control.IsVisible(1553)</visible>
+	  <align>left</align>
+	  <font>font13</font>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+	
+	<control>
+		<description>Date Time</description>
+		<type>label</type>
+		<id>0</id>
+		<posX>1260</posX>
+		<posY>10</posY>
+		<label>#date / #time</label>
+		<align>right</align>
+		<font>font12</font>
+		<textcolor>ffa9d0f7</textcolor>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	
+	<!--  ************** HIDDEN MENU *****************  -->
+	
+	<control>
+	  <type>actiongroup</type>
+	  <description>action menu</description>
+	  <defaultcontrol>901</defaultcontrol>
+	  <onexit>801</onexit>
+	  <buttonX>0</buttonX>
+	  <buttonY>0</buttonY>
+	  <buttonwidth>106</buttonwidth>
+	  <buttonheight>720</buttonheight>
+	  <textureFocus>-</textureFocus>
+	  <textureNoFocus>-</textureNoFocus>
+	  <width>568</width>
+	  <height>900</height>
+	  <dimColor>00ffffff</dimColor>
+	  <control>
+		<type>image</type>
+		<posX>26</posX>
+		<posY>78</posY>
+		<width>367</width>
+		<height>591</height>
+		<texture>Backslide.png</texture>
+		<colorDiffuse>fffffffff</colorDiffuse>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+	  </control>
+	  <control>
+			<id>0</id>
+			<label>MENU</label>
+			<type>label</type>
+			<font>font12</font>
+			<posX>71</posX>
+			<posY>120</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		</control>
+		<control>
+			<id>0</id>
+			<label>OTHER</label>
+			<type>label</type>
+			<font>font12</font>
+			<posX>71</posX>
+			<posY>250</posY>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		</control>
+	  <control>
+		<description>group element</description>
+		<type>group</type>
+		<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		<visible>!Control.HasFocus(50)</visible>
+		<control>
+		  <description>button group</description>
+		  <type>group</type>
+		  <animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+		  <animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+		  <posX>71</posX>
+		  <posY>150</posY>
+		  <layout>StackLayout</layout>
+		  <visible>!Control.HasFocus(50)</visible>
+		  <control>
+				<description>Random Series</description>
+				<type>button</type>
+				<id>901</id>
+				<label>Random Series</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>925</onup>
+				<ondown>902</ondown>
+			</control>
+			<control>
+				<description>Random Episode</description>
+				<type>button</type>
+				<id>902</id>
+				<label>Random Episode</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>901</onup>
+				<ondown>920</ondown>
+			</control>
+			<control>
+				<description>Empty button</description>
+				<type>button</type>
+				<id>0</id>
+				<label>-</label>
+				<visible>false</visible>
+			</control>
+
+			<control>
+				<description>Continue Watching</description>
+				<type>button</type>
+				<id>920</id>
+				<label>Continue Watching</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>902</onup>
+				<ondown>921</ondown>
+			</control>
+			<control>
+				<description>Utilities</description>
+				<type>button</type>
+				<id>921</id>
+				<label>Utilities</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>920</onup>
+				<ondown>922</ondown>
+			</control>
+			<control>
+				<description>Calendar</description>
+				<type>button</type>
+				<id>922</id>
+				<label>Calendar</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>921</onup>
+				<ondown>923</ondown>
+			</control>
+			<control>
+				<description>Downloads</description>
+				<type>button</type>
+				<id>923</id>
+				<label>Downloads</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>922</onup>
+				<ondown>925</ondown>
+			</control>
+			<control>
+				<description>Recommendations</description>
+				<type>button</type>
+				<id>925</id>
+				<label>Recommendations</label>
+				<onleft>801</onleft>
+				<onright>801</onright>
+				<onup>923</onup>
+				<ondown>901</ondown>
+			</control>
+		</control>
+	  </control>
+	</control>
+	
+	
+	
+    <!-- *****************************************  SELECTED SERIES POSTER  ***************************************************************** -->
+	
+	
+	<control>
+	  <description>Default Cover Art</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>30</posX>
+	  <posY>69</posY>
+	  <width>260</width>
+	  <height>380</height>
+	  <texture>defaultdvdcover.png</texture>
+	  <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
+	</control>
+	<control>
+	  <description>Cover Art</description>
+	  <type>image</type>
+	  <id>60</id>
+	  <posX>35</posX>
+	  <posY>73</posY>
+	  <width>250</width>
+	  <height>370</height>
+	  <texture>#Anime3.Random.Series.Poster</texture>
+	  <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
+	</control>
+	
+	 <!--  ************** SELECTED SERIES - for series *****************  -->
+	 
+	 <control>
+      <description>Series Title</description>
+      <type>fadelabel</type>
+      <id>0</id>
+      <id>0</id>
+      <posX>340</posX>
+	  <posY>70</posY>
+      <width>800</width>
+      <height>100</height>
+      <font>font18</font>
+      <textcolor>ffFFFFFF</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
+      <label>#Anime3.Random.Series.Title</label>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>Last Watched</label>
+      <posX>340</posX>
+      <posY>120</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <label>#Anime3.Random.Series.LastWatched</label>
+      <posX>520</posX>
+      <posY>120</posY>
+      <width>250</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	
+	<control>
+      <type>label</type>
+      <label>Episodes Watched</label>
+      <posX>660</posX>
+      <posY>120</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <label>#Anime3.Random.Series.EpisodesWatched</label>
+      <posX>880</posX>
+      <posY>120</posY>
+      <width>250</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>Episodes Unwatched</label>
+      <posX>660</posX>
+      <posY>150</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <label>#Anime3.Random.Series.EpisodesUnwatched</label>
+      <posX>880</posX>
+      <posY>150</posY>
+      <width>250</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
+      <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+	 
+	 <control>
+	  <description>Episode Plot</description>
+	  <type>textboxscrollup</type>
+	  <id>631</id>
+	  <posX>340</posX>
+	  <posY>200</posY>
+	  <width>910</width>
+	  <height>260</height>
+	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
+	  <font>font11</font>
+	  <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+	  <label>#Anime3.Random.Series.Description</label>
+	</control>
+	
+	<!--  ************** SELECTED SERIES - for episode *****************  -->
+
+	<control>
+      <description>Series Title</description>
+      <type>fadelabel</type>
+      <id>0</id>
+      <id>0</id>
+      <posX>340</posX>
+	  <posY>70</posY>
+      <width>800</width>
+      <height>100</height>
+      <font>font18</font>
+      <textcolor>ffFFFFFF</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
+      <label>#Anime3.Random.Series.Title</label>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>Last Watched</label>
+      <posX>340</posX>
+      <posY>120</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <label>#Anime3.Random.Series.LastWatched</label>
+      <posX>520</posX>
+      <posY>120</posY>
+      <width>250</width>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <description>Episode Title</description>
+      <type>fadelabel</type>
+      <id>0</id>
+      <id>0</id>
+      <posX>340</posX>
+	  <posY>150</posY>
+      <width>800</width>
+      <height>100</height>
+      <font>font14</font>
+      <textcolor>ffFFFFFF</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
+      <label>#Anime3.Random.Episode.Title</label>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+	  <description>Default Episode Thumb</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>340</posX>
+	  <posY>200</posY>
+	  <width>324</width>
+	  <height>186</height>
+	  <texture>defaultepisodethumb.png</texture>
+	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	</control>
+	<control>
+	  <description>Big Episode Thumb</description>
+	  <type>image</type>
+	  <id>67</id>
+	  <posX>345</posX>
+	  <posY>204</posY>
+	  <height>178</height>
+	  <width>314</width>
+	  <keepaspectratio>yes</keepaspectratio>
+	  <zoom>yes</zoom>
+	  <texture>#Anime3.Random.Episode.Image</texture>
+	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	</control>
+	
+	<control>
+	  <description>Episode Plot</description>
+	  <type>textboxscrollup</type>
+	  <id>631</id>
+	  <posX>720</posX>
+	  <posY>200</posY>
+	  <width>520</width>
+	  <height>220</height>
+	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
+	  <font>font11</font>
+	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	  <label>#Anime3.Random.Episode.Overview</label>
+	</control>
+	
+	<control>
+	  <type>image</type>
+	  <description>Logos</description>
+	  <id>66</id>
+	  <posX>720</posX>
+	  <posY>450</posY>
+	  <width>600</width>
+	  <height>32</height>
+	  <texture>#Anime3.Random.Episode.Logos</texture>
+	  <keepaspectratio>yes</keepaspectratio>
+	  <spaceBetweenItems>2</spaceBetweenItems>
+	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	</control>
+	
+	<control>
+      <type>label</type>
+      <label>Aired</label>
+      <posX>340</posX>
+      <posY>400</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>#Anime3.Random.Episode.AirDate</label>
+      <posX>460</posX>
+      <posY>400</posY>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>Run Time</label>
+      <posX>340</posX>
+      <posY>430</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>#Anime3.Random.Episode.RunTime</label>
+      <posX>460</posX>
+      <posY>430</posY>
+	  <font>font11</font>
+	  <textcolor>ffFFFFFF</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <label>#Anime3.Random.Episode.FileInfo</label>
+      <posX>340</posX>
+      <posY>460</posY>
+	  <font>font11</font>
+	  <textcolor>ffa9d0f7</textcolor>
+      <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	  <width>314</width>
+    </control>
+	
+	<!--  ************** TOOL BAR - Shared *****************  -->
+	
+	<control>
+		<description>Try Again</description>
+		<type>button</type>
+		<id>801</id>
+		<label>Try Again</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>520</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+	</control>
+	<control>
+      <type>image</type>
+	  <posX>35</posX>
+	  <posY>528</posY>
+      <width>24</width>
+      <height>24</height>
+      <texture>MyAnime3/anime3_dice.png</texture>
+    </control>
+	
+	<control>
+      <description>Series Title</description>
+      <type>fadelabel</type>
+      <id>0</id>
+      <id>0</id>
+      <posX>340</posX>
+	  <posY>520</posY>
+      <width>800</width>
+      <height>100</height>
+      <font>font12</font>
+      <textcolor>ffFFFFFF</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>ff000000</shadowColor>
+      <label>#Anime3.Random.CombinedFilterDetails</label>
+       <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<!--  ************** TOOL BAR - Episode *****************  -->
+	
+	<control>
+		<description>Play Episode</description>
+		<type>button</type>
+		<id>825</id>
+		<label>Play Episode</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>450</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+        <onright>823</onright>
+        <onup>822</onup>
+        <ondown>801</ondown>
+		<visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	</control>
+	<control>
+      <type>image</type>
+	  <posX>35</posX>
+	  <posY>458</posY>
+      <width>24</width>
+      <height>24</height>
+      <texture>osd_play_focus.png</texture>
+	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+		<description>Watched</description>
+		<type>togglebutton</type>
+		<id>821</id>
+		<label>Watched</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>560</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+		<onright>823</onright>
+		<onup>801</onup>
+		<ondown>822</ondown>
+		<visible>Control.IsVisible(1552)</visible>
+	</control>
+	
+	<control>
+		<description>Unwatched</description>
+		<type>togglebutton</type>
+		<id>822</id>
+		<label>Unwatched</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>600</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+		<onright>824</onright>
+		<onup>821</onup>
+		<ondown>825</ondown>
+		<visible>Control.IsVisible(1552)</visible>
+	</control>
+	
+	<control>
+		<description>Add Category</description>
+		<type>button</type>
+		<id>823</id>
+		<label>Add Category</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>340</posX>
+		<posY>560</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>821</onleft>
+		  <onright>826</onright>
+		  <onup>824</onup>
+		  <ondown>824</ondown>
+		<visible>Control.IsVisible(1552)</visible>
+	</control>
+	
+	<control>
+		<description>Clear Categories</description>
+		<type>button</type>
+		<id>824</id>
+		<label>Clear Categories</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>340</posX>
+		<posY>600</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>822</onleft>
+		  <onright>826</onright>
+		  <onup>823</onup>
+		  <ondown>823</ondown>
+		<visible>Control.IsVisible(1552)</visible>
+	</control>
+	
+	<control>
+		<description>Category All/Any</description>
+		  <type>button</type>
+		<id>826</id>
+		<label>Categories: #Anime3.Random.Episode.CategoryType</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>640</posX>
+		<posY>560</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		 <onleft>823</onleft>
+		  <onright>901</onright>
+		  <onup>826</onup>
+		  <ondown>826</ondown>
+		<visible>Control.IsVisible(1552)</visible>
+	</control>
+	
+	<control>
+	  <description>Episode Categories</description>
+	  <type>textboxscrollup</type>
+	  <id>631</id>
+	  <posX>640</posX>
+	  <posY>600</posY>
+	  <width>600</width>
+	  <height>120</height>
+	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
+	  <font>font10</font>
+	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
+	  <label>#Anime3.Random.Episode.Categories</label>
+	</control>
+	
+	<!--  ************** TOOL BAR - Series *****************  -->
+	
+	<control>
+		<description>View Episode List</description>
+		<type>button</type>
+		<id>810</id>
+		<label>View Episode List</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>450</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+		<onright>805</onright>
+		<onup>804</onup>
+		<ondown>801</ondown>
+		<visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+	</control>
+	<control>
+      <type>image</type>
+	  <posX>35</posX>
+	  <posY>458</posY>
+      <width>24</width>
+      <height>24</height>
+      <texture>MyAnime3/anime3_episodelist.png</texture>
+	  <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+    </control>
+	
+	<control>
+		<description>Fully Watched</description>
+		<type>togglebutton</type>
+		<id>802</id>
+		<label>Fully Watched</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>560</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+		<onright>805</onright>
+		<onup>801</onup>
+		<ondown>803</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+		<description>Unwatched</description>
+		<type>togglebutton</type>
+		<id>803</id>
+		<label>Unwatched</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>600</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+		<onright>806</onright>
+		<onup>802</onup>
+		<ondown>804</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+		<description>Partially Watched</description>
+		<type>togglebutton</type>
+		<id>804</id>
+		<label>Partially Watched</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>30</posX>
+		<posY>640</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>901</onleft>
+		<onright>807</onright>
+		<onup>803</onup>
+		<ondown>810</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+		<description>Complete Only</description>
+		<type>togglebutton</type>
+		<id>805</id>
+		<label>Complete Only</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>340</posX>
+		<posY>560</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>802</onleft>
+		<onright>808</onright>
+		<onup>807</onup>
+		<ondown>806</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+		<description>Add Category</description>
+		<type>button</type>
+		<id>806</id>
+		<label>Add Category</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>340</posX>
+		<posY>600</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>803</onleft>
+		  <onright>808</onright>
+		  <onup>805</onup>
+		  <ondown>807</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+		<description>Clear Categories</description>
+		<type>button</type>
+		<id>807</id>
+		<label>Clear Categories</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>340</posX>
+		<posY>640</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>804</onleft>
+		  <onright>901</onright>
+		  <onup>806</onup>
+		  <ondown>805</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+		<description>Category All/Any</description>
+		  <type>button</type>
+		<id>808</id>
+		<label>Categories: #Anime3.Random.Series.CategoryType</label>
+		<width>260</width>
+		<textXOff>40</textXOff>
+		<posX>640</posX>
+		<posY>560</posY>
+		<align>center</align>
+		<height>40</height>
+		<font>font10</font>
+		<onleft>805</onleft>
+		  <onright>901</onright>
+		  <onup>808</onup>
+		  <ondown>808</ondown>
+		<visible>Control.IsVisible(1551)</visible>
+	</control>
+	
+	<control>
+	  <description>Series Categories</description>
+	  <type>textboxscrollup</type>
+	  <id>631</id>
+	  <posX>640</posX>
+	  <posY>600</posY>
+	  <width>600</width>
+	  <height>120</height>
+	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
+	  <font>font10</font>
+	  <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
+	  <label>#Anime3.Random.Series.Categories</label>
+	</control>
+    
+  </controls>
+</window>
+<!--Checksum:8933db03e9c01c0706d0006eca259200-->

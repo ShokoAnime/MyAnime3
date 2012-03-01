@@ -545,6 +545,7 @@
     </Content>
     <Content Include="Skins\DefaultWide\Anime3_Posters.xml" />
     <Content Include="Skins\DefaultWide\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Random.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Recommendations.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Relations.xml" />
     <Content Include="Skins\DefaultWide\Anime3_SkinSettings.xml" />

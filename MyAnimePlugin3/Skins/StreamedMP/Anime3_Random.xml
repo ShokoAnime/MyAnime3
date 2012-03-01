@@ -339,7 +339,7 @@
 	  <posY>458</posY>
       <width>24</width>
       <height>24</height>
-      <texture>MyAnime3/anime3_episodelist.png</texture>
+      <texture>top_play_enabled.png</texture>
 	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
 

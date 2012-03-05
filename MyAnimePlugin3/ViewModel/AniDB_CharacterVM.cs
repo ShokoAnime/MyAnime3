@@ -20,6 +20,7 @@ namespace MyAnimePlugin3.ViewModel
 		public string CharType { get; set; }
 
 		public AniDB_SeiyuuVM Creator { get; set; }
+		public AniDB_AnimeVM Anime { get; set; }
 
 		public string PosterPath
 		{
@@ -45,6 +46,9 @@ namespace MyAnimePlugin3.ViewModel
 
 			if (details.Seiyuu != null)
 				this.Creator = new AniDB_SeiyuuVM(details.Seiyuu);
+
+			if (details.Anime != null)
+				this.Anime = new AniDB_AnimeVM(details.Anime);
 			
 		}
 	}

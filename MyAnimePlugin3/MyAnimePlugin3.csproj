@@ -236,6 +236,7 @@
     <Compile Include="ViewModel\TvDB_SeriesVM.cs" />
     <Compile Include="ViewModel\VideoDetailedVM.cs" />
     <Compile Include="ViewModel\VideoLocalVM.cs" />
+    <Compile Include="Windows\ActorWindow.cs" />
     <Compile Include="Windows\AdminWindow.cs" />
     <Compile Include="Windows\AnimeInfoWindow.cs" />
     <Compile Include="Windows\CalendarWindow.cs" />
@@ -320,6 +321,12 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AppVersions.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -339,6 +346,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_DuplicateFile.datasource">

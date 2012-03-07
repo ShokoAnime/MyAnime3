@@ -143,6 +143,41 @@ namespace MyAnimePlugin3.ImageManagement
 			}
 		}
 
+		public void DownloadAniDBCharactersForSeiyuuSync(List<AniDB_CharacterVM> chars, bool forceDownload)
+		{
+			try
+			{
+				foreach (AniDB_CharacterVM chr in chars)
+				{
+					if (!string.IsNullOrEmpty(chr.PicName))
+					{
+						string url = string.Format(Constants.URLS.AniDB_Images, chr.PicName);
+						string filename = chr.PosterPath;
+
+						ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Character, chr, forceDownload);
+
+						// check if this file has already been downloaded and exists
+						if (!req.ForceDownload)
+						{
+							// check to make sure the file actually exists
+							if (!File.Exists(chr.PosterPath))
+								ProcessImageDownloadRequest(req);
+
+						}
+						else
+							ProcessImageDownloadRequest(req);
+
+					}
+				}
+
+
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ex.ToString());
+			}
+		}
+
 		public void DownloadTvDBPoster(TvDB_ImagePosterVM poster, bool forceDownload)
 		{
 			if (string.IsNullOrEmpty(poster.BannerPath)) return;

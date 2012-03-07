@@ -114,6 +114,7 @@
     <Compile Include="Events\GotAnimeForRecommendedEventArgs.cs" />
     <Compile Include="Events\GotAnimeForRelatedEventArgs.cs" />
     <Compile Include="Events\GotCharacterCreatorImagesEventArgs.cs" />
+    <Compile Include="Events\GotCharacterImagesEventArgs.cs" />
     <Compile Include="Events\ServerStatusEventArgs.cs" />
     <Compile Include="Fanart.cs" />
     <Compile Include="ILog.cs" />
@@ -301,6 +302,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Seiyuu.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode.datasource">
@@ -605,6 +609,7 @@
     <Content Include="Skins\Mustayaluca\Media\hover_my anime3.png" />
     <Content Include="Skins\Mustayaluca\Media\MyAnime3\anime3_ListIcon.png" />
     <Content Include="Skins\Mustayaluca\Media\MyAnime3\overlay_bar_top.png" />
+    <Content Include="Skins\streamedmp\Anime3_Actors.xml" />
     <Content Include="Skins\streamedmp\Anime3_Admin.xml">
       <SubType>Designer</SubType>
     </Content>

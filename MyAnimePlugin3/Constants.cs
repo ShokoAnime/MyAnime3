@@ -57,6 +57,7 @@ namespace MyAnimePlugin3
 			public static readonly int SIMILAR = 6115;
 			public static readonly int RANDOM = 6116;
 			public static readonly int PLAYLISTS = 6117;
+			public static readonly int ACTORS = 6118;
 
 			public static readonly int RELATIONS_OLD = 610711;
 

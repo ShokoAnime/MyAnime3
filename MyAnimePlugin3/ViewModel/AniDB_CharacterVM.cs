@@ -22,6 +22,11 @@ namespace MyAnimePlugin3.ViewModel
 		public AniDB_SeiyuuVM Creator { get; set; }
 		public AniDB_AnimeVM Anime { get; set; }
 
+		public override string ToString()
+		{
+			return string.Format("CHAR: {0} - {1} ({2})", CharID, CharName, PosterPath);
+		}
+
 		public string PosterPath
 		{
 			get

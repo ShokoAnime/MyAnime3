@@ -30,6 +30,8 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(914)] protected GUIButtonControl btnAnimePosters = null;
 		[SkinControlAttribute(915)] protected GUIButtonControl btnAnimeWideBanners = null;
 
+		[SkinControlAttribute(930)] protected GUIButtonControl btnSeiyuu = null;
+
         [SkinControlAttribute(5681)] protected GUILabelControl dummyPosterMainChar = null;
         [SkinControlAttribute(5682)] protected GUILabelControl dummyPosterMainActor = null;
         [SkinControlAttribute(5684)] protected GUILabelControl dummyPosterSeries = null;
@@ -205,6 +207,7 @@ namespace MyAnimePlugin3.Windows
 
             // get the actor from the character
 			AniDB_SeiyuuVM actor = aniChar.Creator;
+			MainWindow.GlobalSeiyuuID = actor.AniDB_SeiyuuID;
             if (actor == null)
             {
                 try
@@ -280,6 +283,32 @@ namespace MyAnimePlugin3.Windows
 
 				return;
 			}
+
+			if (this.btnSeiyuu != null && control == this.btnSeiyuu)
+			{
+				GUIWindowManager.ActivateWindow(Constants.WindowIDs.ACTORS, false);
+				return;
+			}
+
+			try
+			{
+				if (actionType != MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM) return; // some other events raised onClicked too for some reason?
+				if (control == this.m_Facade)
+				{
+					GUIListItem item = this.m_Facade.SelectedListItem;
+
+					if (item == null || item.TVTag == null || !(item.TVTag is AniDB_CharacterVM))
+						return;
+
+					AniDB_CharacterVM aniChar = item.TVTag as AniDB_CharacterVM;
+					if (aniChar == null) return;
+
+					AniDB_SeiyuuVM actor = aniChar.Creator;
+					MainWindow.GlobalSeiyuuID = actor.AniDB_SeiyuuID;
+					GUIWindowManager.ActivateWindow(Constants.WindowIDs.ACTORS, false);
+				}
+			}
+			catch { }
 
 			if (MA3WindowManager.HandleWindowChangeButton(control))
 				return;

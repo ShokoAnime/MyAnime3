@@ -15,6 +15,7 @@ namespace MyAnimePlugin3.ViewModel
 		private BackgroundWorker downloadRelatedAnimeWorker = new BackgroundWorker();
 		private BackgroundWorker downloadAnimeWorker = new BackgroundWorker();
 		private BackgroundWorker downloadCharacterCreatorImagesWorker = new BackgroundWorker();
+		private BackgroundWorker downloadCharacterImagesForSeiyuuWorker = new BackgroundWorker();
 		private BackgroundWorker downloadRecommendedAnimeWorker = new BackgroundWorker();
 
 		public JMMServerHelper()
@@ -30,7 +31,11 @@ namespace MyAnimePlugin3.ViewModel
 
 			downloadRecommendedAnimeWorker.DoWork += new DoWorkEventHandler(downloadRecommendedAnimeWorker_DoWork);
 			downloadRecommendedAnimeWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(downloadRecommendedAnimeWorker_RunWorkerCompleted);
+
+			downloadCharacterImagesForSeiyuuWorker.DoWork += new DoWorkEventHandler(downloadCharacterImagesForSeiyuuWorker_DoWork);
 		}
+
+		
 
 		
 
@@ -42,6 +47,16 @@ namespace MyAnimePlugin3.ViewModel
 			if (GotCharacterCreatorImagesEvent != null)
 			{
 				GotCharacterCreatorImagesEvent(ev);
+			}
+		}
+
+		public delegate void GotCharacterImagesEventHandler(GotCharacterImagesEventArgs ev);
+		public event GotCharacterImagesEventHandler GotCharacterImagesEvent;
+		protected void OnGotCharacterImagesEvent(GotCharacterImagesEventArgs ev)
+		{
+			if (GotCharacterImagesEvent != null)
+			{
+				GotCharacterImagesEvent(ev);
 			}
 		}
 
@@ -97,6 +112,12 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			if (downloadCharacterCreatorImagesWorker.IsBusy) return;
 			downloadCharacterCreatorImagesWorker.RunWorkerAsync(anime);
+		}
+
+		public void DownloadCharacterImagesForSeiyuu(AniDB_SeiyuuVM seiyuu)
+		{
+			if (downloadCharacterImagesForSeiyuuWorker.IsBusy) return;
+			downloadCharacterImagesForSeiyuuWorker.RunWorkerAsync(seiyuu);
 		}
 
 		void downloadRecommendedAnimeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -188,6 +209,22 @@ namespace MyAnimePlugin3.ViewModel
 			MainWindow.imageHelper.DownloadAniDBCharactersCreatorsSync(anime, false);
 
 			OnGotCharacterCreatorImagesEvent(new GotCharacterCreatorImagesEventArgs(anime.AnimeID));
+		}
+
+		void downloadCharacterImagesForSeiyuuWorker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			AniDB_SeiyuuVM seiyuu = e.Argument as AniDB_SeiyuuVM;
+
+			List<JMMServerBinary.Contract_AniDB_Character> charContracts = JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(seiyuu.AniDB_SeiyuuID);
+			if (charContracts == null) return;
+
+			List<AniDB_CharacterVM> charList = new List<AniDB_CharacterVM>();
+			foreach (JMMServerBinary.Contract_AniDB_Character chr in charContracts)
+				charList.Add(new AniDB_CharacterVM(chr));
+
+			MainWindow.imageHelper.DownloadAniDBCharactersForSeiyuuSync(charList, false);
+
+			OnGotCharacterImagesEvent(new GotCharacterImagesEventArgs(seiyuu.AniDB_SeiyuuID));
 		}
 
 		void downloadRelatedAnimeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

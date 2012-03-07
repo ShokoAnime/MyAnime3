@@ -14533,6 +14533,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCharactersForSeiyuu", ReplyAction="http://tempuri.org/IJMMServer/GetCharactersForSeiyuuResponse")]
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character> GetCharactersForSeiyuu(int seiyuuID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBSeiyuu", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBSeiyuuResponse")]
+        MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Seiyuu GetAniDBSeiyuu(int seiyuuID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
@@ -15099,6 +15102,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character> GetCharactersForSeiyuu(int seiyuuID) {
             return base.Channel.GetCharactersForSeiyuu(seiyuuID);
+        }
+        
+        public MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Seiyuu GetAniDBSeiyuu(int seiyuuID) {
+            return base.Channel.GetAniDBSeiyuu(seiyuuID);
         }
         
         public void ScanDropFolders() {

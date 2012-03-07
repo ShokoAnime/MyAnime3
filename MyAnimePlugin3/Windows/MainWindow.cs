@@ -152,6 +152,7 @@ namespace MyAnimePlugin3
 	
 		public static int GlobalSeriesID = -1; // either AnimeSeriesID
 		public static int GlobalAnimeID = -1; // AnimeID
+		public static int GlobalSeiyuuID = -1; // SeiyuuID
 
 		public static int CurrentCalendarMonth = DateTime.Now.Month;
 		public static int CurrentCalendarYear = DateTime.Now.Year;
@@ -372,6 +373,8 @@ namespace MyAnimePlugin3
 
 				imageHelper.DownloadTraktEpisode(new Trakt_EpisodeVM(traktEp), false);
 			}
+
+			
 		}
 
 

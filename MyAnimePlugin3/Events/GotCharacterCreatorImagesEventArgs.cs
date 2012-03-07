@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MyAnimePlugin3.Events
 {
-	public class GotCharacterCreatorImagesEventArgs: EventArgs
+	public class GotCharacterCreatorImagesEventArgs : EventArgs
 	{
 		public readonly int AnimeID = 0;
 

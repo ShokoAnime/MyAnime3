@@ -2267,6 +2267,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{0e9c684c-3cfb-4dc9-8eae-79251d73c903}-Anime3_Random.xml</ZipFileName>
               <DestinationFilename>%Skin%\DefaultWide\Anime3_Random.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Actors.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7412ffb6-0f1a-4a90-9661-c5b9aab64dbc}-Anime3_Actors.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Anime3_Actors.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -2470,7 +2477,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>3</Major>
       <Minor>0</Minor>
-      <Build>32</Build>
+      <Build>34</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -2481,7 +2488,7 @@ This plugin does not run independently, but instead relies on using JMM Server a
     <VersionDescription />
     <DevelopmentStatus>Alpha</DevelopmentStatus>
     <OnlineLocation />
-    <ReleaseDate>2012-03-01T18:40:56</ReleaseDate>
+    <ReleaseDate>2012-03-08T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>
@@ -3630,6 +3637,13 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Random.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{0e9c684c-3cfb-4dc9-8eae-79251d73c903}-Anime3_Random.xml</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Anime3_Random.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Actors.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7412ffb6-0f1a-4a90-9661-c5b9aab64dbc}-Anime3_Actors.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Anime3_Actors.xml</DestinationFilename>
       </FileItem>
     </Items>
   </UniqueFileList>

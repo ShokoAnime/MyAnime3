@@ -619,7 +619,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skins\streamedmp\Anime3_Calendar.xml" />
-    <Content Include="Skins\streamedmp\Anime3_Char.xml" />
+    <Content Include="Skins\streamedmp\Anime3_Char.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\streamedmp\Anime3_Downloads.xml" />
     <Content Include="Skins\streamedmp\Anime3_Dummy.xml">
       <SubType>Designer</SubType>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
-  <id>6105</id>
+  <id>6118</id>
   <defaultcontrol>50</defaultcontrol>
   <allowoverlay>no</allowoverlay>
   <disabletopbar>yes</disabletopbar>
@@ -97,7 +97,7 @@
 	  <control>
 		<type>image</type>
 		<id>0</id>
-		<posY>350</posY>
+		<posY>230</posY>
 		<posX>128</posX>
 		<width>376</width>
 		<height>1</height>
@@ -129,7 +129,7 @@
 		<type>label</type>
 		<id>1</id>
 		<posX>128</posX>
-		<posY>360</posY>
+		<posY>240</posY>
 		<label>Other</label>
 		<font>fontB12</font>
 		<textcolor>ffffff</textcolor>
@@ -166,40 +166,6 @@
 		  <onleft>50</onleft>
 		  <onright>50</onright>
 		  <onup>915</onup>
-		  <ondown>3</ondown>
-		</control>
-
-		<control>
-		  <description>Refresh View</description>
-		  <type>button</type>
-		  <id>3</id>
-		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
-		  <textureNoFocus>-</textureNoFocus>
-		  <width>497</width>
-		  <height>64</height>
-		  <textXOff>58</textXOff>
-		  <textYOff>14</textYOff>
-		  <label>Refresh View</label>
-		  <onleft>50</onleft>
-		  <onright>50</onright>
-		  <onup>2</onup>
-		  <ondown>930</ondown>
-		</control>
-		
-		<control>
-		  <description>Seiyuu Info</description>
-		  <type>button</type>
-		  <id>930</id>
-		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
-		  <textureNoFocus>-</textureNoFocus>
-		  <width>497</width>
-		  <height>64</height>
-		  <textXOff>58</textXOff>
-		  <textYOff>14</textYOff>
-		  <label>Seiyuu Info</label>
-		  <onleft>50</onleft>
-		  <onright>50</onright>
-		  <onup>3</onup>
 		  <ondown>910</ondown>
 		</control>
 
@@ -228,7 +194,7 @@
 		  <label>Series Info</label>
 		  <onleft>50</onleft>
 		  <onright>50</onright>
-		  <onup>3</onup>
+		  <onup>2</onup>
 		  <ondown>912</ondown>
 		</control>
 
@@ -378,7 +344,7 @@
         <posY>400</posY>
 		<width>1920</width>
 		<align>center</align>
-		<label>No characters found for #Anime3.Character.Main.Title</label>
+		<label>No characters found for #Anime3.Actors.Actor.Name</label>
 		<visible>!Control.IsVisible(1301)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
@@ -394,76 +360,19 @@
 	  <width>900</width>
 	  <textcolor>6aa5cb</textcolor>
 	  <font>font22</font>
-	  <label>Characters: #Anime3.Character.Main.Title</label>
+	  <label>Seiyuu: #Anime3.Actors.Actor.Name</label>
 	</control>
 	
-	<control Style="smallTitle">
-		<type>fadelabel</type>
-		<description>Character.Name</description>
-		<id>640</id>
-		<posX>70</posX>
-		<posY>730</posY>
-		<width>1560</width>
-		<label>#Anime3.Character.Name</label>
-		<visible>Control.IsVisible(1301)</visible>
-		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-    </control>
 
-	
-	
-	<control Style="InfoLabel">
-		<description>Type Label</description>
-		<type>fadelabel</type>
-	    <label>Type</label>
-		<id>0</id>
-		<posX>70</posX>
-		<posY>800</posY>
-		<visible>Control.IsVisible(1301)</visible>
-		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
-
-	<control Style="InfoValueSmall">
-		<description>Type Value</description>
-		<type>label</type>
-	    <label>#Anime3.Character.CharType</label>
-		<id>0</id>
-		<posX>240</posX>
-		<posY>800</posY>
-		<visible>Control.IsVisible(1301)</visible>
-		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
-
-	
-	<control>
-		<type>textboxscrollup</type>
-		<description>Description</description>
-		<id>1025</id>
-		<posX>70</posX>
-		<posY>840</posY>
-		<width>950</width>
-		<height>200</height>
-		<label>#Anime3.Character.Description</label>
-		<visible>Control.IsVisible(1301)</visible>
-		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
-		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
 	
 	<control Style="smallTitle">
 		<type>fadelabel</type>
 		<description>Actor.Name</description>
 		<id>640</id>
-		<posX>1320</posX>
+		<posX>300</posX>
 		<posY>730</posY>
-		<width>500</width>
-		<label>#Anime3.Actor.Name</label>
+		<width>380</width>
+		<label>#Anime3.Actors.Actor.Name</label>
 		<visible>Control.IsVisible(1301)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
@@ -473,30 +382,98 @@
 	<control>
 		<type>image</type>
 		<description>Actor Poster</description>
-		<posX>1070</posX>
+		<posX>70</posX>
 		<posY>730</posY>
 		<width>220</width>
 		<height>300</height>
-		<texture flipY="true" diffuse="Thumb_Mask_Test.png" mask="poster_mask.png">#Anime3.Character.PosterMainActor</texture>
+		<texture flipY="true" diffuse="Thumb_Mask_Test.png" mask="poster_mask.png">#Anime3.Actors.Actor.Poster</texture>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
     </control>
-	
-	
+
 	<control Style="InfoLabel">
-		<description>Status Label</description>
-		<type>fadelabel</type>
-	    <label>#Anime3.Character.Status</label>
+		<description>Type Value</description>
+		<type>label</type>
+	    <label>#Anime3.Actors.Character.CharType</label>
 		<id>0</id>
-		<posX>70</posX>
-		<posY>1040</posY>
-		<width>700</width>
+		<posX>300</posX>
+		<posY>790</posY>
+		<width>380</width>
 		<visible>Control.IsVisible(1301)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
+	
+	<control>
+		<type>image</type>
+		<description>Series Poster</description>
+		<posX>700</posX>
+		<posY>730</posY>
+		<width>220</width>
+		<height>300</height>
+		<texture flipY="true" diffuse="Thumb_Mask_Test.png" mask="poster_mask.png">#Anime3.Actors.Series.Poster</texture>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+    </control>
 
+	<control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Series Title</description>
+		<id>640</id>
+		<posX>950</posX>
+		<posY>730</posY>
+		<width>850</width>
+		<label>#Anime3.Actors.Series.Title</label>
+		<visible>Control.IsVisible(1301)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
+	<control Style="InfoLabel">
+		<description>Type Value</description>
+		<type>label</type>
+	    <label>As</label>
+		<id>0</id>
+		<posX>950</posX>
+		<posY>790</posY>
+		<width>380</width>
+		<visible>Control.IsVisible(1301)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Character.Name</description>
+		<id>640</id>
+		<posX>950</posX>
+		<posY>830</posY>
+		<width>850</width>
+		<label>#Anime3.Actors.Character.Name</label>
+		<visible>Control.IsVisible(1301)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
+	<control>
+		<type>textboxscrollup</type>
+		<description>Description</description>
+		<id>1025</id>
+		<posX>950</posX>
+		<posY>890</posY>
+		<width>850</width>
+		<height>160</height>
+		<label>#Anime3.Actors.Character.Description</label>
+		<visible>Control.IsVisible(1301)</visible>
+		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
 	
 	
 	

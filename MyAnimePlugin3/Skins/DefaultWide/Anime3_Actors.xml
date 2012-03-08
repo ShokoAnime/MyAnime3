@@ -1,5 +1,5 @@
 ﻿<window>
-	<id>6105</id>
+	<id>6118</id>
 	<defaultcontrol>50</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 
@@ -58,7 +58,7 @@
 
 	  <control>
 		<type>label</type>
-		<description>Characters</description>
+		<description>Seiyuu</description>
 		<id>0</id>
 		<posX>60</posX>
 		<posY>10</posY>
@@ -66,18 +66,18 @@
 		<align>left</align>
 		<font>font13</font>
 		<textcolor>ffFFFFFF</textcolor>
-		<label>Characters</label>
+		<label>Seiyuu</label>
 	  </control>
 	  
 	  <control>
       <type>label</type>
-      <description>Series Title</description>
+      <description>Main Title</description>
       <id>0</id>
       <posX>230</posX>
       <posY>10</posY>
       <width>700</width>
       <font>font13</font>
-      <label>#Anime3.Character.Main.Title</label>
+      <label>#Anime3.Actors.Actor.Name</label>
       <align>left</align>
     </control>
 
@@ -104,7 +104,7 @@
       <posY>250</posY>
       <font>font14</font>
       <textcolor>ffffffff</textcolor>
-      <label>No characters found for #Anime3.Character.Main.Title</label>
+      <label>No characters found for #Anime3.Actors.Actor.Name</label>
 	  <visible>!Control.IsVisible(1301)</visible>
       <align>center</align>
     </control>
@@ -191,7 +191,7 @@
 			<type>label</type>
 			<font>font12</font>
 			<posX>71</posX>
-			<posY>290</posY>
+			<posY>210</posY>
 			<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
 			<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
 			<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
@@ -219,28 +219,9 @@
 					<onleft>50</onleft>
 					<onright>50</onright>
 					<onup>915</onup>
-					<ondown>3</ondown>
-				</control>
-				<control>
-					<description>Refresh View</description>
-					<type>button</type>
-					<id>3</id>
-					<label>Refresh View</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>2</onup>
-					<ondown>930</ondown>
-				</control>
-				<control>
-					<description>Seiyuu Info</description>
-					<type>button</type>
-					<id>930</id>
-					<label>Seiyuu Info</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>3</onup>
 					<ondown>910</ondown>
 				</control>
+
 				<control>
 					<description>Empty button</description>
 					<type>button</type>
@@ -256,7 +237,7 @@
 					<label>Series Info</label>
 					<onleft>50</onleft>
 					<onright>50</onright>
-					<onup>930</onup>
+					<onup>2</onup>
 					<ondown>912</ondown>
 				</control>
 				<control>
@@ -307,25 +288,76 @@
 	
 	<control>
       <type>label</type>
-      <description>Character.Name</description>
+      <description>Actor.Name</description>
       <id>0</id>
       <posX>40</posX>
-      <posY>440</posY>
-      <width>500</width>
+      <posY>410</posY>
+      <width>400</width>
       <font>font13</font>
-      <label>#Anime3.Character.Name</label>
+      <label>#Anime3.Actors.Actor.Name</label>
 	  <visible>Control.IsVisible(1301)</visible>
       <align>left</align>
+    </control>
+	
+	<control>
+      <description>Actor Poster</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>40</posX>
+      <posY>450</posY>
+      <width>135</width>
+      <height>200</height>
+      <texture>#Anime3.Actors.Actor.Poster</texture>
+      <visible>Control.IsVisible(1301)</visible>
     </control>
 	
 	<control>
       <type>label</type>
       <description>Type</description>
       <id>0</id>
-      <posX>40</posX>
-      <posY>480</posY>
-      <width>500</width>
-      <label>Type</label>
+      <posX>190</posX>
+      <posY>450</posY>
+      <width>250</width>
+      <label>#Anime3.Actors.Character.CharType</label>
+	  <visible>Control.IsVisible(1301)</visible>
+      <align>left</align>
+	  <textcolor>ffa9d0f7</textcolor>
+	  <font>font10</font>
+    </control>
+	
+	<control>
+      <description>Series Poster</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>450</posX>
+      <posY>450</posY>
+      <width>135</width>
+      <height>200</height>
+      <texture>#Anime3.Actors.Series.Poster</texture>
+      <visible>Control.IsVisible(1301)</visible>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <description>Series.Title</description>
+      <id>0</id>
+      <posX>450</posX>
+      <posY>410</posY>
+      <width>750</width>
+      <font>font13</font>
+      <label>#Anime3.Actors.Series.Title</label>
+	  <visible>Control.IsVisible(1301)</visible>
+      <align>left</align>
+    </control>
+	
+	<control>
+      <type>label</type>
+      <description>AS</description>
+      <id>0</id>
+      <posX>600</posX>
+      <posY>455</posY>
+      <width>250</width>
+      <label>AS</label>
 	  <visible>Control.IsVisible(1301)</visible>
       <align>left</align>
 	  <textcolor>ffa9d0f7</textcolor>
@@ -334,58 +366,35 @@
 	
 	<control>
       <type>label</type>
-      <description>Type Value</description>
+      <description>Series.Title</description>
       <id>0</id>
-      <posX>100</posX>
-      <posY>480</posY>
-      <width>500</width>
-      <label>#Anime3.Character.CharType</label>
+      <posX>630</posX>
+      <posY>450</posY>
+      <width>600</width>
+      <font>font13</font>
+      <label>#Anime3.Actors.Character.Name</label>
 	  <visible>Control.IsVisible(1301)</visible>
       <align>left</align>
-	  <font>font10</font>
     </control>
 	
 	<control>
       <type>textboxscrollup</type>
       <description>Description Value</description>
       <id>0</id>
-      <posX>40</posX>
-      <posY>520</posY>
+      <posX>600</posX>
+      <posY>490</posY>
       <width>600</width>
       <height>150</height>
       <textcolor>ffffffff</textcolor>
       <font>font11</font>
-      <label>#Anime3.Character.Description</label>
+      <label>#Anime3.Actors.Character.Description</label>
       <seperator>-----------------------------------------------------------------------------------------------------</seperator>
       <align>left</align>
       <visible>Control.IsVisible(1301)</visible>
 	  <scrollStartDelaySec>3</scrollStartDelaySec>
     </control>
 	
-	<control>
-      <description>Poster</description>
-      <type>image</type>
-      <id>0</id>
-      <posX>660</posX>
-      <posY>440</posY>
-      <width>150</width>
-      <height>220</height>
-      <texture>#Anime3.Character.PosterMainActor</texture>
-      <visible>Control.IsVisible(1301)</visible>
-    </control>
-	
-	<control>
-      <type>label</type>
-      <description>Actor.Name</description>
-      <id>0</id>
-      <posX>840</posX>
-      <posY>440</posY>
-      <width>400</width>
-      <font>font13</font>
-      <label>#Anime3.Actor.Name</label>
-	  <visible>Control.IsVisible(1301)</visible>
-      <align>left</align>
-    </control>	
+
 
 		
 

@@ -793,6 +793,13 @@ Posters will only be shown when a fanart cannot be found</Description>
               <ZipFileName>Installer{CopyFile}\{0408130a-c6b4-42c6-b4f2-31b4b1c56c9e}-Anime3_Random.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Random.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Actors.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c08a5c15-d17b-4f3a-bf59-b66163e4eccf}-Anime3_Actors.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Anime3_Actors.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -1495,6 +1502,13 @@ Posters will only be shown when a fanart cannot be found</Description>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_episodelist.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{66f05ee2-ac65-4a19-bafd-be968a484bc0}-anime3_episodelist.png</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Media\MyAnime3\anime3_episodelist.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Actors.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{95f21d36-c384-4480-9608-ffbe384e693d}-Anime3_Actors.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Anime3_Actors.xml</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -3270,6 +3284,13 @@ This plugin does not run independently, but instead relies on using JMM Server a
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Actors.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c08a5c15-d17b-4f3a-bf59-b66163e4eccf}-Anime3_Actors.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avalon\Anime3_Actors.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Admin.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{160e5113-711c-4362-b5c6-a9497adc01a7}-Anime3_Admin.xml</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Anime3_Admin.xml</DestinationFilename>
@@ -3420,6 +3441,13 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Random.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{cfa68383-76ac-430a-9c0e-a62007bd7945}-Anime3_Random.xml</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Anime3_Random.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Actors.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{95f21d36-c384-4480-9608-ffbe384e693d}-Anime3_Actors.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Anime3_Actors.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />

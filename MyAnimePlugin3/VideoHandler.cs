@@ -43,8 +43,10 @@ namespace MyAnimePlugin3
     public class VideoHandler
     {
         #region Vars
-		public AnimeEpisodeVM curEpisode;
+		public AnimeEpisodeVM curEpisode = null;
+		public AnimeEpisodeVM prevEpisode = null;
         private string curFileName = "";
+		private string prevFileName = "";
         int timeMovieStopped = 0;
 		private BackgroundWorker w = new BackgroundWorker();
 		private bool listenToExternalPlayerEvents = false;
@@ -62,8 +64,11 @@ namespace MyAnimePlugin3
             g_Player.PlayBackStopped += new g_Player.StoppedHandler(OnPlayBackStopped);
             g_Player.PlayBackEnded += new g_Player.EndedHandler(OnPlayBackEnded);
             g_Player.PlayBackStarted += new g_Player.StartedHandler(OnPlayBackStarted);
+			g_Player.PlayBackChanged += new g_Player.ChangedHandler(g_Player_PlayBackChanged);
             w.DoWork += new DoWorkEventHandler(w_DoWork);
         }
+
+		
         #endregion
 
         private int GetTimeStopped(string fileName)
@@ -185,10 +190,13 @@ namespace MyAnimePlugin3
 					BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
 					timeMovieStopped = GetTimeStopped(fileToPlay.FullPath);
 					BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
-               
 
-                curEpisode = episode;
-				curFileName = fileToPlay.FullPath;
+
+					prevEpisode = curEpisode;
+					prevFileName = curFileName;
+
+					curEpisode = episode;
+					curFileName = fileToPlay.FullPath;
 
  
 
@@ -399,14 +407,14 @@ namespace MyAnimePlugin3
 					if (!g_Player.IsExternalPlayer)
 					{
 						if ((timeMovieStopped / g_Player.Duration) > watchedAfter / 100)
-							PlaybackOperationEnded(true);
+							PlaybackOperationEnded(true, curEpisode);
 						else
-							PlaybackOperationEnded(false);
+							PlaybackOperationEnded(false, curEpisode);
 					}
 					else
 					{
 						// if this is an external player always set watched to true
-						PlaybackOperationEnded(true);
+						PlaybackOperationEnded(true, curEpisode);
 					}
 
 					#endregion
@@ -429,7 +437,7 @@ namespace MyAnimePlugin3
                 LogPlayBackOp("ended", filename);
                 try
                 {
-                    PlaybackOperationEnded(true);
+                    PlaybackOperationEnded(true, curEpisode);
                 }
                 catch (Exception e)
                 {
@@ -437,6 +445,40 @@ namespace MyAnimePlugin3
                 }
             }
         }
+
+		void g_Player_PlayBackChanged(g_Player.MediaType type, int stoptime, string filename)
+		{
+			BaseConfig.MyAnimeLog.Write("OnPlayBackChanged: {0} - {1}", filename, type);
+			if (PlayBackOpWasOfConcern(g_Player.IsVideo ? g_Player.MediaType.Video : g_Player.MediaType.Unknown, g_Player.CurrentFile))
+			{
+				try
+				{
+					BaseConfig.MyAnimeLog.Write("Checking for set watched");
+					#region Set Watched
+					double watchedAfter = BaseConfig.Settings.WatchedPercentage;
+
+					if (!g_Player.IsExternalPlayer)
+					{
+						if ((stoptime / g_Player.Duration) > watchedAfter / 100)
+							PlaybackOperationEnded(true, prevEpisode);
+						else
+							PlaybackOperationEnded(false, prevEpisode);
+					}
+					else
+					{
+						// if this is an external player always set watched to true
+						PlaybackOperationEnded(true, prevEpisode);
+					}
+
+					#endregion
+
+				}
+				catch (Exception e)
+				{
+					BaseConfig.MyAnimeLog.Write("AnimePlugin.VideoHandler.OnPlayBackStopped()\r\n" + e.ToString());
+				}
+			}
+		}
 
         void OnPlayBackStarted(MediaPortal.Player.g_Player.MediaType type, string filename)
         {
@@ -473,7 +515,7 @@ namespace MyAnimePlugin3
 				GUIGraphicsContext.IsFullScreenVideo = false;
 			}
 			// Mark Episode as watched regardless and prompt for rating
-			PlaybackOperationEnded(true);
+			PlaybackOperationEnded(true, curEpisode);
 		}
 		#endregion
 
@@ -486,24 +528,32 @@ namespace MyAnimePlugin3
                     curFileName == filename);
         }
 
-        void PlaybackOperationEnded(bool countAsWatched)
+		bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
+		{
+			BaseConfig.MyAnimeLog.Write("PlayBackOpWasOfConcern: {0} - {1} - {2}", filename, type, prevEpisode);
+			return (prevEpisode != null &&
+					type == g_Player.MediaType.Video &&
+					prevFileName == filename);
+		}
+
+        void PlaybackOperationEnded(bool countAsWatched, AnimeEpisodeVM ep)
         {
 			try
 			{
-				if (curEpisode == null)
+				if (ep == null)
 					return;
 
-				if (curEpisode != null)
-					curEpisode.IncrementEpisodeStats(StatCountType.Stopped);
+				if (ep != null)
+					ep.IncrementEpisodeStats(StatCountType.Stopped);
 
 				//save watched status
-				if (countAsWatched || curEpisode.IsWatched == 1)
+				if (countAsWatched || ep.IsWatched == 1)
 				{
 					//MPTVSeriesLog.Write("This episode counts as watched");
                     if (countAsWatched)
                     {
-						BaseConfig.MyAnimeLog.Write("Marking episode as watched...");
-                        MarkEpisodeAsWatched(curEpisode);
+						BaseConfig.MyAnimeLog.Write("Marking episode as watched: " + ep.EpisodeNumberAndNameWithType);
+						MarkEpisodeAsWatched(ep);
 
                     }
 				}

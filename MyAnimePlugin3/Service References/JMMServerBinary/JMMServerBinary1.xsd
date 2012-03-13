@@ -323,6 +323,7 @@
       <xs:element minOccurs="0" name="Stat_HasMovieDBOrTvDBLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasTvDBLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_IsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_IsCurrentlyAiring" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_SeriesCount" type="xs:int" />
       <xs:element minOccurs="0" name="Stat_SeriesCreatedDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Stat_SubtitleLanguages" nillable="true" type="xs:string" />
@@ -1221,6 +1222,7 @@
       <xs:element minOccurs="0" name="AniDB_DownloadReleaseGroups" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadReviews" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadSimilarAnime" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AniDB_MyListStats_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_MyList_AddFiles" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_MyList_ReadUnwatched" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_MyList_ReadWatched" type="xs:boolean" />

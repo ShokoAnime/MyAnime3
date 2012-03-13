@@ -3361,6 +3361,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private bool Stat_IsCompleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Stat_IsCurrentlyAiringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Stat_SeriesCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3789,6 +3792,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.Stat_IsCompleteField.Equals(value) != true)) {
                     this.Stat_IsCompleteField = value;
                     this.RaisePropertyChanged("Stat_IsComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Stat_IsCurrentlyAiring {
+            get {
+                return this.Stat_IsCurrentlyAiringField;
+            }
+            set {
+                if ((this.Stat_IsCurrentlyAiringField.Equals(value) != true)) {
+                    this.Stat_IsCurrentlyAiringField = value;
+                    this.RaisePropertyChanged("Stat_IsCurrentlyAiring");
                 }
             }
         }
@@ -12197,6 +12213,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private bool AniDB_DownloadSimilarAnimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_MyListStats_UpdateFrequencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AniDB_MyList_AddFilesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12475,6 +12494,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.AniDB_DownloadSimilarAnimeField.Equals(value) != true)) {
                     this.AniDB_DownloadSimilarAnimeField = value;
                     this.RaisePropertyChanged("AniDB_DownloadSimilarAnime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_MyListStats_UpdateFrequency {
+            get {
+                return this.AniDB_MyListStats_UpdateFrequencyField;
+            }
+            set {
+                if ((this.AniDB_MyListStats_UpdateFrequencyField.Equals(value) != true)) {
+                    this.AniDB_MyListStats_UpdateFrequencyField = value;
+                    this.RaisePropertyChanged("AniDB_MyListStats_UpdateFrequency");
                 }
             }
         }

@@ -318,6 +318,9 @@ namespace MyAnimePlugin3.Windows
 					dlg.Reset();
 					dlg.SetHeading(ep.EpisodeNumberAndName);
 					dlg.Add("Mark as Watched");
+					dlg.Add("Play Previous Episode");
+					dlg.Add("Go To Episode List");
+					dlg.Add("View Series Info");
 					
 					dlg.DoModal(GUIWindowManager.ActiveWindow);
 
@@ -326,6 +329,62 @@ namespace MyAnimePlugin3.Windows
 						case 0:
 							ep.ToggleWatchedStatus(true);
 							LoadData();
+							break;
+
+						case 1:
+							if (ep.AnimeSeries == null) return;
+							JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetPreviousEpisodeForUnwatched(ep.AnimeSeries.AnimeSeriesID.Value,
+								JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+							if (contract == null)
+							{
+								Utils.DialogMsg("Error", "Previous episode not found");
+								return;
+							}
+							AnimeEpisodeVM epPrev = new AnimeEpisodeVM(contract);
+							MainWindow.vidHandler.ResumeOrPlay(epPrev);
+							break;
+
+						case 2:
+
+							if (ep.AnimeSeries == null) return;
+							MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
+
+							// find the group for this series
+							AnimeGroupVM grp = JMMServerHelper.GetGroup(ep.AnimeSeries.AnimeGroupID);
+							if (grp == null)
+							{
+								BaseConfig.MyAnimeLog.Write("Group not found");
+								return;
+							}
+							MainWindow.curAnimeGroup = grp;
+							MainWindow.curAnimeGroupViewed = grp;
+							MainWindow.curAnimeSeries = ep.AnimeSeries;
+
+							bool foundEpType = false;
+							foreach (AnimeEpisodeTypeVM anEpType in ep.AnimeSeries.EpisodeTypesToDisplay)
+							{
+								if (anEpType.EpisodeType == enEpisodeType.Episode)
+								{
+									MainWindow.curAnimeEpisodeType = anEpType;
+									foundEpType = true;
+									break;
+								}
+							}
+
+							if (!foundEpType) return;
+
+							MainWindow.listLevel = Listlevel.Episode;
+							GUIWindowManager.ActivateWindow(Constants.WindowIDs.MAIN, false);
+
+							break;
+
+						case 3:
+
+							if (ep.AnimeSeries == null) return;
+							MainWindow.GlobalSeriesID = ep.AnimeSeries.AnimeSeriesID.Value;
+							GUIWindowManager.ActivateWindow(Constants.WindowIDs.ANIMEINFO, false);
+
 							break;
 
 					}

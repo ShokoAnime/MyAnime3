@@ -2477,7 +2477,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>3</Major>
       <Minor>0</Minor>
-      <Build>36</Build>
+      <Build>39</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -2488,7 +2488,7 @@ This plugin does not run independently, but instead relies on using JMM Server a
     <VersionDescription />
     <DevelopmentStatus>Alpha</DevelopmentStatus>
     <OnlineLocation />
-    <ReleaseDate>2012-03-13T18:40:56</ReleaseDate>
+    <ReleaseDate>2012-03-22T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>
@@ -3711,6 +3711,9 @@ This plugin does not run independently, but instead relies on using JMM Server a
       </FolderGroup>
     </FolderGroups>
     <ProjectFilename>MyAnime3.xmp2</ProjectFilename>
+    <UpdatePath1 />
+    <UpdatePath2 />
+    <UpdatePath3 />
   </ProjectSettings>
   <IsSkin>false</IsSkin>
 </PackageClass>

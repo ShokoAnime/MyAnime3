@@ -5785,15 +5785,15 @@ namespace MyAnimePlugin3
 							}
 
 							LoadFacade();
+							return false;
 						}
-						break;
 
 					case 3: // Mark ALL as Unwatched
 						{
 							JMMServerHelper.SetWatchedStatusOnSeries(false, int.MaxValue, ser.AnimeSeriesID.Value);
 							LoadFacade();
+							return false;
 						}
-						break;
 					case 4:
 						if (!ShowContextMenuDatabases(ser, currentMenu))
 							return false;
@@ -5815,7 +5815,7 @@ namespace MyAnimePlugin3
 						RandomWindow_RandomType = RandomObjectType.Episode;
 
 						GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-						return true;
+						return false;
 
 					default:
 						//close menu

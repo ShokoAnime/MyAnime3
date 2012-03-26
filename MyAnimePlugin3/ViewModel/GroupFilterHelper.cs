@@ -481,6 +481,8 @@ namespace MyAnimePlugin3.ViewModel
 					sortColumn = "GroupName"; sortFieldType = SortType.eString; break;
 			}
 
+			
+
 			return new SortPropOrFieldAndDirection(sortColumn, sortDescending, sortFieldType);
 		}
 	}

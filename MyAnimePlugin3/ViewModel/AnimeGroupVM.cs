@@ -49,6 +49,7 @@ namespace MyAnimePlugin3.ViewModel
 		public string Stat_AudioLanguages { get; set; }
 		public string Stat_SubtitleLanguages { get; set; }
 		public int Stat_SeriesCount { get; set; }
+		public int Stat_EpisodeCount { get; set; }
 		public decimal Stat_AniDBRating { get; set; }
 
 		public int CompareTo(AnimeGroupVM obj)
@@ -483,6 +484,8 @@ namespace MyAnimePlugin3.ViewModel
 			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
 			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
 			this.Stat_SeriesCount = contract.Stat_SeriesCount;
+			this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
+			this.Stat_AniDBRating = contract.Stat_AniDBRating;
 
 			// editable members
 			this.GroupName = contract.GroupName;

@@ -368,8 +368,13 @@ namespace MyAnimePlugin3.ViewModel
 
 				allGroups = Sorting.MultiSort<AnimeGroupVM>(allGroups, sortCriteria);
 
+				foreach (SortPropOrFieldAndDirection scrit in sortCriteria)
+				{
+					BaseConfig.MyAnimeLog.Write(string.Format("Sorting: {0} / {1} / {2}", scrit.sPropertyOrFieldName, scrit.fSortDescending, scrit.sortType));
+				}
+
 				TimeSpan ts = DateTime.Now - start;
-				string msg = string.Format("Got groups for filter: {0} - {1} in {2} ms", groupFilter.GroupFilterName, allGroups.Count, ts.TotalMilliseconds);
+				string msg = string.Format("JMMServerHelper: Got groups for filter: {0} - {1} in {2} ms", groupFilter.GroupFilterName, allGroups.Count, ts.TotalMilliseconds);
 				BaseConfig.MyAnimeLog.Write(msg);
 			}
 			catch (Exception ex)

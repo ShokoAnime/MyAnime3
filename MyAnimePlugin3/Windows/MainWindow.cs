@@ -1026,6 +1026,8 @@ namespace MyAnimePlugin3
 							// re-sort if user has set a quick sort
 							if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
 							{
+								BaseConfig.MyAnimeLog.Write("APPLYING QUICK SORT");
+
 								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortType);
 								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection);
 								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
@@ -1054,12 +1056,15 @@ namespace MyAnimePlugin3
 							double totalTime = 0;
 							DateTime start = DateTime.Now;
 
+							BaseConfig.MyAnimeLog.Write("Building groups: " + curGroupFilter.GroupFilterName);
 							foreach (AnimeGroupVM grp in groups)
 							{
 								if (workerFacade.CancellationPending) return;
 								try
 								{
 									item = null;
+
+									//BaseConfig.MyAnimeLog.Write(string.Format("{0} - {1}", grp.GroupName, grp.AniDBRating));
 
 									SetGroupListItem(ref item, grp);
 

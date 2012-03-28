@@ -2477,7 +2477,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>3</Major>
       <Minor>0</Minor>
-      <Build>39</Build>
+      <Build>41</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -2485,10 +2485,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
 It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
 
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription />
+    <VersionDescription>- Fix sorting by AniDB Rating in MA3
+- Issue #164 : Avalon skin error - Anime3_Notification?.xml
+- Issue #163 : Incorrect behaviour when marking all as watched</VersionDescription>
     <DevelopmentStatus>Alpha</DevelopmentStatus>
     <OnlineLocation />
-    <ReleaseDate>2012-03-22T18:40:56</ReleaseDate>
+    <ReleaseDate>2012-03-27T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>

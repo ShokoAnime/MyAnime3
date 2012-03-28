@@ -17,6 +17,8 @@ namespace MyAnimePlugin3.ViewModel
 		public int GroupCount { get; set; }
 		public AnimeGroupVM RandomGroup { get; set; }
 
+		public string PredefinedCriteria { get; set; }
+
 		public List<GroupFilterConditionVM> FilterConditions { get; set; }
 		public List<GroupFilterSortingCriteria> SortCriteriaList { get; set; }
 
@@ -54,6 +56,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.GroupFilterName = contract.GroupFilterName;
 			this.ApplyToSeries = contract.ApplyToSeries;
 			this.BaseCondition = contract.BaseCondition;
+			this.PredefinedCriteria = "";
 			this.FilterConditions.Clear();
 
 			GroupCount = 0;

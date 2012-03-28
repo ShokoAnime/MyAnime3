@@ -13,11 +13,33 @@ namespace MyAnimePlugin3.ViewModel
 			get
 			{
 				GroupFilterVM gf = new GroupFilterVM();
-				gf.GroupFilterID = -999;
+				gf.GroupFilterID = Constants.StaticGF.All;
 				gf.FilterConditions = new List<GroupFilterConditionVM>();
 				gf.ApplyToSeries = 0;
 				gf.BaseCondition = 1;
+				gf.PredefinedCriteria = "";
 				gf.GroupFilterName = "All";
+
+				GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
+				gfsc.SortType = GroupFilterSorting.SortName;
+				gfsc.SortDirection = GroupFilterSortDirection.Asc;
+
+				gf.SortCriteriaList.Add(gfsc);
+				return gf;
+			}
+		}
+
+		public static GroupFilterVM PredefinedGroupsFilter
+		{
+			get
+			{
+				GroupFilterVM gf = new GroupFilterVM();
+				gf.GroupFilterID = Constants.StaticGF.Predefined;
+				gf.FilterConditions = new List<GroupFilterConditionVM>();
+				gf.ApplyToSeries = 0;
+				gf.BaseCondition = 1;
+				gf.PredefinedCriteria = "";
+				gf.GroupFilterName = "Predefined Filters";
 
 				GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
 				gfsc.SortType = GroupFilterSorting.SortName;
@@ -39,6 +61,7 @@ namespace MyAnimePlugin3.ViewModel
 			{
 				List<GroupFilterVM> gfilters = new List<GroupFilterVM>();
 				gfilters.Add(AllGroupsFilter);
+				gfilters.Add(PredefinedGroupsFilter);
 				gfilters.AddRange(GetGroupFiltersFromDatabase());
 				return gfilters;
 			}
@@ -101,143 +124,6 @@ namespace MyAnimePlugin3.ViewModel
 			return GroupFilterSortDirection.Asc;
 		}
 
-		/*
-		public static string GetTextForEnum_Operator(GroupFilterOperator op)
-		{
-			switch (op)
-			{
-				case GroupFilterOperator.Equals: return Properties.Resources.GroupFilterOperator_Equals;
-				case GroupFilterOperator.NotEquals: return Properties.Resources.GroupFilterOperator_NotEquals;
-				case GroupFilterOperator.Exclude: return Properties.Resources.GroupFilterOperator_Exclude;
-				case GroupFilterOperator.Include: return Properties.Resources.GroupFilterOperator_Include;
-				case GroupFilterOperator.GreaterThan: return Properties.Resources.GroupFilterOperator_GreaterThan;
-				case GroupFilterOperator.LessThan: return Properties.Resources.GroupFilterOperator_LessThan;
-				case GroupFilterOperator.In: return Properties.Resources.GroupFilterOperator_In;
-				case GroupFilterOperator.NotIn: return Properties.Resources.GroupFilterOperator_NotIn;
-				case GroupFilterOperator.InAllEpisodes: return Properties.Resources.GroupFilterOperator_InAllEpisodes;
-				case GroupFilterOperator.NotInAllEpisodes: return Properties.Resources.GroupFilterOperator_NotInAllEpisodes;
-				case GroupFilterOperator.LastXDays: return Properties.Resources.GroupFilterOperator_LastXDays;
-
-				default: return Properties.Resources.GroupFilterOperator_Equals;
-			}
-		}
-
-		public static GroupFilterOperator GetEnumForText_Operator(string enumDesc)
-		{
-			if (enumDesc == Properties.Resources.GroupFilterOperator_Equals) return GroupFilterOperator.Equals;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_NotEquals) return GroupFilterOperator.NotEquals;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_Exclude) return GroupFilterOperator.Exclude;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_Include) return GroupFilterOperator.Include;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_GreaterThan) return GroupFilterOperator.GreaterThan;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_LessThan) return GroupFilterOperator.LessThan;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_In) return GroupFilterOperator.In;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_NotIn) return GroupFilterOperator.NotIn;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_InAllEpisodes) return GroupFilterOperator.InAllEpisodes;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_NotInAllEpisodes) return GroupFilterOperator.NotInAllEpisodes;
-			if (enumDesc == Properties.Resources.GroupFilterOperator_LastXDays) return GroupFilterOperator.LastXDays;
-
-
-			return GroupFilterOperator.Equals;
-		}
-
-		public static string GetTextForEnum_ConditionType(GroupFilterConditionType conditionType)
-		{
-			switch (conditionType)
-			{
-				case GroupFilterConditionType.AirDate: return Properties.Resources.GroupFilterConditionType_AirDate;
-				case GroupFilterConditionType.AllEpisodesWatched: return Properties.Resources.GroupFilterConditionType_AllEpisodesWatched;
-				case GroupFilterConditionType.AnimeGroup: return Properties.Resources.GroupFilterConditionType_AnimeGroup;
-				case GroupFilterConditionType.AnimeType: return Properties.Resources.GroupFilterConditionType_AnimeType;
-				case GroupFilterConditionType.AssignedTvDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedTvDBInfo;
-				case GroupFilterConditionType.AssignedMovieDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo;
-				case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo;
-				case GroupFilterConditionType.Category: return Properties.Resources.GroupFilterConditionType_Category;
-				case GroupFilterConditionType.CompletedSeries: return Properties.Resources.GroupFilterConditionType_CompletedSeries;
-				case GroupFilterConditionType.Favourite: return Properties.Resources.GroupFilterConditionType_Favourite;
-				case GroupFilterConditionType.HasUnwatchedEpisodes: return Properties.Resources.GroupFilterConditionType_HasUnwatchedEpisodes;
-				case GroupFilterConditionType.MissingEpisodes: return Properties.Resources.GroupFilterConditionType_MissingEpisodes;
-				case GroupFilterConditionType.MissingEpisodesCollecting: return Properties.Resources.GroupFilterConditionType_MissingEpisodesCollecting;
-				case GroupFilterConditionType.ReleaseGroup: return Properties.Resources.GroupFilterConditionType_ReleaseGroup;
-				case GroupFilterConditionType.Studio: return Properties.Resources.GroupFilterConditionType_Studio;
-				case GroupFilterConditionType.UserVoted: return Properties.Resources.GroupFilterConditionType_UserVoted;
-				case GroupFilterConditionType.VideoQuality: return Properties.Resources.GroupFilterConditionType_VideoQuality;
-				case GroupFilterConditionType.AniDBRating: return Properties.Resources.GroupFilterConditionType_AniDBRating;
-				case GroupFilterConditionType.UserRating: return Properties.Resources.GroupFilterConditionType_UserRating;
-				case GroupFilterConditionType.SeriesCreatedDate: return Properties.Resources.GroupFilterConditionType_SeriesDate;
-				case GroupFilterConditionType.EpisodeAddedDate: return Properties.Resources.GroupFilterConditionType_EpisodeAddedDate;
-				case GroupFilterConditionType.EpisodeWatchedDate: return Properties.Resources.GroupFilterConditionType_EpisodeWatchedDate;
-				case GroupFilterConditionType.FinishedAiring: return Properties.Resources.GroupFilterConditionType_FinishedAiring;
-				case GroupFilterConditionType.AudioLanguage: return Properties.Resources.GroupFilterConditionType_AudioLanguage;
-				case GroupFilterConditionType.SubtitleLanguage: return Properties.Resources.GroupFilterConditionType_SubtitleLanguage;
-				default: return Properties.Resources.GroupFilterConditionType_AirDate;
-			}
-		}
-
-		public static GroupFilterConditionType GetEnumForText_ConditionType(string enumDesc)
-		{
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AirDate) return GroupFilterConditionType.AirDate;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AllEpisodesWatched) return GroupFilterConditionType.AllEpisodesWatched;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AnimeGroup) return GroupFilterConditionType.AnimeGroup;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AnimeType) return GroupFilterConditionType.AnimeType;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedTvDBInfo) return GroupFilterConditionType.AssignedTvDBInfo;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo) return GroupFilterConditionType.AssignedMovieDBInfo;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo) return GroupFilterConditionType.AssignedTvDBOrMovieDBInfo;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_Category) return GroupFilterConditionType.Category;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_CompletedSeries) return GroupFilterConditionType.CompletedSeries;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_Favourite) return GroupFilterConditionType.Favourite;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_HasUnwatchedEpisodes) return GroupFilterConditionType.HasUnwatchedEpisodes;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_MissingEpisodes) return GroupFilterConditionType.MissingEpisodes;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_MissingEpisodesCollecting) return GroupFilterConditionType.MissingEpisodesCollecting;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_ReleaseGroup) return GroupFilterConditionType.ReleaseGroup;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_Studio) return GroupFilterConditionType.Studio;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_UserVoted) return GroupFilterConditionType.UserVoted;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_VideoQuality) return GroupFilterConditionType.VideoQuality;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AniDBRating) return GroupFilterConditionType.AniDBRating;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_UserRating) return GroupFilterConditionType.UserRating;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_SeriesDate) return GroupFilterConditionType.SeriesCreatedDate;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_EpisodeAddedDate) return GroupFilterConditionType.EpisodeAddedDate;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_EpisodeWatchedDate) return GroupFilterConditionType.EpisodeWatchedDate;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_FinishedAiring) return GroupFilterConditionType.FinishedAiring;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_AudioLanguage) return GroupFilterConditionType.AudioLanguage;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_SubtitleLanguage) return GroupFilterConditionType.SubtitleLanguage;
-
-			return GroupFilterConditionType.AirDate;
-		}
-		
-		public static List<string> GetAllConditionTypes()
-		{
-			List<string> cons = new List<string>();
-
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AirDate));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AnimeType));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AnimeGroup));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.HasUnwatchedEpisodes));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.MissingEpisodes));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.MissingEpisodesCollecting));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.CompletedSeries));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Favourite));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.VideoQuality));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedTvDBInfo));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedMovieDBInfo));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedTvDBOrMovieDBInfo));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Category));
-			//cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.ReleaseGroup));
-			//cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Studio));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.UserVoted));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AniDBRating));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.UserRating));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.SeriesCreatedDate));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.EpisodeAddedDate));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.EpisodeWatchedDate));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.FinishedAiring));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AudioLanguage));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.SubtitleLanguage));
-
-			cons.Sort();
-
-			return cons;
-		}*/
-
 		public static List<string> GetAllSortTypes()
 		{
 			List<string> cons = new List<string>();
@@ -282,125 +168,7 @@ namespace MyAnimePlugin3.ViewModel
 			return cons;
 		}
 
-		/*
-		public static List<string> GetAllowedOperators(GroupFilterConditionType conditionType)
-		{
-			List<string> ops = new List<string>();
-
-			switch (conditionType)
-			{
-				case GroupFilterConditionType.AirDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
-				case GroupFilterConditionType.SeriesCreatedDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
-				case GroupFilterConditionType.EpisodeWatchedDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
-				case GroupFilterConditionType.EpisodeAddedDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
-				case GroupFilterConditionType.AllEpisodesWatched:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AnimeGroup:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Equals));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotEquals));
-					break;
-				case GroupFilterConditionType.AnimeType:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.AssignedTvDBInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AssignedMovieDBInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.Category:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.AudioLanguage:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.SubtitleLanguage:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.CompletedSeries:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.FinishedAiring:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.Favourite:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.HasUnwatchedEpisodes:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.MissingEpisodes:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.MissingEpisodesCollecting:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.ReleaseGroup:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.Studio:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.UserVoted:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.VideoQuality:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.InAllEpisodes));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotInAllEpisodes));
-					break;
-				case GroupFilterConditionType.AniDBRating:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					break;
-				case GroupFilterConditionType.UserRating:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					break;
-			}
-
-
-			return ops;
-		}
-		*/
+		
 		public static string GetDateAsString(DateTime aDate)
 		{
 			return aDate.Year.ToString().PadLeft(4, '0') +

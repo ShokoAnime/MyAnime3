@@ -182,6 +182,8 @@ namespace MyAnimePlugin3
 		//private bool isInitialGroupLoad = true;
 
 		public static GroupFilterVM curGroupFilter = null;
+		public static GroupFilterVM curGroupFilterSub = null;
+		public static GroupFilterVM curGroupFilterSub2 = null;
 		public static AnimeGroupVM curAnimeGroup = null;
 		public static AnimeGroupVM curAnimeGroupViewed = null;
 		public static AnimeSeriesVM curAnimeSeries = null;
@@ -993,6 +995,140 @@ namespace MyAnimePlugin3
 						break;
 					#endregion
 
+					#region Group Filters - Sub
+					case Listlevel.GroupFilterSub:
+						{
+							// List/Poster/Banner
+
+							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
+
+							if (groupViewMode != GUIFacadeControl.Layout.List)
+							{
+								// reinit the itemsList
+								delayedImageLoading = true;
+								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+							}
+
+							// text as usual
+							ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
+
+							if (workerFacade.CancellationPending)
+								return;
+
+							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters");
+							groupFilters = FacadeHelper.GetGroupFilters();
+							type = BackGroundLoadingArgumentType.ListFullElement;
+
+							setGUIProperty(guiProperty.GroupCount, "0");
+
+							foreach (GroupFilterVM grpFilter in FacadeHelper.GetTopLevelPredefinedGroupFilters())
+							{
+								if (workerFacade.CancellationPending) return;
+								try
+								{
+									item = null;
+
+									SetGroupFilterListItem(ref item, grpFilter);
+
+									if (curGroupFilter != null)
+									{
+										if (grpFilter.GroupFilterID.Value == curGroupFilter.GroupFilterID.Value)
+										{
+											selectedIndex = count;
+										}
+									}
+									else
+									{
+										if (selectedIndex == -1)
+											selectedIndex = count;
+									}
+
+
+									if (workerFacade.CancellationPending) return;
+									else
+									{
+										list.Add(item);
+									}
+
+								}
+								catch (Exception ex)
+								{
+									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
+									BaseConfig.MyAnimeLog.Write(msg);
+								}
+								count++;
+							}
+						}
+						break;
+					#endregion
+
+					#region Group Filters - Sub2
+					case Listlevel.GroupFilterSub2:
+						{
+							// List/Poster/Banner
+
+							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
+
+							if (groupViewMode != GUIFacadeControl.Layout.List)
+							{
+								// reinit the itemsList
+								delayedImageLoading = true;
+								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+							}
+
+							// text as usual
+							ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
+
+							if (workerFacade.CancellationPending)
+								return;
+
+							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters");
+							groupFilters = FacadeHelper.GetGroupFilters();
+							type = BackGroundLoadingArgumentType.ListFullElement;
+
+							setGUIProperty(guiProperty.GroupCount, "0");
+
+							foreach (GroupFilterVM grpFilter in FacadeHelper.GetGroupFiltersForPredefined(curGroupFilterSub))
+							{
+								if (workerFacade.CancellationPending) return;
+								try
+								{
+									item = null;
+
+									SetGroupFilterListItem(ref item, grpFilter);
+
+									if (curGroupFilter != null)
+									{
+										if (grpFilter.GroupFilterID.Value == curGroupFilter.GroupFilterID.Value)
+										{
+											selectedIndex = count;
+										}
+									}
+									else
+									{
+										if (selectedIndex == -1)
+											selectedIndex = count;
+									}
+
+
+									if (workerFacade.CancellationPending) return;
+									else
+									{
+										list.Add(item);
+									}
+
+								}
+								catch (Exception ex)
+								{
+									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
+									BaseConfig.MyAnimeLog.Write(msg);
+								}
+								count++;
+							}
+						}
+						break;
+					#endregion
+
 					#region Groups
 					case Listlevel.Group:
 						{
@@ -1021,7 +1157,40 @@ namespace MyAnimePlugin3
 							if (workerFacade.CancellationPending)
 								return;
 
-							groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
+							if (curGroupFilterSub2 == null)
+								groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
+							else
+							{
+								groups = new List<AnimeGroupVM>();
+
+
+
+								List<AnimeGroupVM> tempGroups = JMMServerHelper.GetAnimeGroupsForFilter(GroupFilterHelper.AllGroupsFilter);
+								foreach (AnimeGroupVM grp in tempGroups)
+								{
+									if (curGroupFilterSub2.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories_Child)
+									{
+										if (grp.Categories.Contains(curGroupFilterSub2.PredefinedCriteria))
+											groups.Add(grp);
+									}
+									if (curGroupFilterSub2.GroupFilterID.Value == Constants.StaticGF.Predefined_Years_Child)
+									{
+										// find all the groups that qualify by this year
+										int startYear = 0;
+										if (!grp.Stat_AirDate_Min.HasValue) continue;
+										startYear = grp.Stat_AirDate_Min.Value.Year;
+
+										int endYear = int.MaxValue;
+										if (grp.Stat_AirDate_Max.HasValue) endYear = grp.Stat_AirDate_Max.Value.Year;
+
+										int critYear = 0;
+										if (!int.TryParse(curGroupFilterSub2.PredefinedCriteria, out critYear)) continue;
+
+										if (critYear >= startYear && critYear <= endYear) groups.Add(grp);
+										
+									}
+								}
+							}
 
 							// re-sort if user has set a quick sort
 							if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
@@ -1034,17 +1203,6 @@ namespace MyAnimePlugin3
 								sortCriteria.Add(sortProp);
 								groups = Sorting.MultiSort<AnimeGroupVM>(groups, sortCriteria);
 							}
-
-							/*if (currentViewClassification == ViewClassification.Views)
-							{
-								BaseConfig.MyAnimeLog.Write(string.Format("bgLoadFacde: {0} - {1}", currentViewClassification, currentView == null ? "" : currentView.Name));
-								groups = FacadeHelper.GetGroups(currentView);
-							}
-							else
-							{
-								BaseConfig.MyAnimeLog.Write(string.Format("bgLoadFacde: {0} - {1}", currentViewClassification, currentStaticViewID));
-								groups = FacadeHelper.GetGroups(currentViewClassification, currentStaticViewID);
-							}*/
 
 
 							// Update Series Count Property
@@ -1112,6 +1270,10 @@ namespace MyAnimePlugin3
 							BaseConfig.MyAnimeLog.Write("Total time for rendering groups: {0}-{1}", groups.Count, totalTime);
 
 							setGUIProperty(guiProperty.SeriesCount, seriesCount.ToString());
+
+							
+
+							
 						}
 						break;
 					#endregion
@@ -2259,6 +2421,40 @@ namespace MyAnimePlugin3
 							curGroupFilter = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
 							if (curGroupFilter == null) return;
 
+							if (curGroupFilter.GroupFilterID.Value == Constants.StaticGF.Predefined)
+							{
+								listLevel = Listlevel.GroupFilterSub;
+								curGroupFilterSub2 = null;
+								curGroupFilterSub = null;
+							}
+							else
+							{
+								listLevel = Listlevel.Group;
+								curGroupFilterSub2 = null;
+								curGroupFilterSub = null;
+							}
+
+							LoadFacade();
+							this.m_Facade.Focus = true;
+
+							break;
+
+						case Listlevel.GroupFilterSub:
+							curGroupFilterSub = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
+							if (curGroupFilterSub == null) return;
+
+							curGroupFilterSub2 = null;
+							listLevel = Listlevel.GroupFilterSub2;
+
+							LoadFacade();
+							this.m_Facade.Focus = true;
+
+							break;
+
+						case Listlevel.GroupFilterSub2:
+							curGroupFilterSub2 = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
+							if (curGroupFilterSub2 == null) return;
+
 							listLevel = Listlevel.Group;
 
 							LoadFacade();
@@ -2510,11 +2706,35 @@ namespace MyAnimePlugin3
 					}
 					else
 					{
-						BaseConfig.MyAnimeLog.Write("LIST LEVEL: " + listLevel.ToString());
-						if (listLevel == Listlevel.Group)
+						string msg = string.Format("LIST LEVEL:: {0} - GF: {1} - GFSub2: {2}", listLevel, curGroupFilter, curGroupFilterSub2);
+
+						BaseConfig.MyAnimeLog.Write(msg);
+						if (listLevel == Listlevel.GroupFilterSub)
+						{
+							listLevel = Listlevel.GroupFilter;
+							curGroupFilterSub = null;
+
+							LoadFacade();
+						}
+						if (listLevel == Listlevel.GroupFilterSub2)
 						{
 							// go back to GROUP FILTERS
-							listLevel = Listlevel.GroupFilter;
+							listLevel = Listlevel.GroupFilterSub;
+							curGroupFilterSub2 = null;
+
+							LoadFacade();
+						}
+						if (listLevel == Listlevel.Group)
+						{
+							if (curGroupFilterSub2 == null)
+							{
+								// go back to GROUP FILTERS
+								listLevel = Listlevel.GroupFilter;
+							}
+							else
+							{
+								listLevel = Listlevel.GroupFilterSub2;
+							}
 							LoadFacade();
 							curAnimeGroup = null;
 						}
@@ -5895,7 +6115,9 @@ namespace MyAnimePlugin3
 		EpisodeTypes = 1, // Normal, Credits, Specials
 		Series = 2, // Da capo, Da Capo S2, Da Capo II etc
 		Group = 3, // Da Capo
-		GroupFilter = 4 // Favouritess
+		GroupFilter = 4, // Favouritess
+		GroupFilterSub = 5, // Predefined - Categories
+		GroupFilterSub2 = 6 // Predefined - Categories - Action
 	}
 
 	public enum ViewType

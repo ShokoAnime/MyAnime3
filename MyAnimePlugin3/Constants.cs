@@ -64,7 +64,20 @@ namespace MyAnimePlugin3
 		}
 		#endregion
 
-	
+
+		public struct StaticGF
+		{
+			public static readonly int All = -999;
+
+			public static readonly int Predefined = -900;
+
+			public static readonly int Predefined_Years = -901;
+			public static readonly int Predefined_Categories = -902;
+
+			public static readonly int Predefined_Years_Child = -921;
+			public static readonly int Predefined_Categories_Child = -922;
+		}
+
 
 		#region Control IDs
 		public struct ControlIDs

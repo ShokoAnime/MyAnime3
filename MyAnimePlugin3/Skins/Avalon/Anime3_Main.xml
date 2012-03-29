@@ -80,7 +80,7 @@
             <type>label</type>
             <id>0</id>
             <posX>30</posX>
-            <posY>725</posY>
+            <posY>800</posY>
             <width>100</width>
             <label>Find:</label>
 			<font>AvalonLight12</font>
@@ -92,7 +92,7 @@
             <type>label</type>
             <id>0</id>
             <posX>120</posX>
-            <posY>725</posY>
+            <posY>800</posY>
             <width>200</width>
             <label>#Anime3.FindText</label>
 			<visible>Control.IsVisible(3463)</visible>
@@ -126,11 +126,11 @@
             <type>label</type>
             <id>0</id>
             <posX>30</posX>
-            <posY>805</posY>
+            <posY>855</posY>
             <width>600</width>
             <font>AvalonLight12</font>
 			<textcolor>6aa5cb</textcolor>
-            <align>right</align>
+            <align>left</align>
             <label>C+M=Mode (#Anime3.FindMode)</label>
             <visible>Control.IsVisible(3463)</visible>
         </control>

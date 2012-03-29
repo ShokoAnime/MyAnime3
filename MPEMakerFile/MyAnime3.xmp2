@@ -2277,6 +2277,730 @@ Posters will always be shown, even when a fanart exists</Description>
           </Items>
         </Files>
       </GroupItem>
+      <GroupItem Name="Avallonis">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>Avallonis</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Avallonis (a skin mod for Avalon)</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime2_search_64.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f54699b8-33d0-40ae-b00d-5e6c333af27a}-anime2_search_64.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime2_search_64.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_anidb.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ff9bb398-d5ff-4a69-a6dc-57fd1d91cfd8}-anime3_anidb.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_anidb.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_ArrowLeft_64.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0ee74b0d-ec80-4db2-85ff-70a5b3071605}-anime3_ArrowLeft_64.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ArrowLeft_64.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_ArrowRight_64.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6ec2cd3b-b45e-41f3-bf46-7d335525703d}-anime3_ArrowRight_64.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ArrowRight_64.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{66fea678-312f-486b-ad45-8b686f0361ce}-anime3_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_banner_focus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0efb41fe-e518-4e48-be46-d413e9905331}-anime3_banner_focus.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_banner_focus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_banner_nofocus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6ab6916c-5ae0-46ac-99cd-c03c24c183dc}-anime3_banner_nofocus.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_banner_nofocus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_blankchar.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d2ce1bc2-233f-4ee4-9e11-a3495b216f5d}-anime3_blankchar.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_blankchar.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_cross_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{288fc148-3b96-40d7-87d1-5d4b140da7cf}-anime3_cross_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_cross_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_DefaultBackground.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f6be5311-a35e-45d2-8edb-789eaff0da19}-Anime3_DefaultBackground.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_DefaultBackground.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_dice.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{065814ba-f6a4-4a7d-8b4d-630d332d4abf}-anime3_dice.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_dice.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_episodelist.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8f8ec89b-d4e1-490f-bf6d-c45ddc4ab0f3}-anime3_episodelist.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_episodelist.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_episode_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3225630c-b59b-474d-a16e-19a3d38eade2}-anime3_episode_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_episode_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_ex_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1bf10b1b-2e91-4b7d-b508-b30cb7e6275d}-anime3_ex_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ex_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_fanart_focus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{39bfeba0-9eb1-4cfc-9042-bdff5ac02ca7}-anime3_fanart_focus.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_fanart_focus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_fanart_nofocus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{205a5366-36d2-455a-bf98-d6c4e02053c9}-anime3_fanart_nofocus.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_fanart_nofocus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_fanart_overlay_window.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4ebad25c-5ef3-4fbf-888e-b69f2cb25e36}-anime3_fanart_overlay_window.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_fanart_overlay_window.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_hash.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e91b98e1-aa4b-4a44-a527-3277e2debba2}-anime3_hash.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_hash.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_heart1_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9a2e0974-eed8-4edd-af18-4218c1699003}-anime3_heart1_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_heart1_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_heart2_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{aaa326b0-57ef-4e5a-87af-fd1827edf26c}-anime3_heart2_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_heart2_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_Icon_Download.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{dc727c47-6c92-42e1-831a-71ecf2657e3e}-Anime3_Icon_Download.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_Icon_Download.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_Icon_Media.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{18d0a957-b8f5-4baa-a95a-62a678bb279c}-Anime3_Icon_Media.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_Icon_Media.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_Icon_Note.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{daf233e2-96ff-46fb-b6c0-117f95ab3f54}-Anime3_Icon_Note.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_Icon_Note.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_Icon_Note2.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cc23647f-e8f8-4d59-b68d-cb05a3a0c39c}-Anime3_Icon_Note2.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_Icon_Note2.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_image.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a024a6d7-91b9-4031-b799-0c44ecfbe101}-anime3_image.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_image.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_InfoPosterFrame.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{061e0f92-9dab-4652-8056-fef232f552e8}-Anime3_InfoPosterFrame.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_InfoPosterFrame.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Info_credit_frame.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8cadfacb-2017-442c-9883-0b632c4bacb6}-anime3_Info_credit_frame.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Info_credit_frame.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_info_info_guidelines.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7b35a830-e16e-4711-840f-767c57e30087}-anime3_info_info_guidelines.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_info_info_guidelines.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_info_stats_guidelines.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f69a16ff-a656-45e1-accd-f61544ee84d9}-anime3_info_stats_guidelines.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_info_stats_guidelines.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_ListIcon.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{af1ec1c7-766c-4a96-9d5b-29d42d77ef1b}-anime3_ListIcon.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_1080p.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cc5228c4-4930-47b9-b608-2ab2a7988392}-anime3_logo_1080p.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_1080p.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_16x9.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{061f899a-2772-43e1-bc77-92c92f138d6f}-anime3_logo_16x9.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_16x9.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_4x3.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{200056f2-50cc-4c12-a35e-baaa13eacc00}-anime3_logo_4x3.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_4x3.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_720p.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0fc4b369-636f-4b11-b817-9eec0f0f68c7}-anime3_logo_720p.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_720p.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_AVC.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c66dbfad-1906-4e81-8c06-91b7858ded9f}-anime3_logo_AVC.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_AVC.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_bluray.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2bd93f3e-a1c7-462e-ad4e-1402540f3d87}-anime3_logo_bluray.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_bluray.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_Divx.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{41f486c5-205e-4f1f-9035-d654d8b2d4b7}-anime3_logo_Divx.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_Divx.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_dvd.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{90488d46-145b-49e0-baf2-d59cd8a54979}-anime3_logo_dvd.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_dvd.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_mpeg2.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6caf82ba-6068-4fa3-8a3f-e252a12670d2}-anime3_logo_mpeg2.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_mpeg2.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_x264.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{eefda944-2d34-46d1-be82-ff6affd9f7e0}-anime3_logo_x264.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_x264.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_logo_xvid.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ec83c634-16d1-4048-a4af-413065944b76}-anime3_logo_xvid.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_logo_xvid.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_NotAvailable.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{36061589-3e20-4a84-a142-7a4d548c7518}-anime3_NotAvailable.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_NotAvailable.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_NotifyBg.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d7974427-a1e4-4e8d-819a-00b9c4aee1f2}-anime3_NotifyBg.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_NotifyBg.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_question_green_128.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ace7053a-67f6-406a-9281-6dbcf88126cd}-anime3_question_green_128.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_question_green_128.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_question_green_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c5fcdb2d-e411-46f0-b094-acc839bcd323}-anime3_question_green_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_question_green_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_question_poster.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{174ddcab-e039-471e-a576-5c1de53e1036}-anime3_question_poster.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_question_poster.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_question_purple_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{051afd71-e608-4564-8512-3ab372f9a53f}-anime3_question_purple_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_question_purple_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_refresh_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3c7ef393-dd0d-4407-9683-27fc6f65fd75}-anime3_refresh_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_refresh_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_relations_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{644a4b4f-aa1d-47a2-9b26-36f1b943351d}-anime3_relations_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_relations_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_season_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{670009b1-bcb1-46a6-868e-735c4f19421b}-anime3_season_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_season_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_smile_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ceb05ff9-f7e5-4ace-9c16-21781899f564}-anime3_smile_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_smile_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_star_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{91b624d1-aa01-411d-aa85-8e8e594d3222}-anime3_star_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_star_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_status_overlay.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{56d5bd33-1c1e-4dea-9b99-606d766290e7}-anime3_status_overlay.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_status_overlay.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\Anime3_thumbborder.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c0113947-2f35-4cae-a2bd-89c31dcdbb89}-Anime3_thumbborder.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\Anime3_thumbborder.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_tick_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3e7e03d6-63a3-4120-91d3-a75b974755b3}-anime3_tick_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_tick_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatched.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7a33fc8f-c8a5-4100-bef2-e4c15134e848}-anime3_UnWatched.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatched.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatchedDVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{df1bcd2c-486d-4ac0-bd21-b8b367c7c11a}-anime3_UnWatchedDVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatchedDVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatchedNA.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3e36f7c0-dca6-4a7c-8dcf-3c18acbc42f8}-anime3_UnWatchedNA.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatchedNA.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatched_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{634ea976-3014-4c34-bb71-724de202dd71}-anime3_UnWatched_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatched_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatched_DVD_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6635e840-1219-42c5-bddf-a56b93dc995e}-anime3_UnWatched_DVD_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatched_DVD_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatched_left.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{afd6037a-3b0b-46e7-9ac8-c5e2ee2e3999}-anime3_UnWatched_left.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatched_left.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatched_left_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c8ebc589-c0ce-4d6c-8175-7e18d3bf538a}-anime3_UnWatched_left_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatched_left_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_UnWatched_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0ce19afc-d9f1-40cc-9f1d-4685e58a9a4d}-anime3_UnWatched_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_UnWatched_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Watched.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{479f9d16-c527-4f52-aaab-15ff4a8a1bd5}-anime3_Watched.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Watched.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_WatchedDVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f32ffe92-a843-439d-9660-1cfe46fadfce}-anime3_WatchedDVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_WatchedDVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_WatchedNA.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5e1bc1e8-4260-4ec8-bed3-68e1bb33f7f6}-anime3_WatchedNA.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_WatchedNA.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Watched_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{312201b8-df07-4f00-96b9-4dd5303de758}-anime3_Watched_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Watched_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Watched_DVD_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2112d7ef-3fb7-4161-9bca-5c482b5eb591}-anime3_Watched_DVD_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Watched_DVD_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Watched_left.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1debd830-8fa9-40b7-85e4-a5d241dbba41}-anime3_Watched_left.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Watched_left.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Watched_left_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9aa259c3-aff2-4cb9-bdaa-784644d5fdd6}-anime3_Watched_left_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Watched_left_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\anime3_Watched_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{88f41f3f-fbf5-4353-b3b1-cd9629cc84aa}-anime3_Watched_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_Watched_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\BG_Anime.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5728d185-df63-4b00-bab0-214b6570e6e5}-BG_Anime.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\BG_Anime.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\nav24_back.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bb2214b7-9dae-4eea-85e4-aa91d18d5911}-nav24_back.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\nav24_back.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\nav24_next.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8cbcc9f2-f743-4b6d-bd7d-40f59e72debd}-nav24_next.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\nav24_next.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\nav32_back.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fcb0a15a-077c-42e5-93f1-001152674fb6}-nav32_back.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\nav32_back.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\nav32_next.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9d08fece-8866-44d5-82f2-b11ff43c25d2}-nav32_next.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\nav32_next.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]\MyAnime3\user.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f4766b43-ca15-4edc-b574-53e475ccbdec}-user.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\user.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Actors.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{83cd3563-e456-42fb-a479-27be240d4133}-Anime3_Actors.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Actors.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Admin.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{31b5def3-9652-457a-bfe8-5789a4154b7b}-Anime3_Admin.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Admin.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_AnimeInfo.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5065b370-3e0c-434b-b7c9-59af22f5e57e}-Anime3_AnimeInfo.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_AnimeInfo.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.standard.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fa6679cc-b325-4774-9988-0cc7590c081f}-Anime3_Background.standard.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Background.standard.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{547384a9-5347-4f23-8580-370bb07f11af}-Anime3_Background.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Background.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Calendar.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0971e7e1-aed3-4463-9f36-86e061b488ab}-Anime3_Calendar.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Calendar.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Char.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5fe90e3f-b0b0-4a03-b788-c7f03371f78a}-Anime3_Char.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Char.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Downloads.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c484a98c-66a6-4c2a-9503-ba5b8dbd31ac}-Anime3_Downloads.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Downloads.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Dummy.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f461d362-1b35-48a8-98d2-5b88d5e10343}-Anime3_Dummy.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Dummy.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Facade.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e5211d7a-d161-4b81-86d3-46d952b0ba1b}-Anime3_Facade.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Facade.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_FanArt.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f6ac14fb-9b69-4809-8bb1-37b22e762ad4}-Anime3_FanArt.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_FanArt.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Hiddenmenu.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{39a76572-54bd-424e-a4a3-86841f4abfb1}-Anime3_Hiddenmenu.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Hiddenmenu.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Main.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{99dd94cc-e3ba-456d-b4b5-806d903ff32b}-Anime3_Main.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Main.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Posters.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0dd014ff-8c4c-4121-8b08-fe4c3d3036fd}-Anime3_Posters.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Posters.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_QueueStatus.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ba38b508-c846-4e5d-8095-d26ebd48f83a}-Anime3_QueueStatus.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_QueueStatus.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Random.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{12abb033-3a96-4a12-95f8-3956ec57a611}-Anime3_Random.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Random.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Recommendations.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{dae873f0-4da7-4efe-8a40-2605595cd8f3}-Anime3_Recommendations.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Recommendations.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Relations.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2da821b7-5208-4b5a-a407-d8b11740cf7c}-Anime3_Relations.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Relations.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_SkinSettings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{55cac8d0-c89f-4ff1-8f10-f85bc31371fc}-Anime3_SkinSettings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_SkinSettings.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.standard.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{64be784f-570f-494b-8876-66f031c1ce51}-Anime3_Views.standard.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Views.standard.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1488f9a3-9020-4cbc-bf56-a0c2b9db991f}-Anime3_Views.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Views.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Watching.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d096001e-c8e2-4f8a-92e0-a03f573f4754}-Anime3_Watching.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_Watching.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_WideBanners.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{61e05079-f84a-436a-879e-bbe2d985a982}-Anime3_WideBanners.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Anime3_WideBanners.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Media\hover_My Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a728a03f-9849-482d-9ed2-a045e85e2ff2}-hover_My Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\hover_My Anime3.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Media\MyAnime3\anime3_ListIcon.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{db544206-a3e1-42c1-99c1-1a12416863b6}-anime3_ListIcon.png</ZipFileName>
+              <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
     </Items>
   </Groups>
   <Sections>
@@ -2348,6 +3072,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <string>DefaultWide</string>
           <string>Avalon</string>
           <string>Avalon Standard</string>
+          <string>Avallonis</string>
           <string>StreamedMP</string>
         </IncludedGroups>
         <PanelName>Tree View Selector</PanelName>
@@ -2388,6 +3113,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <string>DefaultWide</string>
           <string>Avalon</string>
           <string>Avalon Standard</string>
+          <string>Avallonis</string>
           <string>StreamedMP</string>
         </IncludedGroups>
         <PanelName>Install Section</PanelName>
@@ -3647,6 +4373,181 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <ZipFileName>Installer{CopyFile}\{7412ffb6-0f1a-4a90-9661-c5b9aab64dbc}-Anime3_Actors.xml</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Anime3_Actors.xml</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Actors.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{83cd3563-e456-42fb-a479-27be240d4133}-Anime3_Actors.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Actors.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Admin.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{31b5def3-9652-457a-bfe8-5789a4154b7b}-Anime3_Admin.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Admin.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_AnimeInfo.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5065b370-3e0c-434b-b7c9-59af22f5e57e}-Anime3_AnimeInfo.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_AnimeInfo.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.standard.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fa6679cc-b325-4774-9988-0cc7590c081f}-Anime3_Background.standard.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Background.standard.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{547384a9-5347-4f23-8580-370bb07f11af}-Anime3_Background.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Background.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Calendar.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0971e7e1-aed3-4463-9f36-86e061b488ab}-Anime3_Calendar.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Calendar.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Char.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5fe90e3f-b0b0-4a03-b788-c7f03371f78a}-Anime3_Char.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Char.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Downloads.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c484a98c-66a6-4c2a-9503-ba5b8dbd31ac}-Anime3_Downloads.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Downloads.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Dummy.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f461d362-1b35-48a8-98d2-5b88d5e10343}-Anime3_Dummy.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Dummy.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Facade.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e5211d7a-d161-4b81-86d3-46d952b0ba1b}-Anime3_Facade.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Facade.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_FanArt.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f6ac14fb-9b69-4809-8bb1-37b22e762ad4}-Anime3_FanArt.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_FanArt.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Hiddenmenu.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{39a76572-54bd-424e-a4a3-86841f4abfb1}-Anime3_Hiddenmenu.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Hiddenmenu.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Main.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{99dd94cc-e3ba-456d-b4b5-806d903ff32b}-Anime3_Main.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Main.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Posters.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0dd014ff-8c4c-4121-8b08-fe4c3d3036fd}-Anime3_Posters.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Posters.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_QueueStatus.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ba38b508-c846-4e5d-8095-d26ebd48f83a}-Anime3_QueueStatus.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_QueueStatus.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Random.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{12abb033-3a96-4a12-95f8-3956ec57a611}-Anime3_Random.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Random.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Recommendations.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{dae873f0-4da7-4efe-8a40-2605595cd8f3}-Anime3_Recommendations.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Recommendations.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Relations.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2da821b7-5208-4b5a-a407-d8b11740cf7c}-Anime3_Relations.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Relations.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_SkinSettings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{55cac8d0-c89f-4ff1-8f10-f85bc31371fc}-Anime3_SkinSettings.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_SkinSettings.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.standard.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{64be784f-570f-494b-8876-66f031c1ce51}-Anime3_Views.standard.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Views.standard.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1488f9a3-9020-4cbc-bf56-a0c2b9db991f}-Anime3_Views.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Views.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Watching.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d096001e-c8e2-4f8a-92e0-a03f573f4754}-Anime3_Watching.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_Watching.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_WideBanners.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{61e05079-f84a-436a-879e-bbe2d985a982}-Anime3_WideBanners.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Anime3_WideBanners.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Media\hover_My Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a728a03f-9849-482d-9ed2-a045e85e2ff2}-hover_My Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Media\hover_My Anime3.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Media\MyAnime3\anime3_ListIcon.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{db544206-a3e1-42c1-99c1-1a12416863b6}-anime3_ListIcon.png</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
+      </FileItem>
     </Items>
   </UniqueFileList>
   <ProjectSettings>
@@ -3709,6 +4610,26 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <DestinationFilename>%Skin%\Avalon</DestinationFilename>
         <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon</Folder>
         <Group>Avalon</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{7e38e807-8573-4b91-8945-8ae9a79f4ca5}-</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis\Media</DestinationFilename>
+        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Group>Avallonis</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{ed5f856c-c613-46c7-a0d5-d72f27e6d369}-</ZipFileName>
+        <DestinationFilename>%Skin%\Avallonis</DestinationFilename>
+        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis</Folder>
+        <Group>Avallonis</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>

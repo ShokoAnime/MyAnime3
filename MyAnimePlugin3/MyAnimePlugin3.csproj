@@ -492,9 +492,6 @@
     <Content Include="Skins\Avallonis\Anime3_Actors.xml" />
     <Content Include="Skins\Avallonis\Anime3_Admin.xml" />
     <Content Include="Skins\Avallonis\Anime3_AnimeInfo.xml" />
-    <Content Include="Skins\Avallonis\Anime3_Background.bak.xml" />
-    <Content Include="Skins\Avallonis\Anime3_Background.fanart.oriented.xml" />
-    <Content Include="Skins\Avallonis\Anime3_Background.standard.xml" />
     <Content Include="Skins\Avallonis\Anime3_Background.xml" />
     <Content Include="Skins\Avallonis\Anime3_Calendar.xml" />
     <Content Include="Skins\Avallonis\Anime3_Char.xml" />
@@ -510,13 +507,11 @@
     <Content Include="Skins\Avallonis\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avallonis\Anime3_Relations.xml" />
     <Content Include="Skins\Avallonis\Anime3_SkinSettings.xml" />
-    <Content Include="Skins\Avallonis\Anime3_Views.bak.xml" />
-    <Content Include="Skins\Avallonis\Anime3_Views.fanart.oriented.xml" />
-    <Content Include="Skins\Avallonis\Anime3_Views.standard.xml" />
     <Content Include="Skins\Avallonis\Anime3_Views.xml" />
     <Content Include="Skins\Avallonis\Anime3_Watching.xml" />
     <Content Include="Skins\Avallonis\Anime3_WideBanners.xml" />
     <Content Include="Skins\Avallonis\Media\hover_My Anime3.jpg" />
+    <Content Include="Skins\Avallonis\Media\MyAnime3\anime3_ListIcon.png" />
     <Content Include="Skins\Avalon\Anime3_Actors.xml" />
     <Content Include="Skins\Avalon\Anime3_Admin.xml">
       <SubType>Designer</SubType>
@@ -851,7 +846,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Providers\" />
-    <Folder Include="Skins\Avallonis\Media\MyAnime3\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -869,8 +863,8 @@ xcopy "$(TargetDir)MA3_FFDShowAPI.pdb" "$(SolutionDir)Release\plugins\Windows\" 
 copy "$(SolutionDir)Dependencies\Newtonsoft.Json.Net20.dll" "$(SolutionDir)Release\plugins\Windows\"
 
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\aMPed" "$(SolutionDir)Release\skin\aMPed" /E /R /I /Y	
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "$(SolutionDir)Release\skin\Avallonis" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallonis" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y	
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallonis" "$(SolutionDir)Release\skin\Avallonis" /E /R /I /Y	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Default" "$(SolutionDir)Release\skin\Default" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWide" "$(SolutionDir)Release\skin\DefaultWide" /E /R /I /Y	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Mustayaluca" "$(SolutionDir)Release\skin\Mustayaluca" /E /R /I /Y	

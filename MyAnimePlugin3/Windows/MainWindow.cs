@@ -2200,7 +2200,7 @@ namespace MyAnimePlugin3
 
 			BaseConfig.MyAnimeLog.Write("SetFacade List Mode: {0}", listLevel);
 
-			if (listLevel == Listlevel.GroupFilter)
+			if (listLevel == Listlevel.GroupFilter || listLevel == Listlevel.GroupFilterSub || listLevel == Listlevel.GroupFilterSub2)
 			{
 				m_Facade.CurrentLayout = GUIFacadeControl.Layout.List;
 				listmode = true;

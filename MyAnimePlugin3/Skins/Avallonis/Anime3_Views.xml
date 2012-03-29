@@ -150,10 +150,11 @@
 	  <type>image</type>
 	  <description>Logos</description>
 	  <id>66</id>
-	  <posX>1500</posX>
-	  <posY>816</posY>
-	  <width>900</width>
-	  <height>38</height>
+	  <posX>500</posX>
+		<posY>865</posY>
+		<width>650</width>
+		<height>54</height>
+		<align>right</align>
 	  <texture>#Anime3.Logos</texture>
 	  <keepaspectratio>yes</keepaspectratio>
 	  <visible>facadeview.list+Control.IsVisible(1239)</visible>

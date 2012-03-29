@@ -181,6 +181,7 @@
             	<posY>153</posY>
             	<height>750</height>
             	<width>684</width>
+				<textureFocus>listcontrol_item_selected_small.png</textureFocus>
             	<textureNoFocus>-</textureNoFocus>
         		<textXOff>-100</textXOff>
 				<textYOff>8</textYOff>

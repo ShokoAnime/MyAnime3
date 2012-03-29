@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6103</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <disabletopbar>yes</disabletopbar>
+  <controls>
+	<!--            :: Backgrounds ::            -->
+	<control>
+	  <description>DEFAULT BACKGROUND</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>background.png</texture>
+	  <shouldCache>true</shouldCache>
+	</control>
+	<control>
+	  <description>preview</description>
+	  <id>4560</id>
+	  <type>image</type>
+	  <posX>0</posX>
+	  <posY>120</posY>
+	  <width>1312</width>
+	  <height>739</height>
+	  <texture>#Anime3.FanArt.SelectedPreview</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	<control>
+	  <description>preview</description>
+	  <id>4560</id>
+	  <type>image</type>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>#Anime3.FanArt.SelectedPreview</texture>
+	  <visible>facadeview.filmstrip</visible>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>overlay_long.png</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	</control>
+	<control>
+	  <description>viewport thumbs</description>
+	  <type>image</type>
+	  <id>2021</id>
+	  <posX>1</posX>
+	  <posY>92</posY>
+	  <width>1893</width>
+	  <height>795</height>
+	  <texture>viewport_thumbs.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	  <animation effect="slide" time="250" start="-1890,0">WindowOpen</animation>
+	  <animation effect="slide" time="250" end="-1890,0">WindowClose</animation>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>filmstrip_fanart_overlay.png</texture>
+	  <visible>facadeview.filmstrip + Control.IsVisible(50)</visible>
+	</control>
+
+
+	<!--            :: labels for fimstrip ::            -->
+
+	<control>
+	  <description>Source</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>900</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>Source</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Source Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>900</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>#Anime3.FanArt.Source</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Fanart Resolution</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>60</posX>
+	  <posY>970</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>Resolution</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Fanart Resolution Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>970</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>#Anime3.FanArt.SelectedFanartResolution</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Disabled</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>610</posX>
+	  <posY>900</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>Disabled</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Disabled Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>810</posX>
+	  <posY>900</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	
+	<control>
+	  <description>Default</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>610</posX>
+	  <posY>970</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>Default</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+	  <description>Default Value</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>810</posX>
+	  <posY>970</posY>
+	  <width>300</width>
+	  <align>left</align>
+	  <font>fontB20</font>
+	  <label>#Anime3.FanArt.SelectedFanartIsDefault</label>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+
+	<control>
+	  <description>Top title</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>185</posX>
+	  <posY>38</posY>
+	  <width>500</width>
+	  <textcolor>6aa5cb</textcolor>
+	  <font>font22</font>
+	  <label>Fanart</label>
+	</control>
+
+	<!--            :: HIDDEN MENU ::            -->
+	
+	<control>
+		<type>actiongroup</type>
+		<description>action menu</description>
+		<defaultcontrol>2</defaultcontrol>
+		<onexit>50</onexit>
+		<dimColor>00ffffff</dimColor>
+		<buttonX>0</buttonX>
+		<buttonY>0</buttonY>
+		<buttonwidth>497</buttonwidth>
+		<buttonheight>1080</buttonheight>
+		
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<width>1920</width>
+			<height>1080</height>
+			<texture>semi_trans_back_hidden_menu.png</texture>
+			<visible>!Control.HasFocus(50)</visible>
+			<animation effect="fade" time="450">visible</animation>
+			<animation effect="fade" time="400">hidden</animation>
+		</control>
+	
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posY>15</posY>
+			<posX>0</posX>
+			<width>631</width>
+			<height>1044</height>
+			<texture>menu_bg.png</texture>
+			<visible>!Control.HasFocus(50)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+		</control>
+	
+		<control>
+			<type>image</type>
+			<id>0</id>
+			<posY>220</posY>
+			<posX>128</posX>
+			<width>376</width>
+			<height>1</height>
+			<texture>hiddenmenu_separator.png</texture>
+			<visible>!Control.HasFocus(50)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+		</control>
+		
+		<control>
+			<description>Menu label</description>
+			<type>label</type>
+			<id>1</id>
+			<posX>128</posX>
+			<posY>114</posY>
+			<label>924</label>
+			<font>fontB12</font>
+			<textcolor>ffffff</textcolor>
+			<visible>!Control.HasFocus(50)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+    	</control>
+		<control>
+			<description>Other Label</description>
+			<type>label</type>
+			<id>1</id>
+			<posX>128</posX>
+			<posY>230</posY>
+			<label>Other</label>
+			<font>fontB12</font>
+			<textcolor>ffffff</textcolor>
+ 			<visible>!Control.HasFocus(50)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+		</control>
+		
+          <control>
+            <type>group</type>
+            <description>group element</description>
+ 			<visible>!Control.HasFocus(50)</visible>
+    		<animation effect="fade" time="0">WindowClose</animation>
+    		<animation effect="slide" start="-150,0" time="100">visible</animation>
+    		<animation effect="fade" time="50">visible</animation>
+    		<animation effect="fade" time="0">hidden</animation>
+            <posX>69</posX>
+            <posY>155</posY>
+            <layout>StackLayout(0, Vertical, true)</layout>	
+			
+			<control>
+				<description>Change Layout</description>
+				<type>button</type>
+				<id>2</id>
+				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+				<textureNoFocus>-</textureNoFocus>
+				<width>497</width>
+				<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+				<label>Change Layout</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>915</onup>
+                <ondown>910</ondown>
+			</control>
+			
+			<control>
+                <description>Empty button</description>
+                <type>button</type>
+                <id>0</id>
+			    <textureFocus>-</textureFocus>
+			    <textureNoFocus>-</textureNoFocus>
+		        <width>497</width>
+			    <height>64</height>
+                <label>-</label>
+                <visible>true</visible>
+            </control>
+            
+            <control>
+				<description>Series Info</description>
+				<type>button</type>
+				<id>910</id>
+				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+				<textureNoFocus>-</textureNoFocus>
+				<width>497</width>
+				<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+				<label>Series Info</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>2</onup>
+				<ondown>911</ondown>
+            </control>
+          
+            <control>
+				<description>Characters</description>
+				<type>button</type>
+				<id>911</id>
+				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+				<textureNoFocus>-</textureNoFocus>
+				<width>497</width>
+				<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+				<label>Characters</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>910</onup>
+				<ondown>912</ondown>
+            </control>
+            
+            
+            <control>
+	            <description>Relations</description>
+    		    <type>button</type>
+    		    <id>912</id>
+    		    <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+    		    <textureNoFocus>-</textureNoFocus>
+    		    <width>497</width>
+    		    <height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+    		    <label>Relations</label>
+    		    <onleft>50</onleft>
+    		    <onright>50</onright>
+				<onup>911</onup>
+				<ondown>914</ondown>
+            </control>	
+            
+            <control>
+    		    <description>Posters</description>
+ 		        <type>button</type>
+    			<id>914</id>
+    			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+    			<textureNoFocus>-</textureNoFocus>
+    			<width>497</width>
+    			<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+    			<label>Posters</label>
+    			<onleft>50</onleft>
+    			<onright>50</onright>
+				<onup>912</onup>
+				<ondown>915</ondown>
+            </control>
+                
+			
+			<control>
+				<description>Wide Banners</description>
+				<type>button</type>
+				<id>915</id>
+				<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+				<textureNoFocus>-</textureNoFocus>
+				<width>497</width>
+				<height>64</height>
+				<textXOff>58</textXOff>
+				<textYOff>14</textYOff>
+				<label>Wide Banners</label>
+				<onleft>50</onleft>
+                <onright>50</onright>
+				<onup>914</onup>
+				<ondown>2</ondown>
+			</control>
+
+        </control>
+    </control>
+
+	<!--            :: FACADE ::            -->
+
+	<control>
+	  <type>group</type>
+	  <description>group element</description>
+	  <id>28</id>
+	  <layout>StackLayout</layout>
+	  <posX>60</posX>
+	  <posY>97</posY>
+	  <control>
+		<description>composite control consisting of a list control and a thumbnail panel</description>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+		<type>facadeview</type>
+		<id>50</id>
+		<control>
+		  <description>Graphical Thumbpanel</description>
+		  <type>thumbnailpanel</type>
+		  <id>50</id>
+		  <posX>723</posX>
+		  <posY>188</posY>
+		  <width>1120</width>
+		  <height>700</height>
+		  <!-- largeicons -->
+		  <itemWidth>275</itemWidth>
+		  <itemHeight>160</itemHeight>
+		  <textureWidth>275</textureWidth>
+		  <textureHeight>160</textureHeight>
+		  <thumbWidth>275</thumbWidth>
+		  <thumbHeight>160</thumbHeight>
+		  <thumbPosX>0</thumbPosX>
+		  <thumbPosY>0</thumbPosY>
+		  <itemWidthBig>360</itemWidthBig>
+		  <itemHeightBig>210</itemHeightBig>
+		  <thumbWidthBig>360</thumbWidthBig>
+		  <thumbHeightBig>210</thumbHeightBig>
+		  <textureWidthBig>360</textureWidthBig>
+		  <textureHeightBig>210</textureHeightBig>
+		  <thumbPosXBig>0</thumbPosXBig>
+		  <thumbPosYBig>0</thumbPosYBig>
+		  <zoomXPixels>30</zoomXPixels>
+		  <zoomYPixels>20</zoomYPixels>
+		  <thumbZoom>yes</thumbZoom>
+		  <unfocusedAlpha>255</unfocusedAlpha>
+		  <onleft>2</onleft>
+		  <onright>2</onright>
+		  <frameNoFocus>pictures_thumb_nofocus.png</frameNoFocus>
+		  <frameFocus>pictures_thumb_focus.png</frameFocus>
+		  <textureMask>pictures_thumb_mask.png</textureMask>
+		  <spinPosX>1832</spinPosX>
+		  <spinPosY>880</spinPosY>
+		</control>
+		<control>
+		  <description>Filmstrip view</description>
+		  <type>filmstrip</type>
+		  <dimColor>90ffffff</dimColor>
+		  <id>50</id>
+		  <scrollOffset>3</scrollOffset>
+		  <folderPrefix></folderPrefix>
+		  <folderSuffix></folderSuffix>
+		  <posX>114</posX>
+		  <posY>520</posY>
+		  <width>1920</width>
+		  <height>768</height>
+		  <onup>2</onup>
+		  <ondown>2</ondown>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <thumbWidth>327</thumbWidth>
+		  <thumbHeight>231</thumbHeight>
+		  <thumbPosX>0</thumbPosX>
+		  <thumbPosY>0</thumbPosY>
+		  <itemWidth>337</itemWidth>
+		  <itemHeight>241</itemHeight>
+		  <textureWidth>327</textureWidth>
+		  <textureHeight>231</textureHeight>
+		  <textYOff>-2000</textYOff>
+		  <imageFolderFocus>-</imageFolderFocus>
+		  <frame>-</frame>
+		  <frameFocus>-</frameFocus>
+		  <background>-</background>
+		  <thumbs flipY="true" diffuse="Thumb_Mask.png" mask="pictures_filmstrip_mask.png"></thumbs>
+		  <showFrame>yes</showFrame>
+		  <showFolder>no</showFolder>
+		  <showBackGround>no</showBackGround>
+		  <showInfoImage>no</showInfoImage>
+		  <keepaspectratio>no</keepaspectratio>
+		  <thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="138,138" center="0,690" time="200">focus</thumbAnimation>
+		  <thumbAnimation effect="zoom" start="138,138" reversible="false" end="100,100" center="0,690" time="100">unfocus</thumbAnimation>
+		</control>
+	  </control>
+	</control>
+	<control>
+	  <animation effect="slide" start="-60,0" end="0,0" tween="quadratic" easing="in" time="250" delay="400">WindowOpen</animation>
+	  <animation effect="slide" start="0,0" end="-60,0" tween="quadratic" easing="in" time="250" delay="100">WindowClose</animation>
+	  <id>1</id>
+	  <type>image</type>
+	  <posX>0</posX>
+	  <posY>440</posY>
+	  <width>64</width>
+	  <height>199</height>
+	  <texture>hiddenmenu_tab.png</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]+Control.HasFocus(50)</visible>
+	</control>
+	<control>
+	  <animation effect="slide" start="0,-60" end="0,0" tween="quadratic" easing="in" time="250" delay="400">WindowOpen</animation>
+	  <animation effect="slide" start="0,0" end="0,-60" tween="quadratic" easing="in" time="250" delay="100">WindowClose</animation>
+	  <id>1</id>
+	  <type>image</type>
+	  <posX>858</posX>
+	  <posY>0</posY>
+	  <texture>hiddenmenu_tab_up.png</texture>
+	  <visible>facadeview.filmstrip+Control.HasFocus(50)</visible>
+	</control>
+	<import>common.time.xml</import>
+  </controls>
+</window>

@@ -649,10 +649,12 @@
     <Content Include="Skins\streamedmp\Anime3_Dummy.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\streamedmp\Anime3_Main.fanart.xml" />
     <Content Include="Skins\streamedmp\Anime3_Main.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skins\streamedmp\Anime3_Posters.xml" />
+    <Content Include="Skins\streamedmp\Anime3_QueueStatus.fanart.xml" />
     <Content Include="Skins\streamedmp\Anime3_QueueStatus.xml" />
     <Content Include="Skins\streamedmp\Anime3_Random.xml">
       <SubType>Designer</SubType>
@@ -869,7 +871,6 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Default" "$(SolutionDir)Release\skin\D
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWide" "$(SolutionDir)Release\skin\DefaultWide" /E /R /I /Y	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Mustayaluca" "$(SolutionDir)Release\skin\Mustayaluca" /E /R /I /Y	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP_Fanart" "$(SolutionDir)Release\skin\StreamedMP_Fanart" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\XFactor" "$(SolutionDir)Release\skin\XFactor" /E /R /I /Y
 	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\[ Media ]" /E /R /I /Y	

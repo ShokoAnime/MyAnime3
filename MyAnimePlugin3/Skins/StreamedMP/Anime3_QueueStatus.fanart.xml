@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<window>
+  <controls>
+    <control>
+      <type>image</type>
+      <posX>560</posX>
+      <posY>13</posY>
+      <width>24</width>
+      <height>24</height>
+      <texture>MyAnime3\anime3_anidb.png</texture>
+      <visible>facadeview.list+Control.IsVisible(3401)+!player.hasmedia</visible>
+    </control>
+    <control>
+      <description>Queue Count - AniDB</description>
+      <type>label</type>
+      <label>#Anime3.GeneralQueueCount</label>
+      <posX>600</posX>
+      <posY>15</posY>
+      <width>50</width>
+      <align>left</align>
+      <font>mediastream10</font>
+      <visible>facadeview.list+Control.IsVisible(3401)+!player.hasmedia</visible>
+    </control>
+    <control>
+      <type>image</type>
+      <posX>660</posX>
+      <posY>13</posY>
+      <width>24</width>
+      <height>24</height>
+      <texture>MyAnime3\anime3_hash.png</texture>
+      <visible>facadeview.list+Control.IsVisible(3402)+!player.hasmedia</visible>
+    </control>
+    <control>
+      <description>Queue Count - Hasher</description>
+      <type>label</type>
+      <label>#Anime3.HasherQueueCount</label>
+      <posX>700</posX>
+      <posY>15</posY>
+      <width>50</width>
+      <align>left</align>
+      <font>mediastream10</font>
+      <visible>facadeview.list+Control.IsVisible(3402)+!player.hasmedia</visible>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    <control>
+      <type>image</type>
+      <posX>760</posX>
+      <posY>13</posY>
+      <width>24</width>
+      <height>24</height>
+      <texture>MyAnime3\anime3_image.png</texture>
+      <visible>facadeview.list+Control.IsVisible(3403)+!player.hasmedia</visible>
+    </control>
+    <control>
+      <description>Queue Count - Images</description>
+      <type>label</type>
+      <label>#Anime3.ImagesQueueCount</label>
+      <posX>800</posX>
+      <posY>15</posY>
+      <width>50</width>
+      <align>left</align>
+      <font>mediastream10</font>
+      <visible>facadeview.list+Control.IsVisible(3403)+!player.hasmedia</visible>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+  </controls>
+</window>
+<!--Checksum:82824b508d1e8f7015b906de0406e880-->

@@ -41,16 +41,8 @@
           </Items>
         </Files>
       </GroupItem>
-      <GroupItem Name="Skins">
-        <DisplayName>Skins</DisplayName>
-        <DefaulChecked>true</DefaulChecked>
-        <Description>Skins</Description>
-        <Files>
-          <Items />
-        </Files>
-      </GroupItem>
       <GroupItem Name="Avalon">
-        <ParentGroup>Skins</ParentGroup>
+        <ParentGroup />
         <DisplayName>Avalon</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>Avalon
@@ -600,20 +592,6 @@ Posters will only be shown when a fanart cannot be found</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.bak.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{ba96283e-4fb0-4ba0-8e9e-4688d5cbb62d}-Anime3_Background.bak.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avalon\Anime3_Background.bak.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.fanart.oriented.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{280c046d-15ee-4978-9cf8-e61925533dfd}-Anime3_Background.fanart.oriented.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avalon\Anime3_Background.fanart.oriented.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{4b8e7e4b-9dac-4be6-a2ee-dc8e37cf9734}-Anime3_Background.standard.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Background.standard.xml</DestinationFilename>
@@ -719,20 +697,6 @@ Posters will only be shown when a fanart cannot be found</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.bak.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{b1998607-4bcc-4d60-947c-ffb3d75374dd}-Anime3_Views.bak.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avalon\Anime3_Views.bak.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.fanart.oriented.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{2b4dacd5-1bc7-4d8f-a589-9731bbc2fd17}-Anime3_Views.fanart.oriented.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avalon\Anime3_Views.fanart.oriented.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.standard.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{3109c7bd-995c-44fc-ad20-3a36a4f44c90}-Anime3_Views.standard.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Views.standard.xml</DestinationFilename>
@@ -804,7 +768,7 @@ Posters will only be shown when a fanart cannot be found</Description>
         </Files>
       </GroupItem>
       <GroupItem Name="StreamedMP">
-        <ParentGroup>Skins</ParentGroup>
+        <ParentGroup />
         <DisplayName>StreamedMP</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>StreamedMP</Description>
@@ -1510,11 +1474,25 @@ Posters will only be shown when a fanart cannot be found</Description>
               <ZipFileName>Installer{CopyFile}\{95f21d36-c384-4480-9608-ffbe384e693d}-Anime3_Actors.xml</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Anime3_Actors.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{368dd106-fe00-4022-b541-3fb4572d92fa}-Anime3_Main.fanart.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Anime3_Main.fanart.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bbdaebb3-14c0-44f3-a9ad-b9d013cff0a5}-Anime3_QueueStatus.fanart.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Anime3_QueueStatus.fanart.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
       <GroupItem Name="Avalon Standard">
-        <ParentGroup>Skins</ParentGroup>
+        <ParentGroup>Avalon</ParentGroup>
         <DisplayName>Avalon Standard Layout</DisplayName>
         <DefaulChecked>false</DefaulChecked>
         <Description>Avalon Standard
@@ -1540,7 +1518,7 @@ Posters will always be shown, even when a fanart exists</Description>
         </Files>
       </GroupItem>
       <GroupItem Name="DefaultWide">
-        <ParentGroup>Skins</ParentGroup>
+        <ParentGroup />
         <DisplayName>DefaultWide</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>DefaultWide</Description>
@@ -2102,13 +2080,6 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Collection.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{86a3760c-6d0b-4eb2-8869-53e80dabb542}-Anime3_Collection.xml</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Anime3_Collection.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Downloads.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{54542728-9222-4e49-b433-209bd93f7ff0}-Anime3_Downloads.xml</ZipFileName>
               <DestinationFilename>%Skin%\DefaultWide\Anime3_Downloads.xml</DestinationFilename>
@@ -2278,7 +2249,7 @@ Posters will always be shown, even when a fanart exists</Description>
         </Files>
       </GroupItem>
       <GroupItem Name="Avallonis">
-        <ParentGroup>Skins</ParentGroup>
+        <ParentGroup />
         <DisplayName>Avallonis</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>Avallonis (a skin mod for Avalon)</Description>
@@ -2847,13 +2818,6 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.standard.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{fa6679cc-b325-4774-9988-0cc7590c081f}-Anime3_Background.standard.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avallonis\Anime3_Background.standard.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{547384a9-5347-4f23-8580-370bb07f11af}-Anime3_Background.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avallonis\Anime3_Background.xml</DestinationFilename>
@@ -2959,13 +2923,6 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.standard.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{64be784f-570f-494b-8876-66f031c1ce51}-Anime3_Views.standard.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avallonis\Anime3_Views.standard.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{1488f9a3-9020-4cbc-bf56-a0c2b9db991f}-Anime3_Views.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avallonis\Anime3_Views.xml</DestinationFilename>
@@ -2999,6 +2956,38 @@ Posters will always be shown, even when a fanart exists</Description>
               <DestinationFilename>%Skin%\Avallonis\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
             </FileItem>
           </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="StreamedMP Fanart">
+        <ParentGroup>StreamedMP</ParentGroup>
+        <DisplayName>StreamedMP Fanart</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Fanart mod for StreamedMP skin</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3a863036-a1ce-4faa-ac96-09250696e5f9}-Anime3_Main.fanart.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Anime3_Main.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d42667c5-344e-4c46-82d6-7ab261393df9}-Anime3_QueueStatus.fanart.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Anime3_QueueStatus.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Skins">
+        <DisplayName>Skins</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Skins</Description>
+        <Files>
+          <Items />
         </Files>
       </GroupItem>
     </Items>
@@ -3068,12 +3057,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <Items />
         </Actions>
         <IncludedGroups>
-          <string>Skins</string>
           <string>DefaultWide</string>
           <string>Avalon</string>
           <string>Avalon Standard</string>
           <string>Avallonis</string>
           <string>StreamedMP</string>
+          <string>StreamedMP Fanart</string>
         </IncludedGroups>
         <PanelName>Tree View Selector</PanelName>
         <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
@@ -3100,7 +3089,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
         </Params>
         <Actions>
           <Items>
-            <ActionItem Name="InstallFiles" ActionType="InstallFiles" ConditionGroup="Skins">
+            <ActionItem Name="InstallFiles" ActionType="InstallFiles" ConditionGroup="Avalon">
+              <Params>
+                <Items />
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
+            <ActionItem Name="ClearSkinCache" ActionType="ClearSkinCache" ConditionGroup="">
               <Params>
                 <Items />
               </Params>
@@ -3109,12 +3104,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
           </Items>
         </Actions>
         <IncludedGroups>
-          <string>Skins</string>
           <string>DefaultWide</string>
           <string>Avalon</string>
           <string>Avalon Standard</string>
           <string>Avallonis</string>
           <string>StreamedMP</string>
+          <string>StreamedMP Fanart</string>
         </IncludedGroups>
         <PanelName>Install Section</PanelName>
         <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
@@ -3823,20 +3818,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.bak.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ba96283e-4fb0-4ba0-8e9e-4688d5cbb62d}-Anime3_Background.bak.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Anime3_Background.bak.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.fanart.oriented.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{280c046d-15ee-4978-9cf8-e61925533dfd}-Anime3_Background.fanart.oriented.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Anime3_Background.fanart.oriented.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{4b8e7e4b-9dac-4be6-a2ee-dc8e37cf9734}-Anime3_Background.standard.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Anime3_Background.standard.xml</DestinationFilename>
@@ -3938,20 +3919,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_SkinSettings.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{d61db8c8-8a33-4992-b4df-9dd20d261e82}-Anime3_SkinSettings.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Anime3_SkinSettings.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.bak.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b1998607-4bcc-4d60-947c-ffb3d75374dd}-Anime3_Views.bak.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Anime3_Views.bak.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.fanart.oriented.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{2b4dacd5-1bc7-4d8f-a589-9731bbc2fd17}-Anime3_Views.fanart.oriented.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Anime3_Views.fanart.oriented.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -4187,6 +4154,20 @@ This plugin does not run independently, but instead relies on using JMM Server a
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{368dd106-fe00-4022-b541-3fb4572d92fa}-Anime3_Main.fanart.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Anime3_Main.fanart.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bbdaebb3-14c0-44f3-a9ad-b9d013cff0a5}-Anime3_QueueStatus.fanart.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Anime3_QueueStatus.fanart.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Admin.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{452e1438-99a3-46ba-b341-fdbacaf20e31}-Anime3_Admin.xml</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Anime3_Admin.xml</DestinationFilename>
@@ -4211,13 +4192,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Char.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{92e48cb9-f995-4243-b270-19e640304026}-Anime3_Char.xml</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Anime3_Char.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide\Anime3_Collection.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{86a3760c-6d0b-4eb2-8869-53e80dabb542}-Anime3_Collection.xml</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Anime3_Collection.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -4397,13 +4371,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.standard.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{fa6679cc-b325-4774-9988-0cc7590c081f}-Anime3_Background.standard.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avallonis\Anime3_Background.standard.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Background.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{547384a9-5347-4f23-8580-370bb07f11af}-Anime3_Background.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avallonis\Anime3_Background.xml</DestinationFilename>
@@ -4505,13 +4472,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_SkinSettings.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{55cac8d0-c89f-4ff1-8f10-f85bc31371fc}-Anime3_SkinSettings.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avallonis\Anime3_SkinSettings.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis\Anime3_Views.standard.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{64be784f-570f-494b-8876-66f031c1ce51}-Anime3_Views.standard.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avallonis\Anime3_Views.standard.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />

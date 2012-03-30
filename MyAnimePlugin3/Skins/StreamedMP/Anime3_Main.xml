@@ -193,7 +193,7 @@
 	  <posX>755</posX>
 	  <posY>90</posY>
 	  <width>558</width>
-	  <height>95</height>
+	  <height>135</height>
 	  <texture>osdbackground.png</texture>
 	  <visible>[facadeview.list|facadeview.largeicons]+Control.IsVisible(3463)</visible>
 	</control>
@@ -236,21 +236,34 @@
 	  <id>0</id>
 	  <posX>830</posX>
 	  <posY>158</posY>
-	  <width>200</width>
+	  <width>300</width>
 	  <font>mediastream10</font>
-	  <label>* = #Anime3.FindAsteriskMode</label>
-	  <visible>[facadeview.list|facadeview.largeicons]+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+	  <label>*=#Anime3.FindAsteriskMode #=#Anime3.FindSharpMode</label>
+	  <visible>Control.IsVisible(3463)+Control.IsVisible(3464)+!Player.hasmedia</visible>
 	</control>
+
 	<control>
-	  <description>Find description #</description>
+	  <description>Find description *</description>
 	  <type>label</type>
 	  <id>0</id>
-	  <posX>1010</posX>
+	  <posX>830</posX>
 	  <posY>158</posY>
-	  <width>200</width>
+	  <width>300</width>
 	  <font>mediastream10</font>
-	  <label># = #Anime3.FindSharpMode</label>
-	  <visible>[facadeview.list|facadeview.largeicons]+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+	  <label>C+W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+	  <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
+	</control>
+
+	<control>
+	  <description>Find description C+M-key</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>830</posX>
+	  <posY>178</posY>
+	  <width>300</width>
+	  <font>mediastream10</font>
+	  <label>C+M=Mode (#Anime3.FindMode)</label>
+	  <visible>Control.IsVisible(3463)</visible>
 	</control>
 	<!-- *********************** LIST /GRAPHICAL VIEW*********************************** -->
 	<control>

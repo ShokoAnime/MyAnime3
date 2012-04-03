@@ -192,6 +192,8 @@ namespace MyAnimePlugin3.Windows
 					dlg.Reset();
 					dlg.SetHeading(rec.Recommended_DisplayName);
 					dlg.Add("Don't Show This Anime (Ignore)");
+					dlg.Add("Bookmark this Anime");
+					dlg.Add("Create Series for Anime");
 
 					dlg.DoModal(GUIWindowManager.ActiveWindow);
 
@@ -207,6 +209,32 @@ namespace MyAnimePlugin3.Windows
 								JMMServerVM.Instance.CurrentUser.JMMUserID);
 
 							LoadData();
+							break;
+
+						case 1:
+
+
+							BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+							bookmark.AnimeID = rec.RecommendedAnimeID;
+							bookmark.Downloading = 0;
+							bookmark.Notes = "";
+							bookmark.Priority = 1;
+							if (bookmark.Save())
+							{
+								Utils.DialogMsg("Success", "Bookmark Created");
+							}
+
+							break;
+
+						case 2:
+
+							JMMServerBinary.Contract_AnimeSeries_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.CreateSeriesFromAnime(
+								rec.RecommendedAnimeID, null, JMMServerVM.Instance.CurrentUser.JMMUserID);
+							if (string.IsNullOrEmpty(resp.ErrorMessage))
+								Utils.DialogMsg("Success", "Series Created");
+							else
+								Utils.DialogMsg("Error", resp.ErrorMessage);
+
 							break;
 
 					}

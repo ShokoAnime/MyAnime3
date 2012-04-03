@@ -264,6 +264,8 @@ namespace MyAnimePlugin3.Windows
 				dlg.Reset();
 				dlg.SetHeading("Calendar");
 				dlg.Add("Search for Torrents");
+				dlg.Add("Bookmark this Anime");
+				dlg.Add("Create Series for Anime");
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
 
 				switch (dlg.SelectedId)
@@ -274,6 +276,39 @@ namespace MyAnimePlugin3.Windows
 						if ((anime2 = this.m_Facade.SelectedListItem.TVTag as AniDB_AnimeVM) != null)
 						{
 							DownloadHelper.SearchAnime(anime2);
+						}
+
+						break;
+
+					case 2:
+
+						AniDB_AnimeVM anime3 = null;
+						if ((anime3 = this.m_Facade.SelectedListItem.TVTag as AniDB_AnimeVM) != null)
+						{
+							BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+							bookmark.AnimeID = anime3.AnimeID;
+							bookmark.Downloading = 0;
+							bookmark.Notes = "";
+							bookmark.Priority = 1;
+							if (bookmark.Save())
+							{
+								Utils.DialogMsg("Success", "Bookmark Created");
+							}
+						}
+
+						break;
+
+					case 3:
+
+						AniDB_AnimeVM anime4 = null;
+						if ((anime4 = this.m_Facade.SelectedListItem.TVTag as AniDB_AnimeVM) != null)
+						{
+							JMMServerBinary.Contract_AnimeSeries_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.CreateSeriesFromAnime(
+								anime4.AnimeID, null, JMMServerVM.Instance.CurrentUser.JMMUserID);
+							if (string.IsNullOrEmpty(resp.ErrorMessage))
+								Utils.DialogMsg("Success", "Series Created");
+							else
+								Utils.DialogMsg("Error", resp.ErrorMessage);
 						}
 
 						break;

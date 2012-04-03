@@ -196,6 +196,7 @@
     <Compile Include="ViewModel\AnimeEpisodeVM.cs" />
     <Compile Include="ViewModel\AnimeGroupVM.cs" />
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
+    <Compile Include="ViewModel\BookmarkedAnimeVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />

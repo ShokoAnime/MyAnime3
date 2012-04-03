@@ -116,7 +116,13 @@ namespace MyAnimePlugin3.Windows
 				Dictionary<int, int> dictTvDBSeasons = anime.DictTvDBSeasons;
 				Dictionary<int, int> dictTvDBSeasonsSpecials = anime.DictTvDBSeasonsSpecials;
 				CrossRef_AniDB_TvDBVM tvDBCrossRef = anime.CrossRefTvDB;
-				ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+
+				List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = anime.CrossRefTvDBEpisodes;
+				Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
+				foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
+					dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
+
+				ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
 
 				tempEpisodes.Add(ep);
 			}

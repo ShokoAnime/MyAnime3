@@ -238,10 +238,36 @@ namespace MyAnimePlugin3.ViewModel
 		}*/
 
 		public void SetTvDBInfo(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons,
-			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef)
+			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef, Dictionary<int, int> dictTvDBCrossRefEpisodes)
 		{
 			this.EpisodeOverview = "Episode Overview Not Available";
 			this.EpisodeImageLocation = "";
+
+			// check if this episode has a direct tvdb over-ride
+			if (dictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
+			{
+				foreach (TvDB_EpisodeVM tvep in dictTvDBEpisodes.Values)
+				{
+					if (dictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
+					{
+						if (string.IsNullOrEmpty(tvep.Overview))
+							this.EpisodeOverview = "Episode Overview Not Available";
+						else
+							this.EpisodeOverview = tvep.Overview;
+
+						if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+							this.EpisodeImageLocation = "";
+						else
+							this.EpisodeImageLocation = tvep.FullImagePath;
+
+						if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+							EpisodeName = tvep.EpisodeName;
+
+						return;
+					}
+				}
+			}
+
 
 			// now do stuff to improve performance
 			if (this.EpisodeTypeEnum == enEpisodeType.Episode)

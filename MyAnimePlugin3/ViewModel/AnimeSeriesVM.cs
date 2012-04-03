@@ -374,10 +374,15 @@ namespace MyAnimePlugin3.ViewModel
 				Dictionary<int, int> dictTvDBSeasonsSpecials = this.AniDB_Anime.DictTvDBSeasonsSpecials;
 				CrossRef_AniDB_TvDBVM tvDBCrossRef = this.AniDB_Anime.CrossRefTvDB;
 
+				List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = this.AniDB_Anime.CrossRefTvDBEpisodes;
+				Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
+				foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
+					dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
+
 				// Normal episodes
 				foreach (AnimeEpisodeVM ep in JMMServerHelper.GetEpisodesForSeries(this.AnimeSeriesID.Value))
 				{
-					ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+					ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
 					allEpisodes.Add(ep);
 				}
 

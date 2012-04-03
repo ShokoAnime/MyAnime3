@@ -203,6 +203,7 @@
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
     <Compile Include="ViewModel\FanartContainer.cs" />

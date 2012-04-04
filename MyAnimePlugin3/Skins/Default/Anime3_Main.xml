@@ -419,12 +419,34 @@
 				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 			</control>
 			<control>
+				<id>0</id>
+				<label>MENU</label>
+				<type>label</type>
+				<font>font12</font>
+				<posX>30</posX>
+				<posY>90</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<id>0</id>
+				<label>OTHER</label>
+				<type>label</type>
+				<font>font12</font>
+				<posX>30</posX>
+				<posY>200</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
 				<description>button group</description>
 				<type>group</type>
 				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 				<posX>40</posX>
-				<posY>97</posY>
+				<posY>112</posY>
 				<layout>StackLayout</layout>
 				<visible>!Control.HasFocus(50)</visible>
 				
@@ -463,6 +485,13 @@
 			<onup>11</onup>
 			<ondown>920</ondown>
 		  </control>
+		  <control>
+			<description>Empty button</description>
+			<type>button</type>
+			<id>0</id>
+			<label>-</label>
+			<visible>false</visible>
+		</control>
 		  <control>
 			<description>Continue Watching...</description>
 			<type>button</type>

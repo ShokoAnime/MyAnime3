@@ -133,7 +133,7 @@ namespace MyAnimePlugin3.Windows
 				if (!string.IsNullOrEmpty(aniChar.PosterPath) && File.Exists(aniChar.PosterPath))
 					imagePath = aniChar.PosterPath;
 
-				GUIListItem item = new GUIListItem(aniChar.CharName);
+				GUIListItem item = new GUIListItem("");
 				item.IconImage = item.IconImageBig = imagePath;
 				item.TVTag = aniChar;
 				item.OnItemSelected += new GUIListItem.ItemSelectedHandler(onFacadeItemSelected);
@@ -207,7 +207,7 @@ namespace MyAnimePlugin3.Windows
 
             // get the actor from the character
 			AniDB_SeiyuuVM actor = aniChar.Creator;
-			MainWindow.GlobalSeiyuuID = actor.AniDB_SeiyuuID;
+			
             if (actor == null)
             {
                 try
@@ -224,6 +224,8 @@ namespace MyAnimePlugin3.Windows
             }
             else
             {
+				MainWindow.GlobalSeiyuuID = actor.AniDB_SeiyuuID;
+
                 if (dummyMainActorExists != null) dummyMainActorExists.Visible = true;
 
                 setGUIProperty("Actor.Name", actor.SeiyuuName);

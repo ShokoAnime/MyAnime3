@@ -1948,7 +1948,9 @@ namespace MyAnimePlugin3
 				dlg.Add("List Posters");
 				dlg.Add("Wide Banners");
 				dlg.Add("Filmstrip");
-				dlg.Add("Coverflow");
+
+				if (!m_Facade.IsNullLayout(GUIFacadeControl.Layout.CoverFlow))
+					dlg.Add("Coverflow");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);

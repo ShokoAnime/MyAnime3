@@ -35,41 +35,6 @@
 			<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
 		</control>
 
-		<control>
-			<description>Fave Icon (List View)</description>
-			<id>601</id>
-			<type>image</type>
-			<posX>30</posX>
-			<posY>50</posY>
-			<width>48</width>
-			<height>48</height>
-			<texture>MyAnime3/anime3_heart1_48.png</texture>
-			<visible>Control.IsVisible(1245)+facadeview.list</visible>
-		</control>
-
-		<control>
-			<description>Fave Icon (Wide Banners View)</description>
-			<id>611</id>
-			<type>image</type>
-			<posX>30</posX>
-			<posY>650</posY>
-			<width>48</width>
-			<height>48</height>
-			<texture>MyAnime3/anime3_heart1_48.png</texture>
-			<visible>Control.IsVisible(1245)+Control.IsVisible(1242)</visible>
-		</control>
-
-		<control>
-			<id>602</id>
-			<type>image</type>
-			<posX>80</posX>
-			<posY>50</posY>
-			<width>48</width>
-			<height>48</height>
-			<texture>MyAnime3/anime3_ex_48.png</texture>
-                        <visible>Control.IsVisible(1246)</visible>
-		</control>
-
 		<!-- ************************** VIEW SELECTION ***********************************-->
 		<control>
 			<type>label</type>
@@ -77,7 +42,7 @@
 			<id>77</id>
 			<posX>360</posX>
 			<posY>70</posY>
-			<label>[ #Anime3.SimpleCurrentView ]</label>
+			<label>[ #Anime3.SimpleCurrentView (#selectedindex/#Anime3.GroupCount) ]</label>
 		</control>
 
 		<!-- GROUP/SERIES/EPISODE TYPES POSTER ( LIST LAYOUT) -->
@@ -89,7 +54,7 @@
 			<width>308</width>
 			<height>453</height>
 			<texture>Picture_cover.png</texture>
-			<visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1250)]+facadeview.list</visible>
+			<visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1250)]+facadeview.list+Control.HasFocus(50)</visible>
 		</control>
 		<control>
 			<type>image</type>
@@ -99,7 +64,7 @@
 			<width>292</width>
 			<height>442</height>
 			<texture>#Anime3.GroupSeriesPoster</texture>
-			<visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1250)]+facadeview.list</visible>
+			<visible>[Control.IsVisible(1240)|Control.IsVisible(1237)|Control.IsVisible(1238)|Control.IsVisible(1250)]+facadeview.list+Control.HasFocus(50)</visible>
 		</control>
 
     <!-- *********************** FIND PANEL *********************************** -->
@@ -109,8 +74,8 @@
       <description>background</description>
       <type>image</type>
       <id>0</id>
-      <posX>400</posX>
-      <posY>70</posY>
+      <posX>30</posX>
+      <posY>50</posY>
       <width>322</width>
       <height>48</height>
       <texture>menu_list_nofocus.png</texture>
@@ -121,8 +86,8 @@
       <description>Find Label</description>
       <type>label</type>
       <id>0</id>
-      <posX>410</posX>
-      <posY>74</posY>
+      <posX>50</posX>
+      <posY>54</posY>
       <width>150</width>
       <font>font14</font>
       <label>Find:</label>
@@ -133,8 +98,8 @@
       <description>find text background</description>
       <type>image</type>
       <id>0</id>
-      <posX>450</posX>
-      <posY>75</posY>
+      <posX>100</posX>
+      <posY>55</posY>
       <width>266</width>
       <height>26</height>
       <texture>menu_list_nofocus.png</texture>
@@ -145,8 +110,8 @@
       <description>find text</description>
       <type>label</type>
       <id>0</id>
-      <posX>455</posX>
-      <posY>77</posY>
+      <posX>105</posX>
+      <posY>54</posY>
       <width>266</width>
       <font>font12</font>
       <label>#Anime3.FindText</label>
@@ -157,8 +122,8 @@
       <description>Find description *-key (T9)</description>
       <type>label</type>
       <id>0</id>
-      <posX>455</posX>
-      <posY>95</posY>
+      <posX>105</posX>
+      <posY>75</posY>
       <width>266</width>
       <font>font10</font>
       <label>*=#Anime3.FindAsteriskMode</label>
@@ -169,8 +134,8 @@
       <description>Find description #-key (T9)</description>
       <type>label</type>
       <id>0</id>
-      <posX>555</posX>
-      <posY>95</posY>
+      <posX>155</posX>
+      <posY>75</posY>
       <width>266</width>
       <font>font10</font>
       <label>#=#Anime3.FindSharpMode</label>
@@ -181,8 +146,8 @@
       <description>Find description C+W-key (text)</description>
       <type>label</type>
       <id>0</id>
-      <posX>455</posX>
-      <posY>95</posY>
+      <posX>105</posX>
+      <posY>75</posY>
       <width>266</width>
       <font>font10</font>
       <label>C+W=Start Word (#Anime3.FindStartWord)</label>
@@ -193,8 +158,8 @@
       <description>Find description tab-key (text)</description>
       <type>label</type>
       <id>0</id>
-      <posX>555</posX>
-      <posY>95</posY>
+      <posX>255</posX>
+      <posY>75</posY>
       <width>266</width>
       <font>font10</font>
       <label>TAB=Next Match</label>
@@ -205,7 +170,7 @@
       <description>Find description C+M-key</description>
       <type>label</type>
       <id>0</id>
-      <posX>630</posX>
+      <posX>105</posX>
       <posY>95</posY>
       <width>266</width>
       <font>font10</font>
@@ -275,6 +240,7 @@
 					<onright>12</onright>
 				</control>
 				<control>
+				
 					<description>Filmstrip view (used for season posters)</description>
 					<type>filmstrip</type>
 					<scrollOffset>2</scrollOffset>
@@ -311,6 +277,7 @@
 					<thumbAnimation effect="zoom" start="100,100" end="120,120" time="100">focus</thumbAnimation>
 					<animation effect="rotatey" start="-50" end="-50" center="0,0" tween="back" ease="easeout"  time="500" reversible="false">focus</animation>
 					<animation effect="rotatey" start="-50" end="-50" center="0,0"  tween="back" ease="easeout"   time="500" reversible="false">unfocus</animation>
+				
 				</control>
 
 				<control>
@@ -386,10 +353,10 @@
 					<height>470</height>
 					<textXOff>-55</textXOff>
 					<textYOff>4</textYOff>
-					<textXOff2>268</textXOff2>
+					<textXOff2>260</textXOff2>
 					<textYOff2>4</textYOff2>
-					<textXOff3>280</textXOff3>
-					<textYOff3>8</textYOff3>
+					<textXOff3>270</textXOff3>
+					<textYOff3>6</textYOff3>
 					<IconXOff>260</IconXOff>
 					<IconYOff>8</IconYOff>
 					<font>font12</font>
@@ -465,68 +432,102 @@
 				<control>
 			<description>Switch User</description>
 			<type>button</type>
+			<width>200</width>
 			<id>12</id>
 			<label>Switch User</label>
 			<onleft>50</onleft>
 			<onright>50</onright>
-			<onup>10</onup>
+			<onup>926</onup>
+			<ondown>11</ondown>
 		  </control>
 		  <control>
 			<description>Change Layout</description>
 			<type>button</type>
+			<width>200</width>
 			<id>11</id>
 			<label>Change Layout</label>
 			<onleft>50</onleft>
 			<onright>50</onright>
+			<onup>12</onup>
+			<ondown>4</ondown>
+			
 		  </control>
 		  <control>
 			<description>Options</description>
 			<type>button</type>
+			<width>200</width>
 			<id>4</id>
-			<label>Settings</label>
+			<label>Options</label>
 			<onleft>50</onleft>
 			<onright>50</onright>
+			<onup>11</onup>
+			<ondown>920</ondown>
 		  </control>
 		  <control>
-			<description>Utilities</description>
+			<description>Continue Watching...</description>
 			<type>button</type>
-			<id>5</id>
-			<label>Utilities</label>
+			<width>200</width>
+			<id>920</id>
+			<label>Continue Watching...</label>
 			<onleft>50</onleft>
 			<onright>50</onright>
+			<onup>4</onup>
+			<ondown>921</ondown>
 		  </control>
+			<control>
+				<description>Utilities</description>
+				<type>button</type>
+				<width>200</width>
+				<id>921</id>
+				<label>Utilities</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>920</onup>
+			<ondown>922</ondown>
+			</control>
 			<control>
 				<description>Calendar</description>
 				<type>button</type>
-				<id>8</id>
+				<width>200</width>
+				<id>922</id>
 				<label>Calendar</label>
 				<onleft>50</onleft>
 				<onright>50</onright>
+				<onup>921</onup>
+				<ondown>923</ondown>
 			</control>
 			<control>
-				<description>Downloads</description>
-				<type>button</type>
-				<id>9</id>
-				<label>Downloads</label>
-				<onleft>50</onleft>
-				<onright>50</onright>
-			</control>
-			<control>
-			  <description>Current Playlist</description>
+			  <description>Downloads</description>
 			  <type>button</type>
-			  <id>666</id>
-			  <label>Current Playlist</label>
+			  <width>200</width>
+			  <id>923</id>
+			  <label>Downloads</label>
 			  <onleft>50</onleft>
 			  <onright>50</onright>
+			  <onup>922</onup>
+			<ondown>925</ondown>
 			</control>
 			<control>
-				<description>My Playlists</description>
+				<description>Recommendations</description>
 				<type>button</type>
-				<id>667</id>
-				<label>My Playlists</label>
+				<width>200</width>
+				<id>925</id>
+				<label>Recommendations</label>
 				<onleft>50</onleft>
 				<onright>50</onright>
-				<ondown>2</ondown>
+				<onup>923</onup>
+				<ondown>926</ondown>
+			</control>
+			<control>
+				<description>Something Random</description>
+				<type>button</type>
+				<width>200</width>
+				<id>926</id>
+				<label>Something Random</label>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<onup>925</onup>
+				<ondown>12</ondown>
 			</control>
 			</control>
 		</control>
@@ -613,7 +614,7 @@
 			<description>Description of episode</description>
 			<id>631</id>
 			<posX>37</posX>
-			<posY>360</posY>
+			<posY>330</posY>
 			<width>300</width>
 			<height>150</height>
 			<seperator>----------------------------------------------------------------------</seperator>

@@ -17,21 +17,7 @@
 	<controls>
 
 		<import>common.time.xml</import>
-		<control>
-			<type>label</type>
-			<description>Dummy Label for fullscreen preview</description>
-			<id>1400</id>
-			<posX>-50</posX>
-			<posY>-50</posY>
-			<width>620</width>
-			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
-			<label>
-			</label>
-			<visible>true</visible>
-			<!-- to make a control visible only when Fullscreen preview is on do this: <visible>Control.IsVisible(1400)</visible> -->
-			<!-- to make a control invisible when Fullscreen preview is off do this: <visible>!Control.IsVisible(1400)</visible> -->
-		</control>	
+		
 		<!-- :::::::::::::: BACKGROUNDS :::::::::::::: -->
 
 		<control>
@@ -39,11 +25,10 @@
 			<type>image</type>
 			<posX>0</posX>
 			<posY>0</posY>
-			<width>1024</width>
+			<width>720</width>
 			<height>576</height>
 			<dimColor>50ffffff</dimColor>
 			<texture>Backgroundtop.png</texture>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 		<control>
 			<description>preview</description>
@@ -51,7 +36,7 @@
 			<type>image</type>
 			<posx>-170</posx>
 			<posy>0</posy>
-			<width>1024</width>
+			<width>720</width>
 			<height>576</height>
 			<texture>#Anime3.FanArt.SelectedPreview</texture>
 			<colordiffuse>50fefaff</colordiffuse>
@@ -68,7 +53,6 @@
 			<textcolor>ffa9d0f7</textcolor>
 			<width>250</width>
 			<label>FanArt</label>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 
 		<!-- :::::::::::::: INFO LABELS :::::::::::::: -->
@@ -81,7 +65,6 @@
 			<posY>60</posY>
 			<font>font14</font>
 			<label>169</label>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 		<control>
 			<description>FanArt Resolution</description>
@@ -92,8 +75,30 @@
 			<font>font14</font>
 			<label>#Anime3.FanArt.SelectedFanartResolution</label>
 			<align>left</align>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
+		
+		<control>
+			<description>Source</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>300</posX>
+			<posY>60</posY>
+			<font>font14</font>
+			<label>Source:</label>
+		</control>
+		
+		<control>
+			<description>Source Value</description>
+			<type>label</type>
+			<id>0</id>
+			<posX>390</posX>
+			<posY>60</posY>
+			<font>font14</font>
+			<label>#Anime3.FanArt.Source</label>
+		</control>
+		
+		
+		
 		
 		<control>
 			<description>Disabled</description>
@@ -103,7 +108,6 @@
 			<posY>530</posY>
 			<font>font14</font>
 			<label>Disabled:</label>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 		
 		<control>
@@ -114,36 +118,34 @@
 			<posY>530</posY>
 			<font>font14</font>
 			<label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 		
 		<control>
 			<description>Default</description>
 			<type>label</type>
 			<id>0</id>
-			<posX>240</posX>
+			<posX>300</posX>
 			<posY>530</posY>
 			<font>font14</font>
 			<label>Default:</label>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 		
 		<control>
-			<description>Disabled Value</description>
+			<description>Default Value</description>
 			<type>label</type>
 			<id>0</id>
-			<posX>334</posX>
+			<posX>390</posX>
 			<posY>530</posY>
 			<font>font14</font>
 			<label>#Anime3.FanArt.SelectedFanartIsDefault</label>
-			<visible>Control.IsVisible(1400)</visible>
 		</control>
 
 		<!--  ************** HIDDEN MENU *****************  -->
+
 		<control>
 			<type>actiongroup</type>
 			<description>action menu</description>
-			<defaultcontrol>2</defaultcontrol>
+			 <defaultcontrol>2</defaultcontrol>
 			<onexit>50</onexit>
 			<buttonX>0</buttonX>
 			<buttonY>0</buttonY>
@@ -152,7 +154,7 @@
 			<textureFocus>-</textureFocus>
 			<textureNoFocus>-</textureNoFocus>
 			<width>320</width>
-			<height>720</height>
+			<height>700</height>
 			<dimColor>00ffffff</dimColor>
 			<control>
 				<type>image</type>
@@ -167,12 +169,34 @@
 				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 			</control>
 			<control>
+				<id>0</id>
+				<label>MENU</label>
+				<type>label</type>
+				<font>font12</font>
+				<posX>30</posX>
+				<posY>90</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<id>0</id>
+				<label>OTHER</label>
+				<type>label</type>
+				<font>font12</font>
+				<posX>30</posX>
+				<posY>140</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
 				<description>button group</description>
 				<type>group</type>
 				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 				<posX>40</posX>
-				<posY>97</posY>
+				<posY>110</posY>
 				<layout>StackLayout</layout>
 				<visible>!Control.HasFocus(50)</visible>
 				<control>
@@ -180,28 +204,67 @@
 					<type>button</type>
 					<id>2</id>
 					<label>Change Layout</label>
-					<onup>141</onup>
-					<ondown>140</ondown>
 					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>915</onup>
+					<ondown>910</ondown>
 				</control>
-
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<label>-</label>
+					<visible>false</visible>
+				</control>
+				
+				<control>
+					<description>Series Info</description>
+					<type>button</type>
+					<id>910</id>
+					<label>Series Info</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>2</onup>
+					<ondown>911</ondown>
+				</control>
+				<control>
+					<description>Characters</description>
+					<type>button</type>
+					<id>911</id>
+					<label>Characters</label>
+					<onleft>801</onleft>
+					<onright>801</onright>
+					<onup>910</onup>
+					<ondown>912</ondown>
+				</control>
+				<control>
+					<description>Relations</description>
+					<type>button</type>
+					<id>912</id>
+					<label>Relations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>911</onup>
+					<ondown>914</ondown>
+				</control>
 				<control>
 					<description>Posters</description>
 					<type>button</type>
-					<id>140</id>
+					<id>914</id>
 					<label>Posters</label>
 					<onleft>50</onleft>
-					<onup>2</onup>
-					<ondown>141</ondown>
+					<onright>50</onright>
+					<onup>912</onup>
+					<ondown>915</ondown>
 				</control>
-
 				<control>
 					<description>Wide Banners</description>
 					<type>button</type>
-					<id>141</id>
+					<id>915</id>
 					<label>Wide Banners</label>
 					<onleft>50</onleft>
-					<onup>140</onup>
+					<onright>50</onright>
+					<onup>914</onup>
 					<ondown>2</ondown>
 				</control>
 			</control>
@@ -269,7 +332,6 @@
 					<textXOff>20</textXOff>
 					<textYOff>-33</textYOff>
 					<unfocusedAlpha>150</unfocusedAlpha>
-					<visible>Control.IsVisible(1400)</visible>
 				</control>
 				<control>
 					<description>Filmstrip view</description>
@@ -308,7 +370,6 @@
 					<thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
 					<animation effect="rotatey" start="20" end="0" center="525,0" tween="back" ease="easeout"  time="500" reversible="false">unfocus</animation>
 					<animation effect="rotatey" start="0" end="20" center="525,0"  tween="back" ease="easeout"   time="500" reversible="false">focus</animation>
-					<visible>Control.IsVisible(1400)</visible>
 				</control>
 			</control>
 		</control>

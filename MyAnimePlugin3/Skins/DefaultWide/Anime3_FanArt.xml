@@ -143,7 +143,7 @@
 		  <posX>71</posX>
 		  <posY>150</posY>
 		  <layout>StackLayout</layout>
-		  <visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+		  <visible>!Control.HasFocus(50)</visible>
 		  <control>
 					<description>Change Layout</description>
 					<type>button</type>

@@ -600,6 +600,7 @@
     <Content Include="Skins\DefaultWide\Media\MyAnime3\overlay_bar_bottom.png" />
     <Content Include="Skins\DefaultWide\Media\MyAnime3\overlay_bar_top.png" />
     <Content Include="Skins\DefaultWide\Media\thumbborder.png" />
+    <Content Include="Skins\Default\Anime3_Actors.xml" />
     <Content Include="Skins\Default\Anime3_Admin.xml" />
     <Content Include="Skins\Default\Anime3_AnimeInfo.xml" />
     <Content Include="Skins\Default\Anime3_Calendar.xml" />

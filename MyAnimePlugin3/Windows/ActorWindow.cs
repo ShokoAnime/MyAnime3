@@ -120,7 +120,7 @@ namespace MyAnimePlugin3.Windows
 				else
 					missingImages = true;
 
-				GUIListItem item = new GUIListItem(aniChar.CharName);
+				GUIListItem item = new GUIListItem("");
 				item.IconImage = item.IconImageBig = imagePath;
 				item.TVTag = aniChar;
 				item.OnItemSelected += new GUIListItem.ItemSelectedHandler(onFacadeItemSelected);

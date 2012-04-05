@@ -107,10 +107,11 @@
 		</control>
 
 		<!--  ************** HIDDEN MENU *****************  -->
+
 		<control>
 			<type>actiongroup</type>
 			<description>action menu</description>
-			<defaultcontrol>140</defaultcontrol>
+			 <defaultcontrol>2</defaultcontrol>
 			<onexit>50</onexit>
 			<buttonX>0</buttonX>
 			<buttonY>0</buttonY>
@@ -119,7 +120,7 @@
 			<textureFocus>-</textureFocus>
 			<textureNoFocus>-</textureNoFocus>
 			<width>320</width>
-			<height>720</height>
+			<height>700</height>
 			<dimColor>00ffffff</dimColor>
 			<control>
 				<type>image</type>
@@ -134,33 +135,75 @@
 				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 			</control>
 			<control>
+				<id>0</id>
+				<label>OTHER</label>
+				<type>label</type>
+				<font>font12</font>
+				<posX>30</posX>
+				<posY>90</posY>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
 				<description>button group</description>
 				<type>group</type>
 				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
 				<posX>40</posX>
-				<posY>97</posY>
+				<posY>110</posY>
 				<layout>StackLayout</layout>
 				<visible>!Control.HasFocus(50)</visible>
-
+				
+				<control>
+					<description>Series Info</description>
+					<type>button</type>
+					<id>910</id>
+					<label>Series Info</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>914</onup>
+					<ondown>911</ondown>
+				</control>
+				<control>
+					<description>Characters</description>
+					<type>button</type>
+					<id>911</id>
+					<label>Characters</label>
+					<onleft>801</onleft>
+					<onright>801</onright>
+					<onup>910</onup>
+					<ondown>912</ondown>
+				</control>
+				<control>
+					<description>Relations</description>
+					<type>button</type>
+					<id>912</id>
+					<label>Relations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>911</onup>
+					<ondown>913</ondown>
+				</control>
 				<control>
 					<description>Fanart</description>
 					<type>button</type>
-					<id>140</id>
+					<id>913</id>
 					<label>Fanart</label>
 					<onleft>50</onleft>
-					<onup>141</onup>
-					<ondown>141</ondown>
+					<onright>50</onright>
+					<onup>912</onup>
+					<ondown>914</ondown>
 				</control>
-
 				<control>
 					<description>Posters</description>
 					<type>button</type>
-					<id>141</id>
+					<id>914</id>
 					<label>Posters</label>
 					<onleft>50</onleft>
-					<onup>140</onup>
-					<ondown>140</ondown>
+					<onright>50</onright>
+					<onup>913</onup>
+					<ondown>910</ondown>
 				</control>
 			</control>
 		</control>
@@ -232,8 +275,8 @@
 					<renderFocusText>yes</renderFocusText>
 					<renderUnfocusText>yes</renderUnfocusText>
 					<spinCanFocus>no</spinCanFocus>
-					<onleft>140</onleft>
-					<onright>140</onright>
+					<onleft>910</onleft>
+					<onright>910</onright>
 				</control>
 			</control>
 		</control>

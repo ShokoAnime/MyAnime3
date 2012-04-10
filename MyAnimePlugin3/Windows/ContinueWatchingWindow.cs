@@ -60,7 +60,7 @@ namespace MyAnimePlugin3.Windows
 
 			foreach (AnimeEpisodeVM ep in colEpisodes)
 			{
-				GUIListItem item = new GUIListItem(ep.AnimeSeries.SeriesName);
+				GUIListItem item = new GUIListItem("");
 				AniDB_AnimeVM anime = ep.AnimeSeries.AniDB_Anime;
 
 				string imagePath = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_question_poster.png";

@@ -132,7 +132,7 @@
 	<control>
 	  <type>actiongroup</type>
 	  <description>action menu</description>
-	  <defaultcontrol>12</defaultcontrol>
+	  <defaultcontrol>801</defaultcontrol>
 	  <onexit>50</onexit>
 	  <buttonX>0</buttonX>
 	  <buttonY>0</buttonY>

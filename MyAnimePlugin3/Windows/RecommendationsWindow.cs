@@ -74,7 +74,7 @@ namespace MyAnimePlugin3.Windows
 
 			foreach (RecommendationVM rec in colRecs)
 			{
-				GUIListItem item = new GUIListItem(rec.Recommended_DisplayName);
+				GUIListItem item = new GUIListItem("");
 				//AniDB_AnimeVM anime = rec.AnimeSeries.AniDB_Anime;
 
 				item.IconImage = item.IconImageBig = rec.Recommended_PosterPath;

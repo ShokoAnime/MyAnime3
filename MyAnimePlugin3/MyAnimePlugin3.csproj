@@ -578,7 +578,9 @@
     <Content Include="Skins\DefaultWide\Anime3_Char.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Skins\DefaultWide\Anime3_Downloads.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Downloads.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\DefaultWide\Anime3_Dummy.xml" />
     <Content Include="Skins\DefaultWide\Anime3_FanArt.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Main.xml">
@@ -586,8 +588,12 @@
     </Content>
     <Content Include="Skins\DefaultWide\Anime3_Posters.xml" />
     <Content Include="Skins\DefaultWide\Anime3_QueueStatus.xml" />
-    <Content Include="Skins\DefaultWide\Anime3_Random.xml" />
-    <Content Include="Skins\DefaultWide\Anime3_Recommendations.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Recommendations.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\DefaultWide\Anime3_Relations.xml" />
     <Content Include="Skins\DefaultWide\Anime3_SkinSettings.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Watching.xml" />
@@ -611,8 +617,11 @@
     <Content Include="Skins\Default\Anime3_FanArt.xml" />
     <Content Include="Skins\Default\Anime3_Main.xml" />
     <Content Include="Skins\Default\Anime3_Posters.xml" />
+    <Content Include="Skins\Default\Anime3_Random.xml" />
+    <Content Include="Skins\Default\Anime3_Recommendations.xml" />
     <Content Include="Skins\Default\Anime3_Relations.xml" />
     <Content Include="Skins\Default\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\Default\Anime3_Watching.xml" />
     <Content Include="Skins\Default\Anime3_WideBanners.xml" />
     <Content Include="Skins\Default\Media\hover_my anime alt.png" />
     <Content Include="Skins\Default\Media\hover_My Anime3.png" />

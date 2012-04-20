@@ -1119,5 +1119,7 @@
 	</control>
 
 	<import>Anime3_QueueStatus.xml</import>
+	<import>common.overlays2.xml</import>
+	
   </controls>
 </window>

@@ -1185,6 +1185,8 @@
     </control>
     
     <import>Anime3_QueueStatus.xml</import>
+	<import>common.overlays2.xml</import>
+	
   </controls>
 </window>
 <!--Checksum:3337c4f0f6e14e07a6c36bcec1f215db-->

@@ -108,6 +108,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label45 = new System.Windows.Forms.Label();
 			this.nudFindTimeout = new System.Windows.Forms.NumericUpDown();
 			this.groupBox15 = new System.Windows.Forms.GroupBox();
+			this.chkRateSeries = new System.Windows.Forms.CheckBox();
 			this.chkShowMissingGroups = new System.Windows.Forms.CheckBox();
 			this.chkShowMissing = new System.Windows.Forms.CheckBox();
 			this.chkHideWatchedFiles = new System.Windows.Forms.CheckBox();
@@ -159,7 +160,12 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.btnImagesLocation = new System.Windows.Forms.Button();
 			this.label46 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.chkRateSeries = new System.Windows.Forms.CheckBox();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.btnBakaBTTest = new System.Windows.Forms.Button();
+			this.txtBakaBTPassword = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtBakaBTUsername = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
@@ -185,6 +191,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
+			this.groupBox6.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -545,6 +552,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// tabPage11
 			// 
+			this.tabPage11.Controls.Add(this.groupBox6);
 			this.tabPage11.Controls.Add(this.groupBox19);
 			this.tabPage11.Controls.Add(this.groupBox18);
 			this.tabPage11.Location = new System.Drawing.Point(4, 22);
@@ -1040,6 +1048,16 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox15.TabIndex = 22;
 			this.groupBox15.TabStop = false;
 			this.groupBox15.Text = "Other";
+			// 
+			// chkRateSeries
+			// 
+			this.chkRateSeries.AutoSize = true;
+			this.chkRateSeries.Location = new System.Drawing.Point(20, 117);
+			this.chkRateSeries.Name = "chkRateSeries";
+			this.chkRateSeries.Size = new System.Drawing.Size(271, 17);
+			this.chkRateSeries.TabIndex = 39;
+			this.chkRateSeries.Text = "Prompt to rate series when all episodes are watched";
+			this.chkRateSeries.UseVisualStyleBackColor = true;
 			// 
 			// chkShowMissingGroups
 			// 
@@ -1588,15 +1606,67 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.Size = new System.Drawing.Size(755, 504);
 			this.tabControl1.TabIndex = 0;
 			// 
-			// chkRateSeries
+			// groupBox6
 			// 
-			this.chkRateSeries.AutoSize = true;
-			this.chkRateSeries.Location = new System.Drawing.Point(20, 117);
-			this.chkRateSeries.Name = "chkRateSeries";
-			this.chkRateSeries.Size = new System.Drawing.Size(271, 17);
-			this.chkRateSeries.TabIndex = 39;
-			this.chkRateSeries.Text = "Prompt to rate series when all episodes are watched";
-			this.chkRateSeries.UseVisualStyleBackColor = true;
+			this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.groupBox6.Controls.Add(this.btnBakaBTTest);
+			this.groupBox6.Controls.Add(this.txtBakaBTPassword);
+			this.groupBox6.Controls.Add(this.label6);
+			this.groupBox6.Controls.Add(this.txtBakaBTUsername);
+			this.groupBox6.Controls.Add(this.label7);
+			this.groupBox6.Location = new System.Drawing.Point(278, 15);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Size = new System.Drawing.Size(250, 171);
+			this.groupBox6.TabIndex = 2;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "BakaBT Credentials";
+			// 
+			// btnBakaBTTest
+			// 
+			this.btnBakaBTTest.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnBakaBTTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnBakaBTTest.Location = new System.Drawing.Point(89, 76);
+			this.btnBakaBTTest.Name = "btnBakaBTTest";
+			this.btnBakaBTTest.Size = new System.Drawing.Size(143, 26);
+			this.btnBakaBTTest.TabIndex = 47;
+			this.btnBakaBTTest.Text = "Test Login";
+			this.btnBakaBTTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnBakaBTTest.UseVisualStyleBackColor = true;
+			// 
+			// txtBakaBTPassword
+			// 
+			this.txtBakaBTPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtBakaBTPassword.Location = new System.Drawing.Point(89, 50);
+			this.txtBakaBTPassword.Name = "txtBakaBTPassword";
+			this.txtBakaBTPassword.PasswordChar = '*';
+			this.txtBakaBTPassword.Size = new System.Drawing.Size(143, 20);
+			this.txtBakaBTPassword.TabIndex = 46;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(12, 52);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(53, 13);
+			this.label6.TabIndex = 45;
+			this.label6.Text = "Password";
+			// 
+			// txtBakaBTUsername
+			// 
+			this.txtBakaBTUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtBakaBTUsername.Location = new System.Drawing.Point(89, 24);
+			this.txtBakaBTUsername.Name = "txtBakaBTUsername";
+			this.txtBakaBTUsername.Size = new System.Drawing.Size(143, 20);
+			this.txtBakaBTUsername.TabIndex = 44;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(12, 26);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(55, 13);
+			this.label7.TabIndex = 43;
+			this.label7.Text = "Username";
 			// 
 			// frmConfig
 			// 
@@ -1648,6 +1718,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
+			this.groupBox6.ResumeLayout(false);
+			this.groupBox6.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -1785,5 +1857,11 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.NumericUpDown udInfoDelay;
 		private System.Windows.Forms.CheckBox chkRateSeries;
+		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.Button btnBakaBTTest;
+		private System.Windows.Forms.TextBox txtBakaBTPassword;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox txtBakaBTUsername;
+		private System.Windows.Forms.Label label7;
     }
 }

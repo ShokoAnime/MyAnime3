@@ -74,8 +74,25 @@ namespace MyAnimePlugin3.Downloads
 				}
 			}
 
+			// if searching by series and BakaBT is enabled, use that first
+			bool doneBakaBT = false;
+			if (BaseConfig.Settings.TorrentSources.Contains(MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT) && search.SearchType == DownloadSearchType.Series)
+			{
+				doneBakaBT = true;
+				TorrentsBakaBT bakbt = new TorrentsBakaBT();
+				List<TorrentLink> bakbtLinks = bakbt.GetTorrents(parms);
+				links.AddRange(bakbtLinks);
+			}
+
             foreach (string src in BaseConfig.Settings.TorrentSources)
 			{
+				if (src == MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT && !doneBakaBT)
+				{
+					TorrentsBakaBT bakbt = new TorrentsBakaBT();
+					List<TorrentLink> bakbtLinks = bakbt.GetTorrents(parms);
+					links.AddRange(bakbtLinks);
+				}
+
 				if (src == MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa)
 				{
 					TorrentsNyaa nyaa = new TorrentsNyaa();
@@ -198,6 +215,13 @@ namespace MyAnimePlugin3.Downloads
 				TorrentsBakaUpdates bakau = new TorrentsBakaUpdates();
 				List<TorrentLink> bakauLinks = bakau.BrowseTorrents();
 				links.AddRange(bakauLinks);
+			}
+
+			if (source == TorrentSource.BakaBT)
+			{
+				TorrentsBakaBT bakbt = new TorrentsBakaBT();
+				List<TorrentLink> bakbtLinks = bakbt.BrowseTorrents();
+				links.AddRange(bakbtLinks);
 			}
 
 			return links;

@@ -3876,8 +3876,8 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Id>3d1787e3-d584-4e62-8530-cc79716c63dc</Id>
     <Author>Leo Werndly</Author>
     <HomePage>http://jmmanager.wordpress.com/</HomePage>
-    <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/my-anime-2-a-60793</ForumPage>
-    <UpdateUrl />
+    <ForumPage>http://forum.team-mediaportal.com/threads/my-anime-3.107475/</ForumPage>
+    <UpdateUrl>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=52</UpdateUrl>
     <Version>
       <Major>3</Major>
       <Minor>0</Minor>
@@ -3889,21 +3889,9 @@ Click Next to continue or Cancel to exit Setup.</Value>
 It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
 
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription> Issue #158 : New special predefined group filter in JMM/MA3 allowing the user to browse by Year and Category
- Issue #160 : Allow Missing Episodes Output to be added to Bookmarks list
-Fix position of the find text in Avalon skin for MyAnime3
- Issue #19 : Support Default skin for MediaPortal
- Issue #169 : Support Avallonis skin for MediaPortal
-Fix the searching text, descriptions in StreamedMP skin
- Issue #118 : Fanart version of StreamedMP skin
-Big performance improvements when using MySQL or Sqlite during imports, or downloading anime information by using bulk inserts
-Add ability to create series from Calendar in MA3
-Add ability to bookmark anime from Calendar in MA3 and JMM Desktop
-Add ability to bookmark anime from Recommended Anime in MA3
- Issue #171 : Remove option to download Related and similar anime, they were disabled in the code behind due to potential banning issues
-Make sure that individual links for an AniDB episode to a TvDB episode are shown in MA3</VersionDescription>
+    <VersionDescription />
     <DevelopmentStatus>Alpha</DevelopmentStatus>
-    <OnlineLocation />
+    <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=24</OnlineLocation>
     <ReleaseDate>2012-04-10T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
@@ -5440,7 +5428,7 @@ Make sure that individual links for an AniDB episode to a TvDB episode are shown
       </FolderGroup>
     </FolderGroups>
     <ProjectFilename>MyAnime3.xmp2</ProjectFilename>
-    <UpdatePath1 />
+    <UpdatePath1>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\update.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
   </ProjectSettings>

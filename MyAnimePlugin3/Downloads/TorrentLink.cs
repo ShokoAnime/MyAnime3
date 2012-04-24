@@ -31,10 +31,28 @@ namespace MyAnimePlugin3.Downloads
 			set { torrentName = value; }
 		}
 
-		public string TorrentDownloadLink { get; set; }
+		private string torrentDownloadLink;
+		public string TorrentDownloadLink
+		{
+			get
+			{
+				if (Source == "BakaBT")
+				{
+					if (string.IsNullOrEmpty(torrentDownloadLink))
+					{
+						TorrentsBakaBT bakbt = new TorrentsBakaBT();
+						torrentDownloadLink = bakbt.PopulateTorrentLink(TorrentLinkURL);
+					}
+				}
+				return torrentDownloadLink;
+			}
+			set { torrentDownloadLink = value; }
+		}
+
 		public string Size { get; set; }
 		public string Seeders { get; set; }
 		public string Leechers { get; set; }
+		public string TorrentLinkURL { get; set; }
 
 		public override string ToString()
 		{

@@ -887,6 +887,7 @@ namespace MyAnimePlugin3.Windows
 			dlg.Add("Baka Updates");
 			dlg.Add("Nyaa Torrents");
 			dlg.Add("Tokyo Toshokan");
+			dlg.Add("BakaBT");
 			dlg.DoModal(GUIWindowManager.ActiveWindow);
 
 			switch (dlg.SelectedLabel)
@@ -899,6 +900,7 @@ namespace MyAnimePlugin3.Windows
 				case 2: curBrowseSource = TorrentSource.BakaUpdates; break;
 				case 3: curBrowseSource = TorrentSource.Nyaa; break;
 				case 4: curBrowseSource = TorrentSource.TokyoToshokan; break;
+				case 5: curBrowseSource = TorrentSource.BakaBT; break;
 			}
 
 			PerformTorrentBrowseAsync();

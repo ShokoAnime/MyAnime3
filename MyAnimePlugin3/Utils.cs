@@ -164,6 +164,11 @@ namespace MyAnimePlugin3
 
 		public static string DownloadWebPage(string url)
 		{
+			return DownloadWebPage(url, null, false);
+		}
+
+		public static string DownloadWebPage(string url, string cookieHeader, bool setUserAgent)
+		{
 			try
 			{
 				//BaseConfig.MyAnimeLog.Write("DownloadWebPage called by: {0} - {1}", GetParentMethodName(), url);
@@ -172,6 +177,11 @@ namespace MyAnimePlugin3
 				webReq.Timeout = 10000; // 10 seconds
 				webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
 				webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+				if (!string.IsNullOrEmpty(cookieHeader))
+					webReq.Headers.Add("Cookie", cookieHeader);
+				if (setUserAgent)
+					webReq.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
 				HttpWebResponse WebResponse = (HttpWebResponse)webReq.GetResponse();
                 

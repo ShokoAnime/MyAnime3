@@ -108,6 +108,7 @@
     <Compile Include="DataHelpers\PriorityQueue.cs" />
     <Compile Include="DataHelpers\UpdatesCollection.cs" />
     <Compile Include="DataHelpers\XMLBase.cs" />
+    <Compile Include="Downloads\TorrentsBakaBT.cs" />
     <Compile Include="Downloads\TorrentsNyaa.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Events\GotAnimeEventArgs.cs" />
@@ -661,7 +662,9 @@
     <Content Include="Skins\streamedmp\Anime3_Dummy.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Skins\streamedmp\Anime3_Main.fanart.xml" />
+    <Content Include="Skins\streamedmp\Anime3_Main.fanart.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Skins\streamedmp\Anime3_Main.xml">
       <SubType>Designer</SubType>
     </Content>

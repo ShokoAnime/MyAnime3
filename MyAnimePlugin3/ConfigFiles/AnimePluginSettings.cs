@@ -11,6 +11,8 @@ namespace MyAnimePlugin3
 {
 	public class AnimePluginSettings
 	{
+		public string BakaBTCookieHeader = "";
+
 		// MA3
 		public string JMMServer_Address = "";
 		public string JMMServer_Port = "";
@@ -157,9 +159,12 @@ namespace MyAnimePlugin3
 		public string UTorrentPort = "";
         public bool UseHashFromCache = true;
 
+		public string BakaBTUsername = "";
+		public string BakaBTPassword = "";
 
 		public static string TorrentSourcesAll = MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa + ";" +
 			MyAnimePlugin3.Constants.TorrentSourceNames.TT + ";" +
+			MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT + ";" +
 			MyAnimePlugin3.Constants.TorrentSourceNames.AnimeSuki + ";" +
 			MyAnimePlugin3.Constants.TorrentSourceNames.BakaUpdates + ";";
 
@@ -307,6 +312,10 @@ namespace MyAnimePlugin3
 			//XMLWebServiceIP = xmlreader.GetValueAsString("Anime2", "XMLWebServiceIP", "anime.hobbydb.net");
             LastGroupList = xmlreader.GetValueAsString("Anime2", "LastGroupList", "");
 
+
+			BakaBTUsername = xmlreader.GetValueAsString("Anime3", "BakaBTUsername", "");
+			BakaBTPassword = xmlreader.GetValueAsString("Anime3", "BakaBTPassword", "");
+
 			UTorrentAddress = xmlreader.GetValueAsString("Anime3", "UTorrentAddress", "");
 			UTorrentPassword = xmlreader.GetValueAsString("Anime3", "UTorrentPassword", "");
 			UTorrentPort = xmlreader.GetValueAsString("Anime3", "UTorrentPort", "");
@@ -410,6 +419,9 @@ namespace MyAnimePlugin3
 
 				xmlwriter.SetValue("Anime3", "ThumbsFolder", thumbsFolder); // use the raw value
 				xmlwriter.SetValue("Anime3", "PluginName", PluginName.Trim());
+
+				xmlwriter.SetValue("Anime3", "BakaBTUsername", BakaBTUsername.Trim());
+				xmlwriter.SetValue("Anime3", "BakaBTPassword", BakaBTPassword.Trim());
 
 				xmlwriter.SetValue("Anime3", "UTorrentAddress", UTorrentAddress.Trim());
 				xmlwriter.SetValue("Anime3", "UTorrentPassword", UTorrentPassword.Trim());

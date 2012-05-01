@@ -68,65 +68,91 @@
 					<visible>!Control.HasFocus(50)</visible>
 					
 				<control>
-					<description>Switch User</description>
-					<type>button</type>
-					<id>12</id>
-					<label>Switch User</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>9</onup>
-					<ondown>11</ondown>
+				  <description>Switch User</description>
+				  <type>button</type>
+				  <id>12</id>
+				  <label>Switch User</label>
+				  <onleft>50</onleft>
+				  <onup>926</onup>
+				  <ondown>11</ondown>
 				</control>
 				<control>
-					<description>Change Layout</description>
-					<type>button</type>
-					<id>11</id>
-					<label>Change Layout</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>12</onup>
-					<ondown>4</ondown>
-				</control>
-				
-				<control>
-					<description>Options</description>
-					<type>button</type>
-					<id>4</id>
-					<label>Options</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>11</onup>
-					<ondown>5</ondown>
+				  <description>Change Layout</description>
+				  <type>button</type>
+				  <id>11</id>
+				  <label>Change Layout</label>
+				  <onleft>50</onleft>
+				  <onup>12</onup>
+				  <ondown>4</ondown>
 				</control>
 				<control>
-					<description>Utilities</description>
-					<type>button</type>
-					<id>5</id>
-					<label>Utilities</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>4</onup>
-					<ondown>8</ondown>
+				  <description>Options</description>
+				  <type>button</type>
+				  <id>4</id>
+				  <label>Options</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>11</onup>
+				  <ondown>920</ondown>
 				</control>
 				<control>
-					<description>Calendar</description>
-					<type>button</type>
-					<id>8</id>
-					<label>Calendar</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>5</onup>
-					<ondown>9</ondown>
+				  <description>Continue Watching...</description>
+				  <type>button</type>
+				  <id>920</id>
+				  <label>Continue Watching...</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>4</onup>
+				  <ondown>921</ondown>
 				</control>
 				<control>
-					<description>Downloads</description>
-					<type>button</type>
-					<id>9</id>
-					<label>Downloads</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>8</onup>
-					<ondown>12</ondown>
+				  <description>Utilities</description>
+				  <type>button</type>
+				  <id>921</id>
+				  <label>Utilities</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>920</onup>
+				  <ondown>922</ondown>
+				</control>
+				<control>
+				  <description>Calendar</description>
+				  <type>button</type>
+				  <id>922</id>
+				  <label>Calendar</label>
+				  <onleft>50</onleft>
+				  <onup>921</onup>
+				  <ondown>923</ondown>
+				</control>
+				<control>
+				  <description>Downloads</description>
+				  <type>button</type>
+				  <id>923</id>
+				  <label>Downloads</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>922</onup>
+				  <ondown>925</ondown>
+				</control>
+				<control>
+				  <description>Recommendations</description>
+				  <type>button</type>
+				  <id>925</id>
+				  <label>Recommendations</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>923</onup>
+				  <ondown>926</ondown>
+				</control>
+				<control>
+				  <description>Something Random</description>
+				  <type>button</type>
+				  <id>926</id>
+				  <label>Something Random</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>925</onup>
+				  <ondown>12</ondown>
 				</control>
 				</control>
 			</control>

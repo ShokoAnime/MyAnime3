@@ -13,13 +13,11 @@
 		<!-- Specific Dummy controls to handle visibility -->
 		<control>
 		  <type>label</type>
-		  <description>Dummy Label showing tvdb/moviedb groups</description>
+		  <description>Dummy Label showing server status</description>
 		  <id>3511</id>
 		  <posX>-50</posX>
 		  <posY>-50</posY>
 		  <width>0</width>
-		  <textcolor>d4d2d2</textcolor>
-		  <font>font14</font>
 		  <visible>false</visible>
 		</control>
 		
@@ -30,8 +28,6 @@
 		  <posX>-50</posX>
 		  <posY>-50</posY>
 		  <width>0</width>
-		  <textcolor>d4d2d2</textcolor>
-		  <font>font14</font>
 		  <visible>false</visible>
 		</control>
 
@@ -44,7 +40,7 @@
 			<posY>0</posY>
 			<width>1920</width>
 			<height>1080</height>
-			<texture>MyAnime3\anime3_DefaultBackground.jpg</texture>
+			<texture>background.png</texture>
 		</control>
 		
 		<!-- Backgrounds -->
@@ -71,16 +67,7 @@
 			<texture>overlay_bar_bottom.png</texture>
 		</control>
 		
-		<control>
-			<description>Bottom - Backdrop Overlay Bar</description>
-			<type>image</type>
-			<id>0</id>
-			<posX>0</posX>
-			<posY>660</posY>
-			<width>1920</width>
-			<height>82</height>
-			<texture>overlay_bar_bottom.png</texture>
-		</control>
+		
 		
 		<control>
 			<description>Top - Backdrop Overlay Bar</description>
@@ -96,29 +83,13 @@
 		
 		<!-- ********************** Bottom Bar ************************************** -->
 
-		<control Style="DetailText">
-			<type>fadelabel</type>
-			<id>0</id>
-			<posX>30</posX>
-			<posY>1030</posY>
-			<label>Version:   #Anime3.VersionNumber   (DB: #Anime3.DBVersionNumber)</label>
-		</control>
-
-		<control Style="DetailText">
-			<type>fadelabel</type>
-			<id>0</id>
-			<posX>400</posX>
-			<posY>1030</posY>
-			<textcolor>F7FE2E</textcolor>
-			<label>#Anime3.LatestVersionText</label>
-		</control>
 		
 		<!-- ********************** Hidden Menu ************************************** -->
 		
 		<control>
 			<type>actiongroup</type>
 			<description>action menu</description>
-			<defaultcontrol>6</defaultcontrol>
+			<defaultcontrol>101</defaultcontrol>
 			<onexit>50</onexit>
 			<buttonX>0</buttonX>
 			<buttonY>0</buttonY>
@@ -178,7 +149,19 @@
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
 			</control>
-			
+			<control>
+				<type>label</type>
+				<id>0</id>
+				<posX>370</posX>
+				<posY>590</posY>
+				<width>300</width>
+				<font>font3</font>
+				<label>Other</label>
+				<align>right</align>
+				<visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
 			<control>
 				<description>group element</description>
 				<type>group</type>
@@ -193,45 +176,112 @@
 					<layout>StackLayout(0, Vertical, true)</layout>
 					<visible>!Control.HasFocus(50)</visible>
 						<control>
-							<description>Run Import</description>
-							<type>button</type>
-							<id>6</id>
-							<label>Run Import</label>
-							<onleft>50</onleft>
-							<onright>50</onright>
-							<onup>9</onup>
-							<ondown>7</ondown>
-						</control>
-						  <control>
-							<description>Import CD/DVD</description>
-							<type>button</type>
-							<id>7</id>
-							<label>Import CD/DVD</label>
-							<onleft>50</onleft>
-							<onright>50</onright>
-							<onup>6</onup>
-							<ondown>8</ondown>
-						  </control>
-						  <control>
-							<description>Cleanup Database</description>
-							<type>button</type>
-							<id>8</id>
-							<label>Cleanup Database</label>
-							<onleft>50</onleft>
-							<onright>50</onright>
-							<onup>7</onup>
-							<ondown>9</ondown>
-						  </control>
-						<control>
-							<description>More Options</description>
-							<type>button</type>
-							<id>9</id>
-							<label>More Options</label>
-							<onleft>50</onleft>
-							<onright>50</onright>
-							<onup>8</onup>
-							<ondown>6</ondown>
-						</control>
+					<description>Server Status</description>
+					<type>button</type>
+					<id>101</id>
+					<label>Server Status</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>926</onup>
+					<ondown>102</ondown>
+				</control>
+				<control>
+					<description>Unlinked Files</description>
+					<type>button</type>
+					<id>102</id>
+					<label>Unlinked Files</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>101</onup>
+					<ondown>6</ondown>
+				</control>
+				<control>
+					<description>Run Import</description>
+					<type>button</type>
+					<id>6</id>
+					<label>Run Import</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>102</onup>
+					<ondown>7</ondown>
+				</control>
+				<control>
+					<description>Re-scan Unlinked Files</description>
+					<type>button</type>
+					<id>7</id>
+					<label>Re-scan Unlinked Files</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>6</onup>
+					<ondown>8</ondown>
+				</control>
+				<control>
+					<description>More...</description>
+					<type>button</type>
+					<id>8</id>
+					<label>More...</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>7</onup>
+					<ondown>920</ondown>
+				</control>
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<label>-</label>
+					<visible>false</visible>
+				</control>
+				<control>
+					<description>Continue Watching...</description>
+					<type>button</type>
+					<id>920</id>
+					<label>Continue Watching...</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>8</onup>
+					<ondown>922</ondown>
+				</control>
+				<control>
+					<description>Calendar</description>
+					<type>button</type>
+					<id>922</id>
+					<label>Calendar</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>920</onup>
+					<ondown>923</ondown>
+				</control>
+				<control>
+					<description>Downloads</description>
+					<type>button</type>
+					<id>923</id>
+					<label>Downloads</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>922</onup>
+					<ondown>925</ondown>
+				</control>
+				<control>
+					<description>Recommendations</description>
+					<type>button</type>
+					<id>925</id>
+					<label>Recommendations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>923</onup>
+					<ondown>926</ondown>
+				</control>
+				<control>
+				  <description>Something Random</description>
+				  <type>button</type>
+				  <id>926</id>
+				  <label>Something Random</label>
+				  <onleft>50</onleft>
+				  <onright>50</onright>
+				  <onup>925</onup>
+				  <ondown>101</ondown>
+				</control>
 				</control>
 			</control>
 		</control>
@@ -248,103 +298,34 @@
 			<align>right</align>
 		</control>
 		
-		<control Style="DetailText">
-			<description>Missing Groups count</description>
+		<control Style="BigTitle">
+			<description>top title</description>
 			<type>label</type>
 			<id>0</id>
-			<posX>1850</posX>
-			<posY>60</posY>
-			<label>#selectedindex / #Anime3.MissingGroups Groups</label>
-			<align>right</align>
-			<visible>Control.IsVisible(3511)</visible>
-		</control>
-		
-		<control Style="DetailText">
-			<description>Missing Groups count</description>
-			<type>label</type>
-			<id>0</id>
-			<posX>1850</posX>
-			<posY>60</posY>
-			<label>#selectedindex / #Anime3.UnrecognizedFiles Files</label>
-			<align>right</align>
-			<visible>Control.IsVisible(3512)</visible>
-		</control>
-		
-		<control>
-			<type>image</type>
-			<id>0</id>
-			<posX>20</posX>
-			<posY>30</posY>
-			<width>450</width>
-			<height>90</height>
-			<texture>overlay_new.png</texture>
-			<visible>Control.IsVisible(3511)</visible>
-		</control>
-		
-		<control>
-			<description>TvDB/MovieDB Groups</description>
-			<type>button</type>
-			<id>101</id>
-			<posX>40</posX>
-			<posY>40</posY>
-			<label>TvDB/MovieDB Groups</label>
-			<width>350</width>
-			<onleft>6</onleft>
-			<onright>102</onright>
-			<onup>50</onup>
-			<ondown>50</ondown>
-			<textureFocus>-</textureFocus>
-			<textureNoFocus>-</textureNoFocus>
-			<textcolor>F7FE2E</textcolor>
-			<textcolorNoFocus>ffffffff</textcolorNoFocus>
-			<font>font2</font>
-		</control>
-		
-		<control>
-			<type>image</type>
-			<id>0</id>
-			<posX>420</posX>
-			<posY>30</posY>
-			<width>450</width>
-			<height>90</height>
-			<texture>overlay_new.png</texture>
-			<visible>Control.IsVisible(3512)</visible>
-		</control>
-		
-		<control>
-			<description>Unlinked Files</description>
-			<type>button</type>
-			<id>102</id>
-			<posX>420</posX>
-			<posY>40</posY>
-			<label>Unlinked Files</label>
-			<width>350</width>
-			<onleft>101</onleft>
-			<onright>6</onright>
-			<onup>50</onup>
-			<ondown>50</ondown>
-			<textureFocus>-</textureFocus>
-			<textureNoFocus>-</textureNoFocus>
-			<textcolor>F7FE2E</textcolor>
-			<textcolorNoFocus>ffffffff</textcolorNoFocus>
-			<font>font2</font>
+			<posX>30</posX>
+			<posY>45</posY>
+			<width>1220</width>
+			<label>Utilities: #Anime3.Utilities.CurrentView</label>
+			<animation effect="fade" time="250">WindowClose</animation>
 		</control>
 		
 		<!-- ********************** List for Unlinked Files and groups without TvDB cross refs etc ************************************** -->
 		<control>
-			<description>List for Unlinked Files and groups without TvDB cross refs etc</description>
+			<description>List for Unlinked Files</description>
 			<type>facadeview</type>
+			<visible>Control.IsVisible(3512)</visible>
 			<id>50</id>
 			<control>
 				<description>Textlist </description>
 				<type>listcontrol</type>
+				<visible>Control.IsVisible(3512)</visible>
 				<id>50</id>
 				<posX>30</posX>
 				<posY>130</posY>
-				<width>1700</width>
-				<height>550</height>
+				<height>850</height>
+				<width>1080</width>
 				<onleft>101</onleft>
-				<onright>102</onright>
+				<onright>101</onright>
 				<spinPosX>50</spinPosX>
 				<spinPosY>620</spinPosY>
 				
@@ -369,25 +350,184 @@
 				<scrollbarXOff>-5</scrollbarXOff>
 			</control>
 		</control>
-
-		<!--  ************** HASHER STATUS *****************  -->
 		
+	<!-- ************************** Unlinked Files Page ***********************************-->	
+	
+	<control Style="DetailText">
+		<description>Unlinked Files Label</description>
+		<type>fadelabel</type>
+	    <label>Unlinked Files</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>140</posY>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffa9d0f7</textcolor>
+	</control>
+
+	<control Style="DetailText">
+		<description>Unlinked Files Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.UnlinkedFilesCount</label>
+		<id>0</id>
+		<posX>1400</posX>
+		<posY>140</posY>
+		<width>560</width>
+		<textcolor>ffffffff</textcolor>
+		<visible>Control.IsVisible(3512)</visible>
+	</control>
+	
+	<!-- :::::::::::::::::::::::::::::: Unlinked Files Page - File Details :::::::::::::::::::::::::::::: -->
+
+	
+	<control Style="DetailText">
+		<type>fadelabel</type>
+		<description>File Details</description>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>264</posY>
+		<label>File Details</label>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffffffff</textcolor>
+    </control>
+	
+	<control Style="DetailText">
+		<description>Folder Label</description>
+		<type>fadelabel</type>
+	    <label>Folder</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>330</posY>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffa9d0f7</textcolor>
+	</control>
+
+	<control Style="DetailText">
+		<description>Folder Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.UnlinkedFile.Folder</label>
+		<id>0</id>
+		<posX>1320</posX>
+		<posY>330</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffffffff</textcolor>
+	</control>
+	
+	<control Style="DetailText">
+		<description>Name Label</description>
+		<type>fadelabel</type>
+	    <label>Name</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>370</posY>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffa9d0f7</textcolor>
+	</control>
+
+	<control Style="DetailText">
+		<description>Name Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.UnlinkedFile.FileName</label>
+		<id>0</id>
+		<posX>1320</posX>
+		<posY>370</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffffffff</textcolor>
+	</control>
+	
+	<control Style="DetailText">
+		<description>Size Label</description>
+		<type>fadelabel</type>
+	    <label>Size</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>410</posY>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffa9d0f7</textcolor>
+	</control>
+
+	<control Style="DetailText">
+		<description>Size Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.UnlinkedFile.Size</label>
+		<id>0</id>
+		<posX>1320</posX>
+		<posY>410</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffffffff</textcolor>
+	</control>
+	
+	<control Style="DetailText">
+		<description>FileExists Label</description>
+		<type>fadelabel</type>
+	    <label>File on Disk</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>450</posY>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffa9d0f7</textcolor>
+	</control>
+
+	<control Style="DetailText">
+		<description>FileExists Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.UnlinkedFile.FileExists</label>
+		<id>0</id>
+		<posX>1320</posX>
+		<posY>450</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffffffff</textcolor>
+	</control>
+	
+	<control Style="DetailText">
+		<description>Hash Label</description>
+		<type>fadelabel</type>
+	    <label>Hash</label>
+		<id>0</id>
+		<posX>1150</posX>
+		<posY>490</posY>
+	    <visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffa9d0f7</textcolor>
+	</control>
+
+	<control Style="DetailText">
+		<description>Hash Value</description>
+		<type>label</type>
+	    <label>#Anime3.Utilities.UnlinkedFile.Hash</label>
+		<id>0</id>
+		<posX>1320</posX>
+		<posY>490</posY>
+		<width>560</width>
+		<visible>Control.IsVisible(3512)</visible>
+		<textcolor>ffffffff</textcolor>
+	</control>
+		
+	<!-- ************************** Server Status Page ***********************************-->	
+	
+	<!-- ************************** Server Status Page - General Queue ***********************************-->	
+	
+	
 		<control>
 		  <type>image</type>
 		  <posX>40</posX>
-			<posY>700</posY>
+		  <posY>140</posY>
 		  <width>32</width>
 		  <height>32</height>
-		  <texture>MyAnime3\anime3_hash.png</texture>
+		  <visible>Control.IsVisible(3511)</visible>
+		  <texture>MyAnime3\anime3_anidb.png</texture>
 		</control>
 		
 		<control Style="DetailText">
 			<type>label</type>
 			<posX>90</posX>
-			<posY>700</posY>
+			<posY>140</posY>
 			<width>290</width>
 			<align>left</align>
-			<label>HASHER QUEUE</label>
+			<label>General Queue</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<textcolor>ffa9d0f7</textcolor>
 		</control>
 
@@ -395,9 +535,10 @@
 			<description>Vid Hasher Queue</description>
 			<type>label</type>
 			<posX>350</posX>
-			<posY>700</posY>
-			<label>#Anime3.Utilities.HasherQueueCount</label>
+			<posY>140</posY>
+			<label>#Anime3.Utilities.Status.GeneralQueueCount</label>
 			<align>Left</align>
+			<visible>Control.IsVisible(3511)</visible>
 			<textcolor>ffffffff</textcolor>
 		</control>
 
@@ -406,175 +547,145 @@
 			<description>Vid Hasher Status</description>
 			<type>label</type>
 			<posX>450</posX>
-			<posY>700</posY>
+			<posY>140</posY>
 			<width>1300</width>
-			<label>#Anime3.Utilities.HasherQueueStatus</label>
+			<label>#Anime3.Utilities.Status.GeneralQueueRunning</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<align>Left</align>
 			<textcolor>ffffffff</textcolor>
 		</control>
-
-		<!--  ************** ANIDB STATUS *****************  -->
-
+		
+		<control Style="DetailText">
+			<description>Vid Hasher Status</description>
+			<type>label</type>
+			<posX>650</posX>
+			<posY>140</posY>
+			<width>1300</width>
+			<label>#Anime3.Utilities.Status.GeneralQueueState</label>
+			<visible>Control.IsVisible(3511)</visible>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+		
+		<!-- ************************** Server Status Page - Hasher Queue ***********************************-->	
+	
+	
 		<control>
 		  <type>image</type>
 		  <posX>40</posX>
-			<posY>750</posY>
+		  <posY>190</posY>
 		  <width>32</width>
 		  <height>32</height>
-		  <texture>MyAnime3\anime3_anidb.png</texture>
+		  <visible>Control.IsVisible(3511)</visible>
+		  <texture>MyAnime3\anime3_hash.png</texture>
 		</control>
 		
 		<control Style="DetailText">
 			<type>label</type>
 			<posX>90</posX>
-			<posY>750</posY>
+			<posY>190</posY>
 			<width>290</width>
 			<align>left</align>
-			<label>ANIDB QUEUE</label>
+			<label>Hasher Queue</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<textcolor>ffa9d0f7</textcolor>
 		</control>
 
 		<control Style="DetailText">
-			<description>ANIDB Queue</description>
+			<description>Vid Hasher Queue</description>
 			<type>label</type>
 			<posX>350</posX>
-			<posY>750</posY>
-			<label>#Anime3.Utilities.AniDBQueueCount</label>
+			<posY>190</posY>
+			<label>#Anime3.Utilities.Status.HasherQueueCount</label>
+			<align>Left</align>
+			<visible>Control.IsVisible(3511)</visible>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+
+		<control Style="DetailText">
+			<description>Vid Hasher Status</description>
+			<type>label</type>
+			<posX>450</posX>
+			<posY>190</posY>
+			<width>1300</width>
+			<label>#Anime3.Utilities.Status.HasherQueueRunning</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<align>Left</align>
 			<textcolor>ffffffff</textcolor>
 		</control>
 
 		<control Style="DetailText">
-			<description>ANIDB Status</description>
+			<description>Vid Hasher Status</description>
 			<type>label</type>
-			<posX>450</posX>
-			<posY>750</posY>
+			<posX>650</posX>
+			<posY>190</posY>
 			<width>1300</width>
-			<label>#Anime3.Utilities.AniDBQueueStatus</label>
+			<label>#Anime3.Utilities.Status.HasherQueueState</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<align>Left</align>
 			<textcolor>ffffffff</textcolor>
 		</control>
-
-		<!--  ************** IMAGE DOWNLOAD STATUS *****************  -->
-
+		
+		<!-- ************************** Server Status Page - Image Queue ***********************************-->	
+	
+	
 		<control>
 		  <type>image</type>
 		  <posX>40</posX>
-			<posY>800</posY>
+		  <posY>240</posY>
 		  <width>32</width>
 		  <height>32</height>
+		  <visible>Control.IsVisible(3511)</visible>
 		  <texture>MyAnime3\anime3_image.png</texture>
 		</control>
 		
 		<control Style="DetailText">
 			<type>label</type>
 			<posX>90</posX>
-			<posY>800</posY>
-			<width>200</width>
+			<posY>240</posY>
+			<width>290</width>
 			<align>left</align>
-			<label>IMAGE QUEUE</label>
+			<label>Images Queue</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<textcolor>ffa9d0f7</textcolor>
 		</control>
 
 		<control Style="DetailText">
-			<description>IMAGE Queue</description>
+			<description>Vid Hasher Queue</description>
 			<type>label</type>
 			<posX>350</posX>
-			<posY>800</posY>
-			<label>#Anime3.Utilities.ImageQueueCount</label>
+			<posY>240</posY>
+			<label>#Anime3.Utilities.Status.ImagesQueueCount</label>
 			<align>Left</align>
+			<visible>Control.IsVisible(3511)</visible>
 			<textcolor>ffffffff</textcolor>
 		</control>
 
 
 		<control Style="DetailText">
-			<description>IMAGE Status</description>
+			<description>Vid Hasher Status</description>
 			<type>label</type>
 			<posX>450</posX>
-			<posY>800</posY>
+			<posY>240</posY>
 			<width>1300</width>
-			<label>#Anime3.Utilities.ImageQueueStatus</label>
+			<label>#Anime3.Utilities.Status.ImagesQueueRunning</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<align>Left</align>
 			<textcolor>ffffffff</textcolor>
 		</control>
 
-		<!--  ************** TvDB STATUS *****************  -->
-
 		<control Style="DetailText">
+			<description>Vid Hasher Status</description>
 			<type>label</type>
-			<posX>90</posX>
-			<posY>850</posY>
-			<width>200</width>
-			<align>left</align>
-			<label>TvDB QUEUE</label>
-			<textcolor>ffa9d0f7</textcolor>
-		</control>
-
-		<control Style="DetailText">
-			<description>TvDB Queue</description>
-			<type>label</type>
-			<posX>350</posX>
-			<posY>850</posY>
-			<label>#Anime3.Utilities.TvDBQueueCount</label>
-			<align>Left</align>
-			<textcolor>ffffffff</textcolor>
-		</control>
-
-
-		<control Style="DetailText">
-			<description>TvDB Status</description>
-			<type>label</type>
-			<posX>450</posX>
-			<posY>850</posY>
+			<posX>650</posX>
+			<posY>240</posY>
 			<width>1300</width>
-			<label>#Anime3.Utilities.TvDBQueueStatus</label>
+			<label>#Anime3.Utilities.Status.ImagesQueueState</label>
+			<visible>Control.IsVisible(3511)</visible>
 			<align>Left</align>
 			<textcolor>ffffffff</textcolor>
 		</control>
-
-	  <!--  ************** OTHER STATUS *****************  -->
-
-	  <control Style="DetailText">
-		<type>label</type>
-		<posX>90</posX>
-		<posY>900</posY>
-		<width>300</width>
-		<align>left</align>
-		<label>IMPORT PROGRESS</label>
-		<textcolor>ffa9d0f7</textcolor>
-	  </control>
-
-	  <control Style="DetailText">
-		<description>scan progress value</description>
-		<type>label</type>
-		<posX>350</posX>
-		<posY>900</posY>
-		  <width>1300</width>
-		<label>#Anime3.Utilities.ImportProgress</label>
-		<align>Left</align>
-		<textcolor>ffffffff</textcolor>
-	  </control>
-
-	  <control Style="DetailText">
-		<type>label</type>
-		<posX>90</posX>
-		<posY>950</posY>
-		<width>290</width>
-		<align>left</align>
-		<label>MISC</label>
-		<textcolor>ffa9d0f7</textcolor>
-	  </control>
-
-	  <control Style="DetailText">
-		<description>cleanup status value</description>
-		<type>label</type>
-		<posX>350</posX>
-		<posY>950</posY>
-		  <width>1300</width>
-		<label>#Anime3.Utilities.MiscProgress</label>
-		<align>Left</align>
-		<textcolor>ffffffff</textcolor>
-	  </control>
 		
 	</controls>
 </window>

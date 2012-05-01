@@ -11,68 +11,66 @@
 	  
 	<!-- Dummies -->
 		<control>
-			<type>label</type>
-			<description>Dummy Label for info page</description>
-			<id>1500</id>
-			<posX>-50</posX>
-			<posY>-50</posY>
-			<width>620</width>
-			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
-			<label>
-			</label>
-			<visible>false</visible>
-			<!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1500)</visible> -->
-			<!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1500)</visible> -->
-		</control>
+      <type>label</type>
+      <description>Dummy Label for info page</description>
+      <id>1500</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for statistics page</description>
+      <id>1501</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for groups page</description>
+      <id>1503</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for poster</description>
+      <id>1502</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
 	
-		<control>
-			<type>label</type>
-			<description>Dummy Label for statistics page</description>
-			<id>1501</id>
-			<posX>-50</posX>
-			<posY>-50</posY>
-			<width>620</width>
-			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
-			<label>
-			</label>
-			<visible>false</visible>
-			<!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1501)</visible> -->
-			<!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1501)</visible> -->
-		</control>
-
-	  <control>
+	<control>
 		<type>label</type>
-		<description>Dummy Label for groups page</description>
-		<id>1503</id>
+		<description>Dummy Label for User Has Voted for Series Flag</description>
+		<id>1247</id>
 		<posX>-50</posX>
 		<posY>-50</posY>
-		<width>620</width>
+		<width>0</width>
 		<textcolor>d4d2d2</textcolor>
-		<font>font14</font>
 		<label>
 		</label>
 		<visible>false</visible>
-		<!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1501)</visible> -->
-		<!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1501)</visible> -->
 	  </control>
-		
-		<control>
-			<type>label</type>
-			<description>Dummy Label for poster</description>
-			<id>1502</id>
-			<posX>-50</posX>
-			<posY>-50</posY>
-			<width>620</width>
-			<textcolor>d4d2d2</textcolor>
-			<font>font14</font>
-			<label>
-			</label>
-			<visible>false</visible>
-			<!-- to make a control visible only when FANART is loaded do this: <visible>Control.IsVisible(1502)</visible> -->
-			<!-- to make a control invisible when FANART is loaded do this: <visible>!Control.IsVisible(1502)</visible> -->
-		</control>
 
 	<!-- ********************** BACKGROUNDS************************************** -->
 		
@@ -85,22 +83,10 @@
 		<posY>0</posY>
 		<width>1920</width>
 		<height>1080</height>
-		<texture>background.jpg</texture>
+		<texture>background.png</texture>
+		<animation effect="fade" time="400" delay="0">WindowOpen</animation>
 	</control>
 
-	  <control>
-		<description>Background</description>
-		<type>image</type>
-		<id>1</id>
-		<posX>0</posX>
-		<posY>0</posY>
-		<width>1920</width>
-		<height>1080</height>
-		<texture>#Anime3.AnimeInfo.Fanart</texture>
-		<animation effect="fade" start="0" end="100" time="3000" reversible="false">WindowOpen</animation>
-		<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-		<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
-	  </control>
 	  
 	  <control>
 			<description>Backdrop Overlay</description>
@@ -138,110 +124,172 @@
 	<!-- ************************** TOP BAR ***********************************-->
 	
 	<!-- Series Title -->
-	<control Style="BigTitle">
-		<description>Series Title - Groups/Series</description>
+	
+	<control Style="Time">
+		<description>Date</description>
 		<type>label</type>
 		<id>0</id>
-		<posX>350</posX>
-		<posY>65</posY>
+		<posX>1880</posX>
+		<posY>30</posY>
+		<align>right</align>
+		<label>#date / #time</label>
+	</control>	
+		
+	<control Style="BigTitle">
+		<description>Series Title</description>
+		<type>label</type>
+		<id>0</id>
+		<posX>70</posX>
+		<posY>30</posY>
 		<width>1220</width>
-		<label>#Anime3.Title</label>
-		<align>center</align>
+		<label>#Anime3.AnimeInfo.Title</label>
 		<visible>!player.hasmedia</visible>
+		<animation effect="fade" time="250">WindowClose</animation>
 	</control>
+	
+	<!-- ********************** Hidden Menu ************************************** -->
 		
-	<control>
-		<description>Characters</description>
-		<type>button</type>
-		<id>901</id>
-		<label>Characters</label>
-		<posX>30</posX>
-		<posY>40</posY>
-		<onleft>902</onleft>
-		<onright>801</onright>
-		<onup>901</onup>
-		<ondown>801</ondown>
-		
-		<width>200</width>
-		<height>70</height>
-		<textXOff>20</textXOff>
-		<textYOff>20</textYOff>
-		<textalign>left</textalign>
-		<textureFocus>overlay_new.png</textureFocus>
-		<textureNoFocus>-</textureNoFocus>
-		<font>font2</font>
-		<textcolor>ffffffff</textcolor>
-		<colordiffuse>ffffffff</colordiffuse>
-		<disabledcolor>ff808080</disabledcolor>
-		<textcolorNoFocus>ff9c9d9d</textcolorNoFocus>
-		<dimColor>ff000000</dimColor>
-		<shadowAngle>45</shadowAngle>
-		<shadowDistance>2</shadowDistance>
-		<shadowColor>ff000000</shadowColor>
-	</control>
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>911</defaultcontrol>
+			<onexit>801</onexit>
+			<buttonX>0</buttonX>
+			<buttonY>0</buttonY>
+			<buttonwidth>106</buttonwidth>
+			<buttonheight>720</buttonheight>
+			<width>568</width>
+			<height>900</height>
+			<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+			<dimColor>00ffffff</dimColor>
+			<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+			<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			<control>
+				<type>image</type>
+				<posX>0</posX>
+				<posY>0</posY>
+				<width>400</width>
+				<height>998</height>
+				<texture>overlay_background.png</texture>
+				<colorDiffuse>fffffffff</colorDiffuse>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<type>image</type>
+				<posX>0</posX>
+				<posY>0</posY>
+				<width>400</width>
+				<height>998</height>
+				<texture>hidden_menu_short_background.png</texture>
+				<colorDiffuse>fffffffff</colorDiffuse>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<type>image</type>
+				<id>1</id>
+				<posX>262</posX>
+				<posY>60</posY>
+				<width>128</width>
+				<height>128</height>
+				<texture>hover_My Anime3.png</texture>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<type>label</type>
+				<id>0</id>
+				<posX>370</posX>
+				<posY>178</posY>
+				<width>300</width>
+				<font>font3</font>
+				<label>Series Info</label>
+				<align>right</align>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+			</control>
 
-	<control>
-		<description>Relations</description>
-		<type>button</type>
-		<id>902</id>
-		<label>Relations</label>
-		<posX>1690</posX>
-		<posY>40</posY>
-		<onleft>803</onleft>
-		<onright>901</onright>
-		<onup>50</onup>
-		<onup>902</onup>
-		<ondown>803</ondown>
-	  
-		<width>200</width>
-		<height>70</height>
-		<textXOff>20</textXOff>
-		<textYOff>20</textYOff>
-		<textalign>right</textalign>
-		<textureFocus>overlay_new.png</textureFocus>
-		<textureNoFocus>-</textureNoFocus>
-		<font>font2</font>
-		<textcolor>ffffffff</textcolor>
-		<colordiffuse>ffffffff</colordiffuse>
-		<disabledcolor>ff808080</disabledcolor>
-		<textcolorNoFocus>ff9c9d9d</textcolorNoFocus>
-		<dimColor>ff000000</dimColor>
-		<shadowAngle>45</shadowAngle>
-		<shadowDistance>2</shadowDistance>
-		<shadowColor>ff000000</shadowColor>
-	</control>
+			<control>
+				<description>group element</description>
+				<type>group</type>
+				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
+				<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+				<control>
+					<description>button group</description>
+					<type>group</type>
+					<posX>0</posX>
+					<posY>230</posY>
+					<layout>StackLayout(0, Vertical, true)</layout>
+					<visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
+					
+					<control>
+						<description>Characters</description>
+						<type>button</type>
+						<id>911</id>
+						<label>Characters</label>
+						<onleft>801</onleft>
+						<onright>801</onright>
+						<onup>915</onup>
+						<ondown>912</ondown>
+					</control>
+            
+					<control>
+						<description>Relations</description>
+						<type>button</type>
+						<id>912</id>
+						<label>Relations</label>
+						<onleft>801</onleft>
+						<onright>801</onright>
+						<onup>911</onup>
+						<ondown>913</ondown>
+					</control>	
+					
+					<control>
+						<description>Fanart</description>
+						<type>button</type>
+						<id>913</id>
+						<label>Fanart</label>
+						<onleft>801</onleft>
+						<onright>801</onright>
+						<onup>912</onup>
+						<ondown>914</ondown>
+					</control>
+					
+					<control>
+						<description>Posters</description>
+						<type>button</type>
+						<id>914</id>
+						<label>Posters</label>
+						<onleft>801</onleft>
+						<onright>801</onright>
+						<onup>913</onup>
+						<ondown>915</ondown>
+					</control>
+						
+					
+					<control>
+						<description>Wide Banners</description>
+						<type>button</type>
+						<id>915</id>
+						<label>Wide Banners</label>
+						<onleft>801</onleft>
+						<onright>801</onright>
+						<onup>914</onup>
+						<ondown>911</ondown>
+					</control>
+				</control>
+			</control>
+		</control>
 	
 	<!-- ************************** BOTTOM BAR ***********************************-->
 		
-	<control Style="DetailText">
-		<description>ANIDB Status</description>
-		<type>label</type>
-		<label>#Anime3.AnimeInfo.Status</label>
-		<posX>30</posX>
-		<posY>1030</posY>
-		<width>900</width>
-		<align>left</align>
-	</control>
 	
-	<control Style="DetailText">
-		<description>Status</description>
-		<type>label</type>
-		<label>#Anime3.AnimeInfo.ResultStatus</label>
-		<posX>1000</posX>
-		<posY>1030</posY>
-		<width>400</width>
-		<align>left</align>
-	</control>
-	
-	<control Style="DetailText">
-		<description>Series Information</description>
-		<type>label</type>
-		<id>0</id>
-		<posX>1870</posX>
-		<posY>1030</posY>
-		<label>Series Information</label>
-		<align>right</align>
-	</control>
 	
 	<!-- ************************** Poster ***********************************-->
 	<control>
@@ -302,11 +350,10 @@
 		<label>AniDB Info</label>
 		<posX>565</posX>
 		<posY>105</posY>
-		<onleft>901</onleft>
+		<onleft>911</onleft>
 		<onright>803</onright>
-		<onup>901</onup>
-		<ondown>100</ondown>
-		
+		<onup>801</onup>
+		<ondown>801</ondown>		
 		<width>200</width>
 		<height>70</height>
 		<textYOff>2</textYOff>
@@ -343,9 +390,9 @@
 		<posX>825</posX>
 		<posY>105</posY>
 		<onleft>801</onleft>
-		<onright>902</onright>
-		<onup>902</onup>
-		<ondown>100</ondown>
+		<onright>803</onright>
+		<onup>803</onup>
+		<ondown>803</ondown>
 		
 		<width>200</width>
 		<height>70</height>
@@ -367,7 +414,7 @@
 	<!-- ***************** Info page ***************** -->
 
 	<!-- Main Title	-->
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
 		<description>Main Title</description>
 		<posX>590</posX>
@@ -375,10 +422,11 @@
 		<width>650</width>
 		<label>Main Title</label>
 		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>	
 		
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
 		<description>Main Title Value</description>
 		<posX>900</posX>
@@ -390,46 +438,69 @@
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 
-	<!-- Other Titles -->
-	<control>
+	<!-- Rating -->
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Other Titles</description>
+		<description>Rating</description>
 		<posX>590</posX>
 		<posY>220</posY>
 		<width>650</width>
-		<label>Other titles</label>
+		 <label>Rating</label>
 		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Main Title Value</description>
+		<description>Rating Value</description>
 		<posX>900</posX>
 		<posY>220</posY>
 		<width>900</width>
-		<label>#Anime3.AnimeInfo.Info.OtherTitles</label>
+		<label>#Anime3.AnimeInfo.Info.Rating</label>
 		<align>left</align>
 		<textcolor>ffffffff</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>	
-
 	
-	<!-- Anime type -->
 	<control>
+	  <type>image</type>
+	   <posX>1500</posX>
+      <posY>220</posY>
+	  <width>32</width>
+	  <height>32</height>
+	  <texture>MyAnime3\user.png</texture>
+	  <visible>Control.IsVisible(1247)</visible>
+	</control>
+	
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Anime type</description>
+		<description>My Rating Value</description>
+		<posX>1600</posX>
+		<posY>220</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.MyRating</label>
+		<align>left</align>
+		<textcolor>ffffffff</textcolor>
+		<visible>Control.IsVisible(1247)</visible>
+	</control>	
+	
+	<!-- Anime Type -->
+	<control Style="DetailText">
+		<type>label</type>
+		<description>Anime Type</description>
 		<posX>590</posX>
 		<posY>260</posY>
 		<width>650</width>
-		<label>Anime type</label>
+		 <label>Type</label>
 		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Anime type Value</description>
+		<description>Anime Type Value</description>
 		<posX>900</posX>
 		<posY>260</posY>
 		<width>900</width>
@@ -439,21 +510,22 @@
 		<visible>Control.IsVisible(1500)</visible>
 	</control>	
 	
-	<!-- Episodes/Specials/Other -->
-	<control>
+	<!-- Episodes -->
+	<control Style="DetailText">
 		<type>label</type>
 		<description>Episodes</description>
 		<posX>590</posX>
 		<posY>300</posY>
 		<width>650</width>
-		<label>Episodes</label>
+		 <label>Episodes</label>
 		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Episodes/Specials/Other</description>
+		<description>Episodes Value</description>
 		<posX>900</posX>
 		<posY>300</posY>
 		<width>900</width>
@@ -461,25 +533,51 @@
 		<align>left</align>
 		<textcolor>ffffffff</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
-	</control>
-
-	<!-- Airing -->
-	<control>
+	</control>	
+	
+	<!-- Other Titles -->
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Airing</description>
+		<description>OtherTitles</description>
 		<posX>590</posX>
 		<posY>340</posY>
 		<width>650</width>
-		<label>Airing</label>
+		 <label>Other Titles</label>
 		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
-		<description>Airing</description>
+		<description>OtherTitles Value</description>
 		<posX>900</posX>
 		<posY>340</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.OtherTitles</label>
+		<align>left</align>
+		<textcolor>ffffffff</textcolor>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+
+	<!-- Aired -->
+	<control Style="DetailText">
+		<type>label</type>
+		<description>Aired</description>
+		<posX>590</posX>
+		<posY>380</posY>
+		<width>650</width>
+		 <label>Aired</label>
+		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="DetailText">
+		<type>label</type>
+		<description>Aired Value</description>
+		<posX>900</posX>
+		<posY>380</posY>
 		<width>900</width>
 		<label>#Anime3.AnimeInfo.Info.Year</label>
 		<align>left</align>
@@ -487,44 +585,20 @@
 		<visible>Control.IsVisible(1500)</visible>
 	</control>	
 	
-	<!-- Rating (Votes) / Temp -->
-	<control>
-		<type>label</type>
-		<description>Rating / Temp</description>
-		<posX>590</posX>
-		<posY>380</posY>
-		<width>650</width>
-		<label>Rating / Temp</label>
-		<align>left</align>
-		<visible>Control.IsVisible(1500)</visible>
-	</control>
-	
-	<control>
-		<type>label</type>
-		<description>Rating (Votes) / Temp Value</description>
-		<posX>900</posX>
-		<posY>380</posY>
-		<width>700</width>
-		<label>#Anime3.AnimeInfo.Info.Rating</label>
-		<align>left</align>
-		<textcolor>ffffffff</textcolor>
-		<visible>Control.IsVisible(1500)</visible>
-	</control>
-
-	
 	<!-- Categories -->
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
 		<description>Categories</description>
 		<posX>590</posX>
 		<posY>420</posY>
 		<width>650</width>
-		<label>Categories</label>
+		 <label>Categories</label>
 		<align>left</align>
+		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
-	<control>
+	<control Style="DetailText">
 		<type>label</type>
 		<description>Categories Value</description>
 		<posX>900</posX>
@@ -536,29 +610,6 @@
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
-	<!-- Awards -->
-	<control>
-		<type>label</type>
-		<description>Awards</description>
-		<posX>590</posX>
-		<posY>460</posY>
-		<width>650</width>
-		<label>Awards</label>
-		<align>left</align>
-		<visible>Control.IsVisible(1500)</visible>
-	</control>
-	
-	<control>
-		<type>label</type>
-		<description>Awards Value</description>
-		<posX>900</posX>
-		<posY>460</posY>
-		<width>900</width>
-		<label>#Anime3.AnimeInfo.Info.Awards</label>
-		<align>left</align>
-		<textcolor>ffffffff</textcolor>
-		<visible>Control.IsVisible(1500)</visible>
-	</control>
 	
 	<!-- Description -->
 	<control Style="DetailTextDroid">

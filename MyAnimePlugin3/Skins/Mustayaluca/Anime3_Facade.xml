@@ -172,7 +172,8 @@
 					<spinCanFocus>no</spinCanFocus>
 					<textXOff2>505</textXOff2>
 					<textXOff>-120</textXOff>
-					<textXOff3>547</textXOff3>
+					<textXOff3>535</textXOff3>
+					<textYOff3>20</textYOff3>
 					<IconYOff>16</IconYOff>
 					<IconXOff>500</IconXOff>
 					<itemWidth>132</itemWidth>

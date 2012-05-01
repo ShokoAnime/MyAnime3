@@ -41,30 +41,6 @@
 		</control>
 
 		<!-- Watched Icons for Series Poster View and Season View in List Layout and Wide Banners -->
-		
-		<!--  Selected Group is favorite-->
-		<control>
-		  <id>601</id>
-		  <type>image</type>
-		  <posX>60</posX>
-		  <posY>170</posY>
-		  <width>116</width>
-		  <height>40</height>
-		  <texture>MyAnime3\Favorite.png</texture>
-		  <visible>facadeview.list+Control.IsVisible(1245)+Control.HasFocus(50)</visible>
-		</control>
-		
-		<!--  Selected Group has missing episodes-->
-		<control>
-		  <id>601</id>
-		  <type>image</type>
-		  <posX>180</posX>
-		  <posY>170</posY>
-		  <width>116</width>
-		  <height>40</height>
-		  <texture>MyAnime3\missing.png</texture>
-		  <visible>facadeview.list+Control.IsVisible(1246)+Control.HasFocus(50)</visible>
-		</control>
 	
 		<control Style="BigTitle">
 			<description>Series Title - Groups/Series</description>

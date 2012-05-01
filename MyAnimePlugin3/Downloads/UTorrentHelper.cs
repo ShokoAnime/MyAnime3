@@ -440,6 +440,54 @@ namespace MyAnimePlugin3.Downloads
 
 				TorrentFileList fileList = JSONHelper.Deserialize<TorrentFileList>(output);
 
+				if (fileList != null && fileList.files != null && fileList.files.Length > 1)
+				{
+					object[] actualFiles = fileList.files[1] as object[];
+					if (actualFiles == null) return false;
+
+					foreach (object obj in actualFiles)
+					{
+						object[] actualFile = obj as object[];
+						if (actualFile == null) continue;
+
+						TorrentFile tf = new TorrentFile();
+						tf.FileName = actualFile[0].ToString();
+						tf.FileSize = long.Parse(actualFile[1].ToString());
+						tf.Downloaded = long.Parse(actualFile[2].ToString());
+						tf.Priority = long.Parse(actualFile[3].ToString());
+
+						torFiles.Add(tf);
+					}
+
+				}
+
+				return true;
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write("Error in GetTorrentList: {0}", ex.ToString());
+				return false;
+			}
+		}
+
+		public bool GetFileListOld(string hash, ref List<TorrentFile> torFiles)
+		{
+			torFiles = new List<TorrentFile>();
+
+			if (!ValidCredentials())
+			{
+				BaseConfig.MyAnimeLog.Write("Credentials are not valid for uTorrent");
+				return false;
+			}
+
+			try
+			{
+				string url = string.Format(urlTorrentFileList, address, port, token, hash);
+				string output = GetWebResponse(url);
+				if (output.Length == 0) return false;
+
+				TorrentFileList fileList = JSONHelper.Deserialize<TorrentFileList>(output);
+
 				// find the 2nd instance of the "["
 				int pos = output.IndexOf("[", 0);
 				if (pos > 0) pos = output.IndexOf("[", pos + 1);
@@ -454,7 +502,7 @@ namespace MyAnimePlugin3.Downloads
 					output2 = output2.Replace("}", "");
 					output2 = output2.Replace("\r", "");
 					output2 = output2.Replace("\n", "");
-					//BaseConfig.MyAnimeLog.Write("output2: {0}", output2);
+					BaseConfig.MyAnimeLog.Write("output2: {0}", output2);
 
 					DataTable dtDetails = CsvParser.Parse(output2);
 					// there will be 4 columns per row

@@ -14,7 +14,7 @@
 		<control Style="DetailText">
 			<description>Queue Count - AniDB</description>
 			<type>label</type>
-			<label>#Anime3.QueueCountAniDB</label>
+			<label>#Anime3.GeneralQueueCount</label>
 			<posX>100</posX>
 			<posY>1030</posY>
 			<width>50</width>
@@ -35,7 +35,7 @@
 		<control Style="DetailText">
 			<description>Queue Count - Hasher</description>
 			<type>label</type>
-			<label>#Anime3.QueueCountHasher</label>
+			<label>#Anime3.HasherQueueCount</label>
 			<posX>200</posX>
 			<posY>1030</posY>
 			<width>50</width>
@@ -57,7 +57,7 @@
 		<control Style="DetailText">
 			<description>Queue Count - Images</description>
 			<type>label</type>
-			<label>#Anime3.QueueCountImages</label>
+			<label>#Anime3.ImagesQueueCount</label>
 			<posX>300</posX>
 			<posY>1030</posY>
 			<width>50</width>

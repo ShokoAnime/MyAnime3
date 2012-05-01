@@ -324,9 +324,6 @@ namespace MyAnimePlugin3.Windows
 					dlg.Add(pItem);
 				}
 
-                pItem = new GUIListItem("View Larger");
-                dlg.Add(pItem);
-
 				if (selectedPoster.IsImageEnabled)
 				{
 					if (selectedPoster.IsImageDefault)
@@ -354,14 +351,7 @@ namespace MyAnimePlugin3.Windows
 					return;
 				}
 
-                if (dlg.SelectedId == 2)
-                {
-                    // turns everything to hidden
-                    viewIsLarger = true;
-                    dummyLarger.Visible = false;
-                }
-
-				if (dlg.SelectedId == 3)
+				if (dlg.SelectedId == 2)
 				{
 					bool isdef = !selectedPoster.IsImageDefault;
 					JMMServerHelper.SetDefaultPoster(isdef, selectedPoster, AnimeID);

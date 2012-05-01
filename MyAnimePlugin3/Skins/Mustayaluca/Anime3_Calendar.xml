@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
-	<id>6105</id>
-	<defaultcontrol>50</defaultcontrol>
+	<id>6108</id>
+	<defaultcontrol>84</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	
 	<controls>
@@ -10,16 +10,16 @@
 	  
 	<!-- Dummies -->
 	<control>
-	  <type>label</type>
-	  <description>Does the anime have any characters</description>
-	  <id>1301</id>
-	  <posX>-50</posX>
-	  <posY>-50</posY>
-	  <width>5</width>
-	  <label>
-	  </label>
-	  <visible>false</visible>
-	</control>
+      <type>label</type>
+      <description>Do any anime exist for the current month</description>
+      <id>1401</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>5</width>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
 
 
 	<!-- ********************** BACKGROUNDS************************************** -->
@@ -36,17 +36,16 @@
 		<texture>background.png</texture>
 	</control>
 
-	  
-	  <control>
-			<description>Backdrop Overlay</description>
-			<type>image</type>
-			<id>0</id>
-			<posX>0</posX>
-			<posY>0</posY>
-			<width>1925</width>
-			<height>1085</height>
-			<texture>overlay_background.png</texture>
-		</control>
+	 <control>
+		<description>Backdrop Overlay</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>0</posX>
+		<posY>0</posY>
+		<width>1925</width>
+		<height>1085</height>
+		<texture>overlay_background.png</texture>
+	</control>
 		
 	<control>
 		<description>Backdrop Overlay Bar</description>
@@ -90,7 +89,7 @@
 		<posX>70</posX>
 		<posY>30</posY>
 		<width>1220</width>
-		<label>Characters: #Anime3.Character.Main.Title</label>
+		<label>Calendar</label>
 		<animation effect="fade" time="250">WindowClose</animation>
 	</control>
 	
@@ -99,7 +98,7 @@
 		<control>
 			<type>actiongroup</type>
 			<description>action menu</description>
-			<defaultcontrol>2</defaultcontrol>
+			<defaultcontrol>920</defaultcontrol>
 			<onexit>50</onexit>
 			<buttonX>0</buttonX>
 			<buttonY>0</buttonY>
@@ -107,7 +106,6 @@
 			<buttonheight>720</buttonheight>
 			<width>568</width>
 			<height>900</height>
-			<visible>!Control.HasFocus(50)</visible>
 			<dimColor>00ffffff</dimColor>
 			<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 			<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
@@ -119,7 +117,7 @@
 				<height>998</height>
 				<texture>overlay_background.png</texture>
 				<colorDiffuse>fffffffff</colorDiffuse>
-				<visible>!Control.HasFocus(50)</visible>
+				<visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
 			</control>
@@ -131,7 +129,7 @@
 				<height>998</height>
 				<texture>hidden_menu_short_background.png</texture>
 				<colorDiffuse>fffffffff</colorDiffuse>
-				<visible>!Control.HasFocus(50)</visible>
+				<visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
 			</control>
@@ -143,7 +141,7 @@
 				<width>128</width>
 				<height>128</height>
 				<texture>hover_My Anime3.png</texture>
-				<visible>!Control.HasFocus(50)</visible>
+				<visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
 			</control>
@@ -154,31 +152,19 @@
 				<posY>178</posY>
 				<width>300</width>
 				<font>font3</font>
-				<label>Characters</label>
+				<label>Calendar</label>
 				<align>right</align>
-				<visible>!Control.HasFocus(50)</visible>
+				<visible>!Control.HasFocus(50)+Control.IsVisible(50)</visible>
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
 			</control>
-			<control>
-				<type>label</type>
-				<id>0</id>
-				<posX>370</posX>
-				<posY>458</posY>
-				<width>300</width>
-				<font>font3</font>
-				<label>Other</label>
-				<align>right</align>
-				<visible>!Control.HasFocus(50)</visible>
-				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
-				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
-			</control>
+
 			<control>
 				<description>group element</description>
 				<type>group</type>
 				<animation effect="slide" time="250" start="-300,0" reversible="false">visible</animation>
 				<animation effect="slide" time="250" end="-300,0" reversible="false">hidden</animation>
-				<visible>!Control.HasFocus(50)</visible>
+				<visible>!Control.HasFocus(50)+control.isvisible(50)</visible>
 				<control>
 					<description>button group</description>
 					<type>group</type>
@@ -186,103 +172,55 @@
 					<posY>230</posY>
 					<layout>StackLayout(0, Vertical, true)</layout>
 					<visible>!Control.HasFocus(50)</visible>
-					
 					<control>
-					  <description>Download Missing Info</description>
+						<description>Continue Watching...</description>
+						<type>button</type>
+						<id>920</id>
+						<label>Continue Watching...</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>926</onup>
+						<ondown>921</ondown>
+					</control>
+					<control>
+						<description>Utilities</description>
+						<type>button</type>
+						<id>921</id>
+						<label>Utilities</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>920</onup>
+						<ondown>923</ondown>
+					</control>
+					<control>
+						<description>Downloads</description>
+						<type>button</type>
+						<id>923</id>
+						<label>Downloads</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>921</onup>
+						<ondown>925</ondown>
+					</control>
+					<control>
+						<description>Recommendations</description>
+						<type>button</type>
+						<id>925</id>
+						<label>Recommendations</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>923</onup>
+						<ondown>926</ondown>
+					</control>
+					<control>
+					  <description>Something Random</description>
 					  <type>button</type>
-					  <id>2</id>
-					  <label>Download Missing Info</label>
+					  <id>926</id>
+					  <label>Something Random</label>
 					  <onleft>50</onleft>
 					  <onright>50</onright>
-					  <onup>915</onup>
-					  <ondown>3</ondown>
-					</control>
-
-					<control>
-					  <description>Refresh View</description>
-					  <type>button</type>
-					  <id>3</id>
-					  <label>Refresh View</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>2</onup>
-					  <ondown>930</ondown>
-					</control>
-					
-					<control>
-					  <description>Seiyuu Info</description>
-					  <type>button</type>
-					  <id>930</id>
-					  <label>Seiyuu Info</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>3</onup>
-					  <ondown>910</ondown>
-					</control>
-
-					<control>
-					  <description>Empty button</description>
-					  <type>button</type>
-					  <id>0</id>
-					  <label>-</label>
-					  <visible>true</visible>
-					</control>
-
-					<control>
-					  <description>Series Info</description>
-					  <type>button</type>
-					  <id>910</id>
-					  <label>Series Info</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>930</onup>
-					  <ondown>912</ondown>
-					</control>
-
-					<control>
-					  <description>Relations</description>
-					  <type>button</type>
-					  <id>912</id>
-					  <label>Relations</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>910</onup>
-					  <ondown>913</ondown>
-					</control>
-
-
-					<control>
-					  <description>Fanart</description>
-					  <type>button</type>
-					  <id>913</id>
-					  <label>Fanart</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>912</onup>
-					  <ondown>914</ondown>
-					</control>
-
-					<control>
-					  <description>Posters</description>
-					  <type>button</type>
-					  <id>914</id>
-					  <label>Posters</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>913</onup>
-					  <ondown>915</ondown>
-					</control>
-
-
-					<control>
-					  <description>Wide Banners</description>
-					  <type>button</type>
-					  <id>915</id>
-					  <label>Wide Banners</label>
-					  <onleft>50</onleft>
-					  <onright>50</onright>
-					  <onup>914</onup>
-					  <ondown>2</ondown>
+					  <onup>925</onup>
+					  <ondown>920</ondown>
 					</control>
 				</control>
 			</control>
@@ -352,90 +290,148 @@
 			</control>
 		</control>
 	
-	<!-- ************************** Chaarcter Details ***********************************-->
-		
+	
+	
+	<!--  ************** BUTTONS TOOLBAR *****************  -->
+    
+	<control>
+		<description>MinusOneMonth</description>
+		<type>button</type>
+		<id>83</id>
+		<width>200</width>
+		<height>50</height>
+		<textYOff>14</textYOff>
+		<label>#Anime3.Calendar.MinusOneMonth #Anime3.Calendar.MinusOneYear</label>
+		<onleft>920</onleft>
+		<onright>84</onright>
+		<ondown>50</ondown>
+		<onup>50</onup>
+		<align>center</align>
+		<posX>600</posX>
+        <posY>50</posY>
+	</control>
 	
 	<control Style="DetailTitle">
 		<type>fadelabel</type>
-		<description>Character.Name</description>
+		<description>CurrentMonth</description>
 		<id>640</id>
+		<posX>870</posX>
+        <posY>60</posY>
+		<width>180</width>
+		<label>#Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
+    </control>
+	
+	
+	<control>
+		<description>PlusOneMonth</description>
+		<type>button</type>
+		<id>84</id>
+		<width>200</width>
+		<height>50</height>
+		<textYOff>14</textYOff>
+		<label>#Anime3.Calendar.PlusOneMonth #Anime3.Calendar.PlusOneYear</label>
+		<onleft>83</onleft>
+		<onright>920</onright>
+		<ondown>50</ondown>
+		<onup>50</onup>
+		<align>center</align>
+		<posX>1000</posX>
+        <posY>50</posY>
+	</control>
+	
+	<control Style="BigTitle">
+		<type>fadelabel</type>
+		<description>Nothing found for</description>
+		<id>640</id>
+		<posX>0</posX>
+        <posY>400</posY>
+		<width>1920</width>
+		<align>center</align>
+		<label>Nothing found for #Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
+		<visible>!Control.IsVisible(1401)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+	
+	<!--  ************** SELECTED SERIES *****************  -->
+
+	<control Style="BigTitle">
+		<type>fadelabel</type>
 		<posX>70</posX>
 		<posY>630</posY>
 		<width>1560</width>
-		<label>#Anime3.Character.Name</label>
-		<visible>Control.IsVisible(1301)</visible>
+		<label>#Anime3.Calendar.Title</label>
+		<visible>Control.IsVisible(1401)</visible>
     </control>
 	
 	<control Style="DetailText">
-		<description>Type Label</description>
+		<description>Air Date Label</description>
 		<type>fadelabel</type>
-	    <label>Type</label>
+	    <label>Air Date</label>
 		<id>0</id>
 		<posX>70</posX>
-		<posY>680</posY>
+		<posY>700</posY>
 		<textcolor>ffa9d0f7</textcolor>
-		<visible>Control.IsVisible(1301)</visible>
+		<visible>Control.IsVisible(1401)</visible>
 	</control>
 
 	<control Style="DetailText">
 		<description>Type Value</description>
 		<type>label</type>
-	    <label>#Anime3.Character.CharType</label>
+	    <label>#Anime3.Calendar.AirDate</label>
 		<id>0</id>
 		<posX>240</posX>
-		<posY>680</posY>
-		<visible>Control.IsVisible(1301)</visible>
+		<posY>700</posY>
+		<visible>Control.IsVisible(1401)</visible>
 	</control>
 	
-	<control Style="DetailTitle">
+	<control Style="DetailText">
+		<description>GenreShort Label</description>
 		<type>fadelabel</type>
-		<description>Actor.Name</description>
-		<id>640</id>
-		<posX>1070</posX>
-		<posY>630</posY>
-		<width>1560</width>
-		<label>#Anime3.Actor.Name</label>
-		<visible>Control.IsVisible(1301)</visible>
-    </control>
+	    <label>Categories</label>
+		<id>0</id>
+		<posX>70</posX>
+		<posY>740</posY>
+		<textcolor>ffa9d0f7</textcolor>
+		<visible>Control.IsVisible(1401)</visible>
+	</control>
+
+	<control Style="DetailText">
+		<description>Genre Value</description>
+		<type>textboxscrollup</type>
+	    <label>#Anime3.Calendar.Genre</label>
+		<id>0</id>
+		<posX>240</posX>
+		<posY>740</posY>
+		<visible>Control.IsVisible(1401)</visible>
+		<width>600</width>
+		<height>260</height>
+	</control>
 	
 	<control Style="DetailTextDroid">
 
 		<type>textboxscrollup</type>
 		<description>Description</description>
-		<posX>70</posX>
-		<posY>720</posY>
-		<width>950</width>
-		<height>260</height>
-		<label>#Anime3.Character.Description</label>
-		<visible>Control.IsVisible(1301)</visible>
+		<posX>900</posX>
+		<posY>700</posY>
+		<width>890</width>
+		<height>240</height>
+		<label>#Anime3.Calendar.Description</label>
+		<visible>Control.IsVisible(1401)</visible>
 		<align>left</align>
 		<seperator>-----------------------------------------------------------------------------------</seperator>
 		<scrollStartDelaySec>12</scrollStartDelaySec>
-	</control>
-	
-	<control>
-		<description>Actor Poster</description>
-		<type>image</type>
-		<posX>1070</posX>
-		<posY>680</posY>
-		<width>220</width>
-		<height>300</height>
-		<texture>#Anime3.Character.PosterMainActor</texture>
-		<visible>Control.IsVisible(1301)</visible>
-		<animation effect="fade" time="250">WindowClose</animation>
-	</control>
-	
-	
-		
+	</control>	
 
 	<control Style="DetailText">
 		<description>Status</description>
 		<type>label</type>
 	    <label>#Anime3.Character.Status</label>
 		<id>0</id>
-		<posX>70</posX>
+		<posX>900</posX>
 		<posY>1020</posY>
-		<width>1700</width>
+		<width>890</width>
 		<textcolor>ffa9d0f7</textcolor>
 		<visible>Control.IsVisible(1301)</visible>
 	</control>

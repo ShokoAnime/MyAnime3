@@ -292,6 +292,9 @@ namespace MyAnimePlugin3.Windows
 				return;
 			}
 
+			if (MA3WindowManager.HandleWindowChangeButton(control))
+				return;
+
 			try
 			{
 				if (actionType != MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM) return; // some other events raised onClicked too for some reason?
@@ -312,8 +315,7 @@ namespace MyAnimePlugin3.Windows
 			}
 			catch { }
 
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
+			
 
             base.OnClicked(controlId, control, actionType);
         }

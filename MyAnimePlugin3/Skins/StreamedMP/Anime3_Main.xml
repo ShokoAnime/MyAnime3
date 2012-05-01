@@ -463,7 +463,7 @@
 	<control>
 	  <type>actiongroup</type>
 	  <description>action menu</description>
-	  <defaultcontrol>2</defaultcontrol>
+	  <defaultcontrol>12</defaultcontrol>
 	  <onexit>50</onexit>
 	  <dimColor>00ffffff</dimColor>
 	  <control>

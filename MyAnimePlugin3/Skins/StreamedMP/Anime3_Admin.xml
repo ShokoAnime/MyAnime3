@@ -165,7 +165,7 @@
 		<control>
 			<type>actiongroup</type>
 			<description>action menu</description>
-			<defaultcontrol>6</defaultcontrol>
+			<defaultcontrol>101</defaultcontrol>
 			<onexit>50</onexit>
 			<dimColor>00ffffff</dimColor>
 			<control>

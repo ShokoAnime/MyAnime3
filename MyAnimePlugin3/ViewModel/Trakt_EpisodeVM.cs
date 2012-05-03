@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using MyAnimePlugin3.ImageManagement;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -29,7 +30,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.EpisodeImage = contract.EpisodeImage;
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -63,6 +64,23 @@ namespace MyAnimePlugin3.ViewModel
 				relativePath = Path.Combine(relativePath, imageName);
 
 				return Path.Combine(Utils.GetTraktImagePath(), relativePath);
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(FullImagePathPlain)) return FullImagePathPlain;
+
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Episode, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

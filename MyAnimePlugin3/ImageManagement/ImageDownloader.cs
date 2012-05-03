@@ -13,6 +13,7 @@ namespace MyAnimePlugin3.ImageManagement
 		private const string QUEUE_STOP = "StopQueue";
 		private BlockingList<ImageDownloadRequest> imagesToDownload = new BlockingList<ImageDownloadRequest>();
 		private BackgroundWorker workerImages = new BackgroundWorker();
+		private static object downloadsLock = new object();
 
 		public int QueueCount
 		{
@@ -500,66 +501,66 @@ namespace MyAnimePlugin3.ImageManagement
 				case ImageEntityType.AniDB_Cover:
 
 					AniDB_AnimeVM anime = req.ImageData as AniDB_AnimeVM;
-					return anime.PosterPathNoDefault;
+					return anime.PosterPathNoDefaultPlain;
 
 				case ImageEntityType.AniDB_Character:
 
 					AniDB_CharacterVM chr = req.ImageData as AniDB_CharacterVM;
-					return chr.PosterPath;
+					return chr.PosterPathPlain;
 
 				case ImageEntityType.AniDB_Creator:
 
 					AniDB_SeiyuuVM creator = req.ImageData as AniDB_SeiyuuVM;
-					return creator.PosterPath;
+					return creator.PosterPathPlain;
 
 				case ImageEntityType.TvDB_Cover:
 
 					TvDB_ImagePosterVM poster = req.ImageData as TvDB_ImagePosterVM;
-					return poster.FullImagePath;
+					return poster.FullImagePathPlain;
 
 				case ImageEntityType.TvDB_Banner:
 
 					TvDB_ImageWideBannerVM banner = req.ImageData as TvDB_ImageWideBannerVM;
-					return banner.FullImagePath;
+					return banner.FullImagePathPlain;
 
 				case ImageEntityType.TvDB_Episode:
 
 					TvDB_EpisodeVM episode = req.ImageData as TvDB_EpisodeVM;
-					return episode.FullImagePath;
+					return episode.FullImagePathPlain;
 
 				case ImageEntityType.TvDB_FanArt:
 
 					TvDB_ImageFanartVM fanart = req.ImageData as TvDB_ImageFanartVM;
 
 					if (thumbNailOnly)
-						return fanart.FullThumbnailPath;
+						return fanart.FullThumbnailPathPlain;
 					else
-						return fanart.FullImagePath;
+						return fanart.FullImagePathPlain;
 
 				case ImageEntityType.MovieDB_Poster:
 
 					MovieDB_PosterVM moviePoster = req.ImageData as MovieDB_PosterVM;
-					return moviePoster.FullImagePath;
+					return moviePoster.FullImagePathPlain;
 
 				case ImageEntityType.MovieDB_FanArt:
 
 					MovieDB_FanartVM movieFanart = req.ImageData as MovieDB_FanartVM;
-					return movieFanart.FullImagePath;
+					return movieFanart.FullImagePathPlain;
 
 				case ImageEntityType.Trakt_Poster:
 
 					Trakt_ImagePosterVM traktPoster = req.ImageData as Trakt_ImagePosterVM;
-					return traktPoster.FullImagePath;
+					return traktPoster.FullImagePathPlain;
 
 				case ImageEntityType.Trakt_Fanart:
 
 					Trakt_ImageFanartVM trakFanart = req.ImageData as Trakt_ImageFanartVM;
-					return trakFanart.FullImagePath;
+					return trakFanart.FullImagePathPlain;
 
 				case ImageEntityType.Trakt_Episode:
 
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
-					return trakEp.FullImagePath;
+					return trakEp.FullImagePathPlain;
 
 				default:
 					return "";
@@ -770,6 +771,115 @@ namespace MyAnimePlugin3.ImageManagement
 				OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
 				BaseConfig.MyAnimeLog.Write(ex.ToString());
 			}
+		}
+
+		public void DownloadImage(ImageDownloadRequest req)
+		{
+			try
+			{
+				lock (downloadsLock)
+				{
+					string fileName = GetFileName(req, false);
+					string entityID = GetEntityID(req);
+					bool downloadImage = true;
+					bool fileExists = File.Exists(fileName);
+
+					if (fileExists)
+					{
+						if (!req.ForceDownload)
+							downloadImage = false;
+						else
+							downloadImage = true;
+					}
+					else
+						downloadImage = true;
+
+					if (downloadImage)
+					{
+						string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
+						if (File.Exists(tempName)) File.Delete(tempName);
+
+
+						OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+						if (fileExists) File.Delete(fileName);
+
+						byte[] imageArray = null;
+						try
+						{
+							imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, false);
+						}
+						catch { }
+
+						if (imageArray == null) return;
+
+						File.WriteAllBytes(tempName, imageArray);
+
+						// move the file to it's final location
+						string fullPath = Path.GetDirectoryName(fileName);
+						if (!Directory.Exists(fullPath))
+							Directory.CreateDirectory(fullPath);
+
+						// move the file to it's final location
+						File.Move(tempName, fileName);
+
+
+
+					}
+
+
+					// if the file is a tvdb fanart also get the thumbnail
+					if (req.ImageType == ImageEntityType.TvDB_FanArt)
+					{
+						fileName = GetFileName(req, true);
+						entityID = GetEntityID(req);
+						downloadImage = true;
+						fileExists = File.Exists(fileName);
+
+						if (fileExists)
+						{
+							if (!req.ForceDownload)
+								downloadImage = false;
+							else
+								downloadImage = true;
+						}
+						else
+							downloadImage = true;
+
+						if (downloadImage)
+						{
+							string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
+							if (File.Exists(tempName)) File.Delete(tempName);
+
+							OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+							if (fileExists) File.Delete(fileName);
+
+							byte[] imageArray = null;
+							try
+							{
+								imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, true);
+							}
+							catch { }
+
+							if (imageArray == null) return;
+
+							File.WriteAllBytes(tempName, imageArray);
+
+							// move the file to it's final location
+							string fullPath = Path.GetDirectoryName(fileName);
+							if (!Directory.Exists(fullPath))
+								Directory.CreateDirectory(fullPath);
+
+							// move the file to it's final location
+							File.Move(tempName, fileName);
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ex.ToString());
+			}
+
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using MyAnimePlugin3.ImageManagement;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -14,7 +15,7 @@ namespace MyAnimePlugin3.ViewModel
 		public string ImageURL { get; set; }
 		public int Enabled { get; set; }
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -30,6 +31,23 @@ namespace MyAnimePlugin3.ViewModel
 				relativePath = relativePath.Replace("/", @"\");
 
 				return Path.Combine(Utils.GetTraktImagePath(), relativePath);
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(FullImagePathPlain)) return FullImagePathPlain;
+
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Fanart, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

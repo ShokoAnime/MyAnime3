@@ -264,7 +264,7 @@ namespace MyAnimePlugin3.ViewModel
 		private string posterPath = "";
 		public string PosterPath
 		{
-			get { return posterPath; }
+			get { return AniDB_Anime.DefaultPosterPath; }
 			set
 			{
 				posterPath = value;

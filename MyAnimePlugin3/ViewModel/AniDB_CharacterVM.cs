@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using MyAnimePlugin3.ImageManagement;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -27,13 +28,30 @@ namespace MyAnimePlugin3.ViewModel
 			return string.Format("CHAR: {0} - {1} ({2})", CharID, CharName, PosterPath);
 		}
 
-		public string PosterPath
+		public string PosterPathPlain
 		{
 			get
 			{
 				if (string.IsNullOrEmpty(PicName)) return "";
 
 				return Path.Combine(Utils.GetAniDBCharacterImagePath(CharID), PicName);
+			}
+		}
+
+		public string PosterPath
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(PosterPathPlain)) return PosterPathPlain;
+
+				if (!File.Exists(PosterPathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Character, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(PosterPathPlain)) return PosterPathPlain;
+				}
+
+				return PosterPathPlain;
 			}
 		}
 

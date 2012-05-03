@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using BinaryNorthwest;
+using MyAnimePlugin3.ImageManagement;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -194,12 +195,26 @@ namespace MyAnimePlugin3.ViewModel
 			aniDB_AnimeCrossRefs.Populate(xrefDetails);
 		}
 
+		public string PosterPathNoDefaultPlain
+		{
+			get
+			{
+				return Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
+			}
+		}
+
+
 		public string PosterPathNoDefault
 		{
 			get
 			{
-				string fileName = Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
-				return fileName;
+				if (!File.Exists(PosterPathNoDefaultPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+				}
+
+				return PosterPathNoDefaultPlain;
 			}
 		}
 
@@ -210,7 +225,13 @@ namespace MyAnimePlugin3.ViewModel
 				string fileName = Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
 
 				if (!File.Exists(fileName))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(fileName)) return fileName;
+
 					return "";
+				}
 				
 				return fileName;
 			}

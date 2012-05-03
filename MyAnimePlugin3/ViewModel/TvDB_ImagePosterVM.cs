@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using MyAnimePlugin3.ImageManagement;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -18,7 +19,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int Enabled { get; set; }
 		public int? SeasonNumber { get; set; }
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -27,6 +28,23 @@ namespace MyAnimePlugin3.ViewModel
 				string fname = BannerPath;
 				fname = BannerPath.Replace("/", @"\");
 				return Path.Combine(Utils.GetTvDBImagePath(), fname);
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(FullImagePathPlain)) return FullImagePathPlain;
+
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Cover, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

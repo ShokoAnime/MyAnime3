@@ -226,44 +226,52 @@ namespace MyAnimePlugin3
 			// enter your own unique code
 			GetID = Constants.PlugInInfo.ID;
 
-			settings = new AnimePluginSettings();
+			try
+			{
+				settings = new AnimePluginSettings();
 
-			imageHelper = new ImageDownloader();
-			imageHelper.Init();
+				imageHelper = new ImageDownloader();
+				imageHelper.Init();
 
-			listPoster = new AsyncImageResource();
-			listPoster.Property = "#Anime3.GroupSeriesPoster";
-			listPoster.Delay = artworkDelay;
+				listPoster = new AsyncImageResource();
+				listPoster.Property = "#Anime3.GroupSeriesPoster";
+				listPoster.Delay = artworkDelay;
 
-			fanartTexture = new AsyncImageResource();
-			fanartTexture.Property = "#Anime3.Fanart.1";
-			fanartTexture.Delay = artworkDelay;
+				fanartTexture = new AsyncImageResource();
+				fanartTexture.Property = "#Anime3.Fanart.1";
+				fanartTexture.Delay = artworkDelay;
 
-			GroupFilterQuickSorts = new Dictionary<int, QuickSort>();
+				GroupFilterQuickSorts = new Dictionary<int, QuickSort>();
 
-			//searching
-			searchTimer = new System.Timers.Timer();
-			searchTimer.AutoReset = true;
-			searchTimer.Interval = settings.FindTimeout_s * 1000;
-			searchTimer.Elapsed += new System.Timers.ElapsedEventHandler(searchTimer_Elapsed);
+				//searching
+				searchTimer = new System.Timers.Timer();
+				searchTimer.AutoReset = true;
+				searchTimer.Interval = settings.FindTimeout_s * 1000;
+				searchTimer.Elapsed += new System.Timers.ElapsedEventHandler(searchTimer_Elapsed);
 
-			//set the search key sound to the same sound for the REMOTE_1 key
-			Key key = new Key('1', (int)Keys.D1);
-			MediaPortal.GUI.Library.Action action = new MediaPortal.GUI.Library.Action();
-			ActionTranslator.GetAction(GetID, key, ref action);
-			searchSound = action.SoundFileName;
+				//set the search key sound to the same sound for the REMOTE_1 key
+				Key key = new Key('1', (int)Keys.D1);
+				MediaPortal.GUI.Library.Action action = new MediaPortal.GUI.Library.Action();
+				ActionTranslator.GetAction(GetID, key, ref action);
+				searchSound = action.SoundFileName;
 
-			// timer for automatic updates
-			autoUpdateTimer = new System.Timers.Timer();
-			autoUpdateTimer.AutoReset = true;
-			autoUpdateTimer.Interval = 5 * 60 * 1000; // 5 minutes * 60 seconds
-			autoUpdateTimer.Elapsed += new System.Timers.ElapsedEventHandler(autoUpdateTimer_Elapsed);
+				// timer for automatic updates
+				autoUpdateTimer = new System.Timers.Timer();
+				autoUpdateTimer.AutoReset = true;
+				autoUpdateTimer.Interval = 5 * 60 * 1000; // 5 minutes * 60 seconds
+				autoUpdateTimer.Elapsed += new System.Timers.ElapsedEventHandler(autoUpdateTimer_Elapsed);
 
-			downloadImagesWorker.DoWork += new DoWorkEventHandler(downloadImagesWorker_DoWork);
+				downloadImagesWorker.DoWork += new DoWorkEventHandler(downloadImagesWorker_DoWork);
 
-			this.OnToggleWatched += new OnToggleWatchedHandler(MainWindow_OnToggleWatched);
+				this.OnToggleWatched += new OnToggleWatchedHandler(MainWindow_OnToggleWatched);
 
-			g_Player.PlayBackEnded += new g_Player.EndedHandler(g_Player_PlayBackEnded);	
+				g_Player.PlayBackEnded += new g_Player.EndedHandler(g_Player_PlayBackEnded);
+			}
+			catch (Exception ex)
+			{
+				BaseConfig.MyAnimeLog.Write(ex.ToString());
+				throw;
+			}
 		}
 
 		

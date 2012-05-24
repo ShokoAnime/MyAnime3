@@ -22,6 +22,12 @@ namespace MyAnimePlugin3
 		public string CurrentJMMUserID = "";
 		public bool DisplayRatingDialogOnCompletion = true;
 
+		public bool FfdshowNotificationsShow = true;
+		public bool FfdshowNotificationsAutoClose = true;
+		public bool FfdshowNotificationsLock = true;
+		public int FfdshowNotificationsAutoCloseTime = 3000;
+		public int FfdshowNotificationsLockTime = 5000;
+
 
 		public Dictionary<int, string> ImportFolderMappings
 		{
@@ -391,6 +397,22 @@ namespace MyAnimePlugin3
 				BannerSizePct = 50;
 
 
+			string ffdshowNotificationsShow = "";
+			ffdshowNotificationsShow = xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsShow", "1");
+			FfdshowNotificationsShow = ffdshowNotificationsShow == "0" ? false : true;
+
+			string ffdshowNotificationsAutoClose = "";
+			ffdshowNotificationsAutoClose = xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsAutoClose", "1");
+			FfdshowNotificationsAutoClose = ffdshowNotificationsAutoClose == "0" ? false : true;
+
+			string ffdshowNotificationsLock = "";
+			ffdshowNotificationsLock = xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsLock", "1");
+			FfdshowNotificationsLock = ffdshowNotificationsLock == "0" ? false : true;
+
+			FfdshowNotificationsAutoCloseTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsAutoCloseTime", "3000"));
+			FfdshowNotificationsLockTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsLockTime", "5000"));
+
+
 			xmlreader.Dispose();
 
 
@@ -474,8 +496,12 @@ namespace MyAnimePlugin3
 
 				xmlwriter.SetValue("Anime3", "EpisodeDisplayFormat", EpisodeDisplayFormat);
 				xmlwriter.SetValue("Anime3", "FileSelectionDisplayFormat", fileSelectionDisplayFormat);
-				
 
+				xmlwriter.SetValue("Anime3", "FfdshowNotificationsShow", FfdshowNotificationsShow ? "1" : "0");
+				xmlwriter.SetValue("Anime3", "FfdshowNotificationsAutoClose", FfdshowNotificationsAutoClose ? "1" : "0");
+				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLock", FfdshowNotificationsLock ? "1" : "0");
+				xmlwriter.SetValue("Anime3", "FfdshowNotificationsAutoCloseTime", ((int)FfdshowNotificationsAutoCloseTime).ToString());
+				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLockTime", ((int)FfdshowNotificationsLockTime).ToString());
 				
              
 			}

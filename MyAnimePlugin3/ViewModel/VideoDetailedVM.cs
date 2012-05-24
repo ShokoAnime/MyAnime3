@@ -400,6 +400,17 @@ namespace MyAnimePlugin3.ViewModel
 			
 		}
 
+		public FileFfdshowPresetVM FileFfdshowPreset
+		{
+			get
+			{
+				JMMServerBinary.Contract_FileFfdshowPreset contract = JMMServerVM.Instance.clientBinaryHTTP.GetFFDPreset(this.VideoLocalID);
+				if (contract == null) return null;
+
+				return new FileFfdshowPresetVM(contract);
+			}
+		}
+
 		public string FileSelectionDisplay
 		{
 			get

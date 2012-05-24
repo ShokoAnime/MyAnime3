@@ -4626,6 +4626,7 @@ namespace MyAnimePlugin3
 				dlg.Add("Associate File With This Episode");
 				dlg.Add("Remove File From This Episode");
 				dlg.Add("Download this epsiode");
+				dlg.Add("Post-processing >>>");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -4782,7 +4783,11 @@ namespace MyAnimePlugin3
 						DownloadHelper.SearchEpisode(curAnimeEpisode);
 						return false;
 
+					case 9:
+						if (!ShowContextMenuPostProcessing(currentMenu))
+							return false;
 						break;
+
 					default:
 						//close menu
 						return false;
@@ -5264,7 +5269,7 @@ namespace MyAnimePlugin3
 			int mnuSeries = -1;
 			int mnuRandomSeries = -1;
 			int mnuRandomEpisode = -1;
-			
+			int mnuPostProcessing = -1;
 
 			//keep showing the dialog until the user closes it
 			int selectedLabel = 0;
@@ -5321,6 +5326,9 @@ namespace MyAnimePlugin3
 
 				dlg.Add("Random Episode");
 				curMenu++; mnuRandomEpisode = curMenu;
+
+				dlg.Add("Post-processing >>>");
+				curMenu++; mnuPostProcessing = curMenu;
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -5430,6 +5438,12 @@ namespace MyAnimePlugin3
 
 					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
 
+					return false;
+				}
+
+				if (selectedLabel == mnuPostProcessing)
+				{
+					ShowContextMenuPostProcessing(currentMenu);
 					return false;
 				}
 				
@@ -5988,6 +6002,7 @@ namespace MyAnimePlugin3
 				dlg.Add("Images >>>");
 				dlg.Add("Edit Series >>>");
 				dlg.Add("Random Episode");
+				dlg.Add("Post-processing >>>");
 
 				dlg.SelectedLabel = selectedLabel;
 				dlg.DoModal(GUIWindowManager.ActiveWindow);
@@ -6047,9 +6062,132 @@ namespace MyAnimePlugin3
 						GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
 						return false;
 
+					case 8:
+						if (!ShowContextMenuPostProcessing(currentMenu))
+							return false;
+						break;
+
 					default:
 						//close menu
 						return false;
+				}
+			}
+		}
+
+		private bool ShowContextMenuPostProcessing(string previousMenu)
+		{
+
+			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+			if (dlg == null)
+				return true;
+
+			GUIListItem currentitem = this.m_Facade.SelectedListItem;
+			if (currentitem == null)
+				return true;
+
+			AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
+			List<AnimeEpisodeVM> episodes = new List<AnimeEpisodeVM>();
+			if (grp == null)
+			{
+				AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
+				if (ser == null)
+				{
+					AnimeEpisodeVM ep = currentitem.TVTag as AnimeEpisodeVM;
+					episodes.Add(ep);
+				}
+				else
+				{
+					foreach (AnimeEpisodeVM ep in ser.AllEpisodes)
+					{
+						episodes.Add(ep);
+					}
+				}
+			}
+			else
+			{
+				List<AnimeSeriesVM> seriesList = grp.AllSeries;
+				foreach (AnimeSeriesVM ser in seriesList)
+				{
+					foreach (AnimeEpisodeVM ep in ser.AllEpisodes)
+					{
+						episodes.Add(ep);
+					}
+				}
+
+			}
+
+			if (episodes == null)
+				return true;
+
+
+			//keep showing the dialog until the user closes it
+			string currentMenu = "Associate with a ffdshow raw preset";
+			int selectedLabel = 0;
+			int intLabel = 0;
+
+			FFDShowHelper ffdshowHelper = new FFDShowHelper();
+			List<string> presets = ffdshowHelper.Presets;
+
+			string selectedPreset = ffdshowHelper.findSelectedPresetForMenu(episodes);
+
+			while (true)
+			{
+				dlg.Reset();
+				dlg.SetHeading(currentMenu);
+
+				if (previousMenu != string.Empty)
+				{
+					dlg.Add("<<< " + previousMenu);
+					intLabel++;
+				}
+
+
+				dlg.Add("Remove old preset association");
+				intLabel++;
+				foreach (string preset in presets)
+				{
+					dlg.Add("Set preset: " + preset);
+					// preset selected
+					if (selectedPreset == preset)
+						selectedLabel = intLabel;
+
+					intLabel++;
+				}
+
+				dlg.SelectedLabel = selectedLabel;
+				dlg.DoModal(GUIWindowManager.ActiveWindow);
+				selectedLabel = dlg.SelectedLabel;
+
+				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+
+				if (selection == 0)
+				{
+					//show previous
+					return true;
+				}
+				else if (selection == -1)
+				{
+					//close menu
+					return false;
+				}
+				else
+				{
+					string message = "";
+					if (selection == 1)
+					{
+						//DB remove preset
+						ffdshowHelper.deletePreset(episodes);
+						message = "Old preset successfully removed.";
+					}
+					else
+					{
+						//DB associate serie/group with preset
+						string choosenPreset = presets.ToArray()[selection - 2];
+						ffdshowHelper.addPreset(episodes, choosenPreset);
+						message = "Preset \"" + choosenPreset + "\" successfully added.";
+					}
+					Utils.DialogMsg("Confirmation", message);
+					return false;
 				}
 			}
 		}

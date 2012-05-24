@@ -397,69 +397,81 @@ namespace MyAnimePlugin3.ConfigFiles
 			BaseConfig.Settings.BakaBTUsername = txtBakaBTUsername.Text.Trim();
 			BaseConfig.Settings.BakaBTPassword = txtBakaBTPassword.Text.Trim();
 
-				if (cboImagesLocation.SelectedIndex == 0) // default
-					BaseConfig.Settings.ThumbsFolder = "";
-				else // custom
-					BaseConfig.Settings.ThumbsFolder = txtImagesLocation.Text.Trim();
+			if (cboImagesLocation.SelectedIndex == 0) // default
+				BaseConfig.Settings.ThumbsFolder = "";
+			else // custom
+				BaseConfig.Settings.ThumbsFolder = txtImagesLocation.Text.Trim();
 
 
-				BaseConfig.Settings.WatchedPercentage = int.Parse(udWatched.Value.ToString());
+			BaseConfig.Settings.WatchedPercentage = int.Parse(udWatched.Value.ToString());
 
-				BaseConfig.Settings.ShowMissing = chkShowMissing.Checked;
-				BaseConfig.Settings.ShowMissingMyGroupsOnly = chkShowMissingGroups.Checked;
-				BaseConfig.Settings.HideWatchedFiles = chkHideWatchedFiles.Checked;
-				BaseConfig.Settings.DisplayRatingDialogOnCompletion = chkRateSeries.Checked;
+			BaseConfig.Settings.ShowMissing = chkShowMissing.Checked;
+			BaseConfig.Settings.ShowMissingMyGroupsOnly = chkShowMissingGroups.Checked;
+			BaseConfig.Settings.HideWatchedFiles = chkHideWatchedFiles.Checked;
+			BaseConfig.Settings.DisplayRatingDialogOnCompletion = chkRateSeries.Checked;
 
-				if (cboAudioLanguage.SelectedIndex == 0)
-					BaseConfig.Settings.DefaultAudioLanguage = "<file>";
-				else
-					BaseConfig.Settings.DefaultAudioLanguage = cboAudioLanguage.SelectedItem.ToString();
+			if (cboAudioLanguage.SelectedIndex == 0)
+				BaseConfig.Settings.DefaultAudioLanguage = "<file>";
+			else
+				BaseConfig.Settings.DefaultAudioLanguage = cboAudioLanguage.SelectedItem.ToString();
 
-				if (cboSubtitleLanguage.SelectedIndex == 0)
-					BaseConfig.Settings.DefaultSubtitleLanguage = "<file>";
-				else if (cboSubtitleLanguage.SelectedIndex == 1)
-					BaseConfig.Settings.DefaultSubtitleLanguage = "<none>";
-				else
-					BaseConfig.Settings.DefaultSubtitleLanguage = cboSubtitleLanguage.SelectedItem.ToString();
+			if (cboSubtitleLanguage.SelectedIndex == 0)
+				BaseConfig.Settings.DefaultSubtitleLanguage = "<file>";
+			else if (cboSubtitleLanguage.SelectedIndex == 1)
+				BaseConfig.Settings.DefaultSubtitleLanguage = "<none>";
+			else
+				BaseConfig.Settings.DefaultSubtitleLanguage = cboSubtitleLanguage.SelectedItem.ToString();
 
-				BaseConfig.Settings.FindTimeout_s = (int)nudFindTimeout.Value;
-				BaseConfig.Settings.FindFilter = chkFindFilterItems.Checked;
-
-
-				BaseConfig.Settings.EpisodeDisplayFormat = txtFormatEp.Text.Trim();
-				BaseConfig.Settings.fileSelectionDisplayFormat = txtFileSelection.Text.Trim();
-
-				BaseConfig.Settings.HidePlot = chkHidePlot.Checked;
-				BaseConfig.Settings.ShowOnlyAvailableEpisodes = chkShowAvailableEpsOnly.Checked;
+			BaseConfig.Settings.FindTimeout_s = (int)nudFindTimeout.Value;
+			BaseConfig.Settings.FindFilter = chkFindFilterItems.Checked;
 
 
-				BaseConfig.Settings.PosterSizePct = (int)udPosterQuality.Value;
-				BaseConfig.Settings.BannerSizePct = (int)udWideBannerQuality.Value;
+			BaseConfig.Settings.EpisodeDisplayFormat = txtFormatEp.Text.Trim();
+			BaseConfig.Settings.fileSelectionDisplayFormat = txtFileSelection.Text.Trim();
+
+			BaseConfig.Settings.HidePlot = chkHidePlot.Checked;
+			BaseConfig.Settings.ShowOnlyAvailableEpisodes = chkShowAvailableEpsOnly.Checked;
 
 
-				BaseConfig.Settings.InfoDelay = (int)udInfoDelay.Value;
-
-				if (cboLabelStyleGroups.SelectedIndex == 0)
-					BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
-				if (cboLabelStyleGroups.SelectedIndex == 1)
-					BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.Unwatched;
-				if (cboLabelStyleGroups.SelectedIndex == 2)
-					BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.TotalEpisodes;
+			BaseConfig.Settings.PosterSizePct = (int)udPosterQuality.Value;
+			BaseConfig.Settings.BannerSizePct = (int)udWideBannerQuality.Value;
 
 
-				if (cboLabelStyleEpisodes.SelectedIndex == 0)
-					BaseConfig.Settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsDate;
-				if (cboLabelStyleEpisodes.SelectedIndex == 1)
-					BaseConfig.Settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsOnly;
+			BaseConfig.Settings.InfoDelay = (int)udInfoDelay.Value;
 
-				BaseConfig.Settings.TorrentSources.Clear();
-				foreach (object srco in lstTorrentIn.Items)
-				{
-					string src = srco as string;
-					BaseConfig.Settings.TorrentSources.Add(src);
-				}
+			if (cboLabelStyleGroups.SelectedIndex == 0)
+				BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
+			if (cboLabelStyleGroups.SelectedIndex == 1)
+				BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.Unwatched;
+			if (cboLabelStyleGroups.SelectedIndex == 2)
+				BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.TotalEpisodes;
 
-				BaseConfig.Settings.Save();
+
+			if (cboLabelStyleEpisodes.SelectedIndex == 0)
+				BaseConfig.Settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsDate;
+			if (cboLabelStyleEpisodes.SelectedIndex == 1)
+				BaseConfig.Settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsOnly;
+
+			BaseConfig.Settings.FfdshowNotificationsShow = chkFfdshowNotificationsShow.Checked;
+			BaseConfig.Settings.FfdshowNotificationsAutoClose = chkFfdshowNotificationsAutoClose.Checked;
+			BaseConfig.Settings.FfdshowNotificationsLock = chkFfdshowNotificationsLock.Checked;
+
+			int iClose = 0;
+			int.TryParse(txtFfdshowNotificationsAutoCloseTime.Text, out iClose);
+			BaseConfig.Settings.FfdshowNotificationsAutoCloseTime = iClose;
+
+			int iLock = 0;
+			int.TryParse(txtFfdshowNotificationsAutoCloseTime.Text, out iLock);
+			BaseConfig.Settings.FfdshowNotificationsLockTime = iLock;
+
+			BaseConfig.Settings.TorrentSources.Clear();
+			foreach (object srco in lstTorrentIn.Items)
+			{
+				string src = srco as string;
+				BaseConfig.Settings.TorrentSources.Add(src);
+			}
+
+			BaseConfig.Settings.Save();
 
 
         }
@@ -531,6 +543,12 @@ namespace MyAnimePlugin3.ConfigFiles
 				cboLabelStyleEpisodes.SelectedIndex = 0;
 			if (BaseConfig.Settings.LabelStyleEpisodes == View.eLabelStyleEpisodes.IconsOnly)
 				cboLabelStyleEpisodes.SelectedIndex = 1;
+
+			chkFfdshowNotificationsShow.Checked = BaseConfig.Settings.FfdshowNotificationsShow;
+			chkFfdshowNotificationsAutoClose.Checked = BaseConfig.Settings.FfdshowNotificationsAutoClose;
+			chkFfdshowNotificationsLock.Checked = BaseConfig.Settings.FfdshowNotificationsLock;
+			txtFfdshowNotificationsAutoCloseTime.Text = BaseConfig.Settings.FfdshowNotificationsAutoCloseTime.ToString();
+			txtFfdshowNotificationsLockTime.Text = BaseConfig.Settings.FfdshowNotificationsLockTime.ToString();
 
 
 			// get a full list of torrent sources

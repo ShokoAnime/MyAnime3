@@ -103,6 +103,7 @@
     <Compile Include="ConfigFiles\DragHelper.cs" />
     <Compile Include="ConfigFiles\FileBrowserObject.cs" />
     <Compile Include="ConfigFiles\View.cs" />
+    <Compile Include="DataHelpers\FFDShowHelper.cs" />
     <Compile Include="DataHelpers\JSONHelper.cs" />
     <Compile Include="DataHelpers\MessageHelper.cs" />
     <Compile Include="DataHelpers\PriorityQueue.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
     <Compile Include="ViewModel\FanartContainer.cs" />
+    <Compile Include="ViewModel\FileFfdshowPresetVM.cs" />
     <Compile Include="ViewModel\GroupFilterConditionVM.cs" />
     <Compile Include="ViewModel\GroupFilterExtendedVM.cs" />
     <Compile Include="ViewModel\GroupFilterHelper.cs" />
@@ -359,6 +361,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_DuplicateFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_FileFfdshowPreset.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter.datasource">

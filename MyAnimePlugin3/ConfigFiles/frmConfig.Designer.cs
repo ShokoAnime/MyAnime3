@@ -65,6 +65,12 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage10 = new System.Windows.Forms.TabPage();
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage11 = new System.Windows.Forms.TabPage();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.btnBakaBTTest = new System.Windows.Forms.Button();
+			this.txtBakaBTPassword = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.txtBakaBTUsername = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.groupBox19 = new System.Windows.Forms.GroupBox();
 			this.chkTorrentPreferOwnGroups = new System.Windows.Forms.CheckBox();
 			this.label59 = new System.Windows.Forms.Label();
@@ -160,18 +166,22 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.btnImagesLocation = new System.Windows.Forms.Button();
 			this.label46 = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.groupBox6 = new System.Windows.Forms.GroupBox();
-			this.btnBakaBTTest = new System.Windows.Forms.Button();
-			this.txtBakaBTPassword = new System.Windows.Forms.TextBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txtBakaBTUsername = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.groupBox16 = new System.Windows.Forms.GroupBox();
+			this.label80 = new System.Windows.Forms.Label();
+			this.txtFfdshowNotificationsLockTime = new System.Windows.Forms.TextBox();
+			this.chkFfdshowNotificationsLock = new System.Windows.Forms.CheckBox();
+			this.txtFfdshowNotificationsAutoCloseTime = new System.Windows.Forms.TextBox();
+			this.label82 = new System.Windows.Forms.Label();
+			this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
+			this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
 			this.tabPage8.SuspendLayout();
 			this.tabPage9.SuspendLayout();
 			this.tabPage11.SuspendLayout();
+			this.groupBox6.SuspendLayout();
 			this.groupBox19.SuspendLayout();
 			this.groupBox18.SuspendLayout();
 			this.tabPage3.SuspendLayout();
@@ -191,7 +201,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
-			this.groupBox6.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			this.groupBox16.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -561,6 +572,68 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage11.TabIndex = 7;
 			this.tabPage11.Text = "Downloads";
 			this.tabPage11.UseVisualStyleBackColor = true;
+			// 
+			// groupBox6
+			// 
+			this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.groupBox6.Controls.Add(this.btnBakaBTTest);
+			this.groupBox6.Controls.Add(this.txtBakaBTPassword);
+			this.groupBox6.Controls.Add(this.label6);
+			this.groupBox6.Controls.Add(this.txtBakaBTUsername);
+			this.groupBox6.Controls.Add(this.label7);
+			this.groupBox6.Location = new System.Drawing.Point(278, 15);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Size = new System.Drawing.Size(250, 171);
+			this.groupBox6.TabIndex = 2;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "BakaBT Credentials";
+			// 
+			// btnBakaBTTest
+			// 
+			this.btnBakaBTTest.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnBakaBTTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnBakaBTTest.Location = new System.Drawing.Point(89, 76);
+			this.btnBakaBTTest.Name = "btnBakaBTTest";
+			this.btnBakaBTTest.Size = new System.Drawing.Size(143, 26);
+			this.btnBakaBTTest.TabIndex = 47;
+			this.btnBakaBTTest.Text = "Test Login";
+			this.btnBakaBTTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnBakaBTTest.UseVisualStyleBackColor = true;
+			// 
+			// txtBakaBTPassword
+			// 
+			this.txtBakaBTPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtBakaBTPassword.Location = new System.Drawing.Point(89, 50);
+			this.txtBakaBTPassword.Name = "txtBakaBTPassword";
+			this.txtBakaBTPassword.PasswordChar = '*';
+			this.txtBakaBTPassword.Size = new System.Drawing.Size(143, 20);
+			this.txtBakaBTPassword.TabIndex = 46;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(12, 52);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(53, 13);
+			this.label6.TabIndex = 45;
+			this.label6.Text = "Password";
+			// 
+			// txtBakaBTUsername
+			// 
+			this.txtBakaBTUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtBakaBTUsername.Location = new System.Drawing.Point(89, 24);
+			this.txtBakaBTUsername.Name = "txtBakaBTUsername";
+			this.txtBakaBTUsername.Size = new System.Drawing.Size(143, 20);
+			this.txtBakaBTUsername.TabIndex = 44;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(12, 26);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(55, 13);
+			this.label7.TabIndex = 43;
+			this.label7.Text = "Username";
 			// 
 			// groupBox19
 			// 
@@ -1504,10 +1577,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.ForumLink.AutoSize = true;
 			this.ForumLink.Location = new System.Drawing.Point(57, 415);
 			this.ForumLink.Name = "ForumLink";
-			this.ForumLink.Size = new System.Drawing.Size(380, 13);
+			this.ForumLink.Size = new System.Drawing.Size(307, 13);
 			this.ForumLink.TabIndex = 42;
 			this.ForumLink.TabStop = true;
-			this.ForumLink.Text = "http://forum.team-mediaportal.com/mediaportal-plugins-47/my-anime-2-a-60793";
+			this.ForumLink.Text = "http://forum.team-mediaportal.com/threads/my-anime-3.107475";
 			this.ForumLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForumLink_LinkClicked);
 			// 
 			// label61
@@ -1599,6 +1672,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage11);
+			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(5, 5);
 			this.tabControl1.Name = "tabControl1";
@@ -1606,67 +1680,96 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.Size = new System.Drawing.Size(755, 504);
 			this.tabControl1.TabIndex = 0;
 			// 
-			// groupBox6
+			// tabPage2
 			// 
-			this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.groupBox6.Controls.Add(this.btnBakaBTTest);
-			this.groupBox6.Controls.Add(this.txtBakaBTPassword);
-			this.groupBox6.Controls.Add(this.label6);
-			this.groupBox6.Controls.Add(this.txtBakaBTUsername);
-			this.groupBox6.Controls.Add(this.label7);
-			this.groupBox6.Location = new System.Drawing.Point(278, 15);
-			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(250, 171);
-			this.groupBox6.TabIndex = 2;
-			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "BakaBT Credentials";
+			this.tabPage2.Controls.Add(this.groupBox16);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(747, 478);
+			this.tabPage2.TabIndex = 8;
+			this.tabPage2.Text = "More Options";
+			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// btnBakaBTTest
+			// groupBox16
 			// 
-			this.btnBakaBTTest.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnBakaBTTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnBakaBTTest.Location = new System.Drawing.Point(89, 76);
-			this.btnBakaBTTest.Name = "btnBakaBTTest";
-			this.btnBakaBTTest.Size = new System.Drawing.Size(143, 26);
-			this.btnBakaBTTest.TabIndex = 47;
-			this.btnBakaBTTest.Text = "Test Login";
-			this.btnBakaBTTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnBakaBTTest.UseVisualStyleBackColor = true;
+			this.groupBox16.Controls.Add(this.label80);
+			this.groupBox16.Controls.Add(this.txtFfdshowNotificationsLockTime);
+			this.groupBox16.Controls.Add(this.chkFfdshowNotificationsLock);
+			this.groupBox16.Controls.Add(this.txtFfdshowNotificationsAutoCloseTime);
+			this.groupBox16.Controls.Add(this.label82);
+			this.groupBox16.Controls.Add(this.chkFfdshowNotificationsAutoClose);
+			this.groupBox16.Controls.Add(this.chkFfdshowNotificationsShow);
+			this.groupBox16.Location = new System.Drawing.Point(6, 6);
+			this.groupBox16.Name = "groupBox16";
+			this.groupBox16.Size = new System.Drawing.Size(269, 97);
+			this.groupBox16.TabIndex = 17;
+			this.groupBox16.TabStop = false;
+			this.groupBox16.Text = "ffdshow Raw Post-processing";
 			// 
-			// txtBakaBTPassword
+			// label80
 			// 
-			this.txtBakaBTPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtBakaBTPassword.Location = new System.Drawing.Point(89, 50);
-			this.txtBakaBTPassword.Name = "txtBakaBTPassword";
-			this.txtBakaBTPassword.PasswordChar = '*';
-			this.txtBakaBTPassword.Size = new System.Drawing.Size(143, 20);
-			this.txtBakaBTPassword.TabIndex = 46;
+			this.label80.AutoSize = true;
+			this.label80.Location = new System.Drawing.Point(195, 70);
+			this.label80.Name = "label80";
+			this.label80.Size = new System.Drawing.Size(63, 13);
+			this.label80.TabIndex = 6;
+			this.label80.Text = "milliseconds";
 			// 
-			// label6
+			// txtFfdshowNotificationsLockTime
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 52);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(53, 13);
-			this.label6.TabIndex = 45;
-			this.label6.Text = "Password";
+			this.txtFfdshowNotificationsLockTime.AccessibleDescription = "";
+			this.txtFfdshowNotificationsLockTime.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
+			this.txtFfdshowNotificationsLockTime.Location = new System.Drawing.Point(143, 67);
+			this.txtFfdshowNotificationsLockTime.Name = "txtFfdshowNotificationsLockTime";
+			this.txtFfdshowNotificationsLockTime.Size = new System.Drawing.Size(47, 20);
+			this.txtFfdshowNotificationsLockTime.TabIndex = 5;
 			// 
-			// txtBakaBTUsername
+			// chkFfdshowNotificationsLock
 			// 
-			this.txtBakaBTUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtBakaBTUsername.Location = new System.Drawing.Point(89, 24);
-			this.txtBakaBTUsername.Name = "txtBakaBTUsername";
-			this.txtBakaBTUsername.Size = new System.Drawing.Size(143, 20);
-			this.txtBakaBTUsername.TabIndex = 44;
+			this.chkFfdshowNotificationsLock.AutoSize = true;
+			this.chkFfdshowNotificationsLock.Location = new System.Drawing.Point(14, 69);
+			this.chkFfdshowNotificationsLock.Name = "chkFfdshowNotificationsLock";
+			this.chkFfdshowNotificationsLock.Size = new System.Drawing.Size(126, 17);
+			this.chkFfdshowNotificationsLock.TabIndex = 4;
+			this.chkFfdshowNotificationsLock.Text = "Wait ffdshow load for";
+			this.chkFfdshowNotificationsLock.UseVisualStyleBackColor = true;
 			// 
-			// label7
+			// txtFfdshowNotificationsAutoCloseTime
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 26);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(55, 13);
-			this.label7.TabIndex = 43;
-			this.label7.Text = "Username";
+			this.txtFfdshowNotificationsAutoCloseTime.Location = new System.Drawing.Point(112, 44);
+			this.txtFfdshowNotificationsAutoCloseTime.Name = "txtFfdshowNotificationsAutoCloseTime";
+			this.txtFfdshowNotificationsAutoCloseTime.Size = new System.Drawing.Size(45, 20);
+			this.txtFfdshowNotificationsAutoCloseTime.TabIndex = 3;
+			// 
+			// label82
+			// 
+			this.label82.AutoSize = true;
+			this.label82.Location = new System.Drawing.Point(161, 47);
+			this.label82.Name = "label82";
+			this.label82.Size = new System.Drawing.Size(63, 13);
+			this.label82.TabIndex = 2;
+			this.label82.Text = "milliseconds";
+			// 
+			// chkFfdshowNotificationsAutoClose
+			// 
+			this.chkFfdshowNotificationsAutoClose.AutoSize = true;
+			this.chkFfdshowNotificationsAutoClose.Location = new System.Drawing.Point(14, 46);
+			this.chkFfdshowNotificationsAutoClose.Name = "chkFfdshowNotificationsAutoClose";
+			this.chkFfdshowNotificationsAutoClose.Size = new System.Drawing.Size(103, 17);
+			this.chkFfdshowNotificationsAutoClose.TabIndex = 1;
+			this.chkFfdshowNotificationsAutoClose.Text = "Auto close after ";
+			this.chkFfdshowNotificationsAutoClose.UseVisualStyleBackColor = true;
+			// 
+			// chkFfdshowNotificationsShow
+			// 
+			this.chkFfdshowNotificationsShow.AutoSize = true;
+			this.chkFfdshowNotificationsShow.Location = new System.Drawing.Point(14, 23);
+			this.chkFfdshowNotificationsShow.Name = "chkFfdshowNotificationsShow";
+			this.chkFfdshowNotificationsShow.Size = new System.Drawing.Size(167, 17);
+			this.chkFfdshowNotificationsShow.TabIndex = 0;
+			this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
+			this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
 			// 
 			// frmConfig
 			// 
@@ -1686,6 +1789,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage8.ResumeLayout(false);
 			this.tabPage9.ResumeLayout(false);
 			this.tabPage11.ResumeLayout(false);
+			this.groupBox6.ResumeLayout(false);
+			this.groupBox6.PerformLayout();
 			this.groupBox19.ResumeLayout(false);
 			this.groupBox19.PerformLayout();
 			this.groupBox18.ResumeLayout(false);
@@ -1718,8 +1823,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
-			this.groupBox6.ResumeLayout(false);
-			this.groupBox6.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.groupBox16.ResumeLayout(false);
+			this.groupBox16.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -1863,5 +1969,14 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.TextBox txtBakaBTUsername;
 		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.GroupBox groupBox16;
+		private System.Windows.Forms.Label label80;
+		private System.Windows.Forms.TextBox txtFfdshowNotificationsLockTime;
+		private System.Windows.Forms.CheckBox chkFfdshowNotificationsLock;
+		private System.Windows.Forms.TextBox txtFfdshowNotificationsAutoCloseTime;
+		private System.Windows.Forms.Label label82;
+		private System.Windows.Forms.CheckBox chkFfdshowNotificationsAutoClose;
+		private System.Windows.Forms.CheckBox chkFfdshowNotificationsShow;
     }
 }

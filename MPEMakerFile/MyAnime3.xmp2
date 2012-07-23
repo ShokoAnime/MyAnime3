@@ -4620,7 +4620,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>3</Major>
       <Minor>1</Minor>
-      <Build>3</Build>
+      <Build>4</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -4628,11 +4628,10 @@ Click Next to continue or Cancel to exit Setup.</Value>
 It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
 
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription>- Issue #184 : Only download images for clients as they are needed
-- Added exception handling to start up of MA3 to log errors</VersionDescription>
+    <VersionDescription>- Issue #25 : Reinstate the FFDShow Helper and post processing options from MA2</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=24</OnlineLocation>
-    <ReleaseDate>2012-05-07T18:40:56</ReleaseDate>
+    <ReleaseDate>2012-05-29T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>

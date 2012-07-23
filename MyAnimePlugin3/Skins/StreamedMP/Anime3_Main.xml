@@ -23,7 +23,7 @@
   <define>#textXOff2:400</define>
   <define>#textXOff3:407</define>
   <!-- #textureFocus:listbg_detail_fo.png or #textureFocus:listbg_detail2_fo.png-->
-  <define>#textureFocus:listbg_detail_fo.png</define>
+  <define>#textureFocus:listbg_fo.png</define>
   <controls>
 	<!-- Import Dummy Controls to handle visibility -->
 	<import>Anime3_Dummy.xml</import>
@@ -290,7 +290,7 @@
 		<font>mediastream12c</font>
 		<font2>mediastream10c</font2>
 		<font3>mediastream10c</font3>
-		<textureFocus>listbg_detail_fo.png</textureFocus>
+		<textureFocus>listbg_fo.png</textureFocus>
 
 		<spinPosX>1249</spinPosX>
 		<spinPosY>1690</spinPosY>

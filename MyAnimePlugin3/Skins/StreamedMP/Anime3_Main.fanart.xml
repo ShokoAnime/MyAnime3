@@ -23,7 +23,7 @@
   <define>#textXOff2:400</define>
   <define>#textXOff3:407</define>
   <!-- #textureFocus:listbg_detail_fo.png or #textureFocus:listbg_detail2_fo.png-->
-  <define>#textureFocus:listbg_detail_fo.png</define>
+  <define>#textureFocus:listbg_fo.png</define>
   <controls>
     <!-- Import Dummy Controls to handle visibility -->
     <import>Anime3_Dummy.xml</import>
@@ -285,7 +285,7 @@
         <font>mediastream12c</font>
         <font2>mediastream10c</font2>
         <font3>mediastream10c</font3>
-        <textureFocus>listbg_detail_fo.png</textureFocus>
+        <textureFocus>listbg_fo.png</textureFocus>
         <!-- Spin Controls -->
           <spinCanFocus>no</spinCanFocus>
           <spinWidth>50</spinWidth>
@@ -1034,155 +1034,155 @@
       <visible>Control.IsVisible(1242)+Control.IsVisible(1238)</visible>
       <animation effect="fade" time="250" delay="0">WindowClose</animation>
     </control>
-	
 
 
-    <!-- *********************** EPISODE INFO LABELS ( LIST LAYOUT) ************************** -->
-    <control>
-      <description>Default Episode Thumb</description>
-      <type>image</type>
-      <id>0</id>
-      <posX>18</posX>
-      <posY>428</posY>
-      <height>155</height>
-      <width>270</width>
-      <visible>facadeview.list</visible>
-      <keepaspectratio>yes</keepaspectratio>
-      <zoom>yes</zoom>
-      <texture flipY="true" diffuse="diffusemirrorwide.png">defaultepisodethumb.png</texture>
-      <animation effect="fade" time="250" delay="0">WindowClose</animation>
-      <visible>facadeview.list+Control.IsVisible(1239)</visible>
-    </control>
-    <control>
-      <description>Big Episode Thumb</description>
-      <type>image</type>
-      <id>67</id>
-      <posX>18</posX>
-      <posY>428</posY>
-      <height>155</height>
-      <width>270</width>
-      <visible>facadeview.list</visible>
-      <keepaspectratio>yes</keepaspectratio>
-      <zoom>yes</zoom>
-      <animation effect="fade" time="250" delay="0">WindowClose</animation>
-      <texture flipY="true" diffuse="diffusemirrorwide.png">#Anime3.Episode.Image</texture>
-      <visible>facadeview.list+Control.IsVisible(1239)</visible>
-    </control>
-    <control>
-      <description>Episode Plot</description>
-      <type>textboxscrollup</type>
-      <id>631</id>
-      <posX>15</posX>
-      <posY>600</posY>
-      <width>730</width>
-      <height>69</height>
-      <seperator>--------------------------------------------------------------------------------------</seperator>
-      <font>mediastream11</font>
-      <scrollStartDelaySec>10</scrollStartDelaySec>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-      <label>#Anime3.Episode.Description</label>
-    </control>
-    <control>
-      <type>label</type>
-      <label>#Anime3.Episode.SeriesTypeLabel</label>
-      <id>0</id>
-      <posX>300</posX>
-      <posY>422</posY>
-      <font>mediastream12tc</font>
-      <textcolor>ff909090</textcolor>
-      <shadowAngle>45</shadowAngle>
-      <shadowDistance>3</shadowDistance>
-      <shadowColor>#shadow.dark</shadowColor>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    <control>
-      <type>textboxscrollup</type>
-      <label>#Anime3.Episode.EpisodeName</label>
-      <id>0</id>
-      <posX>300</posX>
-      <posY>440</posY>
-      <width>460</width>
-      <height>60</height>
-      <font>mediastream14tc</font>
-      <textcolor>ffffffff</textcolor>
-      <shadowAngle>45</shadowAngle>
-      <shadowDistance>4</shadowDistance>
-      <shadowColor>#shadow.light</shadowColor>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-	
-	
+
+	<!-- *********************** EPISODE INFO LABELS ( LIST LAYOUT) ************************** -->
+	<control>
+	  <description>Default Episode Thumb</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>18</posX>
+	  <posY>428</posY>
+	  <height>155</height>
+	  <width>270</width>
+	  <visible>facadeview.list</visible>
+	  <keepaspectratio>yes</keepaspectratio>
+	  <zoom>yes</zoom>
+	  <texture flipY="true" diffuse="diffusemirrorwide.png">defaultepisodethumb.png</texture>
+	  <animation effect="fade" time="250" delay="0">WindowClose</animation>
+	  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	</control>
+	<control>
+	  <description>Big Episode Thumb</description>
+	  <type>image</type>
+	  <id>67</id>
+	  <posX>18</posX>
+	  <posY>428</posY>
+	  <height>155</height>
+	  <width>270</width>
+	  <visible>facadeview.list</visible>
+	  <keepaspectratio>yes</keepaspectratio>
+	  <zoom>yes</zoom>
+	  <animation effect="fade" time="250" delay="0">WindowClose</animation>
+	  <texture flipY="true" diffuse="diffusemirrorwide.png">#Anime3.Episode.Image</texture>
+	  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+	</control>
+	<control>
+	  <description>Episode Plot</description>
+	  <type>textboxscrollup</type>
+	  <id>631</id>
+	  <posX>15</posX>
+	  <posY>600</posY>
+	  <width>730</width>
+	  <height>69</height>
+	  <seperator>--------------------------------------------------------------------------------------</seperator>
+	  <font>mediastream11</font>
+	  <scrollStartDelaySec>10</scrollStartDelaySec>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	  <label>#Anime3.Episode.Description</label>
+	</control>
+	<control>
+	  <type>label</type>
+	  <label>#Anime3.Episode.SeriesTypeLabel</label>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>422</posY>
+	  <font>mediastream12tc</font>
+	  <textcolor>ff909090</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>3</shadowDistance>
+	  <shadowColor>#shadow.dark</shadowColor>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+	<control>
+	  <type>textboxscrollup</type>
+	  <label>#Anime3.Episode.EpisodeName</label>
+	  <id>0</id>
+	  <posX>300</posX>
+	  <posY>440</posY>
+	  <width>460</width>
+	  <height>60</height>
+	  <font>mediastream14tc</font>
+	  <textcolor>ffffffff</textcolor>
+	  <shadowAngle>45</shadowAngle>
+	  <shadowDistance>4</shadowDistance>
+	  <shadowColor>#shadow.light</shadowColor>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+
+
 	<control Style="smallTitleB">
-      <label>LENGTH</label>
-      <type>label</type>
-      <posX>300</posX>
-      <posY>488</posY>
-      <width>150</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    <control Style="smallTitle">
-      <id>10003</id>
-      <label>#Anime3.Episode.Length</label>
-      <type>label</type>
-      <posX>455</posX>
-      <posY>489</posY>
-      <width>230</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-	
-	
-    <control Style="smallTitleB">
-      <label>AIR DATE</label>
-      <type>label</type>
-      <posX>300</posX>
-      <posY>508</posY>
-      <width>150</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    <control Style="smallTitle">
-      <id>10001</id>
-      <label>#Anime3.Episode.AirDate</label>
-      <type>label</type>
-      <posX>455</posX>
-      <posY>509</posY>
-      <width>230</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    <control Style="smallTitleB">
-      <label>RATING</label>
-      <type>label</type>
-      <posX>300</posX>
-      <posY>528</posY>
-      <width>150</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    <control Style="smallTitle">
-      <id>10002</id>
-      <label>#Anime3.Episode.Rating</label>
-      <type>label</type>
-      <posX>455</posX>
-      <posY>529</posY>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    
-    
-    <control Style="smallTitleB">
-      <label>FILE INFO</label>
-      <type>label</type>
-      <posX>300</posX>
-      <posY>548</posY>
-      <width>150</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
-    <control Style="smallTitle">
-      <id>10004</id>
-      <label>#Anime3.Episode.FileInfo</label>
-      <type>label</type>
-      <posX>455</posX>
-      <posY>549</posY>
-      <width>270</width>
-      <visible>Control.IsVisible(1239)+facadeview.list</visible>
-    </control>
+	  <label>LENGTH</label>
+	  <type>label</type>
+	  <posX>300</posX>
+	  <posY>508</posY>
+	  <width>150</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+	<control Style="smallTitle">
+	  <id>10003</id>
+	  <label>#Anime3.Episode.Length</label>
+	  <type>label</type>
+	  <posX>455</posX>
+	  <posY>509</posY>
+	  <width>230</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+
+
+	<control Style="smallTitleB">
+	  <label>AIR DATE</label>
+	  <type>label</type>
+	  <posX>300</posX>
+	  <posY>528</posY>
+	  <width>150</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+	<control Style="smallTitle">
+	  <id>10001</id>
+	  <label>#Anime3.Episode.AirDate</label>
+	  <type>label</type>
+	  <posX>455</posX>
+	  <posY>529</posY>
+	  <width>230</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+	<control Style="smallTitleB">
+	  <label>RATING</label>
+	  <type>label</type>
+	  <posX>300</posX>
+	  <posY>548</posY>
+	  <width>150</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+	<control Style="smallTitle">
+	  <id>10002</id>
+	  <label>#Anime3.Episode.Rating</label>
+	  <type>label</type>
+	  <posX>455</posX>
+	  <posY>549</posY>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+
+
+	<control Style="smallTitleB">
+	  <label>FILE INFO</label>
+	  <type>label</type>
+	  <posX>300</posX>
+	  <posY>568</posY>
+	  <width>150</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
+	<control Style="smallTitle">
+	  <id>10004</id>
+	  <label>#Anime3.Episode.FileInfo</label>
+	  <type>label</type>
+	  <posX>455</posX>
+	  <posY>569</posY>
+	  <width>270</width>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+	</control>
     
     <import>Anime3_QueueStatus.xml</import>
 	<import>common.overlays2.xml</import>

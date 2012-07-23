@@ -45,17 +45,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			btnTorrentDown.Click += new EventHandler(btnTorrentDown_Click);
 			btnBakaBTTest.Click += new EventHandler(btnBakaBTTest_Click);
 
-			cboLabelStyleGroups.Items.Clear();
-			cboLabelStyleGroups.Items.Add(Constants.GroupLabelStyle.WatchedUnwatched); 
-			cboLabelStyleGroups.Items.Add(Constants.GroupLabelStyle.Unwatched); // 
-			cboLabelStyleGroups.Items.Add(Constants.GroupLabelStyle.EpCount); // 
-			cboLabelStyleGroups.SelectedIndex = 0;
-
-			cboLabelStyleEpisodes.Items.Clear();
-			cboLabelStyleEpisodes.Items.Add(Constants.EpisodeLabelStyle.IconsDate);
-			cboLabelStyleEpisodes.Items.Add(Constants.EpisodeLabelStyle.IconsOnly);
-			cboLabelStyleEpisodes.SelectedIndex = 0;
-
 			// File naming
 			cboFileFormat.Items.Clear();
 			cboFileFormat.Items.Add(Constants.FileSelectionDisplayString.Group);
@@ -134,6 +123,12 @@ namespace MyAnimePlugin3.ConfigFiles
 			ToolTip5.ToolTipIcon = ToolTipIcon.Info;
 			ToolTip5.ToolTipTitle = "Wide Banner Quality";
 			ToolTip5.SetToolTip(udWideBannerQuality, "Used to adjust the quality of images shown in the Wide Banner layouts. \nSelecting a lower percentage will result in lower memory and CPU usage. Resolution at 100% is 758 x 140");
+
+			ToolTip ToolTip6 = new ToolTip();
+			ToolTip6.IsBalloon = true;
+			ToolTip6.ToolTipIcon = ToolTipIcon.Info;
+			ToolTip6.ToolTipTitle = "Singles Series Display";
+			ToolTip6.SetToolTip(chkSingleSeries, "When a group only has one series, the series name will be displayed instead of the group name. This could have a performance impact in large collections");
 
 
 			System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
@@ -409,6 +404,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			BaseConfig.Settings.ShowMissingMyGroupsOnly = chkShowMissingGroups.Checked;
 			BaseConfig.Settings.HideWatchedFiles = chkHideWatchedFiles.Checked;
 			BaseConfig.Settings.DisplayRatingDialogOnCompletion = chkRateSeries.Checked;
+			BaseConfig.Settings.SingleSeriesGroups = chkSingleSeries.Checked;
 
 			if (cboAudioLanguage.SelectedIndex == 0)
 				BaseConfig.Settings.DefaultAudioLanguage = "<file>";
@@ -438,19 +434,6 @@ namespace MyAnimePlugin3.ConfigFiles
 
 
 			BaseConfig.Settings.InfoDelay = (int)udInfoDelay.Value;
-
-			if (cboLabelStyleGroups.SelectedIndex == 0)
-				BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.WatchedUnwatched;
-			if (cboLabelStyleGroups.SelectedIndex == 1)
-				BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.Unwatched;
-			if (cboLabelStyleGroups.SelectedIndex == 2)
-				BaseConfig.Settings.LabelStyleGroups = View.eLabelStyleGroups.TotalEpisodes;
-
-
-			if (cboLabelStyleEpisodes.SelectedIndex == 0)
-				BaseConfig.Settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsDate;
-			if (cboLabelStyleEpisodes.SelectedIndex == 1)
-				BaseConfig.Settings.LabelStyleEpisodes = View.eLabelStyleEpisodes.IconsOnly;
 
 			BaseConfig.Settings.FfdshowNotificationsShow = chkFfdshowNotificationsShow.Checked;
 			BaseConfig.Settings.FfdshowNotificationsAutoClose = chkFfdshowNotificationsAutoClose.Checked;
@@ -499,6 +482,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			chkShowMissing.Checked = BaseConfig.Settings.ShowMissing;
 			chkShowMissingGroups.Checked = BaseConfig.Settings.ShowMissingMyGroupsOnly;
 			chkRateSeries.Checked = BaseConfig.Settings.DisplayRatingDialogOnCompletion;
+			chkSingleSeries.Checked = BaseConfig.Settings.SingleSeriesGroups;
+			
 
 			if (!BaseConfig.Settings.ShowMissing) chkShowMissingGroups.Enabled = false;
 
@@ -530,19 +515,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			udPosterQuality.Value = (decimal)BaseConfig.Settings.PosterSizePct;
 			udWideBannerQuality.Value = (decimal)BaseConfig.Settings.BannerSizePct;
 
-
-			if (BaseConfig.Settings.LabelStyleGroups == View.eLabelStyleGroups.WatchedUnwatched)
-				cboLabelStyleGroups.SelectedIndex = 0;
-			if (BaseConfig.Settings.LabelStyleGroups == View.eLabelStyleGroups.Unwatched)
-				cboLabelStyleGroups.SelectedIndex = 1;
-			if (BaseConfig.Settings.LabelStyleGroups == View.eLabelStyleGroups.TotalEpisodes)
-				cboLabelStyleGroups.SelectedIndex = 2;
-
-
-			if (BaseConfig.Settings.LabelStyleEpisodes == View.eLabelStyleEpisodes.IconsDate)
-				cboLabelStyleEpisodes.SelectedIndex = 0;
-			if (BaseConfig.Settings.LabelStyleEpisodes == View.eLabelStyleEpisodes.IconsOnly)
-				cboLabelStyleEpisodes.SelectedIndex = 1;
 
 			chkFfdshowNotificationsShow.Checked = BaseConfig.Settings.FfdshowNotificationsShow;
 			chkFfdshowNotificationsAutoClose.Checked = BaseConfig.Settings.FfdshowNotificationsAutoClose;

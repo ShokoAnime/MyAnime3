@@ -650,6 +650,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="groupFilterID" type="xs:int" />
         <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="getSingleSeriesGroups" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

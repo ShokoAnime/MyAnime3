@@ -255,7 +255,7 @@ namespace MyAnimePlugin3.Windows
 				if (togCompleteOnly != null) completeSeries = togCompleteOnly.Selected;
 
 				List<JMMServerBinary.Contract_AnimeGroup> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(
-					gf.GroupFilterID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
+					gf.GroupFilterID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID, BaseConfig.Settings.SingleSeriesGroups);
 
 				BaseConfig.MyAnimeLog.Write("Total groups for filter = " + contracts.Count.ToString());
 

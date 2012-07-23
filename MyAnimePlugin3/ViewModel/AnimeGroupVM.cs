@@ -52,6 +52,8 @@ namespace MyAnimePlugin3.ViewModel
 		public int Stat_EpisodeCount { get; set; }
 		public decimal Stat_AniDBRating { get; set; }
 
+		public AnimeSeriesVM SeriesForNameOverride { get; set; }
+
 		public int CompareTo(AnimeGroupVM obj)
 		{
 			return SortName.CompareTo(obj.SortName);
@@ -493,6 +495,15 @@ namespace MyAnimePlugin3.ViewModel
 			this.SortName = contract.SortName;
 			this.Description = contract.Description;
 			//this.UserHasVoted = this.Stat_UserVotePermanent.HasValue;
+
+			if (contract.SeriesForNameOverride != null)
+			{
+				this.SeriesForNameOverride = new AnimeSeriesVM(contract.SeriesForNameOverride);
+
+				this.GroupName = this.SeriesForNameOverride.SeriesName;
+				this.SortName = this.GroupName;
+			}
+
 		}
 
 		public AnimeGroupVM(JMMServerBinary.Contract_AnimeGroup contract)

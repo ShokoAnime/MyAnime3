@@ -3326,6 +3326,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private int PlayedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries SeriesForNameOverrideField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ServerPosterPathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3590,6 +3593,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.PlayedCountField.Equals(value) != true)) {
                     this.PlayedCountField = value;
                     this.RaisePropertyChanged("PlayedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries SeriesForNameOverride {
+            get {
+                return this.SeriesForNameOverrideField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesForNameOverrideField, value) != true)) {
+                    this.SeriesForNameOverrideField = value;
+                    this.RaisePropertyChanged("SeriesForNameOverride");
                 }
             }
         }
@@ -14917,7 +14933,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilter", ReplyAction="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilterResponse")]
-        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup> GetAnimeGroupsForFilter(int groupFilterID, int userID);
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup> GetAnimeGroupsForFilter(int groupFilterID, int userID, bool getSingleSeriesGroups);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtended", ReplyAction="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtendedResponse")]
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended> GetAllGroupFiltersExtended(int userID);
@@ -15545,8 +15561,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
             return base.Channel.GetGroupFilterExtended(groupFilterID, userID);
         }
         
-        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup> GetAnimeGroupsForFilter(int groupFilterID, int userID) {
-            return base.Channel.GetAnimeGroupsForFilter(groupFilterID, userID);
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup> GetAnimeGroupsForFilter(int groupFilterID, int userID, bool getSingleSeriesGroups) {
+            return base.Channel.GetAnimeGroupsForFilter(groupFilterID, userID, getSingleSeriesGroups);
         }
         
         public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFilterExtended> GetAllGroupFiltersExtended(int userID) {

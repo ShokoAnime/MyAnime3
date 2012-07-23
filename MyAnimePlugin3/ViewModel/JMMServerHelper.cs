@@ -351,7 +351,8 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeGroup> rawGrps = JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(groupFilter.GroupFilterID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
+				List<JMMServerBinary.Contract_AnimeGroup> rawGrps = JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(groupFilter.GroupFilterID.Value,
+					JMMServerVM.Instance.CurrentUser.JMMUserID, BaseConfig.Settings.SingleSeriesGroups);
 				if (rawGrps == null) return allGroups;
 
 				foreach (JMMServerBinary.Contract_AnimeGroup contract in rawGrps)

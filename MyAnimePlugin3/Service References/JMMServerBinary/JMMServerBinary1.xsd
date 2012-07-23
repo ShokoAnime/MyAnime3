@@ -307,6 +307,7 @@
       <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
       <xs:element minOccurs="0" name="OverrideDescription" type="xs:int" />
       <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesForNameOverride" nillable="true" type="tns:Contract_AnimeSeries" />
       <xs:element minOccurs="0" name="ServerPosterPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SortName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AirDate_Max" nillable="true" type="xs:dateTime" />

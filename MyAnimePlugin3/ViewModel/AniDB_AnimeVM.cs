@@ -341,7 +341,7 @@ namespace MyAnimePlugin3.ViewModel
 				string y = BeginYear.ToString();
 				if (BeginYear != EndYear)
 				{
-					if (EndDate.HasValue)
+					if (EndYear <= 0)
 						y += "-Ongoing";
 					else
 						y += "-" + EndYear.ToString();

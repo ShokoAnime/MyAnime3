@@ -655,6 +655,7 @@
     <Content Include="Skins\Mustayaluca\Anime3_QueueStatus.xml" />
     <Content Include="Skins\Mustayaluca\Anime3_Random.xml" />
     <Content Include="Skins\Mustayaluca\Anime3_Recommendations.xml" />
+    <Content Include="Skins\Mustayaluca\Anime3_Relations.xml" />
     <Content Include="Skins\Mustayaluca\Anime3_SkinSettings.xml" />
     <Content Include="Skins\Mustayaluca\Anime3_TopBar.xml" />
     <Content Include="Skins\Mustayaluca\Anime3_Watching.xml" />

@@ -4405,20 +4405,6 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{816641bd-48f7-472d-88c7-60f2c2dc6716}-overlay_bar_top.png</ZipFileName>
               <DestinationFilename>%Skin%\Mustayaluca\Media\MyAnime3\overlay_bar_top.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Mustayaluca\Anime3_Relations.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{5f94df23-50f3-47a5-a0ab-acd227c8a5aa}-Anime3_Relations.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Mustayaluca\Anime3_Relations.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Mustayaluca\Anime3_Relations.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{890d26cc-b70e-452d-bff5-1144c5f24a8d}-Anime3_Relations.xml</ZipFileName>
-              <DestinationFilename>%Base%\Anime3_Relations.xml</DestinationFilename>
-            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -4634,7 +4620,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>3</Major>
       <Minor>1</Minor>
-      <Build>9</Build>
+      <Build>4</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -4642,12 +4628,10 @@ Click Next to continue or Cancel to exit Setup.</Value>
 It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
 
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription>- Issue #238 : Year isn't always shown correctly in MyAnime3 and JMM Desktop
-- Issue #237 : Single-series group displays group name instead of series name (MyAnime3)
-- Implement missing relations window for mustayaluca skin</VersionDescription>
+    <VersionDescription>- Issue #25 : Reinstate the FFDShow Helper and post processing options from MA2</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=24</OnlineLocation>
-    <ReleaseDate>2012-08-06T18:40:56</ReleaseDate>
+    <ReleaseDate>2012-05-29T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>
@@ -6265,13 +6249,6 @@ This plugin does not run independently, but instead relies on using JMM Server a
         <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Mustayaluca\Media\MyAnime3\overlay_bar_top.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{816641bd-48f7-472d-88c7-60f2c2dc6716}-overlay_bar_top.png</ZipFileName>
         <DestinationFilename>%Skin%\Mustayaluca\Media\MyAnime3\overlay_bar_top.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Mustayaluca\Anime3_Relations.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{5f94df23-50f3-47a5-a0ab-acd227c8a5aa}-Anime3_Relations.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Mustayaluca\Anime3_Relations.xml</DestinationFilename>
       </FileItem>
     </Items>
   </UniqueFileList>

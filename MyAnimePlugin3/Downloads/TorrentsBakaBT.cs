@@ -276,7 +276,8 @@ namespace MyAnimePlugin3.Downloads
 					}
 
 					TorrentLink torrentLinkAlt = new TorrentLink();
-					torrentLinkAlt.TorrentDownloadLink = "";
+					torrentLinkAlt.Source = this.GetSourceName();
+					torrentLinkAlt.SourceLong = this.GetSourceLongName();
 					torrentLinkAlt.TorrentDownloadLink = "";
 					torrentLinkAlt.TorrentLinkURL = string.Format("http://bakabt.me{0} ", linkAlt);
 					torrentLinkAlt.TorrentName = string.Format("[ALT] {0} [{1}]", torNameAlt.Trim(), cat);

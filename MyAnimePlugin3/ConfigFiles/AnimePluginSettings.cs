@@ -12,6 +12,7 @@ namespace MyAnimePlugin3
 	public class AnimePluginSettings
 	{
 		public string BakaBTCookieHeader = "";
+		public string AnimeBytesCookieHeader = "";
 
 		// MA3
 		public string JMMServer_Address = "";
@@ -169,11 +170,15 @@ namespace MyAnimePlugin3
 		public string BakaBTUsername = "";
 		public string BakaBTPassword = "";
 
+		public string AnimeBytesUsername = "";
+		public string AnimeBytesPassword = "";
+
 		public static string TorrentSourcesAll = MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa + ";" +
 			MyAnimePlugin3.Constants.TorrentSourceNames.TT + ";" +
 			MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT + ";" +
 			MyAnimePlugin3.Constants.TorrentSourceNames.AnimeSuki + ";" +
-			MyAnimePlugin3.Constants.TorrentSourceNames.BakaUpdates + ";";
+			MyAnimePlugin3.Constants.TorrentSourceNames.BakaUpdates + ";" +
+			MyAnimePlugin3.Constants.TorrentSourceNames.AnimeBytes + ";";
 
 		public string TorrentSourcesRaw = "";
 		public List<string> TorrentSources = new List<string>();
@@ -262,6 +267,14 @@ namespace MyAnimePlugin3
 			}
 		}
 
+		public bool TorrentsAnimeBytes
+		{
+			get
+			{
+				return TorrentSources.Contains(MyAnimePlugin3.Constants.TorrentSourceNames.AnimeBytes);
+			}
+		}
+
 		public bool TorrentsBakaUpdates
 		{
 			get
@@ -286,6 +299,7 @@ namespace MyAnimePlugin3
 
 				if (TorrentSources[0] == MyAnimePlugin3.Constants.TorrentSourceNames.AnimeSuki) return TorrentSource.AnimeSuki;
 				if (TorrentSources[0] == MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT) return TorrentSource.BakaBT;
+				if (TorrentSources[0] == MyAnimePlugin3.Constants.TorrentSourceNames.AnimeBytes) return TorrentSource.AnimeBytes;
 				if (TorrentSources[0] == MyAnimePlugin3.Constants.TorrentSourceNames.BakaUpdates) return TorrentSource.BakaUpdates;
 				if (TorrentSources[0] == MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa) return TorrentSource.Nyaa;
 				if (TorrentSources[0] == MyAnimePlugin3.Constants.TorrentSourceNames.TT) return TorrentSource.TokyoToshokan;
@@ -322,6 +336,9 @@ namespace MyAnimePlugin3
 
 			BakaBTUsername = xmlreader.GetValueAsString("Anime3", "BakaBTUsername", "");
 			BakaBTPassword = xmlreader.GetValueAsString("Anime3", "BakaBTPassword", "");
+
+			AnimeBytesUsername = xmlreader.GetValueAsString("Anime3", "AnimeBytesUsername", "");
+			AnimeBytesPassword = xmlreader.GetValueAsString("Anime3", "AnimeBytesPassword", "");
 
 			UTorrentAddress = xmlreader.GetValueAsString("Anime3", "UTorrentAddress", "");
 			UTorrentPassword = xmlreader.GetValueAsString("Anime3", "UTorrentPassword", "");
@@ -446,6 +463,9 @@ namespace MyAnimePlugin3
 
 				xmlwriter.SetValue("Anime3", "BakaBTUsername", BakaBTUsername.Trim());
 				xmlwriter.SetValue("Anime3", "BakaBTPassword", BakaBTPassword.Trim());
+
+				xmlwriter.SetValue("Anime3", "AnimeBytesUsername", AnimeBytesUsername.Trim());
+				xmlwriter.SetValue("Anime3", "AnimeBytesPassword", AnimeBytesPassword.Trim());
 
 				xmlwriter.SetValue("Anime3", "UTorrentAddress", UTorrentAddress.Trim());
 				xmlwriter.SetValue("Anime3", "UTorrentPassword", UTorrentPassword.Trim());

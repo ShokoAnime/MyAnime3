@@ -193,6 +193,7 @@ namespace MyAnimePlugin3
 			public static readonly string BakaBT = "Baka BT";
 			public static readonly string BakaUpdates = "BakaUpdates";
 			public static readonly string Nyaa = "Nyaa Torrents";
+			public static readonly string AnimeBytes = "Anime Byt.es";
 		}
 
 		public struct EpisodeTypeStrings

@@ -44,6 +44,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			btnTorrentUp.Click += new EventHandler(btnTorrentUp_Click);
 			btnTorrentDown.Click += new EventHandler(btnTorrentDown_Click);
 			btnBakaBTTest.Click += new EventHandler(btnBakaBTTest_Click);
+			btnAnimeBytesTest.Click += new EventHandler(btnAnimeBytesTest_Click);
 
 			// File naming
 			cboFileFormat.Items.Clear();
@@ -146,6 +147,8 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			InitJMMConnection();
         }
+
+		
 
 		
 
@@ -278,6 +281,55 @@ namespace MyAnimePlugin3.ConfigFiles
 			}
 		}
 
+		void btnAnimeBytesTest_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				SaveSettings();
+
+
+				if (string.IsNullOrEmpty(BaseConfig.Settings.AnimeBytesUsername))
+				{
+					MessageBox.Show("Please enter a username first");
+					txtAnimeBytesUsername.Focus();
+					return;
+				}
+
+				if (string.IsNullOrEmpty(BaseConfig.Settings.AnimeBytesPassword))
+				{
+					MessageBox.Show("Please enter a password first");
+					txtAnimeBytesPassword.Focus();
+					return;
+				}
+
+				this.Cursor = Cursors.WaitCursor;
+
+				TorrentsAnimeBytes AnimeBytes = new TorrentsAnimeBytes();
+				BaseConfig.Settings.AnimeBytesCookieHeader = AnimeBytes.Login(BaseConfig.Settings.AnimeBytesUsername, BaseConfig.Settings.AnimeBytesPassword);
+
+
+
+				if (!string.IsNullOrEmpty(BaseConfig.Settings.AnimeBytesCookieHeader))
+				{
+					this.Cursor = Cursors.Arrow;
+					MessageBox.Show("Connected sucessfully", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					this.Cursor = Cursors.Arrow;
+					MessageBox.Show("Connected FAILED", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					txtAnimeBytesUsername.Focus();
+					return;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				this.Cursor = Cursors.Arrow;
+				MessageBox.Show(ex.Message);
+			}
+		}
+
 		void btnBakaBTTest_Click(object sender, EventArgs e)
 		{
 			try
@@ -392,6 +444,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			BaseConfig.Settings.BakaBTUsername = txtBakaBTUsername.Text.Trim();
 			BaseConfig.Settings.BakaBTPassword = txtBakaBTPassword.Text.Trim();
 
+			BaseConfig.Settings.AnimeBytesUsername = txtAnimeBytesUsername.Text.Trim();
+			BaseConfig.Settings.AnimeBytesPassword = txtAnimeBytesPassword.Text.Trim(); 
+
 			if (cboImagesLocation.SelectedIndex == 0) // default
 				BaseConfig.Settings.ThumbsFolder = "";
 			else // custom
@@ -474,6 +529,9 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			txtBakaBTUsername.Text = BaseConfig.Settings.BakaBTUsername;
 			txtBakaBTPassword.Text = BaseConfig.Settings.BakaBTPassword;
+
+			txtAnimeBytesUsername.Text = BaseConfig.Settings.AnimeBytesUsername;
+			txtAnimeBytesPassword.Text = BaseConfig.Settings.AnimeBytesPassword; 
 
 			chkTorrentPreferOwnGroups.Checked = BaseConfig.Settings.TorrentPreferOwnGroups;
 

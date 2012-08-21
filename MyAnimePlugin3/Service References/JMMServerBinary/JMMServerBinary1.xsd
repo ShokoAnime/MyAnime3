@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JMMContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfContract_GroupFileSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFileSummary" nillable="true" type="tns:Contract_GroupFileSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupFileSummary" nillable="true" type="tns:ArrayOfContract_GroupFileSummary" />
+  <xs:complexType name="Contract_GroupFileSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileCountNormal" type="xs:int" />
+      <xs:element minOccurs="0" name="FileCountSpecials" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFileSummary" nillable="true" type="tns:Contract_GroupFileSummary" />
   <xs:complexType name="Contract_BookmarkedAnime">
     <xs:sequence>
       <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
@@ -198,6 +217,7 @@
       <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
       <xs:element minOccurs="0" name="ReleaseGroups" nillable="true" type="tns:ArrayOfContract_AniDBReleaseGroup" />
       <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="UnwatchedEpCountSeries" type="xs:int" />
       <xs:element minOccurs="0" name="WatchedCount" type="xs:int" />
       <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
     </xs:sequence>
@@ -446,6 +466,37 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
+  <xs:complexType name="Contract_VideoLocalRenamed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NewFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
+      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_VideoLocalRenamed" nillable="true" type="tns:Contract_VideoLocalRenamed" />
+  <xs:complexType name="ArrayOfContract_RenameScript">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_RenameScript" nillable="true" type="tns:Contract_RenameScript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_RenameScript" nillable="true" type="tns:ArrayOfContract_RenameScript" />
+  <xs:complexType name="Contract_RenameScript">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsEnabledOnImport" type="xs:int" />
+      <xs:element minOccurs="0" name="RenameScriptID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Script" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScriptName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_RenameScript" nillable="true" type="tns:Contract_RenameScript" />
+  <xs:complexType name="Contract_RenameScript_SaveResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenameScript" nillable="true" type="tns:Contract_RenameScript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_RenameScript_SaveResponse" nillable="true" type="tns:Contract_RenameScript_SaveResponse" />
   <xs:complexType name="ArrayOfContract_Trakt_ShoutUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ShoutUser" nillable="true" type="tns:Contract_Trakt_ShoutUser" />
@@ -992,7 +1043,7 @@
       <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
       <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q1:ArrayOfint" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q2:ArrayOfint" />
       <xs:element minOccurs="0" name="Ranking" type="xs:int" />
       <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
@@ -1020,6 +1071,9 @@
       <xs:element minOccurs="0" name="AniDB_File_Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_File_FileExtension" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_File_FileVersion" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_InternalVersion" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_IsCensored" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_IsDeprecated" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_File_LengthSeconds" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_File_ReleaseDate" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_File_Source" nillable="true" type="xs:string" />
@@ -1240,6 +1294,7 @@
       <xs:element minOccurs="0" name="AniDB_DownloadReleaseGroups" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadReviews" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadSimilarAnime" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AniDB_File_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_MyListStats_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_MyList_AddFiles" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_MyList_ReadUnwatched" type="xs:boolean" />

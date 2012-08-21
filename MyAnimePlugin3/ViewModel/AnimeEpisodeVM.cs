@@ -21,7 +21,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int WatchedCount { get; set; }
 		public int StoppedCount { get; set; }
 		public int LocalFileCount { get; set; }
-
+		public int UnwatchedEpCountSeries { get; set; }
 
 
 		public int AniDB_LengthSeconds { get; set; }
@@ -75,6 +75,11 @@ namespace MyAnimePlugin3.ViewModel
 		public bool Watched
 		{
 			get { return IsWatched == 1; }
+		}
+
+		public bool MultipleUnwatchedEpsSeries
+		{
+			get { return UnwatchedEpCountSeries > 1; }
 		}
 
 		public string RunTime
@@ -202,6 +207,7 @@ namespace MyAnimePlugin3.ViewModel
 				this.StoppedCount = contract.StoppedCount;
 				this.WatchedCount = contract.WatchedCount;
 				this.WatchedDate = contract.WatchedDate;
+				this.UnwatchedEpCountSeries = contract.UnwatchedEpCountSeries;
 
 				this.AniDB_LengthSeconds = contract.AniDB_LengthSeconds;
 				this.AniDB_Rating = contract.AniDB_Rating;

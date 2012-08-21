@@ -114,6 +114,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label45 = new System.Windows.Forms.Label();
 			this.nudFindTimeout = new System.Windows.Forms.NumericUpDown();
 			this.groupBox15 = new System.Windows.Forms.GroupBox();
+			this.chkSingleSeries = new System.Windows.Forms.CheckBox();
 			this.chkRateSeries = new System.Windows.Forms.CheckBox();
 			this.chkShowMissingGroups = new System.Windows.Forms.CheckBox();
 			this.chkShowMissing = new System.Windows.Forms.CheckBox();
@@ -170,7 +171,12 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label82 = new System.Windows.Forms.Label();
 			this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
 			this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
-			this.chkSingleSeries = new System.Windows.Forms.CheckBox();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.btnAnimeBytesTest = new System.Windows.Forms.Button();
+			this.txtAnimeBytesPassword = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.txtAnimeBytesUsername = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
@@ -198,6 +204,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.groupBox16.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -558,6 +565,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// tabPage11
 			// 
+			this.tabPage11.Controls.Add(this.groupBox7);
 			this.tabPage11.Controls.Add(this.groupBox6);
 			this.tabPage11.Controls.Add(this.groupBox19);
 			this.tabPage11.Controls.Add(this.groupBox18);
@@ -578,7 +586,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox6.Controls.Add(this.label7);
 			this.groupBox6.Location = new System.Drawing.Point(278, 15);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(250, 171);
+			this.groupBox6.Size = new System.Drawing.Size(217, 171);
 			this.groupBox6.TabIndex = 2;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "BakaBT Credentials";
@@ -589,7 +597,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.btnBakaBTTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnBakaBTTest.Location = new System.Drawing.Point(89, 76);
 			this.btnBakaBTTest.Name = "btnBakaBTTest";
-			this.btnBakaBTTest.Size = new System.Drawing.Size(143, 26);
+			this.btnBakaBTTest.Size = new System.Drawing.Size(120, 26);
 			this.btnBakaBTTest.TabIndex = 47;
 			this.btnBakaBTTest.Text = "Test Login";
 			this.btnBakaBTTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -601,7 +609,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.txtBakaBTPassword.Location = new System.Drawing.Point(89, 50);
 			this.txtBakaBTPassword.Name = "txtBakaBTPassword";
 			this.txtBakaBTPassword.PasswordChar = '*';
-			this.txtBakaBTPassword.Size = new System.Drawing.Size(143, 20);
+			this.txtBakaBTPassword.Size = new System.Drawing.Size(120, 20);
 			this.txtBakaBTPassword.TabIndex = 46;
 			// 
 			// label6
@@ -618,7 +626,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.txtBakaBTUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txtBakaBTUsername.Location = new System.Drawing.Point(89, 24);
 			this.txtBakaBTUsername.Name = "txtBakaBTUsername";
-			this.txtBakaBTUsername.Size = new System.Drawing.Size(143, 20);
+			this.txtBakaBTUsername.Size = new System.Drawing.Size(120, 20);
 			this.txtBakaBTUsername.TabIndex = 44;
 			// 
 			// label7
@@ -1116,6 +1124,16 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.groupBox15.TabIndex = 22;
 			this.groupBox15.TabStop = false;
 			this.groupBox15.Text = "Other";
+			// 
+			// chkSingleSeries
+			// 
+			this.chkSingleSeries.AutoSize = true;
+			this.chkSingleSeries.Location = new System.Drawing.Point(18, 65);
+			this.chkSingleSeries.Name = "chkSingleSeries";
+			this.chkSingleSeries.Size = new System.Drawing.Size(214, 17);
+			this.chkSingleSeries.TabIndex = 40;
+			this.chkSingleSeries.Text = "Use series name for single series groups";
+			this.chkSingleSeries.UseVisualStyleBackColor = true;
 			// 
 			// chkRateSeries
 			// 
@@ -1716,15 +1734,67 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
 			this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
 			// 
-			// chkSingleSeries
+			// groupBox7
 			// 
-			this.chkSingleSeries.AutoSize = true;
-			this.chkSingleSeries.Location = new System.Drawing.Point(18, 65);
-			this.chkSingleSeries.Name = "chkSingleSeries";
-			this.chkSingleSeries.Size = new System.Drawing.Size(214, 17);
-			this.chkSingleSeries.TabIndex = 40;
-			this.chkSingleSeries.Text = "Use series name for single series groups";
-			this.chkSingleSeries.UseVisualStyleBackColor = true;
+			this.groupBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.groupBox7.Controls.Add(this.btnAnimeBytesTest);
+			this.groupBox7.Controls.Add(this.txtAnimeBytesPassword);
+			this.groupBox7.Controls.Add(this.label9);
+			this.groupBox7.Controls.Add(this.txtAnimeBytesUsername);
+			this.groupBox7.Controls.Add(this.label10);
+			this.groupBox7.Location = new System.Drawing.Point(501, 15);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(217, 171);
+			this.groupBox7.TabIndex = 48;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Anime Byt.es Credentials";
+			// 
+			// btnAnimeBytesTest
+			// 
+			this.btnAnimeBytesTest.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnAnimeBytesTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnAnimeBytesTest.Location = new System.Drawing.Point(89, 76);
+			this.btnAnimeBytesTest.Name = "btnAnimeBytesTest";
+			this.btnAnimeBytesTest.Size = new System.Drawing.Size(120, 26);
+			this.btnAnimeBytesTest.TabIndex = 47;
+			this.btnAnimeBytesTest.Text = "Test Login";
+			this.btnAnimeBytesTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnAnimeBytesTest.UseVisualStyleBackColor = true;
+			// 
+			// txtAnimeBytesPassword
+			// 
+			this.txtAnimeBytesPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtAnimeBytesPassword.Location = new System.Drawing.Point(89, 50);
+			this.txtAnimeBytesPassword.Name = "txtAnimeBytesPassword";
+			this.txtAnimeBytesPassword.PasswordChar = '*';
+			this.txtAnimeBytesPassword.Size = new System.Drawing.Size(120, 20);
+			this.txtAnimeBytesPassword.TabIndex = 46;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(12, 52);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(53, 13);
+			this.label9.TabIndex = 45;
+			this.label9.Text = "Password";
+			// 
+			// txtAnimeBytesUsername
+			// 
+			this.txtAnimeBytesUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtAnimeBytesUsername.Location = new System.Drawing.Point(89, 24);
+			this.txtAnimeBytesUsername.Name = "txtAnimeBytesUsername";
+			this.txtAnimeBytesUsername.Size = new System.Drawing.Size(120, 20);
+			this.txtAnimeBytesUsername.TabIndex = 44;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(12, 26);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(55, 13);
+			this.label10.TabIndex = 43;
+			this.label10.Text = "Username";
 			// 
 			// frmConfig
 			// 
@@ -1779,6 +1849,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage2.ResumeLayout(false);
 			this.groupBox16.ResumeLayout(false);
 			this.groupBox16.PerformLayout();
+			this.groupBox7.ResumeLayout(false);
+			this.groupBox7.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -1927,5 +1999,11 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.CheckBox chkFfdshowNotificationsAutoClose;
 		private System.Windows.Forms.CheckBox chkFfdshowNotificationsShow;
 		private System.Windows.Forms.CheckBox chkSingleSeries;
+		private System.Windows.Forms.GroupBox groupBox7;
+		private System.Windows.Forms.Button btnAnimeBytesTest;
+		private System.Windows.Forms.TextBox txtAnimeBytesPassword;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.TextBox txtAnimeBytesUsername;
+		private System.Windows.Forms.Label label10;
     }
 }

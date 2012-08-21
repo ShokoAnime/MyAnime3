@@ -15,6 +15,163 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFileSummary", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_GroupFileSummary : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileCountNormalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileCountSpecialsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupNameShortField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool NormalCompleteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NormalEpisodeNumberSummaryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<int> NormalEpisodeNumbersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SpecialsCompleteField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileCountNormal {
+            get {
+                return this.FileCountNormalField;
+            }
+            set {
+                if ((this.FileCountNormalField.Equals(value) != true)) {
+                    this.FileCountNormalField = value;
+                    this.RaisePropertyChanged("FileCountNormal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileCountSpecials {
+            get {
+                return this.FileCountSpecialsField;
+            }
+            set {
+                if ((this.FileCountSpecialsField.Equals(value) != true)) {
+                    this.FileCountSpecialsField = value;
+                    this.RaisePropertyChanged("FileCountSpecials");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupName {
+            get {
+                return this.GroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupNameField, value) != true)) {
+                    this.GroupNameField = value;
+                    this.RaisePropertyChanged("GroupName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupNameShort {
+            get {
+                return this.GroupNameShortField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupNameShortField, value) != true)) {
+                    this.GroupNameShortField = value;
+                    this.RaisePropertyChanged("GroupNameShort");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool NormalComplete {
+            get {
+                return this.NormalCompleteField;
+            }
+            set {
+                if ((this.NormalCompleteField.Equals(value) != true)) {
+                    this.NormalCompleteField = value;
+                    this.RaisePropertyChanged("NormalComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NormalEpisodeNumberSummary {
+            get {
+                return this.NormalEpisodeNumberSummaryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NormalEpisodeNumberSummaryField, value) != true)) {
+                    this.NormalEpisodeNumberSummaryField = value;
+                    this.RaisePropertyChanged("NormalEpisodeNumberSummary");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<int> NormalEpisodeNumbers {
+            get {
+                return this.NormalEpisodeNumbersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NormalEpisodeNumbersField, value) != true)) {
+                    this.NormalEpisodeNumbersField = value;
+                    this.RaisePropertyChanged("NormalEpisodeNumbers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool SpecialsComplete {
+            get {
+                return this.SpecialsCompleteField;
+            }
+            set {
+                if ((this.SpecialsCompleteField.Equals(value) != true)) {
+                    this.SpecialsCompleteField = value;
+                    this.RaisePropertyChanged("SpecialsComplete");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_BookmarkedAnime", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_BookmarkedAnime : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2239,6 +2396,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private int StoppedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UnwatchedEpCountSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int WatchedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2497,6 +2657,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.StoppedCountField.Equals(value) != true)) {
                     this.StoppedCountField = value;
                     this.RaisePropertyChanged("StoppedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UnwatchedEpCountSeries {
+            get {
+                return this.UnwatchedEpCountSeriesField;
+            }
+            set {
+                if ((this.UnwatchedEpCountSeriesField.Equals(value) != true)) {
+                    this.UnwatchedEpCountSeriesField = value;
+                    this.RaisePropertyChanged("UnwatchedEpCountSeries");
                 }
             }
         }
@@ -5188,6 +5361,253 @@ namespace MyAnimePlugin3.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_VideoLocalRenamed", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_VideoLocalRenamed : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NewFileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SuccessField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal VideoLocalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VideoLocalIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewFileName {
+            get {
+                return this.NewFileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewFileNameField, value) != true)) {
+                    this.NewFileNameField = value;
+                    this.RaisePropertyChanged("NewFileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Success {
+            get {
+                return this.SuccessField;
+            }
+            set {
+                if ((this.SuccessField.Equals(value) != true)) {
+                    this.SuccessField = value;
+                    this.RaisePropertyChanged("Success");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal VideoLocal {
+            get {
+                return this.VideoLocalField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VideoLocalField, value) != true)) {
+                    this.VideoLocalField = value;
+                    this.RaisePropertyChanged("VideoLocal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VideoLocalID {
+            get {
+                return this.VideoLocalIDField;
+            }
+            set {
+                if ((this.VideoLocalIDField.Equals(value) != true)) {
+                    this.VideoLocalIDField = value;
+                    this.RaisePropertyChanged("VideoLocalID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_RenameScript", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_RenameScript : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IsEnabledOnImportField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RenameScriptIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ScriptField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ScriptNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IsEnabledOnImport {
+            get {
+                return this.IsEnabledOnImportField;
+            }
+            set {
+                if ((this.IsEnabledOnImportField.Equals(value) != true)) {
+                    this.IsEnabledOnImportField = value;
+                    this.RaisePropertyChanged("IsEnabledOnImport");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RenameScriptID {
+            get {
+                return this.RenameScriptIDField;
+            }
+            set {
+                if ((this.RenameScriptIDField.Equals(value) != true)) {
+                    this.RenameScriptIDField = value;
+                    this.RaisePropertyChanged("RenameScriptID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Script {
+            get {
+                return this.ScriptField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScriptField, value) != true)) {
+                    this.ScriptField = value;
+                    this.RaisePropertyChanged("Script");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ScriptName {
+            get {
+                return this.ScriptNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScriptNameField, value) != true)) {
+                    this.ScriptNameField = value;
+                    this.RaisePropertyChanged("ScriptName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_RenameScript_SaveResponse", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_RenameScript_SaveResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorMessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Contract_RenameScript RenameScriptField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage {
+            get {
+                return this.ErrorMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorMessageField, value) != true)) {
+                    this.ErrorMessageField = value;
+                    this.RaisePropertyChanged("ErrorMessage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Contract_RenameScript RenameScript {
+            get {
+                return this.RenameScriptField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RenameScriptField, value) != true)) {
+                    this.RenameScriptField = value;
+                    this.RaisePropertyChanged("RenameScript");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_ShoutUser", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_Trakt_ShoutUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -5488,6 +5908,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_User", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_DefaultImage))]
@@ -5520,6 +5942,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_RenameScript>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Shout))]
@@ -8126,6 +8552,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_FriendFrequest", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_DefaultImage))]
@@ -8158,6 +8586,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_RenameScript>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Shout))]
@@ -8479,6 +8911,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Friend", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Anime_DefaultImage))]
@@ -8511,6 +8945,10 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_ImportFolder))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_RenameScript>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Shout))]
@@ -10140,6 +10578,15 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private int AniDB_File_FileVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_InternalVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_IsCensoredField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_IsDeprecatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> AniDB_File_LengthSecondsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -10402,6 +10849,45 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.AniDB_File_FileVersionField.Equals(value) != true)) {
                     this.AniDB_File_FileVersionField = value;
                     this.RaisePropertyChanged("AniDB_File_FileVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_InternalVersion {
+            get {
+                return this.AniDB_File_InternalVersionField;
+            }
+            set {
+                if ((this.AniDB_File_InternalVersionField.Equals(value) != true)) {
+                    this.AniDB_File_InternalVersionField = value;
+                    this.RaisePropertyChanged("AniDB_File_InternalVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_IsCensored {
+            get {
+                return this.AniDB_File_IsCensoredField;
+            }
+            set {
+                if ((this.AniDB_File_IsCensoredField.Equals(value) != true)) {
+                    this.AniDB_File_IsCensoredField = value;
+                    this.RaisePropertyChanged("AniDB_File_IsCensored");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_IsDeprecated {
+            get {
+                return this.AniDB_File_IsDeprecatedField;
+            }
+            set {
+                if ((this.AniDB_File_IsDeprecatedField.Equals(value) != true)) {
+                    this.AniDB_File_IsDeprecatedField = value;
+                    this.RaisePropertyChanged("AniDB_File_IsDeprecated");
                 }
             }
         }
@@ -12453,6 +12939,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private bool AniDB_DownloadSimilarAnimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_UpdateFrequencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AniDB_MyListStats_UpdateFrequencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12737,6 +13226,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((this.AniDB_DownloadSimilarAnimeField.Equals(value) != true)) {
                     this.AniDB_DownloadSimilarAnimeField = value;
                     this.RaisePropertyChanged("AniDB_DownloadSimilarAnime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_UpdateFrequency {
+            get {
+                return this.AniDB_File_UpdateFrequencyField;
+            }
+            set {
+                if ((this.AniDB_File_UpdateFrequencyField.Equals(value) != true)) {
+                    this.AniDB_File_UpdateFrequencyField = value;
+                    this.RaisePropertyChanged("AniDB_File_UpdateFrequency");
                 }
             }
         }
@@ -14794,6 +15296,12 @@ namespace MyAnimePlugin3.JMMServerBinary {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMServerBinary.IJMMServer")]
     public interface IJMMServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateAniDBFileData", ReplyAction="http://tempuri.org/IJMMServer/UpdateAniDBFileDataResponse")]
+        int UpdateAniDBFileData(bool missingInfo, bool outOfDate, bool countOnly);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFileSummary", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFileSummaryResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary> GetGroupFileSummary(int animeID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime", ReplyAction="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse")]
         MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime contract);
         
@@ -14844,6 +15352,39 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SearchForFiles", ReplyAction="http://tempuri.org/IJMMServer/SearchForFilesResponse")]
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> SearchForFiles(int searchType, string searchCriteria, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFilePreview", ReplyAction="http://tempuri.org/IJMMServer/RenameFilePreviewResponse")]
+        MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFile", ReplyAction="http://tempuri.org/IJMMServer/RenameFileResponse")]
+        MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed RenameFile(int videoLocalID, string renameRules);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RandomFileRenamePreview", ReplyAction="http://tempuri.org/IJMMServer/RandomFileRenamePreviewResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> RandomFileRenamePreview(int maxResults, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetVideoLocalsForEpisode", ReplyAction="http://tempuri.org/IJMMServer/GetVideoLocalsForEpisodeResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> GetVideoLocalsForEpisode(int episodeID, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetVideoLocalsForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetVideoLocalsForAnimeResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> GetVideoLocalsForAnime(int animeID, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllRenameScripts", ReplyAction="http://tempuri.org/IJMMServer/GetAllRenameScriptsResponse")]
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_RenameScript> GetAllRenameScripts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveRenameScript", ReplyAction="http://tempuri.org/IJMMServer/SaveRenameScriptResponse")]
+        MyAnimePlugin3.JMMServerBinary.Contract_RenameScript_SaveResponse SaveRenameScript(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript contract);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteRenameScript", ReplyAction="http://tempuri.org/IJMMServer/DeleteRenameScriptResponse")]
+        string DeleteRenameScript(int renameScriptID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearHasherQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearHasherQueueResponse")]
+        void ClearHasherQueue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearImagesQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearImagesQueueResponse")]
+        void ClearImagesQueue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearGeneralQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearGeneralQueueResponse")]
+        void ClearGeneralQueue();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
@@ -15116,7 +15657,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> GetAllManuallyLinkedFiles(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles", ReplyAction="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFilesResponse")]
-        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID);
+        System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles", ReplyAction="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse")]
         void ReevaluateDuplicateFiles();
@@ -15377,6 +15918,14 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 base(binding, remoteAddress) {
         }
         
+        public int UpdateAniDBFileData(bool missingInfo, bool outOfDate, bool countOnly) {
+            return base.Channel.UpdateAniDBFileData(missingInfo, outOfDate, countOnly);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary> GetGroupFileSummary(int animeID) {
+            return base.Channel.GetGroupFileSummary(animeID);
+        }
+        
         public MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime contract) {
             return base.Channel.SaveBookmarkedAnime(contract);
         }
@@ -15443,6 +15992,50 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> SearchForFiles(int searchType, string searchCriteria, int userID) {
             return base.Channel.SearchForFiles(searchType, searchCriteria, userID);
+        }
+        
+        public MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules) {
+            return base.Channel.RenameFilePreview(videoLocalID, renameRules);
+        }
+        
+        public MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed RenameFile(int videoLocalID, string renameRules) {
+            return base.Channel.RenameFile(videoLocalID, renameRules);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> RandomFileRenamePreview(int maxResults, int userID) {
+            return base.Channel.RandomFileRenamePreview(maxResults, userID);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> GetVideoLocalsForEpisode(int episodeID, int userID) {
+            return base.Channel.GetVideoLocalsForEpisode(episodeID, userID);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal> GetVideoLocalsForAnime(int animeID, int userID) {
+            return base.Channel.GetVideoLocalsForAnime(animeID, userID);
+        }
+        
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_RenameScript> GetAllRenameScripts() {
+            return base.Channel.GetAllRenameScripts();
+        }
+        
+        public MyAnimePlugin3.JMMServerBinary.Contract_RenameScript_SaveResponse SaveRenameScript(MyAnimePlugin3.JMMServerBinary.Contract_RenameScript contract) {
+            return base.Channel.SaveRenameScript(contract);
+        }
+        
+        public string DeleteRenameScript(int renameScriptID) {
+            return base.Channel.DeleteRenameScript(renameScriptID);
+        }
+        
+        public void ClearHasherQueue() {
+            base.Channel.ClearHasherQueue();
+        }
+        
+        public void ClearImagesQueue() {
+            base.Channel.ClearImagesQueue();
+        }
+        
+        public void ClearGeneralQueue() {
+            base.Channel.ClearGeneralQueue();
         }
         
         public void ScanDropFolders() {
@@ -15805,8 +16398,8 @@ namespace MyAnimePlugin3.JMMServerBinary {
             return base.Channel.GetAllManuallyLinkedFiles(userID);
         }
         
-        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID) {
-            return base.Channel.GetAllEpisodesWithMultipleFiles(userID);
+        public System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries) {
+            return base.Channel.GetAllEpisodesWithMultipleFiles(userID, onlyFinishedSeries);
         }
         
         public void ReevaluateDuplicateFiles() {

@@ -84,6 +84,15 @@ namespace MyAnimePlugin3.Downloads
 				links.AddRange(bakbtLinks);
 			}
 
+			bool doneAnimeBytes = false;
+			if (BaseConfig.Settings.TorrentSources.Contains(MyAnimePlugin3.Constants.TorrentSourceNames.AnimeBytes) && search.SearchType == DownloadSearchType.Series)
+			{
+				doneAnimeBytes = true;
+				TorrentsAnimeBytes abytes = new TorrentsAnimeBytes();
+				List<TorrentLink> abytesLinks = abytes.GetTorrents(parms);
+				links.AddRange(abytesLinks);
+			}
+
             foreach (string src in BaseConfig.Settings.TorrentSources)
 			{
 				if (src == MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT && !doneBakaBT)
@@ -91,6 +100,13 @@ namespace MyAnimePlugin3.Downloads
 					TorrentsBakaBT bakbt = new TorrentsBakaBT();
 					List<TorrentLink> bakbtLinks = bakbt.GetTorrents(parms);
 					links.AddRange(bakbtLinks);
+				}
+
+				if (src == MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT && !doneAnimeBytes)
+				{
+					TorrentsAnimeBytes abytes = new TorrentsAnimeBytes();
+					List<TorrentLink> abytesLinks = abytes.GetTorrents(parms);
+					links.AddRange(abytesLinks);
 				}
 
 				if (src == MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa)
@@ -224,6 +240,13 @@ namespace MyAnimePlugin3.Downloads
 				links.AddRange(bakbtLinks);
 			}
 
+			if (source == TorrentSource.AnimeBytes)
+			{
+				TorrentsAnimeBytes abytes = new TorrentsAnimeBytes();
+				List<TorrentLink> abytesLinks = abytes.BrowseTorrents();
+				links.AddRange(abytesLinks);
+			}
+
 			return links;
 		}
 
@@ -243,6 +266,7 @@ namespace MyAnimePlugin3.Downloads
 				case TorrentSource.BakaUpdates: return MyAnimePlugin3.Constants.TorrentSourceNames.BakaUpdates;
 				case TorrentSource.Nyaa: return MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa;
 				case TorrentSource.TokyoToshokan: return MyAnimePlugin3.Constants.TorrentSourceNames.TT;
+				case TorrentSource.AnimeBytes: return MyAnimePlugin3.Constants.TorrentSourceNames.AnimeBytes;
 			}
 
 			return "Undefined";
@@ -252,6 +276,7 @@ namespace MyAnimePlugin3.Downloads
 		{
 			if (src == MyAnimePlugin3.Constants.TorrentSourceNames.AnimeSuki) return TorrentSource.AnimeSuki;
 			if (src == MyAnimePlugin3.Constants.TorrentSourceNames.BakaBT) return TorrentSource.BakaBT;
+			if (src == MyAnimePlugin3.Constants.TorrentSourceNames.AnimeBytes) return TorrentSource.AnimeBytes;
 			if (src == MyAnimePlugin3.Constants.TorrentSourceNames.BakaUpdates) return TorrentSource.BakaUpdates;
 			if (src == MyAnimePlugin3.Constants.TorrentSourceNames.Nyaa) return TorrentSource.Nyaa;
 			if (src == MyAnimePlugin3.Constants.TorrentSourceNames.TT) return TorrentSource.TokyoToshokan;
@@ -266,7 +291,8 @@ namespace MyAnimePlugin3.Downloads
 		BakaBT = 2,
 		Nyaa = 3,
 		AnimeSuki = 4,
-		BakaUpdates = 5
+		BakaUpdates = 5,
+		AnimeBytes = 6
 	}
 
 

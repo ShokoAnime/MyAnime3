@@ -109,6 +109,7 @@
     <Compile Include="DataHelpers\PriorityQueue.cs" />
     <Compile Include="DataHelpers\UpdatesCollection.cs" />
     <Compile Include="DataHelpers\XMLBase.cs" />
+    <Compile Include="Downloads\TorrentsAnimeBytes.cs" />
     <Compile Include="Downloads\TorrentsBakaBT.cs" />
     <Compile Include="Downloads\TorrentsNyaa.cs" />
     <Compile Include="Enums.cs" />
@@ -366,6 +367,9 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_FileFfdshowPreset.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_GroupFileSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_GroupFilter.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -415,6 +419,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Recommendation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_RenameScript.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_RenameScript_SaveResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_ServerSettings.datasource">
@@ -469,6 +479,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_VideoLocal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_VideoLocalRenamed.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\Reference.svcmap">

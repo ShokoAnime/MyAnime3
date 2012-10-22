@@ -289,6 +289,8 @@ namespace MyAnimePlugin3.Windows
 		// triggered when a selection change was made on the facade
 		private void onFacadeItemSelected(GUIListItem item, GUIControl parent)
 		{
+			
+
 			// if this is not a message from the facade, exit
 			if (parent != m_Facade && parent != m_Facade.FilmstripLayout && parent != m_Facade.CoverFlowLayout &&
 				parent != m_Facade.ThumbnailLayout && parent != m_Facade.ListLayout)

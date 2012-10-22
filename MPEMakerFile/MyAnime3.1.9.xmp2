@@ -4634,7 +4634,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>3</Major>
       <Minor>1</Minor>
-      <Build>14</Build>
+      <Build>9</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -4642,11 +4642,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
 It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
 
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription> - Issue #276 : Support for Animebyt.es in downloads
- - Fix handling of torrent search results from Nyaa, when only one result is returned</VersionDescription>
+    <VersionDescription>- Issue #238 : Year isn't always shown correctly in MyAnime3 and JMM Desktop
+- Issue #237 : Single-series group displays group name instead of series name (MyAnime3)
+- Implement missing relations window for mustayaluca skin</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=24</OnlineLocation>
-    <ReleaseDate>2012-08-22T18:40:56</ReleaseDate>
+    <ReleaseDate>2012-08-06T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>

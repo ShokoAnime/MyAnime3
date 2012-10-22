@@ -149,6 +149,9 @@ namespace MyAnimePlugin3
 		public static List<DownloadSearchCriteria> downloadSearchHistory = new List<DownloadSearchCriteria>();
 		public static List<List<TorrentLink>> downloadSearchResultsHistory = new List<List<TorrentLink>>();
 
+		public static int LastFocusType = -1; //
+		public static int LastFocusID = -1; // 
+
 	
 		public static int GlobalSeriesID = -1; // either AnimeSeriesID
 		public static int GlobalAnimeID = -1; // AnimeID
@@ -3238,6 +3241,7 @@ namespace MyAnimePlugin3
 
 		public override bool OnMessage(GUIMessage message)
 		{
+
 			switch (message.Message)
 			{
 				case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
@@ -3249,19 +3253,85 @@ namespace MyAnimePlugin3
 							if (m_Facade.SelectedListItem != null && m_Facade.SelectedListItem.TVTag != null)
 							{
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
+								{
+									GroupFilterVM gf = m_Facade.SelectedListItem.TVTag as GroupFilterVM;
+
+									if (LastFocusType == 1)
+									{
+										if (gf != null && gf.GroupFilterID.Value == LastFocusID) return true;
+									}
+									if (gf != null)
+									{
+										LastFocusType = 1;
+										LastFocusID = gf.GroupFilterID.Value;
+									}
+
 									GroupFilter_OnItemSelected(m_Facade.SelectedListItem);
+								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
+								{
+									AnimeGroupVM obj = m_Facade.SelectedListItem.TVTag as AnimeGroupVM;
+									if (LastFocusType == 2)
+									{
+										if (obj != null && obj.AnimeGroupID == LastFocusID) return true;
+									}
+									if (obj != null)
+									{
+										LastFocusType = 2;
+										LastFocusID = obj.AnimeGroupID;
+									}
+
 									Group_OnItemSelected(m_Facade.SelectedListItem);
+								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
+								{
+									AnimeSeriesVM obj = m_Facade.SelectedListItem.TVTag as AnimeSeriesVM;
+									if (LastFocusType == 3)
+									{
+										if (obj != null && obj.AnimeSeriesID.Value == LastFocusID) return true;
+									}
+									if (obj != null)
+									{
+										LastFocusType = 3;
+										LastFocusID = obj.AnimeSeriesID.Value;
+									}
+
 									Series_OnItemSelected(m_Facade.SelectedListItem);
+								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeTypeVM))
+								{
+									AnimeEpisodeTypeVM obj = m_Facade.SelectedListItem.TVTag as AnimeEpisodeTypeVM;
+									if (LastFocusType == 4)
+									{
+										if (obj != null && (int)obj.EpisodeType == LastFocusID) return true;
+									}
+									if (obj != null)
+									{
+										LastFocusType = 4;
+										LastFocusID = (int)obj.EpisodeType;
+									}
+
 									EpisodeType_OnItemSelected(m_Facade.SelectedListItem);
+								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeVM))
+								{
+									AnimeEpisodeVM obj = m_Facade.SelectedListItem.TVTag as AnimeEpisodeVM;
+									if (LastFocusType == 5)
+									{
+										if (obj != null && obj.AnimeEpisodeID == LastFocusID) return true;
+									}
+									if (obj != null)
+									{
+										LastFocusType = 5;
+										LastFocusID = obj.AnimeEpisodeID;
+									}
+
 									Episode_OnItemSelected(m_Facade.SelectedListItem);
+								}
 							}
 						}
 					}

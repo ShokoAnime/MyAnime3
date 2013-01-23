@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6106</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <disabletopbar>no</disabletopbar>
+  <define>#header.label:Wide Banners</define>
+  <controls>
+    <!-- :::::::::::::: BACKGROUNDS :::::::::::::: -->
+	<control>
+	  <description>Default Background</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>background.png</texture>
+	  <animation effect="fade" time="400" delay="0">WindowOpen</animation>
+	</control>
+
+	<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>219</height>
+	  <texture>fanart_overlay_top.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+	<control>
+	  <description>background thumbview</description>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>10</posX>
+	  <posY>252</posY>
+	  <width>1903</width>
+	  <height>790</height>
+	  <texture>panel_thumbs_noinfo.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+    <!-- :::::::::::::: TOP BAR :::::::::::::: -->
+
+    
+
+    
+	<!-- ********************** Hidden Menu ************************************** -->
+
+	<control>
+	  <animation effect="slide" start="-60,0" end="0,0" tween="quadratic" easing="in" time="250" delay="400">WindowOpen</animation>
+	  <animation effect="slide" start="0,0" end="-60,0" tween="quadratic" easing="in" time="250" delay="100">WindowClose</animation>
+	  <id>1</id>
+	  <type>image</type>
+	  <posX>0</posX>
+	  <posY>440</posY>
+	  <width>64</width>
+	  <height>199</height>
+	  <texture>hiddenmenu_tab.png</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]+Control.HasFocus(50)</visible>
+	</control>
+	<control>
+	  <animation effect="slide" start="0,-60" end="0,0" tween="quadratic" easing="in" time="250" delay="400">WindowOpen</animation>
+	  <animation effect="slide" start="0,0" end="0,-60" tween="quadratic" easing="in" time="250" delay="100">WindowClose</animation>
+	  <id>1</id>
+	  <type>image</type>
+	  <posX>858</posX>
+	  <posY>0</posY>
+	  <texture>hiddenmenu_tab_up.png</texture>
+	  <visible>facadeview.filmstrip+Control.HasFocus(50)</visible>
+	</control>
+
+	<control>
+
+	  <type>actiongroup</type>
+	  <description>action menu</description>
+	  <defaultcontrol>910</defaultcontrol>
+	  <onexit>50</onexit>
+	  <dimColor>00ffffff</dimColor>
+	  <buttonX>0</buttonX>
+	  <buttonY>0</buttonY>
+	  <visible>!Control.HasFocus(50)</visible>
+	  <buttonwidth>497</buttonwidth>
+	  <buttonheight>1080</buttonheight>
+
+	  <control>
+		<type>image</type>
+		<id>0</id>
+		<width>1920</width>
+		<height>1080</height>
+		<texture>semi_trans_back_hidden_menu.png</texture>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="fade" time="450">visible</animation>
+		<animation effect="fade" time="400">hidden</animation>
+	  </control>
+
+	  <control>
+		<type>image</type>
+		<id>0</id>
+		<posY>0</posY>
+		<posX>0</posX>
+		<width>612</width>
+		<height>1074</height>
+		<texture>menu_bg.png</texture>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="fade" time="0">WindowClose</animation>
+		<animation effect="slide" start="-150,0" time="100">visible</animation>
+		<animation effect="fade" time="50">visible</animation>
+		<animation effect="fade" time="0">hidden</animation>
+	  </control>
+
+
+
+	  <control>
+		<description>Main label</description>
+		<type>label</type>
+		<id>1</id>
+		<posX>116</posX>
+		<posY>100</posY>
+		<label>Wide Banners</label>
+		<font>fontB16</font>
+		<textcolor>393939</textcolor>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="fade" time="0">WindowClose</animation>
+		<animation effect="slide" start="-150,0" time="100">visible</animation>
+		<animation effect="fade" time="50">visible</animation>
+		<animation effect="fade" time="0">hidden</animation>
+	  </control>
+
+	  <control>
+		<type>group</type>
+		<description>group element</description>
+		<visible>!Control.HasFocus(50)</visible>
+		<animation effect="fade" time="0">WindowClose</animation>
+		<animation effect="slide" start="-150,0" time="100">visible</animation>
+		<animation effect="fade" time="50">visible</animation>
+		<animation effect="fade" time="0">hidden</animation>
+		<posX>53</posX>
+		<posY>155</posY>
+		<layout>StackLayout(0, Vertical, true)</layout>
+
+		<control>
+		  <description>Series Info</description>
+		  <type>button</type>
+		  <id>910</id>
+		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		  <textureNoFocus>-</textureNoFocus>
+		  <width>499</width>
+		  <height>69</height>
+		  <textXOff>62</textXOff>
+		  <textYOff>16</textYOff>
+		  <label>Series Info</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>914</onup>
+		  <ondown>911</ondown>
+		</control>
+
+		<control>
+		  <description>Characters</description>
+		  <type>button</type>
+		  <id>911</id>
+		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		  <textureNoFocus>-</textureNoFocus>
+		  <width>499</width>
+		  <height>69</height>
+		  <textXOff>62</textXOff>
+		  <textYOff>16</textYOff>
+		  <label>Characters</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>910</onup>
+		  <ondown>912</ondown>
+		</control>
+
+		<control>
+		  <description>Relations</description>
+		  <type>button</type>
+		  <id>912</id>
+		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		  <textureNoFocus>-</textureNoFocus>
+		  <width>499</width>
+		  <height>69</height>
+		  <textXOff>62</textXOff>
+		  <textYOff>16</textYOff>
+		  <label>Relations</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>911</onup>
+		  <ondown>913</ondown>
+		</control>
+
+
+		<control>
+		  <description>Fanart</description>
+		  <type>button</type>
+		  <id>913</id>
+		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		  <textureNoFocus>-</textureNoFocus>
+		  <width>499</width>
+		  <height>69</height>
+		  <textXOff>62</textXOff>
+		  <textYOff>16</textYOff>
+		  <label>Fanart</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>912</onup>
+		  <ondown>914</ondown>
+		</control>
+
+		<control>
+		  <description>Posters</description>
+		  <type>button</type>
+		  <id>914</id>
+		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+		  <textureNoFocus>-</textureNoFocus>
+		  <width>499</width>
+		  <height>69</height>
+		  <textXOff>62</textXOff>
+		  <textYOff>16</textYOff>
+		  <label>Posters</label>
+		  <onleft>50</onleft>
+		  <onright>50</onright>
+		  <onup>913</onup>
+		  <ondown>910</ondown>
+		</control>
+
+
+
+	  </control>
+	</control>
+	
+	
+    <!-- Selected Facade Item -->
+
+
+	<control Style="smallTitle">
+	  <description>resolution label</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>1015</posY>
+	  <align>center</align>
+	  <width>1960</width>
+	  <visible>control.isvisible(50)</visible>
+	  <label>#Anime3.WideBanners.SelectedSource | Default: #Anime3.WideBanners.SelectedBannerIsDefault | Disabled: #Anime3.WideBanners.SelectedBannerIsDisabled</label>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+    <!-- :::::::::::::: FACADE :::::::::::::: -->
+	<control>
+	  <type>group</type>
+	  <description>group element</description>
+	  <id>28</id>
+	  <layout>StackLayout</layout>
+	  <posX>60</posX>
+	  <posY>97</posY>
+	  <control>
+		<description>composite control consisting of a list control and a thumbnail panel</description>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+		<type>facadeview</type>
+		<id>50</id>
+		<control>
+		  <description>graphical thumbpanel (series and/or seasons if set)</description>
+		  <type>thumbnailpanel</type>
+		  <dimColor>90ffffff</dimColor>
+		  <id>50</id>
+		  <posX>190</posX>
+		  <posY>350</posY>
+		  <width>1800</width>
+		  <height>700</height>
+		  <!-- up/down buttons & page # -->
+		  <onleft>910</onleft>
+		  <onright>50</onright>
+		  <!-- Textures -->
+		  <imageFolder>-</imageFolder>
+		  <!-- Text -->
+		  <selectedColor>00ffffff</selectedColor>
+		  <textcolor>ffffffff</textcolor>
+		  <colordiffuse>ffffffff</colordiffuse>
+		  <suffix>|</suffix>
+		  <itemWidthBig>758</itemWidthBig>
+		  <itemHeightBig>160</itemHeightBig>
+		  <!-- boxes -->
+		  <textureWidthBig>758</textureWidthBig>
+		  <textureHeightBig>140</textureHeightBig>
+		  <!-- banners -->
+		  <thumbWidthBig>758</thumbWidthBig>
+		  <thumbHeightBig>140</thumbHeightBig>
+		  <thumbPosXBig>0</thumbPosXBig>
+		  <thumbPosYBig>0</thumbPosYBig>
+		  <zoomXPixels>100</zoomXPixels>
+		  <zoomYPixels>20</zoomYPixels>
+		  <thumbZoom>no</thumbZoom>
+		  <!-- text (No banner) -->
+		  <textXOff>0</textXOff>
+		  <textYOff>0</textYOff>
+		  <frame>-</frame>
+		  <frameFocus>-</frameFocus>
+		  <frameNoFocus>-</frameNoFocus>
+		  <textureMask></textureMask>
+		  <keepaspectratio>no</keepaspectratio>
+		  <enableFocusZoom>no</enableFocusZoom>
+		  <spinPosX>1828</spinPosX>
+		  <spinPosY>1000</spinPosY>
+		</control>
+		
+	  </control>
+	</control>
+	
+	<import>Anime3_Time.xml</import>
+	<import>common.overlay.xml</import>
+	
+  </controls>
+</window>
+<!--Checksum:7abc2182de90fa0efcdf134b57749155-->

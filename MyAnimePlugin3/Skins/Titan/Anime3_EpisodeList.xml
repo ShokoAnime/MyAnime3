@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+	<controls>
+
+	  <control>
+		<description>Logo frame</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>569</posX>
+		<posY>882</posY>
+		<width>550</width>
+		<height>73</height>
+		<texture>logoframe.png</texture>
+		<visible>control.isvisible(1239)+facadeview.list</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<type>image</type>
+		<description>Logos</description>
+		<id>66</id>
+		<posX>660</posX>
+		<posY>886</posY>
+		<width>870</width>
+		<height>65</height>
+		<texture>#Anime3.Logos</texture>
+		<keepaspectratio>yes</keepaspectratio>
+		<spaceBetweenItems>0</spaceBetweenItems>
+		<visible>control.isvisible(1239)+facadeview.list</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <!-- Episode Name -->
+	  <control Style="smallTitle">
+		<type>fadelabel</type>
+		<id>0</id>
+		<posX>510</posX>
+		<posY>1015</posY>
+		<label>#Anime3.Episode.EpisodeDisplayName</label>
+		<visible>[Control.IsVisible(1239)+facadeview.list]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <!-- Rating -->
+	  <control Style="InfoLabel">
+		<description>Rating Label (Episode)</description>
+		<type>fadelabel</type>
+		<label>Rating</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>387</posY>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Rating Value (Episode)</description>
+		<type>label</type>
+		<label>#Anime3.Episode.RawRating</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>387</posY>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <!-- Run Time -->
+	  <control Style="InfoLabel">
+		<description>Runtime Label</description>
+		<type>label</type>
+		<label>Run Time</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>419</posY>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Runtime</description>
+		<type>fadelabel</type>
+		<label>#Anime3.Episode.Length</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>419</posY>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <!-- Episode Description -->
+	  <control>
+		<type>textboxscrollup</type>
+		<description>Summary (list)</description>
+		<id>631</id>
+		<posX>568</posX>
+		<posY>488</posY>
+		<width>555</width>
+		<height>380</height>
+		<label>#Anime3.Episode.Description</label>
+		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
+		<onleft>1026</onleft>
+		<onright>1026</onright>
+		<onup>1026</onup>
+		<ondown>1026</ondown>
+		<lineSpacing>0.92</lineSpacing>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	  
+	  
+
+		<!-- Episode Thumbnail -->
+
+	  <control>
+		<description>Poster Mask</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>91</posX>
+		<posY>456</posY>
+		<width>430</width>
+		<height>263</height>
+		<texture>episode_poster_mask.png</texture>
+		<visible>facadeview.list+Control.IsVisible(1239)+Control.HasThumb(68)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<description>Big Episode Thumb</description>
+		<type>image</type>
+		<id>68</id>
+		<posX>123</posX>
+		<posY>710</posY>
+		<width>379</width>
+		<height>213</height>
+		<texture>#Anime3.Episode.Image</texture>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<description>Episode Thumb Shadow</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>104</posX>
+		<posY>701</posY>
+		<width>429</width>
+		<height>263</height>
+		<texture>tvseries_thumb_shadow.png</texture>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	  
+
+
+	
+	  
+
+		
+
+	</controls>
+</window>

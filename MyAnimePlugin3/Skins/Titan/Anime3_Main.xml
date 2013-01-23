@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6101</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>yes</allowoverlay>
+  <define>#header.label:My Anime 3</define>
+  <controls>
+    <!-- Import Dummy Controls to handle visibility -->
+	<import>Anime3_Dummy.xml</import>
+	<!-- ********************** BACKGROUNDS************************************** -->
+    <control>
+      <description>default background</description>
+      <type>image</type>
+      <id>1</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1920</width>
+      <height>1080</height>
+      <texture>background.png</texture>
+      <shouldCache>true</shouldCache>
+    </control>
+	<control>
+	  <description>Fanart Background #1</description>
+	  <type>image</type>
+	  <id>524</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>#Anime3.Fanart.1</texture>
+	  <animation effect="fade" time="300">visible</animation>
+	  <animation effect="fade" time="300" delay="300">hidden</animation>
+	</control>
+
+	<!--            :: BACKGROUNDS ::           	 -->
+	<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>fanart_overlay.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>252</posY>
+	  <width>1903</width>
+	  <height>790</height>
+	  <texture>panel_list.png</texture>
+	  <visible>facadeview.list + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>background thumbs</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>252</posY>
+	  <width>1903</width>
+	  <height>790</height>
+	  <texture>panel_thumbs.png</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons] + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>279</posY>
+	  <width>1920</width>
+	  <height>801</height>
+	  <texture>filmstrip_overlay.png</texture>
+	  <visible>[facadeview.filmstrip | facadeview.coverflow] + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>52</posX>
+	  <posY>958</posY>
+	  <width>1820</width>
+	  <height>84</height>
+	  <texture>BasicHomeSubBG.png</texture>
+	  <visible>[facadeview.filmstrip | facadeview.coverflow] + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+
+	<!-- *********************** FIND PANEL *********************************** -->
+	<!-- List / banner view -->
+
+	<control>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>780</posX>
+	  <posY>100</posY>
+	  <width>800</width>
+	  <height>150</height>
+	  <texture>info_bg.png</texture>
+	  <shouldCache>true</shouldCache>
+	  <visible>[facadeview.list]+control.isvisible(3463)</visible>
+	</control>
+	
+	
+	<control Style="InfoValueSmall">
+	  <description>Find Label</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>812</posX>
+	  <posY>130</posY>
+	  <width>300</width>
+	  <label>Find:</label>
+	  <visible>[facadeview.list]+control.isvisible(3463)</visible>
+	</control>
+	<control Style="InfoValueSmall">
+	  <description>find text</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>910</posX>
+	  <posY>130</posY>
+	  <width>570</width>
+	  <label>#Anime3.FindText</label>
+	  <visible>[facadeview.list]+control.isvisible(3463)</visible>
+	</control>
+	<control Style="InfoLabel">
+	  <description>Find description *-key (T9)</description>
+	  <type>fadelabel</type>
+	  <id>0</id>
+	  <posX>812</posX>
+	  <posY>170</posY>
+	  <width>900</width>
+	  <label>*=#Anime3.FindAsteriskMode #=#Anime3.FindSharpMode</label>
+	  <visible>Control.IsVisible(3463)+Control.IsVisible(3464)+!Player.hasmedia</visible>
+	</control>
+	<control Style="InfoLabel">
+	  <description>Find description C+W-key (text)</description>
+	  <type>fadelabel</type>
+	  <id>0</id>
+	  <posX>812</posX>
+	  <posY>170</posY>
+	  <width>900</width>
+	  <label>C+W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+	  <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
+	</control>
+	<control  Style="InfoLabel">
+	  <description>Find description C+M-key</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>1200</posX>
+	  <posY>130</posY>
+	  <width>600</width>
+	  <align>left</align>
+	  <label>C+M=Mode (#Anime3.FindMode)</label>
+	  <visible>Control.IsVisible(3463)</visible>
+	</control>
+
+
+
+
+	<import>Anime3_Time.xml</import>
+    <!--            :: HEADER ::            -->
+	<import>anime3_HiddenMenu.xml</import>
+	<import>anime3_Facade.xml</import>
+	<import>anime3_Groups_ListPosters.xml</import>
+	<import>anime3_Groups_FilmstripCoverflow.xml</import>
+	<import>anime3_Groups_Banners.xml</import>
+	<import>anime3_EpisodeList.xml</import>
+	<import>anime3_TopBar.xml</import>
+	<import>Anime3_QueueStatus.xml</import>
+	<import>Anime3_SkinSettings.xml</import>
+    
+    <import>common.overlay.xml</import>
+    <!-- ********************** IMPORT PROCESS *************************************** -->
+    
+  </controls>
+</window>

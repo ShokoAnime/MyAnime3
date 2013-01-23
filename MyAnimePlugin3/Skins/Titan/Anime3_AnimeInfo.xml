@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+	<id>6109</id>
+	<defaultcontrol>801</defaultcontrol>
+    <define>#header.label:Downloads</define>
+	<allowoverlay>no</allowoverlay>
+	
+	<controls>
+	  
+	<!-- Import Dummy controls to handle visibility -->
+	  
+	<!-- Dummies -->
+		<control>
+      <type>label</type>
+      <description>Dummy Label for info page</description>
+      <id>1500</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for statistics page</description>
+      <id>1501</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for groups page</description>
+      <id>1503</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Dummy Label for poster</description>
+      <id>1502</id>
+      <posX>-50</posX>
+      <posY>-50</posY>
+      <width>620</width>
+      <textcolor>d4d2d2</textcolor>
+      <label>
+      </label>
+      <visible>false</visible>
+    </control>
+	
+	<control>
+		<type>label</type>
+		<description>Dummy Label for User Has Voted for Series Flag</description>
+		<id>1247</id>
+		<posX>-50</posX>
+		<posY>-50</posY>
+		<width>0</width>
+		<textcolor>d4d2d2</textcolor>
+		<label>
+		</label>
+		<visible>false</visible>
+	  </control>
+
+	<!-- ********************** BACKGROUNDS************************************** -->
+		
+	<!-- Default Background -->
+	<control>
+		<description>Default Background when no Fanart Displayed</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>0</posX>
+		<posY>0</posY>
+		<width>1920</width>
+		<height>1080</height>
+		<texture>background_dimmed.png</texture>
+		<animation effect="fade" time="400" delay="0">WindowOpen</animation>
+	</control>
+
+	<!-- ************************** TOP BAR ***********************************-->
+
+	  <control>
+		<id>0</id>
+		<type>label</type>
+		<posX>60</posX>
+		<posY>38</posY>
+		<width>855</width>
+		<font>fontB22</font>
+		<textcolor>ffffff</textcolor>
+		<label>#Anime3.AnimeInfo.Title</label>
+		<align>left</align>
+		<visible>[window.isvisible(35) | window.isvisible(0)] | [!window.isvisible(35) + !window.isvisible(0) + !window.isvisible(96742) + !window.isvisible(7111992)] | [window.isvisible(96742) + Control.IsVisible(50)] | [window.isvisible(96742) + Control.IsVisible(51)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<id>0</id>
+		<type>label</type>
+		<posX>1848</posX>
+		<posY>36</posY>
+		<width>555</width>
+		<font>fontB22</font>
+		<textcolor>ffffff</textcolor>
+		<label>#time</label>
+		<align>right</align>
+		<visible>[window.isvisible(35) | window.isvisible(0)] | [!window.isvisible(35) + !window.isvisible(0) + !window.isvisible(96742) + !window.isvisible(7111992)] | [window.isvisible(96742) + Control.IsVisible(50)] | [window.isvisible(96742) + Control.IsVisible(51)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<description>Date / Weather</description>
+		<id>0</id>
+		<type>label</type>
+		<posX>1845</posX>
+		<posY>96</posY>
+		<font>fontB12</font>
+		<textcolor>ffffff</textcolor>
+		<label>#date / #WorldWeather.TodayTemperature</label>
+		<align>right</align>
+		<visible>[[window.isvisible(35) | window.isvisible(0)] | [!window.isvisible(35) + !window.isvisible(0) + !window.isvisible(96742) + !window.isvisible(7111992)] | [window.isvisible(96742) + Control.IsVisible(50)] | [window.isvisible(96742) + Control.IsVisible(51)]] + plugin.isenabled(World Weather)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<description>Date</description>
+		<id>0</id>
+		<type>label</type>
+		<posX>1845</posX>
+		<posY>96</posY>
+		<font>fontB12</font>
+		<textcolor>ffffff</textcolor>
+		<label>#date</label>
+		<align>right</align>
+		<visible>[[window.isvisible(35) | window.isvisible(0)] | [!window.isvisible(35) + !window.isvisible(0) + !window.isvisible(96742) + !window.isvisible(7111992)] | [window.isvisible(96742) + Control.IsVisible(50)] | [window.isvisible(96742) + Control.IsVisible(51)]] + !plugin.isenabled(World Weather)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	
+	<!-- ********************** Hidden Menu ************************************** -->
+
+	  <control>
+		<id>1</id>
+		<type>image</type>
+		<posY>440</posY>
+		<width>64</width>
+		<height>199</height>
+		<texture>hiddenmenu_tab.png</texture>
+		<visible>Control.HasFocus(801)|Control.HasFocus(803)</visible>
+		<animation effect="slide" start="0,-60" time="250" delay="400">WindowOpen</animation>
+		<animation effect="slide" start="0,0" end="0,-60" time="250" delay="100">WindowClose</animation>
+	  </control>
+
+	  <control>
+
+		<type>actiongroup</type>
+		<description>action menu</description>
+		<defaultcontrol>911</defaultcontrol>
+		<onexit>801</onexit>
+		<dimColor>00ffffff</dimColor>
+		<buttonX>0</buttonX>
+		<buttonY>0</buttonY>
+		<visible>!Control.HasFocus(801)+!Control.HasFocus(803)</visible>
+		<buttonwidth>497</buttonwidth>
+		<buttonheight>1080</buttonheight>
+
+		<control>
+		  <type>image</type>
+		  <id>0</id>
+		  <width>1920</width>
+		  <height>1080</height>
+		  <texture>semi_trans_back_hidden_menu.png</texture>
+		  <visible>!Control.HasFocus(801)+!Control.HasFocus(803)</visible>
+		  <animation effect="fade" time="450">visible</animation>
+		  <animation effect="fade" time="400">hidden</animation>
+		</control>
+
+		<control>
+		  <type>image</type>
+		  <id>0</id>
+		  <posY>0</posY>
+		  <posX>0</posX>
+		  <width>612</width>
+		  <height>1074</height>
+		  <texture>menu_bg.png</texture>
+		  <visible>!Control.HasFocus(801)+!Control.HasFocus(803)</visible>
+		  <animation effect="fade" time="0">WindowClose</animation>
+		  <animation effect="slide" start="-150,0" time="100">visible</animation>
+		  <animation effect="fade" time="50">visible</animation>
+		  <animation effect="fade" time="0">hidden</animation>
+		</control>
+
+
+
+		<control>
+		  <description>Main label</description>
+		  <type>label</type>
+		  <id>1</id>
+		  <posX>116</posX>
+		  <posY>100</posY>
+		  <label>Anime Info</label>
+		  <font>fontB16</font>
+		  <textcolor>393939</textcolor>
+		  <visible>!Control.HasFocus(801)+!Control.HasFocus(803)</visible>
+		  <animation effect="fade" time="0">WindowClose</animation>
+		  <animation effect="slide" start="-150,0" time="100">visible</animation>
+		  <animation effect="fade" time="50">visible</animation>
+		  <animation effect="fade" time="0">hidden</animation>
+		</control>
+
+		<control>
+		  <type>group</type>
+		  <description>group element</description>
+		  <visible>!Control.HasFocus(801)+!Control.HasFocus(803)</visible>
+		  <animation effect="fade" time="0">WindowClose</animation>
+		  <animation effect="slide" start="-150,0" time="100">visible</animation>
+		  <animation effect="fade" time="50">visible</animation>
+		  <animation effect="fade" time="0">hidden</animation>
+		  <posX>53</posX>
+		  <posY>155</posY>
+		  <layout>StackLayout(0, Vertical, true)</layout>
+
+		  <control>
+			<description>Characters</description>
+			<type>button</type>
+			<id>911</id>
+			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>499</width>
+			<height>69</height>
+			<textXOff>62</textXOff>
+			<textYOff>16</textYOff>
+			<label>Characters</label>
+			<onleft>801</onleft>
+			<onright>801</onright>
+			<onup>915</onup>
+			<ondown>912</ondown>
+		  </control>
+
+		  <control>
+			<description>Relations</description>
+			<type>button</type>
+			<id>912</id>
+			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>499</width>
+			<height>69</height>
+			<textXOff>62</textXOff>
+			<textYOff>16</textYOff>
+			<label>Relations</label>
+			<onleft>801</onleft>
+			<onright>801</onright>
+			<onup>911</onup>
+			<ondown>913</ondown>
+		  </control>
+
+		  <control>
+			<description>Fanart</description>
+			<type>button</type>
+			<id>913</id>
+			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>499</width>
+			<height>69</height>
+			<textXOff>62</textXOff>
+			<textYOff>16</textYOff>
+			<label>Fanart</label>
+			<onleft>801</onleft>
+			<onright>801</onright>
+			<onup>912</onup>
+			<ondown>914</ondown>
+		  </control>
+
+		  <control>
+			<description>Posters</description>
+			<type>button</type>
+			<id>914</id>
+			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>499</width>
+			<height>69</height>
+			<textXOff>62</textXOff>
+			<textYOff>16</textYOff>
+			<label>Posters</label>
+			<onleft>801</onleft>
+			<onright>801</onright>
+			<onup>913</onup>
+			<ondown>915</ondown>
+		  </control>
+
+		  <control>
+			<description>Wide Banners</description>
+			<type>button</type>
+			<id>915</id>
+			<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>499</width>
+			<height>69</height>
+			<textXOff>62</textXOff>
+			<textYOff>16</textYOff>
+			<label>Wide Banners</label>
+			<onleft>801</onleft>
+			<onright>801</onright>
+			<onup>914</onup>
+			<ondown>911</ondown>
+		  </control>
+
+		  
+
+		</control>
+	  </control>
+	
+	<!-- ************************** BOTTOM BAR ***********************************-->
+		
+	
+	
+	<!-- ************************** Poster ***********************************-->
+	
+	<control>
+		<description>Group/Series Poster</description>
+		<type>image</type>
+		<id>61</id>
+		<posX>75</posX>
+		<posY>150</posY>
+		<width>464</width>
+		<height>670</height>
+		<texture>#Anime3.AnimeInfo.Poster</texture>
+		<visible>Control.IsVisible(1502)</visible>
+		<animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	  <!-- ************************** Page Buttons ***********************************-->
+
+	  <control>
+		<description>AniDB Info button</description>
+		<type>button</type>
+		<id>801</id>
+		<label>AniDB Info</label>
+		<posX>565</posX>
+		<posY>105</posY>
+		<onleft>911</onleft>
+		<onright>803</onright>
+		<onup>801</onup>
+		<ondown>801</ondown>
+		<width>220</width>
+		<height>60</height>
+		<align>center</align>
+	  </control>
+
+	  <control>
+		<description>Groups button</description>
+		<type>button</type>
+		<id>803</id>
+		<label>Groups</label>
+		<posX>825</posX>
+		<posY>105</posY>
+		<onleft>801</onleft>
+		<onright>803</onright>
+		<onup>803</onup>
+		<ondown>803</ondown>
+		<align>center</align>
+		<width>220</width>
+		<height>60</height>
+	  </control>
+	 
+		
+	<!-- ***************** Info page ***************** -->
+
+	<!-- Main Title	-->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>Main Title</description>
+		<posX>590</posX>
+		<posY>180</posY>
+		<width>650</width>
+		<label>Main Title</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+		
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>Main Title Value</description>
+		<posX>900</posX>
+		<posY>180</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.AnidbTitle</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+
+	<!-- Rating -->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>Rating</description>
+		<posX>590</posX>
+		<posY>220</posY>
+		<width>650</width>
+		 <label>Rating</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>Rating Value</description>
+		<posX>900</posX>
+		<posY>220</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.Rating</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+	
+	<control>
+	  <type>image</type>
+	   <posX>1500</posX>
+      <posY>220</posY>
+	  <width>32</width>
+	  <height>32</height>
+	  <visible>Control.IsVisible(1247)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>My Rating Value</description>
+		<posX>1600</posX>
+		<posY>220</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.MyRating</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1247)</visible>
+	</control>	
+	
+	<!-- Anime Type -->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>Anime Type</description>
+		<posX>590</posX>
+		<posY>260</posY>
+		<width>650</width>
+		 <label>Type</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>Anime Type Value</description>
+		<posX>900</posX>
+		<posY>260</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.Type</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+	
+	<!-- Episodes -->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>Episodes</description>
+		<posX>590</posX>
+		<posY>300</posY>
+		<width>650</width>
+		 <label>Episodes</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>Episodes Value</description>
+		<posX>900</posX>
+		<posY>300</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.EpisodeSpecials</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+	
+	<!-- Other Titles -->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>OtherTitles</description>
+		<posX>590</posX>
+		<posY>340</posY>
+		<width>650</width>
+		 <label>Other Titles</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>OtherTitles Value</description>
+		<posX>900</posX>
+		<posY>340</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.OtherTitles</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+
+	<!-- Aired -->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>Aired</description>
+		<posX>590</posX>
+		<posY>380</posY>
+		<width>650</width>
+		 <label>Aired</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>Aired Value</description>
+		<posX>900</posX>
+		<posY>380</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.Year</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>	
+	
+	<!-- Categories -->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>Categories</description>
+		<posX>590</posX>
+		<posY>420</posY>
+		<width>650</width>
+		 <label>Categories</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	<control Style="InfoValueSmall">
+		<type>label</type>
+		<description>Categories Value</description>
+		<posX>900</posX>
+		<posY>420</posY>
+		<width>900</width>
+		<label>#Anime3.AnimeInfo.Info.Genre</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	
+	<!-- Description -->
+	<control>
+
+		<type>textboxscrollup</type>
+		<description>Description</description>
+		<posX>590</posX>
+		<posY>510</posY>
+		<width>1300</width>
+		<height>480</height>
+		<label>#Anime3.AnimeInfo.Info.Description</label>
+		<align>left</align>
+		<seperator>-----------------------------------------------------------------------------------</seperator>
+		<scrollStartDelaySec>12</scrollStartDelaySec>
+		<visible>Control.IsVisible(1500)</visible>
+	</control>
+	
+	
+	
+	<!-- ***************** Groups page ***************** -->
+
+	<!-- MY GROUPS	-->
+	<control Style="InfoLabel">
+		<type>label</type>
+		<description>MY GROUPS</description>
+		<posX>590</posX>
+		<posY>180</posY>
+		<width>650</width>
+		<label>MY GROUPS</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1503)</visible>
+	</control>
+
+	  <control>
+		<type>textboxscrollup</type>
+		<description>Description</description>
+		<posX>590</posX>
+		<posY>220</posY>
+		<width>1300</width>
+		<height>200</height>
+		<label>#Anime3.AnimeInfo.Groups.MyGroupsDescription</label>
+		<align>left</align>
+		<seperator>-----------------------------------------------------------------------------------</seperator>
+		<scrollStartDelaySec>5</scrollStartDelaySec>
+		<visible>Control.IsVisible(1503)</visible>
+	  </control>
+
+	  <!-- OTHER GROUPS	-->
+	  <control Style="InfoLabel">
+		<type>label</type>
+		<description>OTHER GROUPS</description>
+		<posX>590</posX>
+		<posY>460</posY>
+		<width>650</width>
+		<label>OTHER GROUPS</label>
+		<align>left</align>
+		<visible>Control.IsVisible(1503)</visible>
+	</control>
+
+	<control>
+		<type>textboxscrollup</type>
+		<description>Description</description>
+		<posX>590</posX>
+		<posY>500</posY>
+		<width>1300</width>
+		<height>500</height>
+		<label>#Anime3.AnimeInfo.Groups.OtherGroupsDescription</label>
+		<align>left</align>
+		<seperator>-----------------------------------------------------------------------------------</seperator>
+		<scrollStartDelaySec>5</scrollStartDelaySec>
+		<visible>Control.IsVisible(1503)</visible>
+	</control>
+
+
+
+	  
+	  
+	  
+	  
+
+
+	  
+	  <import>common.overlay.xml</import>
+	
+		
+	</controls>
+</window>

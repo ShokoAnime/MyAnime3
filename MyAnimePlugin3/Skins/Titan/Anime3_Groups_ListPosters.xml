@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+	<controls>
+
+	  <control>
+		<description>Poster shadow</description>
+		<type>image</type>
+		<id>1</id>
+		<posX>105</posX>
+		<posY>347</posY>
+		<width>429</width>
+		<height>613</height>
+		<texture>list_poster_shadow.png</texture>
+		<visible>facadeview.list</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<description>Cover Art</description>
+		<type>image</type>
+		<id>500</id>
+		<posX>123</posX>
+		<posY>360</posY>
+		<width>379</width>
+		<height>563</height>
+		<texture>#Anime3.GroupSeriesPoster</texture>
+		<visible>facadeview.list</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+
+
+	  <control>
+		<description>count</description>
+		<type>label</type>
+		<label>#Anime3.GroupCount Groups / #Anime3.SimpleCurrentView</label>
+		<id>0</id>
+		<posX>96</posX>
+		<posY>998</posY>
+		<align>left</align>
+		<font>TitanLight12</font>
+		<textcolor>000000</textcolor>
+		<visible>facadeview.list|facadeview.largeicons</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+
+	  <!-- 			:: SERIES/Group Filter INFO LABELS ::		-->
+
+	  <control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Series Title - Groups/Series</description>
+		<id>640</id>
+		<posX>510</posX>
+		<posY>1015</posY>
+		<label>#Anime3.Title</label>
+		<visible>[facadeview.list | facadeview.largeicons | facadeview.filmstrip | facadeview.coverflow] + [Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1250)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Series Title - Groups/Series</description>
+		<id>640</id>
+		<posX>510</posX>
+		<posY>1015</posY>
+		<label>#Anime3.SeriesTitle</label>
+		<visible>[facadeview.list | facadeview.largeicons | facadeview.filmstrip | facadeview.coverflow] + [Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+
+	  <control>
+		<type>textboxscrollup</type>
+		<description>Description (grouplist)</description>
+		<id>0</id>
+		<posX>568</posX>
+		<posY>552</posY>
+		<width>555</width>
+		<height>370</height>
+		<label>#Anime3.Description</label>
+		<lineSpacing>0.92</lineSpacing>
+		<seperator>---------------------------------------------------------------------------------------------------------------------</seperator>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	  
+	  
+
+	  <control Style="InfoLabel">
+		<description>Year Label (Series)</description>
+		<type>fadelabel</type>
+		<label>Year</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>345</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Year Value (Series)</description>
+		<type>label</type>
+		<label>#Anime3.SeriesGroup.Year</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>345</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+
+	  <control Style="InfoLabel">
+		<description>Genre Label (Series)</description>
+		<type>fadelabel</type>
+		<label>Genre</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>377</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Genre Value (Series)</description>
+		<type>label</type>
+		<label>#Anime3.SeriesGroup.Genre</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>377</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoLabel">
+		<description>Episodes Label</description>
+		<type>fadelabel</type>
+		<label>Episodes</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>409</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Episodes Value</description>
+		<type>label</type>
+		<label>#Anime3.SeriesGroup.Episodes</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>409</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoLabel">
+		<description>Rating Label</description>
+		<type>fadelabel</type>
+		<label>Rating</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>441</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Rating Value</description>
+		<type>label</type>
+		<label>#Anime3.SeriesGroup.Rating</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>441</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>My Rating Value</description>
+		<type>label</type>
+		<label>#Anime3.SeriesGroup.MyRating</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>473</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+
+	</controls>
+</window>

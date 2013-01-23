@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+	<controls>
+
+	  <control>
+		<description>Rating Value</description>
+		<type>label</type>
+		<id>0</id>
+		<align>right</align>
+		<posX>1790</posX>
+		<posY>998</posY>
+		<label>#Anime3.SeriesGroup.Rating : #Anime3.SeriesGroup.MyRating</label>
+		<font>fontB12</font>
+		<textcolor>000000</textcolor>
+		<visible>facadeview.filmstrip | facadeview.coverflow+[Control.IsVisible(1237)|Control.IsVisible(1238)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control>
+		<description>Year / Runtime / Genre</description>
+		<type>label</type>
+		<id>0</id>
+		<posX>122</posX>
+		<posY>996</posY>
+		<width>475</width>
+		<font>TitanLight12</font>
+		<textcolor>FF000000</textcolor>
+		<label>#Anime3.SeriesGroup.Year - #Anime3.SeriesGroup.Episodes </label>
+		<visible>facadeview.filmstrip | facadeview.coverflow+[Control.IsVisible(1237)|Control.IsVisible(1238)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+		
+
+	</controls>
+</window>

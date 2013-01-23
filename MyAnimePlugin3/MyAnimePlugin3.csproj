@@ -943,6 +943,7 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWide" "$(SolutionDir)Release\sk
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Mustayaluca" "$(SolutionDir)Release\skin\Mustayaluca" /E /R /I /Y	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\XFactor" "$(SolutionDir)Release\skin\XFactor" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
 	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\[ Media ]" /E /R /I /Y	
 

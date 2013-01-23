@@ -181,12 +181,8 @@ namespace MyAnimePlugin3.Windows
 			btnCurrentPlusOne.Focus = false;
 			switch (MainWindow.CurrentCalendarButton)
 			{
-				case 1: btnCurrentMinusThree.Focus = true; break;
-				case 2: btnCurrentMinusTwo.Focus = true; break;
 				case 3: btnCurrentMinusOne.Focus = true; break;
 				case 4: btnCurrentPlusOne.Focus = true; break;
-				case 5: btnCurrentPlusTwo.Focus = true; break;
-				case 6: btnCurrentPlusThree.Focus = true; break;
 			}
 		}
 
@@ -350,6 +346,9 @@ namespace MyAnimePlugin3.Windows
 				GUIWindowManager.CloseCurrentWindow();
 				GUIWindowManager.ActivateWindow(Constants.WindowIDs.CALENDAR, false);
 
+				btnCurrentPlusOne.Focus = false;
+				btnCurrentMinusOne.Focus = false;
+
 				return;
 			}
 
@@ -382,6 +381,9 @@ namespace MyAnimePlugin3.Windows
 				MainWindow.CurrentCalendarButton = 4;
 				GUIWindowManager.CloseCurrentWindow();
 				GUIWindowManager.ActivateWindow(Constants.WindowIDs.CALENDAR, false);
+
+				btnCurrentPlusOne.Focus = false;
+				btnCurrentMinusOne.Focus = false;
 
 				return;
 			}

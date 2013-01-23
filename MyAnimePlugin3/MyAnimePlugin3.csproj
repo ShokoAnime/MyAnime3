@@ -717,6 +717,7 @@
     <Content Include="Skins\streamedmp\Media\hover_My Anime3.png" />
     <Content Include="Skins\streamedmp\Media\MyAnime3\overlay_bar_bottom.png" />
     <Content Include="Skins\streamedmp\Media\MyAnime3\overlay_bar_top.png" />
+    <Content Include="Skins\Titan\ToDo.txt" />
     <Content Include="Skins\XFactor\Anime3_Admin.xml" />
     <Content Include="Skins\XFactor\anime3_AnimeInfo.xml">
       <SubType>Designer</SubType>

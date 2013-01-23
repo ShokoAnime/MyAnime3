@@ -39,7 +39,7 @@ namespace MyAnimePlugin3.ViewModel
 
 				if (!File.Exists(FullImagePathPlain))
 				{
-					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_FanArt, this, false);
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Banner, this, false);
 					MainWindow.imageHelper.DownloadImage(req);
 					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
 				}

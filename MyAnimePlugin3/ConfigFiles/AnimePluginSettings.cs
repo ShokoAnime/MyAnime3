@@ -318,7 +318,9 @@ namespace MyAnimePlugin3
 		public void Load()
 		{
 			StringDictionary settings = new StringDictionary();
-			MediaPortal.Profile.Settings xmlreader = new MediaPortal.Profile.Settings("MediaPortal.xml");
+
+			MediaPortal.Profile.Settings xmlreader = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, "MediaPortal.xml"));
+			//MediaPortal.Profile.Settings xmlreader = new MediaPortal.Profile.Settings("MediaPortal.xml");
 
 
 			JMMServer_Address = xmlreader.GetValueAsString("Anime3", "JMMServer_Address", "127.0.0.1");
@@ -449,7 +451,7 @@ namespace MyAnimePlugin3
 
 		public void Save()
 		{
-			using (MediaPortal.Profile.Settings xmlwriter = new MediaPortal.Profile.Settings("MediaPortal.xml"))
+			using (MediaPortal.Profile.Settings xmlwriter = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, "MediaPortal.xml")))
 			{
 				xmlwriter.SetValue("Anime3", "JMMServer_Address", JMMServer_Address.Trim());
 				xmlwriter.SetValue("Anime3", "JMMServer_Port", JMMServer_Port.Trim());

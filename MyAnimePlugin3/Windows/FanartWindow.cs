@@ -169,7 +169,8 @@ namespace MyAnimePlugin3.Windows
 			AnimeSeriesVM ser = JMMServerHelper.GetSeries(MainWindow.GlobalSeriesID);
 			if (ser != null)
 			{
-				if (ser.CrossRef_AniDB_TvDB != null) AnimeID = ser.CrossRef_AniDB_TvDB.AnimeID;
+				if (ser.CrossRef_AniDB_TvDBV2 != null && ser.CrossRef_AniDB_TvDBV2.Count > 0)
+					AnimeID = ser.CrossRef_AniDB_TvDBV2[0].AnimeID;
 			}
 
 			if (ser == null) return;

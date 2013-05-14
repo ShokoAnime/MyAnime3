@@ -24,6 +24,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="JMMServerBinary.xsd" MetadataType="Schema" ID="4a666609-2f0f-4b8a-a121-3ae39e04c1cd" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?xsd=xsd1" />
+    <MetadataFile FileName="JMMServerBinary.wsdl" MetadataType="Wsdl" ID="b619ce6a-f3ea-4927-870e-b1f11353d5d0" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?wsdl=wsdl0" />
     <MetadataFile FileName="JMMServiceImplementation.wsdl" MetadataType="Wsdl" ID="b8a32f04-6f82-45c6-8b32-2b1a363bf48a" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?wsdl" />
     <MetadataFile FileName="JMMServerBinary.disco" MetadataType="Disco" ID="7f509ece-753c-4274-9970-5e99b18c859c" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?disco" />
     <MetadataFile FileName="JMMServerBinary1.xsd" MetadataType="Schema" ID="726ec43d-8550-4234-859d-7d57b642684a" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?xsd=xsd2" />

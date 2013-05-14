@@ -97,7 +97,8 @@ namespace MyAnimePlugin3.Windows
 			if (ser != null)
 			{
 				displayname = ser.SeriesName;
-				if (ser.CrossRef_AniDB_TvDB != null) AnimeID = ser.CrossRef_AniDB_TvDB.AnimeID;
+				if (ser.CrossRef_AniDB_TvDBV2 != null && ser.CrossRef_AniDB_TvDBV2.Count > 0)
+					AnimeID = ser.CrossRef_AniDB_TvDBV2[0].AnimeID;
 			}
 
 			BaseConfig.MyAnimeLog.Write("ShowPosters for {0} - {1}", displayname, AnimeID);

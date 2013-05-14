@@ -185,6 +185,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SkinSettings.cs" />
+    <Compile Include="TvDBDetails.cs" />
+    <Compile Include="TvDBSummary.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="VideoHandler.cs" />
     <Compile Include="ViewModel\AniDBReleaseGroupVM.cs" />
@@ -207,7 +209,6 @@
     <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
-    <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
     <Compile Include="ViewModel\FanartContainer.cs" />
     <Compile Include="ViewModel\FileFfdshowPresetVM.cs" />
@@ -286,6 +287,7 @@
     <None Include="Service References\JMMServerBinary\JMMServerBinary.disco" />
     <None Include="Service References\JMMServerBinary\configuration91.svcinfo" />
     <None Include="Service References\JMMServerBinary\configuration.svcinfo" />
+    <None Include="Service References\JMMServerBinary\JMMServerBinary.wsdl" />
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDBAnime.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -310,6 +312,12 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Character.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Episode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Recommendation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AniDB_Seiyuu.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -322,6 +330,12 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AnimeGroup_SaveResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AnimeRating.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AnimeSearch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AnimeSeries.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -329,6 +343,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AppVersions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_BookmarkedAnime.datasource">
@@ -352,10 +369,7 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TraktResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult.datasource">
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode.datasource">
@@ -392,6 +406,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_JMMUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_LogMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse.datasource">

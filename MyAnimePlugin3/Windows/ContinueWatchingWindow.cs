@@ -112,17 +112,7 @@ namespace MyAnimePlugin3.Windows
 				AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 
 				AniDB_AnimeVM anime = ep.AnimeSeries.AniDB_Anime;
-				Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = anime.DictTvDBEpisodes;
-				Dictionary<int, int> dictTvDBSeasons = anime.DictTvDBSeasons;
-				Dictionary<int, int> dictTvDBSeasonsSpecials = anime.DictTvDBSeasonsSpecials;
-				CrossRef_AniDB_TvDBVM tvDBCrossRef = anime.CrossRefTvDB;
-
-				List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = anime.CrossRefTvDBEpisodes;
-				Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
-				foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
-					dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
-
-				ep.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
+				ep.SetTvDBInfo(anime.TvSummary);
 
 				tempEpisodes.Add(ep);
 			}

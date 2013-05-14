@@ -4153,7 +4153,7 @@ namespace MyAnimePlugin3
 					{
 						TVDBSeriesSearchResultVM res = TVDBSeriesSearchResults[selection - 1];
 
-						LinkAniDBToTVDB(ser, aniDBID, res.SeriesID, 1);
+						LinkAniDBToTVDB(ser, aniDBID, enEpisodeType.Episode, 1, res.SeriesID, 1, 1);
 						return false;
 					}
 
@@ -4265,12 +4265,22 @@ namespace MyAnimePlugin3
 				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
 				dlg.Add("Manual Search");
 
-				CrossRef_AniDB_TvDBResultVM CrossRef_AniDB_TvDBResult = null;
-				JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(aniDBID);
-				if (xref != null)
+				List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBResult = new List<CrossRef_AniDB_TvDBVMV2>();
+				List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(aniDBID);
+				if (xrefs != null && xrefs.Count > 0)
 				{
-					CrossRef_AniDB_TvDBResult = new CrossRef_AniDB_TvDBResultVM(xref);
-					dlg.Add("Community Says:   " + CrossRef_AniDB_TvDBResult.SeriesName);
+					string xrefSummary = string.Empty;
+					foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB xref in xrefs)
+					{
+						
+						CrossRef_AniDB_TvDBVMV2 xrefAzure = new CrossRef_AniDB_TvDBVMV2(xref);
+						CrossRef_AniDB_TvDBResult.Add(xrefAzure);
+						xrefSummary += Environment.NewLine;
+						xrefSummary += string.Format("AniDB {0}:{1} -- TvDB {2}: {3}:{4}",
+							xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber, xref.TvDBTitle, xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber);
+					}
+
+					dlg.Add("Community Says:   " + xrefSummary);
 				}
 				
 
@@ -4298,7 +4308,19 @@ namespace MyAnimePlugin3
 						}
 						break;
 					case 3:
-						LinkAniDBToTVDB(ser, ser.AniDB_Anime.AnimeID, CrossRef_AniDB_TvDBResult.TvDBID, CrossRef_AniDB_TvDBResult.TvDBSeasonNumber);
+
+						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(aniDBID);
+						if (res.Length > 0)
+						{
+							Utils.DialogMsg("Error", res);
+							return false;
+						}
+
+						foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRef_AniDB_TvDBResult)
+						{
+							LinkAniDBToTVDB(ser, xref.AnimeID, (enEpisodeType)xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber, xref.TvDBID,
+								xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber);
+						}
 						return false;
 					default:
 						//close menu
@@ -4380,9 +4402,11 @@ namespace MyAnimePlugin3
 			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
 		}
 
-		private void LinkAniDBToTVDB(AnimeSeriesVM ser, int animeID, int tvDBID, int season)
+		private void LinkAniDBToTVDB(AnimeSeriesVM ser, int animeID, enEpisodeType anidbEpType, int anidbEpNumber, int tvDBID, int tvSeason, int tvEpNumber)
 		{
-			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDB(animeID, tvDBID, season);
+			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDB(animeID, (int)anidbEpType, anidbEpNumber,
+						tvDBID, tvSeason, tvEpNumber, null);
+
 			if (res.Length > 0)
 				Utils.DialogMsg("Error", res);
 
@@ -4888,7 +4912,7 @@ namespace MyAnimePlugin3
 			int selectedLabel = 0;
 			string currentMenu = ser.SeriesName + " Databases";
 
-			bool hasTvDBLink = ser.CrossRef_AniDB_TvDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries != null;
+			bool hasTvDBLink = ser.CrossRef_AniDB_TvDBV2.Count > 0 && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists;
 			bool hasMovieDBLink = ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null;
 			bool hasTraktLink = ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow != null;
 			bool hasMALLink = ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0;
@@ -4906,7 +4930,7 @@ namespace MyAnimePlugin3
 				if (ser != null)
 				{
 					if (hasTvDBLink)
-						tvdbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries.SeriesName + ")";
+						tvdbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName + ")";
 
 					if (hasMovieDBLink)
 						moviedbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName + ")";
@@ -5618,11 +5642,11 @@ namespace MyAnimePlugin3
 			int season = -1;
 			string displayName = "";
 
-			if (ser.CrossRef_AniDB_TvDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries != null)
+			if (ser.CrossRef_AniDB_TvDBV2.Count > 0 && ser.TvDBSeriesV2.Count > 0 && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists)
 			{
-				displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries.SeriesName;
-				tvdbid = ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDB.TvDBID;
-				season = ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDB.TvDBSeasonNumber;
+				displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName;
+				tvdbid = ser.CrossRef_AniDB_TvDBV2[0].TvDBID;
+				season = ser.CrossRef_AniDB_TvDBV2[0].TvDBSeasonNumber;
 			}
 			else
 				return false;
@@ -5654,11 +5678,18 @@ namespace MyAnimePlugin3
 						return true;
 					case 1:
 
-						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDB(ser.AniDB_Anime.AnimeID);
+						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(ser.AniDB_Anime.AnimeID);
 						break;
 					case 2:
-						if (!ShowSeasonSelectionMenuTvDB(ser, ser.AniDB_Anime.AnimeID, tvdbid, currentMenu))
-							return false;
+						if (ser.CrossRef_AniDB_TvDBV2.Count < 2 )
+						{
+							if (!ShowSeasonSelectionMenuTvDB(ser, ser.AniDB_Anime.AnimeID, tvdbid, currentMenu))
+								return false;
+						}
+						else
+						{
+							Utils.DialogMsg("Error", "Cannot edit seasons when series has more than one TvDB link, use JMM Desktop instead");
+						}
 						break;
 					
 					default:
@@ -5890,7 +5921,10 @@ namespace MyAnimePlugin3
 					if (selection > 0 && selection <= seasons.Count)
 					{
 						int selectedSeason = seasons[selection - 1];
-						LinkAniDBToTVDB(ser, animeID, tvdbid, selectedSeason);
+
+						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(animeID);
+
+						LinkAniDBToTVDB(ser, animeID, enEpisodeType.Episode, 1, tvdbid, selectedSeason, 1);
 					}
 
 					return false;

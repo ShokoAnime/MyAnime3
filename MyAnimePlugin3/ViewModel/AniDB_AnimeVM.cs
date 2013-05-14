@@ -608,198 +608,29 @@ namespace MyAnimePlugin3.ViewModel
 			return string.Format("ANIME: {0} - {1}", AnimeID, FormattedTitle);
 		}
 
-		private CrossRef_AniDB_TvDBVM crossRefTvDB = null;
-		public CrossRef_AniDB_TvDBVM CrossRefTvDB
+		public void ClearTvDBData()
 		{
-			get
-			{
-				if (crossRefTvDB == null)
-				{
-					try
-					{
-						JMMServerBinary.Contract_CrossRef_AniDB_TvDB contract = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRef(this.AnimeID);
-						if (contract != null)
-							crossRefTvDB = new CrossRef_AniDB_TvDBVM(contract);
-					}
-					catch (Exception ex)
-					{
-						BaseConfig.MyAnimeLog.Write(ex.ToString());
-					}
-				}
-				return crossRefTvDB;
-			}
+			tvSummary = null;
 		}
 
-		private List<TvDB_EpisodeVM> tvDBEpisodes = null;
-		public List<TvDB_EpisodeVM> TvDBEpisodes
+		private TvDBSummary tvSummary = null;
+		public TvDBSummary TvSummary
 		{
 			get
 			{
-				if (tvDBEpisodes == null)
+				if (tvSummary == null)
 				{
 					try
 					{
-						if (CrossRefTvDB != null)
-						{
-							List<JMMServerBinary.Contract_TvDB_Episode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(CrossRefTvDB.TvDBID);
-							tvDBEpisodes = new List<TvDB_EpisodeVM>();
-							foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
-								tvDBEpisodes.Add(new TvDB_EpisodeVM(episode));
-
-							List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-							sortCriteria.Add(new SortPropOrFieldAndDirection("SeasonNumber", false, SortType.eInteger));
-							sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, SortType.eInteger));
-							tvDBEpisodes = Sorting.MultiSort<TvDB_EpisodeVM>(tvDBEpisodes, sortCriteria);
-						}
+						tvSummary = new TvDBSummary();
+						tvSummary.Populate(this.AnimeID);
 					}
 					catch (Exception ex)
 					{
-						BaseConfig.MyAnimeLog.Write(ex.ToString());
+						BaseConfig.MyAnimeLog.Write("TvSummary\r\n" + ex.ToString());
 					}
 				}
-				return tvDBEpisodes;
-			}
-		}
-
-		private Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
-		public Dictionary<int, TvDB_EpisodeVM> DictTvDBEpisodes
-		{
-			get
-			{
-				if (dictTvDBEpisodes == null)
-				{
-					try
-					{
-						if (TvDBEpisodes != null)
-						{
-
-							dictTvDBEpisodes = new Dictionary<int, TvDB_EpisodeVM>();
-							// create a dictionary of absolute episode numbers for tvdb episodes
-							// sort by season and episode number
-							// ignore season 0, which is used for specials
-							List<TvDB_EpisodeVM> eps = TvDBEpisodes;
-
-							int i = 1;
-							foreach (TvDB_EpisodeVM ep in eps)
-							{
-								dictTvDBEpisodes[i] = ep;
-								i++;
-							}
-							
-						}
-					}
-					catch (Exception ex)
-					{
-						BaseConfig.MyAnimeLog.Write(ex.ToString());
-					}
-				}
-				return dictTvDBEpisodes;
-			}
-		}
-
-		private Dictionary<int, int> dictTvDBSeasons = null;
-		public Dictionary<int, int> DictTvDBSeasons
-		{
-			get
-			{
-				if (dictTvDBSeasons == null)
-				{
-					try
-					{
-						if (TvDBEpisodes != null)
-						{
-							dictTvDBSeasons = new Dictionary<int, int>();
-							// create a dictionary of season numbers and the first episode for that season
-
-							List<TvDB_EpisodeVM> eps = TvDBEpisodes;
-							int i = 1;
-							int lastSeason = -999;
-							foreach (TvDB_EpisodeVM ep in eps)
-							{
-								if (ep.SeasonNumber != lastSeason)
-									dictTvDBSeasons[ep.SeasonNumber] = i;
-
-								lastSeason = ep.SeasonNumber;
-								i++;
-
-							}
-						}
-					}
-					catch (Exception ex)
-					{
-						BaseConfig.MyAnimeLog.Write(ex.ToString());
-					}
-				}
-				return dictTvDBSeasons;
-			}
-		}
-
-		private Dictionary<int, int> dictTvDBSeasonsSpecials = null;
-		public Dictionary<int, int> DictTvDBSeasonsSpecials
-		{
-			get
-			{
-				if (dictTvDBSeasonsSpecials == null)
-				{
-					try
-					{
-						if (TvDBEpisodes != null)
-						{
-							dictTvDBSeasonsSpecials = new Dictionary<int, int>();
-							// create a dictionary of season numbers and the first episode for that season
-
-							List<TvDB_EpisodeVM> eps = TvDBEpisodes;
-							int i = 1;
-							int lastSeason = -999;
-							foreach (TvDB_EpisodeVM ep in eps)
-							{
-								if (ep.SeasonNumber > 0) continue;
-
-								int thisSeason = 0;
-								if (ep.AirsBeforeSeason.HasValue) thisSeason = ep.AirsBeforeSeason.Value;
-								if (ep.AirsAfterSeason.HasValue) thisSeason = ep.AirsAfterSeason.Value;
-
-								if (thisSeason != lastSeason)
-									dictTvDBSeasonsSpecials[thisSeason] = i;
-
-								lastSeason = thisSeason;
-								i++;
-
-							}
-						}
-					}
-					catch (Exception ex)
-					{
-						BaseConfig.MyAnimeLog.Write(ex.ToString());
-					}
-				}
-				return dictTvDBSeasonsSpecials;
-			}
-		}
-
-		private List<CrossRef_AniDB_TvDBEpisodeVM> crossRefTvDBEpisodes = null;
-		public List<CrossRef_AniDB_TvDBEpisodeVM> CrossRefTvDBEpisodes
-		{
-			get
-			{
-				if (crossRefTvDBEpisodes == null)
-				{
-					try
-					{
-						crossRefTvDBEpisodes = new List<CrossRef_AniDB_TvDBEpisodeVM>();
-						List<JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefEpisode(this.AnimeID);
-						if (contracts != null)
-						{
-							foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode contract in contracts)
-								crossRefTvDBEpisodes.Add(new CrossRef_AniDB_TvDBEpisodeVM(contract));
-						}
-					}
-					catch (Exception ex)
-					{
-						BaseConfig.MyAnimeLog.Write(ex.ToString());
-					}
-				}
-				return crossRefTvDBEpisodes;
+				return tvSummary;
 			}
 		}
 

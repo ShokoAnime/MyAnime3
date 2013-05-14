@@ -40,8 +40,8 @@ namespace MyAnimePlugin3.ViewModel
 		}
 
 
-		public TvDB_SeriesVM TvDBSeries { get; set; }
-		public CrossRef_AniDB_TvDBVM CrossRef_AniDB_TvDB  { get; set; }
+		public List<TvDB_SeriesVM> TvDBSeries { get; set; }
+		public List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDB  { get; set; }
 		public List<TvDB_EpisodeVM> TvDBEpisodes  { get; set; }
 		public List<TvDB_ImageFanartVM> TvDBImageFanarts  { get; set; }
 		public List<TvDB_ImagePosterVM> TvDBImagePosters  { get; set; }
@@ -129,10 +129,24 @@ namespace MyAnimePlugin3.ViewModel
 
 			// TvDB
 			if (details.CrossRef_AniDB_TvDB != null)
-				CrossRef_AniDB_TvDB = new CrossRef_AniDB_TvDBVM(details.CrossRef_AniDB_TvDB);
+			{
+				CrossRef_AniDB_TvDB = new List<CrossRef_AniDB_TvDBVMV2>();
+				foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 contract in details.CrossRef_AniDB_TvDB)
+				{
+					CrossRef_AniDB_TvDBVMV2 xref = new CrossRef_AniDB_TvDBVMV2(contract);
+					CrossRef_AniDB_TvDB.Add(xref);
+				}
+			}
 
 			if (details.TvDBSeries != null)
-				TvDBSeries = new TvDB_SeriesVM(details.TvDBSeries);
+			{
+				TvDBSeries = new List<TvDB_SeriesVM>();
+				foreach (JMMServerBinary.Contract_TvDB_Series contract in details.TvDBSeries)
+				{
+					TvDB_SeriesVM tv = new TvDB_SeriesVM(contract);
+					TvDBSeries.Add(tv);
+				}
+			}
 
 			foreach (JMMServerBinary.Contract_TvDB_Episode contract in details.TvDBEpisodes)
 				TvDBEpisodes.Add(new TvDB_EpisodeVM(contract));
@@ -182,7 +196,8 @@ namespace MyAnimePlugin3.ViewModel
 				TvDBImageWideBanners.Add(tvBanner);
 			}
 
-			if (CrossRef_AniDB_TvDB == null || TvDBSeries == null)
+			if ((CrossRef_AniDB_TvDB == null || CrossRef_AniDB_TvDB.Count ==0) || 
+				(TvDBSeries == null || TvDBSeries.Count == 0))
 				TvDBCrossRefExists = false;
 			else
 				TvDBCrossRefExists = true;

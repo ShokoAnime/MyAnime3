@@ -104,8 +104,8 @@ namespace MyAnimePlugin3.Windows
 		void getDataWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			List<AnimeEpisodeVM> tempEpisodes = new List<AnimeEpisodeVM>();
-			List<JMMServerBinary.Contract_AnimeEpisode> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesToWatch_RecentlyWatched(
-				15, JMMServerVM.Instance.CurrentUser.JMMUserID);
+			List<JMMServerBinary.Contract_AnimeEpisode> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetContinueWatchingFilter(
+				JMMServerVM.Instance.CurrentUser.JMMUserID, 25);
 
 			foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
 			{

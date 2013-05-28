@@ -95,7 +95,7 @@
 		<posX>60</posX>
 		<posY>38</posY>
 		<width>855</width>
-		<font>fontB22</font>
+		<font>TitanLight22</font>
 		<textcolor>ffffff</textcolor>
 		<label>#Anime3.AnimeInfo.Title</label>
 		<align>left</align>
@@ -110,7 +110,7 @@
 		<posX>1848</posX>
 		<posY>36</posY>
 		<width>555</width>
-		<font>fontB22</font>
+		<font>TitanLight22</font>
 		<textcolor>ffffff</textcolor>
 		<label>#time</label>
 		<align>right</align>

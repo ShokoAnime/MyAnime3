@@ -442,17 +442,13 @@
 
 	<control>
 	  <description>Fully Watched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>802</id>
 	  <label>Fully Watched</label>
 	  <width>330</width>
 	  <height>52</height>
 	  <textXOff>28</textXOff>
 	  <textYOff>8</textYOff>
-	  <textureFocus>togglebutton-on-focus.png</textureFocus>
-	  <textureNoFocus>togglebutton-on-nofocus.png</textureNoFocus>
-	  <AltTextureFocus>togglebutton-off-focus.png</AltTextureFocus>
-	  <AltTextureNoFocus>togglebutton-off-nofocus.png</AltTextureNoFocus>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <onleft>901</onleft>
@@ -466,17 +462,13 @@
 
 	<control>
 	  <description>Unwatched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>803</id>
 	  <label>Unwatched</label>
 	  <width>330</width>
 	  <height>52</height>
 	  <textXOff>28</textXOff>
 	  <textYOff>8</textYOff>
-	  <textureFocus>togglebutton-on-focus.png</textureFocus>
-	  <textureNoFocus>togglebutton-on-nofocus.png</textureNoFocus>
-	  <AltTextureFocus>togglebutton-off-focus.png</AltTextureFocus>
-	  <AltTextureNoFocus>togglebutton-off-nofocus.png</AltTextureNoFocus>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <onleft>901</onleft>
@@ -490,17 +482,13 @@
 
 	<control>
 	  <description>Partially Watched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>804</id>
 	  <label>Partially Watched</label>
 	  <width>330</width>
 	  <height>52</height>
 	  <textXOff>28</textXOff>
 	  <textYOff>8</textYOff>
-	  <textureFocus>togglebutton-on-focus.png</textureFocus>
-	  <textureNoFocus>togglebutton-on-nofocus.png</textureNoFocus>
-	  <AltTextureFocus>togglebutton-off-focus.png</AltTextureFocus>
-	  <AltTextureNoFocus>togglebutton-off-nofocus.png</AltTextureNoFocus>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <onleft>901</onleft>
@@ -515,17 +503,13 @@
 
 	<control>
 	  <description>Complete Only</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>805</id>
 	  <label>Complete Only</label>
 	  <width>330</width>
 	  <height>52</height>
 	  <textXOff>28</textXOff>
 	  <textYOff>8</textYOff>
-	  <textureFocus>togglebutton-on-focus.png</textureFocus>
-	  <textureNoFocus>togglebutton-on-nofocus.png</textureNoFocus>
-	  <AltTextureFocus>togglebutton-off-focus.png</AltTextureFocus>
-	  <AltTextureNoFocus>togglebutton-off-nofocus.png</AltTextureNoFocus>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <onleft>802</onleft>
@@ -647,17 +631,13 @@
 
 	<control>
 	  <description>Watched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>821</id>
 	  <label>Watched</label>
 	  <width>330</width>
 	  <height>52</height>
 	  <textXOff>28</textXOff>
 	  <textYOff>8</textYOff>
-	  <textureFocus>togglebutton-on-focus.png</textureFocus>
-	  <textureNoFocus>togglebutton-on-nofocus.png</textureNoFocus>
-	  <AltTextureFocus>togglebutton-off-focus.png</AltTextureFocus>
-	  <AltTextureNoFocus>togglebutton-off-nofocus.png</AltTextureNoFocus>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <onleft>10</onleft>
@@ -672,17 +652,13 @@
 
 	<control>
 	  <description>Unwatched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>822</id>
 	  <label>Unwatched</label>
 	  <width>330</width>
 	  <height>52</height>
 	  <textXOff>28</textXOff>
 	  <textYOff>8</textYOff>
-	  <textureFocus>togglebutton-on-focus.png</textureFocus>
-	  <textureNoFocus>togglebutton-on-nofocus.png</textureNoFocus>
-	  <AltTextureFocus>togglebutton-off-focus.png</AltTextureFocus>
-	  <AltTextureNoFocus>togglebutton-off-nofocus.png</AltTextureNoFocus>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <onleft>10</onleft>

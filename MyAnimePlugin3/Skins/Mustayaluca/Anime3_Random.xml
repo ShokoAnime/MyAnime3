@@ -419,7 +419,7 @@
 
 	<control>
 	  <description>Fully Watched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>802</id>
 	  <label>Fully Watched</label>
 	  <width>330</width>
@@ -443,7 +443,7 @@
 
 	<control>
 	  <description>Unwatched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>803</id>
 	  <label>Unwatched</label>
 	  <width>330</width>
@@ -467,7 +467,7 @@
 
 	<control>
 	  <description>Partially Watched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>804</id>
 	  <label>Partially Watched</label>
 	  <width>330</width>
@@ -492,7 +492,7 @@
 
 	<control>
 	  <description>Complete Only</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>805</id>
 	  <label>Complete Only</label>
 	  <width>330</width>
@@ -624,7 +624,7 @@
 
 	<control>
 	  <description>Watched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>821</id>
 	  <label>Watched</label>
 	  <width>330</width>
@@ -649,7 +649,7 @@
 
 	<control>
 	  <description>Unwatched</description>
-	  <type>togglebutton</type>
+	  <type>checkbutton</type>
 	  <id>822</id>
 	  <label>Unwatched</label>
 	  <width>330</width>

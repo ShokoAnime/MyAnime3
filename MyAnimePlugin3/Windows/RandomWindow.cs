@@ -21,13 +21,13 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(808)] protected GUIButtonControl btnAllAnycategories = null;
 		[SkinControlAttribute(810)] protected GUIButtonControl btnEpisodeList = null;
 
-		[SkinControlAttribute(802)] protected GUIToggleButtonControl togWatched = null;
-		[SkinControlAttribute(803)] protected GUIToggleButtonControl togUnwatched = null;
-		[SkinControlAttribute(804)] protected GUIToggleButtonControl togPartiallyWatched = null;
-		[SkinControlAttribute(805)] protected GUIToggleButtonControl togCompleteOnly = null;
+		[SkinControlAttribute(802)] protected GUICheckButton togWatched = null;
+        [SkinControlAttribute(803)] protected GUICheckButton togUnwatched = null;
+        [SkinControlAttribute(804)] protected GUICheckButton togPartiallyWatched = null;
+        [SkinControlAttribute(805)] protected GUICheckButton togCompleteOnly = null;
 
-		[SkinControlAttribute(821)] protected GUIToggleButtonControl togEpisodeWatched = null;
-		[SkinControlAttribute(822)] protected GUIToggleButtonControl togEpisodeUnwatched = null;
+        [SkinControlAttribute(821)] protected GUICheckButton togEpisodeWatched = null;
+        [SkinControlAttribute(822)] protected GUICheckButton togEpisodeUnwatched = null;
 		[SkinControlAttribute(823)] protected GUIButtonControl btnEpisodeAddCategory = null;
 		[SkinControlAttribute(824)] protected GUIButtonControl btnEpisodeClearcategories = null;
 		[SkinControlAttribute(825)] protected GUIButtonControl btnPlayEpisode = null;

@@ -347,7 +347,7 @@
         <description>Watched</description>
 		<posX>40</posX>
 		<posY>568</posY>
-        <type>togglebutton</type>
+        <type>checkbutton</type>
         <id>821</id>
         <label>Watched Eps</label>
         <textcolor>ffffffff</textcolor>
@@ -373,7 +373,7 @@
         <description>Unwatched</description>
 		<posX>40</posX>
 		<posY>608</posY>
-        <type>togglebutton</type>
+        <type>checkbutton</type>
         <id>822</id>
         <label>Unwatched Eps</label>
         <textcolor>ffffffff</textcolor>
@@ -512,7 +512,7 @@
         <description>Watched Series</description>
 		<posX>40</posX>
 		<posY>568</posY>
-        <type>togglebutton</type>
+        <type>checkbutton</type>
         <id>802</id>
         <label>Fully Watched</label>
         <textcolor>ffffffff</textcolor>
@@ -538,7 +538,7 @@
         <description>Unwatched</description>
 		<posX>40</posX>
 		<posY>608</posY>
-        <type>togglebutton</type>
+        <type>checkbutton</type>
         <id>803</id>
         <label>Unwatched</label>
         <textcolor>ffffffff</textcolor>
@@ -564,7 +564,7 @@
         <description>Partially Watched</description>
 		<posX>40</posX>
 		<posY>648</posY>
-        <type>togglebutton</type>
+        <type>checkbutton</type>
         <id>804</id>
         <label>Partially Watched</label>
         <textcolor>ffffffff</textcolor>
@@ -590,7 +590,7 @@
         <description>Complete Only</description>
 		<posX>360</posX>
 		<posY>568</posY>
-        <type>togglebutton</type>
+        <type>checkbutton</type>
         <id>805</id>
         <label>Complete Only</label>
         <textcolor>ffffffff</textcolor>

@@ -484,10 +484,6 @@
 		<height>52</height>
 		<textXOff>28</textXOff>
 		<textYOff>8</textYOff>
-		<textureFocus>togglebutton_medium_on_focus.png</textureFocus>
-		<textureNoFocus>togglebutton_medium_on_nofocus.png</textureNoFocus>
-		<AltTextureFocus>togglebutton_medium_off_focus.png</AltTextureFocus>
-		<AltTextureNoFocus>togglebutton_medium_off_nofocus.png</AltTextureNoFocus>
 		<textcolor>ffffffff</textcolor>
 		<textcolorNoFocus>ffffffff</textcolorNoFocus>
 		<onleft>901</onleft>
@@ -508,10 +504,6 @@
 		<height>52</height>
 		<textXOff>28</textXOff>
 		<textYOff>8</textYOff>
-		<textureFocus>togglebutton_medium_on_focus.png</textureFocus>
-		<textureNoFocus>togglebutton_medium_on_nofocus.png</textureNoFocus>
-		<AltTextureFocus>togglebutton_medium_off_focus.png</AltTextureFocus>
-		<AltTextureNoFocus>togglebutton_medium_off_nofocus.png</AltTextureNoFocus>
 		<textcolor>ffffffff</textcolor>
 		<textcolorNoFocus>ffffffff</textcolorNoFocus>
 		<onleft>901</onleft>
@@ -532,10 +524,6 @@
 		<height>52</height>
 		<textXOff>28</textXOff>
 		<textYOff>8</textYOff>
-		<textureFocus>togglebutton_medium_on_focus.png</textureFocus>
-		<textureNoFocus>togglebutton_medium_on_nofocus.png</textureNoFocus>
-		<AltTextureFocus>togglebutton_medium_off_focus.png</AltTextureFocus>
-		<AltTextureNoFocus>togglebutton_medium_off_nofocus.png</AltTextureNoFocus>
 		<textcolor>ffffffff</textcolor>
 		<textcolorNoFocus>ffffffff</textcolorNoFocus>
 		<onleft>901</onleft>
@@ -556,10 +544,6 @@
 		<height>52</height>
 		<textXOff>28</textXOff>
 		<textYOff>8</textYOff>
-		<textureFocus>togglebutton_medium_on_focus.png</textureFocus>
-		<textureNoFocus>togglebutton_medium_on_nofocus.png</textureNoFocus>
-		<AltTextureFocus>togglebutton_medium_off_focus.png</AltTextureFocus>
-		<AltTextureNoFocus>togglebutton_medium_off_nofocus.png</AltTextureNoFocus>
 		<textcolor>ffffffff</textcolor>
 		<textcolorNoFocus>ffffffff</textcolorNoFocus>
 		<onleft>802</onleft>
@@ -698,10 +682,6 @@
 		<height>52</height>
 		<textXOff>28</textXOff>
 		<textYOff>8</textYOff>
-		<textureFocus>togglebutton_medium_on_focus.png</textureFocus>
-		<textureNoFocus>togglebutton_medium_on_nofocus.png</textureNoFocus>
-		<AltTextureFocus>togglebutton_medium_off_focus.png</AltTextureFocus>
-		<AltTextureNoFocus>togglebutton_medium_off_nofocus.png</AltTextureNoFocus>
 		<textcolor>ffffffff</textcolor>
 		<textcolorNoFocus>ffffffff</textcolorNoFocus>
 		<onleft>10</onleft>
@@ -723,10 +703,6 @@
 		<height>52</height>
 		<textXOff>28</textXOff>
 		<textYOff>8</textYOff>
-		<textureFocus>togglebutton_medium_on_focus.png</textureFocus>
-		<textureNoFocus>togglebutton_medium_on_nofocus.png</textureNoFocus>
-		<AltTextureFocus>togglebutton_medium_off_focus.png</AltTextureFocus>
-		<AltTextureNoFocus>togglebutton_medium_off_nofocus.png</AltTextureNoFocus>
 		<textcolor>ffffffff</textcolor>
 		<textcolorNoFocus>ffffffff</textcolorNoFocus>
 		<onleft>10</onleft>

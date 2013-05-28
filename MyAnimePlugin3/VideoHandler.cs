@@ -263,16 +263,18 @@ namespace MyAnimePlugin3
         void SetGUIProperties(bool clear)
         {
 			if (curEpisode == null) return;
-			
-			string imgNameSeries = "";
+
 			string displayName = curEpisode.EpisodeNumberAndName;
 
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Title", clear ? "" : displayName);
 			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Plot", clear ? "" : curEpisode.Description);
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Thumb", clear ? "" : curEpisode.EpisodeImageLocation);
-
-			if (curEpisode.EpisodeImageLocation.Trim().Length == 0)
-				MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Thumb", clear ? "" : imgNameSeries);
+            try
+            {
+                string imgNameSeries = curEpisode.AnimeSeries.PosterPath;
+                MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Thumb", clear ? "" : imgNameSeries);
+            }
+            catch { }
+				
         }
 
         void MarkEpisodeAsWatched(AnimeEpisodeVM episode)

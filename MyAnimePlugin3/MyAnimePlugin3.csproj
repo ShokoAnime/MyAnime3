@@ -55,18 +55,21 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Utils, Version=1.1.7.27820, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Common.Utils.dll</HintPath>
+    <Reference Include="Common.Utils">
+      <HintPath>..\Dependencies\MP13_DLL\Common.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Core">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Core.dll</HintPath>
+      <HintPath>..\Dependencies\MP13_DLL\Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Databases">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Databases.dll</HintPath>
+      <HintPath>..\Dependencies\MP13_DLL\Databases.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Dialogs">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows\Dialogs.dll</HintPath>
+      <HintPath>..\Dependencies\MP13_DLL\Dialogs.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,7 +78,8 @@
     <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.DirectX.Direct3DX, Version=1.0.2911.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="RemotePlugins">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\RemotePlugins.dll</HintPath>
+      <HintPath>..\Dependencies\MP13_DLL\RemotePlugins.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -90,10 +94,12 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Utils">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Utils.dll</HintPath>
+      <HintPath>..\Dependencies\MP13_DLL\Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WindowPlugins">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows\WindowPlugins.dll</HintPath>
+      <HintPath>..\Dependencies\MP13_DLL\WindowPlugins.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -935,7 +941,7 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Tit
 	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\[ Media ]" /E /R /I /Y	
 
-if "%25programfiles(x86)%25"=="C:\Program Files (x86)" (xcopy "$(SolutionDir)\Release" "C:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y) else (xcopy "$(SolutionDir)\Release" "C:\Program Files\Team MediaPortal\MediaPortal" /E /R /I /Y)
+if "%25programfiles(x86)%25"=="E:\Program Files (x86)" (xcopy "$(SolutionDir)\Release" "E:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y) else (xcopy "$(SolutionDir)\Release" "E:\Program Files\Team MediaPortal\MediaPortal" /E /R /I /Y)
 
 xcopy "$(SolutionDir)Release" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3" /E /R /I /Y	
 

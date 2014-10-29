@@ -14,7 +14,7 @@ using MediaPortal.Common.Utils;
 [assembly: AssemblyCopyright("Copyright © 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: CompatibleVersion("1.9.0")]
+[assembly: CompatibleVersion("1.8.0")]
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 

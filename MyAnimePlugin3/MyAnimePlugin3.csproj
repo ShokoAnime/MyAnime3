@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyAnimePlugin3</RootNamespace>
     <AssemblyName>Anime3</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -43,6 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,22 +54,23 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Utils">
-      <HintPath>..\Dependencies\MP13_DLL\Common.Utils.dll</HintPath>
+      <HintPath>..\Dependencies\MP19_DLL\Common.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Core">
-      <HintPath>..\Dependencies\MP13_DLL\Core.dll</HintPath>
+      <HintPath>..\Dependencies\MP19_DLL\Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Databases">
-      <HintPath>..\Dependencies\MP13_DLL\Databases.dll</HintPath>
+      <HintPath>..\Dependencies\MP19_DLL\Databases.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Dialogs">
-      <HintPath>..\Dependencies\MP13_DLL\Dialogs.dll</HintPath>
+      <HintPath>..\Dependencies\MP19_DLL\Dialogs.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
@@ -78,7 +80,7 @@
     <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.DirectX.Direct3DX, Version=1.0.2911.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="RemotePlugins">
-      <HintPath>..\Dependencies\MP13_DLL\RemotePlugins.dll</HintPath>
+      <HintPath>..\Dependencies\MP19_DLL\RemotePlugins.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -94,11 +96,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Utils">
-      <HintPath>..\Dependencies\MP13_DLL\Utils.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="WindowPlugins">
-      <HintPath>..\Dependencies\MP13_DLL\WindowPlugins.dll</HintPath>
+      <HintPath>..\Dependencies\MP19_DLL\Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -938,12 +936,21 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWide" "$(SolutionDir)Release\sk
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\XFactor" "$(SolutionDir)Release\skin\XFactor" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
+
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\aMPed" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\aMPed" /E /R /I /Y	
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avalon" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallonis" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avallonis" /E /R /I /Y	
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Default" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Default" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWide" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\DefaultWide" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\StreamedMP" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\XFactor" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\XFactor" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Titan" /E /R /I /Y
 	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\[ Media ]" /E /R /I /Y	
 
-if "%25programfiles(x86)%25"=="E:\Program Files (x86)" (xcopy "$(SolutionDir)\Release" "E:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y) else (xcopy "$(SolutionDir)\Release" "E:\Program Files\Team MediaPortal\MediaPortal" /E /R /I /Y)
+xcopy "$(SolutionDir)\Release" "E:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y
 
-xcopy "$(SolutionDir)Release" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\MyAnime3" /E /R /I /Y	
+xcopy "$(SolutionDir)Release" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\MyAnime3" /E /R /I /Y	
 
 
 </PostBuildEvent>

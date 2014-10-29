@@ -14,7 +14,7 @@ using MediaPortal.Common.Utils;
 [assembly: AssemblyCopyright("Copyright © 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: CompatibleVersion("1.1.7.0")]
+[assembly: CompatibleVersion("1.9.0")]
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -34,5 +34,5 @@ using MediaPortal.Common.Utils;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("3.1.32.0")]
-[assembly: AssemblyFileVersion("3.1.32.0")]
+[assembly: AssemblyVersion("3.4.2.1")]
+[assembly: AssemblyFileVersion("3.4.2.1")]

@@ -937,6 +937,17 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\ski
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\XFactor" "$(SolutionDir)Release\skin\XFactor" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
 
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\[ Media ]" /E /R /I /Y	
+
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\aMPed\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avalon\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avallonis\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Default\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\DefaultWide\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\StreamedMP\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\XFactor\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Titan\Media" /E /R /I /Y
+
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\aMPed" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\aMPed" /E /R /I /Y	
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avalon" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallonis" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avallonis" /E /R /I /Y	
@@ -945,10 +956,8 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWide" "C:\ProgramData\Team Medi
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\StreamedMP" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\XFactor" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\XFactor" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Titan" /E /R /I /Y
-	
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\[ Media ]" /E /R /I /Y	
 
-xcopy "$(SolutionDir)\Release" "E:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y
+xcopy "$(SolutionDir)\Release" "C:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y
 
 xcopy "$(SolutionDir)Release" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\MyAnime3" /E /R /I /Y	
 

@@ -10,8 +10,11 @@
       <description>Random Series</description>
       <id>1551</id>
       <posX>-50</posX>
+      <posX>-75</posX>
       <posY>-50</posY>
+      <posY>-75</posY>
       <width>5</width>
+      <width>8</width>
       <label>
       </label>
       <visible>false</visible>
@@ -21,8 +24,11 @@
       <description>Random Episode</description>
       <id>1552</id>
       <posX>-50</posX>
+      <posX>-75</posX>
       <posY>-50</posY>
+      <posY>-75</posY>
       <width>5</width>
+      <width>8</width>
       <label>
       </label>
       <visible>false</visible>
@@ -32,8 +38,11 @@
       <description>No Data</description>
       <id>1553</id>
       <posX>-50</posX>
+      <posX>-75</posX>
       <posY>-50</posY>
+      <posY>-75</posY>
       <width>5</width>
+      <width>8</width>
       <label>
       </label>
       <visible>true</visible>
@@ -44,9 +53,13 @@
       <type>image</type>
       <id>0</id>
       <posX>0</posX>
+      <posX>0</posX>
+      <posY>0</posY>
       <posY>0</posY>
       <width>1280</width>
+      <width>1920</width>
       <height>720</height>
+      <height>1080</height>
       <texture>hover_My Anime3.png</texture>
       <animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
     </control>
@@ -55,9 +68,13 @@
       <type>image</type>
       <id>0</id>
       <posX>0</posX>
+      <posX>0</posX>
       <posY>504</posY>
+      <posY>756</posY>
       <width>1280</width>
+      <width>1920</width>
       <height>221</height>
+      <height>332</height>
       <colordiffuse>ffFFFFFF</colordiffuse>
       <texture>black.png</texture>
     </control>
@@ -66,9 +83,13 @@
       <type>image</type>
       <id>0</id>
       <posX>-2</posX>
+      <posX>-3</posX>
       <posY>-2</posY>
+      <posY>-3</posY>
       <width>1284</width>
+      <width>1926</width>
       <height>726</height>
+      <height>1089</height>
       <colordiffuse>ffffffff</colordiffuse>
       <texture>movieviewbg.png</texture>
     </control>
@@ -78,9 +99,13 @@
       <type>image</type>
       <id>0</id>
       <posX>77</posX>
+      <posX>116</posX>
       <posY>11</posY>
+      <posY>16</posY>
       <width>437</width>
+      <width>656</width>
       <height>35</height>
+      <height>52</height>
       <texture>tvtitlebg.png</texture>
     </control>
     <control>
@@ -88,8 +113,11 @@
       <description>Random Label</description>
       <id>0</id>
       <posX>493</posX>
+      <posX>740</posX>
       <posY>13</posY>
+      <posY>20</posY>
       <width>350</width>
+      <width>525</width>
       <font>mediastream12c</font>
       <label>Random Series</label>
       <align>right</align>
@@ -100,8 +128,11 @@
       <description>Random Label</description>
       <id>0</id>
       <posX>493</posX>
+      <posX>740</posX>
       <posY>13</posY>
+      <posY>20</posY>
       <width>350</width>
+      <width>525</width>
       <font>mediastream12c</font>
       <label>Random Episode</label>
       <align>right</align>
@@ -112,9 +143,13 @@
       <type>label</type>
       <id>0</id>
       <posX>28</posX>
+      <posX>42</posX>
+      <posX>0</posX>
       <posX>0</posX>
       <width>1280</width>
+      <width>1920</width>
       <posY>250</posY>
+      <posY>375</posY>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
       <label>#Anime3.Random.Status</label>
@@ -131,9 +166,13 @@
       <control>
         <type>image</type>
         <posX>1002</posX>
+        <posX>1503</posX>
+        <posY>0</posY>
         <posY>0</posY>
         <width>278</width>
+        <width>417</width>
         <height>720</height>
+        <height>1080</height>
         <texture>hiddenmenu_right.png</texture>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
@@ -145,7 +184,9 @@
         <type>label</type>
         <font>mediastream12tc</font>
         <posX>1040</posX>
+        <posX>1560</posX>
         <posY>225</posY>
+        <posY>338</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
@@ -156,7 +197,9 @@
         <type>label</type>
         <font>mediastream12tc</font>
         <posX>1040</posX>
+        <posX>1560</posX>
         <posY>315</posY>
+        <posY>472</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
@@ -168,9 +211,13 @@
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
         <posX>1040</posX>
+        <posX>1560</posX>
         <posY>250</posY>
+        <posY>375</posY>
         <width>220</width>
+        <width>330</width>
         <height>720</height>
+        <height>1080</height>
         <layout>StackLayout</layout>
         <control>
           <description>Random Series</description>
@@ -258,11 +305,17 @@
       <id>801</id>
       <label>Try Again</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>518</posY>
+      <posY>777</posY>
       <textXOff>50</textXOff>
+      <textXOff>75</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>901</onleft>
       <font>mediastream12tc</font>
@@ -272,17 +325,24 @@
     <control>
       <type>image</type>
       <posX>55</posX>
+      <posX>82</posX>
       <posY>523</posY>
+      <posY>784</posY>
       <width>24</width>
+      <width>36</width>
       <height>24</height>
+      <height>36</height>
       <texture>MyAnime3/anime3_dice.png</texture>
     </control>
     <control>
       <type>label</type>
       <label>#Anime3.Random.CombinedFilterDetails</label>
       <posX>375</posX>
+      <posX>562</posX>
       <posY>523</posY>
+      <posY>784</posY>
       <width>800</width>
+      <width>1200</width>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
       <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
@@ -294,11 +354,17 @@
       <id>825</id>
       <label>Play Episode</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>453</posY>
+      <posY>680</posY>
       <textXOff>50</textXOff>
+      <textXOff>75</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>901</onleft>
       <onright>823</onright>
@@ -312,52 +378,76 @@
     <control>
       <type>image</type>
       <posX>55</posX>
+      <posX>82</posX>
       <posY>458</posY>
+      <posY>687</posY>
       <width>24</width>
+      <width>36</width>
       <height>24</height>
+      <height>36</height>
       <texture>top_play_enabled.png</texture>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control>
       <description>Watched</description>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>568</posY>
-      <type>checkbutton</type>
+      <posY>852</posY>
+      <type>togglebutton</type>
       <id>821</id>
       <label>Watched Eps</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <onleft>10</onleft>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <onleft>901</onleft>
       <onright>823</onright>
       <onup>801</onup>
       <ondown>822</ondown>
+      <textureFocus>tv_button_focus_ledon.png</textureFocus>
+      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
+      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
+      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
       <visible>Control.IsVisible(1552)</visible>
     </control>
     <control>
       <description>Unwatched</description>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>608</posY>
-      <type>checkbutton</type>
+      <posY>912</posY>
+      <type>togglebutton</type>
       <id>822</id>
       <label>Unwatched Eps</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <onleft>10</onleft>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <onleft>901</onleft>
       <onright>824</onright>
       <onup>821</onup>
       <ondown>825</ondown>
+      <textureFocus>tv_button_focus_ledon.png</textureFocus>
+      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
+      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
+      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
       <visible>Control.IsVisible(1552)</visible>
     </control>
     <control>
@@ -366,11 +456,17 @@
       <id>823</id>
       <label>Add Category</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>360</posX>
+      <posX>540</posX>
       <posY>568</posY>
+      <posY>852</posY>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>821</onleft>
       <onright>826</onright>
@@ -387,11 +483,17 @@
       <id>824</id>
       <label>Clear Categories</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>360</posX>
+      <posX>540</posX>
       <posY>608</posY>
+      <posY>912</posY>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>822</onleft>
       <onright>826</onright>
@@ -408,11 +510,17 @@
       <id>826</id>
       <label>Categories: #Anime3.Random.Episode.CategoryType</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>680</posX>
+      <posX>1020</posX>
       <posY>568</posY>
+      <posY>852</posY>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>823</onleft>
       <onright>901</onright>
@@ -427,9 +535,13 @@
       <description>Episode Categories</description>
       <type>textboxscrollup</type>
       <posX>700</posX>
+      <posX>1050</posX>
       <posY>615</posY>
+      <posY>922</posY>
       <width>600</width>
+      <width>900</width>
       <height>120</height>
+      <height>180</height>
       <seperator>----------------------------------------------------------------------------------------------------</seperator>
       <font>mediastream12</font>
       <visible>Control.IsVisible(1552)</visible>
@@ -442,11 +554,17 @@
       <id>810</id>
       <label>View Episode List</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>453</posY>
+      <posY>680</posY>
       <textXOff>50</textXOff>
+      <textXOff>75</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>901</onleft>
       <onright>805</onright>
@@ -460,94 +578,138 @@
     <control>
       <type>image</type>
       <posX>55</posX>
+      <posX>82</posX>
       <posY>458</posY>
+      <posY>687</posY>
       <width>24</width>
+      <width>36</width>
       <height>24</height>
+      <height>36</height>
       <texture>MyAnime3/anime3_episodelist.png</texture>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control>
       <description>Watched Series</description>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>568</posY>
-      <type>checkbutton</type>
+      <posY>852</posY>
+      <type>togglebutton</type>
       <id>802</id>
       <label>Fully Watched</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <onleft>10</onleft>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <onleft>901</onleft>
       <onright>805</onright>
       <onup>801</onup>
       <ondown>803</ondown>
+      <textureFocus>tv_button_focus_ledon.png</textureFocus>
+      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
+      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
+      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
       <visible>Control.IsVisible(1551)</visible>
     </control>
     <control>
       <description>Unwatched</description>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>608</posY>
-      <type>checkbutton</type>
+      <posY>912</posY>
+      <type>togglebutton</type>
       <id>803</id>
       <label>Unwatched</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <onleft>10</onleft>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <onleft>901</onleft>
       <onright>806</onright>
       <onup>802</onup>
       <ondown>804</ondown>
+      <textureFocus>tv_button_focus_ledon.png</textureFocus>
+      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
+      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
+      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
       <visible>Control.IsVisible(1551)</visible>
     </control>
     <control>
       <description>Partially Watched</description>
       <posX>40</posX>
+      <posX>60</posX>
       <posY>648</posY>
-      <type>checkbutton</type>
+      <posY>972</posY>
+      <type>togglebutton</type>
       <id>804</id>
       <label>Partially Watched</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <onleft>10</onleft>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <onleft>901</onleft>
       <onright>807</onright>
       <onup>803</onup>
       <ondown>810</ondown>
+      <textureFocus>tv_button_focus_ledon.png</textureFocus>
+      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
+      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
+      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
       <visible>Control.IsVisible(1551)</visible>
     </control>
     <control>
       <description>Complete Only</description>
       <posX>360</posX>
+      <posX>540</posX>
       <posY>568</posY>
-      <type>checkbutton</type>
+      <posY>852</posY>
+      <type>togglebutton</type>
       <id>805</id>
       <label>Complete Only</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <onleft>10</onleft>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <onleft>802</onleft>
       <onright>808</onright>
       <onup>807</onup>
       <ondown>806</ondown>
+      <textureFocus>tv_button_focus_ledon.png</textureFocus>
+      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
+      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
+      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
       <visible>Control.IsVisible(1551)</visible>
     </control>
     <control>
@@ -556,11 +718,17 @@
       <id>806</id>
       <label>Add Category</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>360</posX>
+      <posX>540</posX>
       <posY>608</posY>
+      <posY>912</posY>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>803</onleft>
       <onright>808</onright>
@@ -577,11 +745,17 @@
       <id>807</id>
       <label>Clear Categories</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>360</posX>
+      <posX>540</posX>
       <posY>648</posY>
+      <posY>972</posY>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>804</onleft>
       <onright>901</onright>
@@ -598,11 +772,17 @@
       <id>808</id>
       <label>Categories: #Anime3.Random.Series.CategoryType</label>
       <width>300</width>
+      <width>450</width>
       <height>40</height>
+      <height>60</height>
       <posX>680</posX>
+      <posX>1020</posX>
       <posY>568</posY>
+      <posY>852</posY>
       <textXOff>20</textXOff>
+      <textXOff>30</textXOff>
       <textYOff>8</textYOff>
+      <textYOff>12</textYOff>
       <align>center</align>
       <onleft>805</onleft>
       <onright>901</onright>
@@ -617,9 +797,13 @@
       <description>Series Categories</description>
       <type>textboxscrollup</type>
       <posX>700</posX>
+      <posX>1050</posX>
       <posY>615</posY>
+      <posY>922</posY>
       <width>600</width>
+      <width>900</width>
       <height>120</height>
+      <height>180</height>
       <seperator>----------------------------------------------------------------------------------------------------</seperator>
       <font>mediastream12</font>
       <visible>Control.IsVisible(1551)</visible>
@@ -631,9 +815,13 @@
       <type>image</type>
       <id>0</id>
       <posX>50</posX>
+      <posX>75</posX>
       <posY>69</posY>
+      <posY>104</posY>
       <width>288</width>
+      <width>432</width>
       <height>380</height>
+      <height>570</height>
       <texture>defaultdvdcover.png</texture>
       <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
     </control>
@@ -642,9 +830,13 @@
       <type>image</type>
       <id>60</id>
       <posX>55</posX>
+      <posX>82</posX>
       <posY>73</posY>
+      <posY>110</posY>
       <width>278</width>
+      <width>417</width>
       <height>370</height>
+      <height>555</height>
       <texture>#Anime3.Random.Series.Poster</texture>
       <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
     </control>
@@ -653,9 +845,13 @@
       <type>image</type>
       <id>0</id>
       <posX>55</posX>
+      <posX>82</posX>
       <posY>73</posY>
+      <posY>110</posY>
       <width>228</width>
+      <width>342</width>
       <height>153</height>
+      <height>230</height>
       <texture>glassoverlay2.png</texture>
       <visible>[Control.IsVisible(1551)|Control.IsVisible(1552)]+!Control.IsVisible(1553)</visible>
     </control>
@@ -666,9 +862,13 @@
       <id>0</id>
       <id>0</id>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>70</posY>
+      <posY>105</posY>
       <width>800</width>
+      <width>1200</width>
       <height>100</height>
+      <height>150</height>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
       <label>#Anime3.Random.Series.Title</label>
@@ -678,54 +878,73 @@
       <type>label</type>
       <label>Last Watched</label>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>110</posY>
+      <posY>165</posY>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Series.LastWatched</label>
       <posX>560</posX>
+      <posX>840</posX>
       <posY>110</posY>
+      <posY>165</posY>
       <width>250</width>
+      <width>375</width>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitleB">
       <type>label</type>
       <label>Episodes Watched</label>
       <posX>700</posX>
+      <posX>1050</posX>
       <posY>110</posY>
+      <posY>165</posY>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Series.EpisodesWatched</label>
       <posX>900</posX>
+      <posX>1350</posX>
       <posY>110</posY>
+      <posY>165</posY>
       <width>250</width>
+      <width>375</width>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitleB">
       <type>label</type>
       <label>Episodes Unwatched</label>
       <posX>700</posX>
+      <posX>1050</posX>
       <posY>135</posY>
+      <posY>202</posY>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Series.EpisodesUnwatched</label>
       <posX>900</posX>
+      <posX>1350</posX>
       <posY>135</posY>
+      <posY>202</posY>
       <width>250</width>
+      <width>375</width>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
     </control>
     <control>
       <description>Series Description</description>
       <type>textboxscrollup</type>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>170</posY>
+      <posY>255</posY>
       <width>800</width>
+      <width>1200</width>
       <height>220</height>
+      <height>330</height>
       <seperator>----------------------------------------------------------------------------------------------------</seperator>
       <font>mediastream11</font>
       <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
@@ -738,9 +957,13 @@
       <id>0</id>
       <id>0</id>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>70</posY>
+      <posY>105</posY>
       <width>800</width>
+      <width>1200</width>
       <height>100</height>
+      <height>150</height>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
       <label>#Anime3.Random.Series.Title</label>
@@ -750,15 +973,20 @@
       <type>label</type>
       <label>Last Watched</label>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>110</posY>
+      <posY>165</posY>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Series.LastWatched</label>
       <posX>560</posX>
+      <posX>840</posX>
       <posY>110</posY>
+      <posY>165</posY>
       <width>250</width>
+      <width>375</width>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control>
@@ -767,9 +995,13 @@
       <id>0</id>
       <id>0</id>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>160</posY>
+      <posY>240</posY>
       <width>800</width>
+      <width>1200</width>
       <height>100</height>
+      <height>150</height>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
       <label>#Anime3.Random.Episode.Title</label>
@@ -780,9 +1012,13 @@
       <type>image</type>
       <id>0</id>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>200</posY>
+      <posY>300</posY>
       <width>324</width>
+      <width>486</width>
       <height>186</height>
+      <height>279</height>
       <texture>defaultepisodethumb.png</texture>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
@@ -791,9 +1027,13 @@
       <type>image</type>
       <id>67</id>
       <posX>385</posX>
+      <posX>578</posX>
       <posY>204</posY>
+      <posY>306</posY>
       <height>178</height>
+      <height>267</height>
       <width>314</width>
+      <width>471</width>
       <keepaspectratio>yes</keepaspectratio>
       <zoom>yes</zoom>
       <texture>#Anime3.Random.Episode.Image</texture>
@@ -804,9 +1044,13 @@
       <type>textboxscrollup</type>
       <id>631</id>
       <posX>720</posX>
+      <posX>1080</posX>
       <posY>204</posY>
+      <posY>306</posY>
       <width>520</width>
+      <width>780</width>
       <height>220</height>
+      <height>330</height>
       <seperator>----------------------------------------------------------------------------------------------------</seperator>
       <font>mediastream11</font>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
@@ -817,9 +1061,13 @@
       <description>Logos</description>
       <id>66</id>
       <posX>720</posX>
+      <posX>1080</posX>
       <posY>450</posY>
+      <posY>675</posY>
       <width>600</width>
+      <width>900</width>
       <height>32</height>
+      <height>48</height>
       <texture>#Anime3.Random.Episode.Logos</texture>
       <keepaspectratio>yes</keepaspectratio>
       <spaceBetweenItems>2</spaceBetweenItems>
@@ -829,41 +1077,54 @@
       <type>label</type>
       <label>Aired</label>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>400</posY>
+      <posY>600</posY>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Episode.AirDate</label>
       <posX>500</posX>
+      <posX>750</posX>
       <posY>400</posY>
+      <posY>600</posY>
       <width>250</width>
+      <width>375</width>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitleB">
       <type>label</type>
       <label>Run Time</label>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>430</posY>
+      <posY>645</posY>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Episode.RunTime</label>
       <posX>500</posX>
+      <posX>750</posX>
       <posY>430</posY>
+      <posY>645</posY>
       <width>250</width>
+      <width>375</width>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Random.Episode.FileInfo</label>
       <posX>380</posX>
+      <posX>570</posX>
       <posY>460</posY>
+      <posY>690</posY>
       <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
       <width>314</width>
+      <width>471</width>
     </control>
     <import>common.time.xml</import>
   </controls>
 </window>
-<!--Checksum:c1a623fabd6644491ea481230b2dc8c7-->
+<!--Checksum:df7cd4796635c09478902853b6614cc8-->

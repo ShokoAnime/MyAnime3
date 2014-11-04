@@ -3,8 +3,8 @@
   <controls>
     <control>
       <type>image</type>
-      <posX>560</posX>
-      <posY>13</posY>
+      <posX>840</posX>
+      <posY>25</posY>
       <width>24</width>
       <height>24</height>
       <texture>MyAnime3\anime3_anidb.png</texture>
@@ -14,8 +14,8 @@
       <description>Queue Count - AniDB</description>
       <type>label</type>
       <label>#Anime3.GeneralQueueCount</label>
-      <posX>600</posX>
-      <posY>15</posY>
+      <posX>880</posX>
+      <posY>25</posY>
       <width>50</width>
       <align>left</align>
       <font>mediastream10</font>
@@ -23,8 +23,8 @@
     </control>
     <control>
       <type>image</type>
-      <posX>660</posX>
-      <posY>13</posY>
+      <posX>990</posX>
+      <posY>25</posY>
       <width>24</width>
       <height>24</height>
       <texture>MyAnime3\anime3_hash.png</texture>
@@ -34,8 +34,8 @@
       <description>Queue Count - Hasher</description>
       <type>label</type>
       <label>#Anime3.HasherQueueCount</label>
-      <posX>700</posX>
-      <posY>15</posY>
+      <posX>1030</posX>
+      <posY>25</posY>
       <width>50</width>
       <align>left</align>
       <font>mediastream10</font>
@@ -44,8 +44,8 @@
     </control>
     <control>
       <type>image</type>
-      <posX>760</posX>
-      <posY>13</posY>
+      <posX>1140</posX>
+      <posY>25</posY>
       <width>24</width>
       <height>24</height>
       <texture>MyAnime3\anime3_image.png</texture>
@@ -55,8 +55,8 @@
       <description>Queue Count - Images</description>
       <type>label</type>
       <label>#Anime3.ImagesQueueCount</label>
-      <posX>800</posX>
-      <posY>15</posY>
+      <posX>1180</posX>
+      <posY>25</posY>
       <width>50</width>
       <align>left</align>
       <font>mediastream10</font>

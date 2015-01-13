@@ -4091,34 +4091,36 @@ namespace MyAnimePlugin3
 
     public string LoadLocalThumbnail(int episodeID)
     {
-      string fileName = "";
+      string Thumbnail = "";
 
       List<JMMServerBinary.Contract_VideoDetailed> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(episodeID, JMMServerVM.Instance.CurrentUser.JMMUserID);
 
       foreach (JMMServerBinary.Contract_VideoDetailed epcontract in epContracts)
       {
-        string episodeFilePath = epcontract.VideoLocal_FilePath;
+        string EpisodeFilePath = epcontract.VideoLocal_FilePath;
         int ImportFolderID = epcontract.ImportFolderID;
-        string fullPath = Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], episodeFilePath);
+        string FullPath = Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], EpisodeFilePath);
 
         //BaseConfig.MyAnimeLog.Write("FILE PATH: " + episodeFilePath);
         //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + ImportFolderID.ToString());
         //BaseConfig.MyAnimeLog.Write("FULL PATH: " + fullPath);
 
-        string episodeFilePathWithoutExtension = Path.GetFileNameWithoutExtension(fullPath);
+        string EpisodeFilePathWithoutExtension = Path.GetFileNameWithoutExtension(FullPath);
 
-        if (File.Exists(episodeFilePathWithoutExtension + ".jpg"))
+        // thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
+        if (File.Exists(EpisodeFilePathWithoutExtension + ".jpg"))
         {
-          fileName = episodeFilePathWithoutExtension + ".jpg";
-          return fileName;
+          Thumbnail = EpisodeFilePathWithoutExtension + ".jpg";
+          return Thumbnail;
         }
-        else if (File.Exists(fullPath + ".jpg"))
+        // thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails maker
+        else if (File.Exists(FullPath + ".jpg"))
         {
-          fileName = fullPath + ".jpg";
-          return fileName;
+          Thumbnail = FullPath + ".jpg";
+          return Thumbnail;
         }
       }
-      return "";
+      return Thumbnail;
     }
 
 

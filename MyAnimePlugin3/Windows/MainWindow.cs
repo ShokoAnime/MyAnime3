@@ -4105,15 +4105,16 @@ namespace MyAnimePlugin3
         //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + ImportFolderID.ToString());
         //BaseConfig.MyAnimeLog.Write("FULL PATH: " + fullPath);
 
-        string EpisodeFilePathWithoutExtension = Path.GetFileNameWithoutExtension(FullPath);
+        string EpisodeFileNameWithoutExtension = Path.GetFileNameWithoutExtension(FullPath);
+        string EpisodeFilePathWithoutExtension = Path.Combine(Path.GetDirectoryName(FullPath), EpisodeFileNameWithoutExtension);
 
-        // thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
+        // Thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
         if (File.Exists(EpisodeFilePathWithoutExtension + ".jpg"))
         {
           Thumbnail = EpisodeFilePathWithoutExtension + ".jpg";
           return Thumbnail;
         }
-        // thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails maker
+        // Thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails Maker
         else if (File.Exists(FullPath + ".jpg"))
         {
           Thumbnail = FullPath + ".jpg";

@@ -959,7 +959,7 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "C:\ProgramData\Team MediaPorta
 
 xcopy "$(SolutionDir)\Release" "C:\Program Files (x86)\Team MediaPortal\MediaPortal" /E /R /I /Y
 
-xcopy "$(SolutionDir)Release" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\MyAnime3" /E /R /I /Y	
+xcopy "$(SolutionDir)Release" "C:\Projects\[ JMM Binaries No Configs ]\MyAnime3" /E /R /I /Y	
 
 
 </PostBuildEvent>

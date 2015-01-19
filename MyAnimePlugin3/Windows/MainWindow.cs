@@ -4102,27 +4102,30 @@ namespace MyAnimePlugin3
 
       foreach (JMMServerBinary.Contract_VideoDetailed epcontract in epContracts)
       {
-        string EpisodeFilePath = epcontract.VideoLocal_FilePath;
-        int ImportFolderID = epcontract.ImportFolderID;
-        string FullPath = Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], EpisodeFilePath);
+        string episodeFilePath = epcontract.VideoLocal_FilePath;
+        int importFolderId = epcontract.ImportFolderID;
 
         //BaseConfig.MyAnimeLog.Write("FILE PATH: " + episodeFilePath);
         //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + ImportFolderID.ToString());
-        //BaseConfig.MyAnimeLog.Write("FULL PATH: " + fullPath);
 
-        string EpisodeFileNameWithoutExtension = Path.GetFileNameWithoutExtension(FullPath);
-        string EpisodeFilePathWithoutExtension = Path.Combine(Path.GetDirectoryName(FullPath), EpisodeFileNameWithoutExtension);
+
+        // Full episode file path with file extension
+        string episodeFilePathWithExtension = Path.Combine(BaseConfig.Settings.ImportFolderMappings[importFolderId], episodeFilePath);
+
+        // Full episode file path without file extension
+        string episodeFileNameWithoutExtension = Path.GetFileNameWithoutExtension(episodeFilePathWithExtension);
+        string episodeFilePathWithoutExtension = Path.Combine(Path.GetDirectoryName(episodeFilePathWithExtension), episodeFileNameWithoutExtension);
 
         // Thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
-        if (File.Exists(EpisodeFilePathWithoutExtension + ".jpg"))
+        if (File.Exists(episodeFilePathWithoutExtension + ".jpg"))
         {
-          Thumbnail = EpisodeFilePathWithoutExtension + ".jpg";
+          Thumbnail = episodeFilePathWithoutExtension + ".jpg";
           return Thumbnail;
         }
         // Thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails Maker
-        else if (File.Exists(FullPath + ".jpg"))
+        else if (File.Exists(episodeFilePathWithExtension + ".jpg"))
         {
-          Thumbnail = FullPath + ".jpg";
+          Thumbnail = episodeFilePathWithExtension + ".jpg";
           return Thumbnail;
         }
       }

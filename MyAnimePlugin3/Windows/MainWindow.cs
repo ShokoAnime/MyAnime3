@@ -247,10 +247,13 @@ namespace MyAnimePlugin3
 				GroupFilterQuickSorts = new Dictionary<int, QuickSort>();
 
 				//searching
-				searchTimer = new System.Timers.Timer();
-				searchTimer.AutoReset = true;
-				searchTimer.Interval = settings.FindTimeout_s * 1000;
-				searchTimer.Elapsed += new System.Timers.ElapsedEventHandler(searchTimer_Elapsed);
+                if (settings.FindTimeout_s > 0)
+                {
+                    searchTimer = new System.Timers.Timer();
+                    searchTimer.AutoReset = true;
+                    searchTimer.Interval = settings.FindTimeout_s * 1000;
+                    searchTimer.Elapsed += new System.Timers.ElapsedEventHandler(searchTimer_Elapsed);
+                }
 
 				//set the search key sound to the same sound for the REMOTE_1 key
 				Key key = new Key('1', (int)Keys.D1);
@@ -690,7 +693,7 @@ namespace MyAnimePlugin3
 
 			m_Facade.Add(item);
 
-			if (searchTimer.Enabled)
+            if (searchTimer != null && searchTimer.Enabled)
 				DoSearch(selectedIndex);
 		}
 
@@ -2139,7 +2142,7 @@ namespace MyAnimePlugin3
 						break;
 					case 3:
 						settings.FindFilter = !settings.FindFilter;
-						if (searchTimer.Enabled)
+						if (searchTimer != null && searchTimer.Enabled)
 						{
 							SaveOrRestoreFacadeItems(false);
 							DoSearch(m_Facade.SelectedListItemIndex);
@@ -2640,7 +2643,7 @@ namespace MyAnimePlugin3
 				case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
 
 					//Reset autoclose timer on search
-					if (searchTimer.Enabled)
+                    if (searchTimer != null && searchTimer.Enabled)
 					{
 						searchTimer.Stop();
 						searchTimer.Start();
@@ -2706,7 +2709,7 @@ namespace MyAnimePlugin3
 					break;
 
 				case MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU:
-					if (searchTimer.Enabled)
+                    if (searchTimer != null && searchTimer.Enabled)
 					{
 						OnSearchAction(SearchAction.EndSearch);
 						return;
@@ -2950,7 +2953,7 @@ namespace MyAnimePlugin3
 		private void OnSearchAction(SearchAction action)
 		{
 			//stop timer
-			if (searchTimer.Enabled)
+            if (searchTimer != null && searchTimer.Enabled)
 				searchTimer.Stop();
 
 			//process action
@@ -3073,7 +3076,7 @@ namespace MyAnimePlugin3
 		private void AddSearchChar(char c)
 		{
 			//stop timer
-			if (searchTimer.Enabled)
+            if (searchTimer != null && searchTimer.Enabled)
 				searchTimer.Stop();
 
 			//add char
@@ -3165,6 +3168,8 @@ namespace MyAnimePlugin3
 
 		private void UpdateSearchPanel(bool bShow)
 		{
+            if (searchTimer == null) return;
+
 			if (searchTimer.Enabled)
 				searchTimer.Stop();
 
@@ -3206,7 +3211,7 @@ namespace MyAnimePlugin3
 				}
 			}
 
-			if (bShow)
+            if (searchTimer != null && bShow)
 				searchTimer.Start();
 		}
 		#endregion

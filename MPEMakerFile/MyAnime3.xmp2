@@ -4607,19 +4607,18 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>3</Major>
       <Minor>4</Minor>
       <Build>2</Build>
-      <Revision>1</Revision>
+      <Revision>11</Revision>
     </Version>
-    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
-
-It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
-
+    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
+
+It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
+
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription>Issue #17 - Update MA3 to support MediaPortal 1.9
-Issue #13 - StreamedMP has updated skin design dimensions to 1920x1080
-Issue #12 - Keyboard hook is producing messaging events on a disposed form</VersionDescription>
+    <VersionDescription>Issue #19 - Changing find (search) setting in config to zero prevents ma3 from working
+Issue #18 - No art from themoviedb</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=24</OnlineLocation>
-    <ReleaseDate>2014-11-05T18:40:56</ReleaseDate>
+    <ReleaseDate>2015-01-21T18:40:56</ReleaseDate>
     <Tags />
     <Location>C:\Projects\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
     <Params>

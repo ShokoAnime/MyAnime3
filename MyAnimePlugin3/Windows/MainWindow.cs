@@ -3891,7 +3891,8 @@ namespace MyAnimePlugin3
       {
         setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
 
-        // Try to find local thumbnail and use that instead of Fanart (optional)
+        // Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
+        /*
         string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
         if (!string.IsNullOrEmpty(localThumbnail))
         {
@@ -3899,7 +3900,7 @@ namespace MyAnimePlugin3
 
           if (this.dummyIsFanartLoaded != null)
             this.dummyIsFanartLoaded.Visible = true;
-        }
+        }*/
       }
       else
       {
@@ -4131,8 +4132,6 @@ namespace MyAnimePlugin3
       }
       return Thumbnail;
     }
-
-
 
 		void DisableFanart()
 		{

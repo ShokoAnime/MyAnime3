@@ -3887,8 +3887,42 @@ namespace MyAnimePlugin3
 
 			curAnimeEpisode = ep;
 
-			if (curAnimeEpisode.EpisodeImageLocation.Length > 0)
-				setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
+      if (curAnimeEpisode.EpisodeImageLocation.Length > 0)
+      {
+        setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
+
+        // Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
+        /*
+        string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
+        if (!string.IsNullOrEmpty(localThumbnail))
+        {
+          fanartTexture.Filename = localThumbnail;
+
+          if (this.dummyIsFanartLoaded != null)
+            this.dummyIsFanartLoaded.Visible = true;
+        }*/
+      }
+      else
+      {
+        string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
+
+        // Try to find local thumbnail
+        if (string.IsNullOrEmpty(localThumbnail))
+        {
+          // Fallback to default thumbnail if none found
+          setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
+        }
+        else
+        {
+          // Set thumbnai to local and replace fanart image with it as well
+          setGUIProperty("Episode.Image", localThumbnail);
+
+          fanartTexture.Filename = localThumbnail;
+
+          if (this.dummyIsFanartLoaded != null)
+            this.dummyIsFanartLoaded.Visible = true;
+        }
+      }
 
 			if (!settings.HidePlot)
 				setGUIProperty("Episode.Description", curAnimeEpisode.EpisodeOverview);
@@ -4061,6 +4095,43 @@ namespace MyAnimePlugin3
 			}
 		}
 
+    public string LoadLocalThumbnail(int episodeID)
+    {
+      string Thumbnail = "";
+
+      List<JMMServerBinary.Contract_VideoDetailed> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(episodeID, JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+      foreach (JMMServerBinary.Contract_VideoDetailed epcontract in epContracts)
+      {
+        string episodeFilePath = epcontract.VideoLocal_FilePath;
+        int importFolderId = epcontract.ImportFolderID;
+
+        //BaseConfig.MyAnimeLog.Write("FILE PATH: " + episodeFilePath);
+        //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + ImportFolderID.ToString());
+
+
+        // Full episode file path with file extension
+        string episodeFilePathWithExtension = Path.Combine(BaseConfig.Settings.ImportFolderMappings[importFolderId], episodeFilePath);
+
+        // Full episode file path without file extension
+        string episodeFileNameWithoutExtension = Path.GetFileNameWithoutExtension(episodeFilePathWithExtension);
+        string episodeFilePathWithoutExtension = Path.Combine(Path.GetDirectoryName(episodeFilePathWithExtension), episodeFileNameWithoutExtension);
+
+        // Thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
+        if (File.Exists(episodeFilePathWithoutExtension + ".jpg"))
+        {
+          Thumbnail = episodeFilePathWithoutExtension + ".jpg";
+          return Thumbnail;
+        }
+        // Thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails Maker
+        else if (File.Exists(episodeFilePathWithExtension + ".jpg"))
+        {
+          Thumbnail = episodeFilePathWithExtension + ".jpg";
+          return Thumbnail;
+        }
+      }
+      return Thumbnail;
+    }
 
 		void DisableFanart()
 		{

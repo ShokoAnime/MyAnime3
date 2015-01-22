@@ -3887,7 +3887,7 @@ namespace MyAnimePlugin3
 
 			curAnimeEpisode = ep;
 
-      if (curAnimeEpisode.EpisodeImageLocation.Length > 0)
+      if (string.IsNullOrEmpty(curAnimeEpisode.EpisodeImageLocation) == false)
       {
         setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
 
@@ -3911,6 +3911,11 @@ namespace MyAnimePlugin3
         {
           // Fallback to default thumbnail if none found
           setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
+
+          fanartTexture.Filename = "";
+
+          if (this.dummyIsFanartLoaded != null)
+            this.dummyIsFanartLoaded.Visible = false;
         }
         else
         {

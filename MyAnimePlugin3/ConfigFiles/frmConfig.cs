@@ -486,6 +486,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			BaseConfig.Settings.PosterSizePct = (int)udPosterQuality.Value;
 			BaseConfig.Settings.BannerSizePct = (int)udWideBannerQuality.Value;
+			BaseConfig.Settings.LoadLocalThumbnails = chkLoadlocalThumbnails.Checked;
 
 
 			BaseConfig.Settings.InfoDelay = (int)udInfoDelay.Value;
@@ -572,6 +573,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			udPosterQuality.Value = (decimal)BaseConfig.Settings.PosterSizePct;
 			udWideBannerQuality.Value = (decimal)BaseConfig.Settings.BannerSizePct;
+			chkLoadlocalThumbnails.Checked = BaseConfig.Settings.LoadLocalThumbnails;
 
 
 			chkFfdshowNotificationsShow.Checked = BaseConfig.Settings.FfdshowNotificationsShow;

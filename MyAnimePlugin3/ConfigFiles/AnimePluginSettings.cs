@@ -22,6 +22,7 @@ namespace MyAnimePlugin3
 		public string ImportFolderMappingsList = "";
 		public string CurrentJMMUserID = "";
 		public bool DisplayRatingDialogOnCompletion = true;
+		public bool LoadLocalThumbnails = true;
 
 		public bool FfdshowNotificationsShow = true;
 		public bool FfdshowNotificationsAutoClose = true;
@@ -407,6 +408,8 @@ namespace MyAnimePlugin3
 			else
 				PosterSizePct = 50;
 
+			LoadLocalThumbnails = GetBooleanSetting(ref xmlreader, "LoadLocalThumbnails", true);
+
 			string banpct = "";
 			banpct = xmlreader.GetValueAsString("Anime3", "BannerSizePct", "50");
 			int tmpBanner = 0;
@@ -509,6 +512,7 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "LastGroupViewMode", ((int)LastGroupViewMode).ToString());
 				xmlwriter.SetValue("Anime3", "LastFanartViewMode", ((int)LastFanartViewMode).ToString());
 				xmlwriter.SetValue("Anime3", "LastPosterViewMode", ((int)LastPosterViewMode).ToString());
+				xmlwriter.SetValue("Anime3", "LoadLocalThumbnails", LoadLocalThumbnails ? "1" : "0");
 
 				xmlwriter.SetValue("Anime3", "AniDBAutoEpisodesSubbed", AniDBAutoEpisodesSubbed ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "ShowOnlyAvailableEpisodes", ShowOnlyAvailableEpisodes ? "1" : "0");

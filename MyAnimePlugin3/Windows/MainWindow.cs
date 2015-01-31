@@ -3786,9 +3786,6 @@ namespace MyAnimePlugin3
 			setGUIProperty(guiProperty.Description, ser.Description);
 
 
-			
-
-
 			// set info properties
 			// most of these properties actually come from the anidb_anime record
 			// we need to find all the series for this group
@@ -3878,6 +3875,7 @@ namespace MyAnimePlugin3
 			clearGUIProperty("Episode.EpisodeEnglishName");
 			clearGUIProperty("Episode.EpisodeKanjiName");
 			clearGUIProperty("Episode.EpisodeRotator");
+
 			if (item == null || item.TVTag == null || !(item.TVTag is AnimeEpisodeVM))
 				return;
 
@@ -3893,16 +3891,19 @@ namespace MyAnimePlugin3
 
         // Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
         /*
-        string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
-        if (!string.IsNullOrEmpty(localThumbnail))
+        if (settings.LoadLocalThumbnails)
         {
-          fanartTexture.Filename = localThumbnail;
+          string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
+          if (!string.IsNullOrEmpty(localThumbnail))
+          {
+            fanartTexture.Filename = localThumbnail;
 
-          if (this.dummyIsFanartLoaded != null)
-            this.dummyIsFanartLoaded.Visible = true;
+            if (this.dummyIsFanartLoaded != null)
+              this.dummyIsFanartLoaded.Visible = true;
+          }
         }*/
       }
-      else
+      else if (settings.LoadLocalThumbnails)
       {
         string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
 
@@ -3911,11 +3912,7 @@ namespace MyAnimePlugin3
         {
           // Fallback to default thumbnail if none found
           setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
-
-          fanartTexture.Filename = "";
-
-          if (this.dummyIsFanartLoaded != null)
-            this.dummyIsFanartLoaded.Visible = false;
+          DisableFanart();
         }
         else
         {

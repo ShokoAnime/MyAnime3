@@ -179,9 +179,9 @@ namespace MyAnimePlugin3
 		private BackgroundWorker workerFacade = null;
 		private BackgroundWorker downloadImagesWorker = new BackgroundWorker();
 		public static ImageDownloader imageHelper = null;
-		
-		private ImageSwapper listPoster = null;
-		private ImageSwapper fanartTexture = null;
+
+		private AsyncImageResource listPoster = null;
+		private AsyncImageResource fanartTexture = null;
 
 		//private bool isInitialGroupLoad = true;
 
@@ -236,16 +236,14 @@ namespace MyAnimePlugin3
 
 				imageHelper = new ImageDownloader();
 				imageHelper.Init();
-
-				listPoster = new ImageSwapper();
-				listPoster.GUIImageOne = new GUIImage(GetID);
-				listPoster.PropertyOne = "#Anime3.GroupSeriesPoster";
-				listPoster.ImageResource.Delay = artworkDelay;
 				
-				fanartTexture = new ImageSwapper();
-				fanartTexture.GUIImageOne = new GUIImage(GetID);
-				fanartTexture.PropertyOne = "#Anime3.Fanart.1";
-				fanartTexture.ImageResource.Delay = artworkDelay;
+				listPoster = new AsyncImageResource();
+				listPoster.Property = "#Anime3.GroupSeriesPoster";
+				listPoster.Delay = artworkDelay;
+				
+				fanartTexture = new AsyncImageResource();
+				fanartTexture.Property = "#Anime3.Fanart.1";
+				fanartTexture.Delay = artworkDelay;
 
 				GroupFilterQuickSorts = new Dictionary<int, QuickSort>();
 
@@ -3892,23 +3890,22 @@ namespace MyAnimePlugin3
       {
         setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
 
-        // Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
-        /*
+        //Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
         if (settings.LoadLocalThumbnails)
         {
           string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
-	        if (!string.IsNullOrEmpty(localThumbnail))
-	        {
-		        fanartTexture.Filename = localThumbnail;
+          if (!string.IsNullOrEmpty(localThumbnail))
+          {
+            fanartTexture.Filename = localThumbnail;
 
-		        if (this.dummyIsFanartLoaded != null)
-			        this.dummyIsFanartLoaded.Visible = true;
-	        }
-	        else
-	        {
-		        DisableFanart();
-	        }
-        }*/
+            if (this.dummyIsFanartLoaded != null)
+              this.dummyIsFanartLoaded.Visible = true;
+          }
+          else
+          {
+            DisableFanart();
+          }
+        }
       }
       else if (settings.LoadLocalThumbnails)
       {

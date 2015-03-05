@@ -3891,6 +3891,7 @@ namespace MyAnimePlugin3
         setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
 
         //Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
+        /*
         if (settings.LoadLocalThumbnails)
         {
           string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
@@ -3905,7 +3906,7 @@ namespace MyAnimePlugin3
           {
             DisableFanart();
           }
-        }
+        }*/
       }
       else if (settings.LoadLocalThumbnails)
       {

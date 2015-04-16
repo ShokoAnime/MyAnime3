@@ -65,6 +65,12 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage10 = new System.Windows.Forms.TabPage();
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage11 = new System.Windows.Forms.TabPage();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.btnAnimeBytesTest = new System.Windows.Forms.Button();
+			this.txtAnimeBytesPassword = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.txtAnimeBytesUsername = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.btnBakaBTTest = new System.Windows.Forms.Button();
 			this.txtBakaBTPassword = new System.Windows.Forms.TextBox();
@@ -171,18 +177,14 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.label82 = new System.Windows.Forms.Label();
 			this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
 			this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
-			this.groupBox7 = new System.Windows.Forms.GroupBox();
-			this.btnAnimeBytesTest = new System.Windows.Forms.Button();
-			this.txtAnimeBytesPassword = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.txtAnimeBytesUsername = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
+			this.chkLoadlocalThumbnails = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.tabControl4.SuspendLayout();
 			this.tabPage8.SuspendLayout();
 			this.tabPage9.SuspendLayout();
 			this.tabPage11.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.groupBox19.SuspendLayout();
 			this.groupBox18.SuspendLayout();
@@ -204,7 +206,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabControl1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.groupBox16.SuspendLayout();
-			this.groupBox7.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// errorProvider1
@@ -576,6 +577,68 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage11.Text = "Downloads";
 			this.tabPage11.UseVisualStyleBackColor = true;
 			// 
+			// groupBox7
+			// 
+			this.groupBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.groupBox7.Controls.Add(this.btnAnimeBytesTest);
+			this.groupBox7.Controls.Add(this.txtAnimeBytesPassword);
+			this.groupBox7.Controls.Add(this.label9);
+			this.groupBox7.Controls.Add(this.txtAnimeBytesUsername);
+			this.groupBox7.Controls.Add(this.label10);
+			this.groupBox7.Location = new System.Drawing.Point(501, 15);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(217, 171);
+			this.groupBox7.TabIndex = 48;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Anime Byt.es Credentials";
+			// 
+			// btnAnimeBytesTest
+			// 
+			this.btnAnimeBytesTest.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.btnAnimeBytesTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnAnimeBytesTest.Location = new System.Drawing.Point(89, 76);
+			this.btnAnimeBytesTest.Name = "btnAnimeBytesTest";
+			this.btnAnimeBytesTest.Size = new System.Drawing.Size(120, 26);
+			this.btnAnimeBytesTest.TabIndex = 47;
+			this.btnAnimeBytesTest.Text = "Test Login";
+			this.btnAnimeBytesTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnAnimeBytesTest.UseVisualStyleBackColor = true;
+			// 
+			// txtAnimeBytesPassword
+			// 
+			this.txtAnimeBytesPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtAnimeBytesPassword.Location = new System.Drawing.Point(89, 50);
+			this.txtAnimeBytesPassword.Name = "txtAnimeBytesPassword";
+			this.txtAnimeBytesPassword.PasswordChar = '*';
+			this.txtAnimeBytesPassword.Size = new System.Drawing.Size(120, 20);
+			this.txtAnimeBytesPassword.TabIndex = 46;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(12, 52);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(53, 13);
+			this.label9.TabIndex = 45;
+			this.label9.Text = "Password";
+			// 
+			// txtAnimeBytesUsername
+			// 
+			this.txtAnimeBytesUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.txtAnimeBytesUsername.Location = new System.Drawing.Point(89, 24);
+			this.txtAnimeBytesUsername.Name = "txtAnimeBytesUsername";
+			this.txtAnimeBytesUsername.Size = new System.Drawing.Size(120, 20);
+			this.txtAnimeBytesUsername.TabIndex = 44;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(12, 26);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(55, 13);
+			this.label10.TabIndex = 43;
+			this.label10.Text = "Username";
+			// 
 			// groupBox6
 			// 
 			this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -860,6 +923,7 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.chkLoadlocalThumbnails);
 			this.tabPage3.Controls.Add(this.groupBox5);
 			this.tabPage3.Controls.Add(this.groupBox17);
 			this.tabPage3.Controls.Add(this.label92);
@@ -1237,8 +1301,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// groupBox4
 			// 
-			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.btnAddFileFormat);
 			this.groupBox4.Controls.Add(this.cboFileFormat);
 			this.groupBox4.Controls.Add(this.label16);
@@ -1280,8 +1344,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// txtFileSelection
 			// 
-			this.txtFileSelection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtFileSelection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtFileSelection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txtFileSelection.Location = new System.Drawing.Point(11, 45);
 			this.txtFileSelection.Name = "txtFileSelection";
@@ -1299,8 +1363,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.btnAddEpisodeFormat);
 			this.groupBox3.Controls.Add(this.cboEpisodeFormat);
 			this.groupBox3.Controls.Add(this.txtFormatEp);
@@ -1332,8 +1396,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// txtFormatEp
 			// 
-			this.txtFormatEp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtFormatEp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtFormatEp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txtFormatEp.Location = new System.Drawing.Point(11, 32);
 			this.txtFormatEp.Name = "txtFormatEp";
@@ -1377,8 +1441,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.btnSaveLocalFolderPath);
 			this.groupBox2.Controls.Add(this.btnSelectLocalFolderPath);
 			this.groupBox2.Controls.Add(this.txtFolderLocalPath);
@@ -1416,8 +1480,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// txtFolderLocalPath
 			// 
-			this.txtFolderLocalPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtFolderLocalPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtFolderLocalPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txtFolderLocalPath.Location = new System.Drawing.Point(19, 146);
 			this.txtFolderLocalPath.Name = "txtFolderLocalPath";
@@ -1435,9 +1499,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// lbImportFolders
 			// 
-			this.lbImportFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.lbImportFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.lbImportFolders.FormattingEnabled = true;
 			this.lbImportFolders.Location = new System.Drawing.Point(19, 19);
 			this.lbImportFolders.Name = "lbImportFolders";
@@ -1447,8 +1511,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// groupBox1
 			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.btnTestJMMServer);
 			this.groupBox1.Controls.Add(this.txtJMMServerPort);
 			this.groupBox1.Controls.Add(this.label2);
@@ -1520,10 +1584,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.ManualLink.AutoSize = true;
 			this.ManualLink.Location = new System.Drawing.Point(57, 440);
 			this.ManualLink.Name = "ManualLink";
-			this.ManualLink.Size = new System.Drawing.Size(208, 13);
+			this.ManualLink.Size = new System.Drawing.Size(198, 13);
 			this.ManualLink.TabIndex = 44;
 			this.ManualLink.TabStop = true;
-            this.ManualLink.Text = "http://japanesemediamanager.github.io/";
+			this.ManualLink.Text = "http://japanesemediamanager.github.io/";
 			this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
 			// 
 			// label62
@@ -1560,10 +1624,10 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.WebsiteLink.AutoSize = true;
 			this.WebsiteLink.Location = new System.Drawing.Point(57, 385);
 			this.WebsiteLink.Name = "WebsiteLink";
-			this.WebsiteLink.Size = new System.Drawing.Size(168, 13);
+			this.WebsiteLink.Size = new System.Drawing.Size(198, 13);
 			this.WebsiteLink.TabIndex = 40;
 			this.WebsiteLink.TabStop = true;
-            this.WebsiteLink.Text = "http://japanesemediamanager.github.io/";
+			this.WebsiteLink.Text = "http://japanesemediamanager.github.io/";
 			this.WebsiteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WebsiteLink_LinkClicked);
 			// 
 			// label60
@@ -1585,8 +1649,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			// 
 			// txtImagesLocation
 			// 
-			this.txtImagesLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtImagesLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtImagesLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txtImagesLocation.Location = new System.Drawing.Point(214, 33);
 			this.txtImagesLocation.Name = "txtImagesLocation";
@@ -1734,67 +1798,15 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
 			this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
 			// 
-			// groupBox7
+			// chkLoadlocalThumbnails
 			// 
-			this.groupBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.groupBox7.Controls.Add(this.btnAnimeBytesTest);
-			this.groupBox7.Controls.Add(this.txtAnimeBytesPassword);
-			this.groupBox7.Controls.Add(this.label9);
-			this.groupBox7.Controls.Add(this.txtAnimeBytesUsername);
-			this.groupBox7.Controls.Add(this.label10);
-			this.groupBox7.Location = new System.Drawing.Point(501, 15);
-			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(217, 171);
-			this.groupBox7.TabIndex = 48;
-			this.groupBox7.TabStop = false;
-			this.groupBox7.Text = "Anime Byt.es Credentials";
-			// 
-			// btnAnimeBytesTest
-			// 
-			this.btnAnimeBytesTest.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnAnimeBytesTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnAnimeBytesTest.Location = new System.Drawing.Point(89, 76);
-			this.btnAnimeBytesTest.Name = "btnAnimeBytesTest";
-			this.btnAnimeBytesTest.Size = new System.Drawing.Size(120, 26);
-			this.btnAnimeBytesTest.TabIndex = 47;
-			this.btnAnimeBytesTest.Text = "Test Login";
-			this.btnAnimeBytesTest.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnAnimeBytesTest.UseVisualStyleBackColor = true;
-			// 
-			// txtAnimeBytesPassword
-			// 
-			this.txtAnimeBytesPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtAnimeBytesPassword.Location = new System.Drawing.Point(89, 50);
-			this.txtAnimeBytesPassword.Name = "txtAnimeBytesPassword";
-			this.txtAnimeBytesPassword.PasswordChar = '*';
-			this.txtAnimeBytesPassword.Size = new System.Drawing.Size(120, 20);
-			this.txtAnimeBytesPassword.TabIndex = 46;
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(12, 52);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(53, 13);
-			this.label9.TabIndex = 45;
-			this.label9.Text = "Password";
-			// 
-			// txtAnimeBytesUsername
-			// 
-			this.txtAnimeBytesUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.txtAnimeBytesUsername.Location = new System.Drawing.Point(89, 24);
-			this.txtAnimeBytesUsername.Name = "txtAnimeBytesUsername";
-			this.txtAnimeBytesUsername.Size = new System.Drawing.Size(120, 20);
-			this.txtAnimeBytesUsername.TabIndex = 44;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(12, 26);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(55, 13);
-			this.label10.TabIndex = 43;
-			this.label10.Text = "Username";
+			this.chkLoadlocalThumbnails.AutoSize = true;
+			this.chkLoadlocalThumbnails.Location = new System.Drawing.Point(21, 442);
+			this.chkLoadlocalThumbnails.Name = "chkLoadlocalThumbnails";
+			this.chkLoadlocalThumbnails.Size = new System.Drawing.Size(292, 17);
+			this.chkLoadlocalThumbnails.TabIndex = 53;
+			this.chkLoadlocalThumbnails.Text = "Try to use local episode thumbnails if none exist remotely";
+			this.chkLoadlocalThumbnails.UseVisualStyleBackColor = true;
 			// 
 			// frmConfig
 			// 
@@ -1814,6 +1826,8 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage8.ResumeLayout(false);
 			this.tabPage9.ResumeLayout(false);
 			this.tabPage11.ResumeLayout(false);
+			this.groupBox7.ResumeLayout(false);
+			this.groupBox7.PerformLayout();
 			this.groupBox6.ResumeLayout(false);
 			this.groupBox6.PerformLayout();
 			this.groupBox19.ResumeLayout(false);
@@ -1849,8 +1863,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			this.tabPage2.ResumeLayout(false);
 			this.groupBox16.ResumeLayout(false);
 			this.groupBox16.PerformLayout();
-			this.groupBox7.ResumeLayout(false);
-			this.groupBox7.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -2005,5 +2017,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.TextBox txtAnimeBytesUsername;
 		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.CheckBox chkLoadlocalThumbnails;
     }
 }

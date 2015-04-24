@@ -325,7 +325,7 @@
 
 	<control>
 	  <type>label</type>
-	  <label>Categories</label>
+	  <label>Tags</label>
 	  <posX>20</posX>
 	  <posY>430</posY>
 	  <textcolor>ffa9d0f7</textcolor>

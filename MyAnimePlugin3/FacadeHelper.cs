@@ -72,12 +72,12 @@ namespace MyAnimePlugin3
 			gfs.Add(gf);
 
 			GroupFilterVM gfGenres = new GroupFilterVM();
-			gfGenres.GroupFilterID = Constants.StaticGF.Predefined_Categories;
+			gfGenres.GroupFilterID = Constants.StaticGF.Predefined_Tags;
 			gfGenres.FilterConditions = new List<GroupFilterConditionVM>();
 			gfGenres.ApplyToSeries = 0;
 			gfGenres.BaseCondition = 1;
 			gfGenres.PredefinedCriteria = "";
-			gfGenres.GroupFilterName = "By Category";
+			gfGenres.GroupFilterName = "By Tag";
 
 			gfs.Add(gfGenres);
 
@@ -126,26 +126,26 @@ namespace MyAnimePlugin3
 					gfs.Add(gf);
 				}
 			}
-			else if (pre.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories)
+			else if (pre.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags)
 			{
-				List<string> categories = new List<string>();
+				List<string> tags = new List<string>();
 
 				List<AnimeGroupVM> grps = JMMServerHelper.GetAnimeGroupsForFilter(GroupFilterHelper.AllGroupsFilter);
 				foreach (AnimeGroupVM grp in grps)
 				{
-					foreach (string cat in grp.Categories)
+					foreach (string tag in grp.Tags)
 					{
-						if (!categories.Contains(cat) && !string.IsNullOrEmpty(cat))
-							categories.Add(cat);
+						if (!tags.Contains(tag) && !string.IsNullOrEmpty(tag))
+							tags.Add(tag);
 					}
 				}
 
-				categories.Sort();
+				tags.Sort();
 
-				foreach (string cat in categories)
+				foreach (string cat in tags)
 				{
 					GroupFilterVM gf = new GroupFilterVM();
-					gf.GroupFilterID = Constants.StaticGF.Predefined_Categories_Child;
+					gf.GroupFilterID = Constants.StaticGF.Predefined_Tags_Child;
 					gf.FilterConditions = new List<GroupFilterConditionVM>();
 					gf.ApplyToSeries = 0;
 					gf.BaseCondition = 1;

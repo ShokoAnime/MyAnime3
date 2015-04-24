@@ -168,8 +168,8 @@ namespace MyAnimePlugin3.Windows
             setGUIProperty("AnimeInfo.Info.Reviews", FormatTextReviews());
             setGUIProperty("AnimeInfo.Info.Type", MainAnime.AnimeTypeDescription);
             setGUIProperty("AnimeInfo.Info.OtherTitles", FormatTextOtherTitles());
-            setGUIProperty("AnimeInfo.Info.Genre", MainAnime.CategoriesFormatted);
-			setGUIProperty("AnimeInfo.Info.GenreShort", MainAnime.CategoriesFormattedShort);
+            setGUIProperty("AnimeInfo.Info.Genre", MainAnime.TagsFormatted);
+			setGUIProperty("AnimeInfo.Info.GenreShort", MainAnime.TagsFormattedShort);
             setGUIProperty("AnimeInfo.Info.Awards", FormatTextAwards());
 
 			string eps = MainAnime.EpisodeCountNormal.ToString() + " (" + MainAnime.EpisodeCountSpecial.ToString() + " Specials)";

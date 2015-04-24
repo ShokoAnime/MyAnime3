@@ -13,7 +13,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int IsAdmin { get; set; }
 		public int IsAniDBUser { get; set; }
 		public int IsTraktUser { get; set; }
-		public string HideCategories { get; set; }
+		public string HideTags { get; set; }
 
 		public bool IsAdminUser
 		{
@@ -42,12 +42,12 @@ namespace MyAnimePlugin3.ViewModel
 			this.IsAdmin = contract.IsAdmin;
 			this.IsAniDBUser = contract.IsAniDBUser;
 			this.IsTraktUser = contract.IsTraktUser;
-			this.HideCategories = contract.HideCategories;
+			this.HideTags = contract.HideCategories;
 		}
 
 		public override string ToString()
 		{
-			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdminUser, IsAniDBUserBool, HideCategories);
+			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdminUser, IsAniDBUserBool, HideTags);
 		}
 	}
 }

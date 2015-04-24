@@ -22,7 +22,6 @@ namespace MyAnimePlugin3.ViewModel
 		public string MainTitle { get; set; }
 		public string FormattedTitle { get; set; }
 		public string AllTitles { get; set; }
-		public string AllCategories { get; set; }
 		public string AllTags { get; set; }
 		public string Description { get; set; }
 		public int EpisodeCountNormal { get; set; }
@@ -64,7 +63,6 @@ namespace MyAnimePlugin3.ViewModel
 		public AniDB_AnimeVM(JMMServerBinary.Contract_AniDBAnime contract)
 		{
 			this.AirDate = contract.AirDate;
-			this.AllCategories = contract.AllCategories;
 			this.AllCinemaID = contract.AllCinemaID;
 			this.AllTags = contract.AllTags;
 			this.AllTitles = contract.AllTitles;
@@ -133,38 +131,38 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public List<string> Categories
+		public List<string> Tags
 		{
 			get
 			{
-				string[] cats = AllCategories.Split('|');
+				string[] tags = AllTags.Split('|');
 
-				if (cats.Length == 0) return new List<string>();
-				return new List<string>(cats);
+				if (tags.Length == 0) return new List<string>();
+				return new List<string>(tags);
 			}
 		}
 
-		public string CategoriesFormatted
+		public string TagsFormatted
 		{
 			get
 			{
 				string ret = "";
-				foreach (string cat in Categories)
+				foreach (string tag in Tags)
 				{
 					if (ret.Length > 0) ret += ", ";
-					ret += cat;
+					ret += tag;
 				}
 				return ret;
 			}
 		}
 
-		public string CategoriesFormattedShort
+		public string TagsFormattedShort
 		{
 			get
 			{
 				string ret = "";
 				int i = 0;
-				foreach (string cat in Categories)
+				foreach (string cat in Tags)
 				{
 					if (ret.Length > 0) ret += ", ";
 					ret += cat;

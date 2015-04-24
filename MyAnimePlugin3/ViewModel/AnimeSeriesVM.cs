@@ -29,7 +29,6 @@ namespace MyAnimePlugin3.ViewModel
 		public decimal? Stat_UserVotePermanent { get; set; }
 		public decimal? Stat_UserVoteTemporary { get; set; }
 
-		public string Stat_AllCategories { get; set; }
 		public string Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
 		public bool Stat_HasFinishedAiring { get; set; }
@@ -117,11 +116,11 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public string CategoriesString
+		public string TagsString
 		{
 			get
 			{
-				return AniDB_Anime.AllCategories;
+                return AniDB_Anime.AllTags;
 			}
 		}
 

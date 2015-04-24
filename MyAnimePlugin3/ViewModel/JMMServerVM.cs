@@ -86,7 +86,6 @@ namespace MyAnimePlugin3.ViewModel
 			//UnselectedLanguages = new ObservableCollection<NamingLanguage>();
 			//SelectedLanguages = new ObservableCollection<NamingLanguage>();
 			//AllUsers = new ObservableCollection<JMMUserVM>();
-			//AllCategories = new ObservableCollection<string>();
 
 			try
 			{

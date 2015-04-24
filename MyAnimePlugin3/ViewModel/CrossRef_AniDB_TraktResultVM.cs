@@ -17,13 +17,13 @@ namespace MyAnimePlugin3.ViewModel
 		{
 		}
 
-		public CrossRef_AniDB_TraktResultVM(JMMServerBinary.Contract_CrossRef_AniDB_TraktResult contract)
+        public CrossRef_AniDB_TraktResultVM(JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt contract)
 		{
 			this.AnimeID = contract.AnimeID;
 			this.TraktID = contract.TraktID;
 			this.TraktSeasonNumber = contract.TraktSeasonNumber;
-			this.AdminApproved = contract.AdminApproved;
-			this.ShowName = contract.ShowName;
+			this.AdminApproved = contract.IsAdminApproved;
+			this.ShowName = contract.TraktTitle;
 		}
 
 		public override string ToString()

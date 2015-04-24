@@ -16,9 +16,9 @@ namespace MyAnimePlugin3.Windows
 		private static Random rndm = new Random();
 
 		[SkinControlAttribute(801)] protected GUIButtonControl btnRandom = null;
-		[SkinControlAttribute(806)] protected GUIButtonControl btnAddCategory = null;
-		[SkinControlAttribute(807)] protected GUIButtonControl btnClearcategories = null;
-		[SkinControlAttribute(808)] protected GUIButtonControl btnAllAnycategories = null;
+		[SkinControlAttribute(806)] protected GUIButtonControl btnAddTag = null;
+		[SkinControlAttribute(807)] protected GUIButtonControl btnClearTags = null;
+		[SkinControlAttribute(808)] protected GUIButtonControl btnAllAnyTags = null;
 		[SkinControlAttribute(810)] protected GUIButtonControl btnEpisodeList = null;
 
 		[SkinControlAttribute(802)] protected GUICheckButton togWatched = null;
@@ -28,10 +28,10 @@ namespace MyAnimePlugin3.Windows
 
         [SkinControlAttribute(821)] protected GUICheckButton togEpisodeWatched = null;
         [SkinControlAttribute(822)] protected GUICheckButton togEpisodeUnwatched = null;
-		[SkinControlAttribute(823)] protected GUIButtonControl btnEpisodeAddCategory = null;
-		[SkinControlAttribute(824)] protected GUIButtonControl btnEpisodeClearcategories = null;
+		[SkinControlAttribute(823)] protected GUIButtonControl btnEpisodeAddTag = null;
+		[SkinControlAttribute(824)] protected GUIButtonControl btnEpisodeClearTags = null;
 		[SkinControlAttribute(825)] protected GUIButtonControl btnPlayEpisode = null;
-		[SkinControlAttribute(826)] protected GUIButtonControl btnEpisodeAllAnycategories = null;
+		[SkinControlAttribute(826)] protected GUIButtonControl btnEpisodeAllAnyTags = null;
 
 		[SkinControlAttribute(901)] protected GUIButtonControl btnSwitchSeries = null;
 		[SkinControlAttribute(902)] protected GUIButtonControl btnSwitchEpisode = null;
@@ -48,7 +48,7 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(1553)] protected GUILabelControl dummyNoData = null;
 
 
-		private List<string> AllCategories = new List<string>();
+		private List<string> AllTags = new List<string>();
 
 		private BackgroundWorker getDataWorker = new BackgroundWorker();
 
@@ -100,10 +100,10 @@ namespace MyAnimePlugin3.Windows
 			setGUIProperty("LevelName", "-");
 			setGUIProperty("NumberOfMatches", "-");
 			setGUIProperty("CombinedFilterDetails", "-");
-			setGUIProperty("Series.CategoryType", "-");
-			setGUIProperty("Episode.CategoryType", "-");
-			setGUIProperty("Series.Categories", "-");
-			setGUIProperty("Episode.Categories", "-");
+            setGUIProperty("Series.TagType", "-");
+            setGUIProperty("Episode.TagType", "-");
+            setGUIProperty("Series.Tags", "-");
+            setGUIProperty("Episode.Tags", "-");
 
 			if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.GroupFilter)
 			{
@@ -137,18 +137,18 @@ namespace MyAnimePlugin3.Windows
 
 			setGUIProperty("NumberOfMatches", MainWindow.RandomWindow_MatchesFound.ToString());
 
-			setGUIProperty("Series.Categories", MainWindow.RandomWindow_SeriesCategories);
-			setGUIProperty("Episode.Categories", MainWindow.RandomWindow_EpisodeCategories);
+            setGUIProperty("Series.Tags", MainWindow.RandomWindow_SeriesTags);
+            setGUIProperty("Episode.Tags", MainWindow.RandomWindow_EpisodeTags);
 
-			if (MainWindow.RandomWindow_SeriesAllCategories)
-				setGUIProperty("Series.CategoryType", "All");
+			if (MainWindow.RandomWindow_SeriesAllTags)
+                setGUIProperty("Series.TagType", "All");
 			else
-				setGUIProperty("Series.CategoryType", "Any");
+                setGUIProperty("Series.TagType", "Any");
 
-			if (MainWindow.RandomWindow_EpisodeAllCategories)
-				setGUIProperty("Episode.CategoryType", "All");
+			if (MainWindow.RandomWindow_EpisodeAllTags)
+                setGUIProperty("EpisodeTagType", "All");
 			else
-				setGUIProperty("Episode.CategoryType", "Any");
+                setGUIProperty("Episode.TagType", "Any");
 
 		}
 
@@ -240,9 +240,9 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + gf.GroupFilterName);
 
-				bool allCats = MainWindow.RandomWindow_SeriesAllCategories;
+				bool allTags = MainWindow.RandomWindow_SeriesAllTags;
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					allCats = MainWindow.RandomWindow_EpisodeAllCategories;
+					allTags = MainWindow.RandomWindow_EpisodeAllTags;
 
 				bool completeSeries = true;
 				bool allWatched = true;
@@ -259,9 +259,9 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("Total groups for filter = " + contracts.Count.ToString());
 
-				string selectedCategories = MainWindow.RandomWindow_SeriesCategories;
+				string selectedTags = MainWindow.RandomWindow_SeriesTags;
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					selectedCategories = MainWindow.RandomWindow_EpisodeCategories;
+					selectedTags = MainWindow.RandomWindow_EpisodeTags;
 
 				foreach (JMMServerBinary.Contract_AnimeGroup grpContract in contracts)
 				{
@@ -271,30 +271,30 @@ namespace MyAnimePlugin3.Windows
 
 					foreach (AnimeSeriesVM ser in grp.AllSeries)
 					{
-						// categories
-						if (!string.IsNullOrEmpty(selectedCategories))
+						// tags
+						if (!string.IsNullOrEmpty(selectedTags))
 						{
-							string filterParm = selectedCategories.Trim();
+							string filterParm = selectedTags.Trim();
 
-							string[] cats = filterParm.Split(',');
+							string[] tags = filterParm.Split(',');
 
-							bool foundCat = false;
-							if (allCats) foundCat = true; // all
+							bool foundTag = false;
+							if (allTags) foundTag = true; // all
 
 							int index = 0;
-							foreach (string cat in cats)
+							foreach (string tag in tags)
 							{
-								string thiscat = cat.Trim();
-								if (thiscat.Trim().Length == 0) continue;
-								if (thiscat.Trim() == ",") continue;
+								string thistag = tag.Trim();
+								if (thistag.Trim().Length == 0) continue;
+								if (thistag.Trim() == ",") continue;
 
-								index = ser.CategoriesString.IndexOf(thiscat, 0, StringComparison.InvariantCultureIgnoreCase);
+								index = ser.TagsString.IndexOf(thistag, 0, StringComparison.InvariantCultureIgnoreCase);
 
-								if (!allCats) // any
+								if (!allTags) // any
 								{
 									if (index > -1)
 									{
-										foundCat = true;
+										foundTag = true;
 										break;
 									}
 								}
@@ -302,12 +302,12 @@ namespace MyAnimePlugin3.Windows
 								{
 									if (index < 0)
 									{
-										foundCat = false;
+										foundTag = false;
 										break;
 									}
 								}
 							}
-							if (!foundCat) continue;
+							if (!foundTag) continue;
 
 						}
 
@@ -355,42 +355,42 @@ namespace MyAnimePlugin3.Windows
 				AnimeGroupVM grp = MainWindow.RandomWindow_LevelObject as AnimeGroupVM;
 				if (grp == null) return serList;
 
-				bool allCats = MainWindow.RandomWindow_SeriesAllCategories;
+				bool allTags = MainWindow.RandomWindow_SeriesAllTags;
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					allCats = MainWindow.RandomWindow_EpisodeAllCategories;
+					allTags = MainWindow.RandomWindow_EpisodeAllTags;
 
 				BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + grp.GroupName);
 
-				string selectedCategories = MainWindow.RandomWindow_SeriesCategories;
+				string selectedTags = MainWindow.RandomWindow_SeriesTags;
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					selectedCategories = MainWindow.RandomWindow_EpisodeCategories;
+					selectedTags = MainWindow.RandomWindow_EpisodeTags;
 
 				foreach (AnimeSeriesVM ser in grp.AllSeries)
 				{
-					// categories
-					if (!string.IsNullOrEmpty(selectedCategories))
+					// tags
+					if (!string.IsNullOrEmpty(selectedTags))
 					{
-						string filterParm = selectedCategories.Trim();
+						string filterParm = selectedTags.Trim();
 
-						string[] cats = filterParm.Split(',');
+						string[] tags = filterParm.Split(',');
 
-						bool foundCat = false;
-						if (allCats) foundCat = true; // all
+						bool foundTag = false;
+						if (allTags) foundTag = true; // all
 
 						int index = 0;
-						foreach (string cat in cats)
+						foreach (string tag in tags)
 						{
-							string thiscat = cat.Trim();
+							string thiscat = tag.Trim();
 							if (thiscat.Trim().Length == 0) continue;
 							if (thiscat.Trim() == ",") continue;
 
-							index = ser.CategoriesString.IndexOf(thiscat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = ser.TagsString.IndexOf(thiscat, 0, StringComparison.InvariantCultureIgnoreCase);
 
-							if (!allCats) // any
+							if (!allTags) // any
 							{
 								if (index > -1)
 								{
-									foundCat = true;
+									foundTag = true;
 									break;
 								}
 							}
@@ -398,12 +398,12 @@ namespace MyAnimePlugin3.Windows
 							{
 								if (index < 0)
 								{
-									foundCat = false;
+									foundTag = false;
 									break;
 								}
 							}
 						}
-						if (!foundCat) continue;
+						if (!foundTag) continue;
 
 					}
 					serList.Add(ser);
@@ -653,55 +653,55 @@ namespace MyAnimePlugin3.Windows
 			if (MA3WindowManager.HandleWindowChangeButton(control))
 				return;
 
-			if (btnAddCategory != null && control == btnAddCategory)
+			if (btnAddTag != null && control == btnAddTag)
 			{
-				string cat = Utils.PromptSelectCategory("");
+				string cat = Utils.PromptSelectTag("");
 				if (!string.IsNullOrEmpty(cat))
 				{
-					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_SeriesCategories))
-						MainWindow.RandomWindow_SeriesCategories += ", ";
+					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_SeriesTags))
+						MainWindow.RandomWindow_SeriesTags += ", ";
 
-					MainWindow.RandomWindow_SeriesCategories += cat;
+					MainWindow.RandomWindow_SeriesTags += cat;
 
 					SetDisplayDetails();
 				}
 			}
 
-			if (btnEpisodeAddCategory != null && control == btnEpisodeAddCategory)
+			if (btnEpisodeAddTag != null && control == btnEpisodeAddTag)
 			{
-				string cat = Utils.PromptSelectCategory("");
+				string cat = Utils.PromptSelectTag("");
 				if (!string.IsNullOrEmpty(cat))
 				{
-					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_EpisodeCategories))
-						MainWindow.RandomWindow_EpisodeCategories += ", ";
+					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_EpisodeTags))
+						MainWindow.RandomWindow_EpisodeTags += ", ";
 
-					MainWindow.RandomWindow_EpisodeCategories += cat;
+					MainWindow.RandomWindow_EpisodeTags += cat;
 
 					SetDisplayDetails();
 				}
 			}
 
-			if (btnClearcategories != null && control == btnClearcategories)
+			if (btnClearTags != null && control == btnClearTags)
 			{
-				MainWindow.RandomWindow_SeriesCategories = "";
+				MainWindow.RandomWindow_SeriesTags = "";
 				SetDisplayDetails();
 			}
 
-			if (btnEpisodeClearcategories != null && control == btnEpisodeClearcategories)
+			if (btnEpisodeClearTags != null && control == btnEpisodeClearTags)
 			{
-				MainWindow.RandomWindow_EpisodeCategories = "";
+				MainWindow.RandomWindow_EpisodeTags = "";
 				SetDisplayDetails();
 			}
 
-			if (btnAllAnycategories != null && control == btnAllAnycategories)
+			if (btnAllAnyTags != null && control == btnAllAnyTags)
 			{
-				MainWindow.RandomWindow_SeriesAllCategories = !MainWindow.RandomWindow_SeriesAllCategories;
+				MainWindow.RandomWindow_SeriesAllTags = !MainWindow.RandomWindow_SeriesAllTags;
 				SetDisplayDetails();
 			}
 
-			if (btnEpisodeAllAnycategories != null && control == btnEpisodeAllAnycategories)
+			if (btnEpisodeAllAnyTags != null && control == btnEpisodeAllAnyTags)
 			{
-				MainWindow.RandomWindow_EpisodeAllCategories = !MainWindow.RandomWindow_EpisodeAllCategories;
+				MainWindow.RandomWindow_EpisodeAllTags = !MainWindow.RandomWindow_EpisodeAllTags;
 				SetDisplayDetails();
 			}
 

@@ -139,9 +139,9 @@
 	</control>
 	
 	<control Style="InfoLabel">
-		<description>Categories Label</description>
+		<description>Tags Label</description>
 		<type>label</type>
-		<label>Categories</label>
+		<label>Tags</label>
 		<id>0</id>
 		<posX>70</posX>
 		<posY>840</posY>
@@ -152,7 +152,7 @@
 	</control>
 			
 	<control Style="InfoValueSmall">
-		<description>Categories Value</description>
+		<description>Tags Value</description>
 		<type>fadelabel</type>
 	    <label>#Anime3.Related.GenreShort</label>
 		<id>0</id>

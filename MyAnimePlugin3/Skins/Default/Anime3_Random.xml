@@ -560,7 +560,7 @@
 	<control>
 	  <type>button</type>
 	  <id>823</id>
-	  <label>Add Category</label>
+	  <label>Add Tag</label>
 	  <width>170</width>
 	  <posX>225</posX>
 	  <posY>440</posY>
@@ -575,7 +575,7 @@
 	<control>
 	  <type>button</type>
 	  <id>824</id>
-	  <label>Clear Categories</label>
+	  <label>Clear Tags</label>
 	  <width>170</width>
 	  <posX>225</posX>
 	  <posY>480</posY>
@@ -590,7 +590,7 @@
 	<control>
 	  <type>button</type>
 	  <id>826</id>
-	  <label>Categories: #Anime3.Random.Episode.CategoryType</label>
+	  <label>Tags: #Anime3.Random.Episode.TagType</label>
 	  <width>170</width>
 	  <posX>405</posX>
 	  <posY>440</posY>
@@ -612,7 +612,7 @@
 	  <seperator>-------------------------------------------------------------------------</seperator>
 	  <align>left</align>
 	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
-	  <label>#Anime3.Random.Episode.Categories</label>
+	  <label>#Anime3.Random.Episode.Tags</label>
 	  <scrollStartDelaySec>3</scrollStartDelaySec>
 	  <font>font11</font>
 	</control>
@@ -711,7 +711,7 @@
 	<control>
 	  <type>button</type>
 	  <id>806</id>
-	  <label>Add Category</label>
+	  <label>Add Tag</label>
 	  <width>170</width>
 	  <posX>225</posX>
 	  <posY>480</posY>
@@ -726,7 +726,7 @@
 	<control>
 	  <type>button</type>
 	  <id>807</id>
-	  <label>Clear Categories</label>
+	  <label>Clear Tags</label>
 	  <width>170</width>
 	  <posX>225</posX>
 	  <posY>520</posY>
@@ -741,7 +741,7 @@
 	<control>
 	  <type>button</type>
 	  <id>808</id>
-	  <label>Categories: #Anime3.Random.Series.CategoryType</label>
+	  <label>Tags: #Anime3.Random.Series.TagType</label>
 	  <width>170</width>
 	  <posX>405</posX>
 	  <posY>440</posY>
@@ -763,7 +763,7 @@
 	  <seperator>-------------------------------------------------------------------------</seperator>
 	  <align>left</align>
 	  <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
-	  <label>#Anime3.Random.Series.Categories</label>
+	  <label>#Anime3.Random.Series.Tags</label>
 	  <scrollStartDelaySec>3</scrollStartDelaySec>
 	  <font>font11</font>
 	</control>

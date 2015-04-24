@@ -37,7 +37,7 @@ namespace MyAnimePlugin3.ViewModel
 		public decimal? Stat_UserVotePermanent { get; set; }
 		public decimal? Stat_UserVoteTemporary { get; set; }
 		public decimal? Stat_UserVoteOverall { get; set; }
-		public string Stat_AllCategories { get; set; }
+		public string Stat_AllTags { get; set; }
 		public string Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
 		public bool Stat_HasFinishedAiring { get; set; }
@@ -64,41 +64,41 @@ namespace MyAnimePlugin3.ViewModel
 			return string.Format("{0} - {1}", AnimeGroupID, GroupName);
 		}
 
-		public List<string> Categories
+		public List<string> Tags
 		{
 			get
 			{
-				string[] cats = Stat_AllCategories.Split('|');
+				string[] cats = Stat_AllTags.Split('|');
 
 				if (cats.Length == 0) return new List<string>();
 				return new List<string>(cats);
 			}
 		}
 
-		public string CategoriesFormatted
+		public string TagsFormatted
 		{
 			get
 			{
 				string ret = "";
-				foreach (string cat in Categories)
+				foreach (string tag in Tags)
 				{
 					if (ret.Length > 0) ret += ", ";
-					ret += cat;
+					ret += tag;
 				}
 				return ret;
 			}
 		}
 
-		public string CategoriesFormattedShort
+		public string TagsFormattedShort
 		{
 			get
 			{
 				string ret = "";
 				int i = 0;
-				foreach (string cat in Categories)
+				foreach (string tag in Tags)
 				{
 					if (ret.Length > 0) ret += ", ";
-					ret += cat;
+					ret += tag;
 
 					if (i == 6) break;
 				}
@@ -474,7 +474,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
 			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
 			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-			this.Stat_AllCategories = contract.Stat_AllCategories;
+			this.Stat_AllTags = contract.Stat_AllTags;
 			this.Stat_AllTitles = contract.Stat_AllTitles;
 			this.Stat_IsComplete = contract.Stat_IsComplete;
 			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;

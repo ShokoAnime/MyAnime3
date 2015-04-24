@@ -4607,12 +4607,16 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>3</Major>
       <Minor>4</Minor>
       <Build>2</Build>
-      <Revision>11</Revision>
+      <Revision>16</Revision>
     </Version>
-    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
-
-It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
-
+    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
+
+
+
+It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
+
+
+
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
     <VersionDescription>Issue #19 - Changing find (search) setting in config to zero prevents ma3 from working
 Issue #18 - No art from themoviedb</VersionDescription>

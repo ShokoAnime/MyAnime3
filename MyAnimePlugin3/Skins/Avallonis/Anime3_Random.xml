@@ -556,10 +556,10 @@
 	</control>
 	
 	<control>
-		<description>Add Category</description>
+		<description>Add Tag</description>
 		<type>button</type>
 		<id>806</id>
-		<label>Add Category</label>
+		<label>Add Tag</label>
 		<textureFocus>settings_button_medium_focus.png</textureFocus>
 		<textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
 		<textcolor>ffffffff</textcolor>
@@ -579,10 +579,10 @@
 	</control>
 	
 	<control>
-		<description>Clear Categories</description>
+		<description>Clear Tags</description>
 		<type>button</type>
 		<id>807</id>
-		<label>Clear Categories</label>
+		<label>Clear Tags</label>
 		<textureFocus>settings_button_medium_focus.png</textureFocus>
 		<textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
 		<textcolor>ffffffff</textcolor>
@@ -602,10 +602,10 @@
 	</control>
 
 	<control>
-		<description>Category All/Any</description>
+		<description>Tag All/Any</description>
 		<type>button</type>
 		<id>808</id>
-		<label>Categories: #Anime3.Random.Series.CategoryType</label>
+		<label>Tags: #Anime3.Random.Series.TagType</label>
 		<textureFocus>settings_button_medium_focus.png</textureFocus>
 		<textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
 		<textcolor>ffffffff</textcolor>
@@ -632,7 +632,7 @@
 	  <width>900</width>
 	  <height>300</height>
 	  <visible>Control.IsVisible(1551)</visible>
-	  <label>#Anime3.Random.Series.Categories</label>
+	  <label>#Anime3.Random.Series.Tags</label>
 	  <seperator>---------------------------------------------------------------------------------------------------------</seperator>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
@@ -716,10 +716,10 @@
 	</control>
 	
 	<control>
-		<description>Add Category</description>
+		<description>Add Tag</description>
 		<type>button</type>
 		<id>823</id>
-		<label>Add Category</label>
+		<label>Add Tag</label>
 		<textureFocus>settings_button_medium_focus.png</textureFocus>
 		<textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
 		<textcolor>ffffffff</textcolor>
@@ -738,10 +738,10 @@
 	</control>
 	
 	<control>
-		<description>Clear Categories</description>
+		<description>Clear Tags</description>
 		<type>button</type>
 		<id>824</id>
-		<label>Clear Categories</label>
+		<label>Clear Tags</label>
 		<textureFocus>settings_button_medium_focus.png</textureFocus>
 		<textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
 		<textcolor>ffffffff</textcolor>
@@ -761,10 +761,10 @@
 	</control>
 
 	<control>
-		<description>Category All/Any</description>
+		<description>Tag All/Any</description>
 		<type>button</type>
 		<id>826</id>
-		<label>Categories: #Anime3.Random.Episode.CategoryType</label>
+		<label>Tags: #Anime3.Random.Episode.TagType</label>
 		<textureFocus>settings_button_medium_focus.png</textureFocus>
 		<textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
 		<textcolor>ffffffff</textcolor>
@@ -791,7 +791,7 @@
 	  <width>900</width>
 	  <height>300</height>
 	  <visible>Control.IsVisible(1552)</visible>
-	  <label>#Anime3.Random.Episode.Categories</label>
+	  <label>#Anime3.Random.Episode.Tags</label>
 	  <seperator>---------------------------------------------------------------------------------------------------------</seperator>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 	  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>

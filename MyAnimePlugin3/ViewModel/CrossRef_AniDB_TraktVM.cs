@@ -17,9 +17,9 @@ namespace MyAnimePlugin3.ViewModel
 		{
 		}
 
-		public CrossRef_AniDB_TraktVM(JMMServerBinary.Contract_CrossRef_AniDB_Trakt contract)
+		public CrossRef_AniDB_TraktVM(JMMServerBinary.Contract_CrossRef_AniDB_TraktV2 contract)
 		{
-			this.CrossRef_AniDB_TraktID = contract.CrossRef_AniDB_TraktID;
+            this.CrossRef_AniDB_TraktID = contract.CrossRef_AniDB_TraktV2ID;
 			this.AnimeID = contract.AnimeID;
 			this.TraktID = contract.TraktID;
 			this.TraktSeasonNumber = contract.TraktSeasonNumber;

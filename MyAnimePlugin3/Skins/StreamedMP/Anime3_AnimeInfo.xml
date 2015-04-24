@@ -548,7 +548,7 @@
     </control>
     <control Style="smallTitleB">
       <type>label</type>
-      <description>Categories Label</description>
+      <description>Tags Label</description>
       <id>0</id>
       <posX>340</posX>
       <posX>510</posX>
@@ -556,7 +556,7 @@
       <posY>435</posY>
       <width>650</width>
       <width>975</width>
-      <label>Categories</label>
+      <label>Tags</label>
       <align>left</align>
       <visible>Control.IsVisible(1500)</visible>
       <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
@@ -564,7 +564,7 @@
     </control>
     <control Style="smallTitle">
       <type>fadelabel</type>
-      <description>Categories Value</description>
+      <description>Tags Value</description>
       <id>0</id>
       <posX>600</posX>
       <posX>900</posX>

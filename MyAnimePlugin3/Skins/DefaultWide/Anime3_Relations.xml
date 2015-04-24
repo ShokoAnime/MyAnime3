@@ -362,7 +362,7 @@
 	
 	<control>
       <type>label</type>
-      <label>Categories</label>
+      <label>Tags</label>
       <posX>30</posX>
       <posY>510</posY>
       <visible>Control.IsVisible(1301)</visible>

@@ -399,7 +399,7 @@
     </control>
     <control Style="smallTitleB">
       <type>label</type>
-      <label>Categories</label>
+      <label>Tags</label>
       <posX>30</posX>
       <posX>45</posX>
       <posY>510</posY>

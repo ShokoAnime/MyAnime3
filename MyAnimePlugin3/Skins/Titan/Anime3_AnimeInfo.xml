@@ -536,21 +536,21 @@
 		<visible>Control.IsVisible(1500)</visible>
 	</control>	
 	
-	<!-- Categories -->
+	<!-- Tags -->
 	<control Style="InfoLabel">
 		<type>label</type>
-		<description>Categories</description>
+		<description>Tags</description>
 		<posX>590</posX>
 		<posY>420</posY>
 		<width>650</width>
-		 <label>Categories</label>
+		 <label>Tags</label>
 		<align>left</align>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
 	<control Style="InfoValueSmall">
 		<type>label</type>
-		<description>Categories Value</description>
+		<description>Tags Value</description>
 		<posX>900</posX>
 		<posY>420</posY>
 		<width>900</width>

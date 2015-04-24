@@ -604,12 +604,12 @@
 	
 	<control Style="InfoLabel">
       <type>fadelabel</type>
-      <description>Categories Label</description>
+      <description>Tags Label</description>
       <id>0</id>
       <posX>455</posX>
       <posY>460</posY>
       <width>650</width>
-      <label>Categories</label>
+      <label>Tags</label>
       <align>left</align>
       <visible>Control.IsVisible(1500)</visible>
 	  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
@@ -618,7 +618,7 @@
     </control>
     <control Style="InfoValueSmall">
       <type>fadelabel</type>
-      <description>Categories Value</description>
+      <description>Tags Value</description>
       <id>0</id>
       <posX>900</posX>
       <posY>460</posY>

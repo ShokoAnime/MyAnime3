@@ -333,13 +333,13 @@
 	
 	<control>
 	  <type>label</type>
-	  <description>Categories</description>
+	  <description>Tags</description>
 	  <id>0</id>
 	  <posX>20</posX>
 	  <posY>410</posY>
 	  <width>650</width>
 	  <textcolor>ffa9d0f7</textcolor>
-	  <label>Categories</label>
+	  <label>Tags</label>
 	  <align>left</align>
 	  <visible>Control.IsVisible(1301)</visible>
 	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>
@@ -348,7 +348,7 @@
 	
 	<control>
 	  <type>textbox</type>
-	  <description>Categories Value</description>
+	  <description>Tags Value</description>
 	  <id>0</id>
 	  <posX>130</posX>
 	  <posY>410</posY>

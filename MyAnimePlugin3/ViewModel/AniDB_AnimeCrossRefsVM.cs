@@ -23,10 +23,10 @@ namespace MyAnimePlugin3.ViewModel
 			MovieDBPosters = new List<MovieDB_PosterVM>();
 			MovieDBFanarts = new List<MovieDB_FanartVM>();
 
-			CrossRef_AniDB_Trakt = null;
-			TraktShow = null;
-			TraktImageFanart = null;
-			TraktImagePoster = null;
+            CrossRef_AniDB_Trakt = new List<CrossRef_AniDB_TraktVM>();
+			TraktShow = new List<Trakt_ShowVM>();
+			TraktImageFanart = new List<Trakt_ImageFanartVM>();
+			TraktImagePoster = new List<Trakt_ImagePosterVM>();
 
 			AllPosters = new List<PosterContainer>();
 			AllFanarts = new List<FanartContainer>();
@@ -69,10 +69,10 @@ namespace MyAnimePlugin3.ViewModel
 			set { traktCrossRefExists = value; }
 		}
 
-		public CrossRef_AniDB_TraktVM CrossRef_AniDB_Trakt  { get; set; }
-		public Trakt_ShowVM TraktShow  { get; set; }
-		public Trakt_ImageFanartVM TraktImageFanart  { get; set; }
-		public Trakt_ImagePosterVM TraktImagePoster  { get; set; }
+		public List<CrossRef_AniDB_TraktVM> CrossRef_AniDB_Trakt  { get; set; }
+		public List<Trakt_ShowVM> TraktShow  { get; set; }
+		public List<Trakt_ImageFanartVM> TraktImageFanart  { get; set; }
+		public List<Trakt_ImagePosterVM> TraktImagePoster  { get; set; }
 
 		public void Populate(JMMServerBinary.Contract_AniDB_AnimeCrossRefs details)
 		{
@@ -84,45 +84,60 @@ namespace MyAnimePlugin3.ViewModel
 			
 
 			// Trakt
-			if (details.CrossRef_AniDB_Trakt != null)
-				CrossRef_AniDB_Trakt = new CrossRef_AniDB_TraktVM(details.CrossRef_AniDB_Trakt);
+            if (details.CrossRef_AniDB_Trakt != null)
+            {
+                CrossRef_AniDB_Trakt = new List<CrossRef_AniDB_TraktVM>();
+                foreach (JMMServerBinary.Contract_CrossRef_AniDB_TraktV2 contract in details.CrossRef_AniDB_Trakt)
+                {
+                    CrossRef_AniDB_TraktVM xref = new CrossRef_AniDB_TraktVM(contract);
+                    CrossRef_AniDB_Trakt.Add(xref);
+                }
+            }
 
-			if (details.TraktShow != null)
-				TraktShow = new Trakt_ShowVM(details.TraktShow);
+            if (details.TraktShows != null)
+            {
+                TraktShow = new List<Trakt_ShowVM>();
+                foreach (JMMServerBinary.Contract_Trakt_Show contract in details.TraktShows)
+                {
+                    Trakt_ShowVM show = new Trakt_ShowVM(contract);
+                    TraktShow.Add(show);
+                }
+            }
 
-			if (details.TraktImageFanart != null)
-			{
-				TraktImageFanart = new Trakt_ImageFanartVM(details.TraktImageFanart);
+            foreach (JMMServerBinary.Contract_Trakt_ImageFanart contract in details.TraktImageFanarts)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultFanart != null && anime.DefaultFanart.ImageParentType == (int)ImageEntityType.Trakt_Fanart
+                    && anime.DefaultFanart.ImageParentID == contract.Trakt_ImageFanartID)
+                {
+                    isDefault = true;
+                }
 
-				bool isDefault = false;
-				if (anime != null && anime.DefaultFanart != null && anime.DefaultFanart.ImageParentType == (int)ImageEntityType.Trakt_Fanart
-					&& anime.DefaultFanart.ImageParentID == TraktImageFanart.Trakt_ImageFanartID)
-				{
-					isDefault = true;
-				}
+                Trakt_ImageFanartVM traktFanart = new Trakt_ImageFanartVM(contract);
+                traktFanart.IsImageDefault = isDefault;
+                TraktImageFanart.Add(traktFanart);
 
-				TraktImageFanart.IsImageDefault = isDefault;
+                AllFanarts.Add(new FanartContainer(ImageEntityType.Trakt_Fanart, traktFanart));
+            }
 
-				AllFanarts.Add(new FanartContainer(ImageEntityType.Trakt_Fanart, TraktImageFanart));
-			}
+            foreach (JMMServerBinary.Contract_Trakt_ImagePoster contract in details.TraktImagePosters)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultPoster != null && anime.DefaultPoster.ImageParentType == (int)ImageEntityType.Trakt_Poster
+                    && anime.DefaultPoster.ImageParentID == contract.Trakt_ImagePosterID)
+                {
+                    isDefault = true;
+                }
 
-			if (details.TraktImagePoster != null)
-			{
-				TraktImagePoster = new Trakt_ImagePosterVM(details.TraktImagePoster);
+                Trakt_ImagePosterVM traktPoster = new Trakt_ImagePosterVM(contract);
+                traktPoster.IsImageDefault = isDefault;
+                TraktImagePoster.Add(traktPoster);
 
-				bool isDefault = false;
-				if (anime != null && anime.DefaultPoster != null && anime.DefaultPoster.ImageParentType == (int)ImageEntityType.Trakt_Poster
-					&& anime.DefaultPoster.ImageParentID == TraktImagePoster.Trakt_ImagePosterID)
-				{
-					isDefault = true;
-				}
+                AllPosters.Add(new PosterContainer(ImageEntityType.Trakt_Poster, traktPoster));
+            }
 
-				TraktImagePoster.IsImageDefault = isDefault;
-
-				AllPosters.Add(new PosterContainer(ImageEntityType.Trakt_Poster, TraktImagePoster));
-			}
-
-			if (CrossRef_AniDB_Trakt == null || TraktShow == null)
+            if ((CrossRef_AniDB_Trakt == null || CrossRef_AniDB_Trakt.Count == 0) ||
+                (TraktShow == null || TraktShow.Count == 0))
 				TraktCrossRefExists = false;
 			else
 				TraktCrossRefExists = true;

@@ -217,8 +217,8 @@ namespace MyAnimePlugin3.Windows
 				setGUIProperty("Related.Episodes", anime.EpisodeCountNormal.ToString() + " (" + anime.EpisodeCountSpecial.ToString() + " Specials)");
 				setGUIProperty("Related.Year", anime.AirDateAsString);
 				setGUIProperty("Related.Description", anime.ParsedDescription);
-				setGUIProperty("Related.Genre", anime.CategoriesFormatted);
-				setGUIProperty("Related.GenreShort", anime.CategoriesFormattedShort);
+				setGUIProperty("Related.Genre", anime.TagsFormatted);
+				setGUIProperty("Related.GenreShort", anime.TagsFormattedShort);
 			}
 
 			if (ra.AnimeSeries != null)

@@ -702,10 +702,10 @@
 	</control>
 	
 	<control>
-		<description>Add Category</description>
+		<description>Add Tag</description>
 		<type>button</type>
 		<id>823</id>
-		<label>Add Category</label>
+		<label>Add Tag</label>
 		<width>260</width>
 		<textXOff>40</textXOff>
 		<posX>340</posX>
@@ -721,10 +721,10 @@
 	</control>
 	
 	<control>
-		<description>Clear Categories</description>
+		<description>Clear Tags</description>
 		<type>button</type>
 		<id>824</id>
-		<label>Clear Categories</label>
+		<label>Clear Tags</label>
 		<width>260</width>
 		<textXOff>40</textXOff>
 		<posX>340</posX>
@@ -740,10 +740,10 @@
 	</control>
 	
 	<control>
-		<description>Category All/Any</description>
+		<description>Tag All/Any</description>
 		  <type>button</type>
 		<id>826</id>
-		<label>Categories: #Anime3.Random.Episode.CategoryType</label>
+		<label>Tags: #Anime3.Random.Episode.TagType</label>
 		<width>260</width>
 		<textXOff>40</textXOff>
 		<posX>640</posX>
@@ -759,7 +759,7 @@
 	</control>
 	
 	<control>
-	  <description>Episode Categories</description>
+	  <description>Episode Tags</description>
 	  <type>textboxscrollup</type>
 	  <id>631</id>
 	  <posX>640</posX>
@@ -769,7 +769,7 @@
 	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
 	  <font>font10</font>
 	  <visible>Control.IsVisible(1552)+!Control.IsVisible(1553)</visible>
-	  <label>#Anime3.Random.Episode.Categories</label>
+	  <label>#Anime3.Random.Episode.Tags</label>
 	</control>
 	
 	<!--  ************** TOOL BAR - Series *****************  -->
@@ -879,10 +879,10 @@
 	</control>
 	
 	<control>
-		<description>Add Category</description>
+		<description>Add Tag</description>
 		<type>button</type>
 		<id>806</id>
-		<label>Add Category</label>
+		<label>Add Tag</label>
 		<width>260</width>
 		<textXOff>40</textXOff>
 		<posX>340</posX>
@@ -898,10 +898,10 @@
 	</control>
 	
 	<control>
-		<description>Clear Categories</description>
+		<description>Clear Tags</description>
 		<type>button</type>
 		<id>807</id>
-		<label>Clear Categories</label>
+		<label>Clear Tags</label>
 		<width>260</width>
 		<textXOff>40</textXOff>
 		<posX>340</posX>
@@ -917,10 +917,10 @@
 	</control>
 	
 	<control>
-		<description>Category All/Any</description>
+		<description>Tag All/Any</description>
 		  <type>button</type>
 		<id>808</id>
-		<label>Categories: #Anime3.Random.Series.CategoryType</label>
+		<label>Tags: #Anime3.Random.Series.TagType</label>
 		<width>260</width>
 		<textXOff>40</textXOff>
 		<posX>640</posX>
@@ -936,7 +936,7 @@
 	</control>
 	
 	<control>
-	  <description>Series Categories</description>
+	  <description>Series Tags</description>
 	  <type>textboxscrollup</type>
 	  <id>631</id>
 	  <posX>640</posX>
@@ -946,7 +946,7 @@
 	  <seperator>----------------------------------------------------------------------------------------------------</seperator>
 	  <font>font10</font>
 	  <visible>Control.IsVisible(1551)+!Control.IsVisible(1553)</visible>
-	  <label>#Anime3.Random.Series.Categories</label>
+	  <label>#Anime3.Random.Series.Tags</label>
 	</control>
     
   </controls>

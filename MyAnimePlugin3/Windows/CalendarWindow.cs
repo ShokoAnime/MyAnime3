@@ -229,8 +229,8 @@ namespace MyAnimePlugin3.Windows
 			setGUIProperty("Calendar.Title", anime.FormattedTitle);
 			setGUIProperty("Calendar.Description", anime.ParsedDescription);
 			setGUIProperty("Calendar.AirDate", anime.AirDateAsString);
-			setGUIProperty("Calendar.Genre", anime.CategoriesFormatted);
-			setGUIProperty("Calendar.GenreShort", anime.CategoriesFormattedShort);
+			setGUIProperty("Calendar.Genre", anime.TagsFormatted);
+			setGUIProperty("Calendar.GenreShort", anime.TagsFormattedShort);
 			setGUIProperty("Calendar.Restricted", "-");
 		}
 

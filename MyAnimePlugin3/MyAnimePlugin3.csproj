@@ -481,7 +481,7 @@
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_TraktTVShowResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Activity.datasource">
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_CommentUser.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_Episode.datasource">
@@ -491,9 +491,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ImagePoster.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_Trakt_ShoutUser.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_TvDBLanguage.datasource">

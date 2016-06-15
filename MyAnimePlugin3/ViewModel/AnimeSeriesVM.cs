@@ -116,13 +116,7 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public string TagsString
-		{
-			get
-			{
-                return AniDB_Anime.AllTags;
-			}
-		}
+
 
 		public DateTime? Stat_SeriesCreatedDate
 		{
@@ -481,7 +475,7 @@ namespace MyAnimePlugin3.ViewModel
 
 		public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
 		{
-			AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime);
+			AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime.AniDBAnime);
 
 			if (contract.CrossRefAniDBTvDBV2 != null)
 			{

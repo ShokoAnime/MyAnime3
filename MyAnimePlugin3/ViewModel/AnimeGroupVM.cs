@@ -37,17 +37,17 @@ namespace MyAnimePlugin3.ViewModel
 		public decimal? Stat_UserVotePermanent { get; set; }
 		public decimal? Stat_UserVoteTemporary { get; set; }
 		public decimal? Stat_UserVoteOverall { get; set; }
-		public string Stat_AllTags { get; set; }
-		public string Stat_AllTitles { get; set; }
+		public HashSet<string> Stat_AllTags { get; set; }
+		public HashSet<string> Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
 		public bool Stat_HasFinishedAiring { get; set; }
 		public bool Stat_HasTvDBLink { get; set; }
 		public bool Stat_HasMovieDBLink { get; set; }
 		public bool Stat_HasMovieDBOrTvDBLink { get; set; }
-		public string Stat_AllVideoQuality { get; set; }
-		public string Stat_AllVideoQuality_Episodes { get; set; }
-		public string Stat_AudioLanguages { get; set; }
-		public string Stat_SubtitleLanguages { get; set; }
+		public HashSet<string> Stat_AllVideoQuality { get; set; }
+		public HashSet<string> Stat_AllVideoQuality_Episodes { get; set; }
+		public HashSet<string> Stat_AudioLanguages { get; set; }
+		public HashSet<string> Stat_SubtitleLanguages { get; set; }
 		public int Stat_SeriesCount { get; set; }
 		public int Stat_EpisodeCount { get; set; }
 		public decimal Stat_AniDBRating { get; set; }
@@ -64,23 +64,14 @@ namespace MyAnimePlugin3.ViewModel
 			return string.Format("{0} - {1}", AnimeGroupID, GroupName);
 		}
 
-		public List<string> Tags
-		{
-			get
-			{
-				string[] cats = Stat_AllTags.Split('|');
 
-				if (cats.Length == 0) return new List<string>();
-				return new List<string>(cats);
-			}
-		}
 
 		public string TagsFormatted
 		{
 			get
 			{
 				string ret = "";
-				foreach (string tag in Tags)
+				foreach (string tag in Stat_AllTags)
 				{
 					if (ret.Length > 0) ret += ", ";
 					ret += tag;
@@ -95,7 +86,7 @@ namespace MyAnimePlugin3.ViewModel
 			{
 				string ret = "";
 				int i = 0;
-				foreach (string tag in Tags)
+				foreach (string tag in Stat_AllTags)
 				{
 					if (ret.Length > 0) ret += ", ";
 					ret += tag;
@@ -474,14 +465,14 @@ namespace MyAnimePlugin3.ViewModel
 			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
 			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
 			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-			this.Stat_AllTags = contract.Stat_AllTags;
-			this.Stat_AllTitles = contract.Stat_AllTitles;
+			this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags);
+			this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles);
 			this.Stat_IsComplete = contract.Stat_IsComplete;
 			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
-			this.Stat_AllVideoQuality = contract.Stat_AllVideoQuality;
-			this.Stat_AllVideoQuality_Episodes = contract.Stat_AllVideoQuality_Episodes;
-			this.Stat_AudioLanguages = contract.Stat_AudioLanguages;
-			this.Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
+			this.Stat_AllVideoQuality = new HashSet<string>(contract.Stat_AllVideoQuality);
+			this.Stat_AllVideoQuality_Episodes = new HashSet<string>(contract.Stat_AllVideoQuality_Episodes);
+			this.Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
+			this.Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
 			this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
 			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
 			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;

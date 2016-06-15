@@ -137,8 +137,8 @@ namespace MyAnimePlugin3.Windows
 
 			setGUIProperty("NumberOfMatches", MainWindow.RandomWindow_MatchesFound.ToString());
 
-            setGUIProperty("Series.Tags", MainWindow.RandomWindow_SeriesTags);
-            setGUIProperty("Episode.Tags", MainWindow.RandomWindow_EpisodeTags);
+            setGUIProperty("Series.Tags", string.Join(", ",MainWindow.RandomWindow_SeriesTags));
+            setGUIProperty("Episode.Tags", string.Join(", ", MainWindow.RandomWindow_EpisodeTags));
 
 			if (MainWindow.RandomWindow_SeriesAllTags)
                 setGUIProperty("Series.TagType", "All");
@@ -259,10 +259,10 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("Total groups for filter = " + contracts.Count.ToString());
 
-				string selectedTags = MainWindow.RandomWindow_SeriesTags;
+				HashSet<string> selectedTags = new HashSet<string>(MainWindow.RandomWindow_SeriesTags,StringComparer.InvariantCultureIgnoreCase);
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					selectedTags = MainWindow.RandomWindow_EpisodeTags;
-
+					selectedTags = new HashSet<string>(MainWindow.RandomWindow_EpisodeTags, StringComparer.InvariantCultureIgnoreCase);
+                
 				foreach (JMMServerBinary.Contract_AnimeGroup grpContract in contracts)
 				{
 					AnimeGroupVM grp = new AnimeGroupVM(grpContract);
@@ -271,42 +271,14 @@ namespace MyAnimePlugin3.Windows
 
 					foreach (AnimeSeriesVM ser in grp.AllSeries)
 					{
+
 						// tags
-						if (!string.IsNullOrEmpty(selectedTags))
+						if (selectedTags.Count>0)
 						{
-							string filterParm = selectedTags.Trim();
-
-							string[] tags = filterParm.Split(',');
-
-							bool foundTag = false;
-							if (allTags) foundTag = true; // all
-
-							int index = 0;
-							foreach (string tag in tags)
-							{
-								string thistag = tag.Trim();
-								if (thistag.Trim().Length == 0) continue;
-								if (thistag.Trim() == ",") continue;
-
-								index = ser.TagsString.IndexOf(thistag, 0, StringComparison.InvariantCultureIgnoreCase);
-
-								if (!allTags) // any
-								{
-									if (index > -1)
-									{
-										foundTag = true;
-										break;
-									}
-								}
-								else //all
-								{
-									if (index < 0)
-									{
-										foundTag = false;
-										break;
-									}
-								}
-							}
+                            bool foundTag = false;
+                            if (allTags) foundTag = true; // all
+                            if (ser.AniDB_Anime.AllTags.Overlaps(selectedTags))
+                                foundTag = true;
 							if (!foundTag) continue;
 
 						}
@@ -361,52 +333,25 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + grp.GroupName);
 
-				string selectedTags = MainWindow.RandomWindow_SeriesTags;
-				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					selectedTags = MainWindow.RandomWindow_EpisodeTags;
+                HashSet<string> selectedTags = new HashSet<string>(MainWindow.RandomWindow_SeriesTags, StringComparer.InvariantCultureIgnoreCase);
+                if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
+                    selectedTags = new HashSet<string>(MainWindow.RandomWindow_EpisodeTags, StringComparer.InvariantCultureIgnoreCase);
 
-				foreach (AnimeSeriesVM ser in grp.AllSeries)
+
+                foreach (AnimeSeriesVM ser in grp.AllSeries)
 				{
-					// tags
-					if (!string.IsNullOrEmpty(selectedTags))
-					{
-						string filterParm = selectedTags.Trim();
+                    // tags
+                    if (selectedTags.Count > 0)
+                    {
+                        bool foundTag = false;
+                        if (allTags) foundTag = true; // all
+                        if (ser.AniDB_Anime.AllTags.Overlaps(selectedTags))
+                            foundTag = true;
+                        if (!foundTag) continue;
 
-						string[] tags = filterParm.Split(',');
+                    }
 
-						bool foundTag = false;
-						if (allTags) foundTag = true; // all
-
-						int index = 0;
-						foreach (string tag in tags)
-						{
-							string thiscat = tag.Trim();
-							if (thiscat.Trim().Length == 0) continue;
-							if (thiscat.Trim() == ",") continue;
-
-							index = ser.TagsString.IndexOf(thiscat, 0, StringComparison.InvariantCultureIgnoreCase);
-
-							if (!allTags) // any
-							{
-								if (index > -1)
-								{
-									foundTag = true;
-									break;
-								}
-							}
-							else //all
-							{
-								if (index < 0)
-								{
-									foundTag = false;
-									break;
-								}
-							}
-						}
-						if (!foundTag) continue;
-
-					}
-					serList.Add(ser);
+                    serList.Add(ser);
 				}
 
 			}
@@ -658,11 +603,8 @@ namespace MyAnimePlugin3.Windows
 				string cat = Utils.PromptSelectTag("");
 				if (!string.IsNullOrEmpty(cat))
 				{
-					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_SeriesTags))
-						MainWindow.RandomWindow_SeriesTags += ", ";
-
-					MainWindow.RandomWindow_SeriesTags += cat;
-
+					MainWindow.RandomWindow_SeriesTags.Add(cat);
+                    
 					SetDisplayDetails();
 				}
 			}
@@ -672,24 +614,21 @@ namespace MyAnimePlugin3.Windows
 				string cat = Utils.PromptSelectTag("");
 				if (!string.IsNullOrEmpty(cat))
 				{
-					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_EpisodeTags))
-						MainWindow.RandomWindow_EpisodeTags += ", ";
-
-					MainWindow.RandomWindow_EpisodeTags += cat;
-
+					MainWindow.RandomWindow_EpisodeTags.Add(cat);
+                    
 					SetDisplayDetails();
 				}
 			}
 
 			if (btnClearTags != null && control == btnClearTags)
 			{
-				MainWindow.RandomWindow_SeriesTags = "";
+				MainWindow.RandomWindow_SeriesTags = new List<string>();
 				SetDisplayDetails();
 			}
 
 			if (btnEpisodeClearTags != null && control == btnEpisodeClearTags)
 			{
-				MainWindow.RandomWindow_EpisodeTags = "";
+				MainWindow.RandomWindow_EpisodeTags = new List<string>();
 				SetDisplayDetails();
 			}
 

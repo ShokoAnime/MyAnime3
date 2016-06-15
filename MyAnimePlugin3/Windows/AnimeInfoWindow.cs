@@ -435,7 +435,7 @@ namespace MyAnimePlugin3.Windows
 			int i = 0;
 			string ret = "";
 
-			foreach (string title in MainAnime.Titles)
+			foreach (string title in MainAnime.AllTitles)
 			{
 				if (i == 4) break;
 				if (!string.IsNullOrEmpty(ret)) ret += " **";

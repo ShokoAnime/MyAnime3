@@ -323,7 +323,8 @@ namespace MyAnimePlugin3.ViewModel
             try
             {
                 List<JMMServerBinary.Contract_GroupFilter> gf_cons = JMMServerVM.Instance.clientBinaryHTTP.GetGroupFilters(groupfilterid);
-                foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons)
+                foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons.Where(a=>(a.Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) && a.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count > 0)
+                        || (a.FilterType & (int)GroupFilterType.Directory) == (int)GroupFilterType.Directory).OrderBy(a=>a.GroupFilterName))
                 {
                     GroupFilterVM gf = new GroupFilterVM(gf_con);
                     gfs.Add(gf);

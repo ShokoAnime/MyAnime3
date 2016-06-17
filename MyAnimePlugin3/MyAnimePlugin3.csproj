@@ -292,6 +292,9 @@
     <None Include="Service References\JMMServerBinary\configuration91.svcinfo" />
     <None Include="Service References\JMMServerBinary\configuration.svcinfo" />
     <None Include="Service References\JMMServerBinary\JMMServerBinary.wsdl" />
+    <None Include="Service References\JMMServerBinary\JMMServerBinary4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AdminMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

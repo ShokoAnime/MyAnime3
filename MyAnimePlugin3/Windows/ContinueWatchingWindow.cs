@@ -344,7 +344,7 @@ namespace MyAnimePlugin3.Windows
 						case 2:
 
 							if (ep.AnimeSeries == null) return;
-							MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
+							MainWindow.selectedGroupFilter = MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
 
 							// find the group for this series
 							AnimeGroupVM grp = JMMServerHelper.GetGroup(ep.AnimeSeries.AnimeGroupID);

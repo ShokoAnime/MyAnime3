@@ -19,9 +19,9 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			return JMMServerHelper.GetTopLevelGroupFilters();
 		}
-        public static List<GroupFilterVM> GetChildGroupFilters(int groupfilterid)
+        public static List<GroupFilterVM> GetChildGroupFilters(GroupFilterVM gf)
         {
-            return JMMServerHelper.GetChildGroupFilters(groupfilterid);
+            return JMMServerHelper.GetChildGroupFilters(gf);
         }
         public static string GetTextForEnum_Sorting(GroupFilterSorting sort)
 		{

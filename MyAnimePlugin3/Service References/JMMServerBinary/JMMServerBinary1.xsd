@@ -2,6 +2,19 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JMMContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" />
+  <xs:complexType name="ArrayOfContract_TvDBLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDBLanguage" nillable="true" type="tns:ArrayOfContract_TvDBLanguage" />
+  <xs:complexType name="Contract_TvDBLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Abbreviation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
   <xs:complexType name="ArrayOfContract_Trakt_CommentUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_CommentUser" nillable="true" type="tns:Contract_Trakt_CommentUser" />
@@ -1375,19 +1388,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
-  <xs:complexType name="ArrayOfContract_TvDBLanguage">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDBLanguage" nillable="true" type="tns:ArrayOfContract_TvDBLanguage" />
-  <xs:complexType name="Contract_TvDBLanguage">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Abbreviation" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
   <xs:complexType name="Contract_Azure_AnimeLink">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeNeedingApproval" type="xs:int" />

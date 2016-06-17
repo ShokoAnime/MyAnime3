@@ -686,7 +686,7 @@ namespace MyAnimePlugin3.Windows
 			if (btnEpisodeList != null && control == btnEpisodeList)
 			{
 				if (MainWindow.RandomWindow_CurrentSeries == null) return;
-				MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
+				MainWindow.selectedGroupFilter = MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
 
 				// find the group for this series
 				AnimeGroupVM grp = JMMServerHelper.GetGroup(MainWindow.RandomWindow_CurrentSeries.AnimeGroupID);

@@ -60,7 +60,7 @@ namespace MyAnimePlugin3
 
 	    public static List<GroupFilterVM> GetChildFilters(GroupFilterVM pre)
 	    {
-	        return GroupFilterHelper.GetChildGroupFilters(pre.GroupFilterID.Value);
+	        return GroupFilterHelper.GetChildGroupFilters(pre);
 	    }
 	}
 }

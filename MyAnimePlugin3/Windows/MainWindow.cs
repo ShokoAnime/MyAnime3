@@ -16,10 +16,12 @@ using System.Runtime.InteropServices;
 using MyAnimePlugin3.Downloads;
 using Action = MediaPortal.GUI.Library.Action;
 using System.Collections;
+using System.Linq;
 using MyAnimePlugin3.ViewModel;
 using MyAnimePlugin3.ImageManagement;
 using MyAnimePlugin3.MultiSortLib;
 using MediaPortal.Player;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3
 {
@@ -186,6 +188,7 @@ namespace MyAnimePlugin3
 		//private bool isInitialGroupLoad = true;
 
 		public static GroupFilterVM curGroupFilter = null;
+	    public static GroupFilterVM selectedGroupFilter = null;
 
 		public static AnimeGroupVM curAnimeGroup = null;
 		public static AnimeGroupVM curAnimeGroupViewed = null;
@@ -962,8 +965,8 @@ namespace MyAnimePlugin3
 							if (workerFacade.CancellationPending)
 								return;
 
-							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters");
-							groupFilters = curGroupFilter==null ? FacadeHelper.GetTopLevelGroupFilters() : FacadeHelper.GetChildFilters(curGroupFilter);
+							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters --- "+(selectedGroupFilter == null ? "ROOT" : selectedGroupFilter.GroupFilterName));
+							groupFilters = selectedGroupFilter==null ? FacadeHelper.GetTopLevelGroupFilters() : FacadeHelper.GetChildFilters(selectedGroupFilter);
 							type = BackGroundLoadingArgumentType.ListFullElement;
 
 							setGUIProperty(guiProperty.GroupCount, groupFilters.Count.ToString());
@@ -1000,7 +1003,7 @@ namespace MyAnimePlugin3
 						{
 							// List/Poster/Banner
 
-							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
+							setGUIProperty("SimpleCurrentView", selectedGroupFilter.GroupFilterName);
 
 							if (groupViewMode != GUIFacadeControl.Layout.List)
 							{
@@ -1023,16 +1026,16 @@ namespace MyAnimePlugin3
 							if (workerFacade.CancellationPending)
 								return;
 
-							groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
+							groups = JMMServerHelper.GetAnimeGroupsForFilter(selectedGroupFilter);
 
 
 							// re-sort if user has set a quick sort
-							if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
+							if (GroupFilterQuickSorts.ContainsKey(selectedGroupFilter.GroupFilterID.Value))
 							{
 								BaseConfig.MyAnimeLog.Write("APPLYING QUICK SORT");
 
-								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortType);
-								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection);
+								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[selectedGroupFilter.GroupFilterID.Value].SortType);
+								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterQuickSorts[selectedGroupFilter.GroupFilterID.Value].SortDirection);
 								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
 								sortCriteria.Add(sortProp);
 								groups = Sorting.MultiSort<AnimeGroupVM>(groups, sortCriteria);
@@ -1048,7 +1051,7 @@ namespace MyAnimePlugin3
 							double totalTime = 0;
 							DateTime start = DateTime.Now;
 
-							BaseConfig.MyAnimeLog.Write("Building groups: " + curGroupFilter.GroupFilterName);
+							BaseConfig.MyAnimeLog.Write("Building groups: " + selectedGroupFilter.GroupFilterName);
 							foreach (AnimeGroupVM grp in groups)
 							{
 								if (workerFacade.CancellationPending) return;
@@ -2211,7 +2214,7 @@ namespace MyAnimePlugin3
 					curAnimeEpisode = null;
 					curAnimeGroup = null;
 					curAnimeSeries = null;
-					curGroupFilter = null;
+					curGroupFilter = selectedGroupFilter = null;
 
 					// user has logged in, so save to settings so we will log in as the same user next time
 					settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
@@ -2254,11 +2257,9 @@ namespace MyAnimePlugin3
 					switch (listLevel)
 					{
 						case Listlevel.GroupFilter:
-                            GroupFilterVM c = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
-                            if (c == null) return;
-                            c.ParentFilter = curGroupFilter;
-                            curGroupFilter = c;
-							if ((curGroupFilter.FilterType & (int)GroupFilterType.Directory)==(int)GroupFilterType.Directory)
+                            selectedGroupFilter = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
+                            if (selectedGroupFilter == null) return;
+							if ((selectedGroupFilter.FilterType & (int)GroupFilterType.Directory)==(int)GroupFilterType.Directory)
 								listLevel = Listlevel.GroupFilter;
 							else
 								listLevel = Listlevel.Group;
@@ -2504,70 +2505,71 @@ namespace MyAnimePlugin3
 						return;
 					}
 
-					// back one level
-					if (listLevel == Listlevel.GroupFilter && curGroupFilter==null || curGroupFilter.ParentFilter==null)
+                    // back one level
+
+					string msg = string.Format("LIST LEVEL:: {0} - GF: {1} ", listLevel, selectedGroupFilter?.GroupFilterName ?? "None");
+
+					BaseConfig.MyAnimeLog.Write(msg);
+					if (listLevel == Listlevel.GroupFilter)
 					{
-						goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME;
+					    if (selectedGroupFilter == null)
+					    {
+                            BaseConfig.MyAnimeLog.Write("Going HOME");
+                            goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME;
+                        }
+                        selectedGroupFilter = selectedGroupFilter?.ParentFilter;
+                        BaseConfig.MyAnimeLog.Write("Goto GroupFilter " + ((selectedGroupFilter == null) ? " Main  " : selectedGroupFilter.GroupFilterName));
+                        listLevel = Listlevel.GroupFilter;
+						LoadFacade();
 					}
-					else
+
+					if (listLevel == Listlevel.Group)
 					{
-						string msg = string.Format("LIST LEVEL:: {0} - GF: {1} ", listLevel, curGroupFilter);
+						// go back to GROUP FILTERS
+						listLevel = Listlevel.GroupFilter;
+						curAnimeGroup = null;
+                        selectedGroupFilter = selectedGroupFilter?.ParentFilter;
+                        LoadFacade();
+                        BaseConfig.MyAnimeLog.Write("Goto GroupFilter "+((selectedGroupFilter == null) ?" NUL " : selectedGroupFilter.GroupFilterName));
+                    }
 
-						BaseConfig.MyAnimeLog.Write(msg);
-						if (listLevel == Listlevel.GroupFilter)
-						{
-							listLevel = Listlevel.GroupFilter;
-						    curGroupFilter = curGroupFilter.ParentFilter;
+					if (listLevel == Listlevel.Series)
+					{
+						// go back to GROUP
+						AnimeGroupVM parentGroup = curAnimeGroupViewed.ParentGroup;
+						if (parentGroup == null)
+							listLevel = Listlevel.Group;
 
-							LoadFacade();
-						}
+						ShowParentLevelForGroup(parentGroup);
 
-						if (listLevel == Listlevel.Group)
-						{
-							// go back to GROUP FILTERS
-							listLevel = Listlevel.GroupFilter;
-							LoadFacade();
-							curAnimeGroup = null;
-						}
-
-						if (listLevel == Listlevel.Series)
-						{
-							// go back to GROUP
-							AnimeGroupVM parentGroup = curAnimeGroupViewed.ParentGroup;
-							if (parentGroup == null)
-								listLevel = Listlevel.Group;
-
-							ShowParentLevelForGroup(parentGroup);
-
-							LoadFacade();
-							curAnimeEpisodeType = null;
-							curAnimeSeries = null;
-						}
+						LoadFacade();
+						curAnimeEpisodeType = null;
+						curAnimeSeries = null;
+					}
 
 						
-						if (listLevel == Listlevel.EpisodeTypes)
-						{
-							// go back to SERIES
-							AnimeSeriesVM parentSeries = curAnimeEpisodeType.AnimeSeries;
+					if (listLevel == Listlevel.EpisodeTypes)
+					{
+						// go back to SERIES
+						AnimeSeriesVM parentSeries = curAnimeEpisodeType.AnimeSeries;
+						ShowParentLevelForSeries(parentSeries);
+						LoadFacade();
+						return;
+					}
+						
+					if (listLevel == Listlevel.Episode)
+					{
+						AnimeSeriesVM parentSeries = curAnimeEpisodeType.AnimeSeries;
+						if (parentSeries.EpisodeTypesToDisplay.Count == 1)
 							ShowParentLevelForSeries(parentSeries);
-							LoadFacade();
-							return;
-						}
-						
-						if (listLevel == Listlevel.Episode)
+						else
 						{
-							AnimeSeriesVM parentSeries = curAnimeEpisodeType.AnimeSeries;
-							if (parentSeries.EpisodeTypesToDisplay.Count == 1)
-								ShowParentLevelForSeries(parentSeries);
-							else
-							{
-								listLevel = Listlevel.EpisodeTypes;
-								curAnimeEpisodeType = null;
-							}
-
-							LoadFacade();
-							return;
+							listLevel = Listlevel.EpisodeTypes;
+							curAnimeEpisodeType = null;
 						}
+
+						LoadFacade();
+						return;
 					}
 					break;
 
@@ -3247,6 +3249,36 @@ namespace MyAnimePlugin3
 			GroupFilter_OnItemSelectedDisplay();
 		}
 
+	    private AnimeGroupVM FindGroupForGroupFilter(GroupFilterVM gf)
+	    {
+	        if (gf.Childs.Count > 0)
+	        {
+                foreach (int v in gf.Childs.Randomize(gf.Childs.Count))
+	            {
+                    Contract_GroupFilter cq =JMMServerVM.Instance.clientBinaryHTTP.GetGroupFilter(v);
+	                if (cq != null)
+	                {
+	                    GroupFilterVM gfm=new GroupFilterVM(cq);
+                        AnimeGroupVM n = FindGroupForGroupFilter(gfm);
+	                    if (n != null)
+	                        return n;
+	                }
+                }
+            }
+	        else if (gf.Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) && gf.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count > 0)
+	        {
+	            foreach (int v in gf.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Randomize(gf.Groups.Count))
+	            {
+	                Contract_AnimeGroup g = JMMServerVM.Instance.clientBinaryHTTP.GetGroup(v,
+	                    JMMServerVM.Instance.CurrentUser.JMMUserID);
+	                if (g != null)
+                        return new AnimeGroupVM(g);
+	            }
+	        }
+	        return null;
+	    }
+
+
 		private void GroupFilter_OnItemSelectedDisplay()
 		{
 			if (curGroupFilter == null) return;
@@ -3257,22 +3289,23 @@ namespace MyAnimePlugin3
 			setGUIProperty(guiProperty.SeriesTitle, curGroupFilter.GroupFilterName);
 			setGUIProperty(guiProperty.Title, curGroupFilter.GroupFilterName);
 			setGUIProperty("GroupFilter.FilterName", curGroupFilter.GroupFilterName);
+            setGUIProperty("GroupFilter.GroupCount", ((curGroupFilter.Childs.Count>0) ? curGroupFilter.Childs.Count.ToString() : curGroupFilter.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count.ToString()));
 
-			AnimeGroupVM grp = null;
-			List<AnimeGroupVM> groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
-			if (groups.Count > 0)
-			{
-				grp = groups[groupRandom.Next(0, groups.Count - 1)];
-			}
-			setGUIProperty("GroupFilter.GroupCount", groups.Count.ToString());
+            AnimeGroupVM grp = FindGroupForGroupFilter(curGroupFilter);
 
-			if (grp != null)
-			{
-				// Delayed Image Loading of Series Banners            
-				listPoster.Filename = ImageAllocator.GetGroupImageAsFileName(grp, GUIFacadeControl.Layout.List);
 
-				LoadFanart(grp);
-			}
+            if (grp != null)
+            {
+                // Delayed Image Loading of Series Banners            
+                listPoster.Filename = ImageAllocator.GetGroupImageAsFileName(grp, GUIFacadeControl.Layout.List);
+
+                LoadFanart(grp);
+            }
+
+
+
+
+
 
 		}
 
@@ -3817,12 +3850,12 @@ namespace MyAnimePlugin3
 
 		private void clearGUIProperty(guiProperty which)
 		{
-			setGUIProperty(which, string.Empty);
+			setGUIProperty(which, " ");
 		}
 
 		public static void clearGUIProperty(string which)
 		{
-			setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
+			setGUIProperty(which, " "); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
 		}
 
 		#endregion
@@ -5976,4 +6009,13 @@ namespace MyAnimePlugin3
 		public object Argument = null;
 		public int IndexArgument = 0;
 	}
+
+    public static class Extensions
+    {
+        public static IEnumerable<T> Randomize<T>(this IEnumerable<T> source, int seed)
+        {
+            Random rnd = new Random(seed);
+            return source.OrderBy(item => rnd.Next());
+        }
+    }
 }

@@ -87,10 +87,10 @@ namespace MyAnimePlugin3.Downloads
 
 			switch (searchType)
 			{
-				case DownloadSearchType.Episode: ret = "Episode"; break;
-				case DownloadSearchType.Manual: ret = "Manual"; break;
-				case DownloadSearchType.Series: ret = "Anime"; break;
-			}
+                case DownloadSearchType.Episode: ret = Translation.Episode; break;
+                case DownloadSearchType.Manual: ret = Translation.Manual; break;
+                case DownloadSearchType.Series: ret = Translation.Anime; break;
+            }
 
 			ret += ": ";
 

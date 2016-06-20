@@ -16,10 +16,13 @@ using System.Runtime.InteropServices;
 using MyAnimePlugin3.Downloads;
 using Action = MediaPortal.GUI.Library.Action;
 using System.Collections;
+using System.Globalization;
+using System.Linq;
 using MyAnimePlugin3.ViewModel;
 using MyAnimePlugin3.ImageManagement;
 using MyAnimePlugin3.MultiSortLib;
 using MediaPortal.Player;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3
 {
@@ -37,7 +40,7 @@ namespace MyAnimePlugin3
 		[SkinControlAttribute(12)]
 		protected GUIButtonControl btnSwitchUser = null;
 
-		[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
+		//[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
 		[SkinControlAttribute(921)] protected GUIButtonControl btnWindowUtilities = null;
 		[SkinControlAttribute(922)] protected GUIButtonControl btnWindowCalendar = null;
 		[SkinControlAttribute(923)] protected GUIButtonControl btnWindowDownloads = null;
@@ -108,11 +111,21 @@ namespace MyAnimePlugin3
 		[SkinControlAttribute(3465)]
 		protected GUIControl dummyFindModeText = null;
 
-		#endregion
 
-		public static Listlevel listLevel = Listlevel.GroupFilter;
-		public static object parentLevelObject = null;
-		private static Random groupRandom = new Random();
+        [SkinControl(1300)]
+        protected GUIImage dummyStarOffPlaceholder = null;
+        [SkinControl(1301)]
+        protected GUIImage dummyStarOnPlaceholder = null;
+        [SkinControl(1302)]
+        protected GUIImage dummyStarCustomPlaceholder = null;
+
+        #endregion
+        /*
+public static Listlevel listLevel = Listlevel.GroupFilter;
+public static object parentLevelObject = null;
+
+*/
+        private static Random groupRandom = new Random();
 
 		public static RandomSeriesEpisodeLevel RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.All;
 		public static RandomObjectType RandomWindow_RandomType = RandomObjectType.Series;
@@ -126,16 +139,16 @@ namespace MyAnimePlugin3
 		public static bool RandomWindow_SeriesPartiallyWatched = true;
 		public static bool RandomWindow_SeriesOnlyComplete = true;
 		public static bool RandomWindow_SeriesAllTags = true;
-		public static string RandomWindow_SeriesTags = "";
+		public static List<string> RandomWindow_SeriesTags=new List<string>();
 
 		public static bool RandomWindow_EpisodeWatched = true;
 		public static bool RandomWindow_EpisodeUnwatched = true;
 		public static bool RandomWindow_EpisodeAllTags = true;
-		public static string RandomWindow_EpisodeTags = "";
+	    public static List<string> RandomWindow_EpisodeTags = new List<string>();
 
-		//private bool fanartSet = false;
+        //private bool fanartSet = false;
 
-		private readonly int artworkDelay = 5;
+        private readonly int artworkDelay = 5;
 		private System.Timers.Timer displayGrpFilterTimer = null;
 		private System.Timers.Timer displayGrpTimer = null;
 
@@ -149,8 +162,7 @@ namespace MyAnimePlugin3
 		public static List<DownloadSearchCriteria> downloadSearchHistory = new List<DownloadSearchCriteria>();
 		public static List<List<TorrentLink>> downloadSearchResultsHistory = new List<List<TorrentLink>>();
 
-		public static int LastFocusType = -1; //
-		public static int LastFocusID = -1; // 
+
 
 	
 		public static int GlobalSeriesID = -1; // either AnimeSeriesID
@@ -183,28 +195,148 @@ namespace MyAnimePlugin3
 		private AsyncImageResource listPoster = null;
 		private AsyncImageResource fanartTexture = null;
 
+	    public static List<History> Breadcrumbs = new List<History>() {new History()};
+        
 		//private bool isInitialGroupLoad = true;
-
+        /*
 		public static GroupFilterVM curGroupFilter = null;
-		public static GroupFilterVM curGroupFilterSub = null;
-		public static GroupFilterVM curGroupFilterSub2 = null;
+	    public static GroupFilterVM selectedGroupFilter = null;
+
 		public static AnimeGroupVM curAnimeGroup = null;
 		public static AnimeGroupVM curAnimeGroupViewed = null;
-		public static AnimeSeriesVM curAnimeSeries = null;
+		public static AnimeSeriesVM ser = null;
 		public static AnimeEpisodeTypeVM curAnimeEpisodeType = null;
 		private AnimeEpisodeVM curAnimeEpisode = null;
-
+        */
 		Dictionary<int, QuickSort> GroupFilterQuickSorts = null;
 
-		
+        public static string LastestVersion = string.Empty;
+        public static DateTime NextVersionCheck = DateTime.Now;
 
-		private System.Timers.Timer searchTimer = null;
+
+        private System.Timers.Timer searchTimer = null;
 		private System.Timers.Timer autoUpdateTimer = null;
 		private SearchCollection search = null;
 		private List<GUIListItem> lstFacadeItems = null;
 		private string searchSound = "click.wav";
 
-		public delegate void OnToggleWatchedHandler(List<AnimeEpisodeVM> episodes, bool state);
+
+        #region GUI Properties
+
+        public enum GuiProperty
+        {
+            Title,
+            Subtitle,
+            Description,
+            CurrentView,
+            SimpleCurrentView,
+            NextView,
+            LastView,
+            SeriesBanner,
+            SeasonBanner,
+            EpisodeImage,
+            Logos,
+            SeriesCount,
+            GroupCount,
+            EpisodeCount,
+            RomanjiTitle,
+            EnglishTitle,
+            KanjiTitle,
+            RotatorTitle,
+            FindText,
+            FindMode,
+            FindStartWord,
+            FindInput,
+            FindMatch,
+            FindSharpMode,
+            FindAsteriskMode,
+            SeriesTitle,
+            EpisodesTypeTitle,
+            NotificationLine1,
+            NotificationLine2,
+            NotificationIcon,
+            NotificationAction,
+            VersionNumber,
+            LatestVersionNumber,
+            LatestVersionText,
+            GroupFilter_FilterName,
+            GroupFilter_GroupCount,
+            SeriesGroup_MyRating,
+            SeriesGroup_SeriesCount,
+            SeriesGroup_Genre,
+            SeriesGroup_GenreShort,
+            SeriesGroup_Year,
+            SeriesGroup_RawRating,
+            SeriesGroup_RatingVoteCount,
+            SeriesGroup_Rating,
+            SeriesGroup_Episodes,
+            SeriesGroup_EpisodeCountNormal,
+            SeriesGroup_EpisodeCountSpecial,
+            SeriesGroup_EpisodeCountUnwatched,
+            SeriesGroup_EpisodeCountWatched,
+            HasherQueueCount,
+            HasherQueueState,
+            HasherQueueRunning,
+            GeneralQueueCount,
+            GeneralQueueState,
+            GeneralQueueRunning,
+            ImagesQueueCount,
+            ImagesQueueState,
+            ImagesQueueRunning,
+            SeriesGroup_EpisodesAvailable,
+            SeriesGroup_EpisodeCountNormalAvailable,
+            SeriesGroup_EpisodeCountSpecialAvailable,
+            Episode_Image,
+            Episode_Description,
+            Episode_EpisodeName,
+            Episode_EpisodeDisplayName,
+            Episode_SeriesTypeLabel,
+            Episode_AirDate,
+            Episode_Length,
+            Episode_Rating,
+            Episode_RawRating,
+            Episode_RatingVoteCount,
+            Episode_FileInfo,
+            GroupSeriesPoster,
+            Fanart_1,
+            Fanart_2,
+            RatingImage,
+            CustomRatingImage,
+        }
+
+        #endregion
+
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+        public string GetPropertyName(GuiProperty which) { return this.GetPropertyName(which.ToString()); }
+
+
+        private static string StaticGetPropertyName(string which)
+        {
+            return Extensions.BaseProperties + "." + which.Replace("_", ".").Replace("ñ", "_");
+        }
+        public static void StaticSetGUIProperty(GuiProperty which, string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                value = " ";
+            GUIPropertyManager.SetProperty(StaticGetPropertyName(which.ToString()), value);
+        }
+        public static void PopulateVersionNumber()
+        {
+            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+            StaticSetGUIProperty(GuiProperty.VersionNumber, Utils.GetApplicationVersion(a));
+            Version v = new Version(Utils.GetApplicationVersion(a));
+            if (!string.IsNullOrEmpty(LastestVersion))
+            {
+                StaticSetGUIProperty(GuiProperty.LatestVersionNumber, LastestVersion);
+                Version last = new Version(LastestVersion);
+                StaticSetGUIProperty(GuiProperty.LatestVersionText, last.CompareTo(v) > 0 ? Translation.NewVersionAvailable : Translation.PluginUpToDate);
+            }
+            else
+                StaticSetGUIProperty(GuiProperty.LatestVersionText, Translation.PluginUpToDate);
+        }
+
+        public delegate void OnToggleWatchedHandler(List<AnimeEpisodeVM> episodes, bool state);
 		public event OnToggleWatchedHandler OnToggleWatched;
 		protected void ToggleWatchedEvent(List<AnimeEpisodeVM> episodes, bool state)
 		{
@@ -238,12 +370,12 @@ namespace MyAnimePlugin3
 				imageHelper.Init();
 				
 				listPoster = new AsyncImageResource();
-				listPoster.Property = "#Anime3.GroupSeriesPoster";
-				listPoster.Delay = artworkDelay;
+			    listPoster.Property = this.GetPropertyName(GuiProperty.GroupSeriesPoster);
+                listPoster.Delay = artworkDelay;
 				
 				fanartTexture = new AsyncImageResource();
-				fanartTexture.Property = "#Anime3.Fanart.1";
-				fanartTexture.Delay = artworkDelay;
+			    fanartTexture.Property = this.GetPropertyName(GuiProperty.Fanart_1);
+                fanartTexture.Delay = artworkDelay;
 
 				GroupFilterQuickSorts = new Dictionary<int, QuickSort>();
 
@@ -406,8 +538,8 @@ namespace MyAnimePlugin3
 			try
 			{
 				BaseConfig.MyAnimeLog.Write("INIT MAIN WINDOW");
-
-				vidHandler = new VideoHandler();
+                Translation.PopulateLabels();
+                vidHandler = new VideoHandler();
 				vidHandler.DefaultAudioLanguage = settings.DefaultAudioLanguage;
 				vidHandler.DefaultSubtitleLanguage = settings.DefaultSubtitleLanguage;
 
@@ -416,25 +548,26 @@ namespace MyAnimePlugin3
 			{
 				BaseConfig.MyAnimeLog.Write("Error on init: {0}", ex.ToString());
 			}
-
-			return Load(GUIGraphicsContext.Skin + @"\Anime3_Main.xml");
+            return this.InitSkin<GuiProperty>("Anime3_Main.xml");
 		}
 
 		void Instance_ServerStatusEvent(Events.ServerStatusEventArgs ev)
 		{
-			setGUIProperty("HasherQueueCount", ev.HasherQueueCount.ToString());
-			setGUIProperty("HasherQueueState", ev.HasherQueueState);
-			setGUIProperty("HasherQueueRunning", ev.HasherQueueRunning ? "Running" : "Paused");
+            SetGUIProperty(GuiProperty.HasherQueueCount, ev.HasherQueueCount.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.HasherQueueState, ev.HasherQueueState);
+            SetGUIProperty(GuiProperty.HasherQueueRunning, ev.HasherQueueRunning ? Translation.Running : Translation.Paused);
 
-			setGUIProperty("GeneralQueueCount", ev.GeneralQueueCount.ToString());
-			setGUIProperty("GeneralQueueState", ev.GeneralQueueState);
-			setGUIProperty("GeneralQueueRunning", ev.GeneralQueueRunning ? "Running" : "Paused");
+            SetGUIProperty(GuiProperty.GeneralQueueCount, ev.GeneralQueueCount.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.GeneralQueueState, ev.GeneralQueueState);
+            SetGUIProperty(GuiProperty.GeneralQueueRunning, ev.GeneralQueueRunning ? Translation.Running : Translation.Paused);
 
-			setGUIProperty("ImagesQueueCount", ev.ImagesQueueCount.ToString());
-			setGUIProperty("ImagesQueueState", ev.ImagesQueueState);
-			setGUIProperty("ImagesQueueRunning", ev.ImagesQueueRunning ? "Running" : "Paused");
+            SetGUIProperty(GuiProperty.ImagesQueueCount, ev.ImagesQueueCount.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.ImagesQueueState, ev.ImagesQueueState);
+            SetGUIProperty(GuiProperty.ImagesQueueRunning, ev.ImagesQueueRunning ? Translation.Running : Translation.Paused);
 
-			if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = ev.GeneralQueueCount >= 0;
+
+
+            if (dummyQueueAniDB != null) dummyQueueAniDB.Visible = ev.GeneralQueueCount >= 0;
 			if (dummyQueueHasher != null) dummyQueueHasher.Visible = ev.HasherQueueCount >= 0;
 			if (dummyQueueImages != null) dummyQueueImages.Visible = ev.ImagesQueueCount >= 0;
 		}
@@ -524,26 +657,58 @@ namespace MyAnimePlugin3
 
 		#endregion
 
-		private void EvaluateVisibility()
+	    public AnimeGroupVM GetTopGroup()
+	    {
+	        for (int x = 0; x < Breadcrumbs.Count; x++)
+	        {
+	            if (Breadcrumbs[x].Listing is AnimeGroupVM)
+	                return (AnimeGroupVM)Breadcrumbs[x].Listing;
+	        }
+	        return null;
+	    }
+        public AnimeSeriesVM GetTopSerie()
+        {
+            for (int x = 0; x < Breadcrumbs.Count; x++)
+            {
+                if (Breadcrumbs[x].Listing is AnimeSeriesVM)
+                    return (AnimeSeriesVM)Breadcrumbs[x].Listing;
+            }
+            return null;
+        }
+        public AnimeEpisodeTypeVM GetTopEpType()
+        {
+            for (int x = 0; x < Breadcrumbs.Count; x++)
+            {
+                if (Breadcrumbs[x].Listing is AnimeEpisodeTypeVM)
+                    return (AnimeEpisodeTypeVM)Breadcrumbs[x].Listing;
+            }
+            return null;
+        }
+        public History GetCurrent()
+	    {
+	        return Breadcrumbs[Breadcrumbs.Count-1];
+	    }
+        private void EvaluateVisibility()
 		{
 			bool fave = false;
 			bool missing = false;
+            AnimeGroupVM grp = GetTopGroup();
 
-			if (curAnimeGroup != null)
+			if (grp != null)
 			{
-				if (curAnimeGroup.IsFave == 1)
+				if (grp.IsFave == 1)
 					fave = true;
 
 				//BaseConfig.MyAnimeLog.Write("settings.ShowMissing: {0}", settings.ShowMissing);
 				bool missingVisible = false;
-				if (settings.ShowMissing && listLevel == Listlevel.Series && curAnimeSeries != null)
+				if (settings.ShowMissing && GetCurrent().Selected is AnimeSeriesVM)
 				{
-					missingVisible = curAnimeSeries.HasMissingEpisodesGroups;
+					missingVisible = ((AnimeSeriesVM)GetCurrent().Selected).HasMissingEpisodesGroups;
 				}
 
-				if (settings.ShowMissing && listLevel == Listlevel.Group)
+				if (settings.ShowMissing && GetCurrent().Selected is AnimeGroupVM)
 				{
-					missingVisible = curAnimeGroup.HasMissingEpisodes;
+					missingVisible = ((AnimeGroupVM)GetCurrent().Selected).HasMissingEpisodes;
 				}
 
 				if (settings.ShowMissing)
@@ -564,7 +729,8 @@ namespace MyAnimePlugin3
 			hook.IsEnabled = false;
 			hook.UnHook();
 			hook = null;
-			UnSubClass();
+            //Removed will generate problems with MediaPortal
+            //UnSubClass();
 
 			base.OnPageDestroy(new_windowId);
 		}
@@ -626,9 +792,11 @@ namespace MyAnimePlugin3
 		{
 			BaseConfig.MyAnimeLog.Write("Starting page load...");
 
-			SubClass();
+            Utils.GetLatestVersionAsync();
+            //Removed will generate problems with MediaPortal
+            //SubClass();
 
-			hook = new KeyboardHook();
+            hook = new KeyboardHook();
 			hook.KeyDown += new KeyEventHandlerEx(hook_KeyDown);
 			hook.KeyUp += new KeyEventHandlerEx(hook_KeyUp);
 			hook.IsEnabled = true;
@@ -661,14 +829,14 @@ namespace MyAnimePlugin3
 
 			BaseConfig.MyAnimeLog.Write("Thumbs Setting Folder: {0}", settings.ThumbsFolder);
 
-			//searching
-			setGUIProperty(guiProperty.FindInput, " ");
-			setGUIProperty(guiProperty.FindText, " ");
-			setGUIProperty(guiProperty.FindMatch, " ");
+            //searching
+            ClearGUIProperty(GuiProperty.FindInput);
+            ClearGUIProperty(GuiProperty.FindText);
+            ClearGUIProperty(GuiProperty.FindMatch);
 
-			
 
-			search = new SearchCollection();
+
+            search = new SearchCollection();
 			search.List = m_Facade;
 			search.ListItemSearchProperty = "DVDLabel";
 			search.Mode = settings.FindMode;
@@ -856,7 +1024,7 @@ namespace MyAnimePlugin3
 			if (m_Facade.CurrentLayout == GUIFacadeControl.Layout.Filmstrip || m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow)
 			{
 
-				if (listLevel == Listlevel.Series || listLevel == Listlevel.Group)
+				if (GetCurrent().Selected is AnimeGroupVM || GetCurrent().Selected is AnimeSeriesVM)
 				{
 					int currentIndex = m_Facade.SelectedListItemIndex;
 					if (index >= 0 && index < m_Facade.Count && index != currentIndex)
@@ -876,7 +1044,7 @@ namespace MyAnimePlugin3
 					}
 					else
 					{
-						if (listLevel == Listlevel.Group && m_Facade.Count > 0)
+						if (GetCurrent().Selected is AnimeGroupVM && m_Facade.Count > 0)
 						{
 							Group_OnItemSelected(m_Facade.SelectedListItem);
 						}
@@ -927,8 +1095,38 @@ namespace MyAnimePlugin3
 				workerFacade.ReportProgress(0, Arg);
 			}
 		}
-
-		void bgLoadFacade()
+        /*
+	    private Listlevel LevelFromItem(IVM ivm)
+	    {
+	        Listlevel listlevel;
+	        if (ivm == null || ivm is GroupFilterVM)
+	        {
+	            GroupFilterVM gfvm = ivm as GroupFilterVM;
+	            if (gfvm != null && gfvm.Childs.Count == 0)
+	                listlevel = Listlevel.Group;
+	            else
+	                listlevel = Listlevel.GroupFilter;
+	        }
+	        else if (ivm is AnimeGroupVM)
+	        {
+	            listlevel = Listlevel.GroupAndSeries;
+	        }
+	        else if (ivm is AnimeSeriesVM)
+	        {
+	            AnimeSeriesVM asvm = ivm as AnimeSeriesVM;
+	            if (asvm.EpisodeTypesToDisplay.Count == 1)
+	                listlevel = Listlevel.Episode;
+	            else
+	                listlevel = Listlevel.EpisodeTypes;
+	        }
+	        else
+	        {
+	            listlevel = Listlevel.Episode;
+	        }
+            return listlevel;
+	    }
+        */
+	    void bgLoadFacade()
 		{
 			try
 			{
@@ -940,556 +1138,371 @@ namespace MyAnimePlugin3
 				List<GroupFilterVM> groupFilters = null;
 				List<GUIListItem> list = new List<GUIListItem>();
 				BackGroundLoadingArgumentType type = BackGroundLoadingArgumentType.None;
+			    History level = GetCurrent();
 
-				switch (listLevel)
+				#region Group Filters
+
+				if (level.Listing == null || (level.Listing is GroupFilterVM && ((GroupFilterVM)level.Listing).Childs.Count>0))
 				{
-					#region Group Filters
-					case Listlevel.GroupFilter:
+				    // List/Poster/Banner
+				    GroupFilterVM selected = (GroupFilterVM) level.Selected;
+
+				    SetGUIProperty(GuiProperty.SimpleCurrentView, Translation.GroupFilters);
+
+				    if (groupViewMode != GUIFacadeControl.Layout.List)
+				    {
+				        // reinit the itemsList
+				        delayedImageLoading = true;
+				        ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+				    }
+
+				    // text as usual
+				    ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0,
+				        GUIFacadeControl.Layout.List);
+
+				    if (workerFacade.CancellationPending)
+				        return;
+
+				    groupFilters = level.Listing == null
+				        ? FacadeHelper.GetTopLevelGroupFilters()
+				        : FacadeHelper.GetChildFilters((GroupFilterVM) level.Listing);
+				    type = BackGroundLoadingArgumentType.ListFullElement;
+
+				    SetGUIProperty(GuiProperty.GroupCount, groupFilters.Count.ToString());
+
+				    foreach (GroupFilterVM grpFilter in groupFilters)
+				    {
+				        if (workerFacade.CancellationPending) return;
+				        try
+				        {
+				            item = null;
+
+				            SetGroupFilterListItem(ref item, grpFilter);
+				            if (workerFacade.CancellationPending) return;
+				            if (selected != null && grpFilter.GroupFilterID.HasValue && selected.GroupFilterID.HasValue &&
+				                grpFilter.GroupFilterID.Value == selected.GroupFilterID.Value)
+				                selectedIndex = count;
+				            list.Add(item);
+
+				        }
+				        catch (Exception ex)
+				        {
+				            string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items GF: {0} - {1}", level.Listing == null ? "MAIN" : ((GroupFilterVM)level.Listing).GroupFilterName, ex.ToString());
+				            BaseConfig.MyAnimeLog.Write(msg);
+				        }
+				        count++;
+				    }
+                }
+                #endregion
+
+                #region Groups
+                else if (level.Listing is GroupFilterVM)
+                { 
+                    // List/Poster/Banner
+					GroupFilterVM gf = (GroupFilterVM) level.Listing;
+					AnimeGroupVM selected = (AnimeGroupVM)level.Selected;
+                    SetGUIProperty(GuiProperty.SimpleCurrentView, gf.GroupFilterName);
+
+					if (groupViewMode != GUIFacadeControl.Layout.List)
+					{
+						// reinit the itemsList
+						delayedImageLoading = true;
+						ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+					}
+
+					if (groupViewMode != GUIFacadeControl.Layout.List)
+					{
+						// graphical
+						ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.AlbumView);
+					}
+					else
+					{
+						// text as usual
+						ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
+					}
+
+					if (workerFacade.CancellationPending)
+						return;
+
+					groups = JMMServerHelper.GetAnimeGroupsForFilter(gf);
+
+
+					// re-sort if user has set a quick sort
+					if (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
+					{
+						BaseConfig.MyAnimeLog.Write("APPLYING QUICK SORT");
+
+						GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[gf.GroupFilterID.Value].SortType);
+						SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection);
+						List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+						sortCriteria.Add(sortProp);
+						groups = Sorting.MultiSort<AnimeGroupVM>(groups, sortCriteria);
+					}
+
+
+                    // Update Series Count Property
+                    SetGUIProperty(GuiProperty.GroupCount, groups.Count.ToString(Globals.Culture));
+					type = (groupViewMode != GUIFacadeControl.Layout.List) ? BackGroundLoadingArgumentType.ListElementForDelayedImgLoading : BackGroundLoadingArgumentType.ListFullElement;
+
+					int seriesCount = 0;
+
+					double totalTime = 0;
+					DateTime start = DateTime.Now;
+
+					BaseConfig.MyAnimeLog.Write("Building groups: " + gf.GroupFilterName);
+					foreach (AnimeGroupVM grp in groups)
+					{
+						if (workerFacade.CancellationPending) return;
+						try
 						{
-							// List/Poster/Banner
+							item = null;
 
-							setGUIProperty("SimpleCurrentView", "Group Filters");
+							//BaseConfig.MyAnimeLog.Write(string.Format("{0} - {1}", grp.GroupName, grp.AniDBRating));
 
-							if (groupViewMode != GUIFacadeControl.Layout.List)
+							SetGroupListItem(ref item, grp);
+
+							if (settings.HideWatchedFiles && grp.UnwatchedEpisodeCount <= 0)
 							{
-								// reinit the itemsList
-								delayedImageLoading = true;
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+								//watched files should be hidden and entire group is watched
+								// -> hide entire group
+								continue;
 							}
 
-							// text as usual
-							ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
+							seriesCount += grp.AllSeriesCount;
 
-							if (workerFacade.CancellationPending)
-								return;
+							if (selected != null && selected.AnimeGroupID == grp.AnimeGroupID)
+								selectedIndex = count;
 
-							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters");
-							groupFilters = FacadeHelper.GetGroupFilters();
-							type = BackGroundLoadingArgumentType.ListFullElement;
-
-							setGUIProperty(guiProperty.GroupCount, groupFilters.Count.ToString());
-
-							foreach (GroupFilterVM grpFilter in groupFilters)
-							{
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-
-									SetGroupFilterListItem(ref item, grpFilter);
-
-									if (curGroupFilter != null)
-									{
-										if (grpFilter.GroupFilterID.Value == curGroupFilter.GroupFilterID.Value)
-										{
-											selectedIndex = count;
-										}
-									}
-									else
-									{
-										if (selectedIndex == -1)
-											selectedIndex = count;
-									}
-									
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-								count++;
-							}
+							if (workerFacade.CancellationPending) return;
+							list.Add(item);
+                            count++;
+    
+                        }
+						catch (Exception ex)
+						{
+							string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items GF: {0} - {1}", gf.GroupFilterName, ex.ToString());
+							BaseConfig.MyAnimeLog.Write(msg);
 						}
-						break;
-					#endregion
+					}
 
-					#region Group Filters - Sub
-					case Listlevel.GroupFilterSub:
-						{
-							// List/Poster/Banner
+					TimeSpan ts2 = DateTime.Now - start;
+					totalTime += ts2.TotalMilliseconds;
 
-							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
+					BaseConfig.MyAnimeLog.Write("Total time for rendering groups: {0}-{1}", groups.Count, totalTime);
 
-							if (groupViewMode != GUIFacadeControl.Layout.List)
-							{
-								// reinit the itemsList
-								delayedImageLoading = true;
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
-							}
-
-							// text as usual
-							ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
-
-							if (workerFacade.CancellationPending)
-								return;
-
-							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters");
-							groupFilters = FacadeHelper.GetGroupFilters();
-							type = BackGroundLoadingArgumentType.ListFullElement;
-
-							setGUIProperty(guiProperty.GroupCount, "0");
-
-							foreach (GroupFilterVM grpFilter in FacadeHelper.GetTopLevelPredefinedGroupFilters())
-							{
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-
-									SetGroupFilterListItem(ref item, grpFilter);
-
-									if (curGroupFilter != null)
-									{
-										if (grpFilter.GroupFilterID.Value == curGroupFilter.GroupFilterID.Value)
-										{
-											selectedIndex = count;
-										}
-									}
-									else
-									{
-										if (selectedIndex == -1)
-											selectedIndex = count;
-									}
-
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-								count++;
-							}
-						}
-						break;
-					#endregion
-
-					#region Group Filters - Sub2
-					case Listlevel.GroupFilterSub2:
-						{
-							// List/Poster/Banner
-
-							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
-
-							if (groupViewMode != GUIFacadeControl.Layout.List)
-							{
-								// reinit the itemsList
-								delayedImageLoading = true;
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
-							}
-
-							// text as usual
-							ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
-
-							if (workerFacade.CancellationPending)
-								return;
-
-							BaseConfig.MyAnimeLog.Write("bgLoadFacde: Group Filters");
-							groupFilters = FacadeHelper.GetGroupFilters();
-							type = BackGroundLoadingArgumentType.ListFullElement;
-
-							setGUIProperty(guiProperty.GroupCount, "0");
-
-							foreach (GroupFilterVM grpFilter in FacadeHelper.GetGroupFiltersForPredefined(curGroupFilterSub))
-							{
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-
-									SetGroupFilterListItem(ref item, grpFilter);
-
-									if (curGroupFilter != null)
-									{
-										if (grpFilter.GroupFilterID.Value == curGroupFilter.GroupFilterID.Value)
-										{
-											selectedIndex = count;
-										}
-									}
-									else
-									{
-										if (selectedIndex == -1)
-											selectedIndex = count;
-									}
-
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-								count++;
-							}
-						}
-						break;
-					#endregion
-
-					#region Groups
-					case Listlevel.Group:
-						{
-							// List/Poster/Banner
-
-							setGUIProperty("SimpleCurrentView", curGroupFilter.GroupFilterName);
-
-							if (groupViewMode != GUIFacadeControl.Layout.List)
-							{
-								// reinit the itemsList
-								delayedImageLoading = true;
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
-							}
-
-							if (groupViewMode != GUIFacadeControl.Layout.List)
-							{
-								// graphical
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.AlbumView);
-							}
-							else
-							{
-								// text as usual
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, GUIFacadeControl.Layout.List);
-							}
-
-							if (workerFacade.CancellationPending)
-								return;
-
-							if (curGroupFilterSub2 == null)
-								groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
-							else
-							{
-								groups = new List<AnimeGroupVM>();
-
-
-
-								List<AnimeGroupVM> tempGroups = JMMServerHelper.GetAnimeGroupsForFilter(GroupFilterHelper.AllGroupsFilter);
-								foreach (AnimeGroupVM grp in tempGroups)
-								{
-									if (curGroupFilterSub2.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags_Child)
-									{
-										if (grp.Tags.Contains(curGroupFilterSub2.PredefinedCriteria))
-											groups.Add(grp);
-									}
-									if (curGroupFilterSub2.GroupFilterID.Value == Constants.StaticGF.Predefined_Years_Child)
-									{
-										// find all the groups that qualify by this year
-										int startYear = 0;
-										if (!grp.Stat_AirDate_Min.HasValue) continue;
-										startYear = grp.Stat_AirDate_Min.Value.Year;
-
-										int endYear = int.MaxValue;
-										if (grp.Stat_AirDate_Max.HasValue) endYear = grp.Stat_AirDate_Max.Value.Year;
-
-										int critYear = 0;
-										if (!int.TryParse(curGroupFilterSub2.PredefinedCriteria, out critYear)) continue;
-
-										if (critYear >= startYear && critYear <= endYear) groups.Add(grp);
-										
-									}
-								}
-							}
-
-							// re-sort if user has set a quick sort
-							if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
-							{
-								BaseConfig.MyAnimeLog.Write("APPLYING QUICK SORT");
-
-								GroupFilterSorting sortType = GroupFilterHelper.GetEnumForText_Sorting(GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortType);
-								SortPropOrFieldAndDirection sortProp = GroupFilterHelper.GetSortDescription(sortType, GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection);
-								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-								sortCriteria.Add(sortProp);
-								groups = Sorting.MultiSort<AnimeGroupVM>(groups, sortCriteria);
-							}
-
-
-							// Update Series Count Property
-							setGUIProperty(guiProperty.GroupCount, groups.Count.ToString());
-							type = (groupViewMode != GUIFacadeControl.Layout.List) ? BackGroundLoadingArgumentType.ListElementForDelayedImgLoading : BackGroundLoadingArgumentType.ListFullElement;
-
-							int seriesCount = 0;
-
-							double totalTime = 0;
-							DateTime start = DateTime.Now;
-
-							BaseConfig.MyAnimeLog.Write("Building groups: " + curGroupFilter.GroupFilterName);
-							foreach (AnimeGroupVM grp in groups)
-							{
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-
-									//BaseConfig.MyAnimeLog.Write(string.Format("{0} - {1}", grp.GroupName, grp.AniDBRating));
-
-									SetGroupListItem(ref item, grp);
-
-									if (settings.HideWatchedFiles && grp.UnwatchedEpisodeCount <= 0)
-									{
-										//watched files should be hidden and entire group is watched
-										// -> hide entire group
-										continue;
-									}
-
-									seriesCount += grp.AllSeriesCount;
-
-									if (curAnimeGroup != null)
-									{
-										if (grp.AnimeGroupID == curAnimeGroup.AnimeGroupID)
-										{
-											selectedIndex = count;
-										}
-									}
-									else
-									{
-										if (selectedIndex == -1)
-											selectedIndex = count;
-									}
-
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-								count++;
-							}
-
-							TimeSpan ts2 = DateTime.Now - start;
-							totalTime += ts2.TotalMilliseconds;
-
-							BaseConfig.MyAnimeLog.Write("Total time for rendering groups: {0}-{1}", groups.Count, totalTime);
-
-							setGUIProperty(guiProperty.SeriesCount, seriesCount.ToString());
+					SetGUIProperty(GuiProperty.SeriesCount, seriesCount.ToString());
 
 							
 
 							
-						}
-						break;
+				}
+
 					#endregion
 
 					#region Series
-					case Listlevel.Series:
+                else if (level.Listing is AnimeGroupVM)
+                { 
+                    // this level includes series as well as sub-groups
+
+                    AnimeGroupVM ag = (AnimeGroupVM)level.Listing;
+                    IVM selected = level.Selected;
+
+
+
+                    if (seriesViewMode != GUIFacadeControl.Layout.List)
+					{
+						// reinit the itemsList
+						delayedImageLoading = true;
+						ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+					}
+
+					if (workerFacade.CancellationPending) return;
+
+					List<SortPropOrFieldAndDirection> sortCriteria = null;
+
+					List<AnimeGroupVM> subGroups = ag.SubGroups;
+					if (subGroups.Count > 0)
+					{
+						sortCriteria = new List<SortPropOrFieldAndDirection>();
+						sortCriteria.Add(new SortPropOrFieldAndDirection("SortName", false, SortType.eString));
+						subGroups = Sorting.MultiSort<AnimeGroupVM>(subGroups, sortCriteria);
+					}
+
+					// get the series for this group
+					List<AnimeSeriesVM> seriesList = ag.ChildSeries;
+					if (seriesList.Count > 0)
+					{
+						sortCriteria = new List<SortPropOrFieldAndDirection>();
+						sortCriteria.Add(new SortPropOrFieldAndDirection("AirDate", false, SortType.eDateTime));
+						seriesList = Sorting.MultiSort<AnimeSeriesVM>(seriesList, sortCriteria);
+					}
+					//if (seriesList.Count == 0)
+					//	bFacadeEmpty = true;
+
+					// Update Series Count Property
+					SetGUIProperty(GuiProperty.SeriesCount, seriesList.Count.ToString());
+
+					// now sort the groups by air date
+							
+							
+					type = BackGroundLoadingArgumentType.ListFullElement;
+
+					foreach (AnimeGroupVM grp in subGroups)
+					{
+						if (workerFacade.CancellationPending) return;
+						try
 						{
-							// this level includes series as well as sub-groups
+							item = null;
 
-							if (seriesViewMode != GUIFacadeControl.Layout.List)
+							SetGroupListItem(ref item, grp);
+
+							if (settings.HideWatchedFiles && grp.UnwatchedEpisodeCount <= 0)
 							{
-								// reinit the itemsList
-								delayedImageLoading = true;
-								ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgInit, 0, null);
+								//watched files should be hidden and entire group is watched
+								// -> hide entire group
+								continue;
 							}
-
+							if (selected is AnimeGroupVM && ((AnimeGroupVM) selected).AnimeGroupID == grp.AnimeGroupID)
+								selectedIndex = count;
 							if (workerFacade.CancellationPending) return;
+							list.Add(item);
+                            count++;
 
-							List<SortPropOrFieldAndDirection> sortCriteria = null;
-
-							List<AnimeGroupVM> subGroups = curAnimeGroupViewed.SubGroups;
-							if (subGroups.Count > 0)
-							{
-								sortCriteria = new List<SortPropOrFieldAndDirection>();
-								sortCriteria.Add(new SortPropOrFieldAndDirection("SortName", false, SortType.eString));
-								subGroups = Sorting.MultiSort<AnimeGroupVM>(subGroups, sortCriteria);
-							}
-
-							// get the series for this group
-							List<AnimeSeriesVM> seriesList = curAnimeGroupViewed.ChildSeries;
-							if (seriesList.Count > 0)
-							{
-								sortCriteria = new List<SortPropOrFieldAndDirection>();
-								sortCriteria.Add(new SortPropOrFieldAndDirection("AirDate", false, SortType.eDateTime));
-								seriesList = Sorting.MultiSort<AnimeSeriesVM>(seriesList, sortCriteria);
-							}
-							//if (seriesList.Count == 0)
-							//	bFacadeEmpty = true;
-
-							// Update Series Count Property
-							setGUIProperty(guiProperty.SeriesCount, seriesList.Count.ToString());
-
-							// now sort the groups by air date
-							
-							
-							type = BackGroundLoadingArgumentType.ListFullElement;
-
-							foreach (AnimeGroupVM grp in subGroups)
-							{
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-
-									SetGroupListItem(ref item, grp);
-
-									if (settings.HideWatchedFiles && grp.UnwatchedEpisodeCount <= 0)
-									{
-										//watched files should be hidden and entire group is watched
-										// -> hide entire group
-										continue;
-									}
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-							}
-
-							foreach (AnimeSeriesVM ser in seriesList)
-							{
-								//BaseConfig.MyAnimeLog.Write("LoadFacade-Series:: {0}", ser);
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-
-									SetSeriesListItem(ref item, ser);
-
-									if (settings.HideWatchedFiles && ser.UnwatchedEpisodeCount <= 0)
-									{
-										//watched files should be hidden and entire series is watched
-										// -> hide entire series
-										continue;
-									}
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-								count++;
-							}
+                        }
+						catch (Exception ex)
+						{
+							string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items  Group: {0} - {1}", ag.GroupName, ex.ToString());
+							BaseConfig.MyAnimeLog.Write(msg);
 						}
-						break;
+					}
+
+					foreach (AnimeSeriesVM ser in seriesList)
+					{
+						//BaseConfig.MyAnimeLog.Write("LoadFacade-Series:: {0}", ser);
+						if (workerFacade.CancellationPending) return;
+						try
+						{
+							item = null;
+
+							SetSeriesListItem(ref item, ser);
+
+							if (settings.HideWatchedFiles && ser.UnwatchedEpisodeCount <= 0)
+							{
+								//watched files should be hidden and entire series is watched
+								// -> hide entire series
+								continue;
+							}
+                            if (selected is AnimeSeriesVM && ((AnimeSeriesVM)selected).AnimeSeriesID == ser.AnimeSeriesID)
+                                selectedIndex = count;
+                            if (workerFacade.CancellationPending) return;
+							list.Add(item);
+                            count++;
+
+                        }
+						catch (Exception ex)
+						{
+							string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items Group: {0} - {1}", ag.GroupName, ex.ToString());
+							BaseConfig.MyAnimeLog.Write(msg);
+						}
+					}
+				}
+
 					#endregion
 
 					#region Episode Types
-					case Listlevel.EpisodeTypes:
-						{
+                else if (level.Listing is AnimeSeriesVM && ((AnimeSeriesVM)level.Listing).EpisodeTypes.Count>1)
+				{
 
-							if (workerFacade.CancellationPending) return;
+					if (workerFacade.CancellationPending) return;
 
-							//List<AnimeEpisodeType> anEpTypes = AnimeSeries.GetEpisodeTypes(curAnimeSeries.AnimeSeriesID.Value);
-							type = BackGroundLoadingArgumentType.ListFullElement;
-							foreach (AnimeEpisodeTypeVM anEpType in curAnimeSeries.EpisodeTypesToDisplay)
-							{
-								item = null;
-								SetEpisodeTypeListItem(ref item, anEpType);
+                    AnimeSeriesVM asvm = (AnimeSeriesVM)level.Listing;
+                    AnimeEpisodeTypeVM selected = (AnimeEpisodeTypeVM)level.Selected;
 
-								if (workerFacade.CancellationPending) return;
-								else
-								{
-									list.Add(item);
-								}
-								count++;
-							}
-						}
-						break;
-					#endregion
-
-					#region Episodes
-					case Listlevel.Episode:
-						{
-
-							if (workerFacade.CancellationPending) return;
-
-							if (curAnimeSeries == null) return;
-
-							// get the episodes for this series / episode types
-							//BaseConfig.MyAnimeLog.Write("GetEpisodes:: {0}", curAnimeSeries.AnimeSeriesID.Value);
-
-							//List<AnimeEpisode> episodeList = AnimeSeries.GetEpisodes(curAnimeSeries.AnimeSeriesID.Value);
-							curAnimeSeries.RefreshEpisodes();
-							List<AnimeEpisodeVM> episodeList = curAnimeSeries.GetEpisodesToDisplay(curAnimeEpisodeType.EpisodeType);
-
-							// Update Series Count Property
-							//setGUIProperty(guiProperty.SeriesCount, episodeList.Count.ToString());
-
-							bool foundFirstUnwatched = false;
-							type = BackGroundLoadingArgumentType.ListFullElement;
-							foreach (AnimeEpisodeVM ep in episodeList)
-							{
-								//BaseConfig.MyAnimeLog.Write("LoadFacade-Episodes:: {0}", ep);
-								if (workerFacade.CancellationPending) return;
-								try
-								{
-									item = null;
-									bool isWatched = SetEpisodeListItem(ref item, ep);
-
-									if (isWatched && settings.HideWatchedFiles)
-										continue;
-
-									if (!foundFirstUnwatched && !isWatched && ep.LocalFileCount > 0)
-									{
-										selectedIndex = count;
-										foundFirstUnwatched = true;
-									}
-
-									if (workerFacade.CancellationPending) return;
-									else
-									{
-										list.Add(item);
-									}
-
-								}
-								catch (Exception ex)
-								{
-									string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: {0} - {1}", listLevel, ex.ToString());
-									BaseConfig.MyAnimeLog.Write(msg);
-								}
-								count++;
-							}
-
-							SetFanartForEpisodes();
-						}
-						setGUIProperty(guiProperty.EpisodeCount, count.ToString());
-						break;
-					#endregion
-
+                    //List<AnimeEpisodeType> anEpTypes = AnimeSeries.GetEpisodeTypes(ser.AnimeSeriesID.Value);
+                    type = BackGroundLoadingArgumentType.ListFullElement;
+					foreach (AnimeEpisodeTypeVM anEpType in asvm.EpisodeTypesToDisplay)
+					{
+                        if (workerFacade.CancellationPending) return;
+                        item = null;
+						SetEpisodeTypeListItem(ref item, anEpType);
+						if (selected != null && selected.EpisodeType == anEpType.EpisodeType)
+							selectedIndex = count;
+						list.Add(item);
+						count++;
+					}
 				}
 
+				#endregion
 
-				#region Report ItemToAutoSelect
+				#region Episodes
+                else if (level.Listing is AnimeSeriesVM || level.Listing is AnimeEpisodeTypeVM)
+                { 
+					if (workerFacade.CancellationPending) return;
 
-				if (selectedIndex == -1)
+                    AnimeEpisodeTypeVM vm = level.Listing as AnimeEpisodeTypeVM;
+                    if (vm == null)
+                    {
+                        AnimeSeriesVM asvm = level.Listing as AnimeSeriesVM;
+                        vm = asvm.EpisodeTypes[0];
+                    }
+
+                    enEpisodeType eptype = vm.EpisodeType;
+
+                    // get the episodes for this series / episode types
+                    //BaseConfig.MyAnimeLog.Write("GetEpisodes:: {0}", ser.AnimeSeriesID.Value);
+
+                    //List<AnimeEpisode> episodeList = AnimeSeries.GetEpisodes(ser.AnimeSeriesID.Value);
+                    vm.AnimeSeries.RefreshEpisodes();
+					List<AnimeEpisodeVM> episodeList = vm.AnimeSeries.GetEpisodesToDisplay(eptype);
+
+					// Update Series Count Property
+					//setGUIProperty(guiProperty.SeriesCount, episodeList.Count.ToString());
+
+					bool foundFirstUnwatched = false;
+					type = BackGroundLoadingArgumentType.ListFullElement;
+					foreach (AnimeEpisodeVM ep in episodeList)
+					{
+						//BaseConfig.MyAnimeLog.Write("LoadFacade-Episodes:: {0}", ep);
+						if (workerFacade.CancellationPending) return;
+						try
+						{
+							item = null;
+							bool isWatched = SetEpisodeListItem(ref item, ep);
+
+							if (isWatched && settings.HideWatchedFiles)
+								continue;
+
+							if (!foundFirstUnwatched && !isWatched && ep.LocalFileCount > 0)
+							{
+								selectedIndex = count;
+								foundFirstUnwatched = true;
+							}
+
+							if (workerFacade.CancellationPending) return;
+							else
+							{
+								list.Add(item);
+							}
+
+						}
+						catch (Exception ex)
+						{
+							string msg = string.Format("The 'LoadFacade' function has generated an error displaying list items: Serie: {0} - {1}", vm.AnimeSeries.SeriesName, ex.ToString());
+							BaseConfig.MyAnimeLog.Write(msg);
+						}
+						count++;
+					}
+
+					SetFanartForEpisodes();
+                    SetGUIProperty(GuiProperty.EpisodeCount, count.ToString());
+                }
+                    #endregion
+
+
+
+            #region Report ItemToAutoSelect
+
+            if (selectedIndex == -1)
 					selectedIndex = 0;
 
 				BaseConfig.MyAnimeLog.Write("Report ItemToAutoSelect: {0}", selectedIndex.ToString());
@@ -1637,8 +1650,9 @@ namespace MyAnimePlugin3
 				item.TVTag = epType;
 				int unwatched = 0;
 				int watched = 0;
-				if (curAnimeSeries != null)
-					curAnimeSeries.GetWatchedUnwatchedCount(epType.EpisodeType, ref unwatched, ref watched);
+			    AnimeSeriesVM ser=GetTopSerie();
+				if (ser != null)
+					ser.GetWatchedUnwatchedCount(epType.EpisodeType, ref unwatched, ref watched);
 				item.IsPlayed = (unwatched == 0);
 
 				View.eLabelStyleGroups style = View.eLabelStyleGroups.WatchedUnwatched;
@@ -1721,7 +1735,7 @@ namespace MyAnimePlugin3
 						if (ser.UnwatchedEpisodeCount > 0)
 						{
 							item.IconImage = sUnWatchedFilename;
-							item.Label3 = ser.UnwatchedEpisodeCount.ToString() + " New";
+							item.Label3 = ser.UnwatchedEpisodeCount.ToString() + " "+Translation.New;
 							item.Label2 = "  ";
 						}
 						else
@@ -1736,7 +1750,7 @@ namespace MyAnimePlugin3
 						int totalEps = ser.UnwatchedEpisodeCount + ser.WatchedEpisodeCount;
 
 						item.IconImage = sUnWatchedFilename;
-						item.Label3 = totalEps.ToString() + " Episodes";
+						item.Label3 = totalEps.ToString() + " "+Translation.Episodes;
 						item.Label2 = "  ";
 
 						break;
@@ -1893,7 +1907,7 @@ namespace MyAnimePlugin3
 		{
 			GUIControl.ClearControl(this.GetID, m_Facade.GetID);
 
-			setGUIProperty(guiProperty.Title, "Kanokon");
+			SetGUIProperty(GuiProperty.Title, "Kanokon");
 
 			GUIListItem item = new GUIListItem("");
 			//item.Label = "Label";
@@ -1944,116 +1958,40 @@ namespace MyAnimePlugin3
 			*/
 		}
 
-		private bool ShowLayoutMenu(string previousMenu)
+		private ContextMenuAction ShowLayoutMenu(string previousMenu)
 		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Change Layout";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("List Posters");
-				dlg.Add("Wide Banners");
-				dlg.Add("Filmstrip");
-
-				if (!m_Facade.IsNullLayout(GUIFacadeControl.Layout.CoverFlow))
-					dlg.Add("Coverflow");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						groupViewMode = GUIFacadeControl.Layout.List;
-						break;
-					case 2:
-						groupViewMode = GUIFacadeControl.Layout.LargeIcons;
-						break;
-					case 3:
-						groupViewMode = GUIFacadeControl.Layout.Filmstrip;
-						break;
-					case 4:
-						// Disabled for now due to a bug - enable to see the issue
-						groupViewMode = GUIFacadeControl.Layout.CoverFlow;
-						break;
-
-						//Utils.DialogMsg("Disabled", "This Layout is temporarily disabled");
-						//return false;
-					default:
-						//close menu
-						return false;
-				}
-
-				break;
-			}
-
-			if (listLevel == Listlevel.Group)
-			{
-				settings.LastGroupViewMode = groupViewMode;
-				settings.Save();
-			}
-
-			LoadFacade();
-			return false;
+            ContextMenu cmenu = new ContextMenu(Translation.ChangeLayout, previousMenu);
+            cmenu.AddAction(Translation.ListPosters, () => groupViewMode = GUIFacadeControl.Layout.List);
+            cmenu.AddAction(Translation.WideBanners, () => groupViewMode = GUIFacadeControl.Layout.LargeIcons);
+            cmenu.AddAction(Translation.Filmstrip, () => groupViewMode = GUIFacadeControl.Layout.Filmstrip);
+            if (!m_Facade.IsNullLayout(GUIFacadeControl.Layout.CoverFlow))
+                cmenu.AddAction(Translation.Coverflow, () => groupViewMode = GUIFacadeControl.Layout.CoverFlow);
+            ContextMenuAction context = cmenu.Show();
+            if (context == ContextMenuAction.Exit)
+            {
+                History level = GetCurrent();
+                if (level.Listing is GroupFilterVM && ((GroupFilterVM)level.Listing).Childs.Count == 0)
+                {
+                    settings.LastGroupViewMode = groupViewMode;
+                    settings.Save();
+                }
+                LoadFacade();
+            }
+            return context;
 		}
 
 
-		private bool ShowDisplayOptionsMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+	    private ContextMenuAction ShowDisplayOptionsMenu(string previousMenu)
+	    {
+	        ContextMenu cmenu = new ContextMenu(Translation.DisplayOptions, previousMenu);
+	        cmenu.Add(Translation.ChangeLayout, () => ShowLayoutMenu(Translation.DisplayOptions));
+	        return cmenu.Show();
 
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Display Options";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
+	    }
 
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Change Layout >>>");
+        #region Options Menus
 
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						LoadFacade();
-						return true;
-					case 1:
-						if (!ShowLayoutMenu(currentMenu))
-							return false;
-						break;
-					default:
-						//close menu
-						return false;
-				}
-			}
-		}
-
-		#region Options Menus
-
+        /*
 		private bool ShowOptionsMenu(string previousMenu)
 		{
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
@@ -2097,89 +2035,62 @@ namespace MyAnimePlugin3
 				}
 			}
 		}
-
-
-		private bool ShowOptionsDisplayMenu(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Display Options";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				string showEps = string.Format("Only Show Available Episodes ({0})", settings.ShowOnlyAvailableEpisodes ? "On" : "Off");
-				string hideWatched = string.Format("Hide Watched Episodes ({0})", settings.HideWatchedFiles ? "On" : "Off");
-				string findFilter = string.Format("Find - Only Show Matches ({0})", settings.FindFilter ? "On" : "Off");
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add(showEps);
-				dlg.Add(hideWatched);
-				dlg.Add(findFilter);
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						settings.ShowOnlyAvailableEpisodes = !settings.ShowOnlyAvailableEpisodes;
-						LoadFacade();
-						break;
-					case 2:
-						settings.HideWatchedFiles = !settings.HideWatchedFiles;
-						LoadFacade();
-						break;
-					case 3:
-						settings.FindFilter = !settings.FindFilter;
-						if (searchTimer != null && searchTimer.Enabled)
-						{
-							SaveOrRestoreFacadeItems(false);
-							DoSearch(m_Facade.SelectedListItemIndex);
-						}
-						break;
-					default:
-						//close menu
-						return false;
-				}
-
-				settings.Save();
-			}
-		}
+        */
+        private ContextMenuAction ShowOptionsDisplayMenu(string previousMenu)
+        {
+            string showEps = String.Format(Translation.OnlyShowAvailableEpisodes, settings.ShowOnlyAvailableEpisodes ? Translation.On : Translation.Off);
+            string hideWatched = String.Format(Translation.HideWatchedEpisodes, settings.HideWatchedFiles ? Translation.On : Translation.Off);
+            string findFilter = String.Format(Translation.FindOnlyShowMatches, settings.FindFilter ? Translation.On : Translation.Off);
+            ContextMenu cmenu = new ContextMenu(Translation.DisplayOptions, previousmenu: previousMenu);
+            cmenu.AddAction(showEps, () =>
+            {
+                settings.ShowOnlyAvailableEpisodes = !settings.ShowOnlyAvailableEpisodes;
+                LoadFacade();
+                settings.Save();
+            });
+            cmenu.AddAction(hideWatched, () =>
+            {
+                settings.HideWatchedFiles = !settings.HideWatchedFiles;
+                LoadFacade();
+                settings.Save();
+            });
+            cmenu.AddAction(findFilter, () =>
+            {
+                settings.FindFilter = !settings.FindFilter;
+                if (searchTimer.Enabled)
+                {
+                    SaveOrRestoreFacadeItems(false);
+                    DoSearch(m_Facade.SelectedListItemIndex);
+                }
+                settings.Save();
+            });
+            return cmenu.Show();
+        }
+        
 
 		#endregion
 
-	
 
 
-		private void ChangeView(View v)
-		{
-			BaseConfig.MyAnimeLog.Write(string.Format("ChangeView: {0} - {1}", currentViewClassification, v == null ? "" : v.Name));
-			currentViewClassification = ViewClassification.Views;
-			currentView = new View(v);
-			currentStaticViewID = "";
 
-			settings.LastView = currentView;
-			settings.LastViewClassification = currentViewClassification;
-			settings.LastStaticViewID = currentStaticViewID;
-			settings.Save();
+	    private void ChangeView(View v)
+	    {
+	        BaseConfig.MyAnimeLog.Write(string.Format("ChangeView: {0} - {1}", currentViewClassification,
+	            v == null ? "" : v.Name));
+	        currentViewClassification = ViewClassification.Views;
+	        currentView = new View(v);
+	        currentStaticViewID = "";
 
-			//update skin
-			setGUIProperty("SimpleCurrentView", v.DisplayName);
-		}
+	        settings.LastView = currentView;
+	        settings.LastViewClassification = currentViewClassification;
+	        settings.LastStaticViewID = currentStaticViewID;
+	        settings.Save();
 
-		private void ChangeStaticView(ViewClassification vClass, string id)
+	        //update skin
+	        SetGUIProperty(GuiProperty.SimpleCurrentView, v.DisplayName);
+	    }
+
+	    private void ChangeStaticView(ViewClassification vClass, string id)
 		{
 			BaseConfig.MyAnimeLog.Write(string.Format("ChangeStaticView: {0} - {1}", vClass, id));
 			currentViewClassification = vClass;
@@ -2189,8 +2100,8 @@ namespace MyAnimePlugin3
 			settings.LastStaticViewID = currentStaticViewID;
 			settings.Save();
 
-			//update skin
-			setGUIProperty("SimpleCurrentView", currentStaticViewID);
+            //update skin
+            SetGUIProperty(GuiProperty.SimpleCurrentView, currentStaticViewID);
 		}
 
 		private void SetFacade()
@@ -2215,59 +2126,63 @@ namespace MyAnimePlugin3
 			else
 				widebanners = true;
 
-			BaseConfig.MyAnimeLog.Write("SetFacade List Mode: {0}", listLevel);
-
-			if (listLevel == Listlevel.GroupFilter || listLevel == Listlevel.GroupFilterSub || listLevel == Listlevel.GroupFilterSub2)
+		    History level = GetCurrent();
+            if (level.Listing == null || (level.Listing is GroupFilterVM && ((GroupFilterVM)level.Listing).Childs.Count > 0))
 			{
 				m_Facade.CurrentLayout = GUIFacadeControl.Layout.List;
 				listmode = true;
 				widebanners = filmstrip = false;
 				groupfilters = true;
-				BaseConfig.MyAnimeLog.Write("SetFacade List Mode: {0}", listLevel);
+				BaseConfig.MyAnimeLog.Write("SetFacade List Mode: GroupFilter}");
 			}
-
-			if (listLevel == Listlevel.Group)
-			{
+            else if (level.Listing is GroupFilterVM)
+            {
 				m_Facade.CurrentLayout = groupViewMode;
 				groups = true;
-				//BaseConfig.MyAnimeLog.Write("List Mode: {0}, IsGroups: {1}", this.dummyLayoutListMode.Visible, dummyIsGroups.Visible);
-			}
-
-			if (listLevel == Listlevel.Series)
-			{
+                BaseConfig.MyAnimeLog.Write("SetFacade List Mode: Group}");
+                //BaseConfig.MyAnimeLog.Write("List Mode: {0}, IsGroups: {1}", this.dummyLayoutListMode.Visible, dummyIsGroups.Visible);
+            }
+            else if (level.Listing is AnimeGroupVM)
+            {
 				m_Facade.CurrentLayout = GUIFacadeControl.Layout.List;
 				listmode = true;
 				widebanners = filmstrip = false;
 				series = true;
-				//BaseConfig.MyAnimeLog.Write("List Mode: {0}, IsSeries: {1}", this.dummyLayoutListMode.Visible, dummyIsSeries.Visible);
-			}
+                BaseConfig.MyAnimeLog.Write("SetFacade List Mode: Series}");
 
-			if (listLevel == Listlevel.EpisodeTypes)
-			{
+                //BaseConfig.MyAnimeLog.Write("List Mode: {0}, IsSeries: {1}", this.dummyLayoutListMode.Visible, dummyIsSeries.Visible);
+            }
+
+            else if (level.Listing is AnimeSeriesVM && ((AnimeSeriesVM)level.Listing).EpisodeTypes.Count > 1)
+            {
 				//m_Facade.CurrentLayout = seriesViewMode;
 				m_Facade.CurrentLayout = GUIFacadeControl.Layout.List;
 				listmode = true;
 				widebanners = filmstrip = false;
 				episodetypes = true;
-				//BaseConfig.MyAnimeLog.Write("List Mode: {0}, IsEpisodeTypes: {1}", this.dummyLayoutListMode.Visible, dummyIsEpisodeTypes.Visible);
-			}
+                BaseConfig.MyAnimeLog.Write("SetFacade List Mode: Episodes Types}");
 
-			if (listLevel == Listlevel.Episode)
-			{
+                //BaseConfig.MyAnimeLog.Write("List Mode: {0}, IsEpisodeTypes: {1}", this.dummyLayoutListMode.Visible, dummyIsEpisodeTypes.Visible);
+            }
+
+            else if (level.Listing is AnimeSeriesVM || level.Listing is AnimeEpisodeTypeVM)
+            {
 				m_Facade.CurrentLayout = episodesViewMode; // always list
 				listmode = true;
 				widebanners = filmstrip = false;
 				episodes = true;
-				//BaseConfig.MyAnimeLog.Write("List Mode: {0}, dummyIsEpisodes: {1}", this.dummyLayoutListMode.Visible, dummyIsEpisodes.Visible);
-			}
+                BaseConfig.MyAnimeLog.Write("SetFacade List Mode: Episodes}");
+
+                //BaseConfig.MyAnimeLog.Write("List Mode: {0}, dummyIsEpisodes: {1}", this.dummyLayoutListMode.Visible, dummyIsEpisodes.Visible);
+            }
 
 
-			//if (this.dummyLayoutFilmstripMode != null) BaseConfig.MyAnimeLog.Write("SetFacade: dummyLayoutFilmstripMode.Visible : {0}", this.dummyLayoutFilmstripMode.Visible);
-			//if (this.dummyLayoutWideBanners != null) BaseConfig.MyAnimeLog.Write("SetFacade: dummyLayoutWideBanners.Visible : {0}", this.dummyLayoutWideBanners.Visible);
-			//if (this.dummyLayoutListMode != null) BaseConfig.MyAnimeLog.Write("SetFacade: dummyLayoutListMode.Visible : {0}", this.dummyLayoutListMode.Visible);
+            //if (this.dummyLayoutFilmstripMode != null) BaseConfig.MyAnimeLog.Write("SetFacade: dummyLayoutFilmstripMode.Visible : {0}", this.dummyLayoutFilmstripMode.Visible);
+            //if (this.dummyLayoutWideBanners != null) BaseConfig.MyAnimeLog.Write("SetFacade: dummyLayoutWideBanners.Visible : {0}", this.dummyLayoutWideBanners.Visible);
+            //if (this.dummyLayoutListMode != null) BaseConfig.MyAnimeLog.Write("SetFacade: dummyLayoutListMode.Visible : {0}", this.dummyLayoutListMode.Visible);
 
 
-			EvaluateVisibility();
+            EvaluateVisibility();
 
 			if (this.dummyLayoutFilmstripMode != null) dummyLayoutFilmstripMode.Visible = filmstrip;
 			if (this.dummyLayoutWideBanners != null) dummyLayoutWideBanners.Visible = widebanners;
@@ -2300,127 +2215,75 @@ namespace MyAnimePlugin3
 				if (MediaPortal.Player.g_Player.Playing == false)
 					BaseConfig.MyAnimeLog.Write("Pressed the play button");
 			}
+            MainMenu menu = new MainMenu();
+            menu.Add(btnDisplayOptions, () =>
+            {
+                m_Facade.Focus = true;
+                hook.IsEnabled = false;
+                ShowDisplayOptionsMenu(string.Empty);
+                Thread.Sleep(100); //make sure key-up's from the context menu aren't cought by the hook
+                hook.IsEnabled = true;
+            });
+            menu.Add(btnWindowUtilities, () =>
+            {
+                SetGlobalIDs();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.ADMIN);
+            });
+            menu.Add(btnWindowCalendar, () =>
+            {
+                SetGlobalIDs();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.CALENDAR);
+            });
+            menu.Add(btnWindowDownloads, () =>
+            {
+                SetGlobalIDs();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.DOWNLOADS);
+            });
+           /* menu.Add(btnWindowContinueWatching, () =>
+            {
+                SetGlobalIDs();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING);
+            });*/
+            menu.Add(btnWindowRecommendations, () =>
+            {
+                SetGlobalIDs();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RECOMMENDATIONS);
+            });
+            menu.Add(btnWindowRandom, () =>
+            {
+                RandomWindow_LevelObject = GroupFilterHelper.GetTopLevelGroupFilters();
+                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+                RandomWindow_RandomType = RandomObjectType.Series;
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+            });
+            menu.Add(btnChangeLayout, () =>
+            {
+                m_Facade.Focus = true;
+                ShowLayoutMenu(string.Empty);
+            });
+            menu.Add(btnSwitchUser, () =>
+            {
+                if (JMMServerVM.Instance.PromptUserLogin())
+                {
+                    Breadcrumbs = new List<History>() {new History() };
 
-			if (this.btnDisplayOptions != null && control == this.btnDisplayOptions)
-			{
-				hook.IsEnabled = false;
+                    // user has logged in, so save to settings so we will log in as the same user next time
+                    settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString(CultureInfo.InvariantCulture);
+                    settings.Save();
 
-				ShowDisplayOptionsMenu("");
-				btnDisplayOptions.Focus = false;
-
-				Thread.Sleep(100); //make sure key-up's from the context menu aren't cought by the hook
-				hook.IsEnabled = true;
-
-				this.btnDisplayOptions.IsFocused = false;
-
-				return;
-			}
-
-			if (this.btnWindowUtilities != null && control == this.btnWindowUtilities)
-			{
-				SetGlobalIDs();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.ADMIN);
-
-				this.btnWindowUtilities.IsFocused = false;
-
-				return;
-			}
-
-			if (this.btnWindowCalendar != null && control == this.btnWindowCalendar)
-			{
-				SetGlobalIDs();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.CALENDAR);
-				//GUIWindowManager.ActivateWindow(Constants.WindowIDs.BROWSER);
-
-				this.btnWindowCalendar.IsFocused = false;
-
-				return;
-			}
-
-			if (this.btnWindowDownloads != null && control == this.btnWindowDownloads)
-			{
-				SetGlobalIDs();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.DOWNLOADS);
-
-				this.btnWindowDownloads.IsFocused = false;
-				return;
-			}
-
-			if (this.btnWindowContinueWatching != null && control == this.btnWindowContinueWatching)
-			{
-				SetGlobalIDs();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING);
-
-				this.btnWindowContinueWatching.IsFocused = false;
-				return;
-			}
-
-			if (this.btnWindowRecommendations != null && control == this.btnWindowRecommendations)
-			{
-				SetGlobalIDs();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.RECOMMENDATIONS);
-
-				this.btnWindowRecommendations.IsFocused = false;
-				return;
-			}
-
-			if (this.btnWindowRandom != null && control == this.btnWindowRandom)
-			{
-
-				RandomWindow_LevelObject = GroupFilterHelper.AllGroupsFilter;
-				RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
-				RandomWindow_RandomType = RandomObjectType.Series;
-
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-
-				this.btnWindowRandom.IsFocused = false;
-				return;
-			}
-
-			if (this.btnChangeLayout != null && control == this.btnChangeLayout)
-			{
-				ShowLayoutMenu("");
-				this.btnChangeLayout.IsFocused = false;
-				return;
-			}
-
-			if (this.btnSwitchUser != null && control == this.btnSwitchUser)
-			{
-				if (JMMServerVM.Instance.PromptUserLogin())
-				{
-					listLevel = Listlevel.GroupFilter;
-					curAnimeEpisode = null;
-					curAnimeGroup = null;
-					curAnimeSeries = null;
-					curGroupFilter = null;
-
-					// user has logged in, so save to settings so we will log in as the same user next time
-					settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
-					settings.Save();
-
-					LoadFacade();
-				}
-
-				this.btnSwitchUser.IsFocused = false;
-				return;
-			}
-
-			if (this.btnSettings != null && control == this.btnSettings)
-			{
-				hook.IsEnabled = false;
-
-				ShowOptionsDisplayMenu("");
-				btnDisplayOptions.Focus = false;
-
-				Thread.Sleep(100); //make sure key-up's from the context menu aren't cought by the hook
-				hook.IsEnabled = true;
-
-				this.btnSettings.IsFocused = false;
-
-				return;
-			}
-
-
+                    LoadFacade();
+                }
+            });
+            menu.Add(btnSettings, () =>
+            {
+                hook.IsEnabled = false;
+                m_Facade.Focus = true;
+                ShowOptionsDisplayMenu(string.Empty);
+                Thread.Sleep(100); //make sure key-up's from the context menu aren't cought by the hook
+                hook.IsEnabled = true;
+            });
+            if (menu.Check(control))
+                return;
 
 			try
 			{
@@ -2431,117 +2294,27 @@ namespace MyAnimePlugin3
 
 					if (this.m_Facade.SelectedListItem == null || this.m_Facade.SelectedListItem.TVTag == null)
 						return;
-
-					switch (listLevel)
-					{
-						case Listlevel.GroupFilter:
-							curGroupFilter = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
-							if (curGroupFilter == null) return;
-
-							if (curGroupFilter.GroupFilterID.Value == Constants.StaticGF.Predefined)
-							{
-								listLevel = Listlevel.GroupFilterSub;
-								curGroupFilterSub2 = null;
-								curGroupFilterSub = null;
-							}
-							else
-							{
-								listLevel = Listlevel.Group;
-								curGroupFilterSub2 = null;
-								curGroupFilterSub = null;
-							}
-
-							LoadFacade();
-							this.m_Facade.Focus = true;
-
-							break;
-
-						case Listlevel.GroupFilterSub:
-							curGroupFilterSub = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
-							if (curGroupFilterSub == null) return;
-
-							curGroupFilterSub2 = null;
-							listLevel = Listlevel.GroupFilterSub2;
-
-							LoadFacade();
-							this.m_Facade.Focus = true;
-
-							break;
-
-						case Listlevel.GroupFilterSub2:
-							curGroupFilterSub2 = this.m_Facade.SelectedListItem.TVTag as GroupFilterVM;
-							if (curGroupFilterSub2 == null) return;
-
-							listLevel = Listlevel.Group;
-
-							LoadFacade();
-							this.m_Facade.Focus = true;
-
-							break;
-
-						case Listlevel.Group:
-							curAnimeGroup = this.m_Facade.SelectedListItem.TVTag as AnimeGroupVM;
-							if (curAnimeGroup == null) return;
-							curAnimeGroupViewed = curAnimeGroup;
-
-							// e.g. if there is only one series for the group, show the episode types
-							// if there is only for episode type for the series show the episodes
-							ShowChildrenLevelForGroup();
-							
-
-							LoadFacade();
-							this.m_Facade.Focus = true;
-
-							break;
-
-						case Listlevel.Series:
-
-							if (this.m_Facade.SelectedListItem.TVTag == null) return;
-
-							// sub groups
-							if (this.m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
-							{
-								curAnimeGroup = this.m_Facade.SelectedListItem.TVTag as AnimeGroupVM;
-								if (curAnimeGroup == null) return;
-								curAnimeGroupViewed = curAnimeGroup;
-
-								ShowChildrenLevelForGroup();
-							}
-							else if (this.m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
-							{
-								curAnimeSeries = this.m_Facade.SelectedListItem.TVTag as AnimeSeriesVM;
-								if (curAnimeSeries == null) return;
-
-								ShowChildrenLevelForSeries();
-							}
-
-							LoadFacade();
-							this.m_Facade.Focus = true;
-
-							break;
-
-						case Listlevel.EpisodeTypes:
-							curAnimeEpisodeType = this.m_Facade.SelectedListItem.TVTag as AnimeEpisodeTypeVM;
-							if (curAnimeEpisodeType == null) return;
-
-							listLevel = Listlevel.Episode;
-							SetFanartForEpisodes();
-							LoadFacade();
-
-							this.m_Facade.Focus = true;
-
-							break;
-
-						case Listlevel.Episode:
-							this.curAnimeEpisode = this.m_Facade.SelectedListItem.TVTag as AnimeEpisodeVM;
-							if (curAnimeEpisode == null) return;
-
-							BaseConfig.MyAnimeLog.Write("Selected to play: {0}", curAnimeEpisode.EpisodeNumberAndName);
-							vidHandler.ResumeOrPlay(curAnimeEpisode);
-
-							break;
-					}
-				}
+				    IVM cur = m_Facade.SelectedListItem.TVTag as IVM;
+				    if (cur == null)
+				        return;
+                    if (cur is AnimeGroupVM)
+                        cur= GetChildrenLevelForGroup((AnimeGroupVM)cur);
+				    if (cur is AnimeSeriesVM)
+				        cur = GetChildrenLevelForSeries((AnimeSeriesVM) cur);
+				    if (cur is AnimeEpisodeVM)
+				    {
+                        AnimeEpisodeVM ep = (AnimeEpisodeVM)cur;
+                        BaseConfig.MyAnimeLog.Write("Selected to play: {0}", ep.EpisodeNumberAndName);
+                        vidHandler.ResumeOrPlay(ep);
+				    }
+				    else 
+                    {
+                        BaseConfig.MyAnimeLog.Write("Clicked to "+cur.GetType().ToString());
+                        Breadcrumbs.Add(new History() { Listing = cur });
+                        LoadFacade();
+                        this.m_Facade.Focus = true;
+                    }
+                }
 			}
 			catch (Exception ex)
 			{
@@ -2551,80 +2324,58 @@ namespace MyAnimePlugin3
 			base.OnClicked(controlId, control, actionType);
 		}
 
-		private void ShowChildrenLevelForSeries()
-		{
-			List<AnimeEpisodeTypeVM> episodeTypes = curAnimeSeries.EpisodeTypesToDisplay;
-			if (episodeTypes.Count > 1)
-			{
-				listLevel = Listlevel.EpisodeTypes;
-			}
-			else if (episodeTypes.Count == 1)
-			{
-				setGUIProperty(guiProperty.SeriesTitle, curAnimeSeries.SeriesName);
-				// only one so lets go straight to the episodes
-				curAnimeEpisodeType = episodeTypes[0];
-				listLevel = Listlevel.Episode;
-				SetFanartForEpisodes();
 
-				BaseConfig.MyAnimeLog.Write("Current list level: {0} - {1}", listLevel, curAnimeEpisodeType);
+
+
+		private IVM GetChildrenLevelForSeries(AnimeSeriesVM vm)
+		{
+		    IVM v;
+			List<AnimeEpisodeTypeVM> episodeTypes = vm.EpisodeTypesToDisplay;
+			if (episodeTypes.Count == 1)
+			{
+				SetGUIProperty(GuiProperty.SeriesTitle,  vm.SeriesName);
+				// only one so lets go straight to the episodes
+				v = episodeTypes[0];
+				SetFanartForEpisodes();
+			    return v;
 			}
+		    return vm;
 		}
 
-		private void ShowChildrenLevelForGroup()
+		private IVM GetChildrenLevelForGroup(AnimeGroupVM vm)
 		{
-			List<AnimeGroupVM> subGroups = curAnimeGroupViewed.SubGroups;
-			List<AnimeSeriesVM> seriesList = curAnimeGroupViewed.ChildSeries;
+			List<AnimeGroupVM> subGroups = vm.SubGroups;
+			List<AnimeSeriesVM> seriesList = vm.ChildSeries;
 
 			int subLevelCount = seriesList.Count + subGroups.Count;
 
-			if (subLevelCount > 1)
+		    if (subLevelCount > 1 || subLevelCount==0)
+		        return vm;
+			// keep drilling down until we find a series
+			// or more than one sub level
+			while (subLevelCount == 1 && subGroups.Count > 0)
 			{
-				listLevel = Listlevel.Series;
-				LoadFacade();
-				return;
+			    vm = subGroups[0];
+				subGroups = vm.SubGroups;
+				seriesList = vm.ChildSeries;
+				subLevelCount = seriesList.Count + subGroups.Count;
 			}
-			else if (subLevelCount == 1)
+
+			if (subGroups.Count == 0 && (seriesList.Count == 1))
 			{
-				// keep drilling down until we find a series
-				// or more than one sub level
-				while (subLevelCount == 1 && subGroups.Count > 0)
-				{
-					curAnimeGroupViewed = subGroups[0];
-					curAnimeGroup = subGroups[0];
-
-					subGroups = curAnimeGroup.SubGroups;
-					seriesList = curAnimeGroup.ChildSeries;
-					subLevelCount = seriesList.Count + subGroups.Count;
-				}
-
-				if (subGroups.Count == 0)
-				{
-					// means we got all the way down to a series
-					if (seriesList.Count > 1)
-					{
-						listLevel = Listlevel.Series;
-					}
-					else if (seriesList.Count == 1)
-					{
-						curAnimeSeries = seriesList[0];
-						ShowChildrenLevelForSeries();
-					}
-				}
-				else
-				{
-					// else we have more than one sub level to display
-					listLevel = Listlevel.Series;
-				}
+		        return GetChildrenLevelForSeries(seriesList[0]);
 			}
+		    return vm;
 		}
 
 		public void SetFanartForEpisodes()
 		{
-			// do this so that after an episode is played and the page is reloaded, we will always show the correct fanart
-			if (curAnimeSeries == null) return;
+            // do this so that after an episode is played and the page is reloaded, we will always show the correct fanart
+		    AnimeSeriesVM aser = GetTopSerie();
+            if (aser == null) return;
 
-			LoadFanart(curAnimeSeries);
-			//LoadFanart(curAnimeSeries);
+			LoadFanart(aser);
+			//LoadFanart(ser);
 		}
 
 		public override void DeInit()
@@ -2682,21 +2433,23 @@ namespace MyAnimePlugin3
 
 					try
 					{
-						if (listLevel == Listlevel.Group)
+					    IVM ivm = GetCurrent().Selected;
+						if (ivm is AnimeGroupVM)
 						{
-							if (curAnimeGroup == null) return;
-							JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(curAnimeGroup.AnimeGroupID,
+						    AnimeGroupVM grp = (AnimeGroupVM) ivm;
+							JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(grp.AnimeGroupID,
 								JMMServerVM.Instance.CurrentUser.JMMUserID);
 							if (contract == null) return;
 							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 							vidHandler.ResumeOrPlay(ep);
 						}
 
-						if (listLevel == Listlevel.Series)
+						if (ivm is AnimeSeriesVM)
 						{
-							//curAnimeSeries = null;
-							if (curAnimeSeries == null) return;
-							JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(curAnimeSeries.AnimeSeriesID.Value,
+                            AnimeSeriesVM ser = (AnimeSeriesVM)ivm;
+                            //ser = null;
+                            if ((!ser.AnimeSeriesID.HasValue)) return;
+                            JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(ser.AnimeSeriesID.Value,
 								JMMServerVM.Instance.CurrentUser.JMMUserID);
 							if (contract == null) return;
 							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
@@ -2716,85 +2469,19 @@ namespace MyAnimePlugin3
 						return;
 					}
 
-					// back one level
-					if (listLevel == Listlevel.GroupFilter)
-					{
-						goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME;
-					}
-					else
-					{
-						string msg = string.Format("LIST LEVEL:: {0} - GF: {1} - GFSub2: {2}", listLevel, curGroupFilter, curGroupFilterSub2);
+                    // back one level
 
-						BaseConfig.MyAnimeLog.Write(msg);
-						if (listLevel == Listlevel.GroupFilterSub)
-						{
-							listLevel = Listlevel.GroupFilter;
-							curGroupFilterSub = null;
+					//string msg = string.Format("LIST LEVEL:: {0} - GF: {1} ", listLevel, selectedGroupFilter?.GroupFilterName ?? "None");
 
-							LoadFacade();
-						}
-						if (listLevel == Listlevel.GroupFilterSub2)
-						{
-							// go back to GROUP FILTERS
-							listLevel = Listlevel.GroupFilterSub;
-							curGroupFilterSub2 = null;
+//					BaseConfig.MyAnimeLog.Write(msg);
 
-							LoadFacade();
-						}
-						if (listLevel == Listlevel.Group)
-						{
-							if (curGroupFilterSub2 == null)
-							{
-								// go back to GROUP FILTERS
-								listLevel = Listlevel.GroupFilter;
-							}
-							else
-							{
-								listLevel = Listlevel.GroupFilterSub2;
-							}
-							LoadFacade();
-							curAnimeGroup = null;
-						}
-
-						if (listLevel == Listlevel.Series)
-						{
-							// go back to GROUP
-							AnimeGroupVM parentGroup = curAnimeGroupViewed.ParentGroup;
-							if (parentGroup == null)
-								listLevel = Listlevel.Group;
-
-							ShowParentLevelForGroup(parentGroup);
-
-							LoadFacade();
-							curAnimeEpisodeType = null;
-							curAnimeSeries = null;
-						}
-
-						
-						if (listLevel == Listlevel.EpisodeTypes)
-						{
-							// go back to SERIES
-							AnimeSeriesVM parentSeries = curAnimeEpisodeType.AnimeSeries;
-							ShowParentLevelForSeries(parentSeries);
-							LoadFacade();
-							return;
-						}
-						
-						if (listLevel == Listlevel.Episode)
-						{
-							AnimeSeriesVM parentSeries = curAnimeEpisodeType.AnimeSeries;
-							if (parentSeries.EpisodeTypesToDisplay.Count == 1)
-								ShowParentLevelForSeries(parentSeries);
-							else
-							{
-								listLevel = Listlevel.EpisodeTypes;
-								curAnimeEpisodeType = null;
-							}
-
-							LoadFacade();
-							return;
-						}
-					}
+			        if (Breadcrumbs.Count == 1)
+			        {
+                        BaseConfig.MyAnimeLog.Write("Going HOME");
+                        goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME;
+                    }
+			        Breadcrumbs.Remove(Breadcrumbs[Breadcrumbs.Count - 1]);
+                    LoadFacade();
 					break;
 
 				default:
@@ -2802,7 +2489,7 @@ namespace MyAnimePlugin3
 					break;
 			}
 		}
-
+        /*
 		private void ShowParentLevelForGroup(AnimeGroupVM grp)
 		{
 			while (grp != null)
@@ -2815,7 +2502,7 @@ namespace MyAnimePlugin3
 					curAnimeGroupViewed = grp;
 					curAnimeGroup = grp;
 
-					listLevel = Listlevel.Series;
+					listLevel = Listlevel.GroupAndSeries;
 					return;
 				}
 				else
@@ -2828,7 +2515,7 @@ namespace MyAnimePlugin3
 						// only one series or subgroup so go all the way back to the group list
 						listLevel = Listlevel.Group;
 						curAnimeEpisodeType = null;
-						curAnimeSeries = null;
+						ser = null;
 						return;
 					}
 				}
@@ -2840,7 +2527,7 @@ namespace MyAnimePlugin3
 			AnimeGroupVM grp = JMMServerHelper.GetGroup(ser.AnimeGroupID);
 			ShowParentLevelForGroup(grp);
 		}
-
+        */
 		#region Find
 
 		#region Keyboard hook
@@ -2850,7 +2537,9 @@ namespace MyAnimePlugin3
 		bool IsChar(Keys k, ref char c)
 		{
 			string str = new KeysConverter().ConvertToString(k);
-			if (str.Length != 1)
+            if (string.IsNullOrEmpty(str))
+                return false;
+            if (str.Length != 1)
 				return false;
 			c = str[0];
 			return true;
@@ -3191,25 +2880,25 @@ namespace MyAnimePlugin3
 					SaveOrRestoreFacadeItems(false);
 			}
 
-			setGUIProperty(guiProperty.FindInput, search.Input);
-			setGUIProperty(guiProperty.FindText, searchText);
-			setGUIProperty(guiProperty.FindMatch, searchMatch);
-			string searchMode = (search.Mode == SearchMode.t9) ? "T9" : "Text";
-			string startWord = search.StartWord ? "yes" : "no";
-			setGUIProperty(guiProperty.FindMode, searchMode);
-			setGUIProperty(guiProperty.FindStartWord, startWord);
+			SetGUIProperty(GuiProperty.FindInput, search.Input);
+			SetGUIProperty(GuiProperty.FindText, searchText);
+			SetGUIProperty(GuiProperty.FindMatch, searchMatch);
+            string searchMode = (search.Mode == SearchMode.t9) ? Translation.T9 : Translation.Text;
+            string startWord = search.StartWord ? Translation.Yes : Translation.No;
+            SetGUIProperty(GuiProperty.FindMode, searchMode);
+			SetGUIProperty(GuiProperty.FindStartWord, startWord);
 			if (search.Mode == SearchMode.t9)
 			{
 				if (string.IsNullOrEmpty(searchText))
 				{
-					setGUIProperty(guiProperty.FindSharpMode, "Next Match");
-					setGUIProperty(guiProperty.FindAsteriskMode, string.Format("Start Word ({0})", startWord));
-				}
-				else
-				{
-					setGUIProperty(guiProperty.FindSharpMode, "Next Match");
-					setGUIProperty(guiProperty.FindAsteriskMode, "Clear");
-				}
+                    SetGUIProperty(GuiProperty.FindSharpMode, Translation.NextMatch);
+                    SetGUIProperty(GuiProperty.FindAsteriskMode, String.Format(Translation.StartWord, startWord));
+                }
+                else
+                {
+                    SetGUIProperty(GuiProperty.FindSharpMode, Translation.NextMatch);
+                    SetGUIProperty(GuiProperty.FindAsteriskMode, Translation.Clear);
+                }
 			}
 
             if (searchTimer != null && bShow)
@@ -3260,82 +2949,26 @@ namespace MyAnimePlugin3
 							{
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
 								{
-									GroupFilterVM gf = m_Facade.SelectedListItem.TVTag as GroupFilterVM;
-
-									if (LastFocusType == 1)
-									{
-										if (gf != null && gf.GroupFilterID.Value == LastFocusID) return true;
-									}
-									if (gf != null)
-									{
-										LastFocusType = 1;
-										LastFocusID = gf.GroupFilterID.Value;
-									}
-
 									GroupFilter_OnItemSelected(m_Facade.SelectedListItem);
 								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
 								{
-									AnimeGroupVM obj = m_Facade.SelectedListItem.TVTag as AnimeGroupVM;
-									if (LastFocusType == 2)
-									{
-										if (obj != null && obj.AnimeGroupID == LastFocusID) return true;
-									}
-									if (obj != null)
-									{
-										LastFocusType = 2;
-										LastFocusID = obj.AnimeGroupID;
-									}
-
 									Group_OnItemSelected(m_Facade.SelectedListItem);
 								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
 								{
-									AnimeSeriesVM obj = m_Facade.SelectedListItem.TVTag as AnimeSeriesVM;
-									if (LastFocusType == 3)
-									{
-										if (obj != null && obj.AnimeSeriesID.Value == LastFocusID) return true;
-									}
-									if (obj != null)
-									{
-										LastFocusType = 3;
-										LastFocusID = obj.AnimeSeriesID.Value;
-									}
-
 									Series_OnItemSelected(m_Facade.SelectedListItem);
 								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeTypeVM))
 								{
-									AnimeEpisodeTypeVM obj = m_Facade.SelectedListItem.TVTag as AnimeEpisodeTypeVM;
-									if (LastFocusType == 4)
-									{
-										if (obj != null && (int)obj.EpisodeType == LastFocusID) return true;
-									}
-									if (obj != null)
-									{
-										LastFocusType = 4;
-										LastFocusID = (int)obj.EpisodeType;
-									}
-
 									EpisodeType_OnItemSelected(m_Facade.SelectedListItem);
 								}
 
 								if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeVM))
 								{
-									AnimeEpisodeVM obj = m_Facade.SelectedListItem.TVTag as AnimeEpisodeVM;
-									if (LastFocusType == 5)
-									{
-										if (obj != null && obj.AnimeEpisodeID == LastFocusID) return true;
-									}
-									if (obj != null)
-									{
-										LastFocusType = 5;
-										LastFocusID = obj.AnimeEpisodeID;
-									}
-
 									Episode_OnItemSelected(m_Facade.SelectedListItem);
 								}
 							}
@@ -3373,8 +3006,8 @@ namespace MyAnimePlugin3
 
 			if (string.IsNullOrEmpty(MainWindow.settings.JMMServer_Address) || string.IsNullOrEmpty(MainWindow.settings.JMMServer_Port))
 			{
-				Utils.DialogMsg("Error", "Please exit MP and set your JMM Server location first");
-				return;
+                Utils.DialogMsg(Translation.Error, Translation.PleaseExitMPFirst);
+                return;
 			}
 				
 
@@ -3383,8 +3016,8 @@ namespace MyAnimePlugin3
 			List<JMMUserVM> allUsers = JMMServerHelper.GetAllUsers();
 			if (allUsers.Count == 0)
 			{
-				Utils.DialogMsg("Error", "Error connecting to JMM Server");
-				return;
+                Utils.DialogMsg(Translation.Error, Translation.ErrorConnectingJMMServer);
+                return;
 			}
 			else
 			{
@@ -3431,8 +3064,8 @@ namespace MyAnimePlugin3
 								authed = JMMServerVM.Instance.AuthenticateUser(selUser.Username, password);
 								if (!authed)
 								{
-									Utils.DialogMsg("Error", "Incorrect password, please try again");
-								}
+                                    Utils.DialogMsg(Translation.Error, Translation.IncorrectPasswordTryAgain);
+                                }
 							}
 							else return;
 						}
@@ -3451,13 +3084,16 @@ namespace MyAnimePlugin3
 			isFirstInitDone = true;
 		}
 
+
 		private void GroupFilter_OnItemSelected(GUIListItem item)
 		{
 			GroupFilterVM grpFilter = item.TVTag as GroupFilterVM;
 			if (grpFilter == null) return;
-
-			curGroupFilter = grpFilter;
-
+		    History h = GetCurrent();
+            if (h.Selected == grpFilter)
+                return;
+		    h.Selected = grpFilter;
+            
 			if (displayGrpFilterTimer != null)
 				displayGrpFilterTimer.Stop();
 
@@ -3473,44 +3109,74 @@ namespace MyAnimePlugin3
 			GroupFilter_OnItemSelectedDisplay();
 		}
 
+	    private Tuple<Fanart, string> FindFanartForGroupFilter(GroupFilterVM gf)
+	    {
+	        if (gf.Childs.Count > 0)
+	        {
+                foreach (int v in gf.Childs.Randomize(gf.Childs.Count))
+	            {
+                    Contract_GroupFilter cq =JMMServerVM.Instance.clientBinaryHTTP.GetGroupFilter(v);
+	                if (cq != null)
+	                {
+	                    GroupFilterVM gfm=new GroupFilterVM(cq);
+                        Tuple<Fanart, string> n = FindFanartForGroupFilter(gfm);
+	                    if (n != null)
+	                        return n;
+	                }
+                }
+            }
+	        else if (gf.Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) && gf.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count > 0)
+	        {
+	            foreach (int v in gf.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Randomize(gf.Groups.Count))
+	            {
+	                Contract_AnimeGroup g = JMMServerVM.Instance.clientBinaryHTTP.GetGroup(v, JMMServerVM.Instance.CurrentUser.JMMUserID);
+	                if (g != null)
+	                {
+	                    AnimeGroupVM gvm = new AnimeGroupVM(g);
+                        Fanart fanart = new Fanart(gvm);
+	                    if (!string.IsNullOrEmpty(fanart.FileName))
+	                    {
+	                        string f = ImageAllocator.GetGroupImageAsFileName(gvm, GUIFacadeControl.Layout.List);
+	                        if (f != null)
+	                            return new Tuple<Fanart, string>(fanart, f);
+	                    }
+	                }
+	            }
+	        }
+	        return null;
+	    }
+
+
 		private void GroupFilter_OnItemSelectedDisplay()
 		{
-			if (curGroupFilter == null) return;
+		    GroupFilterVM gf = GetCurrent().Selected as GroupFilterVM;
+			if (gf == null) return;
 
-			clearGUIProperty("GroupFilter.FilterName");
-			clearGUIProperty("GroupFilter.GroupCount");
+            SetGUIProperty(GuiProperty.SeriesTitle, gf.GroupFilterName);
+            SetGUIProperty(GuiProperty.Title, gf.GroupFilterName);
+            SetGUIProperty(GuiProperty.GroupFilter_FilterName, gf.GroupFilterName);
+            SetGUIProperty(GuiProperty.GroupFilter_GroupCount, ((gf.Childs.Count>0) ? gf.Childs.Count.ToString() : gf.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count.ToString()));
 
-			setGUIProperty(guiProperty.SeriesTitle, curGroupFilter.GroupFilterName);
-			setGUIProperty(guiProperty.Title, curGroupFilter.GroupFilterName);
-			setGUIProperty("GroupFilter.FilterName", curGroupFilter.GroupFilterName);
+            Tuple<Fanart, string> ff = FindFanartForGroupFilter(gf);
 
-			AnimeGroupVM grp = null;
-			List<AnimeGroupVM> groups = JMMServerHelper.GetAnimeGroupsForFilter(curGroupFilter);
-			if (groups.Count > 0)
-			{
-				grp = groups[groupRandom.Next(0, groups.Count - 1)];
-			}
-			setGUIProperty("GroupFilter.GroupCount", groups.Count.ToString());
-
-			if (grp != null)
-			{
-				// Delayed Image Loading of Series Banners            
-				listPoster.Filename = ImageAllocator.GetGroupImageAsFileName(grp, GUIFacadeControl.Layout.List);
-
-				LoadFanart(grp);
-			}
+            if (ff != null)
+            {
+                // Delayed Image Loading of Series Banners     
+                listPoster.Filename =ff.Item2;                
+                LoadFanart(ff.Item1);
+            }
 
 		}
 
+
 		private void Group_OnItemSelected(GUIListItem item)
 		{
-			if (item == null || item.TVTag == null || !(item.TVTag is AnimeGroupVM))
-				return;
-
-			AnimeGroupVM grp = item.TVTag as AnimeGroupVM;
-			if (grp == null) return;
-
-			curAnimeGroup = grp;
+            AnimeGroupVM grp = item?.TVTag as AnimeGroupVM;
+            if (grp == null) return;
+            History h = GetCurrent();
+            if (h.Selected == grp)
+                return;
+            h.Selected = grp;
 
 			if (displayGrpTimer != null)
 				displayGrpTimer.Stop();
@@ -3533,62 +3199,60 @@ namespace MyAnimePlugin3
 			// group level = top level groups
 			// series level = sub-groups
 
-			clearGUIProperty("SeriesGroup.Year");
-			clearGUIProperty("SeriesGroup.Genre");
-			clearGUIProperty("SeriesGroup.Episodes");
-			clearGUIProperty("SeriesGroup.EpisodesAvailable");
-			clearGUIProperty("SeriesGroup.Rating");
-			clearGUIProperty("SeriesGroup.EpisodeCountNormal");
-			clearGUIProperty("SeriesGroup.EpisodeCountSpecial");
-			clearGUIProperty("SeriesGroup.EpisodeCountNormalAvailable");
-			clearGUIProperty("SeriesGroup.EpisodeCountSpecialAvailable");
-			clearGUIProperty("SeriesGroup.EpisodeCountUnwatched");
-			clearGUIProperty("SeriesGroup.EpisodeCountWatched");
-			clearGUIProperty("SeriesGroup.RawRating");
-			clearGUIProperty("SeriesGroup.RatingVoteCount");
-			clearGUIProperty("SeriesGroup.MyRating");
-			clearGUIProperty("SeriesGroup.SeriesCount");
-			clearGUIProperty(guiProperty.Description);
+            AnimeGroupVM grp=GetCurrent().Selected as AnimeGroupVM;
 
-			if (curAnimeGroup == null) return;
+			if (grp == null) return;
 
-			
-			setGUIProperty(guiProperty.Subtitle, "");
+            ClearGUIProperty(GuiProperty.Subtitle);
 
-			
-			if (curAnimeGroup.Stat_UserVoteOverall.HasValue)
-				setGUIProperty("SeriesGroup.MyRating", Utils.FormatAniDBRating((double)curAnimeGroup.Stat_UserVoteOverall.Value));
-
-			// set info properties
-			// most of these properties actually come from the anidb_anime record
-			// we need to find all the series for this group
-
-			setGUIProperty("SeriesGroup.SeriesCount", curAnimeGroup.AllSeriesCount.ToString());
-			setGUIProperty("SeriesGroup.Genre", curAnimeGroup.TagsFormatted);
-			setGUIProperty("SeriesGroup.GenreShort", curAnimeGroup.TagsFormattedShort);
-
-			setGUIProperty("SeriesGroup.Year", curAnimeGroup.YearFormatted);
+            if (grp.Stat_UserVoteOverall.HasValue)
+            {
+                SetGUIProperty(GuiProperty.SeriesGroup_MyRating, Utils.FormatAniDBRating((double)grp.Stat_UserVoteOverall.Value));
+                // Image Rankings
+                if (dummyStarCustomPlaceholder != null && dummyStarOffPlaceholder != null)
+                {
+                    string im = Logos.buildRating((double)grp.Stat_UserVoteOverall.Value, dummyStarOffPlaceholder.FileName,
+                        dummyStarCustomPlaceholder.FileName,
+                        dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                    SetGUIProperty(GuiProperty.CustomRatingImage, im);
+                }
+            }
+            else
+                ClearGUIProperty(GuiProperty.SeriesGroup_MyRating);
 
 
-			decimal totalRating = 0;
+
+
+
+            // set info properties
+            // most of these properties actually come from the anidb_anime record
+            // we need to find all the series for this group
+
+            SetGUIProperty(GuiProperty.SeriesGroup_SeriesCount, grp.AllSeriesCount.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_Genre, grp.TagsFormatted);
+            SetGUIProperty(GuiProperty.SeriesGroup_GenreShort, grp.TagsFormattedShort);
+            SetGUIProperty(GuiProperty.SeriesGroup_Year, grp.YearFormatted);
+
+
+            decimal totalRating = 0;
 			int totalVotes = 0;
 			int epCountNormal = 0;
 			int epCountSpecial = 0;
 
-			List<AnimeSeriesVM> seriesList = curAnimeGroup.ChildSeries;
+			List<AnimeSeriesVM> seriesList = grp.ChildSeries;
 
 			if (seriesList.Count == 1)
 			{
-				setGUIProperty(guiProperty.SeriesTitle, seriesList[0].SeriesName);
-				setGUIProperty(guiProperty.Title, seriesList[0].SeriesName);
-				setGUIProperty(guiProperty.Description, seriesList[0].Description);
-			}
-			else
-			{
-				setGUIProperty(guiProperty.SeriesTitle, curAnimeGroup.GroupName);
-				setGUIProperty(guiProperty.Title, curAnimeGroup.GroupName);
-				setGUIProperty(guiProperty.Description, curAnimeGroup.ParsedDescription);
-			}
+                SetGUIProperty(GuiProperty.SeriesTitle, seriesList[0].SeriesName);
+                SetGUIProperty(GuiProperty.Title, seriesList[0].SeriesName);
+                SetGUIProperty(GuiProperty.Description, seriesList[0].Description);
+            }
+            else
+            {
+                SetGUIProperty(GuiProperty.SeriesTitle, grp.GroupName);
+                SetGUIProperty(GuiProperty.Title, grp.GroupName);
+                SetGUIProperty(GuiProperty.Description, grp.ParsedDescription);
+            }
 
 			foreach (AnimeSeriesVM ser in seriesList)
 			{
@@ -3617,11 +3281,19 @@ namespace MyAnimePlugin3
 					AniDB_AnimeVM anAnime = seriesList[0].AniDB_Anime;
 					string myRating = anAnime.UserVoteFormatted;
 					if (string.IsNullOrEmpty(myRating))
-						clearGUIProperty("SeriesGroup.MyRating");
-					else
+                        ClearGUIProperty(GuiProperty.SeriesGroup_MyRating);
+                    else
 					{
-						setGUIProperty("SeriesGroup.MyRating", myRating);
-						if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
+                        SetGUIProperty(GuiProperty.SeriesGroup_MyRating, myRating);
+                        // Image Rankings
+                        if (dummyStarCustomPlaceholder != null && dummyStarOffPlaceholder != null)
+                        {
+                            string im = Logos.buildRating((double)Convert.ToDouble(myRating), dummyStarOffPlaceholder.FileName, dummyStarCustomPlaceholder.FileName,
+                                dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                            SetGUIProperty(GuiProperty.CustomRatingImage, im);
+                        }
+
+                        if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
 
 						BaseConfig.MyAnimeLog.Write("myRating : " + myRating.ToString());
 						BaseConfig.MyAnimeLog.Write("dummyUserHasVotedSeries.Visible : " + dummyUserHasVotedSeries.Visible.ToString());
@@ -3631,36 +3303,38 @@ namespace MyAnimePlugin3
 			}
 
 
-			string rating = Utils.FormatAniDBRating((double)AniDBRating) + " (" + totalVotes.ToString() + " votes)";
-			setGUIProperty("SeriesGroup.RawRating", Utils.FormatAniDBRating((double)AniDBRating));
-			setGUIProperty("SeriesGroup.RatingVoteCount", totalVotes.ToString());
-			setGUIProperty("SeriesGroup.Rating", rating);
+			string rating = Utils.FormatAniDBRating((double)AniDBRating) + " (" + totalVotes.ToString() + " " + Translation.Votes + ")";
+            SetGUIProperty(GuiProperty.SeriesGroup_RawRating, Utils.FormatAniDBRating((double)AniDBRating));
+            SetGUIProperty(GuiProperty.SeriesGroup_RatingVoteCount, totalVotes.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_Rating, rating);
 
 			// set watched/unavailable flag
-			if (dummyIsWatched != null) dummyIsWatched.Visible = (curAnimeGroup.UnwatchedEpisodeCount == 0);
+			if (dummyIsWatched != null) dummyIsWatched.Visible = (grp.UnwatchedEpisodeCount == 0);
 
 
 
-			string eps = epCountNormal.ToString() + " (" + epCountSpecial.ToString() + " Specials)";
-			//string epsa = epCountNormalAvailable.ToString() + " (" + epCountSpecialAvailable.ToString() + " Specials)";
+			string eps = epCountNormal.ToString() + " (" + epCountSpecial.ToString() + " " + Translation.Specials + ")";
+            //string epsa = epCountNormalAvailable.ToString() + " (" + epCountSpecialAvailable.ToString() + " Specials)";
 
 
-			setGUIProperty("SeriesGroup.Episodes", eps);
-			//setGUIProperty("SeriesGroup.EpisodesAvailable", epsa);
+            SetGUIProperty(GuiProperty.SeriesGroup_Episodes, eps);
+            //setGUIProperty("SeriesGroup.EpisodesAvailable", epsa);
 
-			setGUIProperty("SeriesGroup.EpisodeCountNormal", epCountNormal.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountSpecial", epCountSpecial.ToString());
-			//setGUIProperty("SeriesGroup.EpisodeCountNormalAvailable", epCountNormalAvailable.ToString());
-			//setGUIProperty("SeriesGroup.EpisodeCountSpecialAvailable", epCountSpecialAvailable.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountUnwatched", curAnimeGroup.UnwatchedEpisodeCount.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountWatched", curAnimeGroup.WatchedEpisodeCount.ToString());
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountNormal, epCountNormal.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountSpecial, epCountSpecial.ToString(Globals.Culture));
+            //setGUIProperty("SeriesGroup.EpisodeCountNormalAvailable", epCountNormalAvailable.ToString());
+            //setGUIProperty("SeriesGroup.EpisodeCountSpecialAvailable", epCountSpecialAvailable.ToString());
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountUnwatched, grp.UnwatchedEpisodeCount.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountWatched, grp.WatchedEpisodeCount.ToString(Globals.Culture));
 
-			// Delayed Image Loading of Series Banners            
-			listPoster.Filename = ImageAllocator.GetGroupImageAsFileName(curAnimeGroup, GUIFacadeControl.Layout.List);
 
-			LoadFanart(curAnimeGroup);
+            // Delayed Image Loading of Series Banners            
+            listPoster.Filename = ImageAllocator.GetGroupImageAsFileName(grp, GUIFacadeControl.Layout.List);
+
+			LoadFanart(grp);
 
 		}
+
 
 		private void EpisodeType_OnItemSelected(GUIListItem item)
 		{
@@ -3669,79 +3343,79 @@ namespace MyAnimePlugin3
 
 			if (dummyIsAvailable != null) dummyIsAvailable.Visible = true;
 
-			clearGUIProperty("SeriesGroup.Year");
-			clearGUIProperty("SeriesGroup.Genre");
-			clearGUIProperty("SeriesGroup.Episodes");
-			clearGUIProperty("SeriesGroup.Rating");
-			clearGUIProperty(guiProperty.SeriesTitle);
-			clearGUIProperty(guiProperty.Subtitle);
-			clearGUIProperty(guiProperty.Description);
-			clearGUIProperty("SeriesGroup.EpisodeCountNormal");
-			clearGUIProperty("SeriesGroup.EpisodeCountSpecial");
-			clearGUIProperty("SeriesGroup.EpisodeCountUnwatched");
-			clearGUIProperty("SeriesGroup.EpisodeCountWatched");
-			clearGUIProperty("SeriesGroup.RatingVoteCount");
-			clearGUIProperty("SeriesGroup.RawRating");
+            AnimeEpisodeTypeVM ept = item?.TVTag as AnimeEpisodeTypeVM;
+            if (ept == null) return;
+            History h = GetCurrent();
+            if (h.Selected == ept)
+                return;
+            h.Selected = ept;
+		    AnimeSeriesVM ser = GetTopSerie();
 
-			if (item == null || item.TVTag == null || !(item.TVTag is AnimeEpisodeTypeVM))
-				return;
+			if (ser == null) return;
+			AniDB_AnimeVM anAnime = ser.AniDB_Anime;
 
+            SetGUIProperty(GuiProperty.SeriesTitle, ser.SeriesName);
+            ClearGUIProperty(GuiProperty.Subtitle);
+            SetGUIProperty(GuiProperty.Description, ser.Description);
 
-			AnimeEpisodeTypeVM epType = item.TVTag as AnimeEpisodeTypeVM;
-			if (epType == null) return;
+            // set info properties
+            // most of these properties actually come from the anidb_anime record
+            // we need to find all the series for this group
 
-			curAnimeEpisodeType = epType;
+            SetGUIProperty(GuiProperty.SeriesGroup_Year, anAnime.Year);
+            SetGUIProperty(GuiProperty.SeriesGroup_Genre, anAnime.TagsFormatted);
+            SetGUIProperty(GuiProperty.SeriesGroup_GenreShort, anAnime.TagsFormattedShort);
 
-			if (curAnimeSeries == null) return;
-			AniDB_AnimeVM anAnime = curAnimeSeries.AniDB_Anime;
+            string eps = anAnime.EpisodeCountNormal.ToString() + " (" + anAnime.EpisodeCountSpecial.ToString() + " " + Translation.Specials + ")";
+            SetGUIProperty(GuiProperty.SeriesGroup_Episodes, eps);
 
-			setGUIProperty(guiProperty.SeriesTitle, curAnimeSeries.SeriesName);
-			setGUIProperty(guiProperty.Subtitle, "");
-			setGUIProperty(guiProperty.Description, curAnimeSeries.Description);
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountNormal, anAnime.EpisodeCountNormal.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountSpecial, anAnime.EpisodeCountSpecial.ToString(Globals.Culture));
+            
 
-			// set info properties
-			// most of these properties actually come from the anidb_anime record
-			// we need to find all the series for this group
+            string rating = "";
 
-			setGUIProperty("SeriesGroup.Year", anAnime.Year);
-			setGUIProperty("SeriesGroup.Genre", anAnime.TagsFormatted);
-			setGUIProperty("SeriesGroup.GenreShort", anAnime.TagsFormattedShort);
-
-			string eps = anAnime.EpisodeCountNormal.ToString() + " (" + anAnime.EpisodeCountSpecial.ToString() + " Specials)";
-			setGUIProperty("SeriesGroup.Episodes", eps);
-
-			setGUIProperty("SeriesGroup.EpisodeCountNormal", anAnime.EpisodeCountNormal.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountSpecial", anAnime.EpisodeCountSpecial.ToString());
-
-			string rating = "";
-
-			rating = Utils.FormatAniDBRating((double)anAnime.AniDBRating) + " (" + anAnime.AniDBTotalVotes.ToString() + " votes)";
-			setGUIProperty("SeriesGroup.RawRating", Utils.FormatAniDBRating((double)anAnime.AniDBRating));
-			setGUIProperty("SeriesGroup.RatingVoteCount", anAnime.AniDBTotalVotes.ToString());
-
-			setGUIProperty("SeriesGroup.Rating", rating);
+			rating = Utils.FormatAniDBRating((double)anAnime.AniDBRating) + " (" + anAnime.AniDBTotalVotes.ToString() + " " + Translation.Votes + ")";
+            SetGUIProperty(GuiProperty.SeriesGroup_RawRating, Utils.FormatAniDBRating((double)anAnime.AniDBRating));
+            SetGUIProperty(GuiProperty.SeriesGroup_RatingVoteCount, anAnime.AniDBTotalVotes.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_Rating, rating);
+            // Image Rankings
+            if (dummyStarOnPlaceholder != null && dummyStarOffPlaceholder != null)
+            {
+                string im = Logos.buildRating((double)anAnime.AniDBRating, dummyStarOffPlaceholder.FileName, dummyStarOnPlaceholder.FileName,
+                    dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                SetGUIProperty(GuiProperty.RatingImage, im);
+            }
 
 
-			int unwatched = 0;
+            int unwatched = 0;
 			int watched = 0;
-			if (curAnimeSeries != null)
-				curAnimeSeries.GetWatchedUnwatchedCount(epType.EpisodeType, ref unwatched, ref watched);
+			if (ser != null)
+				ser.GetWatchedUnwatchedCount(ept.EpisodeType, ref unwatched, ref watched);
 
 			// set watched/unavailable flag
 			if (dummyIsWatched != null) dummyIsWatched.Visible = (unwatched == 0);
 
-			setGUIProperty("SeriesGroup.EpisodeCountUnwatched", unwatched.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountWatched", watched.ToString());
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountUnwatched, unwatched.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountWatched, watched.ToString(Globals.Culture));
 
 
 			// Delayed Image Loading of Series Banners            
-			listPoster.Filename = ImageAllocator.GetSeriesImageAsFileName(curAnimeSeries, GUIFacadeControl.Layout.List);
+			listPoster.Filename = ImageAllocator.GetSeriesImageAsFileName(ser, GUIFacadeControl.Layout.List);
 		}
 
-		private void Series_OnItemSelected(GUIListItem item)
-		{
-			// need to do this here as well because we display series and sub-groups in the same list
-			if (displayGrpTimer != null)
+
+        private void Series_OnItemSelected(GUIListItem item)
+        {
+            AnimeSeriesVM ser = item?.TVTag as AnimeSeriesVM;
+            if (ser == null) return;
+            History h = GetCurrent();
+            if (h.Selected == ser)
+                return;
+            h.Selected = ser;
+
+            // need to do this here as well because we display series and sub-groups in the same list
+            if (displayGrpTimer != null)
 				displayGrpTimer.Stop();
 
 
@@ -3750,48 +3424,26 @@ namespace MyAnimePlugin3
 
 			if (dummyIsAvailable != null) dummyIsAvailable.Visible = true;
 
-			clearGUIProperty("SeriesGroup.Year");
-			clearGUIProperty("SeriesGroup.Genre");
-			clearGUIProperty("SeriesGroup.Episodes");
-			clearGUIProperty("SeriesGroup.EpisodesAvailable");
-			clearGUIProperty("SeriesGroup.Rating");
-			clearGUIProperty(guiProperty.SeriesTitle);
-			clearGUIProperty(guiProperty.Subtitle);
-			clearGUIProperty(guiProperty.Description);
-			clearGUIProperty("SeriesGroup.EpisodeCountNormal");
-			clearGUIProperty("SeriesGroup.EpisodeCountSpecial");
-			clearGUIProperty("SeriesGroup.EpisodeCountNormalAvailable");
-			clearGUIProperty("SeriesGroup.EpisodeCountSpecialAvailable");
-			clearGUIProperty("SeriesGroup.EpisodeCountUnwatched");
-			clearGUIProperty("SeriesGroup.EpisodeCountWatched");
-			clearGUIProperty("SeriesGroup.RatingVoteCount");
-			clearGUIProperty("SeriesGroup.RawRating");
-			clearGUIProperty("SeriesGroup.MyRating");
-			clearGUIProperty(guiProperty.RomanjiTitle);
-			clearGUIProperty(guiProperty.EnglishTitle);
-			clearGUIProperty(guiProperty.KanjiTitle);
-			clearGUIProperty(guiProperty.RotatorTitle);
-			if (item == null || item.TVTag == null || !(item.TVTag is AnimeSeriesVM))
+            ClearGUIProperty(GuiProperty.RomanjiTitle);
+            ClearGUIProperty(GuiProperty.EnglishTitle);
+            ClearGUIProperty(GuiProperty.KanjiTitle);
+            ClearGUIProperty(GuiProperty.RotatorTitle);
+            if (item == null || item.TVTag == null || !(item.TVTag is AnimeSeriesVM))
 				return;
 
 
-			AnimeSeriesVM ser = item.TVTag as AnimeSeriesVM;
-			if (ser == null) return;
 
 			BaseConfig.MyAnimeLog.Write(ser.ToString());
 
-			curAnimeSeries = ser;
+            SetGUIProperty(GuiProperty.SeriesTitle, ser.SeriesName);
+            ClearGUIProperty(GuiProperty.Subtitle);
+            SetGUIProperty(GuiProperty.Description, ser.Description);
 
-			setGUIProperty(guiProperty.SeriesTitle, ser.SeriesName);
-			setGUIProperty(guiProperty.Subtitle, "");
-			setGUIProperty(guiProperty.Description, ser.Description);
+            // set info properties
+            // most of these properties actually come from the anidb_anime record
+            // we need to find all the series for this group
 
-
-			// set info properties
-			// most of these properties actually come from the anidb_anime record
-			// we need to find all the series for this group
-
-			AniDB_AnimeVM anAnime = ser.AniDB_Anime;
+            AniDB_AnimeVM anAnime = ser.AniDB_Anime;
 
 			if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = false;
 			// Only AniDB users have votes
@@ -3799,46 +3451,63 @@ namespace MyAnimePlugin3
 			{
 				string myRating = anAnime.UserVoteFormatted;
 				if (string.IsNullOrEmpty(myRating))
-					clearGUIProperty("SeriesGroup.MyRating");
-				else
+                    ClearGUIProperty(GuiProperty.SeriesGroup_MyRating);
+                else
 				{
-					setGUIProperty("SeriesGroup.MyRating", myRating);
-					if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
-				}
+                    SetGUIProperty(GuiProperty.SeriesGroup_MyRating, myRating);
+                    if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
+                    // Image Rankings
+                    if (dummyStarCustomPlaceholder != null && dummyStarOffPlaceholder != null)
+                    {
+                        string im = Logos.buildRating((double)Convert.ToDouble(myRating), dummyStarOffPlaceholder.FileName, dummyStarCustomPlaceholder.FileName,
+                            dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                        SetGUIProperty(GuiProperty.CustomRatingImage, im);
+                    }
+                }
 			}
 
 			BaseConfig.MyAnimeLog.Write(anAnime.ToString());
 
-			setGUIProperty("SeriesGroup.Year", anAnime.Year);
-			setGUIProperty("SeriesGroup.Genre", anAnime.TagsFormatted);
-			setGUIProperty("SeriesGroup.GenreShort", anAnime.TagsFormattedShort);
+            SetGUIProperty(GuiProperty.SeriesGroup_Year, anAnime.Year);
+            SetGUIProperty(GuiProperty.SeriesGroup_Genre, anAnime.TagsFormatted);
+            SetGUIProperty(GuiProperty.SeriesGroup_GenreShort, anAnime.TagsFormattedShort);
 
 
-			string eps = anAnime.EpisodeCountNormal.ToString() + " (" + anAnime.EpisodeCountSpecial.ToString() + " Specials)";
-			setGUIProperty("SeriesGroup.Episodes", eps);
+            string eps = anAnime.EpisodeCountNormal.ToString() + " (" + anAnime.EpisodeCountSpecial.ToString() + " " + Translation.Specials + ")";
 
-			setGUIProperty("SeriesGroup.EpisodeCountNormal", anAnime.EpisodeCountNormal.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountSpecial", anAnime.EpisodeCountSpecial.ToString());
+            SetGUIProperty(GuiProperty.SeriesGroup_Episodes, eps);
 
-			string rating = "";
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountNormal, anAnime.EpisodeCountNormal.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountSpecial, anAnime.EpisodeCountSpecial.ToString(Globals.Culture));
+            
+            string rating = "";
 
 			rating = Utils.FormatAniDBRating((double)anAnime.AniDBRating) + " (" + anAnime.AniDBTotalVotes.ToString() + " votes)";
-			setGUIProperty("SeriesGroup.RawRating", Utils.FormatAniDBRating((double)anAnime.AniDBRating));
-			setGUIProperty("SeriesGroup.RatingVoteCount", anAnime.AniDBTotalVotes.ToString());
+            SetGUIProperty(GuiProperty.SeriesGroup_RawRating, Utils.FormatAniDBRating((double)anAnime.AniDBRating));
+            SetGUIProperty(GuiProperty.SeriesGroup_RatingVoteCount, anAnime.AniDBTotalVotes.ToString(Globals.Culture));
 
-			setGUIProperty("SeriesGroup.Rating", rating);
+            SetGUIProperty(GuiProperty.SeriesGroup_Rating, rating);
 
-			
+            // Image Rankings
+            if (dummyStarOnPlaceholder != null && dummyStarOffPlaceholder != null)
+            {
+                string im = Logos.buildRating((double)anAnime.AniDBRating, dummyStarOffPlaceholder.FileName, dummyStarOnPlaceholder.FileName,
+                    dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                SetGUIProperty(GuiProperty.RatingImage, im);
+            }
 
-			// set watched/unavailable flag
-			if (dummyIsWatched != null) dummyIsWatched.Visible = (ser.UnwatchedEpisodeCount == 0);
-
-			setGUIProperty("SeriesGroup.EpisodeCountUnwatched", ser.UnwatchedEpisodeCount.ToString());
-			setGUIProperty("SeriesGroup.EpisodeCountWatched", ser.WatchedEpisodeCount.ToString());
 
 
-			// Delayed Image Loading of Series Banners
-			listPoster.Filename = ImageAllocator.GetSeriesImageAsFileName(ser, GUIFacadeControl.Layout.List);
+            // set watched/unavailable flag
+            if (dummyIsWatched != null) dummyIsWatched.Visible = (ser.UnwatchedEpisodeCount == 0);
+
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountUnwatched, ser.UnwatchedEpisodeCount.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.SeriesGroup_EpisodeCountWatched, ser.WatchedEpisodeCount.ToString(Globals.Culture));
+
+
+
+            // Delayed Image Loading of Series Banners
+            listPoster.Filename = ImageAllocator.GetSeriesImageAsFileName(ser, GUIFacadeControl.Layout.List);
 
 
 			LoadFanart(ser);
@@ -3846,55 +3515,41 @@ namespace MyAnimePlugin3
 
 		private string GetSeriesTypeLabel()
 		{
-			if (curAnimeEpisodeType != null) return curAnimeEpisodeType.EpisodeTypeDescription;
-
-			if (curAnimeSeries != null) return curAnimeSeries.SeriesName;
-
-			if (curAnimeGroup != null) return curAnimeGroup.GroupName;
-
-			return "";
+		    AnimeEpisodeTypeVM ept = GetTopEpType();
+			if (ept != null) return ept.EpisodeTypeDescription;
+		    AnimeSeriesVM ser = GetTopSerie();
+		    if (ser != null) return ser.SeriesName;
+		    AnimeGroupVM grp = GetTopGroup();
+		    if (grp != null)
+		        return grp.GroupName;
+		    return string.Empty;
 
 		}
+
 
 		private void Episode_OnItemSelected(GUIListItem item)
 		{
 			if (m_bQuickSelect)
 				return;
 
-			clearGUIProperty("Episode.MyRating");
-			clearGUIProperty("Episode.AirDate");
-			clearGUIProperty("Episode.Rating");
-			clearGUIProperty("Episode.RawRating");
-			clearGUIProperty("Episode.Length");
-			clearGUIProperty("Episode.FileInfo");
-			clearGUIProperty("Episode.EpisodeName");
-			clearGUIProperty("Episode.EpisodeDisplayName");
-			clearGUIProperty("Episode.Description");
-			clearGUIProperty("Episode.Image");
-			clearGUIProperty("Episode.SeriesTypeLabel");
-			clearGUIProperty("Episode.EpisodeRomanjiName");
-			clearGUIProperty("Episode.EpisodeEnglishName");
-			clearGUIProperty("Episode.EpisodeKanjiName");
-			clearGUIProperty("Episode.EpisodeRotator");
-			
-			if (item == null || item.TVTag == null || !(item.TVTag is AnimeEpisodeVM))
-				return;
+            AnimeEpisodeVM ep = item?.TVTag as AnimeEpisodeVM;
+            if (ep == null) return;
+            History h = GetCurrent();
+            if (h.Selected == ep)
+                return;
+            h.Selected = ep;
 
 
-			AnimeEpisodeVM ep = item.TVTag as AnimeEpisodeVM;
-			if (ep == null) return;
-
-			curAnimeEpisode = ep;
-
-      if (string.IsNullOrEmpty(curAnimeEpisode.EpisodeImageLocation) == false)
+      if (string.IsNullOrEmpty(ep.EpisodeImageLocation) == false)
       {
-        setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
+        SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
+
 
         //Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
         /*
         if (settings.LoadLocalThumbnails)
         {
-          string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
+          string localThumbnail = LoadLocalThumbnail(ep.AnimeEpisodeID);
           if (!string.IsNullOrEmpty(localThumbnail))
           {
             fanartTexture.Filename = localThumbnail;
@@ -3910,19 +3565,19 @@ namespace MyAnimePlugin3
       }
       else if (settings.LoadLocalThumbnails)
       {
-        string localThumbnail = LoadLocalThumbnail(curAnimeEpisode.AnimeEpisodeID);
+        string localThumbnail = LoadLocalThumbnail(ep.AnimeEpisodeID);
 
         // Try to find local thumbnail
         if (string.IsNullOrEmpty(localThumbnail))
         {
           // Fallback to default thumbnail if none found
-          setGUIProperty("Episode.Image", curAnimeEpisode.EpisodeImageLocation);
-          DisableFanart();
+          SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
+            fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
         }
         else
         {
-          // Set thumbnai to local and replace fanart image with it as well
-          setGUIProperty("Episode.Image", localThumbnail);
+            // Set thumbnail to local and replace fanart image with it as well
+            SetGUIProperty(GuiProperty.Episode_Image, localThumbnail);
 
           fanartTexture.Filename = localThumbnail;
 					
@@ -3930,33 +3585,46 @@ namespace MyAnimePlugin3
             this.dummyIsFanartLoaded.Visible = true;
         }
       }
+      else
+      {
+        ClearGUIProperty(GuiProperty.Episode_Image);
+        }
 
 			if (!settings.HidePlot)
-				setGUIProperty("Episode.Description", curAnimeEpisode.EpisodeOverview);
-			else
+                SetGUIProperty(GuiProperty.Episode_Description, ep.EpisodeOverview);
+            else
 			{
-				if (curAnimeEpisode.EpisodeOverview.Trim().Length > 0 && ep.IsWatched == 0)
-					setGUIProperty("Episode.Description", "*** Hidden to prevent spoilers ***");
-				else
-					setGUIProperty("Episode.Description", curAnimeEpisode.EpisodeOverview);
-			}
+				if (ep.EpisodeOverview.Trim().Length > 0 && ep.IsWatched == 0)
+                    SetGUIProperty(GuiProperty.Episode_Description, "*** " + Translation.HiddenToPreventSpoiles + " ***");
+                else
+                    SetGUIProperty(GuiProperty.Episode_Description, ep.EpisodeOverview);
+            }
 
-			setGUIProperty("Episode.EpisodeName", curAnimeEpisode.EpisodeName);
-			setGUIProperty("Episode.EpisodeDisplayName", curAnimeEpisode.DisplayName);
-			setGUIProperty("Episode.SeriesTypeLabel", GetSeriesTypeLabel());
+            SetGUIProperty(GuiProperty.Episode_EpisodeName, ep.EpisodeName);
+            SetGUIProperty(GuiProperty.Episode_EpisodeDisplayName, ep.DisplayName);
+            SetGUIProperty(GuiProperty.Episode_SeriesTypeLabel, GetSeriesTypeLabel());
 
-			setGUIProperty("Episode.AirDate", curAnimeEpisode.AirDateAsString);
-			setGUIProperty("Episode.Length", Utils.FormatSecondsToDisplayTime(curAnimeEpisode.AniDB_LengthSeconds));
+            SetGUIProperty(GuiProperty.Episode_AirDate, ep.AirDateAsString);
+            SetGUIProperty(GuiProperty.Episode_Length, Utils.FormatSecondsToDisplayTime(ep.AniDB_LengthSeconds));
+            string rating = Utils.FormatAniDBRating(Convert.ToDouble(ep.AniDB_Rating)) + " (" + ep.AniDB_Votes + " " + Translation.Votes + ")";
 
-			setGUIProperty("Episode.Rating", curAnimeEpisode.AniDBRatingFormatted);
-			//setGUIProperty("Episode.RawRating", Utils.FormatAniDBRating(curAnimeEpisode.AniDB_Rating));
-			setGUIProperty("Episode.RawRating", curAnimeEpisode.AniDB_Rating);
-
-			if (dummyIsWatched != null) dummyIsWatched.Visible = (ep.IsWatched == 1);
-
+            SetGUIProperty(GuiProperty.Episode_Rating, rating);
+            //setGUIProperty("Episode.RawRating", Utils.FormatAniDBRating(ep.AniDB_Rating));
+            SetGUIProperty(GuiProperty.Episode_RawRating, Utils.FormatAniDBRating(Convert.ToDouble(ep.AniDB_Rating)));
+            SetGUIProperty(GuiProperty.Episode_RatingVoteCount, ep.AniDB_Votes);
 
 
-			if (dummyIsAvailable != null) dummyIsAvailable.Visible = true;
+            if (dummyIsWatched != null) dummyIsWatched.Visible = (ep.IsWatched == 1);
+
+            // Image Rankings
+            if (dummyStarOnPlaceholder != null && dummyStarOffPlaceholder != null)
+            {
+                string im = Logos.buildRating(Convert.ToDouble(ep.AniDB_Rating), dummyStarOffPlaceholder.FileName, dummyStarOnPlaceholder.FileName,
+                    dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                SetGUIProperty(GuiProperty.RatingImage, im);
+            }
+
+            if (dummyIsAvailable != null) dummyIsAvailable.Visible = true;
 			// get all the LocalFile rceords for this episode
 			List<VideoDetailedVM> fileLocalList = ep.FilesForEpisode;
 			bool norepeat = true;
@@ -3966,112 +3634,47 @@ namespace MyAnimePlugin3
 			
 			if (fileLocalList.Count == 1)
 			{
-				setGUIProperty("Episode.FileInfo", finfo);
-			}
+                SetGUIProperty(GuiProperty.Episode_FileInfo, finfo);
+            }
 			else if (fileLocalList.Count > 1)
 			{
-				setGUIProperty("Episode.FileInfo", fileLocalList.Count.ToString() + " Files Available");
+                SetGUIProperty(GuiProperty.Episode_FileInfo, fileLocalList.Count.ToString(Globals.Culture) + " " + Translation.FilesAvailable);
 			}
 			else if (fileLocalList.Count == 0)
 			{
-				if (dummyIsAvailable != null) dummyIsAvailable.Visible = false;
+                ClearGUIProperty(GuiProperty.Episode_FileInfo);
+                if (dummyIsAvailable != null) dummyIsAvailable.Visible = false;
 			}
 
 			string logos = Logos.buildLogoImage(ep);
 			//MyAnimeLog.Write(logos);
 
 			BaseConfig.MyAnimeLog.Write(logos);
-			setGUIProperty(guiProperty.Logos, logos);
+			SetGUIProperty(GuiProperty.Logos, logos);
 		}
 
-		#region GUI Properties
-
-		public enum guiProperty
-		{
-			Title,
-			Subtitle,
-			Description,
-			CurrentView,
-			SimpleCurrentView,
-			NextView,
-			LastView,
-			SeriesBanner,
-			SeasonBanner,
-			EpisodeImage,
-			Logos,
-			SeriesCount,
-			GroupCount,
-			EpisodeCount,
-			RomanjiTitle,
-			EnglishTitle,
-			KanjiTitle,
-			RotatorTitle,
-			FindText,
-			FindMode,
-			FindStartWord,
-			FindInput,
-			FindMatch,
-			FindSharpMode,
-			FindAsteriskMode,
-			SeriesTitle,
-			EpisodesTypeTitle,
-			NotificationLine1,
-			NotificationLine2,
-			NotificationIcon,
-			NotificationAction
-		}
-
-		private string getGUIProperty(guiProperty which)
-		{
-			return getGUIProperty(which.ToString());
-		}
-
-		public static string getGUIProperty(string which)
-		{
-			return MediaPortal.GUI.Library.GUIPropertyManager.GetProperty("#Anime3." + which);
-		}
-
-		private void setGUIProperty(guiProperty which, string value)
-		{
-			setGUIProperty(which.ToString(), value);
-		}
-
-		public static void setGUIProperty(string which, string value)
-		{
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3." + which, value);
-		}
-
-		private void clearGUIProperty(guiProperty which)
-		{
-			setGUIProperty(which, string.Empty);
-		}
-
-		public static void clearGUIProperty(string which)
-		{
-			setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
-		}
-
-		#endregion
+		
 
 		private void LoadFanart(object objectWithFanart)
 		{
-			//BaseConfig.MyAnimeLog.Write("LOADING FANART FOR:: {0}", objectWithFanart.ToString());
+			BaseConfig.MyAnimeLog.Write("LOADING FANART FOR:: {0}", objectWithFanart.ToString());
 
 			try
 			{
 				DateTime start = DateTime.Now;
-				string desc = "";
-
+			    string desc = string.Empty;
 				Fanart fanart = null;
-
-				if (objectWithFanart.GetType() == typeof(AnimeGroupVM))
+			    if (objectWithFanart is Fanart)
+			    {
+			        fanart = (Fanart) objectWithFanart;
+			    }
+			    else if (objectWithFanart.GetType() == typeof(AnimeGroupVM))
 				{
 					AnimeGroupVM grp = objectWithFanart as AnimeGroupVM;
 					fanart = new Fanart(grp);
 					desc = grp.GroupName;
 				}
-
-				if (objectWithFanart.GetType() == typeof(AnimeSeriesVM))
+				else if (objectWithFanart.GetType() == typeof(AnimeSeriesVM))
 				{
 					AnimeSeriesVM ser = objectWithFanart as AnimeSeriesVM;
 					fanart = new Fanart(ser);
@@ -4080,17 +3683,14 @@ namespace MyAnimePlugin3
 
 				TimeSpan ts = DateTime.Now - start;
 				BaseConfig.MyAnimeLog.Write("GOT FANART details in: {0} ms ({1})", ts.TotalMilliseconds, desc);
-				BaseConfig.MyAnimeLog.Write("LOADING FANART: {0} - {1}", desc, fanart.FileName);
+				BaseConfig.MyAnimeLog.Write("LOADING FANART: {0} - {1}", desc, fanart?.FileName ?? "NONE");
 
 				if (String.IsNullOrEmpty(fanart.FileName))
 				{
-					DisableFanart();
-					return;
+                    fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
 				}
-
-
-
-				fanartTexture.Filename = fanart.FileName;
+                else
+    				fanartTexture.Filename = fanart.FileName;
 
 				if (this.dummyIsFanartLoaded != null)
 					this.dummyIsFanartLoaded.Visible = true;
@@ -4144,8 +3744,9 @@ namespace MyAnimePlugin3
 		{
 			//fanartSet = false;
 			fanartTexture.Filename = "";
+          
 
-			if (this.dummyIsFanartLoaded != null)
+            if (this.dummyIsFanartLoaded != null)
 				this.dummyIsFanartLoaded.Visible = false;
 		}
 
@@ -4155,25 +3756,15 @@ namespace MyAnimePlugin3
 			try
 			{
 				hook.IsEnabled = false;
-
-				switch (listLevel)
-				{
-					case Listlevel.GroupFilter:
-						ShowContextMenuGroupFilter("");
-						break;
-					case Listlevel.Group:
-						ShowContextMenuGroup("");
-						break;
-					case Listlevel.Series:
-						ShowContextMenuSeries("");
-						break;
-					case Listlevel.EpisodeTypes:
-						break;
-					case Listlevel.Episode:
-						ShowContextMenuEpisode("");
-						break;
-				}
-
+			    IVM vm = GetCurrent().Selected;
+                if (vm is GroupFilterVM)
+                    ShowContextMenuGroupFilter("");
+                else if (vm is AnimeGroupVM)
+                    ShowContextMenuGroup("");
+                else if (vm is AnimeSeriesVM)
+                    ShowContextMenuSeries("");
+                else if (vm is AnimeEpisodeVM)
+                    ShowContextMenuEpisode("");
 				Thread.Sleep(100); //make sure key-up's from the context menu aren't cought by the hook
 				if (hook != null) //hook may have fallen out of scope when using contect menu togo to another window.
 					hook.IsEnabled = true;
@@ -4188,12 +3779,12 @@ namespace MyAnimePlugin3
 		{
 		}
 
-		private bool SearchTheTvDB(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
+		private ContextMenuAction SearchTheTvDB(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
 		{
 			if (searchCriteria.Length == 0)
-				return true;
+                return ContextMenuAction.Exit;
 
-			int aniDBID = ser.AniDB_Anime.AnimeID;
+            int aniDBID = ser.AniDB_Anime.AnimeID;
 
 			List<TVDBSeriesSearchResultVM> TVDBSeriesSearchResults = new List<TVDBSeriesSearchResultVM>();
 			List<JMMServerBinary.Contract_TVDBSeriesSearchResult> tvResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheTvDB(searchCriteria.Trim());
@@ -4203,81 +3794,34 @@ namespace MyAnimePlugin3
 			BaseConfig.MyAnimeLog.Write("Found {0} tvdb results for {1}", TVDBSeriesSearchResults.Count, searchCriteria);
 			if (TVDBSeriesSearchResults.Count > 0)
 			{
-				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null)
-					return true;
+                ContextMenu cmenu = new ContextMenu(Translation.TVDBSearchResults, previousmenu: previousMenu);
+                foreach (TVDBSeriesSearchResultVM res in TVDBSeriesSearchResults)
+                {
+                    TVDBSeriesSearchResultVM local = res;
+                    string disp = String.Format("{0} ({1}) / {2}", res.SeriesName, res.Language, res.Id);
+                    cmenu.AddAction(disp, () => LinkAniDBToTVDB(ser, aniDBID, enEpisodeType.Episode, 1, local.SeriesID, 1, 1));
+                }
+                return cmenu.Show();
+            }
+            this.Alert(Translation.SearchResults, string.Empty, Translation.NoResultsFound);
+            return ContextMenuAction.Exit;
+        }
 
-				//keep showing the dialog until the user closes it
-				int selectedLabel = 0;
-				while (true)
-				{
-					dlg.Reset();
-					dlg.SetHeading("TvDB Search Results");
 
-					if (previousMenu != string.Empty)
-						dlg.Add("<<< " + previousMenu);
-
-
-					foreach (TVDBSeriesSearchResultVM res in TVDBSeriesSearchResults)
-					{
-						string disp = string.Format("{0} ({1}) / {2}", res.SeriesName, res.Language, res.Id);
-						dlg.Add(disp);
-					}
-
-					dlg.SelectedLabel = selectedLabel;
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
-					selectedLabel = dlg.SelectedLabel;
-
-					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-					if (selection == 0)
-						return true; // previous menu
-
-					if (selection > 0 && selection <= TVDBSeriesSearchResults.Count)
-					{
-						TVDBSeriesSearchResultVM res = TVDBSeriesSearchResults[selection - 1];
-
-						LinkAniDBToTVDB(ser, aniDBID, enEpisodeType.Episode, 1, res.SeriesID, 1, 1);
-						return false;
-					}
-
-					return true;
-				}
-			}
-			else
-			{
-				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-				if (null != dlgOK)
-				{
-					dlgOK.SetHeading("Search Results");
-					dlgOK.SetLine(1, string.Empty);
-					dlgOK.SetLine(2, "No results found");
-					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-				}
-				return true;
-			}
-		}
-
-		private bool SearchTheTvDBMenu(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction SearchTheTvDBMenu(AnimeSeriesVM ser, string previousMenu)
 		{
 			//string searchCriteria = "";
 			int aniDBID = ser.AniDB_Anime.AnimeID;
+            ContextMenu cmenu = new ContextMenu(Translation.SearchTheTvDB, previousMenu);
+            cmenu.Add(Translation.SearchUsing + ": " + ser.AniDB_Anime.FormattedTitle, () => SearchTheTvDB(ser, ser.AniDB_Anime.FormattedTitle, Translation.SearchTheTvDB));
+            cmenu.Add(Translation.ManualSearch, () =>
+            {
+                if (Utils.DialogText(ref searchText, GetID))
+                    return SearchTheTvDB(ser, searchText, Translation.SearchTheTvDB);
+                return ContextMenuAction.Continue;
+            });
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
 
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Search The TvDB";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
-				dlg.Add("Manual Search");
 
 				List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBResult = new List<CrossRef_AniDB_TvDBVMV2>();
 				List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(aniDBID, false);
@@ -4294,53 +3838,23 @@ namespace MyAnimePlugin3
 							xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber, xref.TvDBTitle, xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber);
 					}
 
-					dlg.Add("Community Says:   " + xrefSummary);
-				}
-				
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						if (!SearchTheTvDB(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
-							return false;
-						break;
-					case 2:
-						{
-							if (Utils.DialogText(ref searchText, GetID))
-							{
-								if (!SearchTheTvDB(ser, searchText, currentMenu))
-									return false;
-							}
-						}
-						break;
-					case 3:
-
-						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(aniDBID);
-						if (res.Length > 0)
-						{
-							Utils.DialogMsg("Error", res);
-							return false;
-						}
-
-						foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRef_AniDB_TvDBResult)
-						{
-							LinkAniDBToTVDB(ser, xref.AnimeID, (enEpisodeType)xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber, xref.TvDBID,
-								xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber);
-						}
-						return false;
-					default:
-						//close menu
-						return false;
-				}
-			}
+                cmenu.AddAction(Translation.CommunitySays + ": " + xrefSummary, () =>
+                {
+                    string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(aniDBID);
+                    if (res.Length > 0)
+                        Utils.DialogMsg(Translation.Error, res);
+                    else
+                    {
+                        foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRef_AniDB_TvDBResult)
+                        {
+                            LinkAniDBToTVDB(ser, xref.AnimeID, (enEpisodeType)xref.AniDBStartEpisodeType,
+                                            xref.AniDBStartEpisodeNumber, xref.TvDBID,
+                                            xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber);
+                        }
+                    }
+                });
+            }
+            return cmenu.Show();
 		}
 
 		private void LinkAniDBToTVDB(AnimeSeriesVM ser, int animeID, enEpisodeType anidbEpType, int anidbEpNumber, int tvDBID, int tvSeason, int tvEpNumber)
@@ -4358,9 +3872,9 @@ namespace MyAnimePlugin3
 		{
 			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBOther(animeID, movieID, (int)CrossRefType.MovieDB);
 			if (res.Length > 0)
-				Utils.DialogMsg("Error", res);
+                Utils.DialogMsg(Translation.Error, res);
 
-			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
+            ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
 		}
 
 		private void LinkAniDBToMAL(AnimeSeriesVM ser, int animeID, int malID, string malTitle)
@@ -4373,763 +3887,406 @@ namespace MyAnimePlugin3
 
 			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(animeID, malID, malTitle, 1, 1);
 			if (res.Length > 0)
-				Utils.DialogMsg("Error", res);
+                Utils.DialogMsg(Translation.Error, res);
 
-			ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
+            ser = JMMServerHelper.GetSeries(ser.AnimeSeriesID.Value);
 		}
 
-		private bool SearchTheMovieDBMenu(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction SearchTheMovieDBMenu(AnimeSeriesVM ser, string previousMenu)
 		{
 			int aniDBID = ser.AniDB_Anime.AnimeID;
+            ContextMenu cmenu = new ContextMenu(Translation.SearchTheMovieDB, previousMenu);
+            cmenu.Add(Translation.SearchUsing + ": " + ser.AniDB_Anime.FormattedTitle, () => SearchTheMovieDB(ser, ser.AniDB_Anime.FormattedTitle, Translation.SearchTheMovieDB));
+            cmenu.Add(Translation.ManualSearch, () =>
+            {
+                searchText = ser.AniDB_Anime.FormattedTitle;
+                if (Utils.DialogText(ref searchText, GetID))
+                    return SearchTheMovieDB(ser, ser.AniDB_Anime.FormattedTitle, Translation.SearchTheMovieDB);
+                return ContextMenuAction.Continue;
+            });
+            Contract_CrossRef_AniDB_OtherResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetOtherAnimeCrossRefWebCache(aniDBID, (int)CrossRefType.MovieDB);
+            if (xref != null)
+            {
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Search The MovieDB";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
-				dlg.Add("Manual Search");
-
-				CrossRef_AniDB_OtherResultVM CrossRef_AniDB_OtherResult = null;
-				JMMServerBinary.Contract_CrossRef_AniDB_OtherResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetOtherAnimeCrossRefWebCache(aniDBID, (int)CrossRefType.MovieDB);
-				if (xref != null)
-				{
-					CrossRef_AniDB_OtherResult = new CrossRef_AniDB_OtherResultVM(xref);
-					dlg.Add("Community Says:   " + CrossRef_AniDB_OtherResult.CrossRefID.ToString());
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						if (!SearchTheMovieDB(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
-							return false;
-						break;
-					case 2:
-						{
-							string searchText = ser.AniDB_Anime.FormattedTitle;
-							if (Utils.DialogText(ref searchText, GetID))
-							{
-								if (!SearchTheMovieDB(ser, searchText, currentMenu))
-									return false;
-							}
-						}
-						break;
-					case 3:
-						LinkAniDBToMovieDB(ser, CrossRef_AniDB_OtherResult.AnimeID, int.Parse(CrossRef_AniDB_OtherResult.CrossRefID));
-						return false;
-					default:
-						//close menu
-						return false;
-				}
-			}
+                CrossRef_AniDB_OtherResultVM crossrossRefAniDbOtherResult = new CrossRef_AniDB_OtherResultVM(xref);
+                cmenu.AddAction(Translation.CommunitySays + ": " + crossrossRefAniDbOtherResult.CrossRefID, () => LinkAniDBToMovieDB(ser, crossrossRefAniDbOtherResult.AnimeID, Int32.Parse(crossrossRefAniDbOtherResult.CrossRefID)));
+            }
+            return cmenu.Show();
 		}
 
 		
 
-		private bool SearchTheMovieDB(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
+		private ContextMenuAction SearchTheMovieDB(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
 		{
-			if (searchCriteria.Length == 0)
-				return true;
+            if (searchCriteria.Length == 0)
+                return ContextMenuAction.Exit;
+            int aniDbid = ser.AniDB_Anime.AnimeID;
 
-			int aniDBID = ser.AniDB_Anime.AnimeID;
+            List<MovieDBMovieSearchResultVM> movieDbSeriesSearchResults = new List<MovieDBMovieSearchResultVM>();
+            List<Contract_MovieDBMovieSearchResult> movieResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(searchCriteria.Trim());
+            foreach (Contract_MovieDBMovieSearchResult movieResult in movieResults)
+                movieDbSeriesSearchResults.Add(new MovieDBMovieSearchResultVM(movieResult));
 
-			List<MovieDBMovieSearchResultVM> MovieDBSeriesSearchResults = new List<MovieDBMovieSearchResultVM>();
-			List<JMMServerBinary.Contract_MovieDBMovieSearchResult> movieResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(searchCriteria.Trim());
-			foreach (JMMServerBinary.Contract_MovieDBMovieSearchResult movieResult in movieResults)
-				MovieDBSeriesSearchResults.Add(new MovieDBMovieSearchResultVM(movieResult));
+            BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for {1}", movieDbSeriesSearchResults.Count, searchCriteria);
 
-			BaseConfig.MyAnimeLog.Write("Found {0} moviedb results for {1}", MovieDBSeriesSearchResults.Count, searchCriteria);
+            if (movieDbSeriesSearchResults.Count > 0)
+            {
+                ContextMenu cmenu = new ContextMenu(Translation.SearchResults, previousmenu: previousMenu);
+                foreach (MovieDBMovieSearchResultVM res in movieDbSeriesSearchResults)
+                {
+                    MovieDBMovieSearchResultVM local = res;
+                    cmenu.AddAction(res.MovieName, () => LinkAniDBToMovieDB(ser, aniDbid, local.MovieID));
 
-			if (MovieDBSeriesSearchResults.Count > 0)
-			{
-				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null)
-					return true;
+                }
+                return cmenu.Show();
+            }
+            this.Alert(Translation.SearchResults, string.Empty, Translation.NoResultsFound);
+            return ContextMenuAction.Exit;
+        }
 
-				//keep showing the dialog until the user closes it
-				int selectedLabel = 0;
-				while (true)
-				{
-					dlg.Reset();
-					dlg.SetHeading("Search Results");
-
-					if (previousMenu != string.Empty)
-						dlg.Add("<<< " + previousMenu);
-					foreach (MovieDBMovieSearchResultVM res in MovieDBSeriesSearchResults)
-						dlg.Add(res.MovieName);
-
-					dlg.SelectedLabel = selectedLabel;
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
-					selectedLabel = dlg.SelectedLabel;
-
-					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-					if (selection == 0)
-						return true; //previous menu
-
-					if (selection > 0 && selection <= MovieDBSeriesSearchResults.Count)
-					{
-						MovieDBMovieSearchResultVM res = MovieDBSeriesSearchResults[selection - 1];
-
-						LinkAniDBToMovieDB(ser, aniDBID, res.MovieID);
-						return false;
-					}
-
-					return true;
-				}
-			}
-			else
-			{
-				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-				if (null != dlgOK)
-				{
-					dlgOK.SetHeading("Search Results");
-					dlgOK.SetLine(1, string.Empty);
-					dlgOK.SetLine(2, "No results found");
-					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-				}
-				return true;
-			}
-		}
-
-		private bool SearchMALMenu(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction SearchMALMenu(AnimeSeriesVM ser, string previousMenu)
 		{
 			int aniDBID = ser.AniDB_Anime.AnimeID;
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            ContextMenu cmenu = new ContextMenu(Translation.SearchMAL, previousmenu: previousMenu);
+            cmenu.Add(Translation.SearchUsing + ": " + ser.AniDB_Anime.FormattedTitle, () => SearchMAL(ser, ser.AniDB_Anime.FormattedTitle, Translation.SearchMAL));
+            cmenu.Add(Translation.ManualSearch, () =>
+            {
+                searchText = ser.AniDB_Anime.FormattedTitle;
+                if (Utils.DialogText(ref searchText, GetID))
+                    return SearchMAL(ser, searchText, Translation.SearchMAL);
+                return ContextMenuAction.Continue;
+            });
+            return cmenu.Show();
+        }
 
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = "Search MAL";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Search using:   " + ser.AniDB_Anime.FormattedTitle);
-				dlg.Add("Manual Search");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						if (!SearchMAL(ser, ser.AniDB_Anime.FormattedTitle, currentMenu))
-							return false;
-						break;
-					case 2:
-						{
-							string searchText = ser.AniDB_Anime.FormattedTitle;
-							if (Utils.DialogText(ref searchText, GetID))
-							{
-								if (!SearchMAL(ser, searchText, currentMenu))
-									return false;
-							}
-						}
-						break;
-					default:
-						//close menu
-						return false;
-				}
-			}
-		}
-
-		private bool SearchMAL(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
+		private ContextMenuAction SearchMAL(AnimeSeriesVM ser, string searchCriteria, string previousMenu)
 		{
-			if (searchCriteria.Length == 0)
-				return true;
+            if(searchCriteria.Length == 0)
+                return ContextMenuAction.Exit;
 
-			int aniDBID = ser.AniDB_Anime.AnimeID;
+            int aniDbid = ser.AniDB_Anime.AnimeID;
 
-			List<MALSearchResultVM> MALSearchResults = new List<MALSearchResultVM>();
-			List<JMMServerBinary.Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(searchCriteria.Trim());
-			foreach (JMMServerBinary.Contract_MALAnimeResponse malResult in malResults)
-				MALSearchResults.Add(new MALSearchResultVM(malResult));
+            List<MALSearchResultVM> malSearchResults = new List<MALSearchResultVM>();
+            List<Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(searchCriteria.Trim());
+            foreach (Contract_MALAnimeResponse malResult in malResults)
+                malSearchResults.Add(new MALSearchResultVM(malResult));
 
-			BaseConfig.MyAnimeLog.Write("Found {0} MAL results for {1}", MALSearchResults.Count, searchCriteria);
+            BaseConfig.MyAnimeLog.Write("Found {0} MAL results for {1}", malSearchResults.Count, searchCriteria);
 
-			if (MALSearchResults.Count > 0)
-			{
-				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null)
-					return true;
+            if (malSearchResults.Count > 0)
+            {
+                ContextMenu cmenu = new ContextMenu(Translation.SearchResults, previousmenu: previousMenu);
+                foreach (MALSearchResultVM res in malSearchResults)
+                {
+                    MALSearchResultVM local = res;
+                    cmenu.AddAction(String.Format("{0} ({1} {2})", res.title, res.episodes, Translation.EpisodesShort), () => LinkAniDBToMAL(ser, aniDbid, local.id, local.title));
 
-				//keep showing the dialog until the user closes it
-				int selectedLabel = 0;
-				while (true)
-				{
-					dlg.Reset();
-					dlg.SetHeading("Search Results");
+                }
+                return cmenu.Show();
+            }
+            this.Alert(Translation.SearchResults, string.Empty, Translation.NoResultsFound);
+            return ContextMenuAction.Exit;
+        }
 
-					if (previousMenu != string.Empty)
-						dlg.Add("<<< " + previousMenu);
-					foreach (MALSearchResultVM res in MALSearchResults)
-						dlg.Add(string.Format("{0} ({1} Eps)", res.title, res.episodes));
-
-					dlg.SelectedLabel = selectedLabel;
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
-					selectedLabel = dlg.SelectedLabel;
-
-					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-					if (selection == 0)
-						return true; //previous menu
-
-					if (selection > 0 && selection <= MALSearchResults.Count)
-					{
-						MALSearchResultVM res = MALSearchResults[selection - 1];
-
-						LinkAniDBToMAL(ser, aniDBID, res.id, res.title);
-						return false;
-					}
-
-					return true;
-				}
-			}
-			else
-			{
-				GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-				if (null != dlgOK)
-				{
-					dlgOK.SetHeading("Search Results");
-					dlgOK.SetLine(1, string.Empty);
-					dlgOK.SetLine(2, "No results found");
-					dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-				}
-				return true;
-			}
-		}
-
-		private bool ShowContextMenuEpisode(string previousMenu)
+	    private void ReplaceSerie(int id, AnimeSeriesVM ser)
+	    {
+	        for (int x = 0; x < Breadcrumbs.Count; x++)
+	        {
+	            AnimeSeriesVM sel = Breadcrumbs[x].Selected as AnimeSeriesVM;
+                AnimeSeriesVM lis = Breadcrumbs[x].Listing as AnimeSeriesVM;
+	            if (sel != null && sel.AnimeSeriesID.HasValue && sel.AnimeSeriesID.Value == id)
+                    Breadcrumbs[x].Selected = ser;
+                if (lis != null && lis.AnimeSeriesID.HasValue && lis.AnimeSeriesID.Value == id)
+                    Breadcrumbs[x].Listing = ser;
+            }
+        }
+		private ContextMenuAction ShowContextMenuEpisode(string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            GUIListItem currentitem = this.m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
+            if (dlg == null)
+                return ContextMenuAction.Exit;
 
-			AnimeEpisodeVM episode = currentitem.TVTag as AnimeEpisodeVM;
-			if (episode == null)
-				return true;
+            AnimeEpisodeVM episode = currentitem.TVTag as AnimeEpisodeVM;
+            if (episode == null)
+                return ContextMenuAction.Exit;
+            bool isWatched = (episode.IsWatched == 1);
 
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = episode.EpisodeNumberAndName;
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
+            ContextMenu cmenu = new ContextMenu(episode.EpisodeNumberAndName, previousmenu: previousMenu);
+            cmenu.AddAction(isWatched ? Translation.MarkAsUnwatched : Translation.MarkAsWatched, () =>
+            {
+                BaseConfig.MyAnimeLog.Write("Toggle watched status: {0} - {1}", isWatched, episode);
+                episode.ToggleWatchedStatus(!isWatched);
+                LoadFacade();
+            });
+		    AnimeSeriesVM ser = GetTopSerie();
+		    AnimeEpisodeTypeVM e = GetTopEpType();
+            enEpisodeType ept=enEpisodeType.Episode;
+		    if (e != null)
+		        ept = e.EpisodeType;
+            cmenu.AddAction(Translation.MarkAllAsWatched, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true, Int32.MaxValue, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
 
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				bool isWatched = (episode.IsWatched == 1);
-				if (isWatched)
-					dlg.Add("Mark as Unwatched");
-				else
-					dlg.Add("Mark as Watched");
-				dlg.Add("Mark ALL as Watched");
-				dlg.Add("Mark ALL as Unwatched");
-				dlg.Add("Mark ALL PREVIOUS as Watched");
-				dlg.Add("Mark ALL PREVIOUS as Unwatched");
-				dlg.Add("Associate File With This Episode");
-				dlg.Add("Remove File From This Episode");
-				dlg.Add("Download this epsiode");
-				dlg.Add("Post-processing >>>");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-
-
-
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						{   // Mark as Watched/Unwatched
-							BaseConfig.MyAnimeLog.Write("Toggle watched status: {0} - {1}", isWatched, episode);
-							episode.ToggleWatchedStatus(!isWatched);
-							LoadFacade();
-					
-							return false;
-						}
-					case 2: // Mark ALL as Watched
-						{
-							JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(curAnimeSeries.AnimeSeriesID.Value,
-								true, int.MaxValue, (int)curAnimeEpisodeType.EpisodeType, JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-							if (BaseConfig.Settings.DisplayRatingDialogOnCompletion)
-							{
-								JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(curAnimeSeries.AnimeSeriesID.Value,
-									JMMServerVM.Instance.CurrentUser.JMMUserID);
-								if (contract != null)
-								{
-									AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-									Utils.PromptToRateSeriesOnCompletion(ser);
-								}
-							}
-
-							LoadFacade();
-							return false;
-						}
-
-					case 3: // Mark ALL as Unwatched
-						{
-							JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(curAnimeSeries.AnimeSeriesID.Value,
-								false, int.MaxValue, (int)curAnimeEpisodeType.EpisodeType, JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-							LoadFacade();
-							return false;
-						}
-
-					case 4: // Mark ALL PREVIOUS as Watched
-						{
-
-							JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(curAnimeSeries.AnimeSeriesID.Value,
-								true, episode.EpisodeNumber, (int)curAnimeEpisodeType.EpisodeType, JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-							JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(curAnimeSeries.AnimeSeriesID.Value,
-								JMMServerVM.Instance.CurrentUser.JMMUserID);
-							if (contract != null)
-							{
-								AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-								Utils.PromptToRateSeriesOnCompletion(ser);
-							}
-
-							LoadFacade();
-							return false;
-						}
-
-					case 5: // Mark ALL PREVIOUS as Unwatched
-						{
-
-							JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(curAnimeSeries.AnimeSeriesID.Value,
-								false, episode.EpisodeNumber, (int)curAnimeEpisodeType.EpisodeType, JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-							LoadFacade();
-							return false;
-						}
-
-					case 6: // associate file with this episode
-						{
-							List<VideoLocalVM> unlinkedVideos = JMMServerHelper.GetUnlinkedVideos();
-							if (unlinkedVideos.Count == 0)
-							{
-								GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-								if (null != dlgOK)
-								{
-									dlgOK.SetHeading("Error");
-									dlgOK.SetLine(1, string.Empty);
-									dlgOK.SetLine(2, "No unlinked files to select");
-									dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-								}
-								break;
-							}
-
-							// ask the user which file they want to associate
-							IDialogbox dlg2 = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-							dlg2.Reset();
-							dlg2.SetHeading("Select File");
-
-							foreach (VideoLocalVM fl in unlinkedVideos)
-								dlg2.Add(Path.GetFileName(fl.FullPath) + " - " + Path.GetDirectoryName(fl.FullPath));
-
-							dlg2.DoModal(GUIWindowManager.ActiveWindow);
-
-							if (dlg2.SelectedId > 0)
-							{
-								VideoLocalVM selectedFile = unlinkedVideos[dlg2.SelectedId - 1];
-								JMMServerHelper.LinkedFileToEpisode(selectedFile.VideoLocalID, episode.AnimeEpisodeID);
-								LoadFacade();
-								return false;
-							}
-							break;
-						}
-					case 7: // remove associated file
-						{
-							List<VideoDetailedVM> vidList = episode.FilesForEpisode;
-							if (vidList.Count == 0)
-							{
-								GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-								if (null != dlgOK)
-								{
-									dlgOK.SetHeading("Error");
-									dlgOK.SetLine(1, string.Empty);
-									dlgOK.SetLine(2, "This episode has no associated files");
-									dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-								}
-								break;
-							}
-
-							// ask the user which file they want to un-associate
-							IDialogbox dlg2 = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-							dlg2.Reset();
-							dlg2.SetHeading("Select File");
-
-							foreach (VideoDetailedVM fl in vidList)
-								dlg2.Add(Path.GetFileName(fl.FileName));
-
-							dlg2.DoModal(GUIWindowManager.ActiveWindow);
-
-							if (dlg2.SelectedId > 0)
-							{
-								VideoDetailedVM selectedFile = vidList[dlg2.SelectedId - 1];
-								string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveAssociationOnFile(selectedFile.VideoLocalID, episode.AniDB_EpisodeID);
-								if (!string.IsNullOrEmpty(res))
-									Utils.DialogMsg("Error", res);
-
-								LoadFacade();
-								return false;
-							}
-							break;
-						}
-					case 8:
-						DownloadHelper.SearchEpisode(curAnimeEpisode);
-						return false;
-
-					case 9:
-						if (!ShowContextMenuPostProcessing(currentMenu))
-							return false;
-						break;
-
-					default:
-						//close menu
-						return false;
-				}
-			}
+                    if (BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+                    {
+                        Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                        if (contract != null)
+                        {
+                            ser = new AnimeSeriesVM(contract);
+                            if (ser?.AnimeSeriesID!=null)
+                                ReplaceSerie(ser.AnimeSeriesID.Value,ser);
+                            Utils.PromptToRateSeriesOnCompletion(ser);
+                        }
+                    }
+                    LoadFacade();
+                }
+            });
+            cmenu.AddAction(Translation.MarkAllAsUnwatched, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false, Int32.MaxValue, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                    LoadFacade();
+                }
+            });
+            cmenu.AddAction(Translation.MarkAllPreviousAsWatched, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true, episode.EpisodeNumber, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                    Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                    if (contract != null)
+                    {
+                        ser = new AnimeSeriesVM(contract);
+                        if (ser?.AnimeSeriesID != null)
+                            ReplaceSerie(ser.AnimeSeriesID.Value, ser);
+                        Utils.PromptToRateSeriesOnCompletion(ser);
+                    }
+                    LoadFacade();
+                }
+            });
+            cmenu.AddAction(Translation.MarkAllPreviousAsUnwatched, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false, episode.EpisodeNumber, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                    LoadFacade();
+                }
+            });
+            cmenu.Add(Translation.AssociateFileEpisode, () =>
+            {
+                List<VideoLocalVM> unlinkedVideos = JMMServerHelper.GetUnlinkedVideos();
+                if (unlinkedVideos.Count == 0)
+                {
+                    this.Alert(Translation.Error, string.Empty, Translation.NoUnlinkedFilesToSelect);
+                    return ContextMenuAction.Continue;
+                }
+                ContextMenu cfmenu = new ContextMenu(Translation.SelectFile);
+                foreach (VideoLocalVM fl in unlinkedVideos)
+                {
+                    VideoLocalVM local = fl;
+                    cfmenu.AddAction(Path.GetFileName(fl.FullPath) + " - " + Path.GetDirectoryName(fl.FullPath), () =>
+                    {
+                        JMMServerHelper.LinkedFileToEpisode(local.VideoLocalID, episode.AnimeEpisodeID);
+                        LoadFacade();
+                    });
+                }
+                cfmenu.Show();
+                return ContextMenuAction.Exit;
+            });
+            cmenu.Add(Translation.RemoveFileFromEpisode, () =>
+            {
+                List<VideoDetailedVM> vidList = episode.FilesForEpisode;
+                if (vidList.Count == 0)
+                {
+                    this.Alert(Translation.Error, string.Empty, Translation.ThisEpisodeHasNoAssociatedFiles);
+                    return ContextMenuAction.Continue;
+                }
+                ContextMenu cfmenu = new ContextMenu(Translation.SelectFile);
+                foreach (VideoDetailedVM fl in vidList)
+                {
+                    VideoDetailedVM local = fl;
+                    cfmenu.AddAction(Path.GetFileName(fl.FileName), () =>
+                    {
+                        string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveAssociationOnFile(local.VideoLocalID, episode.AniDB_EpisodeID);
+                        if (!String.IsNullOrEmpty(res))
+                            Utils.DialogMsg(Translation.Error, res);
+                        LoadFacade();
+                    });
+                }
+                cfmenu.Show();
+                return ContextMenuAction.Exit;
+            });
+            cmenu.AddAction(Translation.DownloadThisEpisode, () => DownloadHelper.SearchEpisode(episode));
+            cmenu.Add(Translation.PostProcessing + " >>>", () => ShowContextMenuPostProcessing(episode.EpisodeNumberAndName));
+            return cmenu.Show();
+         
 		}
 
 
-		private bool ShowContextMenuDatabases(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction ShowContextMenuDatabases(AnimeSeriesVM ser, string previousMenu)
 		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            string currentMenu = ser.SeriesName + " " + Translation.Databases;
 
-			int mnuPrevious = -1;
-			int mnuTvDB = -1;
-			int mnuMovieDB = -1;
-			int mnuTvDBSub = -1;
-			int mnuMovieDBSub = -1;
-			int mnuMAL = -1;
-			int mnuMALSub = -1;
+            bool hasTvDbLink = ser.CrossRef_AniDB_TvDBV2.Count > 0 && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists;
+            bool hasMovieDbLink = ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null;
+            bool hasMalLink = ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0;
 
-			int curMenu = -1;
+            ContextMenu cmenu = new ContextMenu(currentMenu, previousmenu: previousMenu);
 
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = ser.SeriesName + " Databases";
+            string tvdbText = Translation.SearchTheTvDB;
+            string moviedbText = Translation.SearchTheMovieDB;
+            string malText = Translation.SearchMAL;
 
-			bool hasTvDBLink = ser.CrossRef_AniDB_TvDBV2.Count > 0 && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists;
-			bool hasMovieDBLink = ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null;
-			bool hasMALLink = ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0;
+            if ((hasTvDbLink) && (ser.AniDB_Anime.AniDB_AnimeCrossRefs != null))
+                tvdbText += string.Format(" ({0}: {1})", Translation.Current, ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName);
 
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
+            if ((hasMovieDbLink) && (ser.AniDB_Anime.AniDB_AnimeCrossRefs != null))
+                moviedbText += string.Format(" ({0}: {1})", Translation.Current, ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName);
 
-				string tvdbText = "Search The TvDB";
-				string moviedbText = "Search The MovieDB";
-				string malText = "Search MAL";
+            if (hasMalLink)
+                malText += string.Format(" ({0}: {1})", Translation.Current, (ser.CrossRef_AniDB_MAL.Count == 1) ? ser.CrossRef_AniDB_MAL[0].MALTitle : Translation.MultipleLinks);
 
-				if (ser != null)
-				{
-					if (hasTvDBLink)
-						tvdbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName + ")";
+            if (!hasMovieDbLink)
+            {
+                cmenu.Add(tvdbText, () => SearchTheTvDBMenu(ser, currentMenu));
+                cmenu.Add(malText, () => SearchMALMenu(ser, currentMenu));
+            }
 
-					if (hasMovieDBLink)
-						moviedbText += "    (Current: " + ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName + ")";
-
-					if (hasMALLink)
-					{
-						if (ser.CrossRef_AniDB_MAL.Count == 1)
-							malText += "    (Current: " + ser.CrossRef_AniDB_MAL[0].MALTitle + ")";
-						else
-							malText += "    (Current: Multiple Links)";
-					}
-				}
-
-				if (previousMenu != string.Empty)
-				{
-					dlg.Add("<<< " + previousMenu);
-					curMenu++; mnuPrevious = curMenu;
-				}
-
-
-				if (ser != null && !hasMovieDBLink)
-				{
-					dlg.Add(tvdbText);
-					curMenu++; mnuTvDB = curMenu;
-
-
-					dlg.Add(malText);
-					curMenu++; mnuMAL = curMenu;
-				}
-
-				if (ser != null && !hasTvDBLink)
-				{
-					dlg.Add(moviedbText);
-					curMenu++; mnuMovieDB = curMenu;
-				}
-
-				if (ser != null && hasTvDBLink)
-				{
-					dlg.Add("The Tv DB >>>");
-					curMenu++; mnuTvDBSub = curMenu;
-				}
-
-
-				if (ser != null && hasMALLink)
-				{
-					dlg.Add("MAL >>>");
-					curMenu++; mnuMALSub = curMenu;
-				}
-
-				if (ser != null && hasMovieDBLink)
-				{
-					dlg.Add("The Movie DB >>>");
-					curMenu++; mnuMovieDBSub = curMenu;
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				if (selectedLabel == mnuPrevious) return true;
-
-				if (selectedLabel == mnuTvDB)
-				{
-					if (!SearchTheTvDBMenu(ser, currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuMAL)
-				{
-					if (!SearchMALMenu(ser, currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuMovieDB)
-				{
-					if (!SearchTheMovieDBMenu(ser, currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuTvDBSub)
-				{
-					if (!ShowContextMenuTVDB(ser, currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuMALSub)
-				{
-					if (!ShowContextMenuMAL(ser, currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuMovieDBSub)
-				{
-					if (!ShowContextMenuMovieDB(ser, currentMenu))
-						return false;
-				}
-
-				return false;
-			}
+            if (!hasTvDbLink)
+                cmenu.Add(moviedbText, () => SearchTheMovieDBMenu(ser, currentMenu));
+            if (hasTvDbLink)
+                cmenu.Add(Translation.TheTVDB + " >>>", () => ShowContextMenuTVDB(ser, currentMenu));
+            if (hasMalLink)
+                cmenu.Add(Translation.MAL + " >>>", () => ShowContextMenuMAL(ser, currentMenu));
+            if (hasMovieDbLink)
+                cmenu.Add(Translation.TheMovieDB + " >>>", () => ShowContextMenuMovieDB(ser, currentMenu));
+            return cmenu.Show();
 		}
 
-		private bool ShowContextMenuGroupEdit(string previousMenu)
+		private ContextMenuAction ShowContextMenuGroupEdit(string previousMenu)
 		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
+            if (grp == null)
+                return ContextMenuAction.Exit;
 
-			AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
-			if (grp == null)
-				return true;
 
-			List<AnimeSeriesVM> allSeries = grp.AllSeries;
-			AnimeSeriesVM equalSeries = null;
-			if (allSeries.Count == 1)
-				equalSeries = allSeries[0];
+            string currentMenu = grp.GroupName + " - " + Translation.Edit;
+            ContextMenu cmenu = new ContextMenu(currentMenu, previousmenu: previousMenu);
+            cmenu.Add(Translation.RenameGroup, () =>
+            {
+                string name = grp.GroupName;
+                if (Utils.DialogText(ref name, GetID) && name != string.Empty)
+                {
+                    if (name != grp.GroupName)
+                    {
+                        grp.GroupName = name;
+                        grp.SortName = Utils.GetSortName(name);
+                        grp.Save();
+                        LoadFacade();
+                    }
+                    return ContextMenuAction.Exit;
+                }
+                return ContextMenuAction.Continue;
+            });
+            cmenu.Add(Translation.ChangeSortName, () =>
+            {
+                string sortName = grp.SortName;
+                if (Utils.DialogText(ref sortName, GetID))
+                {
+                    grp.SortName = sortName;
+                    grp.Save();
+                    LoadFacade();
+                    return ContextMenuAction.Exit;
+                }
+                return ContextMenuAction.Continue;
+            });
+            List<AnimeSeriesVM> allSeries = grp.AllSeries;
+            AnimeSeriesVM equalSeries = null;
+            if (allSeries.Count == 1)
+                equalSeries = allSeries[0];
+            if (equalSeries != null)
+            {
+                cmenu.Add(Translation.SetDefaultAudioLanguage, () =>
+                {
+                    String language = equalSeries.DefaultAudioLanguage;
+                    if (Utils.DialogLanguage(ref language, false))
+                    {
+                        equalSeries.DefaultAudioLanguage = language;
+                        equalSeries.Save();
+                        return ContextMenuAction.Exit;
+                    }
+                    return ContextMenuAction.Continue;
+                });
+                cmenu.Add(Translation.SetDefaultSubtitleLanguage, () =>
+                {
+                    String language = equalSeries.DefaultSubtitleLanguage;
+                    if (Utils.DialogLanguage(ref language, true))
+                    {
+                        equalSeries.DefaultSubtitleLanguage = language;
+                        equalSeries.Save();
+                        return ContextMenuAction.Exit;
+                    }
+                    return ContextMenuAction.Continue;
+                });
+            }
+            if (grp.DefaultAnimeSeriesID.HasValue)
+            {
+                // ReSharper disable ImplicitlyCapturedClosure
+                cmenu.Add(Translation.RemoveDefaultSeries, () =>
+                // ReSharper restore ImplicitlyCapturedClosure
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.RemoveDefaultSeriesForGroup(grp.AnimeGroupID);
+                    grp.DefaultAnimeSeriesID = null;
+                    return ContextMenuAction.Continue;
+                });
+            }
+            if (allSeries.Count > 1)
+            {
+                // ReSharper disable ImplicitlyCapturedClosure
+                cmenu.Add(Translation.SetDefaultSeries, () =>
+                // ReSharper restore ImplicitlyCapturedClosure
+                {
+                    AnimeSeriesVM ser = null;
+                    if (Utils.DialogSelectSeries(ref ser, allSeries))
+                    {
+                        if (ser.AnimeSeriesID.HasValue)
+                        {
+                            grp.DefaultAnimeSeriesID = ser.AnimeSeriesID;
+                            JMMServerVM.Instance.clientBinaryHTTP.SetDefaultSeriesForGroup(grp.AnimeGroupID, ser.AnimeSeriesID.Value);
+                        }
+                    }
+                    return ContextMenuAction.Continue;
+                });
+            }
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.Add(Translation.DeleteThisGroupSeriesEpisodes, () =>
+            // ReSharper restore ImplicitlyCapturedClosure
+            {
+                if (Utils.DialogConfirm(Translation.AreYouSure))
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeGroup(grp.AnimeGroupID, false);
+                    LoadFacade();
+                    return ContextMenuAction.Exit;
+                }
+                return ContextMenuAction.Continue;
+            });
+            return cmenu.Show();
 
-			int mnuPrevious = -1;
-			int mnuChangeSortName = -1;
-			int mnuAudioLanguage = -1;
-			int mnuSubLanguage = -1;
-			int mnuDelete = -1;
-			int mnuRename = -1;
-			int mnuRemDefault = -1;
-			int mnuAddDefault = -1;
 
-			int curMenu = -1;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = grp.GroupName + " - Edit";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				dlg.Add("<<< " + previousMenu);
-				curMenu++; mnuPrevious = curMenu;
-
-				dlg.Add("Rename Group");
-				curMenu++; mnuRename = curMenu;
-
-				dlg.Add("Change Sort Name");
-				curMenu++; mnuChangeSortName = curMenu;
-
-				if (equalSeries != null)
-				{
-					dlg.Add("Set Default Audio Language");
-					curMenu++; mnuAudioLanguage = curMenu;
-
-					dlg.Add("Set Default Subtitle language");
-					curMenu++; mnuSubLanguage = curMenu;
-				}
-
-				if (grp.DefaultAnimeSeriesID.HasValue)
-				{
-					dlg.Add("Remove Default Series");
-					curMenu++; mnuRemDefault = curMenu;
-				}
-
-				if (allSeries.Count > 1)
-				{
-					dlg.Add("Set Default Series");
-					curMenu++; mnuAddDefault = curMenu;
-				}
-
-				dlg.Add("Delete This Group/Series/Episodes");
-				curMenu++; mnuDelete = curMenu;			
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				if (selectedLabel == mnuPrevious)
-					return true;
-
-				if (selectedLabel == mnuRename)
-				{
-					string name = grp.GroupName;
-					if (Utils.DialogText(ref name, GetID) && name != string.Empty)
-					{
-						if (name != grp.GroupName)
-						{
-							grp.GroupName = name;
-							grp.SortName = Utils.GetSortName(name);
-							grp.Save();
-							LoadFacade();
-						}
-						return false;
-					}
-				}
-
-				if (selectedLabel == mnuChangeSortName)
-				{
-					string sortName = grp.SortName;
-					if (Utils.DialogText(ref sortName, GetID))
-					{
-						grp.SortName = sortName;
-						grp.Save();
-						LoadFacade();
-						return false;
-					}
-				}
-
-				if (selectedLabel == mnuAudioLanguage)
-				{
-					String language = equalSeries.DefaultAudioLanguage;
-					if (Utils.DialogLanguage(ref language, false))
-					{
-						equalSeries.DefaultAudioLanguage = language;
-						equalSeries.Save();
-						return false;
-					}
-				}
-
-				if (selectedLabel == mnuRemDefault)
-				{
-					JMMServerVM.Instance.clientBinaryHTTP.RemoveDefaultSeriesForGroup(grp.AnimeGroupID);
-					grp.DefaultAnimeSeriesID = null;
-				}
-
-				if (selectedLabel == mnuAddDefault)
-				{
-					AnimeSeriesVM ser = null;
-					if (Utils.DialogSelectSeries(ref ser, allSeries))
-					{
-						grp.DefaultAnimeSeriesID = ser.AnimeSeriesID;
-						JMMServerVM.Instance.clientBinaryHTTP.SetDefaultSeriesForGroup(grp.AnimeGroupID, ser.AnimeSeriesID.Value);
-					}
-				}
-
-				if (selectedLabel == mnuSubLanguage)
-				{
-					String language = equalSeries.DefaultSubtitleLanguage;
-					if (Utils.DialogLanguage(ref language, true))
-					{
-						equalSeries.DefaultSubtitleLanguage = language;
-						equalSeries.Save();
-						return false;
-					}
-				}
-
-				if (selectedLabel == mnuDelete)
-				{
-					if (Utils.DialogConfirm("Are you sure?"))
-					{
-						JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeGroup(grp.AnimeGroupID, false);
-					}
-
-					LoadFacade();
-					return false;
-				}
-
-				
-
-				return false;
-			}
 		}
-
+        /*
 		private bool ShowContextMenuSeriesInfo(string previousMenu)
 		{
 			GUIListItem currentitem = this.m_Facade.SelectedListItem;
@@ -5175,289 +4332,141 @@ namespace MyAnimePlugin3
 				}
 			}
 		}
-
-		private bool ShowContextMenuGroupFilter(string previousMenu)
+        */
+		private ContextMenuAction ShowContextMenuGroupFilter(string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            GUIListItem currentitem = this.m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            GroupFilterVM gf = currentitem.TVTag as GroupFilterVM;
+            if (gf == null)
+                return ContextMenuAction.Exit;
 
-			GroupFilterVM gf = currentitem.TVTag as GroupFilterVM;
-			if (gf == null)
-				return true;
+            ContextMenu cmenu = new ContextMenu(gf.GroupFilterName, previousmenu: previousMenu);
+            cmenu.AddAction(Translation.RandomSeries, () =>
+            {
+                RandomWindow_CurrentEpisode = null;
+                RandomWindow_CurrentSeries = null;
+                RandomWindow_LevelObject = gf;
+                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+                RandomWindow_RandomType = RandomObjectType.Series;
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+            });
+            cmenu.AddAction(Translation.RandomEpisode, () =>
+            {
+                RandomWindow_CurrentEpisode = null;
+                RandomWindow_CurrentSeries = null;
+                RandomWindow_LevelObject = gf;
+                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+                RandomWindow_RandomType = RandomObjectType.Episode;
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+            });
+            return cmenu.Show();
+        }
 
-			int mnuPrev = -1;
-			int mnuRandomSeries = -1;
-			int mnuRandomEpisode = -1;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = gf.GroupFilterName;
-			while (true)
-			{
-				int curMenu = -1;
-
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-
-				if (previousMenu != string.Empty)
-				{
-					dlg.Add("<<< " + previousMenu);
-					curMenu++; mnuPrev = curMenu;
-				}
-				dlg.Add("Random Series");
-				curMenu++; mnuRandomSeries = curMenu;
-
-				dlg.Add("Random Episode");
-				curMenu++; mnuRandomEpisode = curMenu;
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				if (selectedLabel == mnuPrev) return true;
-				if (selectedLabel == mnuRandomSeries)
-				{
-					RandomWindow_CurrentEpisode = null;
-					RandomWindow_CurrentSeries = null;
-
-					RandomWindow_LevelObject = gf;
-					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
-					RandomWindow_RandomType = RandomObjectType.Series;
-
-					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-
-					return false;
-				}
-
-				if (selectedLabel == mnuRandomEpisode)
-				{
-					RandomWindow_CurrentEpisode = null;
-					RandomWindow_CurrentSeries = null;
-
-					RandomWindow_LevelObject = gf;
-					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
-					RandomWindow_RandomType = RandomObjectType.Episode;
-
-					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-
-					return false;
-				}
-
-			}
-		}
-
-		private bool ShowContextMenuGroup(string previousMenu)
+		private ContextMenuAction ShowContextMenuGroup(string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
+            AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
+            if (grp == null)
+                return ContextMenuAction.Exit;
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
-			if (grp == null)
-				return true;
-
-			int mnuPrev = -1;
-			int mnuFave = -1;
-			int mnuWatched = -1;
-			int mnuUnwatched = -1;
-			int mnuEdit = -1;
-			int mnuQuickSort = -1;
-			int mnuRemoveQuickSort = -1;
-			int mnuDatabases = -1;
-			int mnuImages = -1;
-			int mnuSeries = -1;
-			int mnuRandomSeries = -1;
-			int mnuRandomEpisode = -1;
-			int mnuPostProcessing = -1;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = grp.GroupName;
-			while (true)
-			{
-				int curMenu = -1;
-
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				string faveText = "Add to Favorites";
-				if (grp.IsFave == 1)
-					faveText = "Remove from Favorites";
-
-				if (previousMenu != string.Empty)
-				{
-					dlg.Add("<<< " + previousMenu);
-					curMenu++; mnuPrev = curMenu;
-				}
-				dlg.Add(faveText);
-				curMenu++; mnuFave = curMenu;
-
-				dlg.Add("Mark ALL as Watched");
-				curMenu++; mnuWatched = curMenu;
-
-				dlg.Add("Mark ALL as Unwatched");
-				curMenu++; mnuUnwatched = curMenu;
-
-				dlg.Add("Edit Group >>>");
-				curMenu++; mnuEdit = curMenu;
-
-				dlg.Add("Quick Sort >>>");
-				curMenu++; mnuQuickSort = curMenu;
-
-				if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
-				{
-					dlg.Add("Remove Quick Sort");
-					curMenu++; mnuRemoveQuickSort = curMenu;
-				}
-
-				if (grp.AllSeries.Count == 1)
-				{
-					dlg.Add("Databases >>>");
-					curMenu++; mnuDatabases = curMenu;
-					dlg.Add("Images >>>");
-					curMenu++; mnuImages = curMenu;
-					dlg.Add("Series Information");
-					curMenu++; mnuSeries = curMenu;
-				}
-
-				dlg.Add("Random Series");
-				curMenu++; mnuRandomSeries = curMenu;
-
-				dlg.Add("Random Episode");
-				curMenu++; mnuRandomEpisode = curMenu;
-
-				dlg.Add("Post-processing >>>");
-				curMenu++; mnuPostProcessing = curMenu;
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				if (selectedLabel == mnuPrev) return true;
-				if (selectedLabel == mnuFave)
-				{
-					grp.IsFave = grp.IsFave == 1 ? 0 : 1;
-					grp.Save();
-
-					EvaluateVisibility();
-					return false;
-				}
-
-				if (selectedLabel == mnuWatched)
-				{
-					foreach (AnimeSeriesVM ser in grp.AllSeries)
-						JMMServerHelper.SetWatchedStatusOnSeries(true, int.MaxValue, ser.AnimeSeriesID.Value);
-
-					
-
-					LoadFacade();
-					return false;
-				}
-
-				if (selectedLabel == mnuUnwatched)
-				{
-					foreach (AnimeSeriesVM ser in grp.AllSeries)
-						JMMServerHelper.SetWatchedStatusOnSeries(false, int.MaxValue, ser.AnimeSeriesID.Value);
-
-					LoadFacade();
-					return false;
-				}
-
-				if (selectedLabel == mnuEdit)
-				{
-					if (!ShowContextMenuGroupEdit(currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuQuickSort)
-				{
-					string sortType = "";
-					GroupFilterSortDirection sortDirection = GroupFilterSortDirection.Asc;
-					if (GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
-						sortDirection = GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection;
-
-					if (!Utils.DialogSelectGFQuickSort(ref sortType, ref sortDirection, curGroupFilter.GroupFilterName))
-					{
-						if (!GroupFilterQuickSorts.ContainsKey(curGroupFilter.GroupFilterID.Value))
-							GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value] = new QuickSort();
-						GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortType = sortType;
-						GroupFilterQuickSorts[curGroupFilter.GroupFilterID.Value].SortDirection = sortDirection;
-						LoadFacade();
-						return false;
-					}
-				}
-
-				if (selectedLabel == mnuRemoveQuickSort)
-				{
-					GroupFilterQuickSorts.Remove(curGroupFilter.GroupFilterID.Value);
-					LoadFacade();
-					return false;
-				}
-
-				if (selectedLabel == mnuDatabases)
-				{
-					if (!ShowContextMenuDatabases(grp.AllSeries[0], "Group Menu"))
-						return false;
-				}
-
-				if (selectedLabel == mnuImages)
-				{
-					if (!ShowContextMenuImages(currentMenu))
-						return false;
-				}
-
-				if (selectedLabel == mnuSeries)
-				{
-					ShowAnimeInfoWindow();
-					return false;
-				}
-
-				if (selectedLabel == mnuRandomSeries)
-				{
-					RandomWindow_CurrentEpisode = null;
-					RandomWindow_CurrentSeries = null;
-
-					RandomWindow_LevelObject = grp;
-					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
-					RandomWindow_RandomType = RandomObjectType.Series;
-
-					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-
-					return false;
-				}
-
-				if (selectedLabel == mnuRandomEpisode)
-				{
-					RandomWindow_CurrentEpisode = null;
-					RandomWindow_CurrentSeries = null;
-
-					RandomWindow_LevelObject = grp;
-					RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
-					RandomWindow_RandomType = RandomObjectType.Episode;
-
-					GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-
-					return false;
-				}
-
-				if (selectedLabel == mnuPostProcessing)
-				{
-					ShowContextMenuPostProcessing(currentMenu);
-					return false;
-				}
-				
-			}
-		}
+            ContextMenu cmenu = new ContextMenu(grp.GroupName, previousmenu: previousMenu);
+		    if (grp.SubGroups.Count == 0)
+		    {
+		        cmenu.AddAction(grp.IsFave == 1 ? Translation.RemoveFromFavorites : Translation.AddToFavorites, () =>
+		        {
+		            grp.IsFave = grp.IsFave == 1 ? 0 : 1;
+		            grp.Save();
+		            EvaluateVisibility();
+		        });
+		    }
+		    cmenu.AddAction(Translation.MarkAllAsWatched, () =>
+            {
+                foreach (AnimeSeriesVM ser in grp.AllSeries)
+                {
+                    if (ser.AnimeSeriesID.HasValue)
+                        JMMServerHelper.SetWatchedStatusOnSeries(true, Int32.MaxValue, ser.AnimeSeriesID.Value);
+                }
+                LoadFacade();
+            });
+            cmenu.AddAction(Translation.MarkAllAsUnwatched, () =>
+            {
+                foreach (AnimeSeriesVM ser in grp.AllSeries)
+                {
+                    if (ser.AnimeSeriesID.HasValue)
+                        JMMServerHelper.SetWatchedStatusOnSeries(false, Int32.MaxValue, ser.AnimeSeriesID.Value);
+                }
+                LoadFacade();
+            });
+            cmenu.Add(Translation.EditGroup + " >>>", () => ShowContextMenuGroupEdit(grp.GroupName));
+		    History h = GetCurrent();
+		    if (h.Listing is GroupFilterVM)
+		    {
+		        GroupFilterVM gf = (GroupFilterVM) h.Listing;
+		        cmenu.Add(Translation.QuickSort + " >>>", () =>
+		        {
+		            string sortType = "";
+		            GroupFilterSortDirection sortDirection = GroupFilterSortDirection.Asc;
+		            if (gf.GroupFilterID.HasValue)
+		            {
+		                if (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
+		                    sortDirection = GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection;
+		                if (!Utils.DialogSelectGFQuickSort(ref sortType, ref sortDirection, gf.GroupFilterName))
+		                {
+		                    if (!GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
+		                        GroupFilterQuickSorts[gf.GroupFilterID.Value] = new QuickSort();
+		                    GroupFilterQuickSorts[gf.GroupFilterID.Value].SortType = sortType;
+		                    GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection = sortDirection;
+		                    LoadFacade();
+		                    return ContextMenuAction.Exit;
+		                }
+		            }
+		            return ContextMenuAction.Continue;
+		        });
+		        if ((gf.GroupFilterID.HasValue) && (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value)))
+                {
+                    cmenu.AddAction(Translation.RemoveQuickSort, () =>
+                    {
+                        GroupFilterQuickSorts.Remove(gf.GroupFilterID.Value);
+                        LoadFacade();
+                    });
+                }
+            }
+            if (grp.AllSeries.Count == 1)
+            {
+                cmenu.Add(Translation.Databases + " >>>", () => ShowContextMenuDatabases(grp.AllSeries[0], Translation.GroupMenu));
+                cmenu.Add(Translation.Images + " >>>", () => ShowContextMenuImages(grp.GroupName));
+                cmenu.AddAction(Translation.SeriesInformation, ShowAnimeInfoWindow);
+            }
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.AddAction(Translation.RandomSeries, () =>
+            // ReSharper restore ImplicitlyCapturedClosure
+            {
+                RandomWindow_CurrentEpisode = null;
+                RandomWindow_CurrentSeries = null;
+                RandomWindow_LevelObject = grp;
+                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
+                RandomWindow_RandomType = RandomObjectType.Series;
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+            });
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.AddAction(Translation.RandomEpisode, () =>
+            // ReSharper restore ImplicitlyCapturedClosure
+            {
+                RandomWindow_CurrentEpisode = null;
+                RandomWindow_CurrentSeries = null;
+                RandomWindow_LevelObject = grp;
+                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
+                RandomWindow_RandomType = RandomObjectType.Episode;
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+            });
+            cmenu.Add(Translation.PostProcessing + " >>>", () => ShowContextMenuPostProcessing(grp.GroupName));
+            return cmenu.Show();
+        }
 
 		private void ShowRelationsWindow()
 		{
@@ -5477,506 +4486,269 @@ namespace MyAnimePlugin3
 			GUIWindowManager.ActivateWindow(Constants.WindowIDs.ANIMEINFO, false);
 		}
 
-		private bool ShowContextMenuImages(string previousMenu)
+		private ContextMenuAction ShowContextMenuImages(string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-			string displayName = "";
-
-			AnimeSeriesVM ser = null;
-			if (listLevel == Listlevel.Group)
-			{
-				displayName = curAnimeGroup.GroupName;
-
-				List<AnimeSeriesVM> allSeries = curAnimeGroup.AllSeries;
-				if (allSeries.Count == 1) ser = allSeries[0];
-			}
-			else
-			{
-				displayName = curAnimeSeries.SeriesName;
-				ser = curAnimeSeries;
-			}
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = displayName;
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Fanart");
-				dlg.Add("Posters");
-				dlg.Add("Wide Banners");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						ShowFanartWindow();
-						return false;
-					case 2:
-						ShowPostersWindow();
-						return false;
-					case 3:
-						ShowWideBannersWindow();
-						return false;
-					default:
-						//close menu
-						return false;
-				}
-			}
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
+		    IVM v = GetCurrent().Selected;
+		    string displayName = v is AnimeGroupVM ? ((AnimeGroupVM) v).GroupName : ((AnimeSeriesVM) v).SeriesName;
+            ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
+            cmenu.AddAction(Translation.Fanart, ShowFanartWindow);
+            cmenu.AddAction(Translation.Posters, ShowPostersWindow);
+            cmenu.AddAction(Translation.WideBanners, ShowWideBannersWindow);
+            return cmenu.Show();
 		}
 
 
-		private bool ShowContextMenuTVDB(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction ShowContextMenuTVDB(AnimeSeriesVM ser, string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            int tvdbid;
+            int season;
+            string displayName;
 
-			int tvdbid = -1;
-			int season = -1;
-			string displayName = "";
+            if (ser.CrossRef_AniDB_TvDBV2.Count > 0 && ser.TvDBSeriesV2.Count > 0 && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists)
+            {
+                displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName;
+                tvdbid = ser.CrossRef_AniDB_TvDBV2[0].TvDBID;
+                season = ser.CrossRef_AniDB_TvDBV2[0].TvDBSeasonNumber;
+            }
+            else
+                return ContextMenuAction.PreviousMenu;
+            ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.AddAction(Translation.RemoveTVDBAssociation, () => JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(ser.AniDB_Anime.AnimeID));
+            // ReSharper restore ImplicitlyCapturedClosure
+            cmenu.Add(string.Format(Translation.SwitchSeason, season.ToString(Globals.Culture)), () =>
+            {
+                if (ser.CrossRef_AniDB_TvDBV2.Count < 2)
+                {
+                    return ShowSeasonSelectionMenuTvDB(ser, ser.AniDB_Anime.AnimeID, tvdbid, displayName);
+                }
+                Utils.DialogMsg(Translation.Error, Translation.CannotEditTvDBLink);
+                return ContextMenuAction.Continue;
+            });
+            return cmenu.Show();
+        }
+        /*
+        private ContextMenuAction ShowContextMenuTrakt(AnimeSeriesVM ser, string previousMenu)
+        {
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
-			if (ser.CrossRef_AniDB_TvDBV2.Count > 0 && ser.TvDBSeriesV2.Count > 0 && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists)
-			{
-				displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName;
-				tvdbid = ser.CrossRef_AniDB_TvDBV2[0].TvDBID;
-				season = ser.CrossRef_AniDB_TvDBV2[0].TvDBSeasonNumber;
-			}
-			else
-				return false;
-
-	
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = displayName;
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Remove TVDB Association");
-				dlg.Add("Switch Season (Current is " + season.ToString() + ")");
 
 
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
+            string traktId;
+            int season;
+            string displayName;
 
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
+            if (ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt != null
+                && ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow != null)
+            {
+                displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.TraktShow.Title;
+                traktId = ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID;
+                season = ser.AniDB_Anime.AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktSeasonNumber;
+            }
+            else
+                return ContextMenuAction.PreviousMenu;
 
-						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(ser.AniDB_Anime.AnimeID);
-						break;
-					case 2:
-						if (ser.CrossRef_AniDB_TvDBV2.Count < 2 )
-						{
-							if (!ShowSeasonSelectionMenuTvDB(ser, ser.AniDB_Anime.AnimeID, tvdbid, currentMenu))
-								return false;
-						}
-						else
-						{
-							Utils.DialogMsg("Error", "Cannot edit seasons when series has more than one TvDB link, use JMM Desktop instead");
-						}
-						break;
-					
-					default:
-						//close menu
-						return false;
-				}
-			}
+            ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.AddAction(Translation.RemoveTraktAssociation, () => JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTrakt(ser.AniDB_Anime.AnimeID));
+            // ReSharper restore ImplicitlyCapturedClosure
+            cmenu.Add(string.Format(Translation.SwitchSeason, season.ToString(Globals.Culture)), () => ShowSeasonSelectionMenuTrakt(ser, ser.AniDB_Anime.AnimeID, traktId, displayName));
+            return cmenu.Show();
+        }
+        */
+        private ContextMenuAction ShowContextMenuMovieDB(AnimeSeriesVM ser, string previousMenu)
+        {
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
+
+            string displayName;
+
+            if (ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null &&
+                ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null)
+            {
+                displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName;
+            }
+            else
+                return ContextMenuAction.PreviousMenu;
+            ContextMenu cmenu = new ContextMenu(displayName, previousMenu);
+            cmenu.AddAction(Translation.RemoveMovieDBAssociation, () => JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBOther(ser.AniDB_Anime.AnimeID, (int)CrossRefType.MovieDB));
+            return cmenu.Show();
+        }
+        
+        private ContextMenuAction ShowContextMenuMAL(AnimeSeriesVM ser, string previousMenu)
+        {
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
+            string displayName;
+
+            if (ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0)
+                displayName = ser.CrossRef_AniDB_MAL.Count == 1
+                    ? ser.CrossRef_AniDB_MAL[0].MALTitle
+                    : Translation.MultipleLinks;
+            else
+                return ContextMenuAction.PreviousMenu;
+            ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
+            cmenu.AddAction(Translation.RemoveMALAssociation, () =>
+            {
+                foreach (CrossRef_AniDB_MALVM xref in ser.CrossRef_AniDB_MAL)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(xref.AnimeID, xref.StartEpisodeType, xref.StartEpisodeNumber);
+                }
+            });
+            return cmenu.Show();
+        }
+        private ContextMenuAction ShowSeasonSelectionMenuTvDB(AnimeSeriesVM ser, int animeID, int tvdbid, string previousMenu)
+		{
+            try
+            {
+                List<int> seasons = JMMServerVM.Instance.clientBinaryHTTP.GetSeasonNumbersForSeries(tvdbid);
+                if (seasons.Count == 0)
+                {
+                    this.Alert(Translation.SeasonResults, string.Empty, Translation.NoSeasonsFound);
+                    return ContextMenuAction.Exit;
+                }
+                ContextMenu cmenu = new ContextMenu(Translation.SelectSeason, previousmenu: previousMenu);
+                foreach (int season in seasons)
+                {
+                    int local = season;
+                    cmenu.AddAction(Translation.Season + " " + season.ToString(Globals.Culture), () =>
+                    {
+                        JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(animeID);
+                        LinkAniDBToTVDB(ser, animeID, enEpisodeType.Episode, 1, tvdbid, local, 1);
+                    });
+                }
+                return cmenu.Show();
+            }
+            catch (Exception ex)
+            {
+                BaseConfig.MyAnimeLog.Write("Error in ShowSeasonSelectionMenu:: {0}", ex);
+            }
+
+            return ContextMenuAction.Exit;
+        }
+
+		private ContextMenuAction ShowContextMenuSeriesEdit(string previousMenu)
+		{
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
+
+            AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
+            if (ser == null)
+                return ContextMenuAction.Exit;
+
+            string currentMenu = ser.SeriesName + " - " + Translation.Edit;
+            ContextMenu cmenu = new ContextMenu(currentMenu, previousmenu: previousMenu);
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.Add(Translation.SetDefaultAudioLanguage, () =>
+            // ReSharper restore ImplicitlyCapturedClosure
+            {
+                string language = ser.DefaultAudioLanguage;
+                if (Utils.DialogLanguage(ref language, false))
+                {
+                    ser.DefaultAudioLanguage = language;
+                    ser.Save();
+                    return ContextMenuAction.Exit;
+                }
+                return ContextMenuAction.Continue;
+            });
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.Add(Translation.SetDefaultSubtitleLanguage, () =>
+            // ReSharper restore ImplicitlyCapturedClosure
+            {
+                string language = ser.DefaultSubtitleLanguage;
+                if (Utils.DialogLanguage(ref language, true))
+                {
+                    ser.DefaultSubtitleLanguage = language;
+                    ser.Save();
+                    return ContextMenuAction.Exit;
+                }
+                return ContextMenuAction.Continue;
+            });
+            cmenu.Add(Translation.DeleteThisSeriesEpisodes, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    if (Utils.DialogConfirm(Translation.AreYouSure))
+                    {
+                        JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, false, false);
+                        LoadFacade();
+                        return ContextMenuAction.Exit;
+                    }
+                }
+                return ContextMenuAction.Continue;
+            });
+            return cmenu.Show();
 		}
 
-		private bool ShowContextMenuMovieDB(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction ShowContextMenuSeries(string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            GUIListItem currentitem = this.m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
+            AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
+            if (ser == null)
+                return ContextMenuAction.Exit;
 
-			//int moviedbid = -1;
-			string displayName = "";
+            ContextMenu cmenu = new ContextMenu(ser.SeriesName, previousmenu: previousMenu);
+            cmenu.AddAction(Translation.SeriesInformation, ShowAnimeInfoWindow);
+            cmenu.AddAction(Translation.MarkAllAsWatched, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    JMMServerHelper.SetWatchedStatusOnSeries(true, Int32.MaxValue, ser.AnimeSeriesID.Value);
+                    Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                    if (contract != null)
+                    {
+                        AnimeSeriesVM serTemp = new AnimeSeriesVM(contract);
+                        Utils.PromptToRateSeriesOnCompletion(serTemp);
+                    }
+                    LoadFacade();
+                }
+            });
+            cmenu.AddAction(Translation.MarkAllAsUnwatched, () =>
+            {
+                if (ser.AnimeSeriesID.HasValue)
+                {
+                    JMMServerHelper.SetWatchedStatusOnSeries(false, Int32.MaxValue, ser.AnimeSeriesID.Value);
+                    LoadFacade();
+                }
+            });
+            cmenu.Add(Translation.Databases + " >>>", () => ShowContextMenuDatabases(ser, ser.SeriesName));
+            cmenu.Add(Translation.Images + " >>>", () => ShowContextMenuImages(ser.SeriesName));
+            cmenu.Add(Translation.EditSeries + " >>>", () => ShowContextMenuSeriesEdit(ser.SeriesName));
+            // ReSharper disable ImplicitlyCapturedClosure
+            cmenu.AddAction(Translation.RandomEpisode, () =>
+            // ReSharper restore ImplicitlyCapturedClosure
+            {
+                RandomWindow_CurrentEpisode = null;
+                RandomWindow_CurrentSeries = null;
+                RandomWindow_LevelObject = ser;
+                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Series;
+                RandomWindow_RandomType = RandomObjectType.Episode;
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+            });
+            cmenu.Add(Translation.PostProcessing + " >>>", () => ShowContextMenuPostProcessing(ser.SeriesName));
+            return cmenu.Show();
+        }
 
-			if (ser.CrossRef_AniDB_MovieDB != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs != null && ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie != null)
-			{
-				displayName = ser.AniDB_Anime.AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName;
-			}
-			else
-				return false;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = displayName;
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Remove MovieDB Association");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBOther(ser.AniDB_Anime.AnimeID, (int)CrossRefType.MovieDB);
-						return false;
-					default:
-						//close menu
-						return false;
-				}
-			}
-		}
-
-		private bool ShowContextMenuMAL(AnimeSeriesVM ser, string previousMenu)
+		private ContextMenuAction ShowContextMenuPostProcessing(string previousMenu)
 		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			//int moviedbid = -1;
-			string displayName = "";
-
-			if (ser.CrossRef_AniDB_MAL != null && ser.CrossRef_AniDB_MAL.Count > 0)
-			{
-				if (ser.CrossRef_AniDB_MAL.Count == 1)
-					displayName = ser.CrossRef_AniDB_MAL[0].MALTitle;
-				else
-					displayName = "Multiple Links!";
-			}
-			else
-				return false;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = displayName;
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Remove MAL Association");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						foreach (CrossRef_AniDB_MALVM xref in ser.CrossRef_AniDB_MAL)
-						{
-							JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(xref.AnimeID, xref.StartEpisodeType, xref.StartEpisodeNumber);
-						}
-						return false;
-					default:
-						//close menu
-						return false;
-				}
-			}
-		}
-
-		private bool ShowSeasonSelectionMenuTvDB(AnimeSeriesVM ser, int animeID, int tvdbid, string previousMenu)
-		{
-			try
-			{
-				List<int> seasons = JMMServerVM.Instance.clientBinaryHTTP.GetSeasonNumbersForSeries(tvdbid);
-				if (seasons.Count == 0)
-				{
-					GUIDialogOK dlgOK = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
-					if (null != dlgOK)
-					{
-						dlgOK.SetHeading("Season Results");
-						dlgOK.SetLine(1, string.Empty);
-						dlgOK.SetLine(2, "No seasons found");
-						dlgOK.DoModal(GUIWindowManager.ActiveWindow);
-					}
-
-					return true;
-				}
-
-				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null)
-					return true;
-
-				//keep showing the dialog until the user closes it
-				int selectedLabel = 0;
-				string currentMenu = "Select Season";
-				while (true)
-				{
-					dlg.Reset();
-					dlg.SetHeading(currentMenu);
-
-					if (previousMenu != string.Empty)
-						dlg.Add("<<< " + previousMenu);
-					foreach (int season in seasons)
-						dlg.Add("Season " + season.ToString());
-
-					dlg.SelectedLabel = selectedLabel;
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
-					selectedLabel = dlg.SelectedLabel;
-
-					int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-					if (selection == 0)
-						return true; //previous menu
-
-					if (selection > 0 && selection <= seasons.Count)
-					{
-						int selectedSeason = seasons[selection - 1];
-
-						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(animeID);
-
-						LinkAniDBToTVDB(ser, animeID, enEpisodeType.Episode, 1, tvdbid, selectedSeason, 1);
-					}
-
-					return false;
-				}
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write("Error in ShowSeasonSelectionMenu:: {0}", ex);
-			}
-
-			return true;
-		}
-
-		private bool ShowContextMenuSeriesEdit(string previousMenu)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
-			if (ser == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = ser.SeriesName + " - Edit";
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Set Default Audio Language");
-				dlg.Add("Set Default Subtitle language");
-				dlg.Add("Delete This Series/Episodes");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						{
-							String language = ser.DefaultAudioLanguage;
-							if (Utils.DialogLanguage(ref language, false))
-							{
-								ser.DefaultAudioLanguage = language;
-								ser.Save();
-								return false;
-							}
-						}
-						break;
-					case 2:
-						{
-							String language = ser.DefaultSubtitleLanguage;
-							if (Utils.DialogLanguage(ref language, true))
-							{
-								ser.DefaultSubtitleLanguage = language;
-								ser.Save();
-								return false;
-							}
-						}
-						break;
-					case 3:
-						if (Utils.DialogConfirm("Are you sure?"))
-						{
-							JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, false, false);
-							LoadFacade();
-
-							return false;
-						}
-						break;
-					default:
-						//close menu
-						return false;
-				}
-			}
-		}
-
-		private bool ShowContextMenuSeries(string previousMenu)
-		{
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
-			if (ser == null)
-				return true;
-
-			//keep showing the dialog until the user closes it
-			int selectedLabel = 0;
-			string currentMenu = ser.SeriesName;
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
-
-				if (previousMenu != string.Empty)
-					dlg.Add("<<< " + previousMenu);
-				dlg.Add("Series Information");
-				dlg.Add("Mark all as watched");
-				dlg.Add("Mark all as unwatched");
-				dlg.Add("Databases >>>");
-				dlg.Add("Images >>>");
-				dlg.Add("Edit Series >>>");
-				dlg.Add("Random Episode");
-				dlg.Add("Post-processing >>>");
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-				switch (selection)
-				{
-					case 0:
-						//show previous
-						return true;
-					case 1:
-						ShowAnimeInfoWindow();
-						return false;
-					case 2: // Mark ALL as Watched
-						{
-							JMMServerHelper.SetWatchedStatusOnSeries(true, int.MaxValue, ser.AnimeSeriesID.Value);
-
-							JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value,
-								JMMServerVM.Instance.CurrentUser.JMMUserID);
-							if (contract != null)
-							{
-								AnimeSeriesVM serTemp = new AnimeSeriesVM(contract);
-								Utils.PromptToRateSeriesOnCompletion(serTemp);
-							}
-
-							LoadFacade();
-							return false;
-						}
-
-					case 3: // Mark ALL as Unwatched
-						{
-							JMMServerHelper.SetWatchedStatusOnSeries(false, int.MaxValue, ser.AnimeSeriesID.Value);
-							LoadFacade();
-							return false;
-						}
-					case 4:
-						if (!ShowContextMenuDatabases(ser, currentMenu))
-							return false;
-						break;
-					case 5:
-						if (!ShowContextMenuImages(currentMenu))
-							return false;
-						break;
-					case 6:
-						if (!ShowContextMenuSeriesEdit(currentMenu))
-							return false;
-						break;
-					case 7:
-						RandomWindow_CurrentEpisode = null;
-						RandomWindow_CurrentSeries = null;
-
-						RandomWindow_LevelObject = ser;
-						RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Series;
-						RandomWindow_RandomType = RandomObjectType.Episode;
-
-						GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-						return false;
-
-					case 8:
-						if (!ShowContextMenuPostProcessing(currentMenu))
-							return false;
-						break;
-
-					default:
-						//close menu
-						return false;
-				}
-			}
-		}
-
-		private bool ShowContextMenuPostProcessing(string previousMenu)
-		{
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return true;
-
-			GUIListItem currentitem = this.m_Facade.SelectedListItem;
-			if (currentitem == null)
-				return true;
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
 
 			AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
 			List<AnimeEpisodeVM> episodes = new List<AnimeEpisodeVM>();
@@ -6009,12 +4781,10 @@ namespace MyAnimePlugin3
 
 			}
 
-			if (episodes == null)
-				return true;
+		
 
-
-			//keep showing the dialog until the user closes it
-			string currentMenu = "Associate with a ffdshow raw preset";
+            //keep showing the dialog until the user closes it
+            string currentMenu = "Associate with a ffdshow raw preset";
 			int selectedLabel = 0;
 			int intLabel = 0;
 
@@ -6023,82 +4793,37 @@ namespace MyAnimePlugin3
 
 			string selectedPreset = ffdshowHelper.findSelectedPresetForMenu(episodes);
 
-			while (true)
-			{
-				dlg.Reset();
-				dlg.SetHeading(currentMenu);
 
-				if (previousMenu != string.Empty)
-				{
-					dlg.Add("<<< " + previousMenu);
-					intLabel++;
-				}
-
-
-				dlg.Add("Remove old preset association");
-				intLabel++;
-				foreach (string preset in presets)
-				{
-					dlg.Add("Set preset: " + preset);
-					// preset selected
-					if (selectedPreset == preset)
-						selectedLabel = intLabel;
-
-					intLabel++;
-				}
-
-				dlg.SelectedLabel = selectedLabel;
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-				selectedLabel = dlg.SelectedLabel;
-
-				int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-
-				if (selection == 0)
-				{
-					//show previous
-					return true;
-				}
-				else if (selection == -1)
-				{
-					//close menu
-					return false;
-				}
-				else
-				{
-					string message = "";
-					if (selection == 1)
-					{
-						//DB remove preset
-						ffdshowHelper.deletePreset(episodes);
-						message = "Old preset successfully removed.";
-					}
-					else
-					{
-						//DB associate serie/group with preset
-						string choosenPreset = presets.ToArray()[selection - 2];
-						ffdshowHelper.addPreset(episodes, choosenPreset);
-						message = "Preset \"" + choosenPreset + "\" successfully added.";
-					}
-					Utils.DialogMsg("Confirmation", message);
-					return false;
-				}
-			}
-		}
+            ContextMenu cmenu = new ContextMenu(Translation.AssociateFFDshowPreset, previousmenu: previousMenu);
+            cmenu.AddAction(Translation.RemoveOldPresetAssociation, () =>
+            {
+                ffdshowHelper.deletePreset(episodes);
+                Utils.DialogMsg(Translation.Confirmation, Translation.OldPresetRemove);
+            });
+            foreach (string preset in presets)
+            {
+                string local = preset;
+                cmenu.AddAction(Translation.SetPreset + ": " + preset, () =>
+                {
+                    ffdshowHelper.addPreset(episodes, local);
+                    Utils.DialogMsg(Translation.Confirmation, string.Format(Translation.PresetAdded, local));
+                }, local == selectedPreset);
+            }
+            return cmenu.Show();
+        }
 
 		private void SetGlobalIDs()
 		{
 			GlobalSeriesID = -1;
+		    AnimeGroupVM grp = GetTopGroup();
 
-			if (curAnimeGroup == null)
+			if (grp == null)
 				return;
 
 			AnimeSeriesVM ser = null;
-			List<AnimeSeriesVM> allSeries = curAnimeGroup.AllSeries;
+			List<AnimeSeriesVM> allSeries = grp.AllSeries;
 			if (allSeries.Count == 1)
 				ser = allSeries[0];
-			else
-				ser = curAnimeSeries;
-
 			if (ser == null) return;
 
 			GlobalSeriesID = ser.AnimeSeriesID.Value;
@@ -6149,18 +4874,16 @@ namespace MyAnimePlugin3
 		TvDB_SwitchSeason = 4,
 		TvDB_EpisodeInfo = 5
 	}
-
+    /*
 	public enum Listlevel
 	{
 		Episode = 0, // The actual episodes
 		EpisodeTypes = 1, // Normal, Credits, Specials
-		Series = 2, // Da capo, Da Capo S2, Da Capo II etc
+		GroupAndSeries = 2, // Da capo, Da Capo S2, Da Capo II etc
 		Group = 3, // Da Capo
 		GroupFilter = 4, // Favouritess
-		GroupFilterSub = 5, // Predefined - Tags
-		GroupFilterSub2 = 6 // Predefined - Tags - Action
 	}
-
+    */
 	public enum ViewType
 	{
 		All = 0,
@@ -6203,4 +4926,5 @@ namespace MyAnimePlugin3
 		public object Argument = null;
 		public int IndexArgument = 0;
 	}
+
 }

@@ -8,118 +8,77 @@ namespace MyAnimePlugin3.ViewModel
 {
 	public class GroupFilterHelper
 	{
-		public static GroupFilterVM AllGroupsFilter
+
+	    public static GroupFilterVM AllGroupsFilter
+	    {
+	        get { return GetTopLevelGroupFilters().FirstOrDefault(a => a.FilterType == (int) GroupFilterType.All); }
+	    }
+
+       
+		public static List<GroupFilterVM> GetTopLevelGroupFilters()
 		{
-			get
-			{
-				GroupFilterVM gf = new GroupFilterVM();
-				gf.GroupFilterID = Constants.StaticGF.All;
-				gf.FilterConditions = new List<GroupFilterConditionVM>();
-				gf.ApplyToSeries = 0;
-				gf.BaseCondition = 1;
-				gf.PredefinedCriteria = "";
-				gf.GroupFilterName = "All";
-
-				GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
-				gfsc.SortType = GroupFilterSorting.SortName;
-				gfsc.SortDirection = GroupFilterSortDirection.Asc;
-
-				gf.SortCriteriaList.Add(gfsc);
-				return gf;
-			}
+			return JMMServerHelper.GetTopLevelGroupFilters();
 		}
-
-		public static GroupFilterVM PredefinedGroupsFilter
-		{
-			get
-			{
-				GroupFilterVM gf = new GroupFilterVM();
-				gf.GroupFilterID = Constants.StaticGF.Predefined;
-				gf.FilterConditions = new List<GroupFilterConditionVM>();
-				gf.ApplyToSeries = 0;
-				gf.BaseCondition = 1;
-				gf.PredefinedCriteria = "";
-				gf.GroupFilterName = "Predefined Filters";
-
-				GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
-				gfsc.SortType = GroupFilterSorting.SortName;
-				gfsc.SortDirection = GroupFilterSortDirection.Asc;
-
-				gf.SortCriteriaList.Add(gfsc);
-				return gf;
-			}
-		}
-
-		public static List<GroupFilterVM> GetGroupFiltersFromDatabase()
-		{
-			return JMMServerHelper.GetAllGroupFilters();
-		}
-
-		public static List<GroupFilterVM> AllGroupFilters
-		{
-			get
-			{
-				List<GroupFilterVM> gfilters = new List<GroupFilterVM>();
-				gfilters.Add(AllGroupsFilter);
-				gfilters.Add(PredefinedGroupsFilter);
-				gfilters.AddRange(GetGroupFiltersFromDatabase());
-				return gfilters;
-			}
-		}
-
-		public static string GetTextForEnum_Sorting(GroupFilterSorting sort)
+        public static List<GroupFilterVM> GetChildGroupFilters(GroupFilterVM gf)
+        {
+            return JMMServerHelper.GetChildGroupFilters(gf);
+        }
+        public static string GetTextForEnum_Sorting(GroupFilterSorting sort)
 		{
 			switch (sort)
 			{
-				case GroupFilterSorting.AniDBRating: return "AniDB Rating";
-				case GroupFilterSorting.EpisodeAddedDate: return "Episode Added Date";
-				case GroupFilterSorting.EpisodeAirDate: return  "Episode Air Date";
-				case GroupFilterSorting.EpisodeWatchedDate: return "Episode Watched Date";
-				case GroupFilterSorting.GroupName: return "Group Name";
-				case GroupFilterSorting.SortName: return "Sort Name";
-				case GroupFilterSorting.MissingEpisodeCount: return "Missing Episode Count";
-				case GroupFilterSorting.SeriesAddedDate: return "Series Added Date";
-				case GroupFilterSorting.SeriesCount: return "Series Count";
-				case GroupFilterSorting.UnwatchedEpisodeCount: return "Unwatched Episode Count";
-				case GroupFilterSorting.UserRating: return "User Rating";
-				case GroupFilterSorting.Year: return "Year";
-				default: return "AniDB Rating";
-			}
+                case GroupFilterSorting.AniDBRating: return Translation.AniDBRating;
+                case GroupFilterSorting.EpisodeAddedDate: return Translation.EpisodeAddedDate;
+                case GroupFilterSorting.EpisodeAirDate: return Translation.EpisodeAirDate;
+                case GroupFilterSorting.EpisodeWatchedDate: return Translation.EpisodeWatchedDate;
+                case GroupFilterSorting.GroupName: return Translation.GroupName;
+                case GroupFilterSorting.GroupFilterName: return Translation.FilterName;
+                case GroupFilterSorting.SortName: return Translation.SortName;
+                case GroupFilterSorting.MissingEpisodeCount: return Translation.MissingEpisodeCount;
+                case GroupFilterSorting.SeriesAddedDate: return Translation.SeriesAddedDate;
+                case GroupFilterSorting.SeriesCount: return Translation.SeriesCount;
+                case GroupFilterSorting.UnwatchedEpisodeCount: return Translation.UnwatchedEpisodeCount;
+                case GroupFilterSorting.UserRating: return Translation.UserRating;
+                case GroupFilterSorting.Year: return Translation.Year;
+                default: return Translation.AniDBRating;
+
+            }
 		}
 
 		public static GroupFilterSorting GetEnumForText_Sorting(string enumDesc)
 		{
-			if (enumDesc == "AniDB Rating") return GroupFilterSorting.AniDBRating;
-			if (enumDesc == "Episode Added Date") return GroupFilterSorting.EpisodeAddedDate;
-			if (enumDesc == "Episode Air Date") return GroupFilterSorting.EpisodeAirDate;
-			if (enumDesc == "Episode Watched Date") return GroupFilterSorting.EpisodeWatchedDate;
-			if (enumDesc == "Group Name") return GroupFilterSorting.GroupName;
-			if (enumDesc == "Sort Name") return GroupFilterSorting.SortName;
-			if (enumDesc == "Missing Episode Count") return GroupFilterSorting.MissingEpisodeCount;
-			if (enumDesc == "Series Added Date") return GroupFilterSorting.SeriesAddedDate;
-			if (enumDesc == "Series Count") return GroupFilterSorting.SeriesCount;
-			if (enumDesc == "Unwatched Episode Count") return GroupFilterSorting.UnwatchedEpisodeCount;
-			if (enumDesc == "User Rating") return GroupFilterSorting.UserRating;
-			if (enumDesc == "Year") return GroupFilterSorting.Year;
+            if (enumDesc == Translation.AniDBRating) return GroupFilterSorting.AniDBRating;
+            if (enumDesc == Translation.EpisodeAddedDate) return GroupFilterSorting.EpisodeAddedDate;
+            if (enumDesc == Translation.EpisodeAirDate) return GroupFilterSorting.EpisodeAirDate;
+            if (enumDesc == Translation.EpisodeWatchedDate) return GroupFilterSorting.EpisodeWatchedDate;
+            if (enumDesc == Translation.GroupName) return GroupFilterSorting.GroupName;
+		    if (enumDesc == Translation.FilterName) return GroupFilterSorting.GroupFilterName;            
+            if (enumDesc == Translation.SortName) return GroupFilterSorting.SortName;
+            if (enumDesc == Translation.MissingEpisodeCount) return GroupFilterSorting.MissingEpisodeCount;
+            if (enumDesc == Translation.SeriesAddedDate) return GroupFilterSorting.SeriesAddedDate;
+            if (enumDesc == Translation.SeriesCount) return GroupFilterSorting.SeriesCount;
+            if (enumDesc == Translation.UnwatchedEpisodeCount) return GroupFilterSorting.UnwatchedEpisodeCount;
+            if (enumDesc == Translation.UserRating) return GroupFilterSorting.UserRating;
+            if (enumDesc == Translation.Year) return GroupFilterSorting.Year;
 
 
-			return GroupFilterSorting.AniDBRating;
+            return GroupFilterSorting.AniDBRating;
 		}
 
 		public static string GetTextForEnum_SortDirection(GroupFilterSortDirection sort)
 		{
 			switch (sort)
 			{
-				case GroupFilterSortDirection.Asc: return "Asc";
-				case GroupFilterSortDirection.Desc: return "Desc";
+				case GroupFilterSortDirection.Asc: return Translation.Asc;
+				case GroupFilterSortDirection.Desc: return Translation.Desc;
 				default: return "Asc";
 			}
 		}
 
 		public static GroupFilterSortDirection GetEnumForText_SortDirection(string enumDesc)
 		{
-			if (enumDesc == "Asc") return GroupFilterSortDirection.Asc;
-			if (enumDesc == "Desc") return GroupFilterSortDirection.Desc;
+			if (enumDesc == Translation.Asc) return GroupFilterSortDirection.Asc;
+			if (enumDesc == Translation.Desc) return GroupFilterSortDirection.Desc;
 
 			return GroupFilterSortDirection.Asc;
 		}
@@ -140,8 +99,9 @@ namespace MyAnimePlugin3.ViewModel
 			cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.UnwatchedEpisodeCount));
 			cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.UserRating));
 			cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.Year));
+            cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.GroupFilterName));
 
-			cons.Sort();
+            cons.Sort();
 
 			return cons;
 		}
@@ -162,8 +122,9 @@ namespace MyAnimePlugin3.ViewModel
 			cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.UnwatchedEpisodeCount));
 			cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.UserRating));
 			cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.Year));
+            cons.Add(GetTextForEnum_Sorting(GroupFilterSorting.GroupFilterName));
 
-			cons.Sort();
+            cons.Sort();
 
 			return cons;
 		}
@@ -245,7 +206,9 @@ namespace MyAnimePlugin3.ViewModel
 
 					sortFieldType = SortType.eDateTime;
 					break;
-				default:
+                case GroupFilterSorting.GroupFilterName:
+                    sortColumn = "GroupFilterName"; sortFieldType = SortType.eString; break;
+                default:
 					sortColumn = "GroupName"; sortFieldType = SortType.eString; break;
 			}
 

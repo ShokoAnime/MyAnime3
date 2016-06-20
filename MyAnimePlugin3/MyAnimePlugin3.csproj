@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyAnimePlugin3</RootNamespace>
     <AssemblyName>Anime3</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -123,6 +123,7 @@
     <Compile Include="Events\GotCharacterCreatorImagesEventArgs.cs" />
     <Compile Include="Events\GotCharacterImagesEventArgs.cs" />
     <Compile Include="Events\ServerStatusEventArgs.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Fanart.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="ImageManagement\ImageDownloader.cs" />
@@ -189,6 +190,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SkinSettings.cs" />
+    <Compile Include="Translation.cs" />
     <Compile Include="TvDBDetails.cs" />
     <Compile Include="TvDBSummary.cs" />
     <Compile Include="Utils.cs" />
@@ -253,15 +255,16 @@
     <Compile Include="Windows\AnimeInfoWindow.cs" />
     <Compile Include="Windows\CalendarWindow.cs" />
     <Compile Include="Windows\CharWindow.cs" />
-    <Compile Include="Windows\ContinueWatchingWindow.cs" />
     <Compile Include="Windows\DownloadsWindow.cs" />
     <Compile Include="Windows\FanartWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\IVM.cs" />
     <Compile Include="Windows\MainWindow.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Windows\PosterWindow.cs" />
     <Compile Include="Windows\RandomWindow.cs" />
+    <Compile Include="Windows\RatingDialog.cs" />
     <Compile Include="Windows\RecommendationsWindow.cs" />
     <Compile Include="Windows\RelationsWindow.cs" />
     <Compile Include="Windows\WideBannerWindow.cs" />
@@ -292,6 +295,9 @@
     <None Include="Service References\JMMServerBinary\configuration91.svcinfo" />
     <None Include="Service References\JMMServerBinary\configuration.svcinfo" />
     <None Include="Service References\JMMServerBinary\JMMServerBinary.wsdl" />
+    <None Include="Service References\JMMServerBinary\JMMServerBinary4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_AdminMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -428,9 +434,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_JMMUser.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_LogMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_MALAnimeResponse.datasource">

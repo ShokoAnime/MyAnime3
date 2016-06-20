@@ -30,8 +30,25 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(914)] protected GUIButtonControl btnAnimePosters = null;
 		[SkinControlAttribute(915)] protected GUIButtonControl btnAnimeWideBanners = null;
 
+        public enum GuiProperty
+        {
+            Related_DownloadStatus,
+            Related_Main_Title,
+            Related_Main_Year,
+            Related_Episodes,
+            Related_Year,
+            Related_Description,
+            Related_Genre,
+            Related_GenreShort,
+            Related_Status
 
-		private List<AniDB_Anime_RelationVM> relations = new List<AniDB_Anime_RelationVM>();
+        }
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+
+
+
+        private List<AniDB_Anime_RelationVM> relations = new List<AniDB_Anime_RelationVM>();
 		AnimeSeriesVM serMain = null;
 		AniDB_AnimeVM mainAnime = null;
 
@@ -42,15 +59,13 @@ namespace MyAnimePlugin3.Windows
 			GetID = Constants.WindowIDs.RELATIONS;
 
 			MainWindow.ServerHelper.GotRelatedAnimeEvent += new JMMServerHelper.GotRelatedAnimeEventHandler(ServerHelper_GotRelatedAnimeEvent);
-
-			setGUIProperty("Related.DownloadStatus", "-");
 		}
 
 		void ServerHelper_GotRelatedAnimeEvent(Events.GotAnimeForRelatedEventArgs ev)
 		{
 			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.RELATIONS) return;
-			setGUIProperty("Related.DownloadStatus", "-");
-			int aid = ev.AnimeID;
+            ClearGUIProperty(GuiProperty.Related_DownloadStatus);
+            int aid = ev.AnimeID;
 			LoadData();
 			ShowRelations();
 		}
@@ -77,7 +92,8 @@ namespace MyAnimePlugin3.Windows
 			ShowMainAnime();
 			ShowRelations();
 
-			m_Facade.Focus = true;
+            if (m_Facade != null)
+                m_Facade.Focus = true;
 		}
 
 		private void LoadData()
@@ -109,10 +125,10 @@ namespace MyAnimePlugin3.Windows
 
 		private void ShowMainAnime()
 		{
-			setGUIProperty("Related.Main.Title", mainAnime.FormattedTitle);
-			setGUIProperty("Related.Main.Year", mainAnime.Year);
+            SetGUIProperty(GuiProperty.Related_Main_Title, mainAnime.FormattedTitle);
+            SetGUIProperty(GuiProperty.Related_Main_Year, mainAnime.Year);
 
-		}
+        }
 
 		private void ShowRelations()
 		{
@@ -199,91 +215,51 @@ namespace MyAnimePlugin3.Windows
 		private void SetAnime(AniDB_Anime_RelationVM ra)
 		{
 			AniDB_AnimeVM anime = ra.AniDB_Anime;
-
-			setGUIProperty("Related.Title", ra.DisplayName);
-			setGUIProperty("Related.Relationship", ra.RelationType);
-			setGUIProperty("Related.Episodes", "-");
-			setGUIProperty("Related.Year", "-");
-			setGUIProperty("Related.Description", "-");
-			setGUIProperty("Related.Genre", "-");
-			setGUIProperty("Related.GenreShort", "-");
-			setGUIProperty("Related.Status", "-");
+            ClearGUIProperty(GuiProperty.Related_Status);
 
 			if (dummyHasSeries != null) dummyHasSeries.Visible = false;
 			if (dummyHasSeries != null && ra.AnimeSeries != null) dummyHasSeries.Visible = false;
+            if (anime != null)
+            {
+                SetGUIProperty(GuiProperty.Related_Episodes, anime.EpisodeCountNormal.ToString(Globals.Culture) + " (" + anime.EpisodeCountSpecial.ToString(Globals.Culture) + " " + Translation.Specials + ")");
+                SetGUIProperty(GuiProperty.Related_Year, anime.AirDateAsString);
+                SetGUIProperty(GuiProperty.Related_Description, anime.ParsedDescription);
+                SetGUIProperty(GuiProperty.Related_Genre, anime.TagsFormatted);
+                SetGUIProperty(GuiProperty.Related_GenreShort, anime.TagsFormattedShort);
+            }
+            else
+            {
+                ClearGUIProperty(GuiProperty.Related_Episodes);
+                ClearGUIProperty(GuiProperty.Related_Year);
+                ClearGUIProperty(GuiProperty.Related_Description);
+                ClearGUIProperty(GuiProperty.Related_Genre);
+                ClearGUIProperty(GuiProperty.Related_GenreShort);
+            }
 
-			if (anime != null)
-			{
-				setGUIProperty("Related.Episodes", anime.EpisodeCountNormal.ToString() + " (" + anime.EpisodeCountSpecial.ToString() + " Specials)");
-				setGUIProperty("Related.Year", anime.AirDateAsString);
-				setGUIProperty("Related.Description", anime.ParsedDescription);
-				setGUIProperty("Related.Genre", anime.TagsFormatted);
-				setGUIProperty("Related.GenreShort", anime.TagsFormattedShort);
-			}
+            SetGUIProperty(GuiProperty.Related_Status, ra.AnimeSeries != null ? (ra.AnimeSeries.MissingEpisodeCount > 0 ? Translation.Collecting : Translation.AllEpisodesAvailable) : Translation.NotInMyCollection);
 
-			if (ra.AnimeSeries != null)
-			{
-				if (ra.AnimeSeries.MissingEpisodeCount > 0)
-					setGUIProperty("Related.Status", "Collecting");
-				else
-					setGUIProperty("Related.Status", "All Episodes Available");
-			}
-			else
-				setGUIProperty("Related.Status", "Not In My Collection");
 		}
 
 
 		public override bool Init()
 		{
-			return Load(GUIGraphicsContext.Skin + @"\Anime3_Relations.xml");
-		}
-		public static void setGUIProperty(string which, string value)
-		{
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3." + which, value);
+            return this.InitSkin<GuiProperty>("Anime3_Relations.xml");
+
 		}
 
-		public static void clearGUIProperty(string which)
-		{
-			setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
-		}
 
-		public override void OnAction(MediaPortal.GUI.Library.Action action)
-		{
-			switch (action.wID)
-			{
-				case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
-				case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_LEFT:
-				case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_RIGHT:
-				case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
-
-					base.OnAction(action);
-					break;
-				default:
-					base.OnAction(action);
-					break;
-			}
-		}
 
 		protected override void OnShowContextMenu()
 		{
 			try
 			{
-				GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null)
-					return;
-
-				dlg.Reset();
-				dlg.SetHeading("Relations");
-				dlg.Add("Search for Torrents");
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-				switch (dlg.SelectedId)
-				{
-					case 1:
-						DownloadHelper.SearchAnime(mainAnime);
-						break;
-				}
-			}
+                ContextMenu cmenu = new ContextMenu(Translation.Relations);
+                cmenu.AddAction(Translation.SearchForTorrents, () =>
+                {
+                    DownloadHelper.SearchAnime(mainAnime);
+                });
+                cmenu.Show();
+            }
 			catch (Exception ex)
 			{
 				BaseConfig.MyAnimeLog.Write("Error in menu: {0}", ex);
@@ -292,14 +268,22 @@ namespace MyAnimePlugin3.Windows
 
 		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
 		{
-			//BaseConfig.MyAnimeLog.Write("OnClicked: {0}", controlId.ToString());
+            //BaseConfig.MyAnimeLog.Write("OnClicked: {0}", controlId.ToString());
 
-			
+            MainMenu menu = new MainMenu();
+            menu.Add(btnGetMissingInfo, () =>
+            {
+                SetGUIProperty(GuiProperty.Related_DownloadStatus, Translation.WaitingOnServer + "...");
+                m_Facade.Focus = true;
+                MainWindow.ServerHelper.DownloadRelatedAnime(mainAnime.AnimeID);
+            });
+            if (menu.Check(control))
+                return;
 
-			if (control == this.m_Facade)
+            if (control == this.m_Facade)
 			{
 				AniDB_Anime_RelationVM ra = m_Facade.SelectedListItem.TVTag as AniDB_Anime_RelationVM;
-				if (ra != null && ra.AnimeSeries != null)
+				if (ra != null && ra.AnimeSeries != null && ra.AnimeSeries.AnimeSeriesID.HasValue)
 				{
 					// show relations for this anime
 					MainWindow.GlobalSeriesID = ra.AnimeSeries.AnimeSeriesID.Value;
@@ -308,22 +292,11 @@ namespace MyAnimePlugin3.Windows
 				}
 				else
 				{
-					Utils.DialogMsg("Error", "You do not have this series in your collection");
-					return;
+                    Utils.DialogMsg(Translation.Error, Translation.YouDontHaveTheSeries);
+                    return;
 				}
 			}
 
-			if (this.btnGetMissingInfo != null && control == this.btnGetMissingInfo)
-			{
-				MainWindow.ServerHelper.DownloadRelatedAnime(mainAnime.AnimeID);
-				setGUIProperty("Related.DownloadStatus", "Waiting on server...");
-				GUIControl.FocusControl(GetID, 50);
-
-				return;
-			}
-
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
 
 			base.OnClicked(controlId, control, actionType);
 		}

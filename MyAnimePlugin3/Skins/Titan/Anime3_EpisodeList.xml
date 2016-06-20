@@ -19,9 +19,9 @@
 	  <control>
 		<type>image</type>
 		<description>Logos</description>
-		<id>66</id>
-		<posX>660</posX>
-		<posY>886</posY>
+		<id>66</id>		
+		<posX>665</posX>
+		<posY>891</posY>
 		<width>870</width>
 		<height>65</height>
 		<texture>#Anime3.Logos</texture>
@@ -45,30 +45,48 @@
 	  </control>
 
 	  <!-- Rating -->
-	  <control Style="InfoLabel">
-		<description>Rating Label (Episode)</description>
-		<type>fadelabel</type>
-		<label>Rating</label>
-		<id>0</id>
-		<posX>565</posX>
-		<posY>387</posY>
-		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  
+	  
+	  <control>
+		<type>imagelist</type>
+		<id>101</id>
+		<posX>561</posX>
+		<posY>345</posY>
+		<width>315</width>
+		<height>29</height>
+		<textureWidth>32</textureWidth>
+		<textureHeight>27</textureHeight>
+		<subitems>
+		<subitem>starblack.png</subitem>
+		<subitem>starblue.png</subitem>
+		</subitems>
+		<orientation>horizontal</orientation>
+		<align>left</align>
+		<imagesToDraw>10</imagesToDraw>
+		<percentage>#Anime3.Episode.RawRating</percentage>
+		<visible>[facadeview.list+Control.IsVisible(1239)]+[!string.equals(#Anime3.Episode.RawRating, 0)]</visible>
+		
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
-	  </control>
-
-	  <control Style="InfoValueSmall">
-		<description>Rating Value (Episode)</description>
+	</control>
+	
+	<control>
+		<description>Rating Value</description>
 		<type>label</type>
-		<label>#Anime3.Episode.RawRating</label>
 		<id>0</id>
-		<posX>798</posX>
-		<posY>387</posY>
-		<visible>facadeview.list+Control.IsVisible(1239)</visible>
-		<animation effect="fade" time="250">WindowOpen</animation>
-		<animation effect="fade" time="250">WindowClose</animation>
-	  </control>
-
+		<posX>894</posX>
+		<posY>343</posY>
+		<label>#(string.ltrim(#Anime3.Episode.Rating,'Rating: '))</label>
+		<font>fontB12</font>
+		<textcolor>FF00b7ff</textcolor>
+		<visible>[facadeview.list+Control.IsVisible(1239)]+[!string.equals(#Anime3.Episode.RawRating, 0)]</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>				
+	</control>
+	
+	
+	  
+	  
 	  <!-- Run Time -->
 	  <control Style="InfoLabel">
 		<description>Runtime Label</description>
@@ -76,7 +94,7 @@
 		<label>Run Time</label>
 		<id>0</id>
 		<posX>565</posX>
-		<posY>419</posY>
+		<posY>412</posY>
 		<visible>facadeview.list+Control.IsVisible(1239)</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
@@ -88,21 +106,45 @@
 		<label>#Anime3.Episode.Length</label>
 		<id>0</id>
 		<posX>798</posX>
-		<posY>419</posY>
+		<posY>412</posY>
 		<visible>facadeview.list+Control.IsVisible(1239)</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
 
+	  <!-- Run Time -->
+	  <control Style="InfoLabel">
+		<description>AirDate Label</description>
+		<type>label</type>
+		<label>Air Date</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>476</posY>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Runtime</description>
+		<type>fadelabel</type>
+		<label>#Anime3.Episode.AirDate</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>476</posY>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
 	  <!-- Episode Description -->
 	  <control>
 		<type>textboxscrollup</type>
 		<description>Summary (list)</description>
 		<id>631</id>
 		<posX>568</posX>
-		<posY>488</posY>
+		<posY>552</posY>
 		<width>555</width>
-		<height>380</height>
+		<height>316</height>
 		<label>#Anime3.Episode.Description</label>
 		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
 		<onleft>1026</onleft>

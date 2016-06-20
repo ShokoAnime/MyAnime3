@@ -300,7 +300,7 @@ namespace MyAnimePlugin3.ViewModel
 				return null;
 			}
 		}
-
+        /*
 		public static GroupFilterExtendedVM GetGroupFilterExtended(int groupFilterID)
 		{
 			if (JMMServerVM.Instance.CurrentUser == null) return null;
@@ -310,38 +310,38 @@ namespace MyAnimePlugin3.ViewModel
 
 			return new GroupFilterExtendedVM(contract);
 		}
+        */
 
-		public static List<GroupFilterVM> GetAllGroupFilters()
-		{
-			List<GroupFilterVM> gfs = new List<GroupFilterVM>();
-			try
-			{
-				/*List<JMMServerBinary.Contract_GroupFilterExtended> gf_cons = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupFiltersExtended(1);
-				foreach (JMMServerBinary.Contract_GroupFilterExtended gf_con in gf_cons)
-				{
-					GroupFilterVM gf = new GroupFilterVM();
-					gf.Populate(gf_con);
-					gfs.Add(gf);
-				}*/
+	    public static List<GroupFilterVM> GetTopLevelGroupFilters()
+	    {
+	        return GetChildGroupFilters(null);
+	    }
 
-				List<JMMServerBinary.Contract_GroupFilter> gf_cons = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupFilters();
-				foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons)
-				{
-					GroupFilterVM gf = new GroupFilterVM(gf_con);
-					gfs.Add(gf);
-				}
+	    public static List<GroupFilterVM> GetChildGroupFilters(GroupFilterVM grpf)
+        {
+            List<GroupFilterVM> gfs = new List<GroupFilterVM>();
+            try
+            {
 
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(ex.ToString());
-			}
+                List<JMMServerBinary.Contract_GroupFilter> gf_cons = JMMServerVM.Instance.clientBinaryHTTP.GetGroupFilters(grpf?.GroupFilterID ?? 0);
+                foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons.Where(a=>(a.Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) && a.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count > 0)
+                        || (a.FilterType & (int)GroupFilterType.Directory) == (int)GroupFilterType.Directory).OrderBy(a=>a.GroupFilterName))
+                {
+                    GroupFilterVM gf = new GroupFilterVM(gf_con);
+                    gf.ParentFilter = grpf;
+                    gfs.Add(gf);
+                }
 
-			gfs.Sort();
-			return gfs;
-		}
+            }
+            catch (Exception ex)
+            {
+                BaseConfig.MyAnimeLog.Write(ex.ToString());
+            }
 
-		public static List<AnimeGroupVM> GetAnimeGroupsForFilter(GroupFilterVM groupFilter)
+            gfs.Sort();
+            return gfs;
+        }
+        public static List<AnimeGroupVM> GetAnimeGroupsForFilter(GroupFilterVM groupFilter)
 		{
 			DateTime start = DateTime.Now;
 

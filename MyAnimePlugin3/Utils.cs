@@ -7,7 +7,10 @@ using MediaPortal.GUI.Library;
 
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Globalization;
 using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Threading;
 using MediaPortal.Dialogs;
 using MediaPortal.Configuration;
 using MyAnimePlugin3.ViewModel;
@@ -108,8 +111,34 @@ namespace MyAnimePlugin3
 			AssemblyName an = a.GetName();
 			return an.Version.ToString();
 		}
+        public static void GetLatestVersionAsync()
+        {
+            if (DateTime.Now > MainWindow.NextVersionCheck)
+            {
+                MainWindow.NextVersionCheck = DateTime.Now.AddMinutes(30);
+                Thread th = new Thread(GetLatestVersionThread);
+                th.Start(null);
+            }
+        }
+        private static void GetLatestVersionThread(object obj)
+        {
+            string xml = DownloadWebPage(Constants.MediaPortalUpdateXml);
+            if (!string.IsNullOrEmpty(xml))
+            {
+                Match m = Constants.UpdateXmlVersion.Match(xml);
+                if (m.Success)
+                {
+                    MainWindow.LastestVersion = m.Groups["Major"] + "." + m.Groups["Minor"] + "." + m.Groups["Build"] + "." + m.Groups["Revision"];
+                    return;
+                }
 
-		public static void CheckRequiredFiles(ILog log)
+            }
+            MainWindow.LastestVersion = string.Empty;
+        }
+
+        public static Regex UpdateXmlVersion = new Regex("<ExtensionCollection.*?<GeneralInfo>.*?<Name>MyAnime</Name>.*?<Version>.*?<Major>(?<Major>.*?)</Major>.*?<Minor>(?<Minor>.*?)</Minor>.*?<Build>(?<Build>.*?)</Build>.*?<Revision>(?<Revision>.*?)</Revision>", RegexOptions.Singleline);
+
+        public static void CheckRequiredFiles(ILog log)
 		{
 			try
 			{
@@ -167,84 +196,79 @@ namespace MyAnimePlugin3
 			return DownloadWebPage(url, null, false);
 		}
 
-		public static string DownloadWebPage(string url, string cookieHeader, bool setUserAgent)
-		{
-			try
-			{
-				//BaseConfig.MyAnimeLog.Write("DownloadWebPage called by: {0} - {1}", GetParentMethodName(), url);
+        public static string DownloadWebPage(string url, string cookieHeader, bool setUserAgent)
+        {
+            try
+            {
+                //BaseConfig.MyAnimeLog.Write("DownloadWebPage called by: {0} - {1}", GetParentMethodName(), url);
 
-				HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(url);
-				webReq.Timeout = 10000; // 10 seconds
-				webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-				webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(url);
+                webReq.Timeout = 10000; // 10 seconds
+                webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+                webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-				if (!string.IsNullOrEmpty(cookieHeader))
-					webReq.Headers.Add("Cookie", cookieHeader);
-				if (setUserAgent)
-					webReq.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+                if (!string.IsNullOrEmpty(cookieHeader))
+                    webReq.Headers.Add("Cookie", cookieHeader);
+                if (setUserAgent)
+                    webReq.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
-				HttpWebResponse WebResponse = (HttpWebResponse)webReq.GetResponse();
-                
-                Stream responseStream = WebResponse.GetResponseStream();
-			    String enco = WebResponse.CharacterSet;
-			    Encoding encoding=null;
-                if (!String.IsNullOrEmpty(enco))
-                    encoding=Encoding.GetEncoding(WebResponse.CharacterSet);
+                HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
+
+                Stream responseStream = webResponse.GetResponseStream();
+                Encoding encoding = null;
+                if (!String.IsNullOrEmpty(webResponse.CharacterSet))
+                    encoding = Encoding.GetEncoding(webResponse.CharacterSet);
                 if (encoding == null)
                     encoding = Encoding.Default;
-                StreamReader Reader = new StreamReader(responseStream, encoding);
+                string output = string.Empty;
+                if (responseStream != null)
+                {
+                    StreamReader reader = new StreamReader(responseStream, encoding);
+                    output = reader.ReadToEnd();
+                    //BaseConfig.MyAnimeLog.Write("DownloadWebPage: {0}", output);
+                    responseStream.Close();
+                }
+                webResponse.Close();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                string msg = "---------- ERROR IN DOWNLOAD WEB PAGE ---------" + Environment.NewLine +
+                    url + Environment.NewLine +
+                    ex + Environment.NewLine + "------------------------------------";
+                BaseConfig.MyAnimeLog.Write(msg);
 
-				string output = Reader.ReadToEnd();
+                // if the error is a 404 error it may mean that there is a bad series association
+                // so lets log it to the web cache so we can investigate
+                if (ex.ToString().Contains("(404) Not Found"))
+                {
+                }
 
-				//BaseConfig.MyAnimeLog.Write("DownloadWebPage: {0}", output);
+                return string.Empty;
+            }
+        }
 
-				WebResponse.Close();
-				responseStream.Close();
+        public static Stream DownloadWebBinary(string url)
+        {
+            try
+            {
+                HttpWebResponse response;
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(url);
+                // Note: some network proxies require the useragent string to be set or they will deny the http request
+                // this is true for instance for EVERY thailand internet connection (also needs to be set for banners/episodethumbs and any other http request we send)
+                webReq.UserAgent = "Anime2MP";
+                webReq.Timeout = 20000; // 20 seconds
+                response = (HttpWebResponse)webReq.GetResponse();
+                return response.GetResponseStream();
+            }
+            catch (Exception ex)
+            {
+                BaseConfig.MyAnimeLog.Write(ex.ToString());
+                return null;
+            }
+        }
 
-				return output;
-			}
-			catch (Exception ex)
-			{
-				string msg = "---------- ERROR IN DOWNLOAD WEB PAGE ---------" + Environment.NewLine +
-					url + Environment.NewLine +
-					ex.ToString() + Environment.NewLine + "------------------------------------";
-				BaseConfig.MyAnimeLog.Write(msg);
-
-				// if the error is a 404 error it may mean that there is a bad series association
-				// so lets log it to the web cache so we can investigate
-				if (ex.ToString().Contains("(404) Not Found"))
-				{
-				}
-
-				return "";
-			}
-		}
-
-		public static Stream DownloadWebBinary(string url)
-		{
-			try
-			{
-				HttpWebResponse response = null;
-				HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(url);
-				// Note: some network proxies require the useragent string to be set or they will deny the http request
-				// this is true for instance for EVERY thailand internet connection (also needs to be set for banners/episodethumbs and any other http request we send)
-				webReq.UserAgent = "Anime2MP";
-				webReq.Timeout = 20000; // 20 seconds
-				response = (HttpWebResponse)webReq.GetResponse();
-
-				if (response != null) // Get the stream associated with the response.
-					return response.GetResponseStream();
-				else
-					return null;
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(ex.ToString());
-				return null;
-			}
-		}
-
-		public static string GetAniDBDate(int secs)
+        public static string GetAniDBDate(int secs)
 		{
 			if (secs == 0) return "";
 
@@ -535,33 +559,33 @@ namespace MyAnimePlugin3
 				return int.Parse(sint);
 		}
 
-		public static string RemoveInvalidFolderNameCharacters(string folderName)
-		{
-			string ret = folderName.Replace(@"*", "");
-			ret = ret.Replace(@"|", "");
-			ret = ret.Replace(@"\", "");
-			ret = ret.Replace(@"/", "");
-			ret = ret.Replace(@":", "");
-			ret = ret.Replace(((Char)34).ToString(), ""); // double quote
-			ret = ret.Replace(@">", "");
-			ret = ret.Replace(@"<", "");
-			ret = ret.Replace(@"?", "");
+        public static string RemoveInvalidFolderNameCharacters(string folderName)
+        {
+            string ret = folderName.Replace(@"*", "");
+            ret = ret.Replace(@"|", "");
+            ret = ret.Replace(@"\", "");
+            ret = ret.Replace(@"/", "");
+            ret = ret.Replace(@":", "");
+            ret = ret.Replace(((Char)34).ToString(Globals.Culture), ""); // double quote
+            ret = ret.Replace(@">", "");
+            ret = ret.Replace(@"<", "");
+            ret = ret.Replace(@"?", "");
 
-			return ret;
-		}
+            return ret;
+        }
 
         public static string GetSortName(string name)
         {
             string newName = name;
             if (newName.ToLower().StartsWith("the "))
-                newName.Remove(0, 4);
+                newName = newName.Remove(0, 4);
             if (newName.ToLower().StartsWith("a "))
-                newName.Remove(0, 2);
+                newName = newName.Remove(0, 2);
 
             return newName;
         }
 
-		public static string GetOSInfo()
+        public static string GetOSInfo()
 		{
 			//Get Operating system information.
 			OperatingSystem os = Environment.OSVersion;
@@ -611,10 +635,17 @@ namespace MyAnimePlugin3
 					case 6:
 						if (vs.Minor == 0)
 							operatingSystem = "Vista";
-						else
+						else if (vs.Minor== 1)
 							operatingSystem = "7";
+                        else if (vs.Minor == 2)
+                            operatingSystem = "8";
+                        else
+                            operatingSystem = "8.1";
 						break;
-					default:
+                    case 10:
+                        operatingSystem = "10";
+				        break;
+                    default:
 						break;
 				}
 			}
@@ -632,7 +663,7 @@ namespace MyAnimePlugin3
 					operatingSystem += " " + os.ServicePack;
 				}
 				//Append the OS architecture.  i.e. "Windows XP Service Pack 3 32-bit"
-				operatingSystem += " " + getOSArchitecture().ToString() + "-bit";
+				operatingSystem += " " + getOSArchitecture() + "-bit";
 			}
 			//Return the information we've gathered.
 			return operatingSystem;
@@ -687,7 +718,7 @@ namespace MyAnimePlugin3
 				return false;
 
 			dlg.Reset();
-			dlg.SetHeading("Confirm");
+			dlg.SetHeading(Translation.Confirmation);
 			dlg.SetLine(2, msg);
 			dlg.DoModal(GUIWindowManager.ActiveWindow);
 
@@ -723,7 +754,7 @@ namespace MyAnimePlugin3
 		public static bool DialogLanguage(ref String language, bool allowNone)
 		{
 			//get list of languages (sorted by name)
-			List<string> lstLanguages = Utils.GetAllAudioSubtitleLanaguages();
+			List<string> lstLanguages = Utils.GetAllAudioSubtitleLanguages();
 
 			//show the selection dialog
 			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
@@ -731,13 +762,13 @@ namespace MyAnimePlugin3
 				return false;
 
 			dlg.Reset();
-			dlg.SetHeading("Select Default Language");
+            dlg.SetHeading(Translation.SelectDefaultLanguage);
 
-			dlg.Add("< Use System Default >");
-			dlg.Add("< Use File Default >");
-			if (allowNone)
-				dlg.Add("< None >");
-			int index = allowNone ? 2 : 1;
+            dlg.Add("< " + Translation.UseSystemDefault + " >");
+            dlg.Add("< " + Translation.UseFileDefault + " >");
+            if (allowNone)
+                dlg.Add("< " + Translation.None + " >");
+            int index = allowNone ? 2 : 1;
 			foreach (string lang in lstLanguages)
 			{
 				dlg.Add(lang);
@@ -753,11 +784,11 @@ namespace MyAnimePlugin3
 
 			if (dlg.SelectedLabel == 0)
 				language = string.Empty;
-			else if (dlg.SelectedLabel == 1)
-				language = "<file>";
-			else if (allowNone && dlg.SelectedLabel == 2)
-				language = "<none>";
-			else
+            else if (dlg.SelectedLabel == 1)
+                language = "<" + Translation.File + ">";
+            else if (allowNone && dlg.SelectedLabel == 2)
+                language = "<" + Translation.NoneL + ">";
+            else
 				language = dlg.SelectedLabelText;
 
 			return true;
@@ -771,9 +802,9 @@ namespace MyAnimePlugin3
 				return false;
 
 			dlg.Reset();
-			dlg.SetHeading("Select Series");
+            dlg.SetHeading(Translation.SelectSeries);
 
-			int index = 0;
+            int index = 0;
 			foreach (AnimeSeriesVM serTemp in seriesList)
 			{
 				dlg.Add(serTemp.SeriesName);
@@ -801,11 +832,13 @@ namespace MyAnimePlugin3
 			while (true)
 			{
 				dlg.Reset();
-				dlg.SetHeading("Quick Sort");
 
-				dlg.Add("<<< " + previousMenu);
+                dlg.SetHeading(Translation.QuickSort);
 
-				string menu = string.Format("Sort Direction ({0}) >>>", sortDirection == GroupFilterSortDirection.Asc ? "Asc" : "Desc");
+                dlg.Add("<<< " + previousMenu);
+
+                string menu = string.Format("{1} ({0}) >>>", sortDirection == GroupFilterSortDirection.Asc ? Translation.Asc : Translation.Desc, Translation.SortDirection);
+                
 				dlg.Add(menu);
 
 				int index = 0;
@@ -823,9 +856,9 @@ namespace MyAnimePlugin3
 
 				if (selection == 1)
 				{
-					Utils.DialogSelectGFQuickSortDirection(ref sortDirection, "Quick Sort");
-					// display quick sort again
-				}
+                    DialogSelectGFQuickSortDirection(ref sortDirection, Translation.QuickSort);
+                    // display quick sort again
+                }
 				else
 				{
 					sortType = sortTypes[selection - 2];
@@ -843,13 +876,13 @@ namespace MyAnimePlugin3
 				return false;
 
 			dlg.Reset();
-			dlg.SetHeading("Sort Direction");
+            dlg.SetHeading(Translation.SortDirection);
 
-			dlg.Add("<<< " + previousMenu);
-			dlg.Add("Ascending");
-			dlg.Add("Descending");
+            dlg.Add("<<< " + previousMenu);
+            dlg.Add(Translation.Ascending);
+            dlg.Add(Translation.Descending);
 
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
+            dlg.DoModal(GUIWindowManager.ActiveWindow);
 			int selection = dlg.SelectedLabel;
 
 			if (selection <= 0)
@@ -1025,7 +1058,7 @@ namespace MyAnimePlugin3
 			return filePath;
 		}
 
-		public static List<string> GetAllAudioSubtitleLanaguages()
+		public static List<string> GetAllAudioSubtitleLanguages()
 		{
 			List<string> lstPrefLanguages = new List<string>();
 			List<string> lstLanguages = new List<string>();
@@ -1063,8 +1096,8 @@ namespace MyAnimePlugin3
 
 			dlg.Reset();
 			if (string.IsNullOrEmpty(title))
-				dlg.SetHeading("Select Tag");
-			else
+                dlg.SetHeading(Translation.SelectTag);
+            else
 				dlg.SetHeading(title);
 
 			foreach (string tag in allTags)

@@ -5,36 +5,43 @@ using System.Text;
 
 namespace MyAnimePlugin3
 {
-	public enum GroupFilterConditionType
-	{
-		CompletedSeries = 1,
-		MissingEpisodes = 2,
-		HasUnwatchedEpisodes = 3,
-		AllEpisodesWatched = 4,
-		UserVoted = 5,
-		Tag = 6,
-		AirDate = 7,
-		Studio = 8,
-		AssignedTvDBInfo = 9,
-		ReleaseGroup = 11,
-		AnimeType = 12,
-		VideoQuality = 13,
-		Favourite = 14,
-		AnimeGroup = 15,
-		AniDBRating = 16,
-		UserRating = 17,
-		SeriesCreatedDate = 18,
-		EpisodeAddedDate = 19,
-		EpisodeWatchedDate = 20,
-		FinishedAiring = 21,
-		MissingEpisodesCollecting = 22,
-		AudioLanguage = 23,
-		SubtitleLanguage = 24,
-		AssignedTvDBOrMovieDBInfo = 25,
-		AssignedMovieDBInfo = 26
-	}
+    public enum GroupFilterConditionType
+    {
+        CompletedSeries = 1,
+        MissingEpisodes = 2,
+        HasUnwatchedEpisodes = 3,
+        AllEpisodesWatched = 4,
+        UserVoted = 5,
+        Tag = 6,
+        AirDate = 7,
+        Studio = 8,
+        AssignedTvDBInfo = 9,
+        ReleaseGroup = 11,
+        AnimeType = 12,
+        VideoQuality = 13,
+        Favourite = 14,
+        AnimeGroup = 15,
+        AniDBRating = 16,
+        UserRating = 17,
+        SeriesCreatedDate = 18,
+        EpisodeAddedDate = 19,
+        EpisodeWatchedDate = 20,
+        FinishedAiring = 21,
+        MissingEpisodesCollecting = 22,
+        AudioLanguage = 23,
+        SubtitleLanguage = 24,
+        AssignedTvDBOrMovieDBInfo = 25,
+        AssignedMovieDBInfo = 26,
+        UserVotedAny = 27,
+        HasWatchedEpisodes = 28,
+        AssignedMALInfo = 29,
+        EpisodeCount = 30,
+        CustomTags = 31,
+        LatestEpisodeAirDate = 32,
+        Year = 34
+    }
 
-	public enum GroupFilterOperator
+    public enum GroupFilterOperator
 	{
 		Include = 1,
 		Exclude = 2,
@@ -48,8 +55,17 @@ namespace MyAnimePlugin3
 		InAllEpisodes = 10,
 		NotInAllEpisodes = 11
 	}
-
-	public enum GroupFilterSorting
+    [Flags]
+    public enum GroupFilterType
+    {
+        UserDefined = 1,
+        ContinueWatching = 2,
+        All = 4,
+        Directory = 8,
+        Tag = 16,
+        Year = 32,
+    }
+    public enum GroupFilterSorting
 	{
 		SeriesAddedDate = 1,
 		EpisodeAddedDate = 2,
@@ -62,8 +78,9 @@ namespace MyAnimePlugin3
 		MissingEpisodeCount = 9,
 		UserRating = 10,
 		AniDBRating = 11,
-		SortName = 12
-	}
+		SortName = 12,
+        GroupFilterName = 13
+    }
 
 	public enum GroupFilterSortDirection
 	{

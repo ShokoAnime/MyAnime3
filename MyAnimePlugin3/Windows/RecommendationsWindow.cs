@@ -37,14 +37,35 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(1462)] protected GUILabelControl dummyModeWatch = null;
 		[SkinControlAttribute(1463)] protected GUILabelControl dummyModeDownload = null;
 
-		public RecommendationsWindow()
+        public enum GuiProperty
+        {
+            Recommendations_Status,
+            Recommendations_CurrentView,
+            Recommendations_Rec_Title,
+            Recommendations_Rec_Description,
+            Recommendations_Rec_ApprovalRating,
+            Recommendations_Rec_Image,
+            Recommendations_Rec_AniDBRating,
+            Recommendations_BasedOn_Title,
+            Recommendations_BasedOn_VoteValue,
+            Recommendations_BasedOn_Image,
+            Recommendations_Button_Watch_Texture,
+            Recommendations_Button_Download_Texture,
+            Fanart_1,
+            Fanart_2
+
+        }
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+        public string GetPropertyName(GuiProperty which) { return this.GetPropertyName(which.ToString()); }
+
+
+
+        public RecommendationsWindow()
 		{
 			// get ID of windowplugin belonging to this setup
 			// enter your own unique code
 			GetID = Constants.WindowIDs.RECOMMENDATIONS;
-
-			setGUIProperty("Recommendations.Status", "-");
-			setGUIProperty("Recommendations.DownloadStatus", "-");
 
 			getDataWorker.DoWork += new DoWorkEventHandler(getDataWorker_DoWork);
 			getDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getDataWorker_RunWorkerCompleted);
@@ -55,7 +76,7 @@ namespace MyAnimePlugin3.Windows
 		void ServerHelper_GotRecommendedAnimeEvent(Events.GotAnimeForRecommendedEventArgs ev)
 		{
 			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.RECOMMENDATIONS) return;
-			setGUIProperty("Recommendations.DownloadStatus", "-");
+			ClearGUIProperty(GuiProperty.Recommendations_Status);
 			LoadData();
 		}
 
@@ -66,8 +87,8 @@ namespace MyAnimePlugin3.Windows
 			if (colRecs == null || colRecs.Count == 0)
 			{
 				if (dummyAnyRecords != null) dummyAnyRecords.Visible = false;
-				setGUIProperty("Recommendations.Status", "No recommendations available");
-				return;
+			    SetGUIProperty(GuiProperty.Recommendations_Status, Translation.NoRecommendationsAvailable);
+                return;
 			}
 
 			if (dummyAnyRecords != null) dummyAnyRecords.Visible = true;
@@ -119,10 +140,13 @@ namespace MyAnimePlugin3.Windows
 
 		public override bool Init()
 		{
-			return Load(GUIGraphicsContext.Skin + @"\Anime3_Recommendations.xml");
-		}
+            bool res = this.InitSkin<GuiProperty>("Anime3_Recommendations.xml");
+            SetGUIProperty(GuiProperty.Fanart_1, "hover_my anime3.jpg");
+            SetGUIProperty(GuiProperty.Fanart_2, "hover_my anime3.jpg");
+            return res;
+        }
 
-		public override int GetID
+        public override int GetID
 		{
 			get { return Constants.WindowIDs.RECOMMENDATIONS; }
 			set { base.GetID = value; }
@@ -137,27 +161,18 @@ namespace MyAnimePlugin3.Windows
 			if (dummyModeWatch != null) dummyModeWatch.Visible = true;
 			if (dummyModeDownload != null) dummyModeDownload.Visible = false;
 
-			setGUIProperty("Recommendations.CurrentView", "Watch");
-
+		    SetGUIProperty(GuiProperty.Recommendations_CurrentView, Translation.Watch);
+            
 			LoadData();
 			m_Facade.Focus = true;
 		}
 
-		public static void setGUIProperty(string which, string value)
-		{
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3." + which, value);
-		}
-
-		public static void clearGUIProperty(string which)
-		{
-			setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
-		}
 
 		private void LoadData()
 		{
 			colRecs.Clear();
 			GUIControl.ClearControl(this.GetID, m_Facade.GetID);
-			setGUIProperty("Recommendations.Status", "Loading Data...");
+			SetGUIProperty(GuiProperty.Recommendations_Status, Translation.LoadingData+"...");
 			if (dummyAnyRecords != null) dummyAnyRecords.Visible = false;
 
 			getDataWorker.RunWorkerAsync();
@@ -185,59 +200,37 @@ namespace MyAnimePlugin3.Windows
 				RecommendationVM rec = currentitem.TVTag as RecommendationVM;
 				if (rec != null)
 				{
-					GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-					if (dlg == null)
-						return;
+                    ContextMenu cmenu = new ContextMenu(rec.Recommended_DisplayName);
+                    cmenu.AddAction(Translation.DontShowThisAnime, () =>
+                    {
+                        int recType = 1;
+                        if (dummyModeDownload != null && dummyModeDownload.Visible)
+                            recType = 2;
 
-					dlg.Reset();
-					dlg.SetHeading(rec.Recommended_DisplayName);
-					dlg.Add("Don't Show This Anime (Ignore)");
-					dlg.Add("Bookmark this Anime");
-					dlg.Add("Create Series for Anime");
+                        JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, recType, JMMServerVM.Instance.CurrentUser.JMMUserID);
 
-					dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-					switch (dlg.SelectedLabel)
-					{
-						case 0:
-
-							int recType = 1;
-							if (dummyModeDownload != null && dummyModeDownload.Visible)
-								recType = 2;
-
-							JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, recType,
-								JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-							LoadData();
-							break;
-
-						case 1:
-
-
-							BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
-							bookmark.AnimeID = rec.RecommendedAnimeID;
-							bookmark.Downloading = 0;
-							bookmark.Notes = "";
-							bookmark.Priority = 1;
-							if (bookmark.Save())
-							{
-								Utils.DialogMsg("Success", "Bookmark Created");
-							}
-
-							break;
-
-						case 2:
-
-							JMMServerBinary.Contract_AnimeSeries_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.CreateSeriesFromAnime(
-								rec.RecommendedAnimeID, null, JMMServerVM.Instance.CurrentUser.JMMUserID);
-							if (string.IsNullOrEmpty(resp.ErrorMessage))
-								Utils.DialogMsg("Success", "Series Created");
-							else
-								Utils.DialogMsg("Error", resp.ErrorMessage);
-
-							break;
-
-					}
+                        LoadData();
+                    });
+                    cmenu.AddAction(Translation.BookmarkThisAnime, () =>
+                    {
+                        BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+                        bookmark.AnimeID = rec.RecommendedAnimeID;
+                        bookmark.Downloading = 0;
+                        bookmark.Notes = "";
+                        bookmark.Priority = 1;
+                        if (bookmark.Save())
+                            Utils.DialogMsg(Translation.Sucess, Translation.BookmarkCreated);
+                    });
+                    cmenu.AddAction(Translation.CreateSeriesForAnime, () =>
+                    {
+                        JMMServerBinary.Contract_AnimeSeries_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.CreateSeriesFromAnime(
+                                rec.RecommendedAnimeID, null, JMMServerVM.Instance.CurrentUser.JMMUserID);
+                        if (string.IsNullOrEmpty(resp.ErrorMessage))
+                            Utils.DialogMsg(Translation.Sucess, Translation.SeriesCreated);
+                        else
+                            Utils.DialogMsg(Translation.Error, resp.ErrorMessage);
+                    });
+                    cmenu.Show();
 				}
 			}
 		}
@@ -245,38 +238,30 @@ namespace MyAnimePlugin3.Windows
 		private void SetRec(RecommendationVM rec)
 		{
 			if (rec == null) return;
-
-			clearGUIProperty("Recommendations.Rec.Title");
-			clearGUIProperty("Recommendations.Rec.Description");
-			clearGUIProperty("Recommendations.Rec.ApprovalRating");
-			
-			clearGUIProperty("Recommendations.BasedOn.Title");
-			clearGUIProperty("Recommendations.BasedOn.VoteValue");
-
-
-			setGUIProperty("Recommendations.Rec.Title", rec.Recommended_DisplayName);
-			setGUIProperty("Recommendations.Rec.Description", rec.Recommended_Description);
-			setGUIProperty("Recommendations.Rec.ApprovalRating", rec.Recommended_ApprovalRating);
-			setGUIProperty("Recommendations.Rec.Image", rec.Recommended_PosterPath);
+            SetGUIProperty(GuiProperty.Recommendations_Rec_Title, rec.Recommended_DisplayName);
+            SetGUIProperty(GuiProperty.Recommendations_Rec_Description, rec.Recommended_Description);
+            SetGUIProperty(GuiProperty.Recommendations_Rec_ApprovalRating, rec.Recommended_ApprovalRating);
+            SetGUIProperty(GuiProperty.Recommendations_Rec_Image, rec.Recommended_PosterPath);
 
 			try
 			{
-				if (rec.Recommended_AniDB_Anime != null)
-					setGUIProperty("Recommendations.Rec.AniDBRating", rec.Recommended_AniDB_Anime.AniDBRatingFormatted);
-			}
+                if (rec.Recommended_AniDB_Anime != null)
+                    SetGUIProperty(GuiProperty.Recommendations_Rec_AniDBRating, rec.Recommended_AniDB_Anime.AniDBRatingFormatted);
+                else
+                    ClearGUIProperty(GuiProperty.Recommendations_Rec_AniDBRating);
+            }
 			catch (Exception ex)
 			{
 				BaseConfig.MyAnimeLog.Write(ex.ToString());
 			}
 
-			setGUIProperty("Recommendations.BasedOn.Title", rec.BasedOn_DisplayName);
-			setGUIProperty("Recommendations.BasedOn.VoteValue", rec.BasedOn_VoteValueFormatted);
-			setGUIProperty("Recommendations.BasedOn.Image", rec.BasedOn_PosterPath);
+            SetGUIProperty(GuiProperty.Recommendations_BasedOn_Title, rec.BasedOn_DisplayName);
+            SetGUIProperty(GuiProperty.Recommendations_BasedOn_VoteValue, rec.BasedOn_VoteValueFormatted);
+            SetGUIProperty(GuiProperty.Recommendations_BasedOn_Image, rec.BasedOn_PosterPath);
 
-			
-		}
-
-		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
+        }
+    
+        protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
 		{
 			if (MA3WindowManager.HandleWindowChangeButton(control))
 				return;
@@ -289,8 +274,8 @@ namespace MyAnimePlugin3.Windows
 				if (dummyModeWatch != null) dummyModeWatch.Visible = true;
 				if (dummyModeDownload != null) dummyModeDownload.Visible = false;
 
-				setGUIProperty("Recommendations.CurrentView", "Watch");
-
+			    SetGUIProperty(GuiProperty.Recommendations_CurrentView, Translation.Watch);
+                
 				LoadData();
 			}
 
@@ -302,15 +287,15 @@ namespace MyAnimePlugin3.Windows
 				if (dummyModeWatch != null) dummyModeWatch.Visible = false;
 				if (dummyModeDownload != null) dummyModeDownload.Visible = true;
 
-				setGUIProperty("Recommendations.CurrentView", "Download");
+                SetGUIProperty(GuiProperty.Recommendations_CurrentView, Translation.Download);
 
-				LoadData();
+                LoadData();
 			}
 
 			if (this.btnGetMissingInfo != null && control == this.btnGetMissingInfo)
 			{
 				MainWindow.ServerHelper.DownloadRecommendedAnime();
-				setGUIProperty("Recommendations.DownloadStatus", "Waiting on server...");
+				SetGUIProperty(GuiProperty.Recommendations_Status, Translation.WaitingOnServer+"...");
 				GUIControl.FocusControl(GetID, 50);
 
 				return;
@@ -337,8 +322,8 @@ namespace MyAnimePlugin3.Windows
 							}
 							else
 							{
-								Utils.DialogMsg("Error", "Could not find the first episode");
-							}
+                                Utils.DialogMsg(Translation.Error, Translation.CouldNotFindFirstEpisode);
+                            }
 						}
 
 						if (dummyModeDownload != null && dummyModeDownload.Visible)

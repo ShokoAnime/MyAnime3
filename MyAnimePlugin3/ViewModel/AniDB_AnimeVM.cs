@@ -21,8 +21,8 @@ namespace MyAnimePlugin3.ViewModel
 		public int AnimeType { get; set; }
 		public string MainTitle { get; set; }
 		public string FormattedTitle { get; set; }
-		public string AllTitles { get; set; }
-		public string AllTags { get; set; }
+		public HashSet<string> AllTitles { get; set; }
+		public HashSet<string> AllTags { get; set; }
 		public string Description { get; set; }
 		public int EpisodeCountNormal { get; set; }
 		public int EpisodeCountSpecial { get; set; }
@@ -64,9 +64,9 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			this.AirDate = contract.AirDate;
 			this.AllCinemaID = contract.AllCinemaID;
-			this.AllTags = contract.AllTags;
-			this.AllTitles = contract.AllTitles;
-			this.AnimeID = contract.AnimeID;
+			this.AllTags = new HashSet<string>(contract.AllTags,StringComparer.CurrentCultureIgnoreCase);
+			this.AllTitles = new HashSet<string>(contract.AllTitles, StringComparer.CurrentCultureIgnoreCase);
+            this.AnimeID = contract.AnimeID;
 			this.AnimeNfo = contract.AnimeNfo;
 			this.AnimePlanetID = contract.AnimePlanetID;
 			this.AnimeType = contract.AnimeType;
@@ -131,23 +131,14 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public List<string> Tags
-		{
-			get
-			{
-				string[] tags = AllTags.Split('|');
 
-				if (tags.Length == 0) return new List<string>();
-				return new List<string>(tags);
-			}
-		}
 
 		public string TagsFormatted
 		{
 			get
 			{
 				string ret = "";
-				foreach (string tag in Tags)
+				foreach (string tag in AllTags)
 				{
 					if (ret.Length > 0) ret += ", ";
 					ret += tag;
@@ -162,7 +153,7 @@ namespace MyAnimePlugin3.ViewModel
 			{
 				string ret = "";
 				int i = 0;
-				foreach (string cat in Tags)
+				foreach (string cat in AllTags)
 				{
 					if (ret.Length > 0) ret += ", ";
 					ret += cat;
@@ -173,16 +164,6 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public List<string> Titles
-		{
-			get
-			{
-				string[] titles = AllTitles.Split('|');
-
-				if (titles.Length == 0) return new List<string>();
-				return new List<string>(titles);
-			}
-		}
 
 		public void RefreshAnimeCrossRefs()
 		{
@@ -569,7 +550,7 @@ namespace MyAnimePlugin3.ViewModel
 			get
 			{
 				return string.Format("{0} ({1} {2})", Utils.FormatAniDBRating((double)AniDBRating),
-					AniDBTotalVotes, "Votes");
+					AniDBTotalVotes, Translation.Votes);
 			}
 		}
 

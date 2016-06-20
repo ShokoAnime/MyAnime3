@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
 	<id>6108</id>
-	<defaultcontrol>84</defaultcontrol>
+	<defaultcontrol>50</defaultcontrol>
     <define>#header.label:Calendar</define>
-	<allowoverlay>no</allowoverlay>
+	<allowoverlay>yes</allowoverlay>
 	
 	<controls>
 	  
@@ -37,21 +37,59 @@
 		<texture>background.png</texture>
 	</control>
 
-	
+
+
+<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>219</height>
+	  <texture>fanart_overlay_top.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+
+
+	<control>
+	  <description>background thumbview</description>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>10</posX>
+	  <posY>252</posY>
+	  <width>1903</width>
+	  <height>790</height>
+	  <texture>panel_thumbs_noinfo.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+		<control>
+	  <description>background thumbview</description>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>52</posX>
+	  <posY>623</posY>
+	  <width>1819</width>
+	  <height>364</height>
+	  <texture>MyAnime3\anime3_filmstrip_overlay.png</texture>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
 	<!-- ********************** Hidden Menu ************************************** -->
 
-	  <control>
-		<id>1</id>
-		<type>image</type>
-		<posX>0</posX>
-		<posY>440</posY>
-		<width>64</width>
-		<height>199</height>
-		<texture>hiddenmenu_tab.png</texture>
-		<visible>Control.HasFocus(50)</visible>
-		<animation effect="slide" start="-60,0" time="250" delay="400">WindowOpen</animation>
-		<animation effect="slide" start="0,0" end="-60,0" time="250" delay="100">WindowClose</animation>
-	  </control>
+	<control>
+	  <animation effect="slide" start="0,-60" end="0,0" tween="quadratic" easing="in" time="250" delay="400">WindowOpen</animation>
+	  <animation effect="slide" start="0,0" end="0,-60" tween="quadratic" easing="in" time="250" delay="100">WindowClose</animation>
+	  <id>1</id>
+	  <type>image</type>
+	  <posX>858</posX>
+	  <posY>0</posY>
+	  <texture>hiddenmenu_tab_up.png</texture>
+	  <visible>facadeview.filmstrip</visible>
+	</control>
 
 	  <control>
 
@@ -213,121 +251,134 @@
 	
 	
 	<!-- facade container -->
+	
+	
+
 	  <control>
-		<type>group</type>
-		<description>group element</description>
-		<id>28</id>
-		<layout>StackLayout</layout>
+		<description>composite control consisting of a list control and a thumbnail panel</description>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+		<type>facadeview</type>
+		<id>50</id>
+		
+		
+		
+		
 		<control>
-		  <description>composite control consisting of a list control and a thumbnail panel</description>
-		  <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-		  <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		  <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-		  <type>facadeview</type>
+			
+				
+		  <description>Filmstrip view</description>
+		  <type>filmstrip</type>
+		  <dimColor>90ffffff</dimColor>
 		  <id>50</id>
+		  	<scrollOffset>3</scrollOffset>
+				<folderPrefix></folderPrefix>
+				<folderSuffix></folderSuffix>
+				<posX>85</posX>
+				<posY>672</posY>
+				<width>1770</width>
+				<height>255</height>
+  		<onleft>50</onleft>
+  		<onright>50</onright>
+		  <onup>1</onup>
+		  <ondown>50</ondown>
+				<thumbWidth>242</thumbWidth>
+				<thumbHeight>242</thumbHeight>
+				<thumbPosX>0</thumbPosX>
+				<thumbPosY>0</thumbPosY>
+				<itemWidth>252</itemWidth>
+				<itemHeight>242</itemHeight>
+				<textureWidth>242</textureWidth>
+				<textureHeight>242</textureHeight>
+				<textYOff>-2000</textYOff>
+				<imageFolderFocus>-</imageFolderFocus>
+				<frame>-</frame>
+				<frameFocus>-</frameFocus>
+				<background>-</background>
+				<thumbs flipY="true" diffuse="Thumb_Mask_test.png" mask="filmstrip_mask.png"></thumbs>
+				<showFrame>yes</showFrame>
+				<showFolder>no</showFolder>
+				<showBackGround>no</showBackGround>
+				<showInfoImage>no</showInfoImage>
+        <scrollbarBackground>scrollbar_bg_hor.png</scrollbarBackground>
+        <scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
+        <scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
+        <scrollbarWidth>717</scrollbarWidth>
+				<scrollbarHeight>8</scrollbarHeight>
+        <scrollbarYOff>290</scrollbarYOff>
+  		  <spinCanFocus>no</spinCanFocus>
+
+		   <thumbZoom>yes</thumbZoom>
+		  		  <keepaspectratio>yes</keepaspectratio>
+				<thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="115,115" center="0,800" time="200">focus</thumbAnimation>
+				<thumbAnimation effect="zoom" start="115,115" reversible="false" end="100,100" center="0,800" time="100">unfocus</thumbAnimation>
 		  
+		
 
-		  <control>
-			<description>Filmstrip view</description>
-			<type>filmstrip</type>
-			<dimColor>90ffffff</dimColor>
-			<id>50</id>
-			<scrollOffset>3</scrollOffset>
-			<folderPrefix></folderPrefix>
-			<folderSuffix></folderSuffix>
-			<posX>130</posX>
-			<posY>265</posY>
-			<width>1700</width>
-			<height>340</height>
-			<onup>84</onup>
-			<ondown>50</ondown>
-			<onleft>50</onleft>
-			<onright>50</onright>
-			<thumbWidth>230</thumbWidth>
-			<thumbHeight>327</thumbHeight>
-			<thumbPosX>0</thumbPosX>
-			<thumbPosY>0</thumbPosY>
-			<itemWidth>240</itemWidth>
-			<itemHeight>327</itemHeight>
-			<textureWidth>230</textureWidth>
-			<textureHeight>327</textureHeight>
-			<textYOff>-2000</textYOff>
-			<imageFolderFocus>-</imageFolderFocus>
-			<frame>-</frame>
-			<frameFocus>-</frameFocus>
-			<background>-</background>
-			<thumbs flipY="true" diffuse="Thumb_Mask_test.png" mask="filmstrip_mask.png"></thumbs>
-			<showFrame>yes</showFrame>
-			<showFolder>no</showFolder>
-			<showBackGround>no</showBackGround>
-			<showInfoImage>no</showInfoImage>
-			<scrollbarBackground>scrollbar_bg_hor.png</scrollbarBackground>
-			<scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
-			<scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
-			<scrollbarWidth>717</scrollbarWidth>
-			<scrollbarHeight>8</scrollbarHeight>
-			<scrollbarYOff>2375</scrollbarYOff>
-			<thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="120,120" center="0,880" time="200">focus</thumbAnimation>
-			<thumbAnimation effect="zoom" start="120,120" reversible="false" end="100,100" center="0,880" time="100">unfocus</thumbAnimation>
-		  </control>
-
-		 
-
-		  
 		</control>
 	  </control>
+
 	
 	
 	
 	<!--  ************** BUTTONS TOOLBAR *****************  -->
     
-	<control>
-		<description>MinusOneMonth</description>
-		<type>button</type>
-		<id>83</id>
-		<width>200</width>
-		<height>50</height>
-		<textYOff>10</textYOff>
-		<label>#Anime3.Calendar.MinusOneMonth #Anime3.Calendar.MinusOneYear</label>
-		<onleft>920</onleft>
-		<onright>84</onright>
-		<ondown>50</ondown>
-		<onup>50</onup>
-		<align>center</align>
-		<posX>600</posX>
-        <posY>50</posY>
-	</control>
 	
-	<control>
-		<type>fadelabel</type>
-		<description>CurrentMonth</description>
-		<id>640</id>
-		<posX>830</posX>
-        <posY>50</posY>
-		<width>180</width>
-	  <font>fontB14</font>
-	  <textcolor>ffffff</textcolor>
+	
+
+	
+		<control>
+	  <description>CurrentMonth</description>
+	  <type>fadelabel</type>
+	  <id>0</id>
+	  <posX>1828</posX>
+	  <posY>998</posY>
+	  <align>right</align>
+	  <width>1960</width>
+		<font>TitanLight12</font>
+		<textcolor>000000</textcolor>
+		<visible>Control.IsVisible(1401)</visible>
+
 	  <label>#Anime3.Calendar.CurrentMonth #Anime3.Calendar.CurrentYear</label>
-    </control>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	 </control>
+	  <control>
+		<type>label</type>
+		<label>#Anime3.Calendar.AirDate</label>
+		<id>0</id>
+		<posX>96</posX>
+		<posY>998</posY>
+		<align>left</align>
+		<font>TitanLight12</font>
+		<textcolor>000000</textcolor>
+			<visible>Control.IsVisible(1401)</visible>
+
+
+
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
 	
 	
-	<control>
-		<description>PlusOneMonth</description>
-		<type>button</type>
-		<id>84</id>
-		<width>200</width>
-		<height>50</height>
-		<textYOff>10</textYOff>
-		<label>#Anime3.Calendar.PlusOneMonth #Anime3.Calendar.PlusOneYear</label>
-		<onleft>83</onleft>
-		<onright>920</onright>
-		<ondown>50</ondown>
-		<onup>50</onup>
+	  <control Style="smallTitle">
+		<type>fadelabel</type>
+		<description>Title</description>
+		<id>640</id>
+		<posX>510</posX>
+		<posY>1015</posY>
 		<align>center</align>
-		<posX>1000</posX>
-        <posY>50</posY>
-	</control>
+		<label>#Anime3.Calendar.Title</label>
+		<visible>Control.IsVisible(1401)</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+	  
+	  
+	  
 	
+
 	<control>
 		<type>fadelabel</type>
 		<description>Nothing found for</description>
@@ -342,50 +393,22 @@
 		<visible>!Control.IsVisible(1401)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
     </control>
 	
 	<!--  ************** SELECTED SERIES *****************  -->
 
-	<control>
-		<type>fadelabel</type>
-		<posX>70</posX>
-		<posY>630</posY>
-		<width>1560</width>
-	  <font>fontB16</font>
-	  <textcolor>ffffff</textcolor>
-		<label>#Anime3.Calendar.Title</label>
-		<visible>Control.IsVisible(1401)</visible>
-    </control>
-	
-	<control Style="InfoLabel">
-		<description>Air Date Label</description>
-		<type>fadelabel</type>
-	    <label>Air Date</label>
-		<id>0</id>
-		<posX>70</posX>
-		<posY>700</posY>
-		<visible>Control.IsVisible(1401)</visible>
-	</control>
 
-	<control Style="InfoValueSmall">
-		<description>Type Value</description>
-		<type>label</type>
-	    <label>#Anime3.Calendar.AirDate</label>
-		<id>0</id>
-		<posX>240</posX>
-		<posY>700</posY>
-		<visible>Control.IsVisible(1401)</visible>
-	</control>
 	
 	<control Style="InfoLabel">
 		<description>GenreShort Label</description>
 		<type>fadelabel</type>
-	    <label>Tags</label>
+	    <label>Categories</label>
 		<id>0</id>
-		<posX>70</posX>
-		<posY>740</posY>
-		<visible>Control.IsVisible(1401)</visible>
+		<posX>90</posX>
+		<posY>320</posY>
+		<visible>Control.IsVisible(1401)+[!string.equals(#Anime3.Calendar.Genre, )]</visible>
+				<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
 	</control>
 
 	<control Style="InfoValueSmall">
@@ -393,40 +416,77 @@
 		<type>textboxscrollup</type>
 	    <label>#Anime3.Calendar.Genre</label>
 		<id>0</id>
-		<posX>240</posX>
-		<posY>740</posY>
-		<visible>Control.IsVisible(1401)</visible>
-		<width>600</width>
-		<height>260</height>
+		<posX>90</posX>
+		<posY>360</posY>
+		<visible>Control.IsVisible(1401)+[!string.equals(#Anime3.Calendar.Genre, )]</visible>
+				<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+		<width>860</width>
+		<height>204</height>
 	</control>
-	
+		<control Style="InfoLabel">
+		<description>GenreShort Label</description>
+		<type>fadelabel</type>
+	    <label>Description</label>
+		<id>0</id>
+		<posX>960</posX>
+		<posY>320</posY>
+		<visible>Control.IsVisible(1401)+[!string.equals(#Anime3.Calendar.Description, )]</visible>
+				<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	</control>
 	<control>
 		<type>textboxscrollup</type>
 		<description>Description</description>
-		<posX>900</posX>
-		<posY>700</posY>
-		<width>890</width>
-		<height>340</height>
+		<posX>960</posX>
+		<posY>360</posY>
+		<width>860</width>
+		<height>204</height>
 		<label>#Anime3.Calendar.Description</label>
-		<visible>Control.IsVisible(1401)</visible>
+		<visible>Control.IsVisible(1401)+[!string.equals(#Anime3.Calendar.Description, )]</visible>
+				<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
 		<align>left</align>
 	    <lineSpacing>0.92</lineSpacing>
-		<seperator>-----------------------------------------------------------------------------------</seperator>
+		<seperator>--------------------------------------------------------------------------------------------------------</seperator>
 		<scrollStartDelaySec>12</scrollStartDelaySec>
 	</control>	
 
-	<control Style="InfoValueSmall">
-		<description>Status</description>
-		<type>label</type>
-	    <label>#Anime3.Character.Status</label>
-		<id>0</id>
-		<posX>900</posX>
-		<posY>1020</posY>
-		<width>890</width>
-		<visible>Control.IsVisible(1301)</visible>
-	</control>
 
-	  <import>Anime3_Time.xml</import>
+
+
+	  
+	  
+<control>
+		<description>Moviecount</description>
+		<type>label</type>
+    <label>#(L(97))Series</label>
+    <id>0</id>
+    <posX>72</posX>
+    <posY>94</posY>
+    <align>left</align>
+    <textcolor>FFFFFFFF</textcolor>
+    <font>TitanLight12</font>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+  </control>
+  
+    <control>
+      <id>0</id>
+      <type>image</type>
+      <posX>66</posX>
+      <posY>34</posY>
+      <width>61</width>
+      <height>57</height>
+      <texture>icon_anime.png</texture>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+
+	  
+
+ <import>common.time.xml</import>
 	  <import>common.overlay.xml</import>
 		
 	</controls>

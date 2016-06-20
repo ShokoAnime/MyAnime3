@@ -47,8 +47,39 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(1552)] protected GUILabelControl dummyRandomEpisode = null;
 		[SkinControlAttribute(1553)] protected GUILabelControl dummyNoData = null;
 
+        public enum GuiProperty
+        {
+            Random_Status,
+            Random_LevelType,
+            Random_LevelName,
+            Random_NumberOfMatches,
+            Random_CombinedFilterDetails,
+            Random_Series_CategoryType,
+            Random_Episode_CategoryType,
+            Random_Series_Categories,
+            Random_Episode_Categories,
+            Random_Series_Title,
+            Random_Series_Description,
+            Random_Series_LastWatched,
+            Random_Series_EpisodesWatched,
+            Random_Series_EpisodesUnwatched,
+            Random_Series_Poster,
+            Random_Episode_Title,
+            Random_Episode_AirDate,
+            Random_Episode_RunTime,
+            Random_Episode_FileInfo,
+            Random_Episode_Overview,
+            Random_Episode_Image,
+            Random_Episode_Logos,
 
-		private List<string> AllTags = new List<string>();
+        }
+
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+
+
+
+        private List<string> AllTags = new List<string>();
 
 		private BackgroundWorker getDataWorker = new BackgroundWorker();
 
@@ -58,12 +89,9 @@ namespace MyAnimePlugin3.Windows
 			// enter your own unique code
 			GetID = Constants.WindowIDs.RANDOM;
 
-			setGUIProperty("Status", "-");
-			setGUIProperty("LevelType", "-");
-			setGUIProperty("LevelName", "-");
+            getDataWorker.DoWork += getDataWorker_DoWork;
+		    getDataWorker.RunWorkerCompleted += getDataWorker_RunWorkerCompleted;
 
-			getDataWorker.DoWork += new DoWorkEventHandler(getDataWorker_DoWork);
-			getDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getDataWorker_RunWorkerCompleted);
 		}
 
 		public void SetDetails()
@@ -91,68 +119,69 @@ namespace MyAnimePlugin3.Windows
 			SetDisplayDetails();
 		}
 
-		private void SetDisplayDetails()
-		{
+        private void SetDisplayDetails()
+        {
 
-			string combinedDetails = "";
+            string combinedDetails = string.Empty;
+            if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.GroupFilter)
+            {
+                SetGUIProperty(GuiProperty.Random_LevelType, Translation.GroupFilter);
+                GroupFilterVM gf = MainWindow.RandomWindow_LevelObject as GroupFilterVM;
+                if (gf != null)
+                {
+                    SetGUIProperty(GuiProperty.Random_LevelName, gf.GroupFilterName);
 
-			setGUIProperty("LevelType", "-");
-			setGUIProperty("LevelName", "-");
-			setGUIProperty("NumberOfMatches", "-");
-			setGUIProperty("CombinedFilterDetails", "-");
-            setGUIProperty("Series.TagType", "-");
-            setGUIProperty("Episode.TagType", "-");
-            setGUIProperty("Series.Tags", "-");
-            setGUIProperty("Episode.Tags", "-");
+                    combinedDetails += Translation.GroupFilter + ": " + gf.GroupFilterName + " ";
+                }
+                else
+                    ClearGUIProperty(GuiProperty.Random_LevelName);
+            }
+            else if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.Group)
+            {
+                SetGUIProperty(GuiProperty.Random_LevelType, Translation.Group);
+                AnimeGroupVM grp = MainWindow.RandomWindow_LevelObject as AnimeGroupVM;
+                if (grp != null)
+                {
+                    SetGUIProperty(GuiProperty.Random_LevelName, grp.GroupName);
+                    combinedDetails += Translation.Group + ": " + grp.GroupName + " ";
+                }
+                else
+                    ClearGUIProperty(GuiProperty.Random_LevelName);
+            }
+            else if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.Series)
+            {
+                SetGUIProperty(GuiProperty.Random_LevelType, Translation.Series);
+                AnimeSeriesVM ser = MainWindow.RandomWindow_LevelObject as AnimeSeriesVM;
+                if (ser != null)
+                {
+                    SetGUIProperty(GuiProperty.Random_LevelName, ser.SeriesName);
 
-			if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.GroupFilter)
-			{
-				setGUIProperty("LevelType", "Group Filter");
-				GroupFilterVM gf = MainWindow.RandomWindow_LevelObject as GroupFilterVM;
-				setGUIProperty("LevelName", gf.GroupFilterName);
+                    combinedDetails += Translation.Series + ": " + ser.SeriesName + " ";
+                }
+                else
+                    ClearGUIProperty(GuiProperty.Random_LevelName);
+            }
+            else
+            {
+                ClearGUIProperty(GuiProperty.Random_LevelType);
+                ClearGUIProperty(GuiProperty.Random_LevelName);
+            }
+            if (MainWindow.RandomWindow_RandomType == RandomObjectType.Series)
+                combinedDetails += string.Format(" ({0} " + (MainWindow.RandomWindow_MatchesFound == 1 ? Translation.Match : Translation.Matches) + ")", MainWindow.RandomWindow_MatchesFound);
 
-				combinedDetails += "Group Filter: " + gf.GroupFilterName;
-			}
-			if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.Group)
-			{
-				setGUIProperty("LevelType", "Group");
-				AnimeGroupVM grp = MainWindow.RandomWindow_LevelObject as AnimeGroupVM;
-				setGUIProperty("LevelName", grp.GroupName);
+            SetGUIProperty(GuiProperty.Random_CombinedFilterDetails, combinedDetails);
 
-				combinedDetails += "Group: " + grp.GroupName;
-			}
-			if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.Series)
-			{
-				setGUIProperty("LevelType", "Series");
-				AnimeSeriesVM ser = MainWindow.RandomWindow_LevelObject as AnimeSeriesVM;
-				setGUIProperty("LevelName", ser.SeriesName);
+            SetGUIProperty(GuiProperty.Random_NumberOfMatches, MainWindow.RandomWindow_MatchesFound.ToString(Globals.Culture));
 
-				combinedDetails += "Series: " + ser.SeriesName;
-			}
+            SetGUIProperty(GuiProperty.Random_Series_Categories, string.Join(", ",MainWindow.RandomWindow_SeriesTags));
+            SetGUIProperty(GuiProperty.Random_Episode_Categories, string.Join(", ", MainWindow.RandomWindow_EpisodeTags));
 
-			if (MainWindow.RandomWindow_RandomType == RandomObjectType.Series)
-				combinedDetails += string.Format(" ({0} Matches)", MainWindow.RandomWindow_MatchesFound);
+            SetGUIProperty(GuiProperty.Random_Series_CategoryType, MainWindow.RandomWindow_SeriesAllTags ? Translation.All : Translation.Any);
+            SetGUIProperty(GuiProperty.Random_Episode_CategoryType, MainWindow.RandomWindow_EpisodeAllTags ? Translation.All : Translation.Any);
 
-			setGUIProperty("CombinedFilterDetails", combinedDetails);
+        }
 
-			setGUIProperty("NumberOfMatches", MainWindow.RandomWindow_MatchesFound.ToString());
-
-            setGUIProperty("Series.Tags", MainWindow.RandomWindow_SeriesTags);
-            setGUIProperty("Episode.Tags", MainWindow.RandomWindow_EpisodeTags);
-
-			if (MainWindow.RandomWindow_SeriesAllTags)
-                setGUIProperty("Series.TagType", "All");
-			else
-                setGUIProperty("Series.TagType", "Any");
-
-			if (MainWindow.RandomWindow_EpisodeAllTags)
-                setGUIProperty("EpisodeTagType", "All");
-			else
-                setGUIProperty("Episode.TagType", "Any");
-
-		}
-
-		void getDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        void getDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			if (btnRandom != null) btnRandom.IsFocused = true;
 		}
@@ -194,22 +223,14 @@ namespace MyAnimePlugin3.Windows
 			//m_Facade.Focus = true;
 		}
 
-		public static void setGUIProperty(string which, string value)
-		{
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.Random." + which, value);
-		}
-
-		public static void clearGUIProperty(string which)
-		{
-			setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
-		}
-
+		
 		private void LoadData()
 		{
 			if (getDataWorker.IsBusy) return;
 
-			setGUIProperty("Status", "Loading Data...");
-			dummyNoData.Visible = true;
+            SetGUIProperty(GuiProperty.Random_Status, Translation.Loading + "...");
+
+            dummyNoData.Visible = true;
 
 			if (MainWindow.RandomWindow_RandomLevel == RandomSeriesEpisodeLevel.All)
 			{
@@ -236,9 +257,10 @@ namespace MyAnimePlugin3.Windows
 
 				if (MainWindow.RandomWindow_RandomLevel != RandomSeriesEpisodeLevel.GroupFilter) return serList;
 				GroupFilterVM gf = MainWindow.RandomWindow_LevelObject as GroupFilterVM;
-				if (gf == null) return serList;
+                if ((gf == null) || (!gf.GroupFilterID.HasValue)) return serList;
 
-				BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + gf.GroupFilterName);
+
+                BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + gf.GroupFilterName);
 
 				bool allTags = MainWindow.RandomWindow_SeriesAllTags;
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
@@ -259,10 +281,10 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("Total groups for filter = " + contracts.Count.ToString());
 
-				string selectedTags = MainWindow.RandomWindow_SeriesTags;
+				HashSet<string> selectedTags = new HashSet<string>(MainWindow.RandomWindow_SeriesTags,StringComparer.InvariantCultureIgnoreCase);
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					selectedTags = MainWindow.RandomWindow_EpisodeTags;
-
+					selectedTags = new HashSet<string>(MainWindow.RandomWindow_EpisodeTags, StringComparer.InvariantCultureIgnoreCase);
+                
 				foreach (JMMServerBinary.Contract_AnimeGroup grpContract in contracts)
 				{
 					AnimeGroupVM grp = new AnimeGroupVM(grpContract);
@@ -271,42 +293,14 @@ namespace MyAnimePlugin3.Windows
 
 					foreach (AnimeSeriesVM ser in grp.AllSeries)
 					{
+
 						// tags
-						if (!string.IsNullOrEmpty(selectedTags))
+						if (selectedTags.Count>0)
 						{
-							string filterParm = selectedTags.Trim();
-
-							string[] tags = filterParm.Split(',');
-
-							bool foundTag = false;
-							if (allTags) foundTag = true; // all
-
-							int index = 0;
-							foreach (string tag in tags)
-							{
-								string thistag = tag.Trim();
-								if (thistag.Trim().Length == 0) continue;
-								if (thistag.Trim() == ",") continue;
-
-								index = ser.TagsString.IndexOf(thistag, 0, StringComparison.InvariantCultureIgnoreCase);
-
-								if (!allTags) // any
-								{
-									if (index > -1)
-									{
-										foundTag = true;
-										break;
-									}
-								}
-								else //all
-								{
-									if (index < 0)
-									{
-										foundTag = false;
-										break;
-									}
-								}
-							}
+                            bool foundTag = false;
+                            if (allTags) foundTag = true; // all
+                            if (ser.AniDB_Anime.AllTags.Overlaps(selectedTags))
+                                foundTag = true;
 							if (!foundTag) continue;
 
 						}
@@ -361,52 +355,25 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + grp.GroupName);
 
-				string selectedTags = MainWindow.RandomWindow_SeriesTags;
-				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
-					selectedTags = MainWindow.RandomWindow_EpisodeTags;
+                HashSet<string> selectedTags = new HashSet<string>(MainWindow.RandomWindow_SeriesTags, StringComparer.InvariantCultureIgnoreCase);
+                if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)
+                    selectedTags = new HashSet<string>(MainWindow.RandomWindow_EpisodeTags, StringComparer.InvariantCultureIgnoreCase);
 
-				foreach (AnimeSeriesVM ser in grp.AllSeries)
+
+                foreach (AnimeSeriesVM ser in grp.AllSeries)
 				{
-					// tags
-					if (!string.IsNullOrEmpty(selectedTags))
-					{
-						string filterParm = selectedTags.Trim();
+                    // tags
+                    if (selectedTags.Count > 0)
+                    {
+                        bool foundTag = false;
+                        if (allTags) foundTag = true; // all
+                        if (ser.AniDB_Anime.AllTags.Overlaps(selectedTags))
+                            foundTag = true;
+                        if (!foundTag) continue;
 
-						string[] tags = filterParm.Split(',');
+                    }
 
-						bool foundTag = false;
-						if (allTags) foundTag = true; // all
-
-						int index = 0;
-						foreach (string tag in tags)
-						{
-							string thiscat = tag.Trim();
-							if (thiscat.Trim().Length == 0) continue;
-							if (thiscat.Trim() == ",") continue;
-
-							index = ser.TagsString.IndexOf(thiscat, 0, StringComparison.InvariantCultureIgnoreCase);
-
-							if (!allTags) // any
-							{
-								if (index > -1)
-								{
-									foundTag = true;
-									break;
-								}
-							}
-							else //all
-							{
-								if (index < 0)
-								{
-									foundTag = false;
-									break;
-								}
-							}
-						}
-						if (!foundTag) continue;
-
-					}
-					serList.Add(ser);
+                    serList.Add(ser);
 				}
 
 			}
@@ -525,7 +492,8 @@ namespace MyAnimePlugin3.Windows
 							needEpisode = false;
 						}
 						else
-							dictSeries.Remove(MainWindow.RandomWindow_CurrentSeries.AnimeSeriesID.Value);
+                            if (MainWindow.RandomWindow_CurrentSeries.AnimeSeriesID.HasValue)
+                                dictSeries.Remove(MainWindow.RandomWindow_CurrentSeries.AnimeSeriesID.Value);
 					}
 				}
 
@@ -541,58 +509,43 @@ namespace MyAnimePlugin3.Windows
 
 		private void DisplayEpisode()
 		{
-			clearGUIProperty("Series.Title");
-			clearGUIProperty("Series.Description");
-			clearGUIProperty("Series.LastWatched");
-			clearGUIProperty("Series.EpisodesWatched");
-			clearGUIProperty("Series.EpisodesUnwatched");
-			clearGUIProperty("Series.Poster");
-
-			clearGUIProperty("NumberOfMatches");
-
-			clearGUIProperty("Episode.Title");
-			clearGUIProperty("Episode.AirDate");
-			clearGUIProperty("Episode.RunTime");
-			clearGUIProperty("Episode.FileInfo");
-			clearGUIProperty("Episode.Overview");
-			clearGUIProperty("Episode.Image");
-			clearGUIProperty("Episode.Logos");
-
 			if (MainWindow.RandomWindow_CurrentEpisode == null)
 			{
-				setGUIProperty("Status", "No Matches Found");
+                SetGUIProperty(GuiProperty.Random_Status, Translation.NoMatchesFound);
 				MainWindow.RandomWindow_MatchesFound = 0;
 				MainWindow.RandomWindow_CurrentSeries = null;
 				MainWindow.RandomWindow_CurrentEpisode = null;
 			}
 			else
 			{
-				setGUIProperty("Series.Title", MainWindow.RandomWindow_CurrentSeries.SeriesName);
-				setGUIProperty("Series.Description", MainWindow.RandomWindow_CurrentSeries.Description);
-				setGUIProperty("Series.LastWatched", MainWindow.RandomWindow_CurrentSeries.WatchedDate.HasValue ? MainWindow.RandomWindow_CurrentSeries.WatchedDate.Value.ToString("dd MMM yy", Globals.Culture) : "-");
-				setGUIProperty("Series.EpisodesWatched", MainWindow.RandomWindow_CurrentSeries.WatchedEpisodeCount.ToString());
-				setGUIProperty("Series.EpisodesUnwatched", MainWindow.RandomWindow_CurrentSeries.UnwatchedEpisodeCount.ToString());
-				setGUIProperty("Series.Poster", ImageAllocator.GetSeriesImageAsFileName(MainWindow.RandomWindow_CurrentSeries, GUIFacadeControl.Layout.List));
+                SetGUIProperty(GuiProperty.Random_Series_Description, MainWindow.RandomWindow_CurrentSeries.Description);
+                SetGUIProperty(GuiProperty.Random_Series_LastWatched, MainWindow.RandomWindow_CurrentSeries.WatchedDate.HasValue ? MainWindow.RandomWindow_CurrentSeries.WatchedDate.Value.ToString("dd MMM yy", Globals.Culture) : "-");
+                SetGUIProperty(GuiProperty.Random_Series_EpisodesWatched, MainWindow.RandomWindow_CurrentSeries.WatchedEpisodeCount.ToString(Globals.Culture));
+                SetGUIProperty(GuiProperty.Random_Series_EpisodesUnwatched, MainWindow.RandomWindow_CurrentSeries.UnwatchedEpisodeCount.ToString(Globals.Culture));
+                SetGUIProperty(GuiProperty.Random_Series_Poster, ImageAllocator.GetSeriesImageAsFileName(MainWindow.RandomWindow_CurrentSeries, GUIFacadeControl.Layout.List));
 
-				setGUIProperty("Episode.Title", MainWindow.RandomWindow_CurrentEpisode.EpisodeNumberAndNameWithType);
-				setGUIProperty("Episode.AirDate", MainWindow.RandomWindow_CurrentEpisode.AirDateAsString);
-				setGUIProperty("Episode.RunTime", Utils.FormatSecondsToDisplayTime(MainWindow.RandomWindow_CurrentEpisode.AniDB_LengthSeconds));
+                SetGUIProperty(GuiProperty.Random_Episode_Title, MainWindow.RandomWindow_CurrentEpisode.EpisodeNumberAndNameWithType);
+                SetGUIProperty(GuiProperty.Random_Episode_AirDate, MainWindow.RandomWindow_CurrentEpisode.AirDateAsString);
+                SetGUIProperty(GuiProperty.Random_Episode_RunTime, Utils.FormatSecondsToDisplayTime(MainWindow.RandomWindow_CurrentEpisode.AniDB_LengthSeconds));
 
 
-				if (MainWindow.RandomWindow_CurrentEpisode.EpisodeImageLocation.Length > 0)
-					setGUIProperty("Episode.Image", MainWindow.RandomWindow_CurrentEpisode.EpisodeImageLocation);
+                if (MainWindow.RandomWindow_CurrentEpisode.EpisodeImageLocation.Length > 0)
+                    SetGUIProperty(GuiProperty.Random_Episode_Image, MainWindow.RandomWindow_CurrentEpisode.EpisodeImageLocation);
+                else
+                    ClearGUIProperty(GuiProperty.Random_Episode_Image);
 
-				// Overview
-				string overview = MainWindow.RandomWindow_CurrentEpisode.EpisodeOverview;
-				if (BaseConfig.Settings.HidePlot)
-				{
-					if (MainWindow.RandomWindow_CurrentEpisode.EpisodeOverview.Trim().Length > 0 && MainWindow.RandomWindow_CurrentEpisode.IsWatched == 0)
-						overview = "*** Hidden to prevent spoilers ***";
-				}
-				setGUIProperty("Episode.Overview", overview);
+                // Overview
+                string overview = MainWindow.RandomWindow_CurrentEpisode.EpisodeOverview;
+			    if (BaseConfig.Settings.HidePlot)
+			    {
+			        if (MainWindow.RandomWindow_CurrentEpisode.EpisodeOverview.Trim().Length > 0 &&
+			            MainWindow.RandomWindow_CurrentEpisode.IsWatched == 0)
+			            overview = "*** " + Translation.HiddenToPreventSpoiles + " ***";
+			        SetGUIProperty(GuiProperty.Random_Episode_Overview, overview);
+			    }
 
-				// File Info
-				List<VideoDetailedVM> filesForEpisode = new List<VideoDetailedVM>();
+			    // File Info
+                    List<VideoDetailedVM> filesForEpisode = new List<VideoDetailedVM>();
 				List<JMMServerBinary.Contract_VideoDetailed> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(MainWindow.RandomWindow_CurrentEpisode.AnimeEpisodeID,
 					JMMServerVM.Instance.CurrentUser.JMMUserID);
 
@@ -604,15 +557,14 @@ namespace MyAnimePlugin3.Windows
 					finfo = vid.FileSelectionDisplay;
 
 				if (filesForEpisode.Count > 1)
-					finfo = filesForEpisode.Count.ToString() + " Files Available";
+                        finfo = filesForEpisode.Count.ToString(Globals.Culture) + " " + Translation.FilesAvailable;
 
-				setGUIProperty("Episode.FileInfo", finfo);
-
-				// Logos
-				string logos = Logos.buildLogoImage(MainWindow.RandomWindow_CurrentEpisode);
+                SetGUIProperty(GuiProperty.Random_Episode_FileInfo, finfo);
+                // Logos
+                string logos = Logos.buildLogoImage(MainWindow.RandomWindow_CurrentEpisode);
 
 				BaseConfig.MyAnimeLog.Write(logos);
-				setGUIProperty("Episode.Logos", logos);
+				SetGUIProperty(GuiProperty.Random_Episode_Logos, logos);
 
 				dummyNoData.Visible = false;
 			}
@@ -620,168 +572,156 @@ namespace MyAnimePlugin3.Windows
 
 		private void DisplaySeries()
 		{
-			clearGUIProperty("Series.Title");
-			clearGUIProperty("Series.Description");
-			clearGUIProperty("Series.LastWatched");
-			clearGUIProperty("Series.EpisodesWatched");
-			clearGUIProperty("Series.EpisodesUnwatched");
-			clearGUIProperty("Series.Poster");
-
-			clearGUIProperty("NumberOfMatches");
-
 			if (MainWindow.RandomWindow_CurrentSeries == null)
 			{
-				setGUIProperty("Status", "No Matches Found");
-				MainWindow.RandomWindow_MatchesFound = 0;
+                SetGUIProperty(GuiProperty.Random_Status, Translation.NoMatchesFound);
+                ClearGUIProperty(GuiProperty.Random_Series_Title);
+                ClearGUIProperty(GuiProperty.Random_Series_Description);
+                ClearGUIProperty(GuiProperty.Random_Series_LastWatched);
+                ClearGUIProperty(GuiProperty.Random_Series_EpisodesWatched);
+                ClearGUIProperty(GuiProperty.Random_Series_EpisodesUnwatched);
+                ClearGUIProperty(GuiProperty.Random_Series_Poster);
+                ClearGUIProperty(GuiProperty.Random_NumberOfMatches);
+                MainWindow.RandomWindow_MatchesFound = 0;
 				MainWindow.RandomWindow_CurrentSeries = null;
 			}
 			else
 			{
-				setGUIProperty("Series.Title", MainWindow.RandomWindow_CurrentSeries.SeriesName);
-				setGUIProperty("Series.Description", MainWindow.RandomWindow_CurrentSeries.Description);
-				setGUIProperty("Series.LastWatched", MainWindow.RandomWindow_CurrentSeries.WatchedDate.HasValue ? MainWindow.RandomWindow_CurrentSeries.WatchedDate.Value.ToString("dd MMM yy", Globals.Culture) : "-");
-				setGUIProperty("Series.EpisodesWatched", MainWindow.RandomWindow_CurrentSeries.WatchedEpisodeCount.ToString());
-				setGUIProperty("Series.EpisodesUnwatched", MainWindow.RandomWindow_CurrentSeries.UnwatchedEpisodeCount.ToString());
-				setGUIProperty("Series.Poster", ImageAllocator.GetSeriesImageAsFileName(MainWindow.RandomWindow_CurrentSeries, GUIFacadeControl.Layout.List));
-
+                SetGUIProperty(GuiProperty.Random_Series_Title, MainWindow.RandomWindow_CurrentSeries.SeriesName);
+                SetGUIProperty(GuiProperty.Random_Series_Description, MainWindow.RandomWindow_CurrentSeries.Description);
+                SetGUIProperty(GuiProperty.Random_Series_LastWatched, MainWindow.RandomWindow_CurrentSeries.WatchedDate.HasValue ? MainWindow.RandomWindow_CurrentSeries.WatchedDate.Value.ToString("dd MMM yy", Globals.Culture) : "-");
+                SetGUIProperty(GuiProperty.Random_Series_EpisodesWatched, MainWindow.RandomWindow_CurrentSeries.WatchedEpisodeCount.ToString(Globals.Culture));
+                SetGUIProperty(GuiProperty.Random_Series_EpisodesUnwatched, MainWindow.RandomWindow_CurrentSeries.UnwatchedEpisodeCount.ToString(Globals.Culture));
+                SetGUIProperty(GuiProperty.Random_Series_Poster, ImageAllocator.GetSeriesImageAsFileName(MainWindow.RandomWindow_CurrentSeries, GUIFacadeControl.Layout.List));
 				dummyNoData.Visible = false;
 			}
 		}
+        protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
+        {
+            MainMenu menu = new MainMenu();
+            menu.Add(btnAddTag, () =>
+            {
+                string tag = Utils.PromptSelectTag("");
+                if (!MainWindow.RandomWindow_SeriesTags.Contains(tag,StringComparer.InvariantCultureIgnoreCase))
+                {
+                    MainWindow.RandomWindow_SeriesTags.Add(tag);
+                    SetDisplayDetails();
+                }
+            });
+            menu.Add(btnEpisodeAddTag, () =>
+            {
+                string tag = Utils.PromptSelectTag("");
+                if (!MainWindow.RandomWindow_EpisodeTags.Contains(tag, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    MainWindow.RandomWindow_EpisodeTags.Add(tag);
+                    SetDisplayDetails();
+                }
+            });
+            menu.Add(btnClearTags, () =>
+            {
+                MainWindow.RandomWindow_SeriesTags.Clear();
+                SetDisplayDetails();
+            });
+            menu.Add(btnEpisodeClearTags, () =>
+            {
+                MainWindow.RandomWindow_EpisodeTags.Clear();
+                SetDisplayDetails();
+            });
+            menu.Add(btnAllAnyTags, () =>
+            {
+                MainWindow.RandomWindow_SeriesAllTags = !MainWindow.RandomWindow_SeriesAllTags;
+                SetDisplayDetails();
+            });
+            menu.Add(btnEpisodeAllAnyTags, () =>
+            {
+                MainWindow.RandomWindow_EpisodeAllTags = !MainWindow.RandomWindow_EpisodeAllTags;
+                SetDisplayDetails();
+            });
+            menu.Add(btnRandom, () =>
+            {
+                if (togWatched != null) MainWindow.RandomWindow_SeriesWatched = togWatched.Selected;
+                if (togUnwatched != null)
+                    MainWindow.RandomWindow_SeriesUnwatched = togUnwatched.Selected;
+                if (togPartiallyWatched != null)
+                    MainWindow.RandomWindow_SeriesPartiallyWatched = togPartiallyWatched.Selected;
+                if (togCompleteOnly != null)
+                    MainWindow.RandomWindow_SeriesOnlyComplete = togCompleteOnly.Selected;
 
-		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
-		{
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
+                if (togEpisodeUnwatched != null)
+                    MainWindow.RandomWindow_EpisodeUnwatched = togEpisodeUnwatched.Selected;
+                if (togEpisodeWatched != null)
+                    MainWindow.RandomWindow_EpisodeWatched = togEpisodeWatched.Selected;
 
-			if (btnAddTag != null && control == btnAddTag)
-			{
-				string cat = Utils.PromptSelectTag("");
-				if (!string.IsNullOrEmpty(cat))
-				{
-					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_SeriesTags))
-						MainWindow.RandomWindow_SeriesTags += ", ";
+                MainWindow.RandomWindow_CurrentEpisode = null;
+                MainWindow.RandomWindow_CurrentSeries = null;
+                btnRandom.IsFocused = true;
+                LoadData();
+            });
+            menu.Add(btnSwitchSeries, () =>
+            {
+                btnSwitchSeries.IsFocused = false;
+                btnRandom.IsFocused = true;
+                MainWindow.RandomWindow_RandomType = RandomObjectType.Series;
+                LoadData();
+            });
+            menu.Add(btnSwitchEpisode, () =>
+            {
+                btnSwitchEpisode.IsFocused = false;
+                btnRandom.IsFocused = true;
+                MainWindow.RandomWindow_RandomType = RandomObjectType.Episode;
+                LoadData();
+            });
+            menu.AddFunc(btnPlayEpisode, () =>
+            {
+                if (MainWindow.RandomWindow_CurrentEpisode == null) return false;
+                MainWindow.vidHandler.ResumeOrPlay(MainWindow.RandomWindow_CurrentEpisode);
+                return true;
+            });
+            menu.AddFunc(btnEpisodeList, () =>
+            {
+                if (MainWindow.RandomWindow_CurrentSeries == null) return false;
+                MainWindow.Breadcrumbs = new List<History>()
+                {
+                    new History {Selected = GroupFilterHelper.AllGroupsFilter}
+                };
 
-					MainWindow.RandomWindow_SeriesTags += cat;
+                // find the group for this series
+                AnimeGroupVM grp = JMMServerHelper.GetGroup(MainWindow.RandomWindow_CurrentSeries.AnimeGroupID);
+                if (grp == null)
+                {
+                    BaseConfig.MyAnimeLog.Write("Group not found");
+                    return false;
+                }
+                MainWindow.Breadcrumbs.Add(new History { Listing = GroupFilterHelper.AllGroupsFilter,Selected=grp});
+                MainWindow.Breadcrumbs.Add(new History { Listing = grp, Selected = MainWindow.RandomWindow_CurrentSeries});
+                bool foundEpType = false;
+                if (MainWindow.RandomWindow_CurrentSeries.EpisodeTypesToDisplay.Count == 1)
+                {
+                    MainWindow.Breadcrumbs.Add(new History { Listing = MainWindow.RandomWindow_CurrentSeries, Selected = null });
 
-					SetDisplayDetails();
-				}
-			}
+                }
+                else
+                { 
+                    foreach (AnimeEpisodeTypeVM anEpType in MainWindow.RandomWindow_CurrentSeries.EpisodeTypesToDisplay)
+                    {
+                        if (anEpType.EpisodeType == enEpisodeType.Episode)
+                        {
+                            MainWindow.Breadcrumbs.Add(new History { Listing = MainWindow.RandomWindow_CurrentSeries, Selected = anEpType });
+                            MainWindow.Breadcrumbs.Add(new History { Listing = anEpType, Selected = null });
+                            foundEpType = true;
+                            break;
+                        }
+                    }
 
-			if (btnEpisodeAddTag != null && control == btnEpisodeAddTag)
-			{
-				string cat = Utils.PromptSelectTag("");
-				if (!string.IsNullOrEmpty(cat))
-				{
-					if (!string.IsNullOrEmpty(MainWindow.RandomWindow_EpisodeTags))
-						MainWindow.RandomWindow_EpisodeTags += ", ";
-
-					MainWindow.RandomWindow_EpisodeTags += cat;
-
-					SetDisplayDetails();
-				}
-			}
-
-			if (btnClearTags != null && control == btnClearTags)
-			{
-				MainWindow.RandomWindow_SeriesTags = "";
-				SetDisplayDetails();
-			}
-
-			if (btnEpisodeClearTags != null && control == btnEpisodeClearTags)
-			{
-				MainWindow.RandomWindow_EpisodeTags = "";
-				SetDisplayDetails();
-			}
-
-			if (btnAllAnyTags != null && control == btnAllAnyTags)
-			{
-				MainWindow.RandomWindow_SeriesAllTags = !MainWindow.RandomWindow_SeriesAllTags;
-				SetDisplayDetails();
-			}
-
-			if (btnEpisodeAllAnyTags != null && control == btnEpisodeAllAnyTags)
-			{
-				MainWindow.RandomWindow_EpisodeAllTags = !MainWindow.RandomWindow_EpisodeAllTags;
-				SetDisplayDetails();
-			}
-
-			if (btnRandom != null && control == btnRandom)
-			{
-				if (togWatched != null) MainWindow.RandomWindow_SeriesWatched = togWatched.Selected;
-				if (togUnwatched != null) MainWindow.RandomWindow_SeriesUnwatched = togUnwatched.Selected;
-				if (togPartiallyWatched != null) MainWindow.RandomWindow_SeriesPartiallyWatched = togPartiallyWatched.Selected;
-				if (togCompleteOnly != null) MainWindow.RandomWindow_SeriesOnlyComplete = togCompleteOnly.Selected;
-
-				if (togEpisodeUnwatched != null) MainWindow.RandomWindow_EpisodeUnwatched = togEpisodeUnwatched.Selected;
-				if (togEpisodeWatched != null) MainWindow.RandomWindow_EpisodeWatched = togEpisodeWatched.Selected;
-
-				MainWindow.RandomWindow_CurrentEpisode = null;
-				MainWindow.RandomWindow_CurrentSeries = null;
-				this.btnRandom.IsFocused = true;
-				LoadData();
-			}
-
-			if (btnSwitchSeries != null && control == btnSwitchSeries)
-			{
-				this.btnSwitchSeries.IsFocused = false;
-				this.btnRandom.IsFocused = true;
-				MainWindow.RandomWindow_RandomType = RandomObjectType.Series;
-				LoadData();
-			}
-
-			if (btnSwitchEpisode != null && control == btnSwitchEpisode)
-			{
-				this.btnSwitchEpisode.IsFocused = false;
-				this.btnRandom.IsFocused = true;
-				MainWindow.RandomWindow_RandomType = RandomObjectType.Episode;
-				LoadData();
-			}
-
-			if (btnPlayEpisode != null && control == btnPlayEpisode)
-			{
-				if (MainWindow.RandomWindow_CurrentEpisode == null) return;
-				MainWindow.vidHandler.ResumeOrPlay(MainWindow.RandomWindow_CurrentEpisode);
-			}
-
-
-			if (btnEpisodeList != null && control == btnEpisodeList)
-			{
-				if (MainWindow.RandomWindow_CurrentSeries == null) return;
-				MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
-
-				// find the group for this series
-				AnimeGroupVM grp = JMMServerHelper.GetGroup(MainWindow.RandomWindow_CurrentSeries.AnimeGroupID);
-				if (grp == null)
-				{
-					BaseConfig.MyAnimeLog.Write("Group not found");
-					return;
-				}
-				MainWindow.curAnimeGroup = grp;
-				MainWindow.curAnimeGroupViewed = grp;
-				MainWindow.curAnimeSeries = MainWindow.RandomWindow_CurrentSeries;
-
-				bool foundEpType = false;
-				foreach (AnimeEpisodeTypeVM anEpType in MainWindow.RandomWindow_CurrentSeries.EpisodeTypesToDisplay)
-				{
-					if (anEpType.EpisodeType == enEpisodeType.Episode)
-					{
-						MainWindow.curAnimeEpisodeType = anEpType;
-						foundEpType = true;
-						break;
-					}
-				}
-
-				if (!foundEpType) return;
-
-
-				MainWindow.listLevel = Listlevel.Episode;
-
-				GUIWindowManager.CloseCurrentWindow();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.MAIN, false);
-				return;
-			}
-
-			base.OnClicked(controlId, control, actionType);
-		}
+                    if (!foundEpType) return false;
+                }
+                GUIWindowManager.CloseCurrentWindow();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.MAIN, false);
+                return true;
+            });
+            if (menu.Check(control))
+                return;
+            base.OnClicked(controlId, control, actionType);
+        }
 	}
 }

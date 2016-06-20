@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MyAnimePlugin3.Windows;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class GroupFilterVM : IComparable<GroupFilterVM>
+	public class GroupFilterVM : IComparable<GroupFilterVM>, IVM
 	{
 		public int? GroupFilterID { get; set; }
 		public string GroupFilterName { get; set; }
@@ -15,14 +16,27 @@ namespace MyAnimePlugin3.ViewModel
 
 		public int SeriesCount { get; set; }
 		public int GroupCount { get; set; }
+        public int FilterCount { get; set; }
+        public int FilterType { get; set; }
+
+
+
+
 		public AnimeGroupVM RandomGroup { get; set; }
+	    public GroupFilterVM ParentFilter { get; set; } = null;
 
 		public string PredefinedCriteria { get; set; }
 
 		public List<GroupFilterConditionVM> FilterConditions { get; set; }
 		public List<GroupFilterSortingCriteria> SortCriteriaList { get; set; }
 
-		public Boolean IsApplyToSeries
+        public Dictionary<int, HashSet<int>> Groups { get; set; }
+        public Dictionary<int, HashSet<int>> Series { get; set; }
+        public HashSet<int> Childs { get; set; }
+
+
+
+        public Boolean IsApplyToSeries
 		{
 			get { return ApplyToSeries == 1; }
 			set
@@ -58,11 +72,17 @@ namespace MyAnimePlugin3.ViewModel
 			this.BaseCondition = contract.BaseCondition;
 			this.PredefinedCriteria = "";
 			this.FilterConditions.Clear();
+            this.FilterType = contract.FilterType;
 
-			GroupCount = 0;
-			SeriesCount = 0;
+            this.Groups = contract.Groups.ToDictionary(a => a.Key, a => new HashSet<int>(a.Value));
+            this.Series = contract.Series.ToDictionary(a => a.Key, a => new HashSet<int>(a.Value));
+            this.Childs = new HashSet<int>(contract.Childs);
+            GroupCount = Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) ? Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count : 0;
+            SeriesCount = Series.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) ? Series[JMMServerVM.Instance.CurrentUser.JMMUserID].Count : 0;
+            FilterCount = Childs.Count;
 
-			if (contract.FilterConditions != null)
+
+            if (contract.FilterConditions != null)
 			{
 				foreach (JMMServerBinary.Contract_GroupFilterCondition gfc_con in contract.FilterConditions)
 					FilterConditions.Add(new GroupFilterConditionVM(gfc_con));
@@ -100,13 +120,7 @@ namespace MyAnimePlugin3.ViewModel
 			//FilterConditions = new List<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
 		}
 
-		public void Populate(JMMServerBinary.Contract_GroupFilterExtended contract)
-		{
-			Populate(contract.GroupFilter);
 
-			GroupCount = contract.GroupCount;
-			SeriesCount = contract.SeriesCount;
-		}
 
 		public int CompareTo(GroupFilterVM obj)
 		{

@@ -6,7 +6,7 @@ using BinaryNorthwest;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class AnimeSeriesVM
+	public class AnimeSeriesVM : IVM
 	{
 
 		public int? AnimeSeriesID { get; set; }
@@ -25,31 +25,21 @@ namespace MyAnimePlugin3.ViewModel
 		public int StoppedCount { get; set; }
 		public int LatestLocalEpisodeNumber { get; set; }
 
-		public DateTime? Stat_EndDate { get; set; }
-		public decimal? Stat_UserVotePermanent { get; set; }
-		public decimal? Stat_UserVoteTemporary { get; set; }
 
-		public string Stat_AllTitles { get; set; }
-		public bool Stat_IsComplete { get; set; }
-		public bool Stat_HasFinishedAiring { get; set; }
-		public string Stat_AllVideoQuality { get; set; }
-		public string Stat_AllVideoQualityEpisodes { get; set; }
-		public string Stat_AudioLanguages { get; set; }
-		public string Stat_SubtitleLanguages { get; set; }
-		public bool Stat_HasTvDBLink { get; set; }
-		public bool Stat_HasMovieDBLink { get; set; }
 
-		public AniDB_AnimeVM AniDB_Anime { get; set; }
+        public AniDB_AnimeVM AniDB_Anime { get; set; }
 		public List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBV2 { get; set; }
 		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB { get; set; }
 		public List<CrossRef_AniDB_MALVM> CrossRef_AniDB_MAL { get; set; }
 		public List<TvDB_SeriesVM> TvDBSeriesV2 { get; set; }
 
-		#region Sorting properties
 
-		// These properties are used when sorting group filters, and must match the names on the AnimeGroupVM
+        #region Sorting properties
 
-		public decimal AniDBRating
+
+        // These properties are used when sorting group filters, and must match the names on the AnimeGroupVM
+
+        public decimal AniDBRating
 		{
 			get
 			{
@@ -116,13 +106,7 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		public string TagsString
-		{
-			get
-			{
-                return AniDB_Anime.AllTags;
-			}
-		}
+
 
 		public DateTime? Stat_SeriesCreatedDate
 		{
@@ -481,7 +465,7 @@ namespace MyAnimePlugin3.ViewModel
 
 		public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
 		{
-			AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime);
+			AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime.AniDBAnime);
 
 			if (contract.CrossRefAniDBTvDBV2 != null)
 			{

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Globalization;
 using MediaPortal.Profile;
 using System.IO;
 using MediaPortal.Configuration;
@@ -28,7 +29,7 @@ namespace MyAnimePlugin3
 			}
 		}
 
-		/*
+        /*
 		static string LogoSourceBluRay = mediaFolder + @"BLURAY.png";
 		static string LogoSourceDVD = mediaFolder + @"DVD.png";
 
@@ -44,8 +45,53 @@ namespace MyAnimePlugin3
 		static string LogoDim16x9 = mediaFolder + @"WIDESCREEN.png";
 		static string LogoDim4x3 = mediaFolder + @"FULLSCREEN.png";
 		*/
+        public static string buildRating(double value, string offstar, string onstar, int width, int height)
+        {
+            try
+            {
+                Bitmap b = new Bitmap(width * 10, height);
+                Image img = b;
+                Graphics g = Graphics.FromImage(img);
+                BaseConfig.MyAnimeLog.Write("Source: " + offstar + " Dest: " + onstar);
+                Image off = ImageAllocator.LoadImageFastFromFile(GUIGraphicsContext.Skin + @"\Media\" + offstar);
+                Image on = ImageAllocator.LoadImageFastFromFile(GUIGraphicsContext.Skin + @"\Media\" + onstar);
+                int val = (int)Math.Floor(value);
+                string tmpfile = ((int)val).ToString(CultureInfo.InvariantCulture) + "_";
 
-		public static string buildLogoImage(AnimeEpisodeVM ep)
+                for (int x = 0; x < 10; x++)
+                {
+                    if (x < val)
+                    {
+                        g.DrawImageUnscaled(on, x * width, 0);
+                    }
+                    if (x >= val)
+                    {
+                        g.DrawImageUnscaled(off, x * width, 0);
+                    }
+                    if (x == val)
+                    {
+                        int sub = (int)((value - val) * width);
+                        tmpfile += sub;
+                        if (sub > 0)
+                        {
+                            g.DrawImage(on, new Rectangle(x * width, 0, sub, height),
+                                new Rectangle(0, 0, sub, height), GraphicsUnit.Pixel);
+                        }
+                    }
+                }
+                tmpfile += ".png";
+                tmpfile = Path.Combine(pathfortmpfile, @"\anime3_" + tmpfile + ".png");
+                return ImageAllocator.GetOtherImage(b, tmpfile, new Size(), true);
+            }
+            catch (Exception ex)
+            {
+                BaseConfig.MyAnimeLog.Write("The Rating Building Engine generated an error: " + ex.ToString());
+                return string.Empty;
+            }
+
+        }
+
+        public static string buildLogoImage(AnimeEpisodeVM ep)
 		{
 			List<string> logosForBuilding = new List<string>();
 

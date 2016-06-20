@@ -36,10 +36,51 @@ namespace MyAnimePlugin3.Windows
 		//[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
 		[SkinControlAttribute(925)] protected GUIButtonControl btnWindowRecommendations = null;
 
-		private Torrent curTorrent = null;
+        public enum GuiProperty
+        {
+            Download_Status,
+            Downloads_CurrentView,
+            Search_ResultDescription,
+            Search_Summary,
+            TorrentLink_Name,
+            TorrentLink_Size,
+            TorrentLink_Seeders,
+            TorrentLink_Leechers,
+            TorrentLink_Source,
+            TorrentLink_SourceLong,
+            TorrentFile_Summary,
+            TorrentFile_Name,
+            TorrentFile_Size,
+            TorrentFile_Downloaded,
+            TorrentFile_Priority,
+            Torrent_Summary,
+            Torrent_Name,
+            Torrent_Size,
+            Torrent_Done,
+            Torrent_DownloadSpeed,
+            Torrent_UploadSpeed,
+            Torrent_Downloaded,
+            Torrent_Uploaded,
+            Torrent_Ratio,
+            Torrent_Seeds,
+            Torrent_SInSwarm,
+            Torrent_Peers,
+            Torrent_PInSwarm,
+            SubGroup_AnimeName,
+            SubGroup_EpisodeName,
+            SubGroup_FileDetails,
+            Browse_Source,
+            Browse_ResultDescription,
+        }
+
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+
+
+
+        private Torrent curTorrent = null;
 		private TorrentSource curBrowseSource = TorrentSource.TokyoToshokan;
-		private readonly string UpFolder = "------ BACK TO TORRENTS ------";
-        private int SelectedItem = 0;
+		private int SelectedItem = 0;
 
 
 		public DownloadsWindow()
@@ -67,33 +108,15 @@ namespace MyAnimePlugin3.Windows
 			base.OnPageLoad();
 
             curBrowseSource = BaseConfig.Settings.DefaultTorrentSource;
-			
-			clearGUIProperty("Download.Status");
 
-			setGUIProperty("Torrent.Summary", "Starting...");
-			setGUIProperty("Search.ResultDescription", "0 Results");
-			setGUIProperty("Search.Summary", "-");
 
-			clearGUIProperty("TorrentLink.Name");
-			clearGUIProperty("TorrentLink.Size");
-			clearGUIProperty("TorrentLink.Seeders");
-			clearGUIProperty("TorrentLink.Leechers");
-			clearGUIProperty("TorrentLink.Source");
-			clearGUIProperty("TorrentLink.SourceLong");
+            ClearGUIProperty(GuiProperty.Download_Status);
 
-			// torrent details
-			clearGUIProperty("Torrent.Name");
-			clearGUIProperty("Torrent.Size");
-			clearGUIProperty("Torrent.Done");
-			clearGUIProperty("Torrent.DownloadSpeed");
-			clearGUIProperty("Torrent.UploadSpeed");
-			clearGUIProperty("Torrent.Downloaded");
-			clearGUIProperty("Torrent.Uploaded");
-			clearGUIProperty("Torrent.Ratio");
-			clearGUIProperty("Torrent.Seeds");
-			clearGUIProperty("Torrent.SInSwarm");
-			clearGUIProperty("Torrent.Peers");
-			clearGUIProperty("Torrent.PInSwarm");
+            SetGUIProperty(GuiProperty.Torrent_Summary, Translation.Starting + "...");
+            SetGUIProperty(GuiProperty.Search_ResultDescription, Translation.NoResults);
+            ClearGUIProperty(GuiProperty.Search_Summary);
+
+
 
 			if (!MainWindow.uTorrent.Initialised)
 				MainWindow.uTorrent.Init();
@@ -112,7 +135,8 @@ namespace MyAnimePlugin3.Windows
 
 		private void ShowPageTorrents()
 		{
-			setGUIProperty("Downloads.CurrentView", "Torrent Monitor");
+            SetGUIProperty(GuiProperty.Downloads_CurrentView, Translation.TorrentMonitor);
+
             SelectedItem = m_Facade.SelectedListItemIndex;
 			dummyPageTorrents.Visible = true;
 			dummyPageTorrentFiles.Visible = false;
@@ -137,7 +161,8 @@ namespace MyAnimePlugin3.Windows
 		private void ShowPageTorrentFiles(List<TorrentFile> torFiles)
 		{
             SelectedItem = m_Facade.SelectedListItemIndex;
-			setGUIProperty("TorrentFile.Summary", curTorrent.Name);
+            SetGUIProperty(GuiProperty.TorrentFile_Summary, curTorrent.Name);
+
 
 			dummyPageTorrents.Visible = false;
 			dummyPageTorrentFiles.Visible = true;
@@ -155,11 +180,11 @@ namespace MyAnimePlugin3.Windows
 			AnimeSeriesVM series = JMMServerHelper.GetSeries(ep.AnimeSeriesID);
 			if (series != null && series.AniDB_Anime != null)
 			{
-				setGUIProperty("SubGroup.AnimeName", series.AniDB_Anime.FormattedTitle);
-				setGUIProperty("SubGroup.EpisodeName", ep.EpisodeNumberAndName);
-				setGUIProperty("SubGroup.FileDetails", "-");
 
-				List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
+                SetGUIProperty(GuiProperty.SubGroup_AnimeName, series.AniDB_Anime.FormattedTitle);
+                SetGUIProperty(GuiProperty.SubGroup_EpisodeName, ep.EpisodeNumberAndName);
+
+                List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
 				List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID);
 				foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
 				{
@@ -180,25 +205,29 @@ namespace MyAnimePlugin3.Windows
 							+ Environment.NewLine;
 
 
-					setGUIProperty("SubGroup.FileDetails", fileDetails);
-				}
+                    SetGUIProperty(GuiProperty.SubGroup_FileDetails, fileDetails);
+                }
+                else
+                {
+                    ClearGUIProperty(GuiProperty.SubGroup_FileDetails);
+                }
 
-				dummyEpisodeSearch.Visible = true;
+                dummyEpisodeSearch.Visible = true;
 			}
 		}
 
 		private void ShowPageSearch(bool showPreviousSearch)
 		{
-			setGUIProperty("Downloads.CurrentView", "Search");
+            SetGUIProperty(GuiProperty.Downloads_CurrentView, Translation.Search);
 
-			clearGUIProperty("TorrentLink.Name");
-			clearGUIProperty("TorrentLink.Size");
-			clearGUIProperty("TorrentLink.Seeders");
-			clearGUIProperty("TorrentLink.Leechers");
-			clearGUIProperty("TorrentLink.Source");
-			clearGUIProperty("TorrentLink.SourceLong");
+            ClearGUIProperty(GuiProperty.TorrentLink_Name);
+            ClearGUIProperty(GuiProperty.TorrentLink_Size);
+            ClearGUIProperty(GuiProperty.TorrentLink_Seeders);
+            ClearGUIProperty(GuiProperty.TorrentLink_Leechers);
+            ClearGUIProperty(GuiProperty.TorrentLink_Source);
+            ClearGUIProperty(GuiProperty.TorrentLink_SourceLong);
 
-			dummyPageTorrents.Visible = false;
+            dummyPageTorrents.Visible = false;
 			dummyPageTorrentFiles.Visible = false;
 			dummyPageSearch.Visible = true;
 			dummyPageBrowse.Visible = false;
@@ -237,15 +266,16 @@ namespace MyAnimePlugin3.Windows
 
 		private void ShowPageBrowseTorrents()
 		{
-			clearGUIProperty("TorrentLink.Name");
-			clearGUIProperty("TorrentLink.Size");
-			clearGUIProperty("TorrentLink.Seeders");
-			clearGUIProperty("TorrentLink.Leechers");
-			clearGUIProperty("TorrentLink.Source");
-			clearGUIProperty("TorrentLink.SourceLong");
+            SetGUIProperty(GuiProperty.Downloads_CurrentView, Translation.Browse);
 
-			setGUIProperty("Downloads.CurrentView", "Browse");
-			dummyPageTorrents.Visible = false;
+            ClearGUIProperty(GuiProperty.TorrentLink_Name);
+            ClearGUIProperty(GuiProperty.TorrentLink_Size);
+            ClearGUIProperty(GuiProperty.TorrentLink_Seeders);
+            ClearGUIProperty(GuiProperty.TorrentLink_Leechers);
+            ClearGUIProperty(GuiProperty.TorrentLink_Source);
+            ClearGUIProperty(GuiProperty.TorrentLink_SourceLong);
+
+            dummyPageTorrents.Visible = false;
 			dummyPageSearch.Visible = false;
 			dummyPageBrowse.Visible = true;
 			dummyPageTorrentFiles.Visible = false;
@@ -275,18 +305,20 @@ namespace MyAnimePlugin3.Windows
 
 			m_Facade.Clear();
 
-			setGUIProperty("Browse.Source", DownloadHelper.GetTorrentSourceDescription(curBrowseSource));
+            SetGUIProperty(GuiProperty.Browse_Source, DownloadHelper.GetTorrentSourceDescription(curBrowseSource));
+
+
 
 			foreach (TorrentLink link in results)
 			{
-				GUIListItem item = null;
-				item = new GUIListItem();
-				item.Label = string.Format("{1} ({2})", link.Source, link.TorrentName, link.Size);
-				item.TVTag = link;
+                GUIListItem item = new GUIListItem();
+                item.Label = string.Format("{0} ({1})", link.TorrentName, link.Size);
+                item.TVTag = link;
 				m_Facade.Add(item);
 			}
 
-			setGUIProperty("Browse.ResultDescription", string.Format("{0} Results", results.Count));
+            SetGUIProperty(GuiProperty.Browse_ResultDescription, string.Format("{0} {1}", results.Count, results.Count == 1 ? Translation.Result : Translation.Results));
+
 
 			m_Facade.Focus = true;
 		}
@@ -297,10 +329,10 @@ namespace MyAnimePlugin3.Windows
 			{
 				m_Facade.Clear();
 
-				setGUIProperty("Browse.Source", DownloadHelper.GetTorrentSourceDescription(curBrowseSource));
-				setGUIProperty("Browse.ResultDescription", "Searching...");
+                SetGUIProperty(GuiProperty.Browse_Source, DownloadHelper.GetTorrentSourceDescription(curBrowseSource));
+                SetGUIProperty(GuiProperty.Browse_ResultDescription, Translation.Searching + "...");
 
-				List<TorrentLink> links = DownloadHelper.BrowseTorrents(curBrowseSource);
+                List<TorrentLink> links = DownloadHelper.BrowseTorrents(curBrowseSource);
 				ShowBrowseResults(links);
 
 			}
@@ -311,52 +343,28 @@ namespace MyAnimePlugin3.Windows
 			}
 		}
 
-        public override void OnAction(MediaPortal.GUI.Library.Action action)
+        protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
         {
-            switch (action.wID)
+            MainMenu menu = new MainMenu();
+            menu.Add(btnTorrentsUIPage, () =>
             {
+                ShowPageTorrents();
+                m_Facade.Focus = true;
+            });
+            menu.Add(btnSearchPage, () =>
+            {
+                ShowPageSearch(true);
+                m_Facade.Focus = true;
+            });
+            menu.Add(btnBrowseTorrentsPage, () =>
+            {
+                ShowPageBrowseTorrents();
+                m_Facade.Focus = true;
+            });
+            if (menu.Check(control))
+                return;
 
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_LEFT:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_RIGHT:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
-
-                    base.OnAction(action);
-                    break;
-
-                default:
-                    base.OnAction(action);
-                    break;
-            }
-        }
-
-		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
-		{
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
-
-			if (control == this.btnTorrentsUIPage)
-			{
-				this.btnTorrentsUIPage.IsFocused = false;
-				ShowPageTorrents();
-				m_Facade.Focus = true;
-			}
-
-			if (control == this.btnSearchPage)
-			{
-				this.btnSearchPage.Focus = false;
-				ShowPageSearch(true);
-				m_Facade.Focus = true;
-			}
-
-			if (control == this.btnBrowseTorrentsPage)
-			{
-				this.btnBrowseTorrentsPage.Focus = false;
-				ShowPageBrowseTorrents();
-				m_Facade.Focus = true;
-			}
-
-			if (control == this.m_Facade)
+            if (control == this.m_Facade)
 			{
 				// show the files if we are looking at a torrent
 				GUIListItem item = m_Facade.SelectedListItem;
@@ -381,7 +389,7 @@ namespace MyAnimePlugin3.Windows
 
 				if (item.TVTag.GetType() == typeof(TorrentFile))
 				{
-					if (item.Label == UpFolder)
+					if (item.Label == Translation.BackToTorrents)
 					{
 
 						ShowPageTorrents();
@@ -430,7 +438,7 @@ namespace MyAnimePlugin3.Windows
 			else
 				dummyEpisodeSearch.Visible = false;
 
-			setGUIProperty("Search.Summary", string.Format("{0}", dsc.ToString()));
+            SetGUIProperty(GuiProperty.Search_Summary, string.Format("{0}", dsc));
 
 			foreach (TorrentLink link in results)
 			{
@@ -446,8 +454,7 @@ namespace MyAnimePlugin3.Windows
 
 				BaseConfig.MyAnimeLog.Write("TORRENT: " + item.Label);
 			}
-
-			setGUIProperty("Search.ResultDescription", string.Format("{0} Results", results.Count));
+            SetGUIProperty(GuiProperty.Search_ResultDescription, string.Format("{0} {1}", results.Count, results.Count == 1 ? Translation.Result : Translation.Results));
 		}
 
 		private void PerformTorrentSearch()
@@ -459,10 +466,12 @@ namespace MyAnimePlugin3.Windows
 					return;
 				}
 
-				setGUIProperty("Search.Summary", string.Format("{0}", MainWindow.currentDownloadSearch.ToString()));
-				setGUIProperty("Search.ResultDescription", "Searching...");
 
-				List<TorrentLink> links = DownloadHelper.SearchTorrents(MainWindow.currentDownloadSearch);
+                SetGUIProperty(GuiProperty.Search_Summary, string.Format("{0}", MainWindow.currentDownloadSearch));
+                SetGUIProperty(GuiProperty.Search_ResultDescription, Translation.Searching + "...");
+
+
+                List<TorrentLink> links = DownloadHelper.SearchTorrents(MainWindow.currentDownloadSearch);
 				ShowSearchResults(MainWindow.currentDownloadSearch, links);
 
 				// add history record
@@ -509,7 +518,7 @@ namespace MyAnimePlugin3.Windows
 				m_Facade.Clear();
 
 				item = new GUIListItem();
-				item.Label = UpFolder;
+				item.Label = Translation.BackToTorrents;
 				item.TVTag = new TorrentFile(); // do this, just so we know we are looking at torrent files
 				m_Facade.Add(item);
 
@@ -595,14 +604,16 @@ namespace MyAnimePlugin3.Windows
 						{
 							item = GUIControl.GetListItem(this.GetID, this.m_Facade.GetID, itemIndex);
 							Torrent torItem = item.TVTag as Torrent;
+						    if (torItem != null)
+						    {
+						        if (curTorrent != null)
+						        {
+						            if (curTorrent.Hash == torItem.Hash) curTorrent = torItem;
+						        }
 
-							if (curTorrent != null)
-							{
-								if (curTorrent.Hash == torItem.Hash) curTorrent = torItem;
-							}
-
-							if (tor.Hash == torItem.Hash)
-								foundItem = item;
+						        if (tor.Hash == torItem.Hash)
+						            foundItem = item;
+						    }
 						}
 
 						SetTorrentListItem(ref foundItem, tor);
@@ -614,10 +625,9 @@ namespace MyAnimePlugin3.Windows
 						DisplayTorrentDetails(curTorrent);
 					}
 
-					
 
 
-					setGUIProperty("Torrent.Summary", string.Format("{0} Active Torrents at {1}/sec", activeTorrents, Utils.FormatByteSize((long)totalSpeed)));
+                    SetGUIProperty(GuiProperty.Torrent_Summary, string.Format(Translation.ActiveTorrentsAt, activeTorrents, Utils.FormatByteSize(totalSpeed)));
 				}
 
 				
@@ -648,93 +658,55 @@ namespace MyAnimePlugin3.Windows
 
 		public override bool Init()
 		{
-			return Load(GUIGraphicsContext.Skin + @"\Anime3_Downloads.xml");
-		}
+            return this.InitSkin<GuiProperty>("Anime3_Downloads.xml");
+        }
 
-		public static void setGUIProperty(string which, string value)
-		{
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3." + which, value);
-		}
 
-		public static void clearGUIProperty(string which)
-		{
-			setGUIProperty(which, "-"); 
-		}
 
-		public override void DeInit()
-		{
-			base.DeInit();
-		}
+        private void DisplayTorrentDetails(Torrent tor)
+        {
+            SetGUIProperty(GuiProperty.Torrent_Name, tor.Name);
+            SetGUIProperty(GuiProperty.Torrent_Size, tor.SizeFormatted);
+            SetGUIProperty(GuiProperty.Torrent_Done, tor.PercentProgressFormatted);
+            SetGUIProperty(GuiProperty.Torrent_DownloadSpeed, tor.DownloadSpeedFormatted);
+            SetGUIProperty(GuiProperty.Torrent_UploadSpeed, tor.UploadSpeedFormatted);
+            SetGUIProperty(GuiProperty.Torrent_Downloaded, tor.DownloadedFormatted);
+            SetGUIProperty(GuiProperty.Torrent_Uploaded, tor.UploadedFormatted);
+            SetGUIProperty(GuiProperty.Torrent_Ratio, tor.RatioFormatted);
+            SetGUIProperty(GuiProperty.Torrent_Seeds, tor.SeedsConnected.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.Torrent_SInSwarm, tor.SeedsInSwarm.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.Torrent_Peers, tor.PeersConnected.ToString(Globals.Culture));
+            SetGUIProperty(GuiProperty.Torrent_PInSwarm, tor.PeersInSwarm.ToString(Globals.Culture));
+        }
 
-		private void DisplayTorrentDetails(Torrent tor)
-		{
-			clearGUIProperty("Torrent.Name");
-			clearGUIProperty("Torrent.Size");
-			clearGUIProperty("Torrent.Done");
-			clearGUIProperty("Torrent.DownloadSpeed");
-			clearGUIProperty("Torrent.UploadSpeed");
-			clearGUIProperty("Torrent.Downloaded");
-			clearGUIProperty("Torrent.Uploaded");
-			clearGUIProperty("Torrent.Ratio");
-			clearGUIProperty("Torrent.Seeds");
-			clearGUIProperty("Torrent.SInSwarm");
-			clearGUIProperty("Torrent.Peers");
-			clearGUIProperty("Torrent.PInSwarm");
+        private void DisplayTorrentFileDetails(TorrentFile tor)
+        {
+            SetGUIProperty(GuiProperty.TorrentFile_Name, tor.FileName);
+            SetGUIProperty(GuiProperty.TorrentFile_Size, tor.FileSizeFormatted);
+            SetGUIProperty(GuiProperty.TorrentFile_Downloaded, tor.DownloadedFormatted);
 
-			setGUIProperty("Torrent.Name", tor.Name);
-			setGUIProperty("Torrent.Size", tor.SizeFormatted);
-			setGUIProperty("Torrent.Done", tor.PercentProgressFormatted);
-			setGUIProperty("Torrent.DownloadSpeed", tor.DownloadSpeedFormatted);
-			setGUIProperty("Torrent.UploadSpeed", tor.UploadSpeedFormatted);
-			setGUIProperty("Torrent.Downloaded", tor.DownloadedFormatted);
-			setGUIProperty("Torrent.Uploaded", tor.UploadedFormatted);
-			setGUIProperty("Torrent.Ratio", tor.RatioFormatted);
-			setGUIProperty("Torrent.Seeds", tor.SeedsConnected.ToString());
-			setGUIProperty("Torrent.SInSwarm", tor.SeedsInSwarm.ToString());
-			setGUIProperty("Torrent.Peers", tor.PeersConnected.ToString());
-			setGUIProperty("Torrent.PInSwarm", tor.PeersInSwarm.ToString());
-		}
+            string pri = "";
+            switch ((TorrentFilePriority)tor.Priority)
+            {
+                case TorrentFilePriority.DontDownload: pri = Translation.DontDownload; break;
+                case TorrentFilePriority.High: pri = Translation.High; break;
+                case TorrentFilePriority.Low: pri = Translation.Low; break;
+                case TorrentFilePriority.Medium: pri = Translation.Medium; break;
+            }
+            SetGUIProperty(GuiProperty.TorrentFile_Priority, pri);
+        }
 
-		private void DisplayTorrentFileDetails(TorrentFile tor)
-		{
-			clearGUIProperty("TorrentFile.Name");
-			clearGUIProperty("TorrentFile.Size");
-			clearGUIProperty("TorrentFile.Downloaded");
-			clearGUIProperty("TorrentFile.Priority");
+        private void DisplayTorrentLinkDetails(TorrentLink tor)
+        {
+            SetGUIProperty(GuiProperty.TorrentLink_Name, tor.TorrentName);
+            SetGUIProperty(GuiProperty.TorrentLink_Size, tor.Size);
+            SetGUIProperty(GuiProperty.TorrentLink_Seeders, tor.Seeders);
+            SetGUIProperty(GuiProperty.TorrentLink_Leechers, tor.Leechers);
+            SetGUIProperty(GuiProperty.TorrentLink_Source, tor.Source);
+            SetGUIProperty(GuiProperty.TorrentLink_SourceLong, tor.SourceLong);
+        }
 
-			setGUIProperty("TorrentFile.Name", tor.FileName);
-			setGUIProperty("TorrentFile.Size", tor.FileSizeFormatted);
-			setGUIProperty("TorrentFile.Downloaded", tor.DownloadedFormatted);
-
-			string pri = "";
-			switch ((TorrentFilePriority)tor.Priority)
-			{
-				case TorrentFilePriority.DontDownload: pri = "Don't Download"; break;
-				case TorrentFilePriority.High: pri = "High"; break;
-				case TorrentFilePriority.Low: pri = "Low"; break;
-				case TorrentFilePriority.Medium: pri = "Medium"; break;
-			}
-			setGUIProperty("TorrentFile.Priority", pri);
-		}
-
-		private void DisplayTorrentLinkDetails(TorrentLink tor)
-		{
-			clearGUIProperty("TorrentLink.Name");
-			clearGUIProperty("TorrentLink.Size");
-			clearGUIProperty("TorrentLink.Seeders");
-			clearGUIProperty("TorrentLink.Leechers");
-			clearGUIProperty("TorrentLink.Source");
-			clearGUIProperty("TorrentLink.SourceLong");
-
-			setGUIProperty("TorrentLink.Name", tor.TorrentName);
-			setGUIProperty("TorrentLink.Size", tor.Size);
-			setGUIProperty("TorrentLink.Seeders", tor.Seeders);
-			setGUIProperty("TorrentLink.Leechers", tor.Leechers);
-			setGUIProperty("TorrentLink.Source", tor.Source);
-			setGUIProperty("TorrentLink.SourceLong", tor.SourceLong);
-		}
-
-		public override bool OnMessage(GUIMessage message)
+        public override bool OnMessage(GUIMessage message)
 		{
 			switch (message.Message)
 			{
@@ -791,242 +763,107 @@ namespace MyAnimePlugin3.Windows
 			}
 		}
 
-		private void ShowContextMenuSearch(TorrentLink torLink)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return;
+        private void ShowContextMenuSearch(TorrentLink torLink)
+        {
+            ContextMenu cmenu = new ContextMenu(Translation.Search);
+            cmenu.AddAction(Translation.DownloadViaTorrent, () =>
+            {
+                if (torLink != null)
+                {
+                    MainWindow.uTorrent.AddTorrentFromURL(torLink.TorrentDownloadLink);
+                    LoadUTorrentListAsync();
+                }
+            });
+            cmenu.AddAction(Translation.ManualSearch, () =>
+            {
+                string criteria = "";
+                if (Utils.DialogText(ref criteria, GetID))
+                {
+                    MainWindow.currentDownloadSearch = new DownloadSearchCriteria(DownloadSearchType.Manual, criteria);
+                    PerformTorrentSearchAsync();
+                }
+            });
+            cmenu.Add(Translation.RecentSearches + " >>>", ShowRecentSearches);
+            cmenu.AddAction(Translation.ClearSearchHistory, () =>
+            {
+                MainWindow.downloadSearchHistory.Clear();
+                MainWindow.downloadSearchResultsHistory.Clear();
+                ClearGUIProperty(GuiProperty.Search_ResultDescription);
+                ClearGUIProperty(GuiProperty.Search_Summary);
+                if (dummyPageSearch.Visible) m_Facade.Clear();
+            });
+            cmenu.Show();
+        }
 
-			dlg.Reset();
-			dlg.SetHeading("Search");
+        private ContextMenuAction ShowContextMenuBrowse(TorrentLink torLink)
+        {
+            ContextMenu cmenu = new ContextMenu(Translation.Browse);
+            cmenu.AddAction(Translation.DownloadViaTorrent, () =>
+            {
+                MainWindow.uTorrent.AddTorrentFromURL(torLink.TorrentDownloadLink);
+                LoadUTorrentListAsync();
+            });
+            cmenu.Add(Translation.SelectSource, () => ShowBrowseSources(torLink));
+            return cmenu.Show();
+        }
 
-			dlg.Add("Download via uTorrent");
-			dlg.Add("Manual Search");
-			dlg.Add("Recent Searches >>>");
-			dlg.Add("Clear Search History");
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
+        private ContextMenuAction ShowBrowseSources(TorrentLink torLink)
+        {
+            ContextMenu cmenu = new ContextMenu(Translation.SelectSource);
+            cmenu.Add("<<< " + Translation.Browse, () => ShowContextMenuBrowse(torLink));
+            foreach (TorrentSource src in Enum.GetValues(typeof(TorrentSource)))
+            {
+                TorrentSource local = src;
+                cmenu.AddAction(DownloadHelper.GetTorrentSourceDescription(src), () =>
+                {
+                    curBrowseSource = local;
+                    PerformTorrentBrowseAsync();
+                });
+            }
+            return cmenu.Show();
+        }
 
-			switch (dlg.SelectedLabel)
-			{
-				case 0:
-					if (torLink != null)
-					{
-						MainWindow.uTorrent.AddTorrentFromURL(torLink.TorrentDownloadLink);
-						LoadUTorrentListAsync();
-					}
-					break;
+        private ContextMenuAction ShowRecentSearches()
+        {
+            if (MainWindow.downloadSearchHistory.Count == 0)
+            {
+                Utils.DialogMsg(Translation.Error, Translation.NoHistoryFound);
+                return ContextMenuAction.Exit;
+            }
+            ContextMenu cmenu = new ContextMenu(Translation.SearchHistory);
 
-				case 1:
-					string criteria = "";
-					if (Utils.DialogText(ref criteria, GetID))
-					{
-						MainWindow.currentDownloadSearch = new DownloadSearchCriteria(DownloadSearchType.Manual, criteria);
-						PerformTorrentSearchAsync();
-					}
-					break;
+            for (int i = MainWindow.downloadSearchHistory.Count - 1; i >= 0; i--)
+            {
+                int local = i;
+                cmenu.AddAction(MainWindow.downloadSearchHistory[i].ToString(), () => ShowSearchResults(MainWindow.downloadSearchHistory[local], MainWindow.downloadSearchResultsHistory[local]));
+            }
+            return cmenu.Show();
+        }
 
-				case 2:
-					ShowRecentSearches();
-					break;
+        private void ShowContextMenuTorrents(Torrent tor)
+        {
+            ContextMenu cmenu = new ContextMenu(tor.Name);
+            cmenu.AddAction(Translation.StopTorrent, () => MainWindow.uTorrent.StopTorrent(tor.Hash));
+            cmenu.AddAction(Translation.StartTorrent, () => MainWindow.uTorrent.StartTorrent(tor.Hash));
+            cmenu.AddAction(Translation.PauseTorrent, () => MainWindow.uTorrent.PauseTorrent(tor.Hash));
+            cmenu.AddAction(Translation.RemoveTorrent, () => MainWindow.uTorrent.RemoveTorrent(tor.Hash));
+            cmenu.AddAction(Translation.RemoveTorrentAndData, () => MainWindow.uTorrent.RemoveTorrentAndData(tor.Hash));
+            if (cmenu.Show() == ContextMenuAction.Exit)
+                LoadUTorrentListAsync();
+        }
 
-				case 3:
-					MainWindow.downloadSearchHistory.Clear();
-					MainWindow.downloadSearchResultsHistory.Clear();
+        private void ShowContextMenuTorrentFiles(TorrentFile tor, int idx)
+        {
+            ContextMenu cmenu = new ContextMenu(tor.FileName);
+            cmenu.AddAction(Translation.Priority + " - " + Translation.High, () => MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.High));
+            cmenu.AddAction(Translation.Priority + " - " + Translation.Medium, () => MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.Medium));
+            cmenu.AddAction(Translation.Priority + " - " + Translation.Low, () => MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.Low));
+            cmenu.AddAction(Translation.Priority + " - " + Translation.DontDownload, () => MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.DontDownload));
+            if (cmenu.Show() == ContextMenuAction.Exit)
+                ShowPageTorrentFiles();
+        }
 
-					setGUIProperty("Search.ResultDescription", "-");
-					setGUIProperty("Search.Summary", "-");
-
-					if (dummyPageSearch.Visible) m_Facade.Clear();
-
-					break;
-			}
-		}
-
-		private void ShowContextMenuBrowse(TorrentLink torLink)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return;
-
-			dlg.Reset();
-			dlg.SetHeading("Browse");
-
-			dlg.Add("Download via uTorrent");
-			dlg.Add("Select Source");
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			switch (dlg.SelectedLabel)
-			{
-				case 0:
-					if (torLink != null)
-					{
-						MainWindow.uTorrent.AddTorrentFromURL(torLink.TorrentDownloadLink);
-						
-						LoadUTorrentListAsync();
-					}
-					break;
-
-				case 1:
-					ShowBrowseSources(torLink);
-					break;
-			}
-		}
-
-		private void ShowBrowseSources(TorrentLink torLink)
-		{
-
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return;
-
-			dlg.Reset();
-			dlg.SetHeading("Select Source");
-
-			dlg.Add("<<< Browse");
-			dlg.Add("Anime Suki");
-			dlg.Add("Baka Updates");
-			dlg.Add("Nyaa Torrents");
-			dlg.Add("Tokyo Toshokan");
-			dlg.Add("Baka BT");
-			dlg.Add("Anime Byt.es");
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			switch (dlg.SelectedLabel)
-			{
-				case 0:
-					ShowContextMenuBrowse(torLink);
-					return;
-
-				case 1: curBrowseSource = TorrentSource.AnimeSuki; break;
-				case 2: curBrowseSource = TorrentSource.BakaUpdates; break;
-				case 3: curBrowseSource = TorrentSource.Nyaa; break;
-				case 4: curBrowseSource = TorrentSource.TokyoToshokan; break;
-				case 5: curBrowseSource = TorrentSource.BakaBT; break;
-				case 6: curBrowseSource = TorrentSource.AnimeBytes; break;
-			}
-
-			PerformTorrentBrowseAsync();
-		}
-
-		private void ShowRecentSearches()
-		{
-			if (MainWindow.downloadSearchHistory.Count == 0)
-			{
-				Utils.DialogMsg("Error", "No history found");
-				return;
-			}
-			else
-			{
-				IDialogbox dlg = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				dlg.Reset();
-				dlg.SetHeading("Search History");
-				GUIListItem pItem = null;
-
-				for (int i = MainWindow.downloadSearchHistory.Count - 1; i >= 0; i--)
-				{
-					pItem = new GUIListItem(MainWindow.downloadSearchHistory[i].ToString());
-					dlg.Add(pItem);
-				}
-
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-				if (dlg.SelectedLabel >= 0)
-				{
-					int idx = MainWindow.downloadSearchHistory.Count - dlg.SelectedLabel - 1;
-					ShowSearchResults(MainWindow.downloadSearchHistory[idx], MainWindow.downloadSearchResultsHistory[idx]);
-				}
-				
-			}
-		}
-
-		private void ShowContextMenuTorrents(Torrent tor)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return;
-
-			dlg.Reset();
-			dlg.SetHeading(tor.Name);
-
-			dlg.Add("Stop Torrent");
-			dlg.Add("Start Torrent");
-			dlg.Add("Pause Torrent");
-			dlg.Add("Remove Torrent");
-			dlg.Add("Remove Torrent And Data");
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			switch (dlg.SelectedLabel)
-			{
-				case 0:
-					MainWindow.uTorrent.StopTorrent(tor.Hash);
-					LoadUTorrentListAsync();
-					break;
-
-				case 1:
-					MainWindow.uTorrent.StartTorrent(tor.Hash);
-					LoadUTorrentListAsync();
-					break;
-
-				case 2:
-					MainWindow.uTorrent.PauseTorrent(tor.Hash);
-					LoadUTorrentListAsync();
-					break;
-
-				case 3:
-					MainWindow.uTorrent.RemoveTorrent(tor.Hash);
-					LoadUTorrentListAsync();
-					break;
-
-				case 4:
-					MainWindow.uTorrent.RemoveTorrentAndData(tor.Hash);
-					LoadUTorrentListAsync();
-					break;
-
-			}
-		}
-
-		private void ShowContextMenuTorrentFiles(TorrentFile tor, int idx)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return;
-
-			dlg.Reset();
-			dlg.SetHeading(tor.FileName);
-
-			dlg.Add("Priority - High");
-			dlg.Add("Priority - Medium");
-			dlg.Add("Priority - Low");
-			dlg.Add("Priority - Don't Download");
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			switch (dlg.SelectedLabel)
-			{
-				case 0:
-					MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.High);
-					ShowPageTorrentFiles();
-					break;
-
-				case 1:
-					MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.Medium);
-					ShowPageTorrentFiles();
-					break;
-
-				case 2:
-					MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.Low);
-					ShowPageTorrentFiles();
-					break;
-
-				case 3:
-					MainWindow.uTorrent.FileSetPriority(curTorrent.Hash, idx, TorrentFilePriority.DontDownload);
-					ShowPageTorrentFiles();
-					break;
-
-
-			}
-		}
-
-		protected override void OnShowContextMenu()
+        protected override void OnShowContextMenu()
 		{
 			GUIListItem currentitem = this.m_Facade.SelectedListItem;
 			

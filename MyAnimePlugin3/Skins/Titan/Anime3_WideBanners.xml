@@ -281,40 +281,70 @@
 		  <!-- Textures -->
 		  <imageFolder>-</imageFolder>
 		  <!-- Text -->
-		  <selectedColor>00ffffff</selectedColor>
-		  <textcolor>ffffffff</textcolor>
-		  <colordiffuse>ffffffff</colordiffuse>
-		  <suffix>|</suffix>
+        <selectedColor>00ffffff</selectedColor>
+        <textcolor>ffffffff</textcolor>
+        <colordiffuse>ffffffff</colordiffuse>          
+        <suffix>|</suffix>
 		  <itemWidthBig>758</itemWidthBig>
-		  <itemHeightBig>160</itemHeightBig>
+		  <itemHeightBig>140</itemHeightBig>
 		  <!-- boxes -->
 		  <textureWidthBig>758</textureWidthBig>
 		  <textureHeightBig>140</textureHeightBig>
 		  <!-- banners -->
-		  <thumbWidthBig>758</thumbWidthBig>
-		  <thumbHeightBig>140</thumbHeightBig>
-		  <thumbPosXBig>0</thumbPosXBig>
-		  <thumbPosYBig>0</thumbPosYBig>
-		  <zoomXPixels>100</zoomXPixels>
-		  <zoomYPixels>20</zoomYPixels>
-		  <thumbZoom>no</thumbZoom>
-		  <!-- text (No banner) -->
-		  <textXOff>0</textXOff>
-		  <textYOff>0</textYOff>
-		  <frame>-</frame>
-		  <frameFocus>-</frameFocus>
-		  <frameNoFocus>-</frameNoFocus>
-		  <textureMask></textureMask>
-		  <keepaspectratio>no</keepaspectratio>
-		  <enableFocusZoom>no</enableFocusZoom>
+		  <thumbWidthBig>748</thumbWidthBig>
+		  <thumbHeightBig>130</thumbHeightBig>
+		  <thumbPosXBig>5</thumbPosXBig>
+		  <thumbPosYBig>5</thumbPosYBig>
+			<zoomXPixels>0</zoomXPixels>
+		<zoomYPixels>0</zoomYPixels>
+        <thumbZoom>no</thumbZoom>
+				<unfocusedAlpha>100</unfocusedAlpha>
+        <!-- text (No banner) -->
+        <textXOff>0</textXOff>
+        <textYOff>0</textYOff>
+        <frame>-</frame>
+        <frameFocus>tvseries_widebanner_focus.png</frameFocus>
+		<frameNoFocus>-</frameNoFocus>
+		<textureMask></textureMask>
+		<scrollOffset>1</scrollOffset>
+        <keepaspectratio>no</keepaspectratio>
+        <enableFocusZoom>no</enableFocusZoom>
 		  <spinPosX>1828</spinPosX>
 		  <spinPosY>1000</spinPosY>
 		</control>
 		
 	  </control>
 	</control>
-	
-	<import>Anime3_Time.xml</import>
+ 	
+      <control>
+      <id>0</id>
+      <type>image</type>
+      <posX>66</posX>
+      <posY>34</posY>
+      <width>61</width>
+      <height>57</height>
+      <texture>icon_anime.png</texture>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    		<control>
+		<description>Moviecount</description>
+		<type>label</type>
+    <label>#(L(97))Banner</label>
+    <id>0</id>
+    <posX>72</posX>
+    <posY>94</posY>
+    <align>left</align>
+    <textcolor>FFFFFFFF</textcolor>
+    <font>TitanLight12</font>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+  </control>
+  
+  
+
+	  <import>common.time.xml</import>
 	<import>common.overlay.xml</import>
 	
   </controls>

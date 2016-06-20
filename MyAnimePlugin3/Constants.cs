@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MyAnimePlugin3
 {
@@ -9,8 +10,15 @@ namespace MyAnimePlugin3
         public static readonly string WebCacheError = @"<error>No Results</error>";
         public static readonly string AniDBTitlesURL = @"http://anidb.net/api/animetitles.dat.gz";
 
-		#region PlugIn Info constants
-		public struct PlugInInfo
+
+        public static readonly string MediaPortalUpdateXml = @"http://www.team-mediaportal.com/index.php?option=com_mtree&task=att_download&link_id=218&cf_id=52";
+
+        public static Regex UpdateXmlVersion = new Regex("<ExtensionCollection.*?<GeneralInfo>.*?<Name>MyAnime</Name>.*?<Version>.*?<Major>(?<Major>.*?)</Major>.*?<Minor>(?<Minor>.*?)</Minor>.*?<Build>(?<Build>.*?)</Build>.*?<Revision>(?<Revision>.*?)</Revision>", RegexOptions.Singleline);
+
+
+
+        #region PlugIn Info constants
+        public struct PlugInInfo
 		{
 			public static readonly int ID = 6101;
 
@@ -58,8 +66,8 @@ namespace MyAnimePlugin3
 			public static readonly int RANDOM = 6116;
 			public static readonly int PLAYLISTS = 6117;
 			public static readonly int ACTORS = 6118;
-
-			public static readonly int RELATIONS_OLD = 610711;
+            public static readonly int RATINGDIALOG = 6201;
+            public static readonly int RELATIONS_OLD = 610711;
 
 		}
 		#endregion

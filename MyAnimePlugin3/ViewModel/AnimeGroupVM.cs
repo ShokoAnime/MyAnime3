@@ -6,7 +6,7 @@ using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class AnimeGroupVM : IComparable<AnimeGroupVM>
+	public class AnimeGroupVM : IComparable<AnimeGroupVM> , IVM
 	{
 		// Data from AnimeGroup
 		public int AnimeGroupID { get; set; }
@@ -54,7 +54,8 @@ namespace MyAnimePlugin3.ViewModel
 
 		public AnimeSeriesVM SeriesForNameOverride { get; set; }
 
-		public int CompareTo(AnimeGroupVM obj)
+
+        public int CompareTo(AnimeGroupVM obj)
 		{
 			return SortName.CompareTo(obj.SortName);
 		}
@@ -539,5 +540,6 @@ namespace MyAnimePlugin3.ViewModel
 
 			return contract;
 		}
+
 	}
 }

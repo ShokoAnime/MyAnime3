@@ -31,7 +31,22 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(914)] protected GUIButtonControl btnAnimePosters = null;
 		[SkinControlAttribute(915)] protected GUIButtonControl btnAnimeWideBanners = null;
 
-		enum menuAction
+        public enum GuiProperty
+        {
+            FanArt_PageTitle,
+            FanArt_Source,
+            FanArt_SelectedFanartResolution,
+            FanArt_SelectedFanartIsDefault,
+            FanArt_SelectedFanartIsDisabled,
+            FanArt_SelectedPreview
+        }
+
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+
+
+
+        enum menuAction
 		{
 			use,
 			download,
@@ -67,8 +82,7 @@ namespace MyAnimePlugin3.Windows
 
 		public override bool Init()
 		{
-			String xmlSkin = GUIGraphicsContext.Skin + @"\Anime3_FanArt.xml";
-			return Load(xmlSkin);
+            return this.InitSkin<GuiProperty>("Anime3_FanArt.xml");
 		}
 
 		private int AnimeID = -1;
@@ -143,8 +157,8 @@ namespace MyAnimePlugin3.Windows
 					strLine = GUILocalizeStrings.Get(733);
 					break;
 				case GUIFacadeControl.Layout.CoverFlow:
-					strLine = "CoverFlow";
-					break;
+                    strLine = GUILocalizeStrings.Get(791);
+                    break;
 				case GUIFacadeControl.Layout.Playlist:
 					strLine = GUILocalizeStrings.Get(101);
 					break;
@@ -155,11 +169,11 @@ namespace MyAnimePlugin3.Windows
 
 		private void ClearProperties()
 		{
-			MainWindow.setGUIProperty("FanArt.Source", " ");
-			MainWindow.setGUIProperty("FanArt.SelectedFanartResolution", " ");
-			MainWindow.setGUIProperty("FanArt.SelectedFanartIsDefault", " ");
-			MainWindow.setGUIProperty("FanArt.SelectedFanartIsDisabled", " ");
-		}
+            ClearGUIProperty(GuiProperty.FanArt_Source);
+            ClearGUIProperty(GuiProperty.FanArt_SelectedFanartResolution);
+            ClearGUIProperty(GuiProperty.FanArt_SelectedFanartIsDefault);
+            ClearGUIProperty(GuiProperty.FanArt_SelectedFanartIsDisabled);
+        }
 
 		private void ShowFanart()
 		{
@@ -210,78 +224,41 @@ namespace MyAnimePlugin3.Windows
 
 		public void setPageTitle(string Title)
 		{
-			MainWindow.setGUIProperty("FanArt.PageTitle", Title);
-		}
+            SetGUIProperty(GuiProperty.FanArt_PageTitle, Title);
+        }
 
 		protected override void OnShowContextMenu()
 		{
 			try
 			{
-				GUIListItem currentitem = this.m_Facade.SelectedListItem;
-				if (currentitem == null || !(currentitem.TVTag is FanartContainer)) return;
-				FanartContainer selectedFanart = currentitem.TVTag as FanartContainer;
 
-				IDialogbox dlg = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null) return;
-				dlg.Reset();
-				dlg.SetHeading("Fanart");
+                GUIListItem currentitem = m_Facade.SelectedListItem;
+                if (currentitem == null || !(currentitem.TVTag is FanartContainer)) return;
+                FanartContainer selectedFanart = currentitem.TVTag as FanartContainer;
 
 
-				GUIListItem pItem;
+                ContextMenu cmenu = new ContextMenu(Translation.Fanart);
+                cmenu.AddAction(selectedFanart.IsImageEnabled ? Translation.Disable : Translation.Enable, () =>
+                {
+                    bool endis = !selectedFanart.IsImageEnabled;
+                    JMMServerHelper.EnableDisableFanart(endis, selectedFanart, AnimeID);
+                    ShowFanart();
 
-
-				if (!selectedFanart.IsImageEnabled)
-				{
-					pItem = new GUIListItem("Enable");
-					dlg.Add(pItem);
-				}
-				else
-				{
-					pItem = new GUIListItem("Disable");
-					dlg.Add(pItem);
-				}
-
-				if (selectedFanart.IsImageEnabled)
-				{
-					if (selectedFanart.IsImageDefault)
-					{
-						pItem = new GUIListItem("Remove as Default");
-						dlg.Add(pItem);
-					}
-					else
-					{
-						pItem = new GUIListItem("Set as Default");
-						dlg.Add(pItem);
-					}
-				}
-
-
-				// lets show it
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-				if (dlg.SelectedId == 1) // enabled/disable
-				{
-					bool endis = !selectedFanart.IsImageEnabled;
-					JMMServerHelper.EnableDisableFanart(endis, selectedFanart, AnimeID);
-
-					ShowFanart();
-					return;
-				}
-
-				if (dlg.SelectedId == 2)
-				{
-					bool isdef = !selectedFanart.IsImageDefault;
-					JMMServerHelper.SetDefaultFanart(isdef, selectedFanart, AnimeID);
-
-					ShowFanart();
-					return;
-				}
-
+                });
+                if (selectedFanart.IsImageEnabled)
+                {
+                    cmenu.AddAction(selectedFanart.IsImageDefault ? Translation.RemoveAsDefault : Translation.SetAsDefault, () =>
+                    {
+                        bool isdef = !selectedFanart.IsImageDefault;
+                        JMMServerHelper.SetDefaultFanart(isdef, selectedFanart, AnimeID);
+                        ShowFanart();
+                    });
+                }
+                cmenu.Show();
 			}
 			catch (Exception ex)
 			{
 				BaseConfig.MyAnimeLog.Write("Exception in Fanart Chooser Context Menu: " + ex.Message + ex.StackTrace);
-				return;
 			}
 		}
 
@@ -303,177 +280,146 @@ namespace MyAnimePlugin3.Windows
 
 		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
 		{
-			if (control == btnWideBanners)
-			{
-				GUIWindowManager.CloseCurrentWindow();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
-			}
-
-			if (control == btnPosters)
-			{
-				GUIWindowManager.CloseCurrentWindow();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.POSTERS, false);
-			}
-
-			if (control == buttonLayouts)
-			{
-				bool shouldContinue = false;
-				do
-				{
-					shouldContinue = false;
-					switch (CurrentView)
-					{
-						case GUIFacadeControl.Layout.List:
-							CurrentView = GUIFacadeControl.Layout.Playlist;
-							if (!AllowView(CurrentView) || m_Facade.PlayListLayout == null)
-							{
-								shouldContinue = true;
-							}
-							else
-							{
-								m_Facade.CurrentLayout = GUIFacadeControl.Layout.Playlist;
+            MainMenu menu = new MainMenu();
+            menu.Add(btnWideBanners, () =>
+            {
+                GUIWindowManager.CloseCurrentWindow();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
+            });
+            menu.Add(btnPosters, () =>
+            {
+                GUIWindowManager.CloseCurrentWindow();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.POSTERS, false);
+            });
+            menu.Add(buttonLayouts, () =>
+            {
+                bool shouldContinue;
+                do
+                {
+                    shouldContinue = false;
+                    switch (CurrentView)
+                    {
+                        case GUIFacadeControl.Layout.List:
+                            CurrentView = GUIFacadeControl.Layout.Playlist;
+                            if (!AllowView(CurrentView) || m_Facade.PlayListLayout == null)
+                            {
+                                shouldContinue = true;
+                            }
+                            else
+                            {
+                                m_Facade.CurrentLayout = GUIFacadeControl.Layout.Playlist;
                                 BaseConfig.Settings.LastFanartViewMode = GUIFacadeControl.Layout.Playlist;
-								BaseConfig.Settings.Save();
-							}
-							break;
+                                BaseConfig.Settings.Save();
+                            }
+                            break;
 
-						case GUIFacadeControl.Layout.Playlist:
-							CurrentView = GUIFacadeControl.Layout.SmallIcons;
-							if (!AllowView(CurrentView) || m_Facade.ThumbnailLayout == null)
-							{
-								shouldContinue = true;
-							}
-							else
-							{
-								m_Facade.CurrentLayout = GUIFacadeControl.Layout.SmallIcons;
+                        case GUIFacadeControl.Layout.Playlist:
+                            CurrentView = GUIFacadeControl.Layout.SmallIcons;
+                            if (!AllowView(CurrentView) || m_Facade.ThumbnailLayout == null)
+                            {
+                                shouldContinue = true;
+                            }
+                            else
+                            {
+                                m_Facade.CurrentLayout = GUIFacadeControl.Layout.SmallIcons;
                                 BaseConfig.Settings.LastFanartViewMode = GUIFacadeControl.Layout.SmallIcons;
-								BaseConfig.Settings.Save();
-							}
-							break;
+                                BaseConfig.Settings.Save();
+                            }
+                            break;
 
-						case GUIFacadeControl.Layout.SmallIcons:
-							CurrentView = GUIFacadeControl.Layout.LargeIcons;
-							if (!AllowView(CurrentView) || m_Facade.ThumbnailLayout == null)
-							{
-								shouldContinue = true;
-							}
-							else
-							{
-								m_Facade.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
+                        case GUIFacadeControl.Layout.SmallIcons:
+                            CurrentView = GUIFacadeControl.Layout.LargeIcons;
+                            if (!AllowView(CurrentView) || m_Facade.ThumbnailLayout == null)
+                            {
+                                shouldContinue = true;
+                            }
+                            else
+                            {
+                                m_Facade.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
                                 BaseConfig.Settings.LastFanartViewMode = GUIFacadeControl.Layout.LargeIcons;
                                 BaseConfig.Settings.Save();
-							}
-							break;
+                            }
+                            break;
 
-						case GUIFacadeControl.Layout.LargeIcons:
-							CurrentView = GUIFacadeControl.Layout.Filmstrip;
-							if (!AllowView(CurrentView) || m_Facade.FilmstripLayout == null)
-							{
-								shouldContinue = true;
-							}
-							else
-							{
-								m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
+                        case GUIFacadeControl.Layout.LargeIcons:
+                            CurrentView = GUIFacadeControl.Layout.Filmstrip;
+                            if (!AllowView(CurrentView) || m_Facade.FilmstripLayout == null)
+                            {
+                                shouldContinue = true;
+                            }
+                            else
+                            {
+                                m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
                                 BaseConfig.Settings.LastFanartViewMode = GUIFacadeControl.Layout.Filmstrip;
                                 BaseConfig.Settings.Save();
-							}
-							break;
+                            }
+                            break;
 
-						case GUIFacadeControl.Layout.Filmstrip:
-							CurrentView = GUIFacadeControl.Layout.List;
-							if (!AllowView(CurrentView) || m_Facade.ListLayout == null)
-							{
-								shouldContinue = true;
-							}
-							else
-							{
-								m_Facade.CurrentLayout = GUIFacadeControl.Layout.List;
+                        case GUIFacadeControl.Layout.Filmstrip:
+                            CurrentView = GUIFacadeControl.Layout.List;
+                            if (!AllowView(CurrentView) || m_Facade.ListLayout == null)
+                            {
+                                shouldContinue = true;
+                            }
+                            else
+                            {
+                                m_Facade.CurrentLayout = GUIFacadeControl.Layout.List;
                                 BaseConfig.Settings.LastFanartViewMode = GUIFacadeControl.Layout.List;
                                 BaseConfig.Settings.Save();
-							}
-							break;
-					}
-				} while (shouldContinue);
-				UpdateLayoutButton();
-				GUIControl.FocusControl(GetID, controlId);
-			}
-
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
-
-			if (actionType != MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM) return; // some other events raised onClicked too for some reason?
-			
-		}
-
-        public override void OnAction(MediaPortal.GUI.Library.Action action)
-        {
-            if (viewIsFullscreen)
-            {
-                if(action.m_key.KeyCode == 27)
-                {
-                    // makes esc exit fullscreen
-                    //hide fullscreen
-                    dummyFullscreen.Visible = true;
-                    viewIsFullscreen = false;
-                    return;
-                }
-                if (action.IsUserAction())
-                {
-                    //this stops the selection wondering around the screen
-                    return;
-                }
-            }
-
-            switch (action.wID)
-            {
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_LEFT:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_RIGHT:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
-
-                    base.OnAction(action);
-                    break;
-                default:
-                    base.OnAction(action);
-                    break;
-            }
+                            }
+                            break;
+                    }
+                } while (shouldContinue);
+                UpdateLayoutButton();
+                GUIControl.FocusControl(GetID, controlId);
+            });
+            if (menu.Check(control))
+                return;
+            base.OnClicked(controlId, control, actionType);
         }
-        
 
-		void setFanartPreviewBackground(FanartContainer fanart)
-		{
-			MainWindow.setGUIProperty("FanArt.SelectedFanartResolution", " ");
-			MainWindow.setGUIProperty("FanArt.SelectedPreview", " ");
-			MainWindow.setGUIProperty("FanArt.SelectedFanartIsDisabled", " ");
-			MainWindow.setGUIProperty("FanArt.SelectedFanartIsDefault", " ");
-			MainWindow.setGUIProperty("FanArt.Source", " ");
 
-			if (fanart == null) return;
 
-			if (fanart.ImageType == ImageEntityType.TvDB_FanArt)
-			{
-				TvDB_ImageFanartVM fanartTvDB = fanart.FanartObject as TvDB_ImageFanartVM;
-				MainWindow.setGUIProperty("FanArt.SelectedFanartResolution", fanartTvDB.BannerType2);
-			}
+        void setFanartPreviewBackground(FanartContainer fanart)
+        {
+            if (fanart == null)
+            {
+                ClearGUIProperty(GuiProperty.FanArt_SelectedFanartResolution);
+                ClearGUIProperty(GuiProperty.FanArt_SelectedPreview);
+                ClearGUIProperty(GuiProperty.FanArt_SelectedFanartIsDisabled);
+                ClearGUIProperty(GuiProperty.FanArt_SelectedFanartIsDefault);
+                ClearGUIProperty(GuiProperty.FanArt_Source);
+                return;
+            }
 
-			MainWindow.setGUIProperty("FanArt.SelectedFanartIsDisabled", fanart.IsImageEnabled ? "No" : "Yes");
-			MainWindow.setGUIProperty("FanArt.SelectedFanartIsDefault", fanart.IsImageDefault ? "Yes" : "No");
-			MainWindow.setGUIProperty("FanArt.Source", fanart.FanartSource);
+            if (fanart.ImageType == ImageEntityType.TvDB_FanArt)
+            {
+                TvDB_ImageFanartVM fanartTvDb = fanart.FanartObject as TvDB_ImageFanartVM;
+                if (fanartTvDb != null)
+                    SetGUIProperty(GuiProperty.FanArt_SelectedFanartResolution, fanartTvDb.BannerType2);
+                else
+                    ClearGUIProperty(GuiProperty.FanArt_SelectedFanartResolution);
+            }
+            else
+                ClearGUIProperty(GuiProperty.FanArt_SelectedFanartResolution);
 
-			string preview = string.Empty;
+            SetGUIProperty(GuiProperty.FanArt_SelectedFanartIsDisabled, fanart.IsImageEnabled ? Translation.No : Translation.Yes);
+            SetGUIProperty(GuiProperty.FanArt_SelectedFanartIsDefault, fanart.IsImageDefault ? Translation.Yes : Translation.No);
+            SetGUIProperty(GuiProperty.FanArt_Source, fanart.FanartSource);
 
-			if (File.Exists(fanart.FullImagePath))
-			{
-				// Ensure Fanart on Disk is valid as well
-				ImageAllocator.LoadImageFastFromFile(fanart.FullImagePath);
+            string preview;
 
-				// Should be safe to assign fullsize fanart if available
-				preview = ImageAllocator.GetOtherImage(fanart.FullImagePath, default(System.Drawing.Size), false);
-			}
-			else
-				preview = m_Facade.SelectedListItem.IconImageBig;
+            if (File.Exists(fanart.FullImagePath))
+            {
+                // Ensure Fanart on Disk is valid as well
+                ImageAllocator.LoadImageFastFromFile(fanart.FullImagePath);
+                // Should be safe to assign fullsize fanart if available
+                preview = ImageAllocator.GetOtherImage(fanart.FullImagePath, default(System.Drawing.Size), false);
+            }
+            else
+                preview = m_Facade.SelectedListItem.IconImageBig;
 
-			MainWindow.setGUIProperty("FanArt.SelectedPreview", preview);
-		}
-	}
+            SetGUIProperty(GuiProperty.FanArt_SelectedPreview, preview);
+        }
+    }
 }

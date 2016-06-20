@@ -97,11 +97,11 @@ namespace MyAnimePlugin3.ViewModel
 			}
 			else
 			{
-				Recommended_DisplayName = "Data Missing";
-				Recommended_AnimeInfoExists = false;
+				Recommended_DisplayName = Translation.DataMissing;
+                Recommended_AnimeInfoExists = false;
 				Recommended_PosterPath = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
-				Recommended_Description = "Overview not available";
-			}
+				Recommended_Description = Translation.OverviewNotAvailable;
+            }
 
 			if (BasedOn_AniDB_Anime != null)
 			{

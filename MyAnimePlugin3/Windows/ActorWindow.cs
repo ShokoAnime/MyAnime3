@@ -1,248 +1,303 @@
-﻿using System;
-using System.Collections.Generic;
-using MediaPortal.GUI.Library;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using MediaPortal.Dialogs;
-using Action = MediaPortal.GUI.Library.Action;
+using MediaPortal.GUI.Library;
 using MyAnimePlugin3.ViewModel;
+// ReSharper disable InconsistentNaming
 
 namespace MyAnimePlugin3.Windows
 {
-	public class ActorWindow : GUIWindow
-	{
-		[SkinControlAttribute(50)] protected GUIFacadeControl m_Facade = null;
+    public class ActorWindow : GUIWindow
+    {
+        public enum GuiProperty
+        {
+            Actors_Status,
+            Actors_Actor_Name,
+            Actors_Actor_Poster,
+            Actors_Character_CharacterCount,
+            Actors_Character_Name,
+            Actors_Character_KanjiName,
+            Actors_Character_Description,
+            Actors_Character_CharType,
+            Actors_Character_Poster,
+            Actors_Series_Title,
+            Actors_Series_Poster
+        }
 
-		[SkinControlAttribute(1301)]
-		protected GUILabelControl dummyCharactersExist = null;
+        public void SetGUIProperty(GuiProperty which, string value)
+        {
+            this.SetGUIProperty(which.ToString(), value);
+        }
 
-		[SkinControlAttribute(2)]
-		protected GUIButtonControl btnGetMissingInfo = null;
+        public void ClearGUIProperty(GuiProperty which)
+        {
+            this.ClearGUIProperty(which.ToString());
+        }
 
-		private AniDB_SeiyuuVM seiyuu = null;
-		private List<AniDB_CharacterVM> charList = new List<AniDB_CharacterVM>();
 
-		public ActorWindow()
+        [SkinControl(50)] protected GUIFacadeControl m_Facade = null;
+        [SkinControl(1301)] protected GUILabelControl dummyCharactersExist = null;
+        [SkinControl(2)] protected GUIButtonControl btnGetMissingInfo = null;
+
+        private AniDB_SeiyuuVM seiyuu;
+        private List<AniDB_CharacterVM> charList = new List<AniDB_CharacterVM>();
+
+        public ActorWindow()
         {
             // get ID of windowplugin belonging to this setup
             // enter your own unique code
-			GetID = Constants.WindowIDs.ACTORS;
+            // ReSharper disable once VirtualMemberCallInConstructor
+            GetID = Constants.WindowIDs.ACTORS;
 
-			MainWindow.ServerHelper.GotCharacterImagesEvent += new JMMServerHelper.GotCharacterImagesEventHandler(ServerHelper_GotCharacterImagesEvent);
+            MainWindow.ServerHelper.GotCharacterImagesEvent += ServerHelper_GotCharacterImagesEvent;
         }
 
-		void ServerHelper_GotCharacterImagesEvent(Events.GotCharacterImagesEventArgs ev)
-		{
-			if (GUIWindowManager.ActiveWindow != Constants.WindowIDs.ACTORS) return;
-			int sid = ev.AniDB_SeiyuuID;
-			if (seiyuu == null || sid != seiyuu.AniDB_SeiyuuID) return;
-			setGUIProperty("Status", "-");
-			ShowCharacters();
-		}
+        void ServerHelper_GotCharacterImagesEvent(Events.GotCharacterImagesEventArgs ev)
+        {
+            if (GUIWindowManager.ActiveWindow == Constants.WindowIDs.ACTORS)
+            {
+                int sid = ev.AniDB_SeiyuuID;
+                if (seiyuu != null && sid == seiyuu.AniDB_SeiyuuID)
+                    RefreshCharacters();
+            }
+            ClearGUIProperty(GuiProperty.Actors_Status);
+        }
 
-		public override int GetID
-		{
-			get { return Constants.WindowIDs.ACTORS; }
-			set { base.GetID = value; }
-		}
+        public override int GetID
+        {
+            get { return Constants.WindowIDs.ACTORS; }
+            set { base.GetID = value; }
+        }
 
-		protected override void OnPageLoad()
-		{
-			base.OnPageLoad();
+        protected override void OnPageLoad()
+        {
+            base.OnPageLoad();
 
-			if (m_Facade != null)
-				m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
+            if (m_Facade != null)
+                m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
 
-			ShowCharacters();
+            ShowCharacters();
+            ClearGUIProperty(GuiProperty.Actors_Status);
+            if (m_Facade!=null)
+                m_Facade.Focus = true;
+        }
 
-			setGUIProperty("Status", "-");
-			
-			m_Facade.Focus = true;
-		}
+        public override bool Init()
+        {
+            return this.InitSkin<GuiProperty>("Anime3_Actors.xml");
+        }
 
-		public override bool Init()
-		{
-			return Load(GUIGraphicsContext.Skin + @"\Anime3_Actors.xml");
-		}
+        private void RefreshCharacters()
+        {
+            charList.Clear();
+            List<JMMServerBinary.Contract_AniDB_Character> charContracts =
+                JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID);
+            if (charContracts == null)
+            {
+                ClearGUIProperty(GuiProperty.Actors_Character_CharacterCount);
+                return;
+            }
 
-		public static void setGUIProperty(string which, string value)
-		{
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Anime3.Actors." + which, value);
-		}
+            foreach (JMMServerBinary.Contract_AniDB_Character chr in charContracts)
+                charList.Add(new AniDB_CharacterVM(chr));
+            foreach (AniDB_CharacterVM aniChar in charList)
+            {
+                if (!string.IsNullOrEmpty(aniChar.PosterPath) && File.Exists(aniChar.PosterPath))
+                {
+                    string imagePath = aniChar.PosterPath;
+                    bool fnd = false;
+                    foreach (GUIListItem g in m_Facade.FilmstripLayout.ListItems)
+                    {
+                        AniDB_CharacterVM ac = g.TVTag as AniDB_CharacterVM;
+                        if (ac != null)
+                        {
+                            if (ac.CharID == aniChar.CharID)
+                            {
+                                fnd = true;
+                                g.IconImage = g.IconImageBig = imagePath;
+                                break;
+                            }
+                        }
+                    }
+                    if (!fnd)
+                    {
+                        GUIListItem item = new GUIListItem(string.Empty);
+                        item.IconImage = item.IconImageBig = imagePath;
+                        item.TVTag = aniChar;
+                        item.OnItemSelected += onFacadeItemSelected;
+                        m_Facade.Add(item);
+                        BaseConfig.MyAnimeLog.Write(aniChar.ToString());
+                    }
+                }
+            }
+            if (dummyCharactersExist != null)
+                dummyCharactersExist.Visible = charList.Count > 0;
+            SetGUIProperty(GuiProperty.Actors_Character_CharacterCount, charList.Count.ToString(Globals.Culture));
+        }
 
-		public static void clearGUIProperty(string which)
-		{
-			setGUIProperty(which, "-"); // String.Empty doesn't work on non-initialized fields, as a result they would display as ugly #TVSeries.bla.bla
-		}
+        private void ShowCharacters()
+        {
+            GUIControl.ClearControl(GetID, m_Facade.GetID);
 
-		private void ShowCharacters()
-		{
-			GUIControl.ClearControl(this.GetID, m_Facade.GetID);
+            BaseConfig.MyAnimeLog.Write("ActorWindow.GlobalSeiyuuID = {0}",
+                MainWindow.GlobalSeiyuuID.ToString(CultureInfo.InvariantCulture));
 
-			//if (dummyMainCharExists != null) dummyMainCharExists.Visible = false;
-			//if (dummyMainActorExists != null) dummyMainActorExists.Visible = false;
-			//if (dummySeriesExists != null) dummySeriesExists.Visible = false;
+            charList.Clear();
+            seiyuu = null;
 
-			clearGUIProperty("Actor.Name");
-			clearGUIProperty("Actor.Poster");
+            JMMServerBinary.Contract_AniDB_Seiyuu contract =
+                JMMServerVM.Instance.clientBinaryHTTP.GetAniDBSeiyuu(MainWindow.GlobalSeiyuuID);
+            if (contract == null)
+            {
+                ClearGUIProperty(GuiProperty.Actors_Actor_Name);
+                ClearGUIProperty(GuiProperty.Actors_Actor_Poster);
+                ClearGUIProperty(GuiProperty.Actors_Character_CharacterCount);
+                return;
+            }
 
-			BaseConfig.MyAnimeLog.Write("ActorWindow.GlobalSeiyuuID = {0}", MainWindow.GlobalSeiyuuID.ToString());
-
-			charList.Clear();
-			seiyuu = null;
-
-			JMMServerBinary.Contract_AniDB_Seiyuu contract = JMMServerVM.Instance.clientBinaryHTTP.GetAniDBSeiyuu(MainWindow.GlobalSeiyuuID);
-			if (contract == null) return;
-
-			seiyuu = new AniDB_SeiyuuVM(contract);
-
-
-			setGUIProperty("Actor.Name", seiyuu.SeiyuuName);
-
-			string imagePath = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
-			if (File.Exists(seiyuu.PosterPath))
-				imagePath = seiyuu.PosterPath;
-
-			setGUIProperty("Actor.Poster", imagePath);
-
-			List<JMMServerBinary.Contract_AniDB_Character> charContracts = JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID);
-			if (charContracts == null) return;
-
-			foreach (JMMServerBinary.Contract_AniDB_Character chr in charContracts)
-				charList.Add(new AniDB_CharacterVM(chr));
-
-			bool missingImages = false;
-			string imagePathNoPicture = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
-			foreach (AniDB_CharacterVM aniChar in charList)
-			{
-				imagePath = imagePathNoPicture;
-				if (!string.IsNullOrEmpty(aniChar.PosterPath) && File.Exists(aniChar.PosterPath))
-					imagePath = aniChar.PosterPath;
-				else
-					missingImages = true;
-
-				GUIListItem item = new GUIListItem("");
-				item.IconImage = item.IconImageBig = imagePath;
-				item.TVTag = aniChar;
-				item.OnItemSelected += new GUIListItem.ItemSelectedHandler(onFacadeItemSelected);
-				m_Facade.Add(item);
-
-				BaseConfig.MyAnimeLog.Write(aniChar.ToString());
-			}
-
-			
-			if (dummyCharactersExist != null)
-			{
-				if (charList.Count > 0) dummyCharactersExist.Visible = true;
-				else dummyCharactersExist.Visible = false;
-			}
-			setGUIProperty("Character.CharacterCount", charList.Count.ToString());
+            seiyuu = new AniDB_SeiyuuVM(contract);
 
 
-			if (m_Facade.Count > 0)
-			{
-				m_Facade.SelectedListItemIndex = 0;
+            SetGUIProperty(GuiProperty.Actors_Actor_Name, seiyuu.SeiyuuName);
 
-				AniDB_CharacterVM aniChar = m_Facade.SelectedListItem.TVTag as AniDB_CharacterVM;
-				if (aniChar != null)
-				{
-					SetCharacterProperties(aniChar);
-				}
-			}
+            string imagePath = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
+            if (File.Exists(seiyuu.PosterPath))
+                imagePath = seiyuu.PosterPath;
 
-			if (missingImages)
-				MainWindow.ServerHelper.DownloadCharacterImagesForSeiyuu(seiyuu);
-		}
+            SetGUIProperty(GuiProperty.Actors_Actor_Poster, imagePath);
 
-		private void onFacadeItemSelected(GUIListItem item, GUIControl parent)
-		{
-			// if this is not a message from the facade, exit
-			if (parent != m_Facade)
-				return;
+            List<JMMServerBinary.Contract_AniDB_Character> charContracts =
+                JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID);
+            if (charContracts == null)
+            {
+                ClearGUIProperty(GuiProperty.Actors_Character_CharacterCount);
+                return;
+            }
 
-			if (item == null || item.TVTag == null || !(item.TVTag is AniDB_CharacterVM))
-				return;
+            foreach (JMMServerBinary.Contract_AniDB_Character chr in charContracts)
+                charList.Add(new AniDB_CharacterVM(chr));
 
-			AniDB_CharacterVM aniChar = item.TVTag as AniDB_CharacterVM;
-			if (aniChar == null) return;
+            bool missingImages = false;
+            string imagePathNoPicture = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
+            foreach (AniDB_CharacterVM aniChar in charList)
+            {
+                imagePath = imagePathNoPicture;
+                if (!string.IsNullOrEmpty(aniChar.PosterPath) && File.Exists(aniChar.PosterPath))
+                    imagePath = aniChar.PosterPath;
+                else
+                    missingImages = true;
 
-			SetCharacterProperties(aniChar);
-		}
+                GUIListItem item = new GUIListItem(string.Empty);
+                item.IconImage = item.IconImageBig = imagePath;
+                item.TVTag = aniChar;
+                item.OnItemSelected += onFacadeItemSelected;
+                m_Facade.Add(item);
 
-		public override bool OnMessage(GUIMessage message)
-		{
-			switch (message.Message)
-			{
-				case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
-					{
-						int iControl = message.SenderControlId;
+                BaseConfig.MyAnimeLog.Write(aniChar.ToString());
+            }
 
-						if (iControl == (int)m_Facade.GetID)
-						{
-							GUIListItem item = m_Facade.SelectedListItem;
 
-							if (item == null || item.TVTag == null || !(item.TVTag is AniDB_CharacterVM))
-								return true;
+            if (dummyCharactersExist != null)
+                dummyCharactersExist.Visible = charList.Count > 0;
 
-							AniDB_CharacterVM aniChar = item.TVTag as AniDB_CharacterVM;
-							if (aniChar == null) return true;
+            SetGUIProperty(GuiProperty.Actors_Character_CharacterCount, charList.Count.ToString(Globals.Culture));
 
-							SetCharacterProperties(aniChar);
-						}
-					}
 
-					return true;
+            if (m_Facade.Count > 0)
+            {
+                m_Facade.SelectedListItemIndex = 0;
 
-				default:
-					return base.OnMessage(message);
-			}
-		}
+                AniDB_CharacterVM aniChar = m_Facade.SelectedListItem.TVTag as AniDB_CharacterVM;
+                if (aniChar != null)
+                {
+                    SetCharacterProperties(aniChar);
+                }
+            }
 
-		private void SetCharacterProperties(AniDB_CharacterVM aniChar)
-		{
+            if (missingImages)
+                GetMissingInfo();
+        }
 
-			clearGUIProperty("Character.Name");
-			clearGUIProperty("Character.KanjiName");
-			clearGUIProperty("Character.Description");
-			clearGUIProperty("Character.CharType");
-			clearGUIProperty("Character.Poster");
-			clearGUIProperty("Series.Poster");
-			clearGUIProperty("Series.Title");
 
-			setGUIProperty("Character.Name", aniChar.CharName);
-			setGUIProperty("Character.KanjiName", aniChar.CharKanjiName);
-			setGUIProperty("Character.Description", aniChar.CharDescription);
-			setGUIProperty("Character.CharType", aniChar.CharType);
+        private void onFacadeItemSelected(GUIListItem item, GUIControl parent)
+        {
+            // if this is not a message from the facade, exit
+            if (parent != m_Facade)
+                return;
 
-			string imagePath = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
-			if (File.Exists(aniChar.PosterPath))
-				imagePath = aniChar.PosterPath;
+            if (item == null || item.TVTag == null || !(item.TVTag is AniDB_CharacterVM))
+                return;
 
-			setGUIProperty("Character.Poster", imagePath);
+            SetCharacterProperties((AniDB_CharacterVM)item.TVTag);
+        }
 
-			if (aniChar.Anime != null)
-			{
-				setGUIProperty("Series.Title", aniChar.Anime.FormattedTitle);
-				setGUIProperty("Series.Poster", ImageAllocator.GetAnimeImageAsFileName(aniChar.Anime, GUIFacadeControl.Layout.List));
-			}
+        public void GetMissingInfo()
+        {
+            MainWindow.ServerHelper.DownloadCharacterImagesForSeiyuu(seiyuu);
+            SetGUIProperty(GuiProperty.Actors_Status, Translation.RefreshingView + "...");
+            m_Facade.Focus = true;
+        }
 
-		}
+        public override bool OnMessage(GUIMessage message)
+        {
+            switch (message.Message)
+            {
+                case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
+                {
+                    int iControl = message.SenderControlId;
 
-		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
-		{
-			if (this.btnGetMissingInfo != null && control == this.btnGetMissingInfo)
-			{
-				MainWindow.ServerHelper.DownloadCharacterImagesForSeiyuu(seiyuu);
-				setGUIProperty("Status", "Refreshing view...");
-				this.btnGetMissingInfo.IsFocused = false;
-				GUIControl.FocusControl(GetID, 50);
+                    if (iControl ==  m_Facade.GetID)
+                    {
+                        GUIListItem item = m_Facade.SelectedListItem;
 
-				return;
-			}
+                        if (item == null || item.TVTag == null || !(item.TVTag is AniDB_CharacterVM))
+                            return true;
 
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
+                        SetCharacterProperties((AniDB_CharacterVM)item.TVTag);
+                    }
+                }
 
-			base.OnClicked(controlId, control, actionType);
-		}
-	}
+                    return true;
+
+                default:
+                    return base.OnMessage(message);
+            }
+        }
+
+        private void SetCharacterProperties(AniDB_CharacterVM aniChar)
+        {
+            SetGUIProperty(GuiProperty.Actors_Character_Name, aniChar.CharName);
+            SetGUIProperty(GuiProperty.Actors_Character_KanjiName, aniChar.CharKanjiName);
+            SetGUIProperty(GuiProperty.Actors_Character_Description, aniChar.CharDescription);
+            SetGUIProperty(GuiProperty.Actors_Character_CharType, aniChar.CharType);
+
+            string imagePath = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
+            if (File.Exists(aniChar.PosterPath))
+                imagePath = aniChar.PosterPath;
+
+            SetGUIProperty(GuiProperty.Actors_Character_Poster, imagePath);
+
+            if (aniChar.Anime != null)
+            {
+                SetGUIProperty(GuiProperty.Actors_Series_Title, aniChar.Anime.FormattedTitle);
+                SetGUIProperty(GuiProperty.Actors_Series_Poster,
+                    ImageAllocator.GetAnimeImageAsFileName(aniChar.Anime, GUIFacadeControl.Layout.List));
+            }
+            else
+            {
+                ClearGUIProperty(GuiProperty.Actors_Series_Title);
+                ClearGUIProperty(GuiProperty.Actors_Series_Poster);
+            }
+        }
+
+
+        protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
+        {
+            MainMenu menu = new MainMenu();
+            menu.Add(btnGetMissingInfo, GetMissingInfo);
+            if (menu.Check(control))
+                return;
+            base.OnClicked(controlId, control, actionType);
+        }
+    }
 }

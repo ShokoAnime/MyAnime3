@@ -342,11 +342,11 @@ namespace MyAnimePlugin3.ViewModel
 			int selectedLabel = 0;
 		
 			dlg.Reset();
-			dlg.SetHeading("Select User");
+			dlg.SetHeading(Translation.SelectUser);
 
 			if (CurrentUser != null)
 			{
-				string msgCurUser = string.Format("CURRENT USER: {0}", CurrentUser.Username);
+				string msgCurUser = string.Format(Translation.CurrentUser, CurrentUser.Username);
 
 				dlg.Add(msgCurUser);
 				dlg.Add("--------");
@@ -377,7 +377,7 @@ namespace MyAnimePlugin3.ViewModel
 					authed = AuthenticateUser(selUser.Username, password);
 					if (!authed)
 					{
-						Utils.DialogMsg("Error", "Incorrect password, please try again");	
+						Utils.DialogMsg(Translation.Error, Translation.IncorrectPasswordTryAgain);	
 					}
 				}
 				else return false;

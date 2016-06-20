@@ -109,7 +109,7 @@
 		<textcolor>d4d2d2</textcolor>
 		<label>
 		</label>
-		<visible>false</visible>
+		<visible>true</visible>
 		<!-- to make a control visible only when you are in GROUP FILTERS VIEW do this: <visible>Control.IsVisible(1250)</visible> -->
 		<!-- to make a control invisible when you are in GROUP FILTERS VIEW do this: <visible>!Control.IsVisible(1250)</visible> -->
 	  </control>

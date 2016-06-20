@@ -34,7 +34,105 @@ namespace MyAnimePlugin3.ConfigFiles
         {
             InitializeComponent();
 
-			btnImagesLocation.Click += new EventHandler(btnImagesLocation_Click);
+
+
+            this.label17.Text = Translation.DefaultBanner+":";
+            this.label22.Text = Translation.DefaultPoster+":";
+            this.label23.Text = Translation.DefaultFanart + ":";
+            this.button11.Text = Translation.Save;
+            this.label24.Text = Translation.Description+":";
+            this.linkLabel3.Text = Translation.GotoMAL;
+            this.linkLabel4.Text = Translation.GotoTvDB;
+            this.label25.Text = Translation.MALID+":";
+            this.label26.Text = Translation.TvDBID+":";
+            this.label27.Text = Translation.AniDBID + ":";
+            this.linkLabel5.Text = Translation.GotoAniDB;
+            this.label28.Text = Translation.GroupName+":";
+            this.tabPage8.Text = Translation.Groups;
+            this.tabPage9.Text = Translation.Series;
+            this.tabPage10.Text = Translation.Episodes;
+            this.button1.Text = Translation.NewGroup;
+            this.tabPage11.Text = Translation.Downloads;
+            this.groupBox7.Text = Translation.AnimeBytesCredentials;
+            this.btnAnimeBytesTest.Text = Translation.TestLogin;
+            this.label9.Text = Translation.Password;
+            this.label10.Text = Translation.Username;
+            this.groupBox6.Text = Translation.BakaBTCredentials;
+            this.btnBakaBTTest.Text = Translation.TestLogin;
+            this.label6.Text = Translation.Password;
+            this.label7.Text = Translation.Username;
+            this.groupBox19.Text = Translation.TorrentSources;
+            this.chkTorrentPreferOwnGroups.Text = Translation.PreferTheReleaseGroups;
+            this.label59.Text = Translation.Order;
+            this.label58.Text = Translation.Enabled;
+            this.label57.Text = Translation.Disabled;
+            this.btnTorrentDown.Text = Translation.Down;
+            this.btnTorrentUp.Text = Translation.Up;
+            this.groupBox18.Text = Translation.uTorrent;
+            this.btnUTorrentTest.Text = Translation.TestConnection;
+            this.label50.Text = Translation.Password;
+            this.label51.Text = Translation.Username;
+            this.label53.Text = Translation.Port;
+            this.label54.Text = Translation.IPAddress;
+            this.tabPage3.Text = Translation.Display;
+            this.groupBox5.Text = Translation.InfoDelay;
+            this.label4.Text = Translation.Milliseconds;
+            this.label5.Text = Translation.DisplayGroupInfo;
+            this.groupBox17.Text = Translation.Language;
+            this.label47.Text = Translation.DefaultSubtitleLanguage;
+            this.label48.Text = Translation.DefaultAudioLanguage;
+            this.label92.Text = Translation.ImageQualityPercentage;
+            this.label91.Text = Translation.ImageQualityPercentage;
+            this.label21.Text = Translation.Posters;
+            this.label20.Text = Translation.WideBanners;
+            this.groupBox13.Text = Translation.Find;
+            this.chkFindFilterItems.Text = Translation.OnlyDisplayMatching;
+            this.label8.Text = Translation.Seconds;
+            this.label45.Text = Translation.CloseFindPanel;
+            this.groupBox15.Text = Translation.Other;
+            this.chkSingleSeries.Text = Translation.UseSeriesName;
+            this.chkRateSeries.Text = Translation.PromptToRate;
+            this.chkShowMissingGroups.Text = Translation.OnlySubbingGroups;
+            this.chkShowMissing.Text = Translation.ShowIndicatorForMissingEps;
+            this.chkHideWatchedFiles.Text = Translation.HideFilesWatched;
+            this.chkShowAvailableEpsOnly.Text = Translation.OnlyShowEpisodesComputer;
+            this.chkHidePlot.Text = Translation.HidePlotUnwatched;
+            this.label33.Text = Translation.AnEpisodeWatchedAfter+":";
+            this.groupBox4.Text = Translation.FileSelection;
+            this.label16.Text = Translation.ThisIsFormattingEps;
+            this.groupBox3.Text = Translation.EpisodeDisplay;
+            this.tabPage1.Text = Translation.Main;
+            this.groupBox2.Text = Translation.ImportFolders;
+            this.btnSaveLocalFolderPath.Text = Translation.Save;
+            this.label3.Text = Translation.LocalMapping;
+            this.groupBox1.Text = Translation.JMMServer;
+            this.btnTestJMMServer.Text = Translation.TestConnection;
+            this.label2.Text = Translation.ServerPort;
+            this.label1.Text = Translation.ServerAddress;
+            this.lblVersion.Text = Translation.Version+" X.X.X.X";
+            this.ManualLink.Text = "http://jmediamanager.org/myanime3";
+            this.label62.Text = Translation.Support;
+            this.ForumLink.Text = "https://discordapp.com/channels/96234011612958720/101072543024160768";
+            this.label61.Text = Translation.Discord+":";
+            this.WebsiteLink.Text = "http://jmediamanager.org";
+            this.label60.Text = Translation.Website+":";
+            this.label49.Text = Translation.PluginName;
+            this.label46.Text = Translation.ImageLocation;
+            this.tabPage2.Text = Translation.MoreOptions;
+            this.groupBox16.Text = Translation.FFDShowRawPost;
+            this.label80.Text = Translation.Milliseconds;
+            this.chkFfdshowNotificationsLock.Text = Translation.WaitFFDShow;
+            this.label82.Text = Translation.Milliseconds;
+            this.chkFfdshowNotificationsAutoClose.Text = Translation.AutoCloseAfter+" ";
+            this.chkFfdshowNotificationsShow.Text = Translation.ShowPrsetLoadNotify;
+            this.chkLoadlocalThumbnails.Text = Translation.TryToUseLocalThumb;
+            this.Text = Translation.Anime3Config;
+
+
+
+
+
+            btnImagesLocation.Click += new EventHandler(btnImagesLocation_Click);
 			btnSelectLocalFolderPath.Click += new EventHandler(btnSelectLocalFolderPath_Click);
 
 			btnUTorrentTest.Click += new EventHandler(btnUTorrentTest_Click);
@@ -73,19 +171,19 @@ namespace MyAnimePlugin3.ConfigFiles
 
 
 			//get list of languages (sorted by name)
-			List<string> lstLanguages = Utils.GetAllAudioSubtitleLanaguages();
+			List<string> lstLanguages = Utils.GetAllAudioSubtitleLanguages();
 			
 
 			//add them to the combo boxes
 			// audio languages
 			cboAudioLanguage.Items.Clear();
-			cboAudioLanguage.Items.Add("< Use File Default >");
+			cboAudioLanguage.Items.Add("< "+Translation.UseFileDefault+" >");
 			foreach (string lang in lstLanguages)
 				cboAudioLanguage.Items.Add(lang);
 
 			cboSubtitleLanguage.Items.Clear();
-			cboSubtitleLanguage.Items.Add("< Use File Default >");
-			cboSubtitleLanguage.Items.Add("< No Subtitles >");
+			cboSubtitleLanguage.Items.Add("< " + Translation.UseFileDefault + " >");
+			cboSubtitleLanguage.Items.Add("< " + Translation.NoSubtitles + " >");
 
 			// subtitle languages
 			foreach (string lang in lstLanguages)
@@ -94,8 +192,8 @@ namespace MyAnimePlugin3.ConfigFiles
             LoadSettingsIntoForm();
 
 			cboImagesLocation.Items.Clear();
-			cboImagesLocation.Items.Add("Default");
-			cboImagesLocation.Items.Add("Custom");
+			cboImagesLocation.Items.Add(Translation.Default);
+			cboImagesLocation.Items.Add(Translation.Custom);
 			cboImagesLocation.SelectedIndexChanged += new EventHandler(cboImagesLocation_SelectedIndexChanged);
 
 			if (BaseConfig.Settings.HasCustomThumbsFolder)
@@ -116,30 +214,30 @@ namespace MyAnimePlugin3.ConfigFiles
 			ToolTip ToolTip4 = new ToolTip();
 			ToolTip4.IsBalloon = true;
 			ToolTip4.ToolTipIcon = ToolTipIcon.Info;
-			ToolTip4.ToolTipTitle = "Poster Quality";
-			ToolTip4.SetToolTip(udPosterQuality, "Used to adjust the quality of images shown in the coverflow and filmstrip layouts. \nSelecting a lower percentage will result in lower memory and CPU usage. Resolution at 100% is 1000 x 680");
-
+			ToolTip4.ToolTipTitle = Translation.PosterQuality;
+            ToolTip4.SetToolTip(udPosterQuality, Translation.PosterQualityToolTip);
+            
 			ToolTip ToolTip5 = new ToolTip();
 			ToolTip5.IsBalloon = true;
 			ToolTip5.ToolTipIcon = ToolTipIcon.Info;
-			ToolTip5.ToolTipTitle = "Wide Banner Quality";
-			ToolTip5.SetToolTip(udWideBannerQuality, "Used to adjust the quality of images shown in the Wide Banner layouts. \nSelecting a lower percentage will result in lower memory and CPU usage. Resolution at 100% is 758 x 140");
+            ToolTip5.ToolTipTitle = Translation.WideBannerQuality;
+			ToolTip5.SetToolTip(udWideBannerQuality, Translation.WideBannerQualityToolTip);
 
 			ToolTip ToolTip6 = new ToolTip();
 			ToolTip6.IsBalloon = true;
 			ToolTip6.ToolTipIcon = ToolTipIcon.Info;
-			ToolTip6.ToolTipTitle = "Singles Series Display";
-			ToolTip6.SetToolTip(chkSingleSeries, "When a group only has one series, the series name will be displayed instead of the group name. This could have a performance impact in large collections");
+			ToolTip6.ToolTipTitle = Translation.SinglesSeriesDisplay;
+			ToolTip6.SetToolTip(chkSingleSeries, Translation.SinglesSeriesDisplayToolTip);
 
 
 			System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
 			if (a != null)
 			{
-				lblVersion.Text = "Version " + Utils.GetApplicationVersion(a);
+				lblVersion.Text = Translation.Version + " " + Utils.GetApplicationVersion(a);
 			}
 
 
-			lbImportFolders.DisplayMember = "Description";
+			lbImportFolders.DisplayMember = Translation.Description;
 
 			btnTestJMMServer.Click += new EventHandler(btnTestJMMServer_Click);
 			lbImportFolders.SelectedIndexChanged += new EventHandler(lbImportFolders_SelectedIndexChanged);
@@ -164,7 +262,7 @@ namespace MyAnimePlugin3.ConfigFiles
 		void btnSelectLocalFolderPath_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog dlg = new FolderBrowserDialog();
-			dlg.Description = "Select a folder";
+		    dlg.Description = Translation.SelectAFolder;
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
 				txtFolderLocalPath.Text = dlg.SelectedPath;
@@ -185,7 +283,7 @@ namespace MyAnimePlugin3.ConfigFiles
 		{
 			SaveSettings();
 			if (InitJMMConnection())
-				MessageBox.Show("Success!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Translation.Sucess+ "!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 
@@ -196,7 +294,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			if (!JMMServerVM.Instance.SetupBinaryClient())
 			{
-				MessageBox.Show("Could not connect to JMM Server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.CouldNotConnect, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 
@@ -273,11 +371,11 @@ namespace MyAnimePlugin3.ConfigFiles
 			uTorrent.Init();
 			if (uTorrent.GetTorrentList(ref torrents))
 			{
-				MessageBox.Show(string.Format("Connected successfully, {0} torrents in list currently", torrents.Count));
+				MessageBox.Show(string.Format(Translation.ConnectedTorrents, torrents.Count));
 			}
 			else
 			{
-				MessageBox.Show("Connection failed");
+				MessageBox.Show(Translation.ConnectionFailed);
 			}
 		}
 
@@ -290,14 +388,14 @@ namespace MyAnimePlugin3.ConfigFiles
 
 				if (string.IsNullOrEmpty(BaseConfig.Settings.AnimeBytesUsername))
 				{
-					MessageBox.Show("Please enter a username first");
+					MessageBox.Show(Translation.PleaseUsernameFirst);
 					txtAnimeBytesUsername.Focus();
 					return;
 				}
 
 				if (string.IsNullOrEmpty(BaseConfig.Settings.AnimeBytesPassword))
 				{
-					MessageBox.Show("Please enter a password first");
+					MessageBox.Show(Translation.PleasePasswordFirst);
 					txtAnimeBytesPassword.Focus();
 					return;
 				}
@@ -312,12 +410,12 @@ namespace MyAnimePlugin3.ConfigFiles
 				if (!string.IsNullOrEmpty(BaseConfig.Settings.AnimeBytesCookieHeader))
 				{
 					this.Cursor = Cursors.Arrow;
-					MessageBox.Show("Connected sucessfully", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(Translation.ConnectedSucess, Translation.Sucess, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				else
 				{
 					this.Cursor = Cursors.Arrow;
-					MessageBox.Show("Connected FAILED", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(Translation.ConnectedFailed, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					txtAnimeBytesUsername.Focus();
 					return;
 				}
@@ -339,14 +437,14 @@ namespace MyAnimePlugin3.ConfigFiles
 
 				if (string.IsNullOrEmpty(BaseConfig.Settings.BakaBTUsername))
 				{
-					MessageBox.Show("Please enter a username first");
+					MessageBox.Show(Translation.PleaseUsernameFirst);
 					txtBakaBTUsername.Focus();
 					return;
 				}
 
 				if (string.IsNullOrEmpty(BaseConfig.Settings.BakaBTPassword))
 				{
-					MessageBox.Show("Please enter a password first");
+					MessageBox.Show(Translation.PleasePasswordFirst);
 					txtBakaBTPassword.Focus();
 					return;
 				}
@@ -361,12 +459,12 @@ namespace MyAnimePlugin3.ConfigFiles
 				if (!string.IsNullOrEmpty(BaseConfig.Settings.BakaBTCookieHeader))
 				{
 					this.Cursor = Cursors.Arrow;
-					MessageBox.Show("Connected sucessfully", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(Translation.ConnectedSucess, Translation.Sucess, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				else
 				{
 					this.Cursor = Cursors.Arrow;
-					MessageBox.Show("Connected FAILED", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(Translation.ConnectedFailed, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					txtBakaBTUsername.Focus();
 					return;
 				}
@@ -384,9 +482,9 @@ namespace MyAnimePlugin3.ConfigFiles
 			switch (cboEpisodeFormat.SelectedIndex)
 			{
 				case 0:
-					lblDisplayEpsDesc.Text = "Episode Number (e.g. 13)"; break;
+					lblDisplayEpsDesc.Text = Translation.EpisodeNumberEg; break;
 				case 1:
-					lblDisplayEpsDesc.Text = "Episode Title (e.g Destined Meeting)"; break;
+			        lblDisplayEpsDesc.Text = Translation.EpisodeTitleEg; break;
 			}
 		}
 
@@ -405,17 +503,17 @@ namespace MyAnimePlugin3.ConfigFiles
 			switch (cboFileFormat.SelectedIndex)
 			{
 				case 0:
-					lblFileSelectionVars.Text = "Group (e.g. Datte Bayo)"; break;
+					lblFileSelectionVars.Text = Translation.FileSelectionGroup; break;
 				case 1:
-					lblFileSelectionVars.Text = "Group Short (e.g DB)"; break;
+					lblFileSelectionVars.Text = Translation.FileSelectionGroupShort; break;
 				case 2:
-					lblFileSelectionVars.Text = "Audio Codec (e.g OGG Vorbis)"; break;
+					lblFileSelectionVars.Text = Translation.FileSelectionAudioCodec; break;
 				case 3:
-					lblFileSelectionVars.Text = "File Codec (e.g XVid)"; break;
+			        lblFileSelectionVars.Text = Translation.FileSelectionFileCodec; break;
 				case 4:
-					lblFileSelectionVars.Text = "File Res (e.g 1280x720)"; break;
+					lblFileSelectionVars.Text = Translation.FileSelectionFileRes; break;
 				case 5:
-					lblFileSelectionVars.Text = "File Source (e.g DVD)"; break;
+					lblFileSelectionVars.Text = Translation.FileSelectionFileSource; break;
 			}
 		}
 
@@ -603,8 +701,8 @@ namespace MyAnimePlugin3.ConfigFiles
 		void btnImagesLocation_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog dlg = new FolderBrowserDialog();
-			dlg.Description = "Select a folder";
-			if (dlg.ShowDialog() == DialogResult.OK)
+		    dlg.Description = Translation.SelectAFolder;
+            if (dlg.ShowDialog() == DialogResult.OK)
 			{
 				txtImagesLocation.Text = dlg.SelectedPath;
 			}
@@ -612,7 +710,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 		void cboImagesLocation_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (cboImagesLocation.Text == "Default")
+			if (cboImagesLocation.Text == Translation.Default)
 			{
 				btnImagesLocation.Enabled = false;
 				txtImagesLocation.Enabled = false;
@@ -634,17 +732,17 @@ namespace MyAnimePlugin3.ConfigFiles
 
         private void WebsiteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://www.otakumm.com");
+            Process.Start(" http://jmediamanager.org");
         }
 
         private void ForumLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://www.otakumm.com/forum");
+            Process.Start("https://discordapp.com/channels/96234011612958720/101072543024160768");
         }
 
         private void ManualLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("www.otakumm.com/Anime2Wiki/Manual");
+            Process.Start("http://jmediamanager.org/myanime3/");
         }
 
     }

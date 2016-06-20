@@ -2,8 +2,8 @@
 <window>
 	<id>6109</id>
 	<defaultcontrol>801</defaultcontrol>
-    <define>#header.label:Downloads</define>
-	<allowoverlay>no</allowoverlay>
+    <define>#header.label:Series Info</define>
+	<allowoverlay>yes</allowoverlay>
 	
 	<controls>
 	  
@@ -536,21 +536,21 @@
 		<visible>Control.IsVisible(1500)</visible>
 	</control>	
 	
-	<!-- Tags -->
+	<!-- Categories -->
 	<control Style="InfoLabel">
 		<type>label</type>
-		<description>Tags</description>
+		<description>Categories</description>
 		<posX>590</posX>
 		<posY>420</posY>
 		<width>650</width>
-		 <label>Tags</label>
+		 <label>Categories</label>
 		<align>left</align>
 		<visible>Control.IsVisible(1500)</visible>
 	</control>
 	
 	<control Style="InfoValueSmall">
 		<type>label</type>
-		<description>Tags Value</description>
+		<description>Categories Value</description>
 		<posX>900</posX>
 		<posY>420</posY>
 		<width>900</width>

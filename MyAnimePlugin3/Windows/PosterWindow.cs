@@ -29,7 +29,22 @@ namespace MyAnimePlugin3.Windows
 		//[SkinControlAttribute(914)] protected GUIButtonControl btnAnimePosters = null;
 		[SkinControlAttribute(915)] protected GUIButtonControl btnAnimeWideBanners = null;
 
-		private int AnimeID = -1;
+        public enum GuiProperty
+        {
+            Posters_PageTitle,
+            Posters_Count,
+            Posters_SelectedSource,
+            Posters_SelectedPosterIsDefault,
+            Posters_SelectedPosterIsDisabled,
+            Posters_PosterPath
+
+        }
+
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+
+
+        private int AnimeID = -1;
         private bool viewIsLarger = false;
 
 		private GUIFacadeControl.Layout currentView = GUIFacadeControl.Layout.Filmstrip;
@@ -45,14 +60,13 @@ namespace MyAnimePlugin3.Windows
 
 		public override bool Init()
 		{
-			String xmlSkin = GUIGraphicsContext.Skin + @"\Anime3_Posters.xml";
-			return Load(xmlSkin);
-		}
+            return this.InitSkin<GuiProperty>("Anime3_Posters.xml");
+        }
 
-		public void setPageTitle(string Title)
+		public void setPageTitle(string Title)  
 		{
-			MainWindow.setGUIProperty("Posters.PageTitle", Title);
-		}
+            SetGUIProperty(GuiProperty.Posters_PageTitle, Title);
+        }
 
 
 		protected GUIFacadeControl.Layout CurrentView
@@ -100,8 +114,9 @@ namespace MyAnimePlugin3.Windows
 				if (ser.CrossRef_AniDB_TvDBV2 != null && ser.CrossRef_AniDB_TvDBV2.Count > 0)
 					AnimeID = ser.CrossRef_AniDB_TvDBV2[0].AnimeID;
 			}
-
-			BaseConfig.MyAnimeLog.Write("ShowPosters for {0} - {1}", displayname, AnimeID);
+            else
+                return;
+            BaseConfig.MyAnimeLog.Write("ShowPosters for {0} - {1}", displayname, AnimeID);
 
 			foreach (PosterContainer pstr in ser.AniDB_Anime.AniDB_AnimeCrossRefs.AllPosters)
 			{
@@ -154,83 +169,45 @@ namespace MyAnimePlugin3.Windows
 			return true;
 		}
 
-        public override void OnAction(MediaPortal.GUI.Library.Action action)
+        protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
         {
-            if (viewIsLarger)
+            MainMenu menu = new MainMenu();
+            menu.Add(btnWideBanners, () =>
             {
-                if (action.m_key.KeyCode == 27)
-                {
-                    // makes esc exit fullscreen
-                    //hide fullscreen
-                    dummyLarger.Visible = true;
-                    viewIsLarger = false;
-                    return;
-                }
-                if (action.IsUserAction())
-                {
-                    //this stops the selection wondering around the screen
-                    return;
-                }
-            }
-
-            switch (action.wID)
+                GUIWindowManager.CloseCurrentWindow();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
+            });
+            menu.Add(btnFanart, () =>
             {
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_LEFT:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_RIGHT:
-                case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
-
-
-                    base.OnAction(action);
-                    break;
-                default:
-                    base.OnAction(action);
-                    break;
-            }
-        }
-
-		protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
-		{
-			if (control == btnWideBanners)
-			{
-				GUIWindowManager.CloseCurrentWindow();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
-			}
-
-			if (control == btnFanart)
-			{
-				GUIWindowManager.CloseCurrentWindow();
-				GUIWindowManager.ActivateWindow(Constants.WindowIDs.FANART, false);
-			}
-
-			if (control == buttonLayouts)
-			{
-				switch (CurrentView)
-				{
-					case GUIFacadeControl.Layout.LargeIcons:
-						m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
-						CurrentView = GUIFacadeControl.Layout.Filmstrip;
+                GUIWindowManager.CloseCurrentWindow();
+                GUIWindowManager.ActivateWindow(Constants.WindowIDs.FANART, false);
+            });
+            menu.Add(buttonLayouts, () =>
+            {
+                switch (CurrentView)
+                {
+                    case GUIFacadeControl.Layout.LargeIcons:
+                        m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
+                        CurrentView = GUIFacadeControl.Layout.Filmstrip;
                         BaseConfig.Settings.LastPosterViewMode = GUIFacadeControl.Layout.Filmstrip;
                         BaseConfig.Settings.Save();
-						break;
+                        break;
 
-					case GUIFacadeControl.Layout.Filmstrip:
-						m_Facade.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
-						CurrentView = GUIFacadeControl.Layout.LargeIcons;
+                    case GUIFacadeControl.Layout.Filmstrip:
+                        m_Facade.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
+                        CurrentView = GUIFacadeControl.Layout.LargeIcons;
                         BaseConfig.Settings.LastPosterViewMode = GUIFacadeControl.Layout.LargeIcons;
                         BaseConfig.Settings.Save();
-						break;
-				}
+                        break;
+                }
 
-				UpdateLayoutButton();
-				GUIControl.FocusControl(GetID, controlId);
-			}
+                UpdateLayoutButton();
+                GUIControl.FocusControl(GetID, controlId);
+            });
+            menu.Check(control);
+        }
 
-			if (MA3WindowManager.HandleWindowChangeButton(control))
-				return;
-		}
-
-		private void UpdateLayoutButton()
+        private void UpdateLayoutButton()
 		{
 			string strLine = string.Empty;
 			GUIFacadeControl.Layout view = CurrentView;
@@ -258,11 +235,11 @@ namespace MyAnimePlugin3.Windows
 
 		private void ClearProperties()
 		{
-			MainWindow.setGUIProperty("Posters.Count", " ");
-			MainWindow.setGUIProperty("Posters.SelectedSource", " ");
-			MainWindow.setGUIProperty("Posters.SelectedPosterIsDefault", " ");
-			MainWindow.setGUIProperty("Posters.SelectedPosterIsDisabled", " ");
-		}
+            ClearGUIProperty(GuiProperty.Posters_Count);
+            ClearGUIProperty(GuiProperty.Posters_SelectedSource);
+            ClearGUIProperty(GuiProperty.Posters_SelectedPosterIsDefault);
+            ClearGUIProperty(GuiProperty.Posters_SelectedPosterIsDisabled);
+        }
 
 		// triggered when a selection change was made on the facade
 		private void onFacadeItemSelected(GUIListItem item, GUIControl parent)
@@ -276,98 +253,58 @@ namespace MyAnimePlugin3.Windows
 			if (selectedPoster != null)
 			{
                 //set large image
-                MainWindow.setGUIProperty("Posters.PosterPath", selectedPoster.FullImagePath);
+                SetGUIProperty(GuiProperty.Posters_PosterPath, selectedPoster.FullImagePath);
 
 				SetPosterProperties(selectedPoster);
 			}
-
-		}
+            else
+                ClearGUIProperty(GuiProperty.Posters_PosterPath);
+        }
 
 		private void SetPosterProperties(PosterContainer poster)
 		{
-			string isDefault = "No";
-			if (poster.IsImageDefault) isDefault = "Yes";
 
-			string isDisabled = "No";
-			if (!poster.IsImageEnabled) isDisabled = "Yes";
+            string isDefault = Translation.No;
+            if (poster.IsImageDefault) isDefault = Translation.Yes;
+            string isDisabled = Translation.No;
+            if (!poster.IsImageEnabled) isDisabled = Translation.Yes;
 
+            SetGUIProperty(GuiProperty.Posters_SelectedSource, poster.PosterSource);
+            SetGUIProperty(GuiProperty.Posters_SelectedPosterIsDefault, isDefault);
+            SetGUIProperty(GuiProperty.Posters_SelectedPosterIsDisabled, isDisabled);
+        }
 
-			MainWindow.setGUIProperty("Posters.SelectedSource", poster.PosterSource);
-			MainWindow.setGUIProperty("Posters.SelectedPosterIsDefault", isDefault);
-			MainWindow.setGUIProperty("Posters.SelectedPosterIsDisabled", isDisabled);
-		}
+        protected override void OnShowContextMenu()
+        {
+            try
+            {
+                GUIListItem currentitem = m_Facade.SelectedListItem;
+                if (currentitem == null || !(currentitem.TVTag is PosterContainer)) return;
+                PosterContainer selectedPoster = currentitem.TVTag as PosterContainer;
 
-		protected override void OnShowContextMenu()
-		{
-			try
-			{
-				GUIListItem currentitem = this.m_Facade.SelectedListItem;
-				if (currentitem == null || !(currentitem.TVTag is PosterContainer)) return;
-				PosterContainer selectedPoster = currentitem.TVTag as PosterContainer;
-
-				IDialogbox dlg = (IDialogbox)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-				if (dlg == null) return;
-				dlg.Reset();
-				dlg.SetHeading("Poster");
-	
-
-				GUIListItem pItem;
-
-
-				if (!selectedPoster.IsImageEnabled)
-				{
-					pItem = new GUIListItem("Enable");
-					dlg.Add(pItem);
-				}
-				else
-				{
-					pItem = new GUIListItem("Disable");
-					dlg.Add(pItem);
-				}
-
-				if (selectedPoster.IsImageEnabled)
-				{
-					if (selectedPoster.IsImageDefault)
-					{
-						pItem = new GUIListItem("Remove as Default");
-						dlg.Add(pItem);
-					}
-					else
-					{
-						pItem = new GUIListItem("Set as Default");
-						dlg.Add(pItem);
-					}
-				}
-
-			
-				// lets show it
-				dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-				if (dlg.SelectedId == 1) // enabled/disable
-				{
-					bool endis = !selectedPoster.IsImageEnabled;
-					JMMServerHelper.EnableDisablePoster(endis, selectedPoster, AnimeID);
-
-					ShowPosters();
-					return;
-				}
-
-				if (dlg.SelectedId == 2)
-				{
-					bool isdef = !selectedPoster.IsImageDefault;
-					JMMServerHelper.SetDefaultPoster(isdef, selectedPoster, AnimeID);
-
-					ShowPosters();
-					return;
-				}
-				
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write("Exception in Poster Chooser Context Menu: " + ex.Message + ex.StackTrace);
-				return;
-			}
-		}
-	}
+                ContextMenu cmenu = new ContextMenu(Translation.Poster);
+                cmenu.AddAction(selectedPoster.IsImageEnabled ? Translation.Disable : Translation.Enable, () =>
+                {
+                    bool endis = !selectedPoster.IsImageEnabled;
+                    JMMServerHelper.EnableDisablePoster(endis, selectedPoster, AnimeID);
+                    ShowPosters();
+                });
+                if (selectedPoster.IsImageEnabled)
+                {
+                    cmenu.AddAction(selectedPoster.IsImageDefault ? Translation.RemoveAsDefault : Translation.SetAsDefault, () =>
+                    {
+                        bool isdef = !selectedPoster.IsImageDefault;
+                        JMMServerHelper.SetDefaultPoster(isdef, selectedPoster, AnimeID);
+                        ShowPosters();
+                    });
+                }
+                cmenu.Show();
+            }
+            catch (Exception ex)
+            {
+                BaseConfig.MyAnimeLog.Write("Exception in Poster Chooser Context Menu: " + ex.Message + ex.StackTrace);
+            }
+        }
+    }
 
 }

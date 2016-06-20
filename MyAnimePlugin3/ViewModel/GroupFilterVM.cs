@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MyAnimePlugin3.Windows;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class GroupFilterVM : IComparable<GroupFilterVM>
+	public class GroupFilterVM : IComparable<GroupFilterVM>, IVM
 	{
 		public int? GroupFilterID { get; set; }
 		public string GroupFilterName { get; set; }
@@ -17,6 +18,8 @@ namespace MyAnimePlugin3.ViewModel
 		public int GroupCount { get; set; }
         public int FilterCount { get; set; }
         public int FilterType { get; set; }
+
+
 
 
 		public AnimeGroupVM RandomGroup { get; set; }

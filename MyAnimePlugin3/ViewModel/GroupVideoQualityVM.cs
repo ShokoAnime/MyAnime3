@@ -56,7 +56,7 @@ namespace MyAnimePlugin3.ViewModel
 
 		public override string ToString()
 		{
-			return string.Format("{0} - {1}/{2} - {3}/{4} Files", GroupNameShort, Resolution, VideoSource, FileCountNormal, FileCountSpecials);
+			return string.Format("{0} - {1}/{2} - {3}/{4} "+ Translation.Files, GroupNameShort, Resolution, VideoSource, FileCountNormal, FileCountSpecials);
 		}
 	}
 }

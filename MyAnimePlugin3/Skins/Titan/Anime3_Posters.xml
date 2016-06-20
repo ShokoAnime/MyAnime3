@@ -19,7 +19,7 @@
       <animation effect="fade" time="400" delay="0">WindowOpen</animation>
     </control>
 
-	<control>
+<control>
 	  <description>background listview</description>
 	  <type>image</type>
 	  <id>0</id>
@@ -40,9 +40,45 @@
 	  <width>1903</width>
 	  <height>790</height>
 	  <texture>panel_thumbs_noinfo.png</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons]</visible>
 	  <animation effect="fade" time="250">WindowOpen</animation>
 	  <animation effect="fade" time="250">WindowClose</animation>
 	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>405</posY>
+	  <width>1920</width>
+	  <height>675</height>
+	  <texture>filmstrip_overlay_recordings.png</texture>
+	  <visible>facadeview.filmstrip</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>52</posX>
+	  <posY>958</posY>
+	  <width>1820</width>
+	  <height>84</height>
+	  <texture>BasicHomeSubBG.png</texture>
+	  <visible>facadeview.filmstrip</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+
+
+
+
+
+
 
     <!-- :::::::::::::: TOP BAR :::::::::::::: -->
 		
@@ -417,7 +453,52 @@
 	  </control>
 	</control>
 
-	<import>Anime3_Time.xml</import>
+	
+		<control>
+		<description>Moviecount</description>
+		<type>label</type>
+    <label>#(L(97))Filmstrip</label>
+    <id>0</id>
+    <posX>72</posX>
+    <posY>94</posY>
+    <align>left</align>
+    <textcolor>FFFFFFFF</textcolor>
+    <font>TitanLight12</font>
+		<visible>facadeview.filmstrip</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+  </control>
+  	
+      <control>
+      <id>0</id>
+      <type>image</type>
+      <posX>66</posX>
+      <posY>34</posY>
+      <width>61</width>
+      <height>57</height>
+      <texture>icon_anime.png</texture>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    		<control>
+		<description>Moviecount</description>
+		<type>label</type>
+    <label>#(L(97))Big Icons</label>
+    <id>0</id>
+    <posX>72</posX>
+    <posY>94</posY>
+    <align>left</align>
+    <textcolor>FFFFFFFF</textcolor>
+    <font>TitanLight12</font>
+		<visible>facadeview.largeicons</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+  </control>
+  
+  
+
+	  <import>common.time.xml</import>
 	<import>common.overlay.xml</import>
 
   </controls>

@@ -70,94 +70,101 @@
 			<onleft>12</onleft>
 			<onright>50</onright>
 		  </control>
-		  <control>
-			<description>graphical thumbpanel (series and/or seasons if set)</description>
-			<type>thumbnailpanel</type>
-			<dimColor>90ffffff</dimColor>
-			<id>50</id>
-			<posX>138</posX>
-			<posY>342</posY>
-			<width>758</width>
-			<height>700</height>
-			<!-- up/down buttons & page # -->
-			<onleft>12</onleft>
-			<onright>50</onright>
-			<!-- Textures -->
-			<imageFolder>-</imageFolder>
-			<!-- Text -->
-			<selectedColor>00ffffff</selectedColor>
-			<textcolor>ffffffff</textcolor>
-			<colordiffuse>ffffffff</colordiffuse>
-			<suffix>|</suffix>
-			<itemWidthBig>758</itemWidthBig>
-			<itemHeightBig>160</itemHeightBig>
-			<!-- boxes -->
-			<textureWidthBig>758</textureWidthBig>
-			<textureHeightBig>140</textureHeightBig>
-			<!-- banners -->
-			<thumbWidthBig>758</thumbWidthBig>
-			<thumbHeightBig>140</thumbHeightBig>
-			<thumbPosXBig>0</thumbPosXBig>
-			<thumbPosYBig>0</thumbPosYBig>
-			<zoomXPixels>100</zoomXPixels>
-			<zoomYPixels>20</zoomYPixels>
-			<thumbZoom>no</thumbZoom>
-			<!-- text (No banner) -->
-			<textXOff>0</textXOff>
-			<textYOff>0</textYOff>
-			<frame>-</frame>
-			<frameFocus>-</frameFocus>
-			<frameNoFocus>-</frameNoFocus>
-			<textureMask></textureMask>
-			<keepaspectratio>no</keepaspectratio>
-			<enableFocusZoom>no</enableFocusZoom>
-			<spinPosX>1828</spinPosX>
-			<spinPosY>1000</spinPosY>
-		  </control>
+		  
 
-		  <control>
+<control>
+		<description>graphical thumbpanel (series and/or seasons if set)</description>
+        <type>thumbnailpanel</type>
+		<dimColor>90ffffff</dimColor>
+        <id>50</id>
+        <posX>1260</posX>
+		<posY>330</posY>
+        <width>758</width>
+        <height>650</height>
+        <!-- up/down buttons & page # -->     
+				<onleft>12</onleft>
+        <onright>50</onright>		  
+        <!-- Textures -->
+        <imageFolder>-</imageFolder> 			
+        <!-- Text -->
+        <selectedColor>00ffffff</selectedColor>
+        <textcolor>ffffffff</textcolor>
+        <colordiffuse>ffffffff</colordiffuse>          
+        <suffix>|</suffix>
+        <itemWidthBig>527</itemWidthBig>
+        <itemHeightBig>106</itemHeightBig>
+        <!-- boxes -->
+        <textureWidthBig>527</textureWidthBig>
+        <textureHeightBig>106</textureHeightBig>
+        <!-- banners -->
+        <thumbWidthBig>517</thumbWidthBig>
+        <thumbHeightBig>96</thumbHeightBig>
+        <thumbPosXBig>5</thumbPosXBig>
+        <thumbPosYBig>5</thumbPosYBig>
+		<zoomXPixels>0</zoomXPixels>
+		<zoomYPixels>0</zoomYPixels>
+        <thumbZoom>no</thumbZoom>
+				<unfocusedAlpha>100</unfocusedAlpha>
+        <!-- text (No banner) -->
+        <textXOff>0</textXOff>
+        <textYOff>0</textYOff>
+        <frame>-</frame>
+        <frameFocus>tvseries_widebanner_focus.png</frameFocus>
+		<frameNoFocus>-</frameNoFocus>
+		<textureMask></textureMask>
+		<scrollOffset>1</scrollOffset>
+        <keepaspectratio>no</keepaspectratio>
+        <enableFocusZoom>no</enableFocusZoom>
+        <spinPosX>1828</spinPosX>
+        <spinPosY>1000</spinPosY>
+    </control>
+
+
+
+		<control>
 			<description>Filmstrip view</description>
 			<type>filmstrip</type>
 			<dimColor>90ffffff</dimColor>
 			<id>50</id>
-			<scrollOffset>3</scrollOffset>
-			<folderPrefix></folderPrefix>
-			<folderSuffix></folderSuffix>
-			<posX>130</posX>
-			<posY>595</posY>
-			<width>1700</width>
-			<height>340</height>
-			<onup>12</onup>
-			<ondown>50</ondown>
-			<onleft>50</onleft>
-			<onright>50</onright>
-			<thumbWidth>230</thumbWidth>
-			<thumbHeight>327</thumbHeight>
-			<thumbPosX>0</thumbPosX>
-			<thumbPosY>0</thumbPosY>
-			<itemWidth>240</itemWidth>
-			<itemHeight>327</itemHeight>
-			<textureWidth>230</textureWidth>
-			<textureHeight>327</textureHeight>
-			<textYOff>-2000</textYOff>
-			<imageFolderFocus>-</imageFolderFocus>
-			<frame>-</frame>
-			<frameFocus>-</frameFocus>
-			<background>-</background>
-			<thumbs flipY="true" diffuse="Thumb_Mask_test.png" mask="filmstrip_mask.png"></thumbs>
-			<showFrame>yes</showFrame>
-			<showFolder>no</showFolder>
-			<showBackGround>no</showBackGround>
-			<showInfoImage>no</showInfoImage>
-			<scrollbarBackground>scrollbar_bg_hor.png</scrollbarBackground>
-			<scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
-			<scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
-			<scrollbarWidth>717</scrollbarWidth>
-			<scrollbarHeight>8</scrollbarHeight>
-			<scrollbarYOff>375</scrollbarYOff>
-			<thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="120,120" center="0,880" time="200">focus</thumbAnimation>
-			<thumbAnimation effect="zoom" start="120,120" reversible="false" end="100,100" center="0,880" time="100">unfocus</thumbAnimation>
-		  </control>
+				<scrollOffset>3</scrollOffset>
+				<folderPrefix></folderPrefix>
+				<folderSuffix></folderSuffix>
+				<posX>130</posX>
+				<posY>595</posY>
+				<width>1700</width>
+				<height>340</height>
+				<onup>12</onup>
+				<ondown>50</ondown>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<thumbWidth>230</thumbWidth>
+				<thumbHeight>327</thumbHeight>
+				<thumbPosX>0</thumbPosX>
+				<thumbPosY>0</thumbPosY>
+				<itemWidth>240</itemWidth>
+				<itemHeight>327</itemHeight>
+				<textureWidth>230</textureWidth>
+				<textureHeight>327</textureHeight>
+				<textYOff>-2000</textYOff>
+				<imageFolderFocus>-</imageFolderFocus>
+				<frame>-</frame>
+				<frameFocus>-</frameFocus>
+				<background>-</background>
+				<thumbs flipY="true" diffuse="Thumb_Mask_test.png" mask="filmstrip_mask.png"></thumbs>
+				<showFrame>yes</showFrame>
+				<showFolder>no</showFolder>
+				<showBackGround>no</showBackGround>
+				<showInfoImage>no</showInfoImage>
+        <scrollbarBackground>scrollbar_bg_hor.png</scrollbarBackground>
+        <scrollbarLeft>scrollbar_left_hor.png</scrollbarLeft>
+        <scrollbarRight>scrollbar_right_hor.png</scrollbarRight>
+        <scrollbarWidth>717</scrollbarWidth>
+				<scrollbarHeight>8</scrollbarHeight>
+        <scrollbarYOff>375</scrollbarYOff>
+				<thumbAnimation effect="zoom" acceleration="-2" start="100,100" reversible="false" end="120,120" center="0,880" time="200">focus</thumbAnimation>
+				<thumbAnimation effect="zoom" start="120,120" reversible="false" end="100,100" center="0,880" time="100">unfocus</thumbAnimation>
+		</control>
+		
 
 		  <control>
 			<description>Cover Flow view</description>
@@ -233,14 +240,15 @@
 			<textureNoFocus>-</textureNoFocus>
 			<textXOff>-70</textXOff>
 			<textYOff>8</textYOff>
-			<textXOff2>630</textXOff2>
-			<textYOff2>8</textYOff2>
-			<textXOff3>643</textXOff3>
-			<textYOff3>8</textYOff3>
+			<textXOff2>594</textXOff2>
+			<textYOff2>10</textYOff2>
+			<textpadding>200</textpadding>
+			<textXOff3>620</textXOff3>
+			<textYOff3>12</textYOff3>
 			<font3>font2</font3>
 			<itemWidth>110</itemWidth>
 			<itemHeight>19</itemHeight>
-			<IconXOff>470</IconXOff>
+			<IconXOff>512</IconXOff>
 			<IconYOff>18</IconYOff>
 			<textureHeight>54</textureHeight>
 			<dimColor>ffffffff</dimColor>

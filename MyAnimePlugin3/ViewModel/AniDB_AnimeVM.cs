@@ -550,7 +550,7 @@ namespace MyAnimePlugin3.ViewModel
 			get
 			{
 				return string.Format("{0} ({1} {2})", Utils.FormatAniDBRating((double)AniDBRating),
-					AniDBTotalVotes, "Votes");
+					AniDBTotalVotes, Translation.Votes);
 			}
 		}
 

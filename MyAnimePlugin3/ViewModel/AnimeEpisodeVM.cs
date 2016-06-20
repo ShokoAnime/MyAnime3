@@ -7,7 +7,7 @@ using BinaryNorthwest;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class AnimeEpisodeVM
+	public class AnimeEpisodeVM : IVM
 	{
 		public int AnimeEpisodeID { get; set; }
 		public int EpisodeNumber { get; set; }
@@ -35,7 +35,10 @@ namespace MyAnimePlugin3.ViewModel
 		public string EpisodeOverview { get; set; }
 		public string EpisodeImageLocation { get; set; }
 
-		private AnimeSeriesVM animeSeries = null;
+
+
+
+        private AnimeSeriesVM animeSeries = null;
 		public AnimeSeriesVM AnimeSeries
 		{
 			get
@@ -234,44 +237,41 @@ namespace MyAnimePlugin3.ViewModel
 
 		public void SetTvDBInfo(TvDBSummary tvSummary)
 		{
-			this.EpisodeOverview = "Episode Overview Not Available";
-			this.EpisodeImageLocation = "";
+            this.EpisodeOverview = Translation.EpisodeOverviewNA;
+            this.EpisodeImageLocation = "";
 
-			#region episode override
-			// check if this episode has a direct tvdb over-ride
-			if (tvSummary.DictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
-			{
-				foreach (TvDB_EpisodeVM tvep in tvSummary.DictTvDBEpisodes.Values)
-				{
-					if (tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
-					{
-						if (string.IsNullOrEmpty(tvep.Overview))
-							this.EpisodeOverview = "Episode Overview Not Available";
-						else
-							this.EpisodeOverview = tvep.Overview;
+            #region episode override
+            // check if this episode has a direct tvdb over-ride
+            if (tvSummary.DictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
+            {
+                foreach (TvDB_EpisodeVM tvep in tvSummary.DictTvDBEpisodes.Values)
+                {
+                    if (tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
+                    {
+                        if (string.IsNullOrEmpty(tvep.Overview))
+                            this.EpisodeOverview = Translation.EpisodeOverviewNA;
+                        else
+                            this.EpisodeOverview = tvep.Overview;
 
-						if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
-						{
-							if (string.IsNullOrEmpty(tvep.OnlineImagePath))
-								this.EpisodeImageLocation = @"/Images/EpisodeThumb_NotFound.png";
-							else
-								this.EpisodeImageLocation = tvep.OnlineImagePath;
-						}
-						else
-							this.EpisodeImageLocation = tvep.FullImagePath;
+                        if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+                        {
+                            this.EpisodeImageLocation = string.IsNullOrEmpty(tvep.OnlineImagePath) ? @"/Images/EpisodeThumb_NotFound.png" : tvep.OnlineImagePath;
+                        }
+                        else
+                            this.EpisodeImageLocation = tvep.FullImagePath;
 
-						if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
-							EpisodeName = tvep.EpisodeName;
+                        if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+                            EpisodeName = tvep.EpisodeName;
 
-						return;
-					}
-				}
-			}
-			#endregion
+                        return;
+                    }
+                }
+            }
+            #endregion
 
-			#region normal episodes
-			// now do stuff to improve performance
-			if (this.EpisodeTypeEnum == enEpisodeType.Episode)
+            #region normal episodes
+            // now do stuff to improve performance
+            if (this.EpisodeTypeEnum == enEpisodeType.Episode)
 			{
 				if (tvSummary != null && tvSummary.CrossRefTvDBV2 != null && tvSummary.CrossRefTvDBV2.Count > 0)
 				{

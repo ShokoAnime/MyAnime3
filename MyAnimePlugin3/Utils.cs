@@ -15,6 +15,7 @@ using MediaPortal.Dialogs;
 using MediaPortal.Configuration;
 using MyAnimePlugin3.ViewModel;
 using BinaryNorthwest;
+using MyAnimePlugin3.Windows;
 
 namespace MyAnimePlugin3
 {
@@ -331,66 +332,20 @@ namespace MyAnimePlugin3
 				BaseConfig.MyAnimeLog.Write(ex.ToString());
 			}
 		}
-
-		public static decimal PromptAniDBRating(string title)
-		{
-			GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-			if (dlg == null)
-				return 0;
-
-			dlg.Reset();
-			if (string.IsNullOrEmpty(title))
-				dlg.SetHeading("User Rating");
-			else
-				dlg.SetHeading("User Rating - " + title);
-			dlg.Add("      1");
-			dlg.Add("      1.5");
-			dlg.Add("      2");
-			dlg.Add("      2.5");
-			dlg.Add("      3");
-			dlg.Add("      3.5");
-			dlg.Add("      4");
-			dlg.Add("      4.5");
-			dlg.Add("      5");
-			dlg.Add("      5.5");
-			dlg.Add("      6");
-			dlg.Add("      6.5");
-			dlg.Add("      7");
-			dlg.Add("      7.5");
-			dlg.Add("      8");
-			dlg.Add("      8.5");
-			dlg.Add("      9");
-			dlg.Add("      9.5");
-			dlg.Add("      10");
-
-			dlg.DoModal(GUIWindowManager.ActiveWindow);
-
-			decimal selValue = 0;
-			switch (dlg.SelectedId)
-			{
-				case 1: selValue = (decimal)1; break;
-				case 2: selValue = (decimal)1.5; break;
-				case 3: selValue = (decimal)2; break;
-				case 4: selValue = (decimal)2.5; break;
-				case 5: selValue = (decimal)3; break;
-				case 6: selValue = (decimal)3.5; break;
-				case 7: selValue = (decimal)4; break;
-				case 8: selValue = (decimal)4.5; break;
-				case 9: selValue = (decimal)5; break;
-				case 10: selValue = (decimal)5.5; break;
-				case 11: selValue = (decimal)6; break;
-				case 12: selValue = (decimal)6.5; break;
-				case 13: selValue = (decimal)7; break;
-				case 14: selValue = (decimal)7.5; break;
-				case 15: selValue = (decimal)8; break;
-				case 16: selValue = (decimal)8.5; break;
-				case 17: selValue = (decimal)9; break;
-				case 18: selValue = (decimal)9.5; break;
-				case 19: selValue = (decimal)10; break;
-			}
-
-			return selValue;
-		}
+        public static decimal PromptAniDBRating(string title)
+        {
+            RatingDialog ratingDlg = (RatingDialog)GUIWindowManager.GetWindow(Constants.WindowIDs.RATINGDIALOG);
+            ratingDlg.Reset();
+            ratingDlg.SetHeading(string.IsNullOrEmpty(title) ? Translation.UserRating : Translation.UserRating + " - " + title);
+            ratingDlg.Rating = 7;
+            ratingDlg.DoModal(ratingDlg.GetID);
+            if (ratingDlg.IsSubmitted)
+            {
+                return ratingDlg.Rating;
+            }
+            return 0;
+        }
+        
 
         private static string[] escapes = { "SOURCE", "TAKEN", "FROM", "HTTP", "ANN", "ANIMENFO", "ANIDB", "ANIMESUKI" };
 

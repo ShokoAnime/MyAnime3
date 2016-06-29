@@ -17,6 +17,24 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetDefaultSeriesForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDefaultSeriesForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTvDBLanguages">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTvDBLanguages" style="document" />
       <wsdl:input>
@@ -604,6 +622,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDuplicateFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1358,24 +1394,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetDefaultSeriesForGroup">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveDefaultSeriesForGroup">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetLastWatchedEpisodeForSeries">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeries" style="document" />
       <wsdl:input>
@@ -1693,6 +1711,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllSeries">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllChanges">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllChanges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupFilterChanges">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFilterChanges" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2116,24 +2152,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllUniqueAudioLanguages">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllDuplicateFiles">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

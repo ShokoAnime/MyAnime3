@@ -29,7 +29,8 @@ namespace MyAnimePlugin3
 		public bool FfdshowNotificationsLock = true;
 		public int FfdshowNotificationsAutoCloseTime = 3000;
 		public int FfdshowNotificationsLockTime = 5000;
-
+	    public bool UseStreaming = true;
+	    private string _subPaths;
 
 		public Dictionary<int, string> ImportFolderMappings
 		{
@@ -336,8 +337,7 @@ namespace MyAnimePlugin3
 			//XMLWebServiceIP = xmlreader.GetValueAsString("Anime2", "XMLWebServiceIP", "anime.hobbydb.net");
             LastGroupList = xmlreader.GetValueAsString("Anime2", "LastGroupList", "");
 
-
-			BakaBTUsername = xmlreader.GetValueAsString("Anime3", "BakaBTUsername", "");
+            BakaBTUsername = xmlreader.GetValueAsString("Anime3", "BakaBTUsername", "");
 			BakaBTPassword = xmlreader.GetValueAsString("Anime3", "BakaBTPassword", "");
 
 			AnimeBytesUsername = xmlreader.GetValueAsString("Anime3", "AnimeBytesUsername", "");
@@ -435,9 +435,10 @@ namespace MyAnimePlugin3
 
 			FfdshowNotificationsAutoCloseTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsAutoCloseTime", "3000"));
 			FfdshowNotificationsLockTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsLockTime", "5000"));
+            UseStreaming = xmlreader.GetValueAsString("Anime3", "UseStreaming", "1") == "1";
+            _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
 
-
-			xmlreader.Dispose();
+            xmlreader.Dispose();
 
 
 
@@ -531,10 +532,16 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLock", FfdshowNotificationsLock ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsAutoCloseTime", ((int)FfdshowNotificationsAutoCloseTime).ToString());
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLockTime", ((int)FfdshowNotificationsLockTime).ToString());
-				
-             
-			}
-		}
+			    xmlwriter.SetValue("Anime3", "UseStreaming", UseStreaming ? "1" : "0");
+
+			    string pth = Path.GetTempPath();
+                if (!_subPaths.Contains(pth))
+                {
+                    _subPaths += "," + pth;
+                    xmlwriter.SetValue("subtitles", "paths",_subPaths);
+                }
+            }
+        }
 	}
 
 	public enum RenamingType

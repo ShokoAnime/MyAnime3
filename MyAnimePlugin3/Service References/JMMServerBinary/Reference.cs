@@ -9265,6 +9265,9 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private string LanguagesSubtitleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyAnimePlugin3.JMMServerBinary.Media MediaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PercentageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -9729,6 +9732,19 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.LanguagesSubtitleField, value) != true)) {
                     this.LanguagesSubtitleField = value;
                     this.RaisePropertyChanged("LanguagesSubtitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyAnimePlugin3.JMMServerBinary.Media Media {
+            get {
+                return this.MediaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MediaField, value) != true)) {
+                    this.MediaField = value;
+                    this.RaisePropertyChanged("Media");
                 }
             }
         }
@@ -15922,16 +15938,34 @@ namespace MyAnimePlugin3.JMMServerBinary {
         private string GeneralQueueStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GeneralQueueStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> GeneralQueueStateParamsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HashQueueCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string HashQueueStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HashQueueStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> HashQueueStateParamsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ImagesQueueCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ImagesQueueStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImagesQueueStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> ImagesQueueStateParamsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsBannedField;
@@ -15999,6 +16033,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GeneralQueueStateId {
+            get {
+                return this.GeneralQueueStateIdField;
+            }
+            set {
+                if ((this.GeneralQueueStateIdField.Equals(value) != true)) {
+                    this.GeneralQueueStateIdField = value;
+                    this.RaisePropertyChanged("GeneralQueueStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> GeneralQueueStateParams {
+            get {
+                return this.GeneralQueueStateParamsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GeneralQueueStateParamsField, value) != true)) {
+                    this.GeneralQueueStateParamsField = value;
+                    this.RaisePropertyChanged("GeneralQueueStateParams");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int HashQueueCount {
             get {
                 return this.HashQueueCountField;
@@ -16025,6 +16085,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int HashQueueStateId {
+            get {
+                return this.HashQueueStateIdField;
+            }
+            set {
+                if ((this.HashQueueStateIdField.Equals(value) != true)) {
+                    this.HashQueueStateIdField = value;
+                    this.RaisePropertyChanged("HashQueueStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> HashQueueStateParams {
+            get {
+                return this.HashQueueStateParamsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashQueueStateParamsField, value) != true)) {
+                    this.HashQueueStateParamsField = value;
+                    this.RaisePropertyChanged("HashQueueStateParams");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ImagesQueueCount {
             get {
                 return this.ImagesQueueCountField;
@@ -16046,6 +16132,32 @@ namespace MyAnimePlugin3.JMMServerBinary {
                 if ((object.ReferenceEquals(this.ImagesQueueStateField, value) != true)) {
                     this.ImagesQueueStateField = value;
                     this.RaisePropertyChanged("ImagesQueueState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImagesQueueStateId {
+            get {
+                return this.ImagesQueueStateIdField;
+            }
+            set {
+                if ((this.ImagesQueueStateIdField.Equals(value) != true)) {
+                    this.ImagesQueueStateIdField = value;
+                    this.RaisePropertyChanged("ImagesQueueStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> ImagesQueueStateParams {
+            get {
+                return this.ImagesQueueStateParamsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagesQueueStateParamsField, value) != true)) {
+                    this.ImagesQueueStateParamsField = value;
+                    this.RaisePropertyChanged("ImagesQueueStateParams");
                 }
             }
         }

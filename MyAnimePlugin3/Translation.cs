@@ -559,6 +559,7 @@ namespace MyAnimePlugin3
         public static string UpdateSeriesInfo = "Update Series Info From AniDB";
         public static string UseFileDefault = "Use File Default";
         public static string UseSeriesName = "Use series name for single series groups";
+        public static string UseStreaming = "Use Streaming";
         public static string UserRating = "User Rating";
         public static string Username= "Username";
         public static string UseSystemDefault = "Use System Default";

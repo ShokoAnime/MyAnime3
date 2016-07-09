@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -57,10 +58,10 @@ namespace MyAnimePlugin3.ViewModel
 		public string AniDB_CRC { get; set; }
 		public string AniDB_MD5 { get; set; }
 		public string AniDB_SHA1 { get; set; }
-
 		public ReleaseGroupVM ReleaseGroup { get; set; }
+        public Media Media { get; set; }
 
-		public string VideoResolution
+        public string VideoResolution
 		{
 			get
 			{
@@ -389,7 +390,7 @@ namespace MyAnimePlugin3.ViewModel
 
 			this.LanguagesAudio = contract.LanguagesAudio;
 			this.LanguagesSubtitle = contract.LanguagesSubtitle;
-
+		    this.Media = contract.Media;
 			if (contract.ReleaseGroup != null)
 				this.ReleaseGroup = new ReleaseGroupVM(contract.ReleaseGroup);
 		}

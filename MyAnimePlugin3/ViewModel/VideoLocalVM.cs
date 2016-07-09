@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -21,7 +22,7 @@ namespace MyAnimePlugin3.ViewModel
 		public int IsIgnored { get; set; }
 		public DateTime? WatchedDate { get; set; }
 		public DateTime DateTimeUpdated { get; set; }
-
+        public Media Media { get; set; }
 		public ImportFolderVM ImportFolder { get; set; }
 
 		public string FullPath
@@ -78,7 +79,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.SHA1 = contract.SHA1;
 			this.VideoLocalID = contract.VideoLocalID;
 			this.WatchedDate = contract.WatchedDate;
-
+		    this.Media = contract.Media;
 			ImportFolder = new ImportFolderVM(contract.ImportFolder);
 		}
 

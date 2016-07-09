@@ -34,8 +34,12 @@ using System.ComponentModel;
 using MediaPortal.Video.Database;
 using System.IO;
 using System.Diagnostics;
+using System.Linq;
+using System.Net;
 using MyAnimePlugin3.DataHelpers;
+using MyAnimePlugin3.JMMServerBinary;
 using MyAnimePlugin3.ViewModel;
+using Stream = MyAnimePlugin3.JMMServerBinary.Stream;
 
 
 namespace MyAnimePlugin3
@@ -47,11 +51,13 @@ namespace MyAnimePlugin3
 		public AnimeEpisodeVM prevEpisode = null;
         private string curFileName = "";
 		private string prevFileName = "";
+        private Media prevMedia;
+        private Media curMedia;
         int timeMovieStopped = 0;
 		private BackgroundWorker w = new BackgroundWorker();
 		private bool listenToExternalPlayerEvents = false;
-
-		public string DefaultAudioLanguage = "<file>";
+        WebClient wc = new WebClient();
+        public string DefaultAudioLanguage = "<file>";
 		public string DefaultSubtitleLanguage = "<file>";
         #endregion
 
@@ -91,6 +97,8 @@ namespace MyAnimePlugin3
 
         #region Public Methods
 
+
+
 		public bool ResumeOrPlay(VideoLocalVM fileToPlay)
 		{
 			try
@@ -98,17 +106,19 @@ namespace MyAnimePlugin3
 				curEpisode = null;
 
 				int timeMovieStopped = 0;
-				if (!File.Exists(fileToPlay.FullPath))
+				if (!IsStreaming(curMedia) && !File.Exists(fileToPlay.FullPath))
 				{
 					Utils.DialogMsg("Error", "File could not be found!");
 					return false;
 				}
 
-				BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
-				timeMovieStopped = GetTimeStopped(fileToPlay.FullPath);
+                curFileName = fileToPlay.FullPath;
+                curMedia = fileToPlay.Media;
+
+                BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
+				timeMovieStopped = GetTimeStopped(IsStreaming(curMedia) ? curMedia.Parts[0].Key : fileToPlay.FullPath);
 				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
 
-				curFileName = fileToPlay.FullPath;
 
 				#region Ask user to Resume
 				if (timeMovieStopped > 0)
@@ -140,7 +150,15 @@ namespace MyAnimePlugin3
 			return false;
 		}
 
-		
+
+        private bool IsStreaming(Media m)
+        {
+
+            if (BaseConfig.Settings.UseStreaming && m != null && m.Parts != null && m.Parts.Count > 0)
+                return true;
+            return false;
+        }
+
         public bool ResumeOrPlay(AnimeEpisodeVM episode)
         {
             try
@@ -178,25 +196,26 @@ namespace MyAnimePlugin3
                 
 
                 if (fileToPlay == null) return false;
-
+                prevMedia = curMedia;
+                curMedia = fileToPlay.Media;
 				BaseConfig.MyAnimeLog.Write("Filetoplay: {0}", fileToPlay.FullPath);
 
 
-                    if (!File.Exists(fileToPlay.FullPath))
-                    {
-						Utils.DialogMsg("Error", "File could not be found!");
-                        return false;
-                    }
-					BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
-					timeMovieStopped = GetTimeStopped(fileToPlay.FullPath);
-					BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
+                if (!IsStreaming(curMedia) && !File.Exists(fileToPlay.FullPath))
+                {
+					Utils.DialogMsg("Error", "File could not be found!");
+                    return false;
+                }
+				BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
+				timeMovieStopped = GetTimeStopped(IsStreaming(curMedia) ? curMedia.Parts[0].Key : fileToPlay.FullPath);
+				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
 
 
-					prevEpisode = curEpisode;
-					prevFileName = curFileName;
+				prevEpisode = curEpisode;
+				prevFileName = curFileName;
 
-					curEpisode = episode;
-					curFileName = fileToPlay.FullPath;
+				curEpisode = episode;
+				curFileName = fileToPlay.FullPath;
 
  
 
@@ -283,6 +302,46 @@ namespace MyAnimePlugin3
 			MainWindow.animeSeriesIDToBeRated = episode.AnimeSeriesID;
         }
 
+        void CreateSubsOnTempIfNecesary(Media m)
+        {
+            Part p = m.Parts[0];
+            string fullname = p.Key.Replace("\\", "/").Replace("//", "/").Replace(":", string.Empty);
+            string fname = Path.GetFileNameWithoutExtension(fullname);
+            if (p.Streams != null)
+            {
+                foreach (Stream s in p.Streams.Where(a => a.File != null && a.StreamType == "3"))
+                {
+                    string extension = Path.GetExtension(s.File);
+                    string filePath = Path.Combine(Path.GetTempPath(), Path.GetDirectoryName(fullname));
+                    try
+                    {
+                        string subtitle = wc.DownloadString(s.Key);
+                        /*   try
+                           {
+                               Directory.CreateDirectory(filePath);
+                               string fullpath = Path.Combine(filePath, fname + extension);
+                               File.WriteAllText(filePath, subtitle);
+                           }
+                           catch (Exception)
+                           {
+                           }*/
+                        try
+                        {
+                            filePath = Path.Combine(Path.GetTempPath(), fname + extension);
+                            File.WriteAllText(filePath, subtitle);
+                        }
+                        catch (Exception)
+                        {
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
+            }
+        }
+       
         /// <summary>
         /// Initiates Playback of m_currentEpisode[DBEpisode.cFilename] and calls Fullscreen Window
         /// </summary>
@@ -305,10 +364,22 @@ namespace MyAnimePlugin3
 
 				// Start Listening to any External Player Events
 				listenToExternalPlayerEvents = true;
+                CreateSubsOnTempIfNecesary(curMedia);
+                if (IsStreaming(curMedia))
+                {
+                    string title = string.Empty;
+                    if (curEpisode != null)
+                        title = curEpisode.DisplayName;
+                    else
+                        title = Path.GetFileNameWithoutExtension(curMedia.Parts[0].Key.Replace("/", "\\")).Replace("_"," ");
+                    result =
+                        g_Player.PlayVideoStream(curMedia.Parts[0].Key, title) ||
+                        g_Player.IsExternalPlayer;
+                }
+                else
+                    result = g_Player.Play(curFileName, g_Player.MediaType.Video) || g_Player.IsExternalPlayer;
 
-                result = g_Player.Play(curFileName, g_Player.MediaType.Video) || g_Player.IsExternalPlayer;
-
-				// Stop Listening to any External Player Events
+                // Stop Listening to any External Player Events
 				listenToExternalPlayerEvents = false;
 
 				//set properties
@@ -375,7 +446,7 @@ namespace MyAnimePlugin3
             }
             return result;
         }
-
+        /*
 		public bool PlayPreview(string fileName)
 		{
 			bool result = false;
@@ -392,7 +463,7 @@ namespace MyAnimePlugin3
 			}
 			return result;
 		}
-
+        */
         #region Playback Event Handlers
         void OnPlayBackStopped(MediaPortal.Player.g_Player.MediaType type, int timeMovieStopped, string filename)
         {
@@ -532,7 +603,7 @@ namespace MyAnimePlugin3
 			BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
             return (curEpisode != null &&
                     type == g_Player.MediaType.Video &&
-                    curFileName == filename);
+                    (IsStreaming(curMedia) ? curMedia.Parts[0].Key == filename : curFileName == filename));
         }
 
 		bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
@@ -540,14 +611,14 @@ namespace MyAnimePlugin3
 			BaseConfig.MyAnimeLog.Write("PlayBackOpWasOfConcern: {0} - {1} - {2}", filename, type, prevEpisode);
 			return (prevEpisode != null &&
 					type == g_Player.MediaType.Video &&
-					prevFileName == filename);
+                    (IsStreaming(prevMedia) ? prevMedia.Parts[0].Key == filename : prevFileName == filename));
 		}
 
         void PlaybackOperationEnded(bool countAsWatched, AnimeEpisodeVM ep)
         {
 			try
 			{
-				if (ep == null)
+                if (ep == null)
 					return;
 
 				if (ep != null)

@@ -77,8 +77,16 @@ namespace MyAnimePlugin3
 		
         #endregion
 
+        public static Dictionary<string, int> RecentWatchPositions { get; set; }=new Dictionary<string, int>();
+
         private int GetTimeStopped(string fileName)
         {
+            if (IsStreaming(curMedia))
+            {
+                if (RecentWatchPositions.ContainsKey(fileName))
+                    return RecentWatchPositions[fileName];
+                return 0;
+            }
 
             IMDBMovie movieDetails = new IMDBMovie();
             VideoDatabase.GetMovieInfo(fileName, ref movieDetails);
@@ -153,7 +161,6 @@ namespace MyAnimePlugin3
 
         private bool IsStreaming(Media m)
         {
-
             if (BaseConfig.Settings.UseStreaming && m != null && m.Parts != null && m.Parts.Count > 0)
                 return true;
             return false;
@@ -473,6 +480,10 @@ namespace MyAnimePlugin3
                 LogPlayBackOp("stopped", filename);
                 try
 				{
+				    if (IsStreaming(curMedia))
+				    {
+				        RecentWatchPositions[curMedia.Parts[0].Key] = timeMovieStopped;
+				    }
 					BaseConfig.MyAnimeLog.Write("Checking for set watched");
 					#region Set Watched
                     double watchedAfter = BaseConfig.Settings.WatchedPercentage;
@@ -508,6 +519,12 @@ namespace MyAnimePlugin3
             if (PlayBackOpIsOfConcern(type, filename))
             {
                 LogPlayBackOp("ended", filename);
+                if (IsStreaming(curMedia))
+                {
+                    if (RecentWatchPositions.ContainsKey(curMedia.Parts[0].Key))
+                        RecentWatchPositions.Remove(curMedia.Parts[0].Key);
+                }
+
                 try
                 {
                     PlaybackOperationEnded(true, curEpisode);
@@ -529,8 +546,11 @@ namespace MyAnimePlugin3
 					BaseConfig.MyAnimeLog.Write("Checking for set watched");
 					#region Set Watched
 					double watchedAfter = BaseConfig.Settings.WatchedPercentage;
+                    if (IsStreaming(prevMedia))
+                        RecentWatchPositions[prevMedia.Parts[0].Key] = stoptime;
 
-					if (!g_Player.IsExternalPlayer)
+
+                    if (!g_Player.IsExternalPlayer)
 					{
 						if ((stoptime / g_Player.Duration) > watchedAfter / 100)
 							PlaybackOperationEnded(true, prevEpisode);
@@ -558,7 +578,6 @@ namespace MyAnimePlugin3
             if (PlayBackOpIsOfConcern(type, filename))
             {
                 LogPlayBackOp("started", filename);
-
                 // really stupid, you have to wait until the player itself sets the properties (a few seconds) and after that set them
                 w.RunWorkerAsync(false);
 
@@ -603,7 +622,7 @@ namespace MyAnimePlugin3
 			BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
             return (curEpisode != null &&
                     type == g_Player.MediaType.Video &&
-                    (IsStreaming(curMedia) ? curMedia.Parts[0].Key == filename : curFileName == filename));
+                    (IsStreaming(curMedia) ? curEpisode.DisplayName ==  filename : curFileName == filename));
         }
 
 		bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
@@ -611,7 +630,7 @@ namespace MyAnimePlugin3
 			BaseConfig.MyAnimeLog.Write("PlayBackOpWasOfConcern: {0} - {1} - {2}", filename, type, prevEpisode);
 			return (prevEpisode != null &&
 					type == g_Player.MediaType.Video &&
-                    (IsStreaming(prevMedia) ? prevMedia.Parts[0].Key == filename : prevFileName == filename));
+                    (IsStreaming(prevMedia) ? prevEpisode.DisplayName == filename : prevFileName == filename));
 		}
 
         void PlaybackOperationEnded(bool countAsWatched, AnimeEpisodeVM ep)

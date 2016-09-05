@@ -54,10 +54,10 @@ namespace MyAnimePlugin3.Windows
             Random_LevelName,
             Random_NumberOfMatches,
             Random_CombinedFilterDetails,
-            Random_Series_CategoryType,
-            Random_Episode_CategoryType,
-            Random_Series_Categories,
-            Random_Episode_Categories,
+            Random_Series_TagType,
+            Random_Episode_TagType,
+            Random_Series_Tags,
+            Random_Episode_Tags,
             Random_Series_Title,
             Random_Series_Description,
             Random_Series_LastWatched,
@@ -74,12 +74,19 @@ namespace MyAnimePlugin3.Windows
 
         }
 
-        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
-        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+	  public void SetGUIProperty(GuiProperty which, string value)
+	  {
+      this.SetGUIProperty(which.ToString(), value);
+	  }
+
+	  public void ClearGUIProperty(GuiProperty which)
+	  {
+	    this.ClearGUIProperty(which.ToString());
+	  }
 
 
 
-        private List<string> AllTags = new List<string>();
+	  private List<string> AllTags = new List<string>();
 
 		private BackgroundWorker getDataWorker = new BackgroundWorker();
 
@@ -173,11 +180,11 @@ namespace MyAnimePlugin3.Windows
 
             SetGUIProperty(GuiProperty.Random_NumberOfMatches, MainWindow.RandomWindow_MatchesFound.ToString(Globals.Culture));
 
-            SetGUIProperty(GuiProperty.Random_Series_Categories, string.Join(", ",MainWindow.RandomWindow_SeriesTags));
-            SetGUIProperty(GuiProperty.Random_Episode_Categories, string.Join(", ", MainWindow.RandomWindow_EpisodeTags));
+            SetGUIProperty(GuiProperty.Random_Series_Tags, string.Join(", ",MainWindow.RandomWindow_SeriesTags));
+            SetGUIProperty(GuiProperty.Random_Episode_Tags, string.Join(", ", MainWindow.RandomWindow_EpisodeTags));
 
-            SetGUIProperty(GuiProperty.Random_Series_CategoryType, MainWindow.RandomWindow_SeriesAllTags ? Translation.All : Translation.Any);
-            SetGUIProperty(GuiProperty.Random_Episode_CategoryType, MainWindow.RandomWindow_EpisodeAllTags ? Translation.All : Translation.Any);
+            SetGUIProperty(GuiProperty.Random_Series_TagType, MainWindow.RandomWindow_SeriesAllTags ? Translation.All : Translation.Any);
+            SetGUIProperty(GuiProperty.Random_Episode_TagType, MainWindow.RandomWindow_EpisodeAllTags ? Translation.All : Translation.Any);
 
         }
 
@@ -257,10 +264,9 @@ namespace MyAnimePlugin3.Windows
 
 				if (MainWindow.RandomWindow_RandomLevel != RandomSeriesEpisodeLevel.GroupFilter) return serList;
 				GroupFilterVM gf = MainWindow.RandomWindow_LevelObject as GroupFilterVM;
-                if ((gf == null) || (!gf.GroupFilterID.HasValue)) return serList;
+                if (gf?.GroupFilterID == null) return serList;
 
-
-                BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + gf.GroupFilterName);
+			  BaseConfig.MyAnimeLog.Write("Getting list of candidate random series for: " + gf.GroupFilterName);
 
 				bool allTags = MainWindow.RandomWindow_SeriesAllTags;
 				if (MainWindow.RandomWindow_RandomType == RandomObjectType.Episode)

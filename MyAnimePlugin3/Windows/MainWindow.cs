@@ -2251,10 +2251,14 @@ public static object parentLevelObject = null;
             });
             menu.Add(btnWindowRandom, () =>
             {
-                RandomWindow_LevelObject = GroupFilterHelper.GetTopLevelGroupFilters();
-                RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
-                RandomWindow_RandomType = RandomObjectType.Series;
-                GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+              /*
+              RandomWindow_LevelObject = FacadeHelper.GetTopLevelGroupFilters();
+              RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
+              RandomWindow_RandomType = RandomObjectType.Series;
+              GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+              */
+
+              ShowContextMenuGroupFilter("");
             });
             menu.Add(btnChangeLayout, () =>
             {

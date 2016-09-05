@@ -162,17 +162,7 @@
 		<textcolor>ffa9d0f7</textcolor>
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
-	
-	<control>
-      <type>label</type>
-      <label>#Anime3.Recommendations.DownloadStatus</label>
-      <posX>650</posX>
-      <posY>16</posY>
-	  <font>font12</font>
-	  <textcolor>ffFFFFFF</textcolor>
-	  <width>450</width>
-    </control>
-	
+    
 	<control>
       <description>No data found and loading status</description>
       <type>label</type>

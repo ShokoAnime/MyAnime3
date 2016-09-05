@@ -71,7 +71,7 @@ namespace MyAnimePlugin3
 				case ContinueWatching:
 					GUIWindowManager.CloseCurrentWindow();
 					GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING, false);
-					return true;
+          return true;
 
 				case Utilities:
 					GUIWindowManager.CloseCurrentWindow();

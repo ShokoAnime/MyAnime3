@@ -344,7 +344,7 @@ namespace MyAnimePlugin3.Windows
 						case 2:
 
 							if (ep.AnimeSeries == null) return;
-							MainWindow.selectedGroupFilter = MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
+							//MainWindow.selectedGroupFilter = MainWindow.curGroupFilter = GroupFilterHelper.AllGroupsFilter;
 
 							// find the group for this series
 							AnimeGroupVM grp = JMMServerHelper.GetGroup(ep.AnimeSeries.AnimeGroupID);
@@ -353,16 +353,16 @@ namespace MyAnimePlugin3.Windows
 								BaseConfig.MyAnimeLog.Write("Group not found");
 								return;
 							}
-							MainWindow.curAnimeGroup = grp;
-							MainWindow.curAnimeGroupViewed = grp;
-							MainWindow.curAnimeSeries = ep.AnimeSeries;
+							//MainWindow.curAnimeGroup = grp;
+							//MainWindow.curAnimeGroupViewed = grp;
+							//MainWindow.curAnimeSeries = ep.AnimeSeries;
 
 							bool foundEpType = false;
 							foreach (AnimeEpisodeTypeVM anEpType in ep.AnimeSeries.EpisodeTypesToDisplay)
 							{
 								if (anEpType.EpisodeType == enEpisodeType.Episode)
 								{
-									MainWindow.curAnimeEpisodeType = anEpType;
+									//MainWindow.curAnimeEpisodeType = anEpType;
 									foundEpType = true;
 									break;
 								}
@@ -370,7 +370,7 @@ namespace MyAnimePlugin3.Windows
 
 							if (!foundEpType) return;
 
-							MainWindow.listLevel = Listlevel.Episode;
+							//MainWindow.listLevel = Listlevel.Episode;
 							GUIWindowManager.ActivateWindow(Constants.WindowIDs.MAIN, false);
 
 							break;

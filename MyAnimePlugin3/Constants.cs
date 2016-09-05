@@ -42,35 +42,37 @@ namespace MyAnimePlugin3
 		#endregion
 
 		#region Window IDs
-		public struct WindowIDs
-		{
-			/// <summary>
-			/// The main windows id.
-			/// </summary>
-			public static readonly int MAIN = 6101;
-			public static readonly int ADMIN = 6102;
-			public static readonly int FANART = 6103;
-			public static readonly int POSTERS = 6104;
-			public static readonly int CHARACTERS = 6105;
-			public static readonly int WIDEBANNERS = 6106;
-			public static readonly int RELATIONS = 6107;
-			public static readonly int CALENDAR = 6108;
-            public static readonly int ANIMEINFO = 6109;
-			public static readonly int DOWNLOADS = 6110;
-            public static readonly int COLLECTION = 6111;
-            public static readonly int BROWSER = 6112;
-            public static readonly int NEWS = 6113;
-			public static readonly int WATCHING = 6113;
-			public static readonly int RECOMMENDATIONS = 6114;
-			public static readonly int SIMILAR = 6115;
-			public static readonly int RANDOM = 6116;
-			public static readonly int PLAYLISTS = 6117;
-			public static readonly int ACTORS = 6118;
-            public static readonly int RATINGDIALOG = 6201;
-            public static readonly int RELATIONS_OLD = 610711;
 
-		}
-		#endregion
+	  public struct WindowIDs
+	  {
+	    /// <summary>
+	    /// The main windows id.
+	    /// </summary>
+	    public static readonly int MAIN = 6101;
+
+	    public static readonly int ADMIN = 6102;
+	    public static readonly int FANART = 6103;
+	    public static readonly int POSTERS = 6104;
+	    public static readonly int CHARACTERS = 6105;
+	    public static readonly int WIDEBANNERS = 6106;
+	    public static readonly int RELATIONS = 6107;
+	    public static readonly int CALENDAR = 6108;
+	    public static readonly int ANIMEINFO = 6109;
+	    public static readonly int DOWNLOADS = 6110;
+	    public static readonly int COLLECTION = 6111;
+	    public static readonly int BROWSER = 6112;
+	    public static readonly int WATCHING = 6113;
+	    public static readonly int RECOMMENDATIONS = 6114;
+	    public static readonly int SIMILAR = 6115;
+	    public static readonly int RANDOM = 6116;
+	    public static readonly int PLAYLISTS = 6117;
+	    public static readonly int ACTORS = 6118;
+	    public static readonly int RATINGDIALOG = 6201;
+	    public static readonly int RELATIONS_OLD = 610711;
+
+	  }
+
+	  #endregion
 
 		#region Control IDs
 		public struct ControlIDs

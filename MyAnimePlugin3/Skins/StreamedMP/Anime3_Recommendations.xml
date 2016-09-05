@@ -152,16 +152,6 @@
       <label>#Anime3.Recommendations.CurrentView</label>
       <align>left</align>
     </control>
-    <control Style="smallTitleB">
-      <type>label</type>
-      <label>#Anime3.Recommendations.DownloadStatus</label>
-      <posX>650</posX>
-      <posX>975</posX>
-      <posY>16</posY>
-      <posY>24</posY>
-      <width>450</width>
-      <width>675</width>
-    </control>
     <control>
       <description>No data found and loading status</description>
       <type>label</type>

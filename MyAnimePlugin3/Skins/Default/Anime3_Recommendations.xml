@@ -81,19 +81,6 @@
 	  <label>Recommendations #Anime3.Recommendations.CurrentView</label>
 	</control>
 	
-
-	<control>
-	  <description>Status</description>
-	  <type>label</type>
-	  <posX>290</posX>
-	  <posY>320</posY>
-	  <width>900</width>
-	  <label>#Anime3.Recommendations.DownloadStatus</label>
-	  <font>font10</font>
-	  <align>Left</align>
-	  <textcolor>ffa9d0f7</textcolor>
-	</control>
-
 	<!--  ************** Facade *****************  -->
 
 	<control>

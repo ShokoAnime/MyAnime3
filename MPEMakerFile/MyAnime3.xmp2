@@ -13,28 +13,28 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\Anime3.dll</LocalFileName>
+              <LocalFileName>..\Release\plugins\Windows\Anime3.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{6db65f91-ebdb-464c-b78d-8885679339d2}-Anime3.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Anime3.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\Anime3.pdb</LocalFileName>
+              <LocalFileName>..\Release\plugins\Windows\Anime3.pdb</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{09ed7ffa-f4f9-4b5b-97f0-6d6725165feb}-Anime3.pdb</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Anime3.pdb</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
+              <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{a5f99130-ed2d-499c-85f3-9721f75836be}-MA3_FFDShowAPI.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
+              <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{3363d8cf-0ba7-4502-b284-3a202b1b206a}-MA3_FFDShowAPI.pdb</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.pdb</DestinationFilename>
             </FileItem>
@@ -73,14 +73,14 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
+              <LocalFileName>..\Release\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{bce335fc-0cfb-488d-bfd9-41ce74f2f624}-Anime3_Background.standard.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Background.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.standard.xml</LocalFileName>
+              <LocalFileName>..\Release\skin\Avalon\Anime3_Views.standard.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{2e34f16a-f030-4297-96bd-55d07152a493}-Anime3_Views.standard.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Views.xml</DestinationFilename>
             </FileItem>
@@ -115,14 +115,14 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
+              <LocalFileName>..\Release\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{3a863036-a1ce-4faa-ac96-09250696e5f9}-Anime3_Main.fanart.xml</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Anime3_Main.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
+              <LocalFileName>..\Release\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{d42667c5-344e-4c46-82d6-7ab261393df9}-Anime3_QueueStatus.fanart.xml</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Anime3_QueueStatus.xml</DestinationFilename>
             </FileItem>
@@ -356,7 +356,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>3</Major>
       <Minor>6</Minor>
       <Build>0</Build>
-      <Revision>5</Revision>
+      <Revision>6</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
 
@@ -373,7 +373,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
     <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=218&amp;cf_id=24</OnlineLocation>
     <ReleaseDate>2016-09-05T18:40:56</ReleaseDate>
     <Tags />
-    <Location>C:\Projects\[ JMM Binaries No Configs ]\MyAnime3.mpe1</Location>
+    <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -411,56 +411,56 @@ http://jmediamanager.org/changelog/</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\Anime3.dll</LocalFileName>
+        <LocalFileName>..\Release\plugins\Windows\Anime3.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{6db65f91-ebdb-464c-b78d-8885679339d2}-Anime3.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Anime3.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\Anime3.pdb</LocalFileName>
+        <LocalFileName>..\Release\plugins\Windows\Anime3.pdb</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{09ed7ffa-f4f9-4b5b-97f0-6d6725165feb}-Anime3.pdb</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Anime3.pdb</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
+        <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{a5f99130-ed2d-499c-85f3-9721f75836be}-MA3_FFDShowAPI.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
+        <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{3363d8cf-0ba7-4502-b284-3a202b1b206a}-MA3_FFDShowAPI.pdb</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.pdb</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
+        <LocalFileName>..\Release\skin\Avalon\Anime3_Background.standard.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{bce335fc-0cfb-488d-bfd9-41ce74f2f624}-Anime3_Background.standard.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Anime3_Background.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon\Anime3_Views.standard.xml</LocalFileName>
+        <LocalFileName>..\Release\skin\Avalon\Anime3_Views.standard.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2e34f16a-f030-4297-96bd-55d07152a493}-Anime3_Views.standard.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Anime3_Views.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
+        <LocalFileName>..\Release\skin\StreamedMP\Anime3_Main.fanart.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{3a863036-a1ce-4faa-ac96-09250696e5f9}-Anime3_Main.fanart.xml</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Anime3_Main.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
+        <LocalFileName>..\Release\skin\StreamedMP\Anime3_QueueStatus.fanart.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{d42667c5-344e-4c46-82d6-7ab261393df9}-Anime3_QueueStatus.fanart.xml</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Anime3_QueueStatus.xml</DestinationFilename>
       </FileItem>
@@ -474,7 +474,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{8d6220fd-7b6c-43de-87a2-eb4853cb2b08}-</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Media</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Folder>..\skin\[ Media ]</Folder>
         <Group>DefaultWide</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -484,7 +484,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{67ab8431-cba8-4d5d-81b1-dc5a0c23c74b}-</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\DefaultWide</Folder>
+        <Folder>..\skin\DefaultWide</Folder>
         <Group>DefaultWide</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -494,7 +494,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{b3014331-210e-4cb3-92d9-53124896f985}-</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\StreamedMP</Folder>
+        <Folder>..\skin\StreamedMP</Folder>
         <Group>StreamedMP</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -504,7 +504,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{3ee94d9e-d4a1-402d-b530-4d77d4777281}-</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Media\</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Folder>..\skin\[ Media ]</Folder>
         <Group>StreamedMP</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -514,7 +514,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{c6052263-1e89-44e8-8acb-51a1b86a0795}-</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Media\</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Folder>..\skin\[ Media ]</Folder>
         <Group>Avalon</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -524,7 +524,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{b3630963-8ce7-47fd-83c4-66329701fb14}-</ZipFileName>
         <DestinationFilename>%Skin%\Avalon</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avalon</Folder>
+        <Folder>..\skin\Avalon</Folder>
         <Group>Avalon</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -534,7 +534,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{7e38e807-8573-4b91-8945-8ae9a79f4ca5}-</ZipFileName>
         <DestinationFilename>%Skin%\Avallonis\Media</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Folder>..\skin\[ Media ]</Folder>
         <Group>Avallonis</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -544,7 +544,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{ed5f856c-c613-46c7-a0d5-d72f27e6d369}-</ZipFileName>
         <DestinationFilename>%Skin%\Avallonis</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Avallonis</Folder>
+        <Folder>..\skin\Avallonis</Folder>
         <Group>Avallonis</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -554,7 +554,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{2e88bd81-8152-4bb6-b664-a547e8536ccf}-</ZipFileName>
         <DestinationFilename>%Skin%\Default\Media</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Folder>..\skin\[ Media ]</Folder>
         <Group>Default</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -564,7 +564,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{b85f48d4-5ba7-4827-a52e-f715b60e0681}-</ZipFileName>
         <DestinationFilename>%Skin%\Default</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Default</Folder>
+        <Folder>..\skin\Default</Folder>
         <Group>Default</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -574,7 +574,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{fb9286dc-a9d8-41e6-8ebe-9888bb4f1359}-</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\[ Media ]</Folder>
+        <Folder>..\skin\[ Media ]</Folder>
         <Group>Titan</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -584,7 +584,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{5b08314a-1cbb-440d-b53f-f2f17c4fcb47}-</ZipFileName>
         <DestinationFilename>%Skin%\Titan\</DestinationFilename>
-        <Folder>..\..\..\[ JMM Binaries No Configs ]\MyAnime3\skin\Titan</Folder>
+        <Folder>..\skin\Titan</Folder>
         <Group>Titan</Group>
         <Recursive>true</Recursive>
       </FolderGroup>

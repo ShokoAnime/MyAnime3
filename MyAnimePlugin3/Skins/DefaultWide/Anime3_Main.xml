@@ -202,14 +202,14 @@
     </control>
 
     <control>
-      <description>Find description C+W-key (text)</description>
+      <description>Find description W-key (text)</description>
       <type>label</type>
       <id>0</id>
       <posX>795</posX>
       <posY>158</posY>
       <width>200</width>
       <font>font8</font>
-      <label>C+W=Start Word (#Anime3.FindStartWord)</label>
+      <label>W=Start Word (#Anime3.FindStartWord)</label>
       <visible>[facadeview.list]+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
     </control>
 
@@ -226,14 +226,14 @@
     </control>
 
     <control>
-      <description>Find description C+M-key</description>
+      <description>Find description M-key</description>
       <type>label</type>
       <id>0</id>
       <posX>1070</posX>
       <posY>158</posY>
       <width>200</width>
       <font>font8</font>
-      <label>C+M=Mode (#Anime3.FindMode)</label>
+      <label>M=Mode (#Anime3.FindMode)</label>
       <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
     </control>
 

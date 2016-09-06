@@ -402,7 +402,7 @@
 	<control Style="InfoLabel">
 		<description>GenreShort Label</description>
 		<type>fadelabel</type>
-	    <label>Categories</label>
+	    <label>Tags</label>
 		<id>0</id>
 		<posX>90</posX>
 		<posY>320</posY>

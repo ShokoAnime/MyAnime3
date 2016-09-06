@@ -162,7 +162,6 @@
     <Compile Include="Downloads\UTorrentHelper.cs" />
     <Compile Include="FacadeHelper.cs" />
     <Compile Include="ImageAllocator.cs" />
-    <Compile Include="KeyboardHook.cs" />
     <Compile Include="Logos.cs" />
     <Compile Include="MediaInfo.cs" />
     <Compile Include="MultiSortLib\MultiSort.cs" />

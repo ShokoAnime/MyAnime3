@@ -236,18 +236,18 @@
       <posY>237</posY>
       <width>450</width>
       <font>mediastream10</font>
-      <label>C+W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+      <label>W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
       <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
     </control>
     <control>
-      <description>Find description C+M-key</description>
+      <description>Find description M-key</description>
       <type>label</type>
       <id>0</id>
       <posX>1245</posX>
       <posY>267</posY>
       <width>450</width>
       <font>mediastream10</font>
-      <label>C+M=Mode (#Anime3.FindMode)</label>
+      <label>M=Mode (#Anime3.FindMode)</label>
       <visible>Control.IsVisible(3463)</visible>
     </control>
     <!-- *********************** LIST /GRAPHICAL VIEW*********************************** -->

@@ -787,7 +787,7 @@ BACKGROUND OVERLAY END-->
     </control>
 	
 	<control>
-		  <description>Find description C+W-key (text)</description>
+		  <description>Find description W-key (text)</description>
 		  <type>label</type>
 		  <id>0</id>
 		  <posX>570</posX>

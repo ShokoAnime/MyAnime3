@@ -110,7 +110,7 @@
 			<visible>Control.IsVisible(3463)+Control.IsVisible(3464)+!Player.hasmedia</visible>
         </control>
 		<control>
-            <description>Find description C+W-key (text)</description>
+            <description>Find description W-key (text)</description>
             <type>fadelabel</type>
             <id>0</id>
             <posX>30</posX>
@@ -118,11 +118,11 @@
             <width>600</width>
             <font>AvalonLight12</font>
 			<textcolor>6aa5cb</textcolor>
-            <label>C+W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+            <label>W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
             <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
         </control>
 		<control>
-            <description>Find description C+M-key</description>
+            <description>Find description M-key</description>
             <type>label</type>
             <id>0</id>
             <posX>30</posX>
@@ -131,7 +131,7 @@
             <font>AvalonLight12</font>
 			<textcolor>6aa5cb</textcolor>
             <align>left</align>
-            <label>C+M=Mode (#Anime3.FindMode)</label>
+            <label>M=Mode (#Anime3.FindMode)</label>
             <visible>Control.IsVisible(3463)</visible>
         </control>
   </controls>

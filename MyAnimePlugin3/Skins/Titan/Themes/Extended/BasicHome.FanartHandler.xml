@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+<controls>
+
+
+	<!--            :: Series ::            -->
+
+<control>
+    <description>FanartHandler Series 1</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1201) + string.contains(#bgimage1,series)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.tvseries.backdrop1.any</texture>
+</control>
+
+<control>
+    <description>FanartHandler Series 2</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1202) + string.contains(#bgimage2,series)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.tvseries.backdrop2.any</texture>
+</control> 
+
+	<!--            :: Movies ::            -->
+
+<control>
+    <description>FanartHandler Movies 1</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1201) + string.contains(#bgimage1,movies)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.movingpicture.backdrop1.any</texture>
+</control>
+
+<control>
+    <description>FanartHandler Movies 2</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1202) + string.contains(#bgimage2,movies)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.movingpicture.backdrop2.any</texture>
+</control> 
+
+	<!--            :: Music ::            -->
+
+<control>
+    <description>FanartHandler Music 1</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1201) + string.contains(#bgimage1,music)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.music.scraper.backdrop1.any</texture>
+</control>
+
+<control>
+    <description>FanartHandler Music 2</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1202) + string.contains(#bgimage2,music)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.music.scraper.backdrop2.any</texture>
+</control> 
+
+	<!--            :: TV ::            -->
+
+<control>
+    <description>FanartHandler TV 1</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1201) + string.contains(#bgimage1,tv)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.tv.userdef.backdrop1.any</texture>
+</control>
+
+<control>
+    <description>FanartHandler TV 2</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1202) + string.contains(#bgimage2,tv)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.tv.userdef.backdrop2.any</texture>
+</control> 
+
+	<!--            :: Pictures ::            -->
+
+<control>
+    <description>FanartHandler Pictures 1</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1201) + string.contains(#bgimage1,pictures)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.picture.userdef.backdrop1.any</texture>
+</control>
+
+<control>
+    <description>FanartHandler Pictures 2</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1202) + string.contains(#bgimage2,pictures)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.picture.userdef.backdrop2.any</texture>
+</control> 
+
+	<!--            :: Plugins ::            -->
+
+<control>
+    <description>FanartHandler Plugins 1</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1201) + string.contains(#bgimage1,plugins)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.plugins.userdef.backdrop1.any</texture>
+</control>
+
+<control>
+    <description>FanartHandler Plugins 2</description>
+    <type>image</type>
+    <id>0</id>
+    <posX>0</posX>
+    <posY>0</posY>
+    <width>1920</width>
+    <height>1080</height>
+    <visible>Control.IsVisible(1202) + string.contains(#bgimage2,plugins)</visible>
+    <animation effect="fade" start="100" end="0" time="450" delay="250" reversible="false">Hidden</animation>
+    <animation effect="fade" start="30" end="100" time="450" reversible="false">Visible</animation>
+    <texture>#fanarthandler.plugins.userdef.backdrop2.any</texture>
+</control> 
+
+</controls>
+</window>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+  <controls>
+    <control>
+      <description>GROUP: RecentlyAdded Series</description>
+      <type>group</type>
+      <dimColor>0xffffffff</dimColor>
+      <visible>string.equals(#recentMedia, TVSeries) + ![control.isvisible(601) | control.isvisible(501)] + ![Control.HasFocus(551) | Control.HasFocus(552) | Control.HasFocus(553) | Control.HasFocus(554) | Control.HasFocus(555) | Control.HasFocus(651) | Control.HasFocus(652) | Control.HasFocus(653) | Control.HasFocus(654) | Control.HasFocus(655) | Control.HasFocus(12) | Control.HasFocus(13) | Control.HasFocus(14) | Control.HasFocus(99999)]</visible>
+			<animation effect="fade" start="0" end="100" time="250" delay="550">visible</animation>
+			<animation effect="fade" start="100" end="0" time="0">hidden</animation>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+				<control>
+					<description>LATEST MEDIA BACKGROUND</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>8</posX>
+					<posY>309</posY>
+					<width>1907</width>
+					<height>329</height>
+					<texture>BasicHomeLatestBG.png</texture>
+				</control>
+				<control>
+					<description>Header label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>602</posX>
+					<posY>385</posY>
+					<width>590</width>
+					<label>#(L(4558))</label>
+					<font>TitanLight20</font>
+					<textcolor>000000</textcolor>
+				</control>        
+				<control>
+					<description>Serie 1 name</description>
+					<type>fadelabel</type>
+					<id>0</id>
+					<posX>604</posX>
+					<posY>450</posY>
+					<width>430</width>
+					<label>#latestMediaHandler.tvseries.latest1.serieName</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<scrollStartDelaySec>10</scrollStartDelaySec>
+				</control>
+				<control>
+					<type>imagelist</type>
+					<id>0</id>
+					<posX>1580</posX>
+					<posY>452</posY>
+					<width>315</width>
+					<height>29</height>
+					<textureWidth>32</textureWidth>
+					<textureHeight>27</textureHeight>
+					<subitems>
+					<subitem>starblue2.png</subitem>
+					<subitem>starblack2.png</subitem>
+					</subitems>
+					<orientation>horizontal</orientation>
+					<align>left</align>
+					<imagesToDraw>5</imagesToDraw>
+					<percentage>#latestMediaHandler.tvseries.latest1.rating</percentage>
+				</control> 
+				<control>
+					<description>Rating label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>1750</posX>
+					<posY>450</posY>
+					<label>#latestMediaHandler.tvseries.latest1.rating</label>
+					<font>fontB12</font>
+					<textcolor>000000</textcolor>
+				</control> 
+				<control>
+					<type>label</type>
+					<id>0</id>
+					<posX>1085</posX>
+					<posY>450</posY>
+					<width>480</width>
+					<label>S#latestMediaHandler.tvseries.latest1.seasonIndexE#latestMediaHandler.tvseries.latest1.episodeIndex - #latestMediaHandler.tvseries.latest1.episodeName</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<align>left</align>
+				</control>
+				<control>
+					<description>Serie 1 thumb/fanart</description>
+					<type>image</type>
+					<id>1021</id>
+					<posX>135</posX>
+					<posY>375</posY>
+					<width>135</width>
+					<height>191</height>
+					<texture>#latestMediaHandler.tvseries.latest1.serieThumb</texture>
+					<shouldCache>true</shouldCache>
+				</control>
+				<control>
+					<description>Play Button 1</description>
+					<type>button</type>
+					<id>91919994</id>
+					<posX>111</posX>
+					<posY>350</posY>
+					<width>184</width>
+					<height>242</height>
+					<textureFocus>thumb_focus.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<label>-</label>
+					<onleft>91919996</onleft>
+					<onright>91919995</onright>
+					<onup>91919994</onup>
+					<ondown>901</ondown>
+					<font>font12</font>
+				</control>
+				<control>
+					<description>Serie 2 name</description>
+					<type>fadelabel</type>
+					<id>0</id>
+					<posX>604</posX>
+					<posY>491</posY>
+					<width>430</width>
+					<label>#latestMediaHandler.tvseries.latest2.serieName</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<scrollStartDelaySec>10</scrollStartDelaySec>
+				</control>
+				<control>
+					<type>imagelist</type>
+					<id>0</id>
+					<posX>1580</posX>
+					<posY>493</posY>
+					<width>315</width>
+					<height>29</height>
+					<textureWidth>32</textureWidth>
+					<textureHeight>27</textureHeight>
+					<subitems>
+					<subitem>starblue2.png</subitem>
+					<subitem>starblack2.png</subitem>
+					</subitems>
+					<orientation>horizontal</orientation>
+					<align>left</align>
+					<imagesToDraw>5</imagesToDraw>
+					<percentage>#latestMediaHandler.tvseries.latest2.rating</percentage>
+				</control> 
+				<control>
+					<description>Rating label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>1750</posX>
+					<posY>491</posY>
+					<label>#latestMediaHandler.tvseries.latest2.rating</label>
+					<font>fontB12</font>
+					<textcolor>000000</textcolor>
+				</control> 
+				<control>
+					<type>label</type>
+					<id>0</id>
+					<posX>1085</posX>
+					<posY>491</posY>
+					<width>480</width>
+					<label>S#latestMediaHandler.tvseries.latest2.seasonIndexE#latestMediaHandler.tvseries.latest2.episodeIndex - #latestMediaHandler.tvseries.latest2.episodeName</label>>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<align>left</align>
+				</control> 
+				<control>
+					<description>Serie 2 thumb/fanart</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>285</posX>
+					<posY>375</posY>
+					<width>135</width>
+					<height>191</height>
+					<texture>#latestMediaHandler.tvseries.latest2.serieThumb</texture>
+					<shouldCache>true</shouldCache>
+				</control>
+				<control>
+					<description>Play Button 2</description>
+					<type>button</type>
+					<id>91919995</id>
+					<posX>261</posX>
+					<posY>350</posY>
+					<width>184</width>
+					<height>242</height>
+					<textureFocus>thumb_focus.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<label>-</label>
+					<onleft>91919994</onleft>
+					<onright>91919996</onright>
+					<onup>91919995</onup>
+					<ondown>901</ondown>
+					<font>font12</font>
+				</control>
+				<control>
+					<description>Serie 3 name</description>
+					<type>fadelabel</type>
+					<id>0</id>
+					<posX>604</posX>
+					<posY>532</posY>
+					<width>430</width>
+					<label>#latestMediaHandler.tvseries.latest3.serieName</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<scrollStartDelaySec>10</scrollStartDelaySec>
+				</control>
+				<control>
+					<type>imagelist</type>
+					<id>0</id>
+					<posX>1580</posX>
+					<posY>534</posY>
+					<width>315</width>
+					<height>29</height>
+					<textureWidth>32</textureWidth>
+					<textureHeight>27</textureHeight>
+					<subitems>
+					<subitem>starblue2.png</subitem>
+					<subitem>starblack2.png</subitem>
+					</subitems>
+					<orientation>horizontal</orientation>
+					<align>left</align>
+					<imagesToDraw>5</imagesToDraw>
+					<percentage>#latestMediaHandler.tvseries.latest3.rating</percentage>
+				</control> 
+				<control>
+					<description>Rating label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>1750</posX>
+					<posY>532</posY>
+					<label>#latestMediaHandler.tvseries.latest3.rating</label>
+					<font>fontB12</font>
+					<textcolor>000000</textcolor>
+				</control>
+				<control>
+					<type>label</type>
+					<id>0</id>
+					<posX>1085</posX>
+					<posY>532</posY>
+					<width>480</width>
+					<label>S#latestMediaHandler.tvseries.latest3.seasonIndexE#latestMediaHandler.tvseries.latest3.episodeIndex - #latestMediaHandler.tvseries.latest3.episodeName</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<align>left</align>
+				</control>
+				<control>
+					<description>Serie 3 thumb/fanart</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>435</posX>
+					<posY>375</posY>
+					<width>135</width>
+					<height>191</height>
+					<texture>#latestMediaHandler.tvseries.latest3.serieThumb</texture>
+					<shouldCache>true</shouldCache>
+				</control>
+				<control>
+					<description>Play Button 3</description>
+					<type>button</type>
+					<id>91919996</id>
+					<posX>411</posX>
+					<posY>350</posY>
+					<width>184</width>
+					<height>242</height>
+					<textureFocus>thumb_focus.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<label>-</label>
+					<onleft>91919995</onleft>
+					<onright>91919994</onright>
+					<onup>91919996</onup>
+					<ondown>901</ondown>
+					<font>font12</font>
+				</control>
+    </control>
+  </controls>
+</window>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+  <controls>
+    <control>
+      <description>GROUP: BasicHome 5 Day Weather Forecast</description>
+      <type>group</type>
+      <dimColor>0xffffffff</dimColor>
+      <visible>string.equals(#recentMedia, Weather)</visible>
+			<animation effect="fade" start="0" end="100" time="250" delay="550">visible</animation>
+			<animation effect="fade" start="100" end="0" time="0">hidden</animation>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+        <control>
+          <description>LATEST MEDIA BACKGROUND</description>
+          <type>image</type>
+          <id>0</id>
+          <posX>7</posX>
+          <posY>309</posY>
+          <width>1907</width>
+          <height>329</height>
+          <texture>BasicHomeLatestBG.png</texture>
+        </control>
+
+        <control>
+          <description>LATEST MEDIA BACKGROUND</description>
+          <type>image</type>
+          <id>0</id>
+          <posX>958</posX>
+          <posY>385</posY>
+          <width>1</width>
+          <height>177</height>
+          <texture>basichome_weather_separator.png</texture>
+        </control>
+
+      <control>
+        <description>Weather 5th name</description>
+        <type>fadelabel</type>
+        <id>0</id>
+        <posX>1670</posX>
+        <posY>489</posY>
+        <font>TitanLight12</font>
+        <textcolor>000000</textcolor>
+        <label>#WorldWeather.ForecastDay3Day</label>
+      </control>
+	  
+      <control>
+        <description>Weather 5th value</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1670</posX>
+        <posY>522</posY>
+		<align>left</align>
+        <label>#WorldWeather.ForecastDay3High</label>
+        <font>fontB16</font>
+        <textcolor>FF000000</textcolor>
+      </control>
+	  
+	<control>
+		<description>Weather 5th image</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>990</posX>
+		<posY>370</posY>
+		<height>120</height>
+		<width>120</width>
+		<texture>#WorldWeather.ForecastDay3IconImage</texture>
+	</control>
+      
+     <control>
+        <description>Weather 4th name</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1450</posX>
+        <posY>489</posY>
+        <font>TitanLight12</font>
+        <textcolor>000000</textcolor>
+        <label>#WorldWeather.ForecastDay2Day</label>
+      </control>
+	  
+      <control>
+        <description>Weather 4th value</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1450</posX>
+        <posY>522</posY>
+		<align>left</align>
+        <label>#WorldWeather.ForecastDay2High</label>
+        <font>fontB16</font>
+        <textcolor>FF000000</textcolor>
+      </control>
+	  
+	<control>
+		<description>Weather 4th image</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1190</posX>
+		<posY>370</posY>
+		<height>120</height>
+		<width>120</width>
+		<texture>#WorldWeather.ForecastDay2IconImage</texture>
+	</control>
+      
+     <control>
+        <description>Weather 3th name</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1210</posX>
+        <posY>489</posY>
+        <font>TitanLight12</font>
+        <textcolor>000000</textcolor>
+        <label>#WorldWeather.ForecastDay1Day</label>
+      </control>
+	  
+      <control>
+        <description>Weather 3th value</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1210</posX>
+        <posY>522</posY>
+		<align>left</align>
+        <label>#WorldWeather.ForecastDay1High</label>
+        <font>fontB16</font>
+        <textcolor>FF000000</textcolor>
+      </control>
+	  
+	<control>
+		<description>Weather 3th image</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1445</posX>
+		<posY>370</posY>
+		<height>120</height>
+		<width>120</width>
+		<texture>#WorldWeather.ForecastDay1IconImage</texture>
+	</control>
+      
+     <control>
+        <description>Weather 2th name</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1000</posX>
+        <posY>489</posY>
+        <font>TitanLight12</font>
+        <textcolor>000000</textcolor>
+        <label>#WorldWeather.ForecastDay0Day</label>
+      </control>
+	  
+      <control>
+        <description>Weather 2th value</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>1000</posX>
+        <posY>522</posY>
+		<align>left</align>
+        <label>#WorldWeather.ForecastDay0High</label>
+        <font>fontB16</font>
+        <textcolor>FF000000</textcolor>
+      </control>
+	  
+	<control>
+		<description>Weather 2th image</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>1652</posX>
+		<posY>370</posY>
+		<height>120</height>
+		<width>120</width>
+		<texture>#WorldWeather.ForecastDay0IconImage</texture>
+	</control>
+      
+      <control>
+        <description>Weather today name</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>621</posX>
+        <posY>380</posY>
+        <label>#(string.rtrim(L(143),':'))</label>
+        <font>TitanLight20</font>
+        <textcolor>ff000000</textcolor>
+      </control>
+	  
+      <control>
+        <description>Weather today condition</description>
+        <type>fadelabel</type>
+        <id>0</id>
+        <posX>621</posX>
+        <posY>436</posY>
+		<width>320</width>
+		<align>left</align>
+        <label>#WorldWeather.TodayCondition</label>
+        <font>fontB12</font>
+        <textcolor>000000</textcolor>
+      </control>
+	  	  
+     <control>
+        <description>Weather today min value</description>
+        <type>label</type>
+        <id>0</id>
+        <posX>621</posX>
+        <posY>510</posY>
+		<align>left</align>
+        <label>#WorldWeather.TodayTemperature / #WorldWeather.ForecastDay0Low</label>
+        <font>fontB20</font>
+        <textcolor>FF000000</textcolor>
+      </control>
+	  
+	<control>
+		<description>Weather image</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>291</posX>
+		<posY>348</posY>
+		<height>236</height>
+		<width>236</width>
+		<texture>#WorldWeather.TodayIconImage</texture>
+	</control>
+    </control>
+  </controls>
+</window>

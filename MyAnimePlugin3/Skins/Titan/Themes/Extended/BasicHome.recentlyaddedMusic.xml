@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+  <controls>
+    <control>
+      <description>GROUP: RecentlyAdded Music (focused)</description>
+      <type>group</type>
+      <dimColor>0xffffffff</dimColor>
+      <visible>string.equals(#recentMedia, Music) + ![control.isvisible(601) | control.isvisible(501)] + ![Control.HasFocus(551) | Control.HasFocus(552) | Control.HasFocus(553) | Control.HasFocus(554) | Control.HasFocus(555) | Control.HasFocus(651) | Control.HasFocus(652) | Control.HasFocus(653) | Control.HasFocus(654) | Control.HasFocus(655) | Control.HasFocus(12) | Control.HasFocus(13) | Control.HasFocus(14) | Control.HasFocus(99999)] + string.equals(#latestMediaHandler.music.latest.enabled,true)</visible>
+			<animation effect="fade" start="0" end="100" time="250" delay="550">visible</animation>
+			<animation effect="fade" start="100" end="0" time="0">hidden</animation>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+				<control>
+					<description>LATEST MEDIA BACKGROUND</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>8</posX>
+					<posY>309</posY>
+					<width>1907</width>
+					<height>329</height>
+					<texture>BasicHomeLatestBG.png</texture>
+				</control>
+				<control>
+					<description>Header label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>773</posX>
+					<posY>385</posY>
+					<width>590</width>
+					<label>#(L(4558))</label>
+					<font>TitanLight20</font>
+					<textcolor>000000</textcolor>
+				</control>        
+				<control>
+					<description>Album 1 name</description>
+					<type>fadelabel</type>
+					<id>0</id>
+					<posX>775</posX>
+					<posY>450</posY>
+					<width>630</width>
+					<label>#latestMediaHandler.music.latest1.artist - #latestMediaHandler.music.latest1.album</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<scrollStartDelaySec>10</scrollStartDelaySec>
+				</control>
+				<control>
+					<description>Genre/Runtime label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>1580</posX>
+					<posY>450</posY>
+					<width>450</width>
+					<label>#latestMediaHandler.music.latest1.genre</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<align>left</align>
+				</control>
+				<control>
+					<description>Album 1 thumb/fanart</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>135</posX>
+					<posY>380</posY>
+					<width>192</width>
+					<height>191</height>
+					<texture>#latestMediaHandler.music.latest1.thumb</texture>
+					<shouldCache>true</shouldCache>
+				</control>
+				<control>
+					<description>Play Button 1</description>
+					<type>button</type>
+					<id>91919997</id>
+					<posX>91</posX>
+					<posY>336</posY>
+					<width>278</width>
+					<height>277</height>
+					<textureFocus>thumb_focus_music.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<label>-</label>
+					<onleft>91919999</onleft>
+					<onright>91919998</onright>
+					<onup>221</onup>
+					<ondown>901</ondown>
+					<font>font12</font>
+				</control>
+				<control>
+					<description>Album 2 name</description>
+					<type>fadelabel</type>
+					<id>0</id>
+					<posX>775</posX>
+					<posY>491</posY>
+					<width>630</width>
+					<label>#latestMediaHandler.music.latest2.artist - #latestMediaHandler.music.latest2.album</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<scrollStartDelaySec>10</scrollStartDelaySec>
+				</control>
+				<control>
+					<description>Genre/Runtime label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>1580</posX>
+					<posY>491</posY>
+					<width>450</width>
+					<label>#latestMediaHandler.music.latest2.genre</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<align>left</align>
+				</control> 
+				<control>
+					<description>Album 2 thumb/fanart</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>342</posX>
+					<posY>380</posY>
+					<width>192</width>
+					<height>191</height>
+					<texture>#latestMediaHandler.music.latest2.thumb</texture>
+					<shouldCache>true</shouldCache>
+				</control>
+				<control>
+					<description>Play Button 2</description>
+					<type>button</type>
+					<id>91919998</id>
+					<posX>299</posX>
+					<posY>336</posY>
+					<width>278</width>
+					<height>277</height>
+					<textureFocus>thumb_focus_music.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<label>-</label>
+					<onleft>91919997</onleft>
+					<onright>91919999</onright>
+					<onup>222</onup>
+					<ondown>901</ondown>
+					<font>font12</font>
+				</control>
+				<control>
+					<description>Album 3 name</description>
+					<type>fadelabel</type>
+					<id>0</id>
+					<posX>775</posX>
+					<posY>532</posY>
+					<width>630</width>
+					<label>#latestMediaHandler.music.latest3.artist - #latestMediaHandler.music.latest3.album</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<scrollStartDelaySec>10</scrollStartDelaySec>
+				</control> 
+				<control>
+					<description>Genre/Runtime label</description>
+					<type>label</type>
+					<id>0</id>
+					<posX>1580</posX>
+					<posY>532</posY>
+					<width>450</width>
+					<label>#latestMediaHandler.music.latest3.genre</label>
+					<font>font12</font>
+					<textcolor>000000</textcolor>
+					<align>left</align>
+				</control>
+				<control>
+					<description>Album 3 thumb/fanart</description>
+					<type>image</type>
+					<id>0</id>
+					<posX>549</posX>
+					<posY>380</posY>
+					<width>192</width>
+					<height>191</height>
+					<texture>#latestMediaHandler.music.latest3.thumb</texture>
+					<shouldCache>true</shouldCache>
+				</control>
+				<control>
+					<description>Play Button 3</description>
+					<type>button</type>
+					<id>91919999</id>
+					<posX>506</posX>
+					<posY>336</posY>
+					<width>278</width>
+					<height>277</height>
+					<textureFocus>thumb_focus_music.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<label>-</label>
+					<onleft>91919998</onleft>
+					<onright>91919997</onright>
+					<onup>223</onup>
+					<ondown>901</ondown>
+					<font>font12</font>
+				</control>
+    </control>
+  </controls>
+</window>

@@ -543,10 +543,10 @@
 	</control>
 
 	<control>
-	  <description>Clear Categories</description>
+	  <description>Clear Tags</description>
 	  <type>button</type>
 	  <id>807</id>
-	  <label>Clear Categories</label>
+	  <label>Clear Tags</label>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <width>330</width>
@@ -567,7 +567,7 @@
 	  <description>Tag All/Any</description>
 	  <type>button</type>
 	  <id>808</id>
-	  <label>Tags: #Anime3.Random.Series.CategoryType</label>
+	  <label>Tags: #Anime3.Random.Series.TagType</label>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <width>330</width>
@@ -593,7 +593,7 @@
 	  <width>900</width>
 	  <height>135</height>
 	  <visible>Control.IsVisible(1551)</visible>
-	  <label>#Anime3.Random.Series.Categories</label>
+	  <label>#Anime3.Random.Series.Tags</label>
 	  <seperator>---------------------------------------------------------------------------------------------------------</seperator>
 	</control>
 
@@ -716,7 +716,7 @@
 	  <description>Tag All/Any</description>
 	  <type>button</type>
 	  <id>826</id>
-	  <label>Tags: #Anime3.Random.Episode.CategoryType</label>
+	  <label>Tags: #Anime3.Random.Episode.TagType</label>
 	  <textcolor>ffffffff</textcolor>
 	  <textcolorNoFocus>ffffffff</textcolorNoFocus>
 	  <width>330</width>
@@ -742,7 +742,7 @@
 	  <width>900</width>
 	  <height>135</height>
 	  <visible>Control.IsVisible(1552)</visible>
-	  <label>#Anime3.Random.Episode.Categories</label>
+	  <label>#Anime3.Random.Episode.Tags</label>
 	  <seperator>---------------------------------------------------------------------------------------------------------</seperator>
 	</control>
 

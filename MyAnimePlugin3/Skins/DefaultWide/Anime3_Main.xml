@@ -209,7 +209,7 @@
       <posY>158</posY>
       <width>200</width>
       <font>font8</font>
-      <label>W=Start Word (#Anime3.FindStartWord)</label>
+      <label>[ =Start Word (#Anime3.FindStartWord)</label>
       <visible>[facadeview.list]+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
     </control>
 
@@ -233,7 +233,7 @@
       <posY>158</posY>
       <width>200</width>
       <font>font8</font>
-      <label>M=Mode (#Anime3.FindMode)</label>
+      <label>] =Mode (#Anime3.FindMode)</label>
       <visible>[facadeview.list]+Control.IsVisible(3463)</visible>
     </control>
 

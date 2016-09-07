@@ -3,37 +3,37 @@
   <Version>2.0</Version>
   <Groups>
     <Items>
-      <GroupItem Name="Plugins">
+      <GroupItem Name="Plugin">
         <ParentGroup />
-        <DisplayName>Plugins</DisplayName>
+        <DisplayName>Plugin</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Plugins</Description>
+        <Description>Plugin</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\plugins\Windows\Anime3.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{6db65f91-ebdb-464c-b78d-8885679339d2}-Anime3.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Anime3.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\plugins\Windows\Anime3.pdb</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{09ed7ffa-f4f9-4b5b-97f0-6d6725165feb}-Anime3.pdb</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Anime3.pdb</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{a5f99130-ed2d-499c-85f3-9721f75836be}-MA3_FFDShowAPI.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{3363d8cf-0ba7-4502-b284-3a202b1b206a}-MA3_FFDShowAPI.pdb</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.pdb</DestinationFilename>
@@ -2563,7 +2563,7 @@ Posters will only be shown when a fanart cannot be found</Description>
         </Files>
       </GroupItem>
       <GroupItem Name="Avalon Standard">
-        <ParentGroup>Avalon</ParentGroup>
+        <ParentGroup>Options</ParentGroup>
         <DisplayName>Avalon Standard Layout</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>Avalon Standard
@@ -3299,8 +3299,8 @@ Posters will always be shown, even when a fanart exists</Description>
         </Files>
       </GroupItem>
       <GroupItem Name="StreamedMP Fanart">
-        <ParentGroup>StreamedMP</ParentGroup>
-        <DisplayName>StreamedMP Fanart</DisplayName>
+        <ParentGroup>Options</ParentGroup>
+        <DisplayName>StreamedMP Fanart layout</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>Fanart mod for StreamedMP skin</Description>
         <Files>
@@ -10094,11 +10094,20 @@ Posters will always be shown, even when a fanart exists</Description>
           </Items>
         </Files>
       </GroupItem>
+      <GroupItem Name="Options">
+        <ParentGroup />
+        <DisplayName>Skin addons</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Options</Description>
+        <Files>
+          <Items />
+        </Files>
+      </GroupItem>
     </Items>
   </Groups>
   <Sections>
     <Items>
-      <SectionItem Guid="4a6f7ef0-588e-4363-93b4-20e92a6de8eb" Name="Welcome Screen" ConditionGroup="Plugins">
+      <SectionItem Guid="4a6f7ef0-588e-4363-93b4-20e92a6de8eb" Name="Welcome Screen" ConditionGroup="">
         <Params>
           <Items>
             <SectionParam Name="Header text">
@@ -10134,7 +10143,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         </Actions>
         <IncludedGroups />
         <PanelName>Welcome Screen</PanelName>
-        <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
+        <WizardButtonsEnum>NextCancel</WizardButtonsEnum>
       </SectionItem>
       <SectionItem Guid="a7ac58e6-0498-4120-ab9f-3804128b1e88" Name="Tree View Selector" ConditionGroup="">
         <Params>
@@ -10165,7 +10174,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <Items />
         </Actions>
         <IncludedGroups>
-          <string>Plugins</string>
+          <string>Plugin</string>
           <string>Skins</string>
           <string>Avalon</string>
           <string>Avalon Standard</string>
@@ -10216,6 +10225,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           </Items>
         </Actions>
         <IncludedGroups>
+          <string>Plugin</string>
           <string>Default</string>
           <string>DefaultWide</string>
           <string>Titan</string>
@@ -10353,28 +10363,28 @@ http://jmediamanager.org/changelog/</VersionDescription>
     <Items>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\plugins\Windows\Anime3.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{6db65f91-ebdb-464c-b78d-8885679339d2}-Anime3.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Anime3.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\plugins\Windows\Anime3.pdb</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{09ed7ffa-f4f9-4b5b-97f0-6d6725165feb}-Anime3.pdb</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Anime3.pdb</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{a5f99130-ed2d-499c-85f3-9721f75836be}-MA3_FFDShowAPI.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{3363d8cf-0ba7-4502-b284-3a202b1b206a}-MA3_FFDShowAPI.pdb</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.pdb</DestinationFilename>

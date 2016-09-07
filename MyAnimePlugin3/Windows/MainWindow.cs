@@ -2431,7 +2431,6 @@ private bool ShowOptionsMenu(string previousMenu)
           return;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED:
-
             KeyCommandHandler(action.m_key.KeyChar);
           return;
 
@@ -2577,40 +2576,17 @@ private bool ShowOptionsMenu(string previousMenu)
           || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow && m_Facade.CoverFlowLayout.IsFocused))
       {
 
-        // For some reason keycode W and M aren't lining up to their WinForm keycode counterpart so we have this workaround first
-
-        char keycode = (char) keycodeInput;
+        // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
+        char keycode = (char)keycodeInput;
         string keycodeString = KeycodeToString(keycodeInput).ToLower();
 
         switch (keycodeString)
         {
-          case "w":
-            // Check if we aren't already searching text, only option without modifier available
-            if (dummyFindActive.Visible)
-            {
-              if (!OnSearchChar((char) keycode))
-              {
-                return;
-              }
-            }
-            else
-            {
-              OnSearchAction(SearchAction.ToggleStartWord);
-            }
+          case "[":
+            OnSearchAction(SearchAction.ToggleStartWord);
             return;
-          case "m":
-            // Check if we aren't already searching text, only option without modifier available
-            if (dummyFindActive.Visible)
-            {
-              if (!OnSearchChar(keycode))
-              {
-                return;
-              }
-            }
-            else
-            {
+          case "]":
               OnSearchAction(SearchAction.ToggleMode);
-            }
             return;
         }
 

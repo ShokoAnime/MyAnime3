@@ -118,7 +118,7 @@
             <width>600</width>
             <font>AvalonLight12</font>
 			<textcolor>6aa5cb</textcolor>
-            <label>W=Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+            <label>[ =Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
             <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
         </control>
 		<control>
@@ -131,7 +131,7 @@
             <font>AvalonLight12</font>
 			<textcolor>6aa5cb</textcolor>
             <align>left</align>
-            <label>M=Mode (#Anime3.FindMode)</label>
+            <label>] =Mode (#Anime3.FindMode)</label>
             <visible>Control.IsVisible(3463)</visible>
         </control>
   </controls>

@@ -2268,7 +2268,7 @@ private bool ShowOptionsMenu(string previousMenu)
         RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
         RandomWindow_RandomType = RandomObjectType.Series;
         GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);*/
-        ShowContextMenuGroup(string.Empty);
+        ShowContextMenuGroupFilter("");
       });
       menu.Add(btnChangeLayout, () =>
       {

@@ -2624,8 +2624,6 @@ private bool ShowOptionsMenu(string previousMenu)
             OnSearchAction(SearchAction.NextMatch);
             break;
           default:
-            Log.Error("Matched default key");
-
             if (!OnSearchChar(keycode))
             {
               return;

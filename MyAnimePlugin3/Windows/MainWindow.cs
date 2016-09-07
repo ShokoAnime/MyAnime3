@@ -2259,17 +2259,16 @@ private bool ShowOptionsMenu(string previousMenu)
       });
       menu.Add(btnWindowRandom, () =>
       {
-        RandomWindow_LevelObject = FacadeHelper.GetTopLevelGroupFilters();
+        /*
+        GroupFilterVM grpFilter = new GroupFilterVM();
+        grpFilter.GroupFilterName = "All";
+        grpFilter.GroupFilterID = 16;
+        grpFilter.FilterType = 4;
+        RandomWindow_LevelObject = grpFilter;
         RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
         RandomWindow_RandomType = RandomObjectType.Series;
-        GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-
-        RandomWindow_CurrentEpisode = null;
-        RandomWindow_CurrentSeries = null;
-        RandomWindow_LevelObject = FacadeHelper.GetTopLevelGroupFilters();
-        RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
-        RandomWindow_RandomType = RandomObjectType.Series;
-        GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+        GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);*/
+        ShowContextMenuGroup(string.Empty);
       });
       menu.Add(btnChangeLayout, () =>
       {

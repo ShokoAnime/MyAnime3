@@ -2268,7 +2268,7 @@ private bool ShowOptionsMenu(string previousMenu)
         RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.GroupFilter;
         RandomWindow_RandomType = RandomObjectType.Series;
         GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);*/
-        ShowContextMenuGroup(string.Empty);
+        ShowContextMenuGroupFilter("");
       });
       menu.Add(btnChangeLayout, () =>
       {
@@ -2386,7 +2386,6 @@ private bool ShowOptionsMenu(string previousMenu)
       if (aser == null) return;
 
       LoadFanart(aser);
-      //LoadFanart(ser);
     }
 
     public override void DeInit()
@@ -2399,6 +2398,10 @@ private bool ShowOptionsMenu(string previousMenu)
     public override void OnAction(MediaPortal.GUI.Library.Action action)
     {
       //BaseConfig.MyAnimeLog.Write("Received action: {0}/{1}", action.wID, (char)(action.m_key.KeyChar));
+      if (GUIWindowManager.ActiveWindowEx != this.GetID)
+      {
+        return;
+      }
 
       switch (action.wID)
       {
@@ -2428,10 +2431,8 @@ private bool ShowOptionsMenu(string previousMenu)
           return;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED:
-          if (GUIWindowManager.ActiveWindowEx == this.GetID)
-          {
+
             KeyCommandHandler(action.m_key.KeyChar);
-          }
           return;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_PARENT_DIR:
@@ -2569,9 +2570,6 @@ private bool ShowOptionsMenu(string previousMenu)
 
     private void KeyCommandHandler(int keycodeInput)
     {
-      if (GUIWindowManager.ActiveWindowEx != this.GetID)
-        return;
-
       //when the list is selected, search the input
       if ((m_Facade.CurrentLayout == GUIFacadeControl.Layout.List && m_Facade.ListLayout.IsFocused)
           || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.LargeIcons && m_Facade.ThumbnailLayout.IsFocused)
@@ -2626,8 +2624,6 @@ private bool ShowOptionsMenu(string previousMenu)
             OnSearchAction(SearchAction.NextMatch);
             break;
           default:
-            Log.Error("Matched default key");
-
             if (!OnSearchChar(keycode))
             {
               return;
@@ -3000,7 +2996,7 @@ private bool ShowOptionsMenu(string previousMenu)
 
     void g_Player_PlayBackEnded(g_Player.MediaType type, string filename)
     {
-
+      // Not used at this time
     }
 
     static bool isFirstInitDone = false;
@@ -3337,7 +3333,6 @@ private bool ShowOptionsMenu(string previousMenu)
       listPoster.Filename = ImageAllocator.GetGroupImageAsFileName(grp, GUIFacadeControl.Layout.List);
 
       LoadFanart(grp);
-
     }
 
 
@@ -3545,7 +3540,7 @@ private bool ShowOptionsMenu(string previousMenu)
       h.Selected = ep;
 
 
-      if (string.IsNullOrEmpty(ep.EpisodeImageLocation) == false)
+      if (!string.IsNullOrEmpty(ep.EpisodeImageLocation))
       {
         SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
 
@@ -3690,7 +3685,7 @@ private bool ShowOptionsMenu(string previousMenu)
         BaseConfig.MyAnimeLog.Write("GOT FANART details in: {0} ms ({1})", ts.TotalMilliseconds, desc);
         BaseConfig.MyAnimeLog.Write("LOADING FANART: {0} - {1}", desc, fanart?.FileName ?? "NONE");
 
-        if (String.IsNullOrEmpty(fanart.FileName))
+        if (string.IsNullOrEmpty(fanart.FileName))
         {
           fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
         }

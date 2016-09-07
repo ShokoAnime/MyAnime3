@@ -390,13 +390,11 @@
     </control>
     <control>
       <description>Watched</description>
-      <posX>40</posX>
       <posX>60</posX>
-      <posY>568</posY>
-      <posY>852</posY>
-      <type>togglebutton</type>
+      <posY>860</posY>
+      <type>checkbutton</type>
       <id>821</id>
-      <label>Watched Eps</label>
+      <label>Watched</label>
       <textcolor>ffffffff</textcolor>
       <textcolorNoFocus>bfffffff</textcolorNoFocus>
       <font>mediastream12tc</font>
@@ -404,46 +402,18 @@
       <width>450</width>
       <height>40</height>
       <height>60</height>
-      <onleft>10</onleft>
-      <textYOff>8</textYOff>
-      <textYOff>12</textYOff>
-      <textXOff>20</textXOff>
-      <textXOff>30</textXOff>
-      <onleft>901</onleft>
-      <onright>823</onright>
-      <onup>801</onup>
-      <ondown>822</ondown>
-      <textureFocus>tv_button_focus_ledon.png</textureFocus>
-      <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
-      <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
-      <AltTextureNoFocus>tv_button_no_focus_ledoff.png</AltTextureNoFocus>
-      <visible>Control.IsVisible(1552)</visible>
-    </control>
-    <control>
-      <description>Unwatched</description>
       <posX>40</posX>
       <posX>60</posX>
-      <posY>608</posY>
-      <posY>912</posY>
-      <type>togglebutton</type>
-      <id>822</id>
-      <label>Unwatched Eps</label>
-      <textcolor>ffffffff</textcolor>
-      <textcolorNoFocus>bfffffff</textcolorNoFocus>
-      <font>mediastream12tc</font>
-      <width>300</width>
-      <width>450</width>
-      <height>40</height>
-      <height>60</height>
-      <onleft>10</onleft>
+      <posY>708</posY>
+      <posY>1032</posY>
       <textYOff>8</textYOff>
       <textYOff>12</textYOff>
       <textXOff>20</textXOff>
       <textXOff>30</textXOff>
-      <onleft>901</onleft>
-      <onright>824</onright>
-      <onup>821</onup>
-      <ondown>825</ondown>
+      <onleft>802</onleft>
+      <onright>808</onright>
+      <onup>801</onup>
+      <ondown>805</ondown>
       <textureFocus>tv_button_focus_ledon.png</textureFocus>
       <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
       <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
@@ -568,7 +538,7 @@
       <align>center</align>
       <onleft>901</onleft>
       <onright>805</onright>
-      <onup>804</onup>
+      <onup>821</onup>
       <ondown>801</ondown>
       <font>mediastream12tc</font>
       <textureFocus>tv_button_focus.png</textureFocus>
@@ -594,7 +564,7 @@
       <posX>60</posX>
       <posY>568</posY>
       <posY>852</posY>
-      <type>togglebutton</type>
+      <type>checkbutton</type>
       <id>802</id>
       <label>Fully Watched</label>
       <textcolor>ffffffff</textcolor>
@@ -625,7 +595,7 @@
       <posX>60</posX>
       <posY>608</posY>
       <posY>912</posY>
-      <type>togglebutton</type>
+      <type>checkbutton</type>
       <id>803</id>
       <label>Unwatched</label>
       <textcolor>ffffffff</textcolor>
@@ -656,7 +626,7 @@
       <posX>60</posX>
       <posY>648</posY>
       <posY>972</posY>
-      <type>togglebutton</type>
+      <type>checkbutton</type>
       <id>804</id>
       <label>Partially Watched</label>
       <textcolor>ffffffff</textcolor>
@@ -674,7 +644,7 @@
       <onleft>901</onleft>
       <onright>807</onright>
       <onup>803</onup>
-      <ondown>810</ondown>
+      <ondown>821</ondown>
       <textureFocus>tv_button_focus_ledon.png</textureFocus>
       <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
       <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>
@@ -687,7 +657,7 @@
       <posX>540</posX>
       <posY>568</posY>
       <posY>852</posY>
-      <type>togglebutton</type>
+      <type>checkbutton</type>
       <id>805</id>
       <label>Complete Only</label>
       <textcolor>ffffffff</textcolor>

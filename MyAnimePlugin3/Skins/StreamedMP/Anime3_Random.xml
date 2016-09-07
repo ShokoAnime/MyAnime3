@@ -413,7 +413,7 @@
       <onleft>802</onleft>
       <onright>808</onright>
       <onup>801</onup>
-      <ondown>806</ondown>
+      <ondown>805</ondown>
       <textureFocus>tv_button_focus_ledon.png</textureFocus>
       <textureNoFocus>tv_button_no_focus_ledon.png</textureNoFocus>
       <AltTextureFocus>tv_button_focus_ledoff.png</AltTextureFocus>

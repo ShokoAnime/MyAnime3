@@ -40,7 +40,8 @@ namespace MyAnimePlugin3
     [SkinControlAttribute(12)]
     protected GUIButtonControl btnSwitchUser = null;
 
-    //[SkinControlAttribute(920)] protected GUIButtonControl btnWindowContinueWatching = null;
+    [SkinControlAttribute(920)]
+    protected GUIButtonControl btnWindowContinueWatching = null;
     [SkinControlAttribute(921)]
     protected GUIButtonControl btnWindowUtilities = null;
     [SkinControlAttribute(922)]
@@ -143,6 +144,7 @@ public static object parentLevelObject = null;
     public static object RandomWindow_LevelObject = null;
     public static AnimeSeriesVM RandomWindow_CurrentSeries = null;
     public static AnimeEpisodeVM RandomWindow_CurrentEpisode = null;
+    public static AnimeSeriesVM ContinueWatching_CurrentSeries = null;
     public static int RandomWindow_MatchesFound = 0;
 
     public static bool RandomWindow_SeriesWatched = true;
@@ -156,6 +158,7 @@ public static object parentLevelObject = null;
     public static bool RandomWindow_EpisodeUnwatched = true;
     public static bool RandomWindow_EpisodeAllTags = true;
     public static List<string> RandomWindow_EpisodeTags = new List<string>();
+
 
     //private bool fanartSet = false;
 
@@ -816,7 +819,6 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       currentViewClassification = settings.LastViewClassification;
       currentStaticViewID = settings.LastStaticViewID;
       currentView = settings.LastView;
-
 
 
       groupViewMode = settings.LastGroupViewMode;
@@ -2247,11 +2249,11 @@ private bool ShowOptionsMenu(string previousMenu)
         SetGlobalIDs();
         GUIWindowManager.ActivateWindow(Constants.WindowIDs.DOWNLOADS);
       });
-      /* menu.Add(btnWindowContinueWatching, () =>
-       {
-           SetGlobalIDs();
-           GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING);
-       });*/
+      menu.Add(btnWindowContinueWatching, () =>
+      {
+        SetGlobalIDs();
+        GUIWindowManager.ActivateWindow(Constants.WindowIDs.WATCHING);
+      });
       menu.Add(btnWindowRecommendations, () =>
       {
         SetGlobalIDs();
@@ -2431,7 +2433,7 @@ private bool ShowOptionsMenu(string previousMenu)
           return;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED:
-            KeyCommandHandler(action.m_key.KeyChar);
+          KeyCommandHandler(action.m_key.KeyChar);
           return;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_PARENT_DIR:
@@ -2518,8 +2520,8 @@ private bool ShowOptionsMenu(string previousMenu)
           message.TargetWindowId == 0 && message.TargetControlId == 0 && message.SenderControlId == 0 &&
           message.SendToTargetWindow == false && message.Object == null && message.Object2 == null &&
           message.Param2 == 0 && message.Param3 == 0 && message.Param4 == 0 &&
-          (message.Param1 == (int) GUIWindow.Window.WINDOW_HOME ||
-           message.Param1 == (int) GUIWindow.Window.WINDOW_SECOND_HOME)
+          (message.Param1 == (int)GUIWindow.Window.WINDOW_HOME ||
+           message.Param1 == (int)GUIWindow.Window.WINDOW_SECOND_HOME)
         )
       {
         // Prevent certain messages from beeing sent to MP core
@@ -2578,6 +2580,8 @@ private bool ShowOptionsMenu(string previousMenu)
         // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
         char keycode = (char)keycodeInput;
         string keycodeString = KeycodeToString(keycodeInput).ToLower();
+        Log.Error("Keycode pressed: " + keycodeInput);
+        Log.Error("Keys pressed: " + keycodeString);
 
         switch (keycodeString)
         {
@@ -2585,7 +2589,7 @@ private bool ShowOptionsMenu(string previousMenu)
             OnSearchAction(SearchAction.ToggleStartWord);
             return;
           case "]":
-              OnSearchAction(SearchAction.ToggleMode);
+            OnSearchAction(SearchAction.ToggleMode);
             return;
         }
 
@@ -3079,6 +3083,7 @@ private bool ShowOptionsMenu(string previousMenu)
       displayGrpFilterTimer.Elapsed += new System.Timers.ElapsedEventHandler(displayGrpFilterTimer_Elapsed);
       displayGrpFilterTimer.Enabled = true;
     }
+
 
     void displayGrpFilterTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {

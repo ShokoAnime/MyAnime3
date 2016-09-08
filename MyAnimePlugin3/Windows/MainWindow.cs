@@ -2575,7 +2575,6 @@ private bool ShowOptionsMenu(string previousMenu)
           || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.Filmstrip && m_Facade.FilmstripLayout.IsFocused)
           || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow && m_Facade.CoverFlowLayout.IsFocused))
       {
-
         // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
         char keycode = (char)keycodeInput;
         string keycodeString = KeycodeToString(keycodeInput).ToLower();

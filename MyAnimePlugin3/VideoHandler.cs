@@ -617,23 +617,32 @@ namespace MyAnimePlugin3
 		#endregion
 
         #region Helpers
-        bool PlayBackOpIsOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
+
+      bool PlayBackOpIsOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
+      {
+        bool IsOfConcern = curEpisode != null && type == g_Player.MediaType.Video &&
+                           (IsStreaming(curMedia) ? curEpisode.DisplayName == filename : curFileName == filename);
+        if (IsOfConcern)
         {
-			BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
-            return (curEpisode != null &&
-                    type == g_Player.MediaType.Video &&
-                    (IsStreaming(curMedia) ? curEpisode.DisplayName ==  filename : curFileName == filename));
+          BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
         }
 
-		bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
-		{
-			BaseConfig.MyAnimeLog.Write("PlayBackOpWasOfConcern: {0} - {1} - {2}", filename, type, prevEpisode);
-			return (prevEpisode != null &&
-					type == g_Player.MediaType.Video &&
-                    (IsStreaming(prevMedia) ? prevEpisode.DisplayName == filename : prevFileName == filename));
-		}
+        return IsOfConcern;
+      }
 
-        void PlaybackOperationEnded(bool countAsWatched, AnimeEpisodeVM ep)
+      bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
+      {
+        bool WasOfConcern = prevEpisode != null && type == g_Player.MediaType.Video &&
+                            (IsStreaming(prevMedia) ? prevEpisode.DisplayName == filename : prevFileName == filename);
+        if (WasOfConcern)
+        {
+          BaseConfig.MyAnimeLog.Write("PlayBackOpWasOfConcern: {0} - {1} - {2}", filename, type, prevEpisode);
+        }
+
+        return WasOfConcern;
+      }
+
+      void PlaybackOperationEnded(bool countAsWatched, AnimeEpisodeVM ep)
         {
 			try
 			{

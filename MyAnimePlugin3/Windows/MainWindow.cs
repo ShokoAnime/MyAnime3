@@ -2580,8 +2580,6 @@ private bool ShowOptionsMenu(string previousMenu)
         // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
         char keycode = (char)keycodeInput;
         string keycodeString = KeycodeToString(keycodeInput).ToLower();
-        Log.Error("Keycode pressed: " + keycodeInput);
-        Log.Error("Keys pressed: " + keycodeString);
 
         switch (keycodeString)
         {
@@ -2591,6 +2589,12 @@ private bool ShowOptionsMenu(string previousMenu)
           case "]":
             OnSearchAction(SearchAction.ToggleMode);
             return;
+          case "x":
+            // Skip default fullscreen toggle key if video is playing
+            if (g_Player.Playing)
+              return;
+
+            break;
         }
 
         // Normal keycode matching for everything else

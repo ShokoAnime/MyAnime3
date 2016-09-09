@@ -609,18 +609,18 @@ namespace MyAnimePlugin3.ConfigFiles
 			}
             BaseConfig.Settings.UseStreaming = chkUseStreaming.Checked;
 
-            if (tbModeToggleKey.Text.Length == 1)
+            if (tbModeToggleKey.Text.Length == 1 && tbModeToggleKey.Text != tbStarttextToggleKey.Text)
             {
-                BaseConfig.Settings.ModeToggleKey = tbModeToggleKey.Text;
+                BaseConfig.Settings.ModeToggleKey = tbModeToggleKey.Text.ToLower();
             }
             else
             {
                 BaseConfig.Settings.ModeToggleKey = "]";
             }
 
-            if (tbStarttextToggleKey.Text.Length == 1)
+            if (tbStarttextToggleKey.Text.Length == 1 && tbStarttextToggleKey.Text != tbModeToggleKey.Text)
             {
-                BaseConfig.Settings.StartTextToggleKey = tbStarttextToggleKey.Text;
+                BaseConfig.Settings.StartTextToggleKey = tbStarttextToggleKey.Text.ToLower();
             }
             else
             {

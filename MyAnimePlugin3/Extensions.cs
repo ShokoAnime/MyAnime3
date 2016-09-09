@@ -24,16 +24,26 @@ namespace MyAnimePlugin3
             }
             return res;
         }
-        public static string GetPropertyName(this GUIWindow window, string which)
+
+        public static string GetPropertyName(this GUIWindow window, string which, bool isInternalMediaportal = false)
         {
-            return BaseProperties + "." + which.Replace("_", ".").Replace("ñ", "_");
+            string PropertyName = string.Format("{0}.{1}", BaseProperties, which.Replace("_", ".").Replace("ñ", "_"));
+
+            if (isInternalMediaportal)
+            {
+                PropertyName = string.Format("#{0}", which.Replace("_", ".").Replace("ñ", "_"));
+            }
+
+            return PropertyName;
         }
-        public static void SetGUIProperty(this GUIWindow window, string which, string value)
+
+        public static void SetGUIProperty(this GUIWindow window, string which, string value, bool isInternalMediaportal = false)
         {
             if (string.IsNullOrEmpty(value))
                 value = " ";
-            GUIPropertyManager.SetProperty(window.GetPropertyName(which), value);
+            GUIPropertyManager.SetProperty(window.GetPropertyName(which, isInternalMediaportal), value);
         }
+
 
         public static void ClearGUIProperty(this GUIWindow window, string which)
         {

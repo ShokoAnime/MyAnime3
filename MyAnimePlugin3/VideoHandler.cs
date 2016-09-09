@@ -44,10 +44,37 @@ using Stream = MyAnimePlugin3.JMMServerBinary.Stream;
 
 namespace MyAnimePlugin3
 {
-    public class VideoHandler
+    public class VideoHandler : GUIWindow
     {
+        #region GUI Properties
+
+        public enum GuiProperty
+        {
+            Play_Current_Cast,
+            Play_Current_Collections,
+            Play_Current_Credits,
+            Play_Current_DVDLabel,
+            Play_Current_Director,
+            Play_Current_File,
+            Play_Current_Genre,
+            Play_Current_IMDBNumber,
+            Play_Current_IsWatched,
+            Play_Current_MPAARating,
+            Play_Current_PlotKeywords,
+            Play_Current_Runtime,
+            Play_Current_Studios,
+            Play_Current_TagLine,
+            Play_Current_Votes,
+            Play_Current_Plot,
+            Play_Current_PlotOutline,
+            Play_Current_Rating,
+            Play_Current_Title,
+            Play_Current_Year
+        }
+        #endregion
+
         #region Vars
-		public AnimeEpisodeVM curEpisode = null;
+        public AnimeEpisodeVM curEpisode = null;
 		public AnimeEpisodeVM prevEpisode = null;
         private string curFileName = "";
 		private string prevFileName = "";
@@ -104,10 +131,22 @@ namespace MyAnimePlugin3
         }
 
         #region Public Methods
+        public void SetGUIProperty(GuiProperty which, string value, bool isInternalMediaportal = false) { this.SetGUIProperty(which.ToString(), value, isInternalMediaportal); }
+        public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
+        public string GetPropertyName(GuiProperty which) { return this.GetPropertyName(which.ToString()); }
 
+        private static string StaticGetPropertyName(string which)
+        {
+            return Extensions.BaseProperties + "." + which.Replace("_", ".").Replace("ñ", "_");
+        }
+        public static void StaticSetGUIProperty(GuiProperty which, string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                value = " ";
+            GUIPropertyManager.SetProperty(StaticGetPropertyName(which.ToString()), value);
+        }
 
-
-		public bool ResumeOrPlay(VideoLocalVM fileToPlay)
+        public bool ResumeOrPlay(VideoLocalVM fileToPlay)
 		{
 			try
 			{
@@ -291,9 +330,38 @@ namespace MyAnimePlugin3
 			if (curEpisode == null) return;
 
 			string displayName = curEpisode.EpisodeNumberAndName;
+            string rating = Utils.FormatAniDBRating(Convert.ToDouble(curEpisode.AniDB_Rating)) + " (" + curEpisode.AniDB_Votes + " " + Translation.Votes + ")";
+            string formattedEpNameAndAirdate = $"{displayName} [{curEpisode.AirDateAsString}]";
 
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Title", clear ? "" : displayName);
-			MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Plot", clear ? "" : curEpisode.Description);
+            SetGUIProperty(GuiProperty.Play_Current_Title, clear ? "" : curEpisode.AnimeSeries.SeriesName, true);
+            SetGUIProperty(GuiProperty.Play_Current_Year, clear ? "" : formattedEpNameAndAirdate, true);
+            SetGUIProperty(GuiProperty.Play_Current_Plot, clear ? "" : curEpisode.EpisodeOverview, true);
+            SetGUIProperty(GuiProperty.Play_Current_PlotOutline, clear ? "" : curEpisode.Description, true);
+            SetGUIProperty(GuiProperty.Play_Current_Rating, clear ? "" : rating, true);
+
+            // Optional labels
+            /*
+            SetGUIProperty(GuiProperty.Play_Current_TagLine, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_IsWatched, string.Empty", true);
+            SetGUIProperty(GuiProperty.Play_Current_Runtime, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Cast, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Votes, string.Empty);
+            SetGUIProperty(GuiProperty.Play_Current_PlotKeywords, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Cast, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_File, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_DVDLabel, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_IMDBNumber, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Runtime, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_MPAARating, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_IsWatched, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_TagLine, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Director, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Genre, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Credits, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Studios, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_Collections, string.Empty, true);
+            */
+
             try
             {
                 string imgNameSeries = curEpisode.AnimeSeries.PosterPath;

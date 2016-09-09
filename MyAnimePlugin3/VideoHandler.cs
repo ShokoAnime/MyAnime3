@@ -338,12 +338,12 @@ namespace MyAnimePlugin3
             SetGUIProperty(GuiProperty.Play_Current_Plot, clear ? "" : curEpisode.EpisodeOverview, true);
             SetGUIProperty(GuiProperty.Play_Current_PlotOutline, clear ? "" : curEpisode.Description, true);
             SetGUIProperty(GuiProperty.Play_Current_Rating, clear ? "" : rating, true);
-            SetGUIProperty(GuiProperty.Play_Current_TagLine, rating + " | 0", true);
-            SetGUIProperty(GuiProperty.Play_Current_IsWatched, rating + " | 1", true);
-            SetGUIProperty(GuiProperty.Play_Current_Runtime, rating + " | 2", true);
 
             // Optional labels
             /*
+            SetGUIProperty(GuiProperty.Play_Current_TagLine, string.Empty, true);
+            SetGUIProperty(GuiProperty.Play_Current_IsWatched, string.Empty", true);
+            SetGUIProperty(GuiProperty.Play_Current_Runtime, string.Empty, true);
             SetGUIProperty(GuiProperty.Play_Current_Cast, string.Empty, true);
             SetGUIProperty(GuiProperty.Play_Current_Votes, string.Empty);
             SetGUIProperty(GuiProperty.Play_Current_PlotKeywords, string.Empty, true);

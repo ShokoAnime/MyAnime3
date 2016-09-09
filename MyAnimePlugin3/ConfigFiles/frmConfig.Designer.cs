@@ -116,6 +116,12 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.btnClearStartText = new System.Windows.Forms.Button();
+            this.btnResetModeText = new System.Windows.Forms.Button();
+            this.tbStarttextToggleKey = new System.Windows.Forms.TextBox();
+            this.tbModeToggleKey = new System.Windows.Forms.TextBox();
+            this.lblStarttextToggleKey = new System.Windows.Forms.Label();
+            this.lblModeToggleKey = new System.Windows.Forms.Label();
             this.chkFindFilterItems = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
@@ -143,6 +149,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.txtFormatEp = new System.Windows.Forms.TextBox();
             this.lblDisplayEpsDesc = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkUseStreaming = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSaveLocalFolderPath = new System.Windows.Forms.Button();
             this.btnSelectLocalFolderPath = new System.Windows.Forms.Button();
@@ -178,7 +185,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label82 = new System.Windows.Forms.Label();
             this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
             this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
-            this.chkUseStreaming = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl4.SuspendLayout();
@@ -1129,16 +1135,80 @@ namespace MyAnimePlugin3.ConfigFiles
             // groupBox13
             // 
             this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox13.Controls.Add(this.btnClearStartText);
+            this.groupBox13.Controls.Add(this.btnResetModeText);
+            this.groupBox13.Controls.Add(this.tbStarttextToggleKey);
+            this.groupBox13.Controls.Add(this.tbModeToggleKey);
+            this.groupBox13.Controls.Add(this.lblStarttextToggleKey);
+            this.groupBox13.Controls.Add(this.lblModeToggleKey);
             this.groupBox13.Controls.Add(this.chkFindFilterItems);
             this.groupBox13.Controls.Add(this.label8);
             this.groupBox13.Controls.Add(this.label45);
             this.groupBox13.Controls.Add(this.nudFindTimeout);
-            this.groupBox13.Location = new System.Drawing.Point(380, 327);
+            this.groupBox13.Location = new System.Drawing.Point(380, 279);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(349, 70);
+            this.groupBox13.Size = new System.Drawing.Size(349, 118);
             this.groupBox13.TabIndex = 37;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Find";
+            // 
+            // btnClearStartText
+            // 
+            this.btnClearStartText.Location = new System.Drawing.Point(155, 93);
+            this.btnClearStartText.Name = "btnClearStartText";
+            this.btnClearStartText.Size = new System.Drawing.Size(44, 23);
+            this.btnClearStartText.TabIndex = 9;
+            this.btnClearStartText.Text = "Reset";
+            this.btnClearStartText.UseVisualStyleBackColor = true;
+            this.btnClearStartText.Click += new System.EventHandler(this.btnClearStartText_Click);
+            // 
+            // btnResetModeText
+            // 
+            this.btnResetModeText.Location = new System.Drawing.Point(154, 68);
+            this.btnResetModeText.Name = "btnResetModeText";
+            this.btnResetModeText.Size = new System.Drawing.Size(44, 23);
+            this.btnResetModeText.TabIndex = 8;
+            this.btnResetModeText.Text = "Reset";
+            this.btnResetModeText.UseVisualStyleBackColor = true;
+            this.btnResetModeText.Click += new System.EventHandler(this.btnResetModeText_Click);
+            // 
+            // tbStarttextToggleKey
+            // 
+            this.tbStarttextToggleKey.Location = new System.Drawing.Point(124, 93);
+            this.tbStarttextToggleKey.Name = "tbStarttextToggleKey";
+            this.tbStarttextToggleKey.Size = new System.Drawing.Size(24, 20);
+            this.tbStarttextToggleKey.TabIndex = 7;
+            this.tbStarttextToggleKey.Text = "[";
+            this.tbStarttextToggleKey.TextChanged += new System.EventHandler(this.tbStarttextToggleKey_TextChanged);
+            this.tbStarttextToggleKey.Validating += new System.ComponentModel.CancelEventHandler(this.tbStarttextToggleKey_Validating);
+            // 
+            // tbModeToggleKey
+            // 
+            this.tbModeToggleKey.Location = new System.Drawing.Point(124, 68);
+            this.tbModeToggleKey.Name = "tbModeToggleKey";
+            this.tbModeToggleKey.Size = new System.Drawing.Size(24, 20);
+            this.tbModeToggleKey.TabIndex = 6;
+            this.tbModeToggleKey.Text = "]";
+            this.tbModeToggleKey.TextChanged += new System.EventHandler(this.tbModeToggleKey_TextChanged);
+            this.tbModeToggleKey.Validating += new System.ComponentModel.CancelEventHandler(this.tbModeToggleKey_Validating);
+            // 
+            // lblStarttextToggleKey
+            // 
+            this.lblStarttextToggleKey.AutoSize = true;
+            this.lblStarttextToggleKey.Location = new System.Drawing.Point(16, 96);
+            this.lblStarttextToggleKey.Name = "lblStarttextToggleKey";
+            this.lblStarttextToggleKey.Size = new System.Drawing.Size(104, 13);
+            this.lblStarttextToggleKey.TabIndex = 5;
+            this.lblStarttextToggleKey.Text = "Start text toggle key:";
+            // 
+            // lblModeToggleKey
+            // 
+            this.lblModeToggleKey.AutoSize = true;
+            this.lblModeToggleKey.Location = new System.Drawing.Point(16, 71);
+            this.lblModeToggleKey.Name = "lblModeToggleKey";
+            this.lblModeToggleKey.Size = new System.Drawing.Size(89, 13);
+            this.lblModeToggleKey.TabIndex = 4;
+            this.lblModeToggleKey.Text = "Mode toggle key:";
             // 
             // chkFindFilterItems
             // 
@@ -1195,7 +1265,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.groupBox15.Controls.Add(this.label35);
             this.groupBox15.Location = new System.Drawing.Point(379, 18);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(350, 301);
+            this.groupBox15.Size = new System.Drawing.Size(350, 255);
             this.groupBox15.TabIndex = 22;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Other";
@@ -1451,6 +1521,18 @@ namespace MyAnimePlugin3.ConfigFiles
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // chkUseStreaming
+            // 
+            this.chkUseStreaming.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkUseStreaming.AutoSize = true;
+            this.chkUseStreaming.Location = new System.Drawing.Point(638, 9);
+            this.chkUseStreaming.Name = "chkUseStreaming";
+            this.chkUseStreaming.Size = new System.Drawing.Size(95, 17);
+            this.chkUseStreaming.TabIndex = 48;
+            this.chkUseStreaming.Text = "Use Streaming";
+            this.chkUseStreaming.UseVisualStyleBackColor = true;
+            this.chkUseStreaming.CheckedChanged += new System.EventHandler(this.chkUseStreaming_CheckedChanged);
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1596,7 +1678,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.ManualLink.AutoSize = true;
             this.ManualLink.Location = new System.Drawing.Point(57, 440);
             this.ManualLink.Name = "ManualLink";
-            this.ManualLink.Size = new System.Drawing.Size(198, 13);
+            this.ManualLink.Size = new System.Drawing.Size(132, 13);
             this.ManualLink.TabIndex = 44;
             this.ManualLink.TabStop = true;
             this.ManualLink.Text = "http://jmediamanager.org/";
@@ -1636,7 +1718,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.WebsiteLink.AutoSize = true;
             this.WebsiteLink.Location = new System.Drawing.Point(57, 385);
             this.WebsiteLink.Name = "WebsiteLink";
-            this.WebsiteLink.Size = new System.Drawing.Size(198, 13);
+            this.WebsiteLink.Size = new System.Drawing.Size(132, 13);
             this.WebsiteLink.TabIndex = 40;
             this.WebsiteLink.TabStop = true;
             this.WebsiteLink.Text = "http://jmediamanager.org/";
@@ -1809,18 +1891,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.chkFfdshowNotificationsShow.TabIndex = 0;
             this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
             this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
-            // 
-            // chkUseStreaming
-            // 
-            this.chkUseStreaming.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkUseStreaming.AutoSize = true;
-            this.chkUseStreaming.Location = new System.Drawing.Point(638, 9);
-            this.chkUseStreaming.Name = "chkUseStreaming";
-            this.chkUseStreaming.Size = new System.Drawing.Size(95, 17);
-            this.chkUseStreaming.TabIndex = 48;
-            this.chkUseStreaming.Text = "Use Streaming";
-            this.chkUseStreaming.UseVisualStyleBackColor = true;
-            this.chkUseStreaming.CheckedChanged += new System.EventHandler(this.chkUseStreaming_CheckedChanged);
             // 
             // frmConfig
             // 
@@ -2033,5 +2103,11 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.CheckBox chkLoadlocalThumbnails;
         private System.Windows.Forms.CheckBox chkUseStreaming;
+        private System.Windows.Forms.TextBox tbStarttextToggleKey;
+        private System.Windows.Forms.TextBox tbModeToggleKey;
+        private System.Windows.Forms.Label lblStarttextToggleKey;
+        private System.Windows.Forms.Label lblModeToggleKey;
+        private System.Windows.Forms.Button btnClearStartText;
+        private System.Windows.Forms.Button btnResetModeText;
     }
 }

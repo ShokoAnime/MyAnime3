@@ -150,7 +150,7 @@
       <posY>75</posY>
       <width>266</width>
       <font>font10</font>
-      <label>[ =Start Word (#Anime3.FindStartWord)</label>
+      <label>#Anime3.StartTextToggle =Start Word (#Anime3.FindStartWord)</label>
       <visible>[facadeview.list|facadeview.largeicons]+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
     </control>
 
@@ -174,7 +174,7 @@
       <posY>95</posY>
       <width>266</width>
       <font>font10</font>
-      <label>] =Mode (#Anime3.FindMode)</label>
+      <label>#Anime3.ModeToggleKey =Mode (#Anime3.FindMode)</label>
       <visible>[facadeview.list|facadeview.largeicons]+Control.IsVisible(3463)</visible>
     </control>
 

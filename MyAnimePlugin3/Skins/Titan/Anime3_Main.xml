@@ -174,7 +174,7 @@
 	  <posX>812</posX>
 	  <posY>170</posY>
 	  <width>900</width>
-	  <label>[ =Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+	  <label>#Anime3.StartTextToggle =Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
 	  <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
 	</control>
 	<control  Style="InfoLabel">
@@ -185,7 +185,7 @@
 	  <posY>130</posY>
 	  <width>600</width>
 	  <align>left</align>
-	  <label>] =Mode (#Anime3.FindMode)</label>
+	  <label>#Anime3.ModeToggleKey =Mode (#Anime3.FindMode)</label>
 	  <visible>Control.IsVisible(3463)</visible>
 	</control>
 

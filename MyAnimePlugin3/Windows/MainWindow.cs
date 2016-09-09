@@ -237,90 +237,92 @@ private AnimeEpisodeVM curAnimeEpisode = null;
 
     #region GUI Properties
 
-    public enum GuiProperty
-    {
-      Title,
-      Subtitle,
-      Description,
-      CurrentView,
-      SimpleCurrentView,
-      NextView,
-      LastView,
-      SeriesBanner,
-      SeasonBanner,
-      EpisodeImage,
-      Logos,
-      SeriesCount,
-      GroupCount,
-      EpisodeCount,
-      RomanjiTitle,
-      EnglishTitle,
-      KanjiTitle,
-      RotatorTitle,
-      FindText,
-      FindMode,
-      FindStartWord,
-      FindInput,
-      FindMatch,
-      FindSharpMode,
-      FindAsteriskMode,
-      SeriesTitle,
-      EpisodesTypeTitle,
-      NotificationLine1,
-      NotificationLine2,
-      NotificationIcon,
-      NotificationAction,
-      VersionNumber,
-      LatestVersionNumber,
-      LatestVersionText,
-      GroupFilter_FilterName,
-      GroupFilter_GroupCount,
-      SeriesGroup_MyRating,
-      SeriesGroup_SeriesCount,
-      SeriesGroup_Genre,
-      SeriesGroup_GenreShort,
-      SeriesGroup_Year,
-      SeriesGroup_RawRating,
-      SeriesGroup_RatingVoteCount,
-      SeriesGroup_Rating,
-      SeriesGroup_Episodes,
-      SeriesGroup_EpisodeCountNormal,
-      SeriesGroup_EpisodeCountSpecial,
-      SeriesGroup_EpisodeCountUnwatched,
-      SeriesGroup_EpisodeCountWatched,
-      HasherQueueCount,
-      HasherQueueState,
-      HasherQueueRunning,
-      GeneralQueueCount,
-      GeneralQueueState,
-      GeneralQueueRunning,
-      ImagesQueueCount,
-      ImagesQueueState,
-      ImagesQueueRunning,
-      SeriesGroup_EpisodesAvailable,
-      SeriesGroup_EpisodeCountNormalAvailable,
-      SeriesGroup_EpisodeCountSpecialAvailable,
-      Episode_Image,
-      Episode_Description,
-      Episode_EpisodeName,
-      Episode_EpisodeDisplayName,
-      Episode_SeriesTypeLabel,
-      Episode_AirDate,
-      Episode_Length,
-      Episode_Rating,
-      Episode_RawRating,
-      Episode_RatingVoteCount,
-      Episode_FileInfo,
-      GroupSeriesPoster,
-      Fanart_1,
-      Fanart_2,
-      RatingImage,
-      CustomRatingImage,
-    }
+      public enum GuiProperty
+      {
+          Title,
+          Subtitle,
+          Description,
+          CurrentView,
+          SimpleCurrentView,
+          NextView,
+          LastView,
+          SeriesBanner,
+          SeasonBanner,
+          EpisodeImage,
+          Logos,
+          SeriesCount,
+          GroupCount,
+          EpisodeCount,
+          RomanjiTitle,
+          EnglishTitle,
+          KanjiTitle,
+          RotatorTitle,
+          FindText,
+          FindMode,
+          FindStartWord,
+          FindInput,
+          FindMatch,
+          FindSharpMode,
+          FindAsteriskMode,
+          SeriesTitle,
+          EpisodesTypeTitle,
+          NotificationLine1,
+          NotificationLine2,
+          NotificationIcon,
+          NotificationAction,
+          VersionNumber,
+          LatestVersionNumber,
+          LatestVersionText,
+          GroupFilter_FilterName,
+          GroupFilter_GroupCount,
+          SeriesGroup_MyRating,
+          SeriesGroup_SeriesCount,
+          SeriesGroup_Genre,
+          SeriesGroup_GenreShort,
+          SeriesGroup_Year,
+          SeriesGroup_RawRating,
+          SeriesGroup_RatingVoteCount,
+          SeriesGroup_Rating,
+          SeriesGroup_Episodes,
+          SeriesGroup_EpisodeCountNormal,
+          SeriesGroup_EpisodeCountSpecial,
+          SeriesGroup_EpisodeCountUnwatched,
+          SeriesGroup_EpisodeCountWatched,
+          HasherQueueCount,
+          HasherQueueState,
+          HasherQueueRunning,
+          GeneralQueueCount,
+          GeneralQueueState,
+          GeneralQueueRunning,
+          ImagesQueueCount,
+          ImagesQueueState,
+          ImagesQueueRunning,
+          SeriesGroup_EpisodesAvailable,
+          SeriesGroup_EpisodeCountNormalAvailable,
+          SeriesGroup_EpisodeCountSpecialAvailable,
+          Episode_Image,
+          Episode_Description,
+          Episode_EpisodeName,
+          Episode_EpisodeDisplayName,
+          Episode_SeriesTypeLabel,
+          Episode_AirDate,
+          Episode_Length,
+          Episode_Rating,
+          Episode_RawRating,
+          Episode_RatingVoteCount,
+          Episode_FileInfo,
+          GroupSeriesPoster,
+          Fanart_1,
+          Fanart_2,
+          RatingImage,
+          CustomRatingImage,
+          ModeToggleKey,
+          StartTextToggle
+      }
 
-    #endregion
+      #endregion
 
-    public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
     public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
     public string GetPropertyName(GuiProperty which) { return this.GetPropertyName(which.ToString()); }
 
@@ -545,25 +547,26 @@ private AnimeEpisodeVM curAnimeEpisode = null;
 
     #endregion
 
-    public override bool Init()
-    {
-      try
+      public override bool Init()
       {
-        BaseConfig.MyAnimeLog.Write("INIT MAIN WINDOW");
-        Translation.PopulateLabels();
-        GUIWindowManager.OnThreadMessageHandler += GUIWindowManager_OnThreadMessageHandler;
-        Thread t = new Thread(InitVidHandler);
-        t.IsBackground = true;
-        t.Start();
+          try
+          {
+              BaseConfig.MyAnimeLog.Write("INIT MAIN WINDOW");
+              Translation.PopulateLabels();
+              PopulateSearchLabels();
+              GUIWindowManager.OnThreadMessageHandler += GUIWindowManager_OnThreadMessageHandler;
+              Thread t = new Thread(InitVidHandler);
+              t.IsBackground = true;
+              t.Start();
+          }
+          catch (Exception ex)
+          {
+              BaseConfig.MyAnimeLog.Write("Error on init: {0}", ex.ToString());
+          }
+          return this.InitSkin<GuiProperty>("Anime3_Main.xml");
       }
-      catch (Exception ex)
-      {
-        BaseConfig.MyAnimeLog.Write("Error on init: {0}", ex.ToString());
-      }
-      return this.InitSkin<GuiProperty>("Anime3_Main.xml");
-    }
 
-    public void InitVidHandler()
+      public void InitVidHandler()
     {
       vidHandler = new VideoHandler();
       vidHandler.DefaultAudioLanguage = settings.DefaultAudioLanguage;
@@ -571,7 +574,13 @@ private AnimeEpisodeVM curAnimeEpisode = null;
 
     }
 
-    void Instance_ServerStatusEvent(Events.ServerStatusEventArgs ev)
+      void PopulateSearchLabels()
+      {
+          SetGUIProperty(GuiProperty.ModeToggleKey, BaseConfig.Settings.ModeToggleKey);
+          SetGUIProperty(GuiProperty.StartTextToggle, BaseConfig.Settings.StartTextToggleKey);
+      }
+
+      void Instance_ServerStatusEvent(Events.ServerStatusEventArgs ev)
     {
       SetGUIProperty(GuiProperty.HasherQueueCount, ev.HasherQueueCount.ToString(Globals.Culture));
       SetGUIProperty(GuiProperty.HasherQueueState, ev.HasherQueueState);
@@ -2569,56 +2578,57 @@ private bool ShowOptionsMenu(string previousMenu)
       return ((char)keyCode).ToString();
     }
 
-    private void KeyCommandHandler(int keycodeInput)
-    {
-      //when the list is selected, search the input
-      if ((m_Facade.CurrentLayout == GUIFacadeControl.Layout.List && m_Facade.ListLayout.IsFocused)
-          || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.LargeIcons && m_Facade.ThumbnailLayout.IsFocused)
-          || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.Filmstrip && m_Facade.FilmstripLayout.IsFocused)
-          || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow && m_Facade.CoverFlowLayout.IsFocused))
+      private void KeyCommandHandler(int keycodeInput)
       {
-        // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
-        char keycode = (char)keycodeInput;
-        string keycodeString = KeycodeToString(keycodeInput).ToLower();
+          //when the list is selected, search the input
+          if ((m_Facade.CurrentLayout == GUIFacadeControl.Layout.List && m_Facade.ListLayout.IsFocused)
+              || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.LargeIcons && m_Facade.ThumbnailLayout.IsFocused)
+              || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.Filmstrip && m_Facade.FilmstripLayout.IsFocused)
+              || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow && m_Facade.CoverFlowLayout.IsFocused))
+          {
+              // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
+              char keycode = (char) keycodeInput;
+              string keycodeString = KeycodeToString(keycodeInput).ToLower();
+            
+              if (keycodeString == BaseConfig.Settings.ModeToggleKey)
+              {
+                  OnSearchAction(SearchAction.ToggleMode);
+                  return;
+              }
+              if (keycodeString == BaseConfig.Settings.StartTextToggleKey)
+              {
+                  OnSearchAction(SearchAction.ToggleStartWord);
+                  return;
 
-        switch (keycodeString)
-        {
-          case "[":
-            OnSearchAction(SearchAction.ToggleStartWord);
-            return;
-          case "]":
-            OnSearchAction(SearchAction.ToggleMode);
-            return;
-          case "x":
-            // Skip default fullscreen toggle key if video is playing
-            if (g_Player.Playing)
-              return;
+              }
+              if (keycodeString == "x")
+              {
+                  if (g_Player.Playing)
+                      return;
+              }
 
-            break;
-        }
-
-        // Normal keycode matching for everything else
-        switch (keycode)
-        {
-          case (char)Keys.Back:
-            OnSearchAction(SearchAction.DeleteChar);
-            break;
-          case (char)Keys.Tab:
-            OnSearchAction(SearchAction.NextMatch);
-            break;
-          default:
-            if (!OnSearchChar(keycode))
-            {
-              return;
-            }
-            break;
-        }
+              // Normal keycode matching for everything else
+              switch (keycode)
+              {
+                  case (char) Keys.Back:
+                      OnSearchAction(SearchAction.DeleteChar);
+                      break;
+                  case (char) Keys.Tab:
+                      OnSearchAction(SearchAction.NextMatch);
+                      break;
+                  default:
+                      if (!OnSearchChar(keycode))
+                      {
+                          return;
+                      }
+                      break;
+              }
+          }
+          if (!string.IsNullOrEmpty(searchSound) && !g_Player.Playing)
+              MediaPortal.Util.Utils.PlaySound(searchSound, false, true);
       }
-      if (!string.IsNullOrEmpty(searchSound) && !g_Player.Playing)
-        MediaPortal.Util.Utils.PlaySound(searchSound, false, true);
-    }
 
-    #endregion
+      #endregion
 
     string searchText = string.Empty;
     string searchMatch = string.Empty;
@@ -2869,7 +2879,11 @@ private bool ShowOptionsMenu(string previousMenu)
       SetGUIProperty(GuiProperty.FindMatch, searchMatch);
       string searchMode = (search.Mode == SearchMode.t9) ? Translation.T9 : Translation.Text;
       string startWord = search.StartWord ? Translation.Yes : Translation.No;
-      SetGUIProperty(GuiProperty.FindMode, searchMode);
+      SetGUIProperty(GuiProperty.ModeToggleKey, BaseConfig.Settings.ModeToggleKey);
+      SetGUIProperty(GuiProperty.StartTextToggle, BaseConfig.Settings.StartTextToggleKey);
+
+
+            SetGUIProperty(GuiProperty.FindMode, searchMode);
       SetGUIProperty(GuiProperty.FindStartWord, startWord);
       if (search.Mode == SearchMode.t9)
       {
@@ -4420,7 +4434,7 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
       {
         cmenu.Add(Translation.Databases + " >>>", () => ShowContextMenuDatabases(grp.AllSeries[0], Translation.GroupMenu));
         cmenu.Add(Translation.Images + " >>>", () => ShowContextMenuImages(grp.GroupName));
-        cmenu.AddAction(Translation.SeriesInformation, ShowAnimeInfoWindow);
+        cmenu.AddAction(Translation.SeriesInformation, () =>  ShowAnimeInfoWindow(grp.AllSeries[0]));
       }
       // ReSharper disable ImplicitlyCapturedClosure
       cmenu.AddAction(Translation.RandomSeries, () =>
@@ -4460,28 +4474,50 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
       GUIWindowManager.ActivateWindow(Constants.WindowIDs.CHARACTERS, false);
     }
 
-    private void ShowAnimeInfoWindow()
-    {
-      SetGlobalIDs();
-      GUIWindowManager.ActivateWindow(Constants.WindowIDs.ANIMEINFO, false);
-    }
+      private void ShowAnimeInfoWindow(AnimeSeriesVM ser)
+      {
+          if (ser != null)
+          {
+              GlobalSeriesID = ser.AnimeSeriesID.Value;
+          }
 
-    private ContextMenuAction ShowContextMenuImages(string previousMenu)
-    {
-      GUIListItem currentitem = m_Facade.SelectedListItem;
-      if (currentitem == null)
-        return ContextMenuAction.Exit;
-      IVM v = GetCurrent().Selected;
-      string displayName = v is AnimeGroupVM ? ((AnimeGroupVM)v).GroupName : ((AnimeSeriesVM)v).SeriesName;
-      ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
-      cmenu.AddAction(Translation.Fanart, ShowFanartWindow);
-      cmenu.AddAction(Translation.Posters, ShowPostersWindow);
-      cmenu.AddAction(Translation.WideBanners, ShowWideBannersWindow);
-      return cmenu.Show();
-    }
+          GUIWindowManager.ActivateWindow(Constants.WindowIDs.ANIMEINFO, false);
+      }
+
+      private ContextMenuAction ShowContextMenuImages(string previousMenu)
+      {
+          GUIListItem currentitem = this.m_Facade.SelectedListItem;
+          if (currentitem == null)
+              return ContextMenuAction.Exit;
+
+          AnimeSeriesVM ser = currentitem.TVTag as AnimeSeriesVM;
+          IVM v = GetCurrent().Selected;
+
+          string displayName;
+          if (ser == null)
+          {
+              AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
+              if (grp == null)
+                  return ContextMenuAction.Exit;
+
+              displayName = grp.GroupName;
+              GlobalSeriesID = grp.AllSeries[0].AnimeSeriesID.Value;
+          }
+          else
+          {
+              displayName = ser.SeriesName;
+              GlobalSeriesID = ser.AnimeSeriesID.Value;
+          }
+
+          ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
+          cmenu.AddAction(Translation.Fanart, ShowFanartWindow);
+          cmenu.AddAction(Translation.Posters, ShowPostersWindow);
+          cmenu.AddAction(Translation.WideBanners, ShowWideBannersWindow);
+          return cmenu.Show();
+      }
 
 
-    private ContextMenuAction ShowContextMenuTVDB(AnimeSeriesVM ser, string previousMenu)
+      private ContextMenuAction ShowContextMenuTVDB(AnimeSeriesVM ser, string previousMenu)
     {
       GUIListItem currentitem = m_Facade.SelectedListItem;
       if (currentitem == null)
@@ -4683,7 +4719,7 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
         return ContextMenuAction.Exit;
 
       ContextMenu cmenu = new ContextMenu(ser.SeriesName, previousmenu: previousMenu);
-      cmenu.AddAction(Translation.SeriesInformation, ShowAnimeInfoWindow);
+      cmenu.AddAction(Translation.SeriesInformation, () => ShowAnimeInfoWindow(ser));
       cmenu.AddAction(Translation.MarkAllAsWatched, () =>
       {
         if (ser.AnimeSeriesID.HasValue)
@@ -4810,23 +4846,20 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
 
     }
 
-    private void ShowFanartWindow()
-    {
-      SetGlobalIDs();
-      GUIWindowManager.ActivateWindow(Constants.WindowIDs.FANART, false);
-    }
+      private void ShowFanartWindow()
+      {
+          GUIWindowManager.ActivateWindow(Constants.WindowIDs.FANART, false);
+      }
 
-    private void ShowPostersWindow()
-    {
-      SetGlobalIDs();
-      GUIWindowManager.ActivateWindow(Constants.WindowIDs.POSTERS, false);
-    }
+      private void ShowPostersWindow()
+      {
+          GUIWindowManager.ActivateWindow(Constants.WindowIDs.POSTERS, false);
+      }
 
-    private void ShowWideBannersWindow()
-    {
-      SetGlobalIDs();
-      GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
-    }
+      private void ShowWideBannersWindow()
+      {
+          GUIWindowManager.ActivateWindow(Constants.WindowIDs.WIDEBANNERS, false);
+      }
   }
 
 

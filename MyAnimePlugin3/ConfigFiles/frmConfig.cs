@@ -129,9 +129,8 @@ namespace MyAnimePlugin3.ConfigFiles
             this.chkLoadlocalThumbnails.Text = Translation.TryToUseLocalThumb;
             this.Text = Translation.Anime3Config;
             this.chkUseStreaming.Text = Translation.UseStreaming;
-
-
-
+            this.lblModeToggleKey.Text = Translation.ModeToggle;
+            this.lblStarttextToggleKey.Text = Translation.StartTextToggle;
 
             btnImagesLocation.Click += new EventHandler(btnImagesLocation_Click);
 			btnSelectLocalFolderPath.Click += new EventHandler(btnSelectLocalFolderPath_Click);
@@ -610,6 +609,24 @@ namespace MyAnimePlugin3.ConfigFiles
 			}
             BaseConfig.Settings.UseStreaming = chkUseStreaming.Checked;
 
+            if (tbModeToggleKey.Text.Length == 1 && tbModeToggleKey.Text != tbStarttextToggleKey.Text)
+            {
+                BaseConfig.Settings.ModeToggleKey = tbModeToggleKey.Text.ToLower();
+            }
+            else
+            {
+                BaseConfig.Settings.ModeToggleKey = "]";
+            }
+
+            if (tbStarttextToggleKey.Text.Length == 1 && tbStarttextToggleKey.Text != tbModeToggleKey.Text)
+            {
+                BaseConfig.Settings.StartTextToggleKey = tbStarttextToggleKey.Text.ToLower();
+            }
+            else
+            {
+                BaseConfig.Settings.StartTextToggleKey = "[";
+            }
+
             BaseConfig.Settings.Save();
             AddTempPathToSubtilePaths();
 
@@ -798,12 +815,15 @@ namespace MyAnimePlugin3.ConfigFiles
 			}
             chkUseStreaming.Checked = BaseConfig.Settings.UseStreaming;
             chkUseStreaming_CheckedChanged(null, null);
+
+            tbModeToggleKey.Text = BaseConfig.Settings.ModeToggleKey;
+            tbStarttextToggleKey.Text = BaseConfig.Settings.StartTextToggleKey;
         }
         #endregion
 
         #region Tab 'Main'
 
-		void btnImagesLocation_Click(object sender, EventArgs e)
+        void btnImagesLocation_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog dlg = new FolderBrowserDialog();
 		    dlg.Description = Translation.SelectAFolder;
@@ -853,6 +873,53 @@ namespace MyAnimePlugin3.ConfigFiles
         private void chkUseStreaming_CheckedChanged(object sender, EventArgs e)
         {
             groupBox2.Enabled = !chkUseStreaming.Checked;
+        }
+        public static string TruncateText(string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+        }
+
+        private void btnResetModeText_Click(object sender, EventArgs e)
+        {
+            tbModeToggleKey.Text = @"]";
+        }
+
+        private void btnClearStartText_Click(object sender, EventArgs e)
+        {
+            tbStarttextToggleKey.Text = @"[";
+        }
+
+        private void tbModeToggleKey_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbModeToggleKey.Text.Length > 1)
+            {
+                tbModeToggleKey.Text =  TruncateText(tbModeToggleKey.Text, 1);
+            }
+        }
+
+        private void tbStarttextToggleKey_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbStarttextToggleKey.Text.Length > 1)
+            {
+                tbStarttextToggleKey.Text =  TruncateText(tbStarttextToggleKey.Text, 1);
+            }
+        }
+
+        private void tbModeToggleKey_TextChanged(object sender, EventArgs e)
+        {
+            if (tbModeToggleKey.Text.Length > 1)
+            {
+                tbModeToggleKey.Text = TruncateText(tbModeToggleKey.Text, 1);
+            }
+        }
+
+        private void tbStarttextToggleKey_TextChanged(object sender, EventArgs e)
+        {
+            if (tbStarttextToggleKey.Text.Length > 1)
+            {
+                tbStarttextToggleKey.Text = TruncateText(tbStarttextToggleKey.Text, 1);
+            }
         }
     }
 }

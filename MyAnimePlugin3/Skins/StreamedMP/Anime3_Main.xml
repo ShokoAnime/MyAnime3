@@ -236,7 +236,7 @@
       <posY>237</posY>
       <width>450</width>
       <font>mediastream10</font>
-      <label>[ = Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+      <label>#Anime3.StartTextToggle = Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
       <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
     </control>
     <control>
@@ -247,7 +247,7 @@
       <posY>267</posY>
       <width>450</width>
       <font>mediastream10</font>
-      <label>] = Mode (#Anime3.FindMode)</label>
+      <label>#Anime3.ModeToggleKey = Mode (#Anime3.FindMode)</label>
       <visible>Control.IsVisible(3463)</visible>
     </control>
     <!-- *********************** LIST /GRAPHICAL VIEW*********************************** -->

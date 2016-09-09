@@ -368,6 +368,8 @@ namespace MyAnimePlugin3
         public static string Minutes = "minutes";
 
         public static string MissingEpisodeCount = "Missing Episode Count";
+        public static string ModeToggle = "Mode toggle key:";
+
         public static string MoreOptions = "More Options";
         public static string MultipleLinks = "Multiple Links";
 
@@ -525,6 +527,7 @@ namespace MyAnimePlugin3
         public static string Specials = "Specials";
         public static string StartWord = "Start Word ({0})";
         public static string Starting = "Starting";
+        public static string StartTextToggle = "Start text toggle key:";
         public static string StartTorrent = "Start Torrent";
         public static string StopTorrent = "Stop Torrent";
         public static string Sucess = "Sucess";

@@ -525,6 +525,7 @@ namespace MyAnimePlugin3.Windows
 			else
 			{
                 SetGUIProperty(GuiProperty.Random_Series_Description, MainWindow.RandomWindow_CurrentSeries.Description);
+                SetGUIProperty(GuiProperty.Random_Series_Title, MainWindow.RandomWindow_CurrentSeries.SeriesName);
                 SetGUIProperty(GuiProperty.Random_Series_LastWatched, MainWindow.RandomWindow_CurrentSeries.WatchedDate.HasValue ? MainWindow.RandomWindow_CurrentSeries.WatchedDate.Value.ToString("dd MMM yy", Globals.Culture) : "-");
                 SetGUIProperty(GuiProperty.Random_Series_EpisodesWatched, MainWindow.RandomWindow_CurrentSeries.WatchedEpisodeCount.ToString(Globals.Culture));
                 SetGUIProperty(GuiProperty.Random_Series_EpisodesUnwatched, MainWindow.RandomWindow_CurrentSeries.UnwatchedEpisodeCount.ToString(Globals.Culture));

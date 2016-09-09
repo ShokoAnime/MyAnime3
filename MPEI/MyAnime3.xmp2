@@ -8917,30 +8917,30 @@ http://jmediamanager.org/mediaportal/</Value>
     <Author>Leo Werndly</Author>
     <HomePage>http://jmediamanager.org/</HomePage>
     <ForumPage>http://forum.team-mediaportal.com/threads/my-anime-3.107475/</ForumPage>
-    <UpdateUrl>https://raw.githubusercontent.com/japanesemediamanager/MyAnime3/master/MPEI/update.xml</UpdateUrl>
+    <UpdateUrl>http://www.jmediamanager.org/latestdownloads/update.xml</UpdateUrl>
     <Version>
       <Major>3</Major>
       <Minor>6</Minor>
-      <Build>10</Build>
+      <Build>1</Build>
       <Revision>0</Revision>
     </Version>
-    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
-
-
-
-It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
-
-
-
+    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
+
+
+
+It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
+
+
+
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription>View our changelog for release notes:
-
+    <VersionDescription>View our changelog for release notes:
+
 http://jmediamanager.org/changelog/</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>https://raw.githubusercontent.com/japanesemediamanager/MyAnime3/master/MPEI/Releases/MP1/My Anime 3_3.6.10.0.mpe1</OnlineLocation>
-    <ReleaseDate>2016-09-08T18:40:56</ReleaseDate>
+    <OnlineLocation>http://www.jmediamanager.org/latestdownloads/My_Anime_3_3.6.10.0.mpe1</OnlineLocation>
+    <ReleaseDate>2016-09-09T18:40:56</ReleaseDate>
     <Tags />
-    <Location>Releases\MP1\[Name]_[Version].mpe1</Location>
+    <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -14908,7 +14908,7 @@ http://jmediamanager.org/changelog/</VersionDescription>
       </FolderGroup>
     </FolderGroups>
     <ProjectFilename>MyAnime3.xmp2</ProjectFilename>
-    <UpdatePath1>C:\Projects\[ JMM Binaries No Configs ]\update.xml</UpdatePath1>
+    <UpdatePath1>..\Release\MP1\update.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
   </ProjectSettings>

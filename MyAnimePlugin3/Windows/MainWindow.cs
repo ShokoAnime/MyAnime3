@@ -2580,6 +2580,10 @@ private bool ShowOptionsMenu(string previousMenu)
 
       private void KeyCommandHandler(int keycodeInput)
       {
+            // Skip key command processing if video window is fullscreen
+            if (g_Player.FullScreen)
+                return;
+
           //when the list is selected, search the input
           if ((m_Facade.CurrentLayout == GUIFacadeControl.Layout.List && m_Facade.ListLayout.IsFocused)
               || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.LargeIcons && m_Facade.ThumbnailLayout.IsFocused)
@@ -3563,39 +3567,49 @@ private bool ShowOptionsMenu(string previousMenu)
       }
       else if (settings.LoadLocalThumbnails)
       {
-        string localThumbnail = LoadLocalThumbnail(ep.AnimeEpisodeID);
+          ClearGUIProperty(GuiProperty.Episode_Image);
+          string localThumbnail = LoadLocalThumbnail(ep.AnimeEpisodeID);
 
-        // Try to find local thumbnail
-        if (string.IsNullOrEmpty(localThumbnail))
-        {
-          // Fallback to default thumbnail if none found
-          SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
-          fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
-        }
-        else
-        {
-          // Set thumbnail to local and replace fanart image with it as well
-          SetGUIProperty(GuiProperty.Episode_Image, localThumbnail);
+          // Try to find local thumbnail
+          if (string.IsNullOrEmpty(localThumbnail))
+          {
+              // Fallback to default thumbnail if none found
+              SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
+              fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
+          }
+          else
+          {
+              // Set thumbnail to local and replace fanart image with it as well
+              SetGUIProperty(GuiProperty.Episode_Image, localThumbnail);
 
-          fanartTexture.Filename = localThumbnail;
+              fanartTexture.Filename = localThumbnail;
 
-          if (this.dummyIsFanartLoaded != null)
-            this.dummyIsFanartLoaded.Visible = true;
-        }
+              if (this.dummyIsFanartLoaded != null)
+                  this.dummyIsFanartLoaded.Visible = true;
+          }
       }
       else
       {
-        ClearGUIProperty(GuiProperty.Episode_Image);
+          ClearGUIProperty(GuiProperty.Episode_Image);
       }
 
-      if (!settings.HidePlot)
+        if (!settings.HidePlot)
         SetGUIProperty(GuiProperty.Episode_Description, ep.EpisodeOverview);
       else
       {
-        if (ep.EpisodeOverview.Trim().Length > 0 && ep.IsWatched == 0)
-          SetGUIProperty(GuiProperty.Episode_Description, "*** " + Translation.HiddenToPreventSpoiles + " ***");
-        else
-          SetGUIProperty(GuiProperty.Episode_Description, ep.EpisodeOverview);
+          if (ep.EpisodeOverview.Trim().Length > 0 && ep.IsWatched == 0)
+          {
+              SetGUIProperty(GuiProperty.Episode_Description, "*** " + Translation.HiddenToPreventSpoiles + " ***");
+          }
+          else if (!string.IsNullOrEmpty(ep.EpisodeOverview))
+          {
+
+              SetGUIProperty(GuiProperty.Episode_Description, ep.EpisodeOverview);
+          }
+          else
+          {
+              ClearGUIProperty(GuiProperty.Episode_Description);
+          }
       }
 
       SetGUIProperty(GuiProperty.Episode_EpisodeName, ep.EpisodeName);

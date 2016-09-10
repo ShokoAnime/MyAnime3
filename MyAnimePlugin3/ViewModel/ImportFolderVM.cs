@@ -9,14 +9,18 @@ namespace MyAnimePlugin3.ViewModel
 	public class ImportFolderVM
 	{
 		public int? ImportFolderID { get; set; }
-		public string ImportFolderName { get; set; }
+        public int ImportFolderType { get; set; }
+
+        public string ImportFolderName { get; set; }
 		public string ImportFolderLocation { get; set; }
 		public int IsDropSource { get; set; }
 		public int IsDropDestination { get; set; }
 		public string LocalPathTemp { get; set; }
 		public int IsWatched { get; set; }
+        public int? CloudID { get; set; }
 
-		public string LocalPath
+
+        public string LocalPath
 		{
 			get
 			{
@@ -48,8 +52,10 @@ namespace MyAnimePlugin3.ViewModel
 				return false;
 			}
 		}
+        public bool IsCloud => CloudID.HasValue;
+        public bool IsNotCloud => !CloudID.HasValue;
 
-		public bool FolderIsDropSource
+        public bool FolderIsDropSource
 		{
 			get
 			{
@@ -106,7 +112,9 @@ namespace MyAnimePlugin3.ViewModel
 			this.IsDropSource = contract.IsDropSource;
 			this.IsDropDestination = contract.IsDropDestination;
 			this.IsWatched = contract.IsWatched;
-		}
+            this.CloudID = contract.CloudID;
+            this.ImportFolderType = contract.ImportFolderType;
+        }
 
 		public JMMServerBinary.Contract_ImportFolder ToContract()
 		{
@@ -117,8 +125,9 @@ namespace MyAnimePlugin3.ViewModel
 			contract.IsDropSource = this.IsDropSource;
 			contract.IsDropDestination = this.IsDropDestination;
 			contract.IsWatched = this.IsWatched;
-
-			return contract;
+            contract.ImportFolderType = this.ImportFolderType;
+            contract.CloudID = this.CloudID;
+            return contract;
 		}
 
 		public bool Save()

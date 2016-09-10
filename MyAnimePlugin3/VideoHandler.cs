@@ -76,10 +76,15 @@ namespace MyAnimePlugin3
         #region Vars
         public AnimeEpisodeVM curEpisode = null;
 		public AnimeEpisodeVM prevEpisode = null;
-        private string curFileName = "";
+        private IVideoInfo current;
+        private IVideoInfo previous;
+        private string currentUri=string.Empty;
+        private string previousUri=string.Empty;
+
+/*        private string curFileName = "";
 		private string prevFileName = "";
         private Media prevMedia;
-        private Media curMedia;
+        private Media curMedia;*/
         int timeMovieStopped = 0;
 		private BackgroundWorker w = new BackgroundWorker();
 		private bool listenToExternalPlayerEvents = false;
@@ -106,30 +111,6 @@ namespace MyAnimePlugin3
 
         public static Dictionary<string, int> RecentWatchPositions { get; set; }=new Dictionary<string, int>();
 
-        private int GetTimeStopped(string fileName)
-        {
-            if (IsStreaming(curMedia))
-            {
-                if (RecentWatchPositions.ContainsKey(fileName))
-                    return RecentWatchPositions[fileName];
-                return 0;
-            }
-
-            IMDBMovie movieDetails = new IMDBMovie();
-            VideoDatabase.GetMovieInfo(fileName, ref movieDetails);
-            int idFile = VideoDatabase.GetFileId(fileName);
-            int idMovie = VideoDatabase.GetMovieId(fileName);
-
-            byte[] resumeData = null;
-
-            if ((idMovie >= 0) && (idFile >= 0))
-            {
-                return VideoDatabase.GetMovieStopTimeAndResumeData(idFile, out resumeData); 
-            }
-
-            return 0;
-        }
-
         #region Public Methods
         public void SetGUIProperty(GuiProperty which, string value, bool isInternalMediaportal = false) { this.SetGUIProperty(which.ToString(), value, isInternalMediaportal); }
         public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
@@ -152,23 +133,21 @@ namespace MyAnimePlugin3
 			{
 				curEpisode = null;
 
-				int timeMovieStopped = 0;
-				if (!IsStreaming(curMedia) && !File.Exists(fileToPlay.FullPath))
+
+                if (fileToPlay.IsLocalOrStreaming()==null)
 				{
 					Utils.DialogMsg("Error", "File could not be found!");
 					return false;
 				}
+			    current = fileToPlay;
 
-                curFileName = fileToPlay.FullPath;
-                curMedia = fileToPlay.Media;
-
-                BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
-				timeMovieStopped = GetTimeStopped(IsStreaming(curMedia) ? curMedia.Parts[0].Key : fileToPlay.FullPath);
-				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
+                BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FileName);
+				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FileName, fileToPlay.ResumePosition/1000);
 
 
-				#region Ask user to Resume
-				if (timeMovieStopped > 0)
+                #region Ask user to Resume
+                timeMovieStopped = (int)(fileToPlay.ResumePosition / 1000);
+                if (timeMovieStopped > 0)
 				{
 					GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_YES_NO);
 
@@ -176,7 +155,7 @@ namespace MyAnimePlugin3
 					{
 						dlgYesNo.SetHeading(GUILocalizeStrings.Get(900)); //resume movie?
 						dlgYesNo.SetLine(1, fileToPlay.FileName);
-						dlgYesNo.SetLine(2, GUILocalizeStrings.Get(936) + " " + MediaPortal.Util.Utils.SecondsToHMSString(timeMovieStopped));
+						dlgYesNo.SetLine(2, GUILocalizeStrings.Get(936) + " " + MediaPortal.Util.Utils.SecondsToHMSString(TimeSpan.FromMilliseconds(fileToPlay.ResumePosition)));
 						dlgYesNo.SetDefaultToYes(true);
 						dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
 						if (!dlgYesNo.IsConfirmed) // reset resume data in DB
@@ -198,12 +177,7 @@ namespace MyAnimePlugin3
 		}
 
 
-        private bool IsStreaming(Media m)
-        {
-            if (BaseConfig.Settings.UseStreaming && m != null && m.Parts != null && m.Parts.Count > 0)
-                return true;
-            return false;
-        }
+
 
         public bool ResumeOrPlay(AnimeEpisodeVM episode)
         {
@@ -242,26 +216,23 @@ namespace MyAnimePlugin3
                 
 
                 if (fileToPlay == null) return false;
-                prevMedia = curMedia;
-                curMedia = fileToPlay.Media;
-				BaseConfig.MyAnimeLog.Write("Filetoplay: {0}", fileToPlay.FullPath);
+                previous = current;
+                previousUri = currentUri;
+                current = fileToPlay;
+				BaseConfig.MyAnimeLog.Write("Filetoplay: {0}", fileToPlay.FileName);
 
 
-                if (!IsStreaming(curMedia) && !File.Exists(fileToPlay.FullPath))
+                if (!fileToPlay.IsLocalOrStreaming()==null)
                 {
 					Utils.DialogMsg("Error", "File could not be found!");
                     return false;
                 }
 				BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
-				timeMovieStopped = GetTimeStopped(IsStreaming(curMedia) ? curMedia.Parts[0].Key : fileToPlay.FullPath);
+                timeMovieStopped = (int)(fileToPlay.VideoLocal_ResumePosition/1000);
 				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
 
-
-				prevEpisode = curEpisode;
-				prevFileName = curFileName;
-
+                prevEpisode = curEpisode;
 				curEpisode = episode;
-				curFileName = fileToPlay.FullPath;
 
  
 
@@ -439,23 +410,30 @@ namespace MyAnimePlugin3
 
 				// Start Listening to any External Player Events
 				listenToExternalPlayerEvents = true;
-                CreateSubsOnTempIfNecesary(curMedia);
-                if (IsStreaming(curMedia))
+                CreateSubsOnTempIfNecesary(current.Media);
+                if (current.IsLocalOrStreaming() == true)
                 {
                     string title = string.Empty;
                     if (curEpisode != null)
                         title = curEpisode.DisplayName;
                     else
-                        title = Path.GetFileNameWithoutExtension(curMedia.Parts[0].Key.Replace("/", "\\")).Replace("_"," ");
+                        title =
+                            Path.GetFileNameWithoutExtension(current.Media.Parts[0].Key.Replace("/", "\\"))
+                                .Replace("_", " ");
+
                     result =
-                        g_Player.PlayVideoStream(curMedia.Parts[0].Key, title) ||
+                        g_Player.PlayVideoStream(current.Media.Parts[0].Key, title) ||
                         g_Player.IsExternalPlayer;
+                    currentUri = current.Media.Parts[0].Key;
                 }
                 else
-                    result = g_Player.Play(curFileName, g_Player.MediaType.Video) || g_Player.IsExternalPlayer;
-
+                {
+                    result = g_Player.Play(current.LocalFileSystemFullPath, g_Player.MediaType.Video) ||
+                             g_Player.IsExternalPlayer;
+                    currentUri = current.Media.Parts[0].Key = current.LocalFileSystemFullPath;
+                }
                 // Stop Listening to any External Player Events
-				listenToExternalPlayerEvents = false;
+                    listenToExternalPlayerEvents = false;
 
 				//set properties
 				if (g_Player.Playing)
@@ -548,10 +526,7 @@ namespace MyAnimePlugin3
                 LogPlayBackOp("stopped", filename);
                 try
 				{
-				    if (IsStreaming(curMedia))
-				    {
-				        RecentWatchPositions[curMedia.Parts[0].Key] = timeMovieStopped;
-				    }
+                    JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(current.VideoLocalID, JMMServerVM.Instance.CurrentUser.JMMUserID,timeMovieStopped*1000);
 					BaseConfig.MyAnimeLog.Write("Checking for set watched");
 					#region Set Watched
                     double watchedAfter = BaseConfig.Settings.WatchedPercentage;
@@ -587,11 +562,7 @@ namespace MyAnimePlugin3
             if (PlayBackOpIsOfConcern(type, filename))
             {
                 LogPlayBackOp("ended", filename);
-                if (IsStreaming(curMedia))
-                {
-                    if (RecentWatchPositions.ContainsKey(curMedia.Parts[0].Key))
-                        RecentWatchPositions.Remove(curMedia.Parts[0].Key);
-                }
+
 
                 try
                 {
@@ -614,8 +585,7 @@ namespace MyAnimePlugin3
 					BaseConfig.MyAnimeLog.Write("Checking for set watched");
 					#region Set Watched
 					double watchedAfter = BaseConfig.Settings.WatchedPercentage;
-                    if (IsStreaming(prevMedia))
-                        RecentWatchPositions[prevMedia.Parts[0].Key] = stoptime;
+                    JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(previous.VideoLocalID, JMMServerVM.Instance.CurrentUser.JMMUserID, stoptime * 1000);
 
 
                     if (!g_Player.IsExternalPlayer)
@@ -688,8 +658,7 @@ namespace MyAnimePlugin3
 
       bool PlayBackOpIsOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
       {
-        bool IsOfConcern = curEpisode != null && type == g_Player.MediaType.Video &&
-                           (IsStreaming(curMedia) ? curEpisode.DisplayName == filename : curFileName == filename);
+          bool IsOfConcern = curEpisode != null && type == g_Player.MediaType.Video && currentUri == filename;
         if (IsOfConcern)
         {
           BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
@@ -700,8 +669,7 @@ namespace MyAnimePlugin3
 
       bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
       {
-        bool WasOfConcern = prevEpisode != null && type == g_Player.MediaType.Video &&
-                            (IsStreaming(prevMedia) ? prevEpisode.DisplayName == filename : prevFileName == filename);
+          bool WasOfConcern = prevEpisode != null && type == g_Player.MediaType.Video && previousUri == filename;
         if (WasOfConcern)
         {
           BaseConfig.MyAnimeLog.Write("PlayBackOpWasOfConcern: {0} - {1} - {2}", filename, type, prevEpisode);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.ServiceModel.Channels;
@@ -7,6 +8,7 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using MediaPortal.GUI.Library;
 using MediaPortal.Dialogs;
+using Microsoft.Win32;
 using MyAnimePlugin3.Events;
 
 namespace MyAnimePlugin3.ViewModel
@@ -101,9 +103,114 @@ namespace MyAnimePlugin3.ViewModel
 			serverStatusTimer.Interval = 4 * 1000; // 4 seconds
 			serverStatusTimer.Elapsed += new System.Timers.ElapsedEventHandler(serverStatusTimer_Elapsed);
 			serverStatusTimer.Enabled = true;
-		}
+		    AddTempPathToSubtilePaths();
 
-		private JMMServerBinary.IJMMServer _clientBinaryHTTP = null;
+
+		}
+        private void AddTempPathToSubtilePaths()
+        {
+            string path = Path.GetTempPath();
+            //FFDSHow
+            try
+            {
+                RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GNU\ffdshow", true);
+                if (k != null)
+                {
+                    string org = (string)k.GetValue("subSearchDir", null);
+                    if (string.IsNullOrEmpty(org))
+                        org = path;
+                    else if (!org.Contains(path))
+                        org += ";" + path;
+                    k.SetValue("subSearchDir", org);
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GNU\ffdshow64", true);
+                if (k != null)
+                {
+                    string org = (string)k.GetValue("subSearchDir", null);
+                    if (string.IsNullOrEmpty(org))
+                        org = path;
+                    else if (!org.Contains(path))
+                        org += ";" + path;
+                    k.SetValue("subSearchDir", org);
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Gabest\VSFilter\DefTextPathes", true);
+                if (k != null)
+                {
+                    for (int x = 0; x < 10; x++)
+                    {
+                        string val = (string)k.GetValue("Path" + x, null);
+                        if (val != null && val == path)
+                            break;
+                        if (val == null)
+                        {
+                            k.SetValue("Path" + x, path);
+                            break;
+                        }
+                    }
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\MPC-HC\MPC-HC\Settings", true);
+                if (k != null)
+                {
+                    string org = (string)k.GetValue("SubtitlePaths", null);
+                    if (string.IsNullOrEmpty(org))
+                        org = path;
+                    else if (!org.Contains(path))
+                        org += ";" + path;
+                    k.SetValue("SubtitlePaths", org);
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Daum\PotPlayerMini\CaptionFolderList", true);
+                if (k != null)
+                {
+                    for (int x = 0; x < 10; x++)
+                    {
+                        string val = (string)k.GetValue(x.ToString(), null);
+                        if (val != null && val == path)
+                            break;
+                        if (val == null)
+                        {
+                            k.SetValue(x.ToString(), path);
+                            break;
+                        }
+                    }
+                }
+                string vlcrcpath = Path.Combine(Environment.GetFolderPath((Environment.SpecialFolder.ApplicationData)), "vlc", "vlcrc");
+                try
+                {
+                    if (File.Exists(vlcrcpath))
+                    {
+                        string[] lines = File.ReadAllLines(vlcrcpath);
+                        for (int x = 0; x < lines.Length; x++)
+                        {
+                            string s = lines[x];
+                            if (s.StartsWith("#sub-autodetect-path=") || s.StartsWith("sub-autodetect-path="))
+                            {
+                                if (!s.Contains(path))
+                                {
+                                    s += ", " + path;
+                                    if (s.StartsWith("#"))
+                                        s = s.Substring(1);
+                                    lines[x] = s;
+                                    File.WriteAllLines(vlcrcpath, lines);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            catch (Exception e)
+            {
+                int a = 1;
+            }
+
+
+        }
+        private JMMServerBinary.IJMMServer _clientBinaryHTTP = null;
 		public JMMServerBinary.IJMMServer clientBinaryHTTP
 		{
 			get

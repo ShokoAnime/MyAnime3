@@ -276,11 +276,7 @@ namespace MyAnimePlugin3.Windows
 
             foreach (VideoLocalVM locFile in unlinkedVideos)
             {
-                string fileNameFull = Path.GetFileName(locFile.FullPath);
-                string fileName = fileNameFull;
-                if (!string.IsNullOrEmpty(fileNameFull) && File.Exists(fileNameFull))
-                    fileName = new FileInfo(fileNameFull).Name;
-                GUIListItem itm = new GUIListItem(fileName);
+                GUIListItem itm = new GUIListItem(locFile.FileName);
                 itm.TVTag = locFile;
                 listItems.Add(itm);
             }
@@ -308,11 +304,10 @@ namespace MyAnimePlugin3.Windows
                                 VideoLocalVM vid = item.TVTag as VideoLocalVM;
                                 if (vid != null)
                                 {
-                                    SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_Folder, Path.GetDirectoryName(vid.FullPath));
-                                    SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_FileName, Path.GetFileName(vid.FullPath));
+                                    SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_Folder, vid.ImportFolder.ImportFolderLocation);
+                                    SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_FileName, vid.FileName);
                                     SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_Size, Utils.FormatFileSize(vid.FileSize));
                                     SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_Hash, vid.Hash);
-                                    SetGUIProperty(GuiProperty.Utilities_UnlinkedFile_FileExists, File.Exists(vid.FullPath) ? Translation.Yes : Translation.No);
                                 }
                             }
 
@@ -354,7 +349,8 @@ namespace MyAnimePlugin3.Windows
                 cmenu.AddAction(Translation.DeleteFileFromDisk, () =>
                 {
                     if (!Utils.DialogConfirm(Translation.AreYouSureYouWantDeleteFile)) return;
-                    JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
+                    foreach(VideoLocal_PlaceVM p in vid.Places)
+                        JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalPlaceAndFile(p.VideoLocal_Place_ID);
                     RefreshUnlinkedFiles();
                 });
                 cmenu.Show();

@@ -3713,7 +3713,7 @@ private bool ShowOptionsMenu(string previousMenu)
         BaseConfig.MyAnimeLog.Write(ex.ToString());
       }
     }
-
+  
     public string LoadLocalThumbnail(int episodeID)
     {
       string Thumbnail = "";
@@ -3722,8 +3722,11 @@ private bool ShowOptionsMenu(string previousMenu)
 
       foreach (JMMServerBinary.Contract_VideoDetailed epcontract in epContracts)
       {
-        string episodeFilePath = epcontract.VideoLocal_FilePath;
-        int importFolderId = epcontract.ImportFolderID;
+        Contract_VideoLocal_Place v = epcontract.Places.FirstOrDefault(a => a.ImportFolderType == 0);
+          if (v == null)
+              continue;
+          string episodeFilePath = v.FilePath;
+          int importFolderId = v.ImportFolderID;
 
         //BaseConfig.MyAnimeLog.Write("FILE PATH: " + episodeFilePath);
         //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + ImportFolderID.ToString());
@@ -4100,7 +4103,7 @@ private bool ShowOptionsMenu(string previousMenu)
         foreach (VideoLocalVM fl in unlinkedVideos)
         {
           VideoLocalVM local = fl;
-          cfmenu.AddAction(Path.GetFileName(fl.FullPath) + " - " + Path.GetDirectoryName(fl.FullPath), () =>
+          cfmenu.AddAction(fl.FileName + " - " + fl.ImportFolder.ImportFolderLocation, () =>
           {
             JMMServerHelper.LinkedFileToEpisode(local.VideoLocalID, episode.AnimeEpisodeID);
             LoadFacade();

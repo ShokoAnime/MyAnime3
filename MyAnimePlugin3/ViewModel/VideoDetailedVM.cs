@@ -7,7 +7,7 @@ using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class VideoDetailedVM
+	public class VideoDetailedVM : IVideoInfo
 	{
 		public int AnimeEpisodeID { get; set; }
 
@@ -19,47 +19,62 @@ namespace MyAnimePlugin3.ViewModel
 		// CrossRef_File_Episode
 		public int Percentage { get; set; }
 		public int EpisodeOrder { get; set; }
-		//public int CrossRefSource { get; set; }
+        //public int CrossRefSource { get; set; }
+        // VideoLocal
+        public int VideoLocalID { get; set; }
+        public string VideoLocal_FileName { get; set; }
+        public string VideoLocal_Hash { get; set; }
+        public long VideoLocal_FileSize { get; set; }
+        public long VideoLocal_ResumePosition { get; set; }
+        public DateTime? VideoLocal_WatchedDate { get; set; }
+        public int VideoLocal_IsVariation { get; set; }
+        //public long VideoLocal_IsWatched { get; set; }
+        public string VideoLocal_CRC32 { get; set; }
+        public string VideoLocal_MD5 { get; set; }
+        public string VideoLocal_SHA1 { get; set; }
+        public int VideoLocal_HashSource { get; set; }
 
-		// VideoLocal
-		public int VideoLocalID { get; set; }
-		public string VideoLocal_FilePath { get; set; }
-		public string VideoLocal_Hash { get; set; }
-		public long VideoLocal_FileSize { get; set; }
-		//public long VideoLocal_IsWatched { get; set; }
+        // VideoInfo
+        public int VideoInfo_VideoInfoID { get; set; }
+        public string VideoInfo_VideoCodec { get; set; }
+        public string VideoInfo_VideoBitrate { get; set; }
+        public string VideoInfo_VideoBitDepth { get; set; }
+        public string VideoInfo_VideoFrameRate { get; set; }
+        public string VideoInfo_VideoResolution { get; set; }
+        public string VideoInfo_AudioCodec { get; set; }
+        public string VideoInfo_AudioBitrate { get; set; }
+        public long VideoInfo_Duration { get; set; }
 
-		// VideoInfo
-		public int VideoInfo_VideoInfoID { get; set; }
-		public string VideoInfo_VideoCodec { get; set; }
-		public string VideoInfo_VideoBitrate { get; set; }
-		public string VideoInfo_VideoBitDepth { get; set; }
-		public string VideoInfo_VideoFrameRate { get; set; }
-		public string VideoInfo_VideoResolution { get; set; }
-		public string VideoInfo_AudioCodec { get; set; }
-		public string VideoInfo_AudioBitrate { get; set; }
-		public long VideoInfo_Duration { get; set; }
+        // AniDB_File
+        public int? AniDB_FileID { get; set; }
+        public int? AniDB_AnimeID { get; set; }
+        public int? AniDB_GroupID { get; set; }
+        public string AniDB_File_Source { get; set; }
+        public string AniDB_File_AudioCodec { get; set; }
+        public string AniDB_File_VideoCodec { get; set; }
+        public string AniDB_File_VideoResolution { get; set; }
+        public string AniDB_File_FileExtension { get; set; }
+        public int? AniDB_File_LengthSeconds { get; set; }
+        public string AniDB_File_Description { get; set; }
+        public int? AniDB_File_ReleaseDate { get; set; }
+        public string AniDB_Anime_GroupName { get; set; }
+        public string AniDB_Anime_GroupNameShort { get; set; }
+        public int? AniDB_Episode_Rating { get; set; }
+        public int? AniDB_Episode_Votes { get; set; }
+        public string AniDB_CRC { get; set; }
+        public string AniDB_MD5 { get; set; }
+        public string AniDB_SHA1 { get; set; }
+        public int AniDB_File_FileVersion { get; set; }
 
-		// AniDB_File
-		public int? AniDB_FileID { get; set; }
-		public int? AniDB_AnimeID { get; set; }
-		public int? AniDB_GroupID { get; set; }
-		public string AniDB_File_Source { get; set; }
-		public string AniDB_File_AudioCodec { get; set; }
-		public string AniDB_File_VideoCodec { get; set; }
-		public string AniDB_File_VideoResolution { get; set; }
-		public string AniDB_File_FileExtension { get; set; }
-		public int? AniDB_File_LengthSeconds { get; set; }
-		public string AniDB_File_Description { get; set; }
-		public int? AniDB_File_ReleaseDate { get; set; }
-		public string AniDB_Anime_GroupName { get; set; }
-		public string AniDB_Anime_GroupNameShort { get; set; }
-		public int? AniDB_Episode_Rating { get; set; }
-		public int? AniDB_Episode_Votes { get; set; }
-		public string AniDB_CRC { get; set; }
-		public string AniDB_MD5 { get; set; }
-		public string AniDB_SHA1 { get; set; }
-		public ReleaseGroupVM ReleaseGroup { get; set; }
         public Media Media { get; set; }
+
+        // Places
+        public List<VideoLocal_PlaceVM> Places { get; set; }
+
+
+
+        public ReleaseGroupVM ReleaseGroup { get; set; }
+
 
         public string VideoResolution
 		{
@@ -69,8 +84,15 @@ namespace MyAnimePlugin3.ViewModel
 				else return VideoInfo_VideoResolution;
 			}
 		}
-
-		public string VideoCodec
+        public bool? IsLocalOrStreaming()
+        {
+            if (FileIsAvailable)
+                return false;
+            if (Media?.Parts != null && Media.Parts.Count > 0)
+                return true;
+            return null;
+        }
+        public string VideoCodec
 		{
 			get
 			{
@@ -180,36 +202,44 @@ namespace MyAnimePlugin3.ViewModel
 			}
 		}
 
-		#endregion
+        #endregion
 
-		public string FileName
-		{
-			get
-			{
-				return Path.GetFileName(VideoLocal_FilePath);
-			}
-		}
+        public string FileName => VideoLocal_FileName;
 
-		public string FullPath
-		{
-			get
-			{
-				if (BaseConfig.Settings.ImportFolderMappings.ContainsKey(ImportFolderID))
-					return Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], VideoLocal_FilePath);
-				else
-					return Path.Combine(ImportFolderLocation, VideoLocal_FilePath);
-			}
-		}
+	    public string LocalFileSystemFullPath => FullPath;
 
-		public bool FileIsAvailable
-		{
-			get
-			{
-				return File.Exists(FullPath);
-			}
-		}
+	    public string FullPath
+        {
+            get
+            {
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
+                if (b == null)
+                    return string.Empty;
+                return b.LocalFileSystemFullPath;
+            }
+        }
+        public bool FileIsAvailable
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(FullPath))
+                    return true;
+                return File.Exists(FullPath);
+            }
+        }
 
-		public string VideoInfoSummary
+        public bool FileIsNotAvailable
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(FullPath))
+                    return false;
+                return !File.Exists(FullPath);
+            }
+        }
+
+
+        public string VideoInfoSummary
 		{
 			get
 			{
@@ -340,62 +370,70 @@ namespace MyAnimePlugin3.ViewModel
 
 		public void Populate(JMMServerBinary.Contract_VideoDetailed contract)
 		{
-			ReleaseGroup = null;
+            ReleaseGroup = null;
 
-			this.AnimeEpisodeID = contract.AnimeEpisodeID;
+            this.AnimeEpisodeID = contract.AnimeEpisodeID;
 
-			this.ImportFolderID = contract.ImportFolderID;
-			this.ImportFolderName = contract.ImportFolderName;
-			this.ImportFolderLocation = contract.ImportFolderLocation;
+            this.Places = contract.Places.Select(a => new VideoLocal_PlaceVM(a)).ToList();
+            this.Percentage = contract.Percentage;
+            this.EpisodeOrder = contract.EpisodeOrder;
+            this.CrossRefSource = contract.CrossRefSource;
 
-			this.Percentage = contract.Percentage;
-			this.EpisodeOrder = contract.EpisodeOrder;
-			this.CrossRefSource = contract.CrossRefSource;
+            this.VideoLocalID = contract.VideoLocalID;
+            this.VideoLocal_FileName = contract.VideoLocal_FileName;
+            this.VideoLocal_ResumePosition = contract.VideoLocal_ResumePosition;
 
-			this.VideoLocalID = contract.VideoLocalID;
-			this.VideoLocal_FilePath = contract.VideoLocal_FilePath;
-			this.VideoLocal_Hash = contract.VideoLocal_Hash;
-			this.VideoLocal_FileSize = contract.VideoLocal_FileSize;
-			this.VideoLocal_IsWatched = contract.VideoLocal_IsWatched;
-			this.VideoLocal_IsIgnored = contract.VideoLocal_IsIgnored;
+            this.VideoLocal_Hash = contract.VideoLocal_Hash;
+            this.VideoLocal_FileSize = contract.VideoLocal_FileSize;
+            this.VideoLocal_IsWatched = contract.VideoLocal_IsWatched;
+            this.VideoLocal_WatchedDate = contract.VideoLocal_WatchedDate;
 
-			this.VideoInfo_VideoInfoID = contract.VideoInfo_VideoInfoID;
-			this.VideoInfo_VideoCodec = contract.VideoInfo_VideoCodec;
-			this.VideoInfo_VideoBitrate = contract.VideoInfo_VideoBitrate;
-			this.VideoInfo_VideoBitDepth = contract.VideoInfo_VideoBitDepth;
-			this.VideoInfo_VideoFrameRate = contract.VideoInfo_VideoFrameRate;
-			this.VideoInfo_VideoResolution = contract.VideoInfo_VideoResolution;
-			this.VideoInfo_AudioCodec = contract.VideoInfo_AudioCodec;
-			this.VideoInfo_AudioBitrate = contract.VideoInfo_AudioBitrate;
-			this.VideoInfo_Duration = contract.VideoInfo_Duration;
+            this.VideoLocal_IsIgnored = contract.VideoLocal_IsIgnored;
+            this.VideoLocal_IsVariation = contract.VideoLocal_IsVariation;
+            this.VideoLocal_MD5 = contract.VideoLocal_MD5;
+            this.VideoLocal_SHA1 = contract.VideoLocal_SHA1;
+            this.VideoLocal_CRC32 = contract.VideoLocal_CRC32;
+            this.VideoLocal_HashSource = contract.VideoLocal_HashSource;
 
-			this.AniDB_Anime_GroupName = contract.AniDB_Anime_GroupName;
-			this.AniDB_Anime_GroupNameShort = contract.AniDB_Anime_GroupNameShort;
-			this.AniDB_AnimeID = contract.AniDB_AnimeID;
-			this.AniDB_CRC = contract.AniDB_CRC;
-			this.AniDB_Episode_Rating = contract.AniDB_Episode_Rating;
-			this.AniDB_Episode_Votes = contract.AniDB_Episode_Votes;
-			this.AniDB_File_AudioCodec = contract.AniDB_File_AudioCodec;
-			this.AniDB_File_Description = contract.AniDB_File_Description;
-			this.AniDB_File_FileExtension = contract.AniDB_File_FileExtension;
-			this.AniDB_File_LengthSeconds = contract.AniDB_File_LengthSeconds;
-			this.AniDB_File_ReleaseDate = contract.AniDB_File_ReleaseDate;
-			this.AniDB_File_Source = contract.AniDB_File_Source;
-			this.AniDB_File_VideoCodec = contract.AniDB_File_VideoCodec;
-			this.AniDB_File_VideoResolution = contract.AniDB_File_VideoResolution;
-			this.AniDB_FileID = contract.AniDB_FileID;
-			this.AniDB_GroupID = contract.AniDB_GroupID;
-			this.AniDB_MD5 = contract.AniDB_MD5;
-			this.AniDB_SHA1 = contract.AniDB_SHA1;
 
-			this.LanguagesAudio = contract.LanguagesAudio;
-			this.LanguagesSubtitle = contract.LanguagesSubtitle;
-		    this.Media = contract.Media;
-			if (contract.ReleaseGroup != null)
-				this.ReleaseGroup = new ReleaseGroupVM(contract.ReleaseGroup);
-		}
+            this.VideoInfo_VideoCodec = contract.VideoInfo_VideoCodec;
+            this.VideoInfo_VideoBitrate = contract.VideoInfo_VideoBitrate;
+            this.VideoInfo_VideoBitDepth = contract.VideoInfo_VideoBitDepth;
+            this.VideoInfo_VideoFrameRate = contract.VideoInfo_VideoFrameRate;
+            this.VideoInfo_VideoResolution = contract.VideoInfo_VideoResolution;
+            this.VideoInfo_AudioCodec = contract.VideoInfo_AudioCodec;
+            this.VideoInfo_AudioBitrate = contract.VideoInfo_AudioBitrate;
+            this.VideoInfo_Duration = contract.VideoInfo_Duration;
 
-		public VideoDetailedVM(JMMServerBinary.Contract_VideoDetailed contract)
+            this.AniDB_Anime_GroupName = contract.AniDB_Anime_GroupName;
+            this.AniDB_Anime_GroupNameShort = contract.AniDB_Anime_GroupNameShort;
+            this.AniDB_AnimeID = contract.AniDB_AnimeID;
+            this.AniDB_CRC = contract.AniDB_CRC;
+            this.AniDB_Episode_Rating = contract.AniDB_Episode_Rating;
+            this.AniDB_Episode_Votes = contract.AniDB_Episode_Votes;
+            this.AniDB_File_AudioCodec = contract.AniDB_File_AudioCodec;
+            this.AniDB_File_Description = contract.AniDB_File_Description;
+            this.AniDB_File_FileExtension = contract.AniDB_File_FileExtension;
+            this.AniDB_File_LengthSeconds = contract.AniDB_File_LengthSeconds;
+            this.AniDB_File_ReleaseDate = contract.AniDB_File_ReleaseDate;
+            this.AniDB_File_Source = contract.AniDB_File_Source;
+            this.AniDB_File_VideoCodec = contract.AniDB_File_VideoCodec;
+            this.AniDB_File_VideoResolution = contract.AniDB_File_VideoResolution;
+            this.AniDB_FileID = contract.AniDB_FileID;
+            this.AniDB_GroupID = contract.AniDB_GroupID;
+            this.AniDB_MD5 = contract.AniDB_MD5;
+            this.AniDB_SHA1 = contract.AniDB_SHA1;
+            this.AniDB_File_FileVersion = contract.AniDB_File_FileVersion;
+
+            this.LanguagesAudio = contract.LanguagesAudio;
+            this.LanguagesSubtitle = contract.LanguagesSubtitle;
+            this.Media = contract.Media;
+            if (contract.ReleaseGroup != null)
+                this.ReleaseGroup = new ReleaseGroupVM(contract.ReleaseGroup);
+
+        }
+
+        public VideoDetailedVM(JMMServerBinary.Contract_VideoDetailed contract)
 		{
 			Populate(contract);
 			

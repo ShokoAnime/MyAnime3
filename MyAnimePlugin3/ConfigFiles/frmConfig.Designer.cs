@@ -149,7 +149,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.txtFormatEp = new System.Windows.Forms.TextBox();
             this.lblDisplayEpsDesc = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.chkUseStreaming = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSaveLocalFolderPath = new System.Windows.Forms.Button();
             this.btnSelectLocalFolderPath = new System.Windows.Forms.Button();
@@ -1497,7 +1496,6 @@ namespace MyAnimePlugin3.ConfigFiles
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.Controls.Add(this.chkUseStreaming);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.lblVersion);
@@ -1520,18 +1518,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // chkUseStreaming
-            // 
-            this.chkUseStreaming.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkUseStreaming.AutoSize = true;
-            this.chkUseStreaming.Location = new System.Drawing.Point(638, 9);
-            this.chkUseStreaming.Name = "chkUseStreaming";
-            this.chkUseStreaming.Size = new System.Drawing.Size(95, 17);
-            this.chkUseStreaming.TabIndex = 48;
-            this.chkUseStreaming.Text = "Use Streaming";
-            this.chkUseStreaming.UseVisualStyleBackColor = true;
-            this.chkUseStreaming.CheckedChanged += new System.EventHandler(this.chkUseStreaming_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -2102,7 +2088,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.TextBox txtAnimeBytesUsername;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.CheckBox chkLoadlocalThumbnails;
-        private System.Windows.Forms.CheckBox chkUseStreaming;
         private System.Windows.Forms.TextBox tbStarttextToggleKey;
         private System.Windows.Forms.TextBox tbModeToggleKey;
         private System.Windows.Forms.Label lblStarttextToggleKey;

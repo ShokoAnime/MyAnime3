@@ -224,6 +224,7 @@
     <Compile Include="ViewModel\GroupFilterVM.cs" />
     <Compile Include="ViewModel\GroupVideoQualityVM.cs" />
     <Compile Include="ViewModel\ImportFolderVM.cs" />
+    <Compile Include="ViewModel\IVideoInfo.cs" />
     <Compile Include="ViewModel\JMMServerHelper.cs" />
     <Compile Include="ViewModel\JMMServerVM.cs" />
     <Compile Include="ViewModel\JMMUserVM.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="ViewModel\TvDB_SeriesVM.cs" />
     <Compile Include="ViewModel\VideoDetailedVM.cs" />
     <Compile Include="ViewModel\VideoLocalVM.cs" />
+    <Compile Include="ViewModel\VideoLocal_PlaceVM.cs" />
     <Compile Include="Windows\ActorWindow.cs" />
     <Compile Include="Windows\AdminWindow.cs" />
     <Compile Include="Windows\AnimeInfoWindow.cs" />
@@ -374,6 +376,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_ChangesOfContract_GroupFilterFG2lp1Ah.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CloudAccount.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\MyAnimePlugin3.JMMServerBinary.Contract_CrossRef_AniDB_MALResult.datasource">

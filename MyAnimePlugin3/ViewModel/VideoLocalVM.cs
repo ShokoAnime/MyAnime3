@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.IO;
 using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
-	public class VideoLocalVM
+	public class VideoLocalVM : IVideoInfo
 	{
 		public int VideoLocalID { get; set; }
-		public string FilePath { get; set; }
+		public string FileName { get; set; }
 		public int ImportFolderID { get; set; }
 		public string Hash { get; set; }
 		public string CRC32 { get; set; }
@@ -20,73 +18,71 @@ namespace MyAnimePlugin3.ViewModel
 		public long FileSize { get; set; }
 		public int IsWatched { get; set; }
 		public int IsIgnored { get; set; }
-		public DateTime? WatchedDate { get; set; }
+        public int IsVariation { get; set; }
+
+        public List<VideoLocal_PlaceVM> Places { get; set; }
+        public DateTime? WatchedDate { get; set; }
+        public long ResumePosition { get; set; }
 		public DateTime DateTimeUpdated { get; set; }
         public Media Media { get; set; }
 		public ImportFolderVM ImportFolder { get; set; }
+        public long Duration { get; set; }
 
-		public string FullPath
-		{
-			get
-			{
-				if (BaseConfig.Settings.ImportFolderMappings.ContainsKey(ImportFolderID))
-					return Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], FilePath);
-				else
-					return Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
-			}
-		}
+        public bool? IsLocalOrStreaming()
+        {
+            if (FileIsAvailable)
+                return false;
+            if (Media?.Parts != null && Media.Parts.Count > 0)
+                return true;
+            return null;
+        }
+        public bool FileIsAvailable => !string.IsNullOrEmpty(LocalFileSystemFullPath);
 
-		public string FileName
-		{
-			get
-			{
-				return Path.GetFileName(FullPath);
-			}
-		}
 
-		public string FileDirectory
-		{
-			get
-			{
-				return Path.GetDirectoryName(FullPath);
-			}
-		}
+        public string FileDirectory
+        {
+            get { return string.Join(",", Places.Select(a => a.FileDirectory)); }
+        }
 
-		public string FormattedFileSize
-		{
-			get
-			{
-				return Utils.FormatFileSize(FileSize);
-			}
-		}
+        public string LocalFileSystemFullPath
+        {
+            get
+            {
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
+                if (b == null)
+                    return string.Empty;
+                return b.LocalFileSystemFullPath;
+            }
+        }
 
-		public VideoLocalVM()
+
+
+		public string FormattedFileSize => Utils.FormatFileSize(FileSize);
+
+	    public VideoLocalVM()
 		{
 		}
 
 		public VideoLocalVM(JMMServerBinary.Contract_VideoLocal contract)
 		{
-			this.CRC32 = contract.CRC32;
-			this.DateTimeUpdated = contract.DateTimeUpdated;
-			this.FilePath = contract.FilePath;
-			this.FileSize = contract.FileSize;
-			this.Hash = contract.Hash;
-			this.HashSource = contract.HashSource;
-			this.ImportFolderID = contract.ImportFolderID;
-			this.IsWatched = contract.IsWatched;
-			this.IsIgnored = contract.IsIgnored;
-			this.MD5 = contract.MD5;
-			this.SHA1 = contract.SHA1;
-			this.VideoLocalID = contract.VideoLocalID;
-			this.WatchedDate = contract.WatchedDate;
-		    this.Media = contract.Media;
-			ImportFolder = new ImportFolderVM(contract.ImportFolder);
-		}
-
-		public int CompareTo(VideoLocalVM obj)
-		{
-			return FullPath.CompareTo(obj.FullPath);
-		}
+            this.CRC32 = contract.CRC32;
+            this.DateTimeUpdated = contract.DateTimeUpdated;
+            this.FileName = contract.FileName;
+            this.FileSize = contract.FileSize;
+            this.Hash = contract.Hash;
+            this.HashSource = contract.HashSource;
+            this.IsWatched = contract.IsWatched;
+            this.IsIgnored = contract.IsIgnored;
+            this.IsVariation = contract.IsVariation;
+            this.ResumePosition = contract.ResumePosition;
+            this.MD5 = contract.MD5;
+            this.SHA1 = contract.SHA1;
+            this.VideoLocalID = contract.VideoLocalID;
+            this.WatchedDate = contract.WatchedDate;
+            this.Media = contract.Media;
+            this.Duration = contract.Duration;
+            this.Places = contract.Places.Select(a => new VideoLocal_PlaceVM(a)).ToList();
+        }
 
 		public List<AnimeEpisodeVM> GetEpisodes()
 		{

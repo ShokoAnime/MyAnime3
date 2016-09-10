@@ -29,7 +29,7 @@ namespace MyAnimePlugin3
 		public bool FfdshowNotificationsLock = true;
 		public int FfdshowNotificationsAutoCloseTime = 3000;
 		public int FfdshowNotificationsLockTime = 5000;
-	    public bool UseStreaming = true;
+	    
 	    public string ModeToggleKey = "]";
 	    public string StartTextToggleKey = "[";
         private string _subPaths;
@@ -437,7 +437,7 @@ namespace MyAnimePlugin3
 
 			FfdshowNotificationsAutoCloseTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsAutoCloseTime", "3000"));
 			FfdshowNotificationsLockTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsLockTime", "5000"));
-            UseStreaming = xmlreader.GetValueAsString("Anime3", "UseStreaming", "1") == "1";
+
             ModeToggleKey = xmlreader.GetValueAsString("Anime3", "ModeToggleKey", "]");
             StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
             _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
@@ -535,7 +535,6 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLock", FfdshowNotificationsLock ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsAutoCloseTime", ((int)FfdshowNotificationsAutoCloseTime).ToString());
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLockTime", ((int)FfdshowNotificationsLockTime).ToString());
-			    xmlwriter.SetValue("Anime3", "UseStreaming", UseStreaming ? "1" : "0");
                 xmlwriter.SetValue("Anime3", "ModeToggleKey", ModeToggleKey);
                 xmlwriter.SetValue("Anime3", "StartTextToggleKey", StartTextToggleKey);
 

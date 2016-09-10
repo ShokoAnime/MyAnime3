@@ -128,7 +128,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.chkFfdshowNotificationsShow.Text = Translation.ShowPrsetLoadNotify;
             this.chkLoadlocalThumbnails.Text = Translation.TryToUseLocalThumb;
             this.Text = Translation.Anime3Config;
-            this.chkUseStreaming.Text = Translation.UseStreaming;
             this.lblModeToggleKey.Text = Translation.ModeToggle;
             this.lblStarttextToggleKey.Text = Translation.StartTextToggle;
 
@@ -607,7 +606,7 @@ namespace MyAnimePlugin3.ConfigFiles
 				string src = srco as string;
 				BaseConfig.Settings.TorrentSources.Add(src);
 			}
-            BaseConfig.Settings.UseStreaming = chkUseStreaming.Checked;
+
 
             if (tbModeToggleKey.Text.Length == 1 && tbModeToggleKey.Text != tbStarttextToggleKey.Text)
             {
@@ -628,112 +627,10 @@ namespace MyAnimePlugin3.ConfigFiles
             }
 
             BaseConfig.Settings.Save();
-            AddTempPathToSubtilePaths();
-
-        }
-        private void AddTempPathToSubtilePaths()
-        {
-            string path = Path.GetTempPath();
-            //FFDSHow
-            try
-            {
-                RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GNU\ffdshow", true);
-                if (k != null)
-                {
-                    string org = (string)k.GetValue("subSearchDir", null);
-                    if (string.IsNullOrEmpty(org))
-                        org = path;
-                    else if (!org.Contains(path))
-                        org += ";" + path;
-                    k.SetValue("subSearchDir", org);
-                }
-                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GNU\ffdshow64", true);
-                if (k != null)
-                {
-                    string org = (string)k.GetValue("subSearchDir", null);
-                    if (string.IsNullOrEmpty(org))
-                        org = path;
-                    else if (!org.Contains(path))
-                        org += ";" + path;
-                    k.SetValue("subSearchDir", org);
-                }
-                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Gabest\VSFilter\DefTextPathes", true);
-                if (k != null)
-                {
-                    for (int x = 0; x < 10; x++)
-                    {
-                        string val = (string)k.GetValue("Path" + x, null);
-                        if (val != null && val == path)
-                            break;
-                        if (val == null)
-                        {
-                            k.SetValue("Path" + x, path);
-                            break;
-                        }
-                    }
-                }
-                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\MPC-HC\MPC-HC\Settings", true);
-                if (k != null)
-                {
-                    string org = (string)k.GetValue("SubtitlePaths", null);
-                    if (string.IsNullOrEmpty(org))
-                        org = path;
-                    else if (!org.Contains(path))
-                        org += ";" + path;
-                    k.SetValue("SubtitlePaths", org);
-                }
-                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Daum\PotPlayerMini\CaptionFolderList", true);
-                if (k != null)
-                {
-                    for (int x = 0; x < 10; x++)
-                    {
-                        string val = (string)k.GetValue(x.ToString(), null);
-                        if (val != null && val == path)
-                            break;
-                        if (val == null)
-                        {
-                            k.SetValue(x.ToString(), path);
-                            break;
-                        }
-                    }
-                }
-                string vlcrcpath = Path.Combine(Environment.GetFolderPath((Environment.SpecialFolder.ApplicationData)), "vlc", "vlcrc");
-                try
-                {
-                    if (File.Exists(vlcrcpath))
-                    {
-                        string[] lines = File.ReadAllLines(vlcrcpath);
-                        for (int x = 0; x < lines.Length; x++)
-                        {
-                            string s = lines[x];
-                            if (s.StartsWith("#sub-autodetect-path=") || s.StartsWith("sub-autodetect-path="))
-                            {
-                                if (!s.Contains(path))
-                                {
-                                    s += ", " + path;
-                                    if (s.StartsWith("#"))
-                                        s = s.Substring(1);
-                                    lines[x] = s;
-                                    File.WriteAllLines(vlcrcpath, lines);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                }
-                catch (Exception)
-                {
-
-                }
-            }
-            catch (Exception e)
-            {
-                int a = 1;
-            }
 
 
         }
+     
         private void LoadSettingsIntoForm()
         {
 
@@ -813,8 +710,7 @@ namespace MyAnimePlugin3.ConfigFiles
 				if (!BaseConfig.Settings.TorrentSources.Contains(src))
 					lstTorrentOut.Items.Add(src);
 			}
-            chkUseStreaming.Checked = BaseConfig.Settings.UseStreaming;
-            chkUseStreaming_CheckedChanged(null, null);
+
 
             tbModeToggleKey.Text = BaseConfig.Settings.ModeToggleKey;
             tbStarttextToggleKey.Text = BaseConfig.Settings.StartTextToggleKey;
@@ -870,10 +766,7 @@ namespace MyAnimePlugin3.ConfigFiles
             Process.Start("http://jmediamanager.org/myanime3/");
         }
 
-        private void chkUseStreaming_CheckedChanged(object sender, EventArgs e)
-        {
-            groupBox2.Enabled = !chkUseStreaming.Checked;
-        }
+
         public static string TruncateText(string value, int maxLength)
         {
             if (string.IsNullOrEmpty(value)) return value;

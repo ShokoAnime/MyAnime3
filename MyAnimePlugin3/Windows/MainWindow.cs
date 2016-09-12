@@ -3611,6 +3611,9 @@ private bool ShowOptionsMenu(string previousMenu)
               ClearGUIProperty(GuiProperty.Episode_Description);
           }
       }
+     // Make sure to set title again, needed for direct series list navigations (continue watching / something random)
+     if (GetPropertyName(GuiProperty.Title) != ep.AnimeSeries.SeriesName)
+         SetGUIProperty(GuiProperty.Title, ep.AnimeSeries.SeriesName);
 
       SetGUIProperty(GuiProperty.Episode_EpisodeName, ep.EpisodeName);
       SetGUIProperty(GuiProperty.Episode_EpisodeDisplayName, ep.DisplayName);

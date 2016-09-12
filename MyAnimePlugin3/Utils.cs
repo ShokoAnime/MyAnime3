@@ -856,7 +856,13 @@ namespace MyAnimePlugin3
 			AnimePluginSettings settings = new AnimePluginSettings();
 			string filePath = Path.Combine(settings.ThumbsFolder, "Anime3");
 
-			if (!Directory.Exists(filePath))
+            // If user has custom thumbs folder do not add additional folder to path to allows for shared server thumb path
+            if (settings.HasCustomThumbsFolder)
+            {
+                filePath = settings.ThumbsFolder;
+            }
+
+            if (!Directory.Exists(filePath))
 				Directory.CreateDirectory(filePath);
 
 			return filePath;

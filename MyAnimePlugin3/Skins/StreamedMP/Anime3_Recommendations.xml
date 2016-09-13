@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <window>
   <id>6114</id>
   <defaultcontrol>50</defaultcontrol>
@@ -9,11 +9,8 @@
       <type>label</type>
       <description>Does any data exist</description>
       <id>1461</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -23,11 +20,8 @@
       <type>label</type>
       <description>in Watch Mode</description>
       <id>1462</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -37,11 +31,8 @@
       <type>label</type>
       <description>in Download Mode</description>
       <id>1463</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -51,11 +42,8 @@
       <type>label</type>
       <description>Downloading Missing Data</description>
       <id>1464</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -67,12 +55,8 @@
       <type>image</type>
       <id>0</id>
       <posX>0</posX>
-      <posX>0</posX>
       <posY>0</posY>
-      <posY>0</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>720</height>
       <height>1080</height>
       <texture>hover_My Anime3.png</texture>
       <animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
@@ -82,12 +66,8 @@
       <type>image</type>
       <id>0</id>
       <posX>0</posX>
-      <posX>0</posX>
-      <posY>504</posY>
       <posY>756</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>221</height>
       <height>332</height>
       <colordiffuse>ffFFFFFF</colordiffuse>
       <texture>black.png</texture>
@@ -97,13 +77,9 @@
       <description>FanArt Overlay (Graphical View)</description>
       <type>image</type>
       <id>0</id>
-      <posX>-2</posX>
       <posX>-3</posX>
-      <posY>-2</posY>
       <posY>-3</posY>
-      <width>1284</width>
       <width>1926</width>
-      <height>726</height>
       <height>1089</height>
       <colordiffuse>ffffffff</colordiffuse>
       <texture>movieviewbg.png</texture>
@@ -114,13 +90,9 @@
       <description>title BG</description>
       <type>image</type>
       <id>0</id>
-      <posX>77</posX>
       <posX>116</posX>
-      <posY>11</posY>
       <posY>16</posY>
-      <width>437</width>
       <width>656</width>
-      <height>35</height>
       <height>52</height>
       <texture>tvtitlebg.png</texture>
     </control>
@@ -128,11 +100,8 @@
       <type>fadelabel</type>
       <description>Recommendations Label</description>
       <id>0</id>
-      <posX>493</posX>
       <posX>740</posX>
-      <posY>13</posY>
       <posY>20</posY>
-      <width>350</width>
       <width>525</width>
       <font>mediastream12c</font>
       <label>Recommendations</label>
@@ -142,11 +111,8 @@
       <type>fadelabel</type>
       <description>Recommendations Label</description>
       <id>0</id>
-      <posX>520</posX>
       <posX>780</posX>
-      <posY>13</posY>
       <posY>20</posY>
-      <width>350</width>
       <width>525</width>
       <font>mediastream12c</font>
       <label>#Anime3.Recommendations.CurrentView</label>
@@ -156,13 +122,8 @@
       <description>No data found and loading status</description>
       <type>label</type>
       <id>0</id>
-      <posX>28</posX>
-      <posX>42</posX>
       <posX>0</posX>
-      <posX>0</posX>
-      <width>1280</width>
       <width>1920</width>
-      <posY>250</posY>
       <posY>375</posY>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
@@ -179,13 +140,9 @@
       <dimColor>00ffffff</dimColor>
       <control>
         <type>image</type>
-        <posX>1002</posX>
         <posX>1503</posX>
         <posY>0</posY>
-        <posY>0</posY>
-        <width>278</width>
         <width>417</width>
-        <height>720</height>
         <height>1080</height>
         <texture>hiddenmenu_right.png</texture>
         <visible>!Control.HasFocus(50)</visible>
@@ -197,9 +154,7 @@
         <label>MENU</label>
         <type>label</type>
         <font>mediastream12tc</font>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>225</posY>
         <posY>338</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
@@ -210,9 +165,7 @@
         <label>OTHER</label>
         <type>label</type>
         <font>mediastream12tc</font>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>340</posY>
         <posY>510</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
@@ -224,13 +177,9 @@
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>250</posY>
         <posY>375</posY>
-        <width>220</width>
         <width>330</width>
-        <height>720</height>
         <height>1080</height>
         <layout>StackLayout</layout>
         <control>
@@ -335,37 +284,22 @@
         <ondown>801</ondown>
         <onleft>50</onleft>
         <onright>50</onright>
-        <posX>12</posX>
         <posX>18</posX>
-        <posY>512</posY>
         <posY>768</posY>
-        <width>1280</width>
         <width>1920</width>
         <scrollOffset>4</scrollOffset>
-        <spinPosX>1300</spinPosX>
         <spinPosX>1950</spinPosX>
-        <spinPosY>720</spinPosY>
         <spinPosY>1080</spinPosY>
-        <spinWidth>24</spinWidth>
         <spinWidth>36</spinWidth>
-        <spinHeight>24</spinHeight>
         <spinHeight>36</spinHeight>
         <spinColor>ffcccccc</spinColor>
-        <itemWidth>142</itemWidth>
         <itemWidth>213</itemWidth>
-        <itemHeight>156</itemHeight>
         <itemHeight>234</itemHeight>
-        <textureWidth>120</textureWidth>
         <textureWidth>180</textureWidth>
-        <textureHeight>170</textureHeight>
         <textureHeight>255</textureHeight>
-        <thumbWidth>106</thumbWidth>
         <thumbWidth>159</thumbWidth>
-        <thumbHeight>156</thumbHeight>
         <thumbHeight>234</thumbHeight>
-        <thumbPosX>7</thumbPosX>
         <thumbPosX>10</thumbPosX>
-        <thumbPosY>7</thumbPosY>
         <thumbPosY>10</thumbPosY>
         <thumbs flipY="true" diffuse="diffusemirrorwide.png" />
         <InfoImage>
@@ -387,13 +321,9 @@
       <description>Default Cover Art</description>
       <type>image</type>
       <id>0</id>
-      <posX>50</posX>
       <posX>75</posX>
-      <posY>69</posY>
       <posY>104</posY>
-      <width>288</width>
       <width>432</width>
-      <height>421</height>
       <height>632</height>
       <texture>defaultdvdcover.png</texture>
       <visible>Control.IsVisible(1461)</visible>
@@ -402,13 +332,9 @@
       <description>Cover Art</description>
       <type>image</type>
       <id>60</id>
-      <posX>55</posX>
       <posX>82</posX>
-      <posY>73</posY>
       <posY>110</posY>
-      <width>278</width>
       <width>417</width>
-      <height>411</height>
       <height>616</height>
       <texture>#Anime3.Recommendations.Rec.Image</texture>
       <visible>Control.IsVisible(1461)</visible>
@@ -417,13 +343,9 @@
       <description>Cover Art Glass Overlay</description>
       <type>image</type>
       <id>0</id>
-      <posX>55</posX>
       <posX>82</posX>
-      <posY>73</posY>
       <posY>110</posY>
-      <width>228</width>
       <width>342</width>
-      <height>170</height>
       <height>255</height>
       <texture>glassoverlay2.png</texture>
       <visible>Control.IsVisible(1461)</visible>
@@ -433,14 +355,9 @@
       <description>Series Title</description>
       <type>fadelabel</type>
       <id>0</id>
-      <id>0</id>
-      <posX>380</posX>
       <posX>570</posX>
-      <posY>70</posY>
       <posY>105</posY>
-      <width>800</width>
       <width>1200</width>
-      <height>100</height>
       <height>150</height>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
@@ -450,40 +367,30 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>Approval</label>
-      <posX>380</posX>
       <posX>570</posX>
-      <posY>110</posY>
       <posY>165</posY>
       <visible>Control.IsVisible(1461)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Recommendations.Rec.ApprovalRating</label>
-      <posX>510</posX>
       <posX>765</posX>
-      <posY>110</posY>
       <posY>165</posY>
-      <width>250</width>
       <width>375</width>
       <visible>Control.IsVisible(1461)</visible>
     </control>
     <control Style="smallTitleB">
       <type>label</type>
       <label>Rating</label>
-      <posX>640</posX>
       <posX>960</posX>
-      <posY>110</posY>
       <posY>165</posY>
       <visible>Control.IsVisible(1461)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Recommendations.Rec.AniDBRating</label>
-      <posX>720</posX>
       <posX>1080</posX>
-      <posY>110</posY>
       <posY>165</posY>
-      <width>250</width>
       <width>375</width>
       <visible>Control.IsVisible(1461)</visible>
     </control>
@@ -491,13 +398,9 @@
       <description>Episode Plot</description>
       <type>textboxscrollup</type>
       <id>631</id>
-      <posX>380</posX>
       <posX>570</posX>
-      <posY>140</posY>
       <posY>210</posY>
-      <width>860</width>
       <width>1290</width>
-      <height>190</height>
       <height>285</height>
       <seperator>----------------------------------------------------------------------------------------------------</seperator>
       <font>mediastream11</font>
@@ -508,13 +411,9 @@
       <description>Cover Art</description>
       <type>image</type>
       <id>60</id>
-      <posX>380</posX>
       <posX>570</posX>
-      <posY>345</posY>
       <posY>518</posY>
-      <width>93</width>
       <width>140</width>
-      <height>140</height>
       <height>210</height>
       <texture>#Anime3.Recommendations.BasedOn.Image</texture>
       <visible>Control.IsVisible(1461)</visible>
@@ -522,20 +421,15 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>Based on your vote of #Anime3.Recommendations.BasedOn.VoteValue</label>
-      <posX>485</posX>
       <posX>728</posX>
-      <posY>345</posY>
       <posY>518</posY>
       <visible>Control.IsVisible(1461)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Recommendations.BasedOn.Title</label>
-      <posX>485</posX>
       <posX>728</posX>
-      <posY>375</posY>
       <posY>562</posY>
-      <width>700</width>
       <width>1050</width>
       <visible>Control.IsVisible(1461)</visible>
     </control>

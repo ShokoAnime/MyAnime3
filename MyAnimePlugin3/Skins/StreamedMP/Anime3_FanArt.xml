@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
   <id>6103</id>
   <defaultcontrol>50</defaultcontrol>
@@ -10,25 +10,17 @@
       <id>0</id>
       <type>image</type>
       <posx>0</posx>
-      <posx>0</posx>
       <posy>0</posy>
-      <posy>0</posy>
-      <width>1280</width>
       <width>1920</width>
-      <height>720</height>
       <height>1080</height>
       <texture>#Anime3.FanArt.SelectedPreview</texture>
     </control>
     <control>
       <description>FanArt Overlay</description>
       <type>image</type>
-      <posX>-2</posX>
       <posX>-3</posX>
       <posY>0</posY>
-      <posY>0</posY>
-      <width>1284</width>
       <width>1926</width>
-      <height>722</height>
       <height>1083</height>
       <texture>mainoverlay.png</texture>
     </control>
@@ -36,12 +28,8 @@
       <description>Top overlay bar</description>
       <type>image</type>
       <posX>0</posX>
-      <posX>0</posX>
-      <posY>-20</posY>
       <posY>-30</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>70</height>
       <height>105</height>
       <texture>MyAnime3\overlay_bar_top.png</texture>
     </control>
@@ -54,13 +42,9 @@
       <dimColor>00ffffff</dimColor>
       <control>
         <type>image</type>
-        <posX>1002</posX>
         <posX>1503</posX>
         <posY>0</posY>
-        <posY>0</posY>
-        <width>278</width>
         <width>417</width>
-        <height>720</height>
         <height>1080</height>
         <texture>hiddenmenu_right.png</texture>
         <visible>!Control.HasFocus(50)</visible>
@@ -72,9 +56,7 @@
         <label>MENU</label>
         <type>label</type>
         <font>mediastream12tc</font>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>225</posY>
         <posY>338</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
@@ -85,9 +67,7 @@
         <label>OTHER</label>
         <type>label</type>
         <font>mediastream12tc</font>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>285</posY>
         <posY>428</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
@@ -99,13 +79,9 @@
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>250</posY>
         <posY>375</posY>
-        <width>220</width>
         <width>330</width>
-        <height>720</height>
         <height>1080</height>
         <layout>StackLayout</layout>
         <control>
@@ -182,13 +158,9 @@
       <description>title BG</description>
       <type>image</type>
       <id>0</id>
-      <posX>77</posX>
       <posX>116</posX>
-      <posY>11</posY>
       <posY>16</posY>
-      <width>437</width>
       <width>656</width>
-      <height>35</height>
       <height>52</height>
       <texture>tvtitlebg.png</texture>
     </control>
@@ -196,11 +168,8 @@
       <type>fadelabel</type>
       <description>My Anime Label</description>
       <id>0</id>
-      <posX>493</posX>
       <posX>740</posX>
-      <posY>13</posY>
       <posY>20</posY>
-      <width>350</width>
       <width>525</width>
       <font>mediastream12c</font>
       <label>Fanart</label>
@@ -212,9 +181,7 @@
       <description>FanArt Resolution Label</description>
       <type>label</type>
       <id>11</id>
-      <posX>50</posX>
       <posX>75</posX>
-      <posY>630</posY>
       <posY>945</posY>
       <label>Resolution:</label>
       <align>left</align>
@@ -223,9 +190,7 @@
       <description>FanArt Resolution Value</description>
       <type>label</type>
       <id>0</id>
-      <posX>200</posX>
       <posX>300</posX>
-      <posY>630</posY>
       <posY>945</posY>
       <label>#Anime3.FanArt.SelectedFanartResolution</label>
       <align>left</align>
@@ -234,9 +199,7 @@
       <description>Source Label</description>
       <type>label</type>
       <id>11</id>
-      <posX>300</posX>
       <posX>450</posX>
-      <posY>630</posY>
       <posY>945</posY>
       <label>Source:</label>
       <align>left</align>
@@ -245,9 +208,7 @@
       <description>Source Value</description>
       <type>label</type>
       <id>0</id>
-      <posX>400</posX>
       <posX>600</posX>
-      <posY>630</posY>
       <posY>945</posY>
       <label>#Anime3.FanArt.Source</label>
       <align>left</align>
@@ -256,9 +217,7 @@
       <description>FanArt Disabled</description>
       <type>label</type>
       <id>14</id>
-      <posX>50</posX>
       <posX>75</posX>
-      <posY>655</posY>
       <posY>982</posY>
       <label>Disabled:</label>
       <align>left</align>
@@ -267,9 +226,7 @@
       <description>FanArt Disabled</description>
       <type>label</type>
       <id>0</id>
-      <posX>200</posX>
       <posX>300</posX>
-      <posY>655</posY>
       <posY>982</posY>
       <label>#Anime3.FanArt.SelectedFanartIsDisabled</label>
       <align>left</align>
@@ -278,9 +235,7 @@
       <description>FanArt Default</description>
       <type>label</type>
       <id>15</id>
-      <posX>50</posX>
       <posX>75</posX>
-      <posY>680</posY>
       <posY>1020</posY>
       <label>Default:</label>
       <align>left</align>
@@ -289,9 +244,7 @@
       <description>FanArt Chosen</description>
       <type>label</type>
       <id>0</id>
-      <posX>200</posX>
       <posX>300</posX>
-      <posY>680</posY>
       <posY>1020</posY>
       <label>#Anime3.FanArt.SelectedFanartIsDefault</label>
       <align>left</align>
@@ -302,9 +255,7 @@
       <description>group element</description>
       <id>28</id>
       <layout>StackLayout</layout>
-      <posX>60</posX>
       <posX>90</posX>
-      <posY>97</posY>
       <posY>146</posY>
       <control>
         <description>composite control consisting of a list control and a thumbnail panel</description>
@@ -314,13 +265,9 @@
           <description>Graphical Thumbpanel</description>
           <type>thumbnailpanel</type>
           <id>50</id>
-          <posX>20</posX>
           <posX>30</posX>
-          <posY>260</posY>
           <posY>390</posY>
-          <width>1340</width>
           <width>2010</width>
-          <height>440</height>
           <height>660</height>
           <onleft>2</onleft>
           <onright>2</onright>
@@ -334,51 +281,31 @@
           <textcolor2>#notpresent.color</textcolor2>
           <textcolor3>#notpresent.color</textcolor3>
           <!-- Small Thumbnails -->
-          <itemWidth>208</itemWidth>
           <itemWidth>312</itemWidth>
-          <itemHeight>115</itemHeight>
           <itemHeight>172</itemHeight>
-          <textureWidth>205</textureWidth>
           <textureWidth>308</textureWidth>
-          <textureHeight>115</textureHeight>
           <textureHeight>172</textureHeight>
-          <thumbWidth>184</thumbWidth>
           <thumbWidth>276</thumbWidth>
-          <thumbHeight>104</thumbHeight>
           <thumbHeight>156</thumbHeight>
-          <thumbPosX>10</thumbPosX>
           <thumbPosX>15</thumbPosX>
-          <thumbPosY>5</thumbPosY>
           <thumbPosY>8</thumbPosY>
           <!-- Large Thumbnails -->
-          <itemWidthBig>310</itemWidthBig>
           <itemWidthBig>465</itemWidthBig>
-          <itemHeightBig>190</itemHeightBig>
           <itemHeightBig>285</itemHeightBig>
-          <textureWidthBig>311</textureWidthBig>
           <textureWidthBig>466</textureWidthBig>
-          <textureHeightBig>174</textureHeightBig>
           <textureHeightBig>261</textureHeightBig>
-          <thumbWidthBig>289</thumbWidthBig>
           <thumbWidthBig>434</thumbWidthBig>
-          <thumbHeightBig>163</thumbHeightBig>
           <thumbHeightBig>244</thumbHeightBig>
-          <thumbPosXBig>10</thumbPosXBig>
           <thumbPosXBig>15</thumbPosXBig>
-          <thumbPosYBig>5</thumbPosYBig>
           <thumbPosYBig>8</thumbPosYBig>
           <thumbZoom>no</thumbZoom>
           <enableFocusZoom>no</enableFocusZoom>
           <!-- Spin Controls (PageUp/PageDn)-->
-          <spinPosX>1175</spinPosX>
           <spinPosX>1762</spinPosX>
-          <spinPosY>681</spinPosY>
           <spinPosY>1022</spinPosY>
           <spinAlign>Right</spinAlign>
           <spinColor>ff006698</spinColor>
-          <spinWidth>50</spinWidth>
           <spinWidth>75</spinWidth>
-          <spinHeight>37</spinHeight>
           <spinHeight>56</spinHeight>
           <textureUp>arrow_round_up_nofocus.png</textureUp>
           <textureDown>arrow_round_down_nofocus.png</textureDown>
@@ -391,35 +318,23 @@
           <id>50</id>
           <onup>2</onup>
           <onleft>50</onleft>
-          <posX>40</posX>
           <posX>60</posX>
-          <posY>345</posY>
           <posY>518</posY>
-          <width>1200</width>
           <width>1800</width>
           <scrollOffset>2</scrollOffset>
-          <itemWidth>240</itemWidth>
           <itemWidth>360</itemWidth>
-          <itemHeight>215</itemHeight>
           <itemHeight>322</itemHeight>
-          <textureWidth>200</textureWidth>
           <textureWidth>300</textureWidth>
-          <textureHeight>158</textureHeight>
           <textureHeight>237</textureHeight>
-          <thumbWidth>220</thumbWidth>
           <thumbWidth>330</thumbWidth>
-          <thumbHeight>124</thumbHeight>
           <thumbHeight>186</thumbHeight>
-          <thumbPosX>10</thumbPosX>
           <thumbPosX>15</thumbPosX>
-          <thumbPosY>5</thumbPosY>
           <thumbPosY>8</thumbPosY>
           <thumbs flipY="true" diffuse="diffusemirrorwide.png">
           </thumbs>
           <InfoImage flipY="true" diffuse="diffusemirrorwide.png">
           </InfoImage>
           <imageFolder>-</imageFolder>
-          <imageFolderFocus>thumbborder.png</imageFolderFocus>
           <imageFolderFocus>-</imageFolderFocus>
           <frame>-</frame>
           <frameFocus>-</frameFocus>
@@ -427,15 +342,11 @@
           <showFolder>yes</showFolder>
           <showBackGround>no</showBackGround>
           <showInfoImage>no</showInfoImage>
-          <spinPosX>565</spinPosX>
           <spinPosX>848</spinPosX>
-          <spinPosY>685</spinPosY>
           <spinPosY>1028</spinPosY>
           <spinAlign>center</spinAlign>
           <spinColor>ff006698</spinColor>
-          <spinWidth>50</spinWidth>
           <spinWidth>75</spinWidth>
-          <spinHeight>37</spinHeight>
           <spinHeight>56</spinHeight>
           <textureUp>arrow_round_right_nofocus.png</textureUp>
           <textureDown>arrow_round_left_nofocus.png</textureDown>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
   <id>6111</id>
   <defaultcontrol>902</defaultcontrol>
@@ -50,9 +50,7 @@
       <label>
       </label>
     </control>
-	
     <!-- ********************** BACKGROUNDS************************************** -->
-	
 	<control>
 			<description>Background</description>
 			<type>image</type>
@@ -62,7 +60,6 @@
 			<height>720</height>
 			<texture>hover_My Anime3.png</texture>
 		</control>
-		
 		<control>
 		  <description>FanArt Overlay</description>
 		  <type>image</type>
@@ -72,7 +69,6 @@
 		  <height>722</height>
 		  <texture>MyAnime3\anime3_background.png</texture>
 		</control>
-		
 		<control>
 			<description>Top overlay bar</description>
 			<type>image</type>
@@ -82,7 +78,6 @@
 			<height>70</height>
 			<texture>MyAnime3\overlay_bar_top.png</texture>
 		</control>
-		
 		<control>
 			<description>Bottom overlay bar</description>
 			<type>image</type>
@@ -92,10 +87,7 @@
 			<height>70</height>
 			<texture>MyAnime3\overlay_bar_bottom.png</texture>
 		</control>
-		
-		
      <!-- ************************** TOP BAR ***********************************-->	
-	
 	<control>
       <description>title BG</description>
       <type>image</type>
@@ -117,9 +109,6 @@
       <label>My Collection</label>
       <align>right</align>
     </control>
-	
-	
-	
     <control>
       <id>104</id>
       <type>image</type>
@@ -1666,7 +1655,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Music Video Total</description>
@@ -1682,7 +1670,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Music Video In Collection</description>
@@ -1698,7 +1685,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Music Video Watched</description>
@@ -1714,7 +1700,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Music Video Watching</description>
@@ -1730,7 +1715,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Music Video Size</description>
@@ -1746,7 +1730,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Music Video Runtime</description>
@@ -1882,7 +1865,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Unknown Total</description>
@@ -1898,7 +1880,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Unknown In Collection</description>
@@ -1914,7 +1895,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Unknown Watched</description>
@@ -1930,7 +1910,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Unknown Watching</description>
@@ -1946,7 +1925,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Unknown Size</description>
@@ -1962,7 +1940,6 @@
             <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
             <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
         </control>
-		
 		<control>
             <id>0</id>
             <description>Unknown Runtime</description>
@@ -1997,7 +1974,6 @@
       <animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation>
       <animation effect="Fade" end="0" start="100" time="200">Hidden</animation>
     </control>320
-		
 		<control><id>812</id><description>Missing Relations button</description><type>button</type><onleft>811</onleft><onright>811</onright><onup>802</onup><ondown>810</ondown><posX>825</posX><posY>130</posY><width>270</width><label>Relations</label><textalign>CENTER</textalign><textYOff>1</textYOff><visible>Control.IsVisible(1503)</visible><animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation><animation effect="Fade" end="0" start="100" time="200">Hidden</animation></control><control><id>0</id><description>Missing type label</description><type>label</type><onleft>811</onleft><onright>811</onright><onup>803</onup><ondown>810</ondown><posX>565</posX><posY>143</posY><width>150</width><label>#Anime3.Collection.Missing.Type</label><textalign>center</textalign><align>center</align><visible>Control.IsVisible(1503)</visible><animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation><animation effect="Fade" end="0" start="100" time="200">Hidden</animation></control><control><id>810</id><type>listcontrol</type><onleft>811</onleft><onright>812</onright><onup>811</onup><visible>Control.IsVisible(1503)</visible><posX>20</posX><posY>170</posY><width>1240</width><height>520</height><textXOff>20</textXOff><textXOff2>0</textXOff2><spinPosX>1150</spinPosX><spinPosY>640</spinPosY><spinAlign>Left</spinAlign><spinWidth>20</spinWidth><spinHeight>20</spinHeight><animation delay="200" effect="Fade" end="100" start="0" time="200">Visible</animation><animation effect="Fade" end="0" start="100" time="200">Hidden</animation></control><control><id>114</id><description>ANIDB Status</description><type>label</type><posX>60</posX><posY>685</posY><width>900</width><font>mediastream10</font><textcolor>ffffffff</textcolor><align>LEFT</align><label>#Anime3.Collection.Status</label></control><!--<control>
             <id>115</id>
             <description>Status</description>

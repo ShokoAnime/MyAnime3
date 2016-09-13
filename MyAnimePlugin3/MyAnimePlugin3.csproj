@@ -997,6 +997,7 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\aMPed\Media" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avalon\Media" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avallonis\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon\Media\anime3_ListIcon.png" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Avallonis\Media" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Default\Media" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\DefaultWide\Media" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\StreamedMP\Media" /E /R /I /Y

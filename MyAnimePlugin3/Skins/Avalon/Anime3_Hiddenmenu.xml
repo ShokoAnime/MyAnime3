@@ -163,7 +163,7 @@
                 <height>64</height>
                 <textXOff>58</textXOff>
                 <textYOff>14</textYOff>
-                <label>Filters ...</label>
+                <label>Filters...</label>
                 <onleft>50</onleft>
                 <onright>50</onright>
             </control>

@@ -525,7 +525,7 @@
             <description>Filters</description>
             <type>button</type>
             <id>13</id>
-            <label>Filters ...</label>
+            <label>Filters...</label>
             <onleft>50</onleft>
             <onright>50</onright>
             <onup>11</onup>

@@ -166,7 +166,7 @@
             <height>69</height>
             <textXOff>62</textXOff>
             <textYOff>16</textYOff>
-            <label>Filters ...</label>
+            <label>Filters...</label>
             <onleft>50</onleft>
             <onright>50</onright>
             <ondown>4</ondown>

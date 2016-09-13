@@ -4483,7 +4483,7 @@ http://jmediamanager.org/mediaportal/</Value>
     <Version>
       <Major>3</Major>
       <Minor>6</Minor>
-      <Build>10</Build>
+      <Build>1</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
@@ -4509,7 +4509,7 @@ This plugin does not run independently, but instead relies on using JMM Server a
 
 http://jmediamanager.org/changelog/</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://www.jmediamanager.org/latestdownloads/My_Anime_3_3.6.10.0.mpe1</OnlineLocation>
+    <OnlineLocation>http://www.jmediamanager.org/latestdownloads/My_Anime_3_3.6.1.0.mpe1</OnlineLocation>
     <ReleaseDate>2016-09-09T18:40:56</ReleaseDate>
     <Tags />
     <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>

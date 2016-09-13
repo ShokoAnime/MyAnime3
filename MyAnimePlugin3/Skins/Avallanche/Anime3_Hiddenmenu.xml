@@ -66,7 +66,7 @@
 		<control>
 			<type>image</type>
 			<id>0</id>
-			<posY>360</posY>
+			<posY>410</posY>
 			<posX>128</posX>
 			<width>376</width>
 			<height>1</height>
@@ -98,7 +98,7 @@
 			<type>label</type>
 			<id>1</id>
 			<posX>128</posX>
-			<posY>370</posY>
+			<posY>420</posY>
 			<label>Other</label>
 			<font>font12</font>
 			<textcolor>ffffff</textcolor>
@@ -153,7 +153,22 @@
 				<onright>50</onright>
             </control>
           
-            <control>
+          <control>
+              <description>Filters</description>
+              <type>button</type>
+              <id>13</id>
+              <textureFocus>hiddenmenu_item_selected.png</textureFocus>
+              <textureNoFocus>-</textureNoFocus>
+              <width>497</width>
+              <height>64</height>
+              <textXOff>58</textXOff>
+              <textYOff>14</textYOff>
+              <label>Filters ...</label>
+              <onleft>50</onleft>
+              <onright>50</onright>
+          </control>
+
+          <control>
 				<description>Options</description>
 				<type>button</type>
 				<id>4</id>

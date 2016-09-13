@@ -39,6 +39,9 @@ namespace MyAnimePlugin3
     protected GUIButtonControl btnChangeLayout = null;
     [SkinControlAttribute(12)]
     protected GUIButtonControl btnSwitchUser = null;
+    [SkinControlAttribute(13)]
+    protected GUIButtonControl btnFilters = null;
+
 
     [SkinControlAttribute(920)]
     protected GUIButtonControl btnWindowContinueWatching = null;
@@ -2011,7 +2014,31 @@ private AnimeEpisodeVM curAnimeEpisode = null;
 
     }
 
-    #region Options Menus
+      private ContextMenuAction ShowFilterOptions(string previousMenu)
+      {
+          ContextMenu cmenu = new ContextMenu(Translation.FilterOptions, previousMenu);
+          string showEps = String.Format(Translation.OnlyShowAvailableEpisodes,
+              settings.ShowOnlyAvailableEpisodes ? Translation.On : Translation.Off);
+          string hideWatched = String.Format(Translation.HideWatchedEpisodes,
+              settings.HideWatchedFiles ? Translation.On : Translation.Off);
+
+          cmenu.AddAction(showEps, () =>
+          {
+              settings.ShowOnlyAvailableEpisodes = !settings.ShowOnlyAvailableEpisodes;
+              LoadFacade();
+              settings.Save();
+          });
+          cmenu.AddAction(hideWatched, () =>
+          {
+              settings.HideWatchedFiles = !settings.HideWatchedFiles;
+              settings.Save();
+              LoadFacade();
+          });
+
+          return cmenu.Show();
+      }
+
+      #region Options Menus
 
     /*
 private bool ShowOptionsMenu(string previousMenu)
@@ -2060,22 +2087,8 @@ private bool ShowOptionsMenu(string previousMenu)
     */
     private ContextMenuAction ShowOptionsDisplayMenu(string previousMenu)
     {
-      string showEps = String.Format(Translation.OnlyShowAvailableEpisodes, settings.ShowOnlyAvailableEpisodes ? Translation.On : Translation.Off);
-      string hideWatched = String.Format(Translation.HideWatchedEpisodes, settings.HideWatchedFiles ? Translation.On : Translation.Off);
       string findFilter = String.Format(Translation.FindOnlyShowMatches, settings.FindFilter ? Translation.On : Translation.Off);
       ContextMenu cmenu = new ContextMenu(Translation.DisplayOptions, previousmenu: previousMenu);
-      cmenu.AddAction(showEps, () =>
-      {
-        settings.ShowOnlyAvailableEpisodes = !settings.ShowOnlyAvailableEpisodes;
-        LoadFacade();
-        settings.Save();
-      });
-      cmenu.AddAction(hideWatched, () =>
-      {
-        settings.HideWatchedFiles = !settings.HideWatchedFiles;
-        LoadFacade();
-        settings.Save();
-      });
       cmenu.AddAction(findFilter, () =>
       {
         settings.FindFilter = !settings.FindFilter;
@@ -2285,6 +2298,11 @@ private bool ShowOptionsMenu(string previousMenu)
       {
         m_Facade.Focus = true;
         ShowLayoutMenu(string.Empty);
+      });
+      menu.Add(btnFilters, () =>
+      {
+          m_Facade.Focus = true;
+          ShowFilterOptions(string.Empty);
       });
       menu.Add(btnSwitchUser, () =>
       {
@@ -4139,7 +4157,7 @@ private bool ShowOptionsMenu(string previousMenu)
         return ContextMenuAction.Exit;
       });
       cmenu.AddAction(Translation.DownloadThisEpisode, () => DownloadHelper.SearchEpisode(episode));
-      cmenu.Add(Translation.PostProcessing + " >>>", () => ShowContextMenuPostProcessing(episode.EpisodeNumberAndName));
+      cmenu.Add(Translation.PostProcessing + " ...", () => ShowContextMenuPostProcessing(episode.EpisodeNumberAndName));
       return cmenu.Show();
 
     }
@@ -4177,11 +4195,11 @@ private bool ShowOptionsMenu(string previousMenu)
       if (!hasTvDbLink)
         cmenu.Add(moviedbText, () => SearchTheMovieDBMenu(ser, currentMenu));
       if (hasTvDbLink)
-        cmenu.Add(Translation.TheTVDB + " >>>", () => ShowContextMenuTVDB(ser, currentMenu));
+        cmenu.Add(Translation.TheTVDB + " ...", () => ShowContextMenuTVDB(ser, currentMenu));
       if (hasMalLink)
-        cmenu.Add(Translation.MAL + " >>>", () => ShowContextMenuMAL(ser, currentMenu));
+        cmenu.Add(Translation.MAL + " ...", () => ShowContextMenuMAL(ser, currentMenu));
       if (hasMovieDbLink)
-        cmenu.Add(Translation.TheMovieDB + " >>>", () => ShowContextMenuMovieDB(ser, currentMenu));
+        cmenu.Add(Translation.TheMovieDB + " ...", () => ShowContextMenuMovieDB(ser, currentMenu));
       return cmenu.Show();
     }
 
@@ -4379,110 +4397,134 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
       return cmenu.Show();
     }
 
-    private ContextMenuAction ShowContextMenuGroup(string previousMenu)
-    {
-      GUIListItem currentitem = m_Facade.SelectedListItem;
-      if (currentitem == null)
-        return ContextMenuAction.Exit;
-      AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
-      if (grp == null)
-        return ContextMenuAction.Exit;
-
-      ContextMenu cmenu = new ContextMenu(grp.GroupName, previousmenu: previousMenu);
-      if (grp.SubGroups.Count == 0)
+      private ContextMenuAction ShowContextMenuGroup(string previousMenu)
       {
-        cmenu.AddAction(grp.IsFave == 1 ? Translation.RemoveFromFavorites : Translation.AddToFavorites, () =>
-        {
-          grp.IsFave = grp.IsFave == 1 ? 0 : 1;
-          grp.Save();
-          EvaluateVisibility();
-        });
-      }
-      cmenu.AddAction(Translation.MarkAllAsWatched, () =>
-      {
-        foreach (AnimeSeriesVM ser in grp.AllSeries)
-        {
-          if (ser.AnimeSeriesID.HasValue)
-            JMMServerHelper.SetWatchedStatusOnSeries(true, Int32.MaxValue, ser.AnimeSeriesID.Value);
-        }
-        LoadFacade();
-      });
-      cmenu.AddAction(Translation.MarkAllAsUnwatched, () =>
-      {
-        foreach (AnimeSeriesVM ser in grp.AllSeries)
-        {
-          if (ser.AnimeSeriesID.HasValue)
-            JMMServerHelper.SetWatchedStatusOnSeries(false, Int32.MaxValue, ser.AnimeSeriesID.Value);
-        }
-        LoadFacade();
-      });
-      cmenu.Add(Translation.EditGroup + " >>>", () => ShowContextMenuGroupEdit(grp.GroupName));
-      History h = GetCurrent();
-      if (h.Listing is GroupFilterVM)
-      {
-        GroupFilterVM gf = (GroupFilterVM)h.Listing;
-        cmenu.Add(Translation.QuickSort + " >>>", () =>
-        {
-          string sortType = "";
-          GroupFilterSortDirection sortDirection = GroupFilterSortDirection.Asc;
-          if (gf.GroupFilterID.HasValue)
-          {
-            if (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
-              sortDirection = GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection;
-            if (!Utils.DialogSelectGFQuickSort(ref sortType, ref sortDirection, gf.GroupFilterName))
-            {
-              if (!GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
-                GroupFilterQuickSorts[gf.GroupFilterID.Value] = new QuickSort();
-              GroupFilterQuickSorts[gf.GroupFilterID.Value].SortType = sortType;
-              GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection = sortDirection;
-              LoadFacade();
+          GUIListItem currentitem = m_Facade.SelectedListItem;
+          if (currentitem == null)
               return ContextMenuAction.Exit;
-            }
-          }
-          return ContextMenuAction.Continue;
-        });
-        if ((gf.GroupFilterID.HasValue) && (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value)))
-        {
-          cmenu.AddAction(Translation.RemoveQuickSort, () =>
-          {
-            GroupFilterQuickSorts.Remove(gf.GroupFilterID.Value);
-            LoadFacade();
-          });
-        }
-      }
-      if (grp.AllSeries.Count == 1)
-      {
-        cmenu.Add(Translation.Databases + " >>>", () => ShowContextMenuDatabases(grp.AllSeries[0], Translation.GroupMenu));
-        cmenu.Add(Translation.Images + " >>>", () => ShowContextMenuImages(grp.GroupName));
-        cmenu.AddAction(Translation.SeriesInformation, () =>  ShowAnimeInfoWindow(grp.AllSeries[0]));
-      }
-      // ReSharper disable ImplicitlyCapturedClosure
-      cmenu.AddAction(Translation.RandomSeries, () =>
-      // ReSharper restore ImplicitlyCapturedClosure
-      {
-        RandomWindow_CurrentEpisode = null;
-        RandomWindow_CurrentSeries = null;
-        RandomWindow_LevelObject = grp;
-        RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
-        RandomWindow_RandomType = RandomObjectType.Series;
-        GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-      });
-      // ReSharper disable ImplicitlyCapturedClosure
-      cmenu.AddAction(Translation.RandomEpisode, () =>
-      // ReSharper restore ImplicitlyCapturedClosure
-      {
-        RandomWindow_CurrentEpisode = null;
-        RandomWindow_CurrentSeries = null;
-        RandomWindow_LevelObject = grp;
-        RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
-        RandomWindow_RandomType = RandomObjectType.Episode;
-        GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
-      });
-      cmenu.Add(Translation.PostProcessing + " >>>", () => ShowContextMenuPostProcessing(grp.GroupName));
-      return cmenu.Show();
-    }
+          AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
+          if (grp == null)
+              return ContextMenuAction.Exit;
 
-    private void ShowRelationsWindow()
+          ContextMenu cmenu = new ContextMenu(grp.GroupName, previousmenu: previousMenu);
+
+          if (grp.SubGroups.Count == 0)
+          {
+              cmenu.AddAction(grp.IsFave == 1 ? Translation.RemoveFromFavorites : Translation.AddToFavorites, () =>
+              {
+                  grp.IsFave = grp.IsFave == 1 ? 0 : 1;
+                  grp.Save();
+                  EvaluateVisibility();
+              });
+          }
+
+          cmenu.AddAction(Translation.MarkAllAsWatched, () =>
+          {
+              foreach (AnimeSeriesVM ser in grp.AllSeries)
+              {
+                  if (ser.AnimeSeriesID.HasValue)
+                      JMMServerHelper.SetWatchedStatusOnSeries(true, Int32.MaxValue, ser.AnimeSeriesID.Value);
+              }
+              LoadFacade();
+          });
+          cmenu.AddAction(Translation.MarkAllAsUnwatched, () =>
+          {
+              foreach (AnimeSeriesVM ser in grp.AllSeries)
+              {
+                  if (ser.AnimeSeriesID.HasValue)
+                      JMMServerHelper.SetWatchedStatusOnSeries(false, Int32.MaxValue, ser.AnimeSeriesID.Value);
+              }
+              LoadFacade();
+          });
+          if (grp.AllSeries.Count == 1)
+          {
+              cmenu.AddAction(Translation.SeriesInformation, () => ShowAnimeInfoWindow(grp.AllSeries[0]));
+          }
+          History h = GetCurrent();
+          if (h.Listing is GroupFilterVM)
+          {
+              GroupFilterVM gf = (GroupFilterVM) h.Listing;
+              cmenu.Add(Translation.QuickSort + " ...", () =>
+              {
+                  string sortType = "";
+                  GroupFilterSortDirection sortDirection = GroupFilterSortDirection.Asc;
+                  if (gf.GroupFilterID.HasValue)
+                  {
+                      if (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
+                          sortDirection = GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection;
+                      if (!Utils.DialogSelectGFQuickSort(ref sortType, ref sortDirection, gf.GroupFilterName))
+                      {
+                          if (!GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value))
+                              GroupFilterQuickSorts[gf.GroupFilterID.Value] = new QuickSort();
+                          GroupFilterQuickSorts[gf.GroupFilterID.Value].SortType = sortType;
+                          GroupFilterQuickSorts[gf.GroupFilterID.Value].SortDirection = sortDirection;
+                          LoadFacade();
+                          return ContextMenuAction.Exit;
+                      }
+                  }
+                  return ContextMenuAction.Continue;
+              });
+              if ((gf.GroupFilterID.HasValue) && (GroupFilterQuickSorts.ContainsKey(gf.GroupFilterID.Value)))
+              {
+                  cmenu.AddAction(Translation.RemoveQuickSort, () =>
+                  {
+                      GroupFilterQuickSorts.Remove(gf.GroupFilterID.Value);
+                      LoadFacade();
+                  });
+              }
+          }
+
+          // ReSharper disable ImplicitlyCapturedClosure
+          cmenu.AddAction(Translation.RandomSeries, () =>
+              // ReSharper restore ImplicitlyCapturedClosure
+          {
+              RandomWindow_CurrentEpisode = null;
+              RandomWindow_CurrentSeries = null;
+              RandomWindow_LevelObject = grp;
+              RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
+              RandomWindow_RandomType = RandomObjectType.Series;
+              GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+          });
+          // ReSharper disable ImplicitlyCapturedClosure
+          cmenu.AddAction(Translation.RandomEpisode, () =>
+              // ReSharper restore ImplicitlyCapturedClosure
+          {
+              RandomWindow_CurrentEpisode = null;
+              RandomWindow_CurrentSeries = null;
+              RandomWindow_LevelObject = grp;
+              RandomWindow_RandomLevel = RandomSeriesEpisodeLevel.Group;
+              RandomWindow_RandomType = RandomObjectType.Episode;
+              GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
+          });
+
+          cmenu.Add(Translation.AdvancedOptions + " ...", () => ShowContextMenuAdvancedOptionsGroup(grp.GroupName));
+
+          return cmenu.Show();
+      }
+
+      private ContextMenuAction ShowContextMenuAdvancedOptionsGroup(string previousMenu)
+        {
+            GUIListItem currentitem = m_Facade.SelectedListItem;
+            if (currentitem == null)
+                return ContextMenuAction.Exit;
+            AnimeGroupVM grp = currentitem.TVTag as AnimeGroupVM;
+            if (grp == null)
+                return ContextMenuAction.Exit;
+
+            ContextMenu cmenu = new ContextMenu(Translation.AdvancedOptions, previousmenu: previousMenu);
+            cmenu.Add(Translation.EditGroup + " ...", () => ShowContextMenuGroupEdit(grp.GroupName));
+            if (grp.AllSeries.Count == 1)
+            {
+                cmenu.Add(Translation.Databases + " ...",
+                    () => ShowContextMenuDatabases(grp.AllSeries[0], Translation.GroupMenu));
+                cmenu.Add(Translation.Images + " ...", () => ShowContextMenuImages(grp.GroupName));
+            }
+            cmenu.Add(Translation.PostProcessing + " ...", () => ShowContextMenuPostProcessing(grp.GroupName));
+
+            return cmenu.Show();
+        }
+
+        private void ShowRelationsWindow()
     {
       SetGlobalIDs();
       GUIWindowManager.ActivateWindow(Constants.WindowIDs.RELATIONS, false);
@@ -4762,9 +4804,9 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
           LoadFacade();
         }
       });
-      cmenu.Add(Translation.Databases + " >>>", () => ShowContextMenuDatabases(ser, ser.SeriesName));
-      cmenu.Add(Translation.Images + " >>>", () => ShowContextMenuImages(ser.SeriesName));
-      cmenu.Add(Translation.EditSeries + " >>>", () => ShowContextMenuSeriesEdit(ser.SeriesName));
+      cmenu.Add(Translation.Databases + " ...", () => ShowContextMenuDatabases(ser, ser.SeriesName));
+      cmenu.Add(Translation.Images + " ...", () => ShowContextMenuImages(ser.SeriesName));
+      cmenu.Add(Translation.EditSeries + " ...", () => ShowContextMenuSeriesEdit(ser.SeriesName));
       // ReSharper disable ImplicitlyCapturedClosure
       cmenu.AddAction(Translation.RandomEpisode, () =>
       // ReSharper restore ImplicitlyCapturedClosure
@@ -4776,7 +4818,7 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
         RandomWindow_RandomType = RandomObjectType.Episode;
         GUIWindowManager.ActivateWindow(Constants.WindowIDs.RANDOM);
       });
-      cmenu.Add(Translation.PostProcessing + " >>>", () => ShowContextMenuPostProcessing(ser.SeriesName));
+      cmenu.Add(Translation.PostProcessing + " ...", () => ShowContextMenuPostProcessing(ser.SeriesName));
       return cmenu.Show();
     }
 
@@ -4817,8 +4859,6 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
 
       }
 
-
-
       //keep showing the dialog until the user closes it
       string currentMenu = "Associate with a ffdshow raw preset";
       int selectedLabel = 0;
@@ -4848,7 +4888,7 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
       return cmenu.Show();
     }
 
-    private void SetGlobalIDs()
+        private void SetGlobalIDs()
     {
       GlobalSeriesID = -1;
       AnimeGroupVM grp = GetTopGroup();

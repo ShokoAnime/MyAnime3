@@ -182,6 +182,8 @@ namespace MyAnimePlugin3
 
         public static string ActiveTorrentsAt = "{0} Active Torrents at {1}/sec";
         public static string AddToFavorites = "Add to Favorites";
+        public static string AdvancedOptions = "Advanced options";
+
         public static string All = "All";
         public static string AllEpisodesAvailable = "All Episodes Available";
         public static string AlternateSetting = "Alternate Setting";
@@ -305,6 +307,10 @@ namespace MyAnimePlugin3
         public static string FilesQueuedForProcessing = "Files have been queued for processing";
         public static string Filmstrip="Filmstrip";
         public static string FilterName = "Filter Name";
+        public static string FilterOptions = "Filters";
+        public static string FilterOptionAllEpisodes = "Watched episodes";
+        public static string FilterOptionUnwatchedEpisodes = "Unwatched episodes";
+
         public static string FullStory = "Full Story";
 
 

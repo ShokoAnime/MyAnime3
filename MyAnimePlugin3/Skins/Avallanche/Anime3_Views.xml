@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <controls>
+
+<!--            :: LIST ::            -->
+
+	<control>
+		<description>RSS background</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>-10</posX>
+		<posY>829</posY>
+		<width>1880</width>
+		<height>96</height>
+		<texture>basichome_rss_bg.png</texture>
+		<visible>[facadeview.list | facadeview.smallicons | facadeview.largeicons] + control.isvisible(50)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	</control>
+
+<!-- 			:: DVD COVER () :: -->
+
+	<control>
+	  	<type>image</type>
+	  	<description>Series Poster</description>
+	  	<id>46</id>
+	  	<posX>762</posX>
+		<posY>169</posY>
+		<width>330</width>
+		<height>490</height>
+	  	<texture flipY="true" diffuse="Thumb_Mask_Test.png" mask="poster_mask.png">#Anime3.GroupSeriesPoster</texture>
+	  	<visible>[[control.isvisible(1237)|control.isvisible(1238)|control.isvisible(1240)]]+facadeview.list|facadeview.largeicons</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	</control>	
+
+
+	<control>
+	  	<description>DVD Cover</description>
+	  	<type>image</type>
+	  	<id>1</id>
+	  	<posX>730</posX>
+		<posY>165</posY>
+	  	<width>363</width>
+	  	<height>500</height>
+	  	<texture>video_filmstrip_frame.png</texture>
+	  	<visible>[[control.isvisible(1237)|control.isvisible(1238)|control.isvisible(1240)]]+facadeview.list|facadeview.largeicons</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	</control>
+
+	<control>
+	  	<description>Poster glow</description>
+	  	<type>image</type>
+	  	<id>1</id>
+	  	<posX>700</posX>
+		<posY>101</posY>
+		<width>460</width>
+		<height>630</height>
+		<texture>list_poster_glow.png</texture>
+	  	<visible>[[control.isvisible(1237)|control.isvisible(1238)|control.isvisible(1240)]]+facadeview.list|facadeview.largeicons</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	</control>
+
+	<control>
+	  	<description>count</description>
+	  	<type>label</type>
+	  	<label>Groups: #Anime3.GroupCount  |  Filter: #Anime3.GroupFilter.FilterName</label>
+	  	<id>0</id>
+	  	<posX>714</posX>
+	  	<posY>875</posY>
+	  	<align>left</align>
+	  	<font>font12</font>
+	  	<visible>[control.isvisible(1238)]</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  	<description>count</description>
+	  	<type>label</type>
+	  	<label>Groups: #Anime3.GroupFilter.GroupCount</label>
+	  	<id>0</id>
+	  	<posX>714</posX>
+	  	<posY>875</posY>
+	  	<align>left</align>
+	  	<font>font12</font>
+	  	<visible>[control.isvisible(1250)]</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	 	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+<!-- *********************** GROUP/SERIES/EPISODE TYPES INFO LABELS ( LIST LAYOUT) ************************** -->
+	
+	<control>
+	  	<type>image</type>
+	  	<description>Title BG</description>
+	  	<id>66</id>
+	  	<posX>0</posX>
+		<posY>748</posY>
+		<width>1010</width>
+		<height>129</height>
+		<align>left</align>
+	  	<texture>MyAnime_Title_bg.png</texture>
+	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control Style="smallTitle">
+	  	<type>label</type>
+	  	<description>Title Series View</description>
+	  	<id>640</id>
+		<label>#Anime3.Title</label>
+		<posX>10</posX>
+		<posY>765</posY>
+		<width>950</width>
+		<font>font20</font>
+		<visible>[Control.IsVisible(1238)]</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control Style="smallTitle">
+	  	<type>label</type>
+	  	<description>Title Season View</description>
+	  	<label>#Anime3.SeriesTitle</label>
+		<id>640</id>
+		<posX>10</posX>
+		<posY>765</posY>
+		<width>950</width>
+		<font>font20</font>
+		<visible>Control.IsVisible(1240)|Control.IsVisible(1237)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+		<type>label</type>
+		<label>#Anime3.Title</label>
+		<id>0</id>
+		<posX>10</posX>
+		<posY>820</posY>
+		<width>950</width>
+		<font>font12</font>
+		<textcolor>FF00537C</textcolor>
+		<label>#Anime3.SeriesGroup.Year - #Anime3.SeriesGroup.Rating - #Anime3.SeriesGroup.Episodes</label>
+		<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    	</control>
+
+<!-- added from Avalanche -->
+	<control Style="InfoLabel">
+		<description>Genre Label</description>
+		<type>label</type>
+		<label>#TVSeries.Translation.Genre.Label</label>
+		<id>0</id>
+		<posX>714</posX>
+		<posY>952</posY>
+	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+			
+	<control Style="InfoValueSmall">
+		<description>Genre</description>
+		<type>fadelabel</type>
+	 	<label>#Anime3.SeriesGroup.Genre</label>
+		<id>0</id>
+		<posX>882</posX>
+		<posY>952</posY>
+	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control Style="InfoLabel">
+		<description>Episodes Label (Series)</description>
+		<type>label</type>
+		<label>Episodes</label>
+		<id>0</id>
+		<posX>714</posX>
+		<posY>990</posY>
+	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+			
+	<control Style="InfoValueSmall">
+		<description>Episodes (Series)</description>
+		<type>fadelabel</type>
+	  	<label>#Anime3.SeriesGroup.Episodes</label>
+		<id>0</id>
+		<posX>882</posX>
+		<posY>990</posY>
+	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+		<type>textboxscrollup</type>
+		<description>Summary (list)</description>
+		<id>1025</id>
+		<posX>1175</posX>
+		<posY>920</posY>
+		<width>725</width>
+		<height>150</height>
+		<label>#Anime3.Description</label>
+		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
+		<onleft>1026</onleft>
+		<onright>1026</onright>
+		<onup>1026</onup>
+		<ondown>1026</ondown>
+	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+<!-- added from Avalanche End-->
+
+<!-- 			:: EPISODE INFO LABELS ::		-->
+
+	<control>
+	  	<type>image</type>
+	  	<description>Logos</description>
+	  	<id>66</id>
+	  	<posX>495</posX>
+		<posY>868</posY>
+		<width>650</width>
+		<height>54</height>
+		<align>left</align>
+	  	<texture>#Anime3.Logos</texture>
+	  	<keepaspectratio>yes</keepaspectratio>
+	  	<visible>facadeview.list+Control.IsVisible(1239)</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+	  	<type>image</type>
+	  	<description>Title BG</description>
+	  	<id>66</id>
+	  	<posX>0</posX>
+		<posY>748</posY>
+		<width>1010</width>
+		<height>129</height>
+		<align>left</align>
+	  	<texture>MyAnime_Title_bg.png</texture>
+	  	<visible>[Control.IsVisible(1239)+facadeview.list]</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control Style="smallTitle">
+	  	<type>label</type>
+	  	<id>0</id>
+	  	<posX>10</posX>
+		<posY>765</posY>
+		<width>950</width>
+		<font>font20</font>
+		<label>#Anime3.Episode.EpisodeName</label>
+	  	<visible>[Control.IsVisible(1239)+facadeview.list]</visible>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+	  	<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+	  	<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+
+	<control>
+		<type>label</type>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+		<id>0</id>
+		<posX>10</posX>
+		<posY>820</posY>
+		<width>950</width>
+		<font>font12</font>
+		<textcolor>FF00537C</textcolor>
+		<label>#Anime3.Episode.AirDate - #Anime3.Episode.Length - #Anime3.Episode.Rating - #Anime3.Episode.FileInfo</label>
+	  	<visible>facadeview.list+Control.IsVisible(1239)</visible>
+	</control>
+
+<!--Added from Avalanche-->
+	<control>
+		<type>textboxscrollup</type>
+		<description>Summary (list)</description>
+		<id>631</id>
+		<posX>1175</posX>
+		<posY>920</posY>
+		<width>725</width>
+		<height>150</height>
+	  	<label>#Anime3.Episode.Description</label>
+		<seperator>---------------------------------------------------------------------------------------------------------</seperator>
+		<onleft>1026</onleft>
+		<onright>1026</onright>
+		<onup>1026</onup>
+		<ondown>1026</ondown>
+		<visible>facadeview.list+Control.IsVisible(1239)</visible>
+		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+	
+	<control>
+		<description>Big Episode Thumb</description>
+		<type>image</type>
+		<id>67</id>
+		<posX>750</posX>
+		<posY>862</posY>
+		<width>382</width>
+		<height>215</height>
+		<texture flipY="true" mask="tvseries_thumb_mask.png">#Anime3.Episode.Image</texture>
+		<visible>facadeview.list+Control.IsVisible(1239)+!player.playing</visible>
+ 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+    
+	<control>
+		<description>Episode Thumb Shadow</description>
+		<type>image</type>
+		<id>0</id>
+		<posX>741</posX>
+		<posY>852</posY>
+		<width>399</width>
+		<height>233</height>
+		<texture>tvseries_thumb_shadow.png</texture>
+		<visible>facadeview.list+Control.IsVisible(1239)+!player.playing</visible>
+ 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+	</control>
+<!--Added from Avalanche End-->
+
+
+
+
+	<!-- ********************** IMPORT PROCESS *************************************** -->
+
+  </controls>
+</window>

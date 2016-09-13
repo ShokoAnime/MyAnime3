@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <window>
   <id>6102</id>
   <defaultcontrol>50</defaultcontrol>
@@ -6,7 +6,6 @@
   <controls>
     <!-- Import Dummy controls to handle visibility -->
     <import>Anime3_Dummy.xml</import>
-    <!-- Specific Dummy controls to handle visibility -->
     <!-- Specific Dummy controls to handle visibility -->
     <control>
       <type>label</type>

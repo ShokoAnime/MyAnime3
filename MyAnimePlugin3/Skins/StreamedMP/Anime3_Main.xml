@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <window>
   <id>6101</id>
   <defaultcontrol>50</defaultcontrol>
@@ -33,8 +33,6 @@
       <type>image</type>
       <id>0</id>
       <posX>0</posX>
-      <posX>0</posX>
-      <posY>0</posY>
       <posY>0</posY>
       <width>1920</width>
       <height>1080</height>
@@ -1141,7 +1139,6 @@
       <width>405</width>
       <visible>Control.IsVisible(1239)+facadeview.list</visible>
     </control>
-    <import>Anime3_QueueStatus.xml</import>
     <import>common.overlays2.xml</import>
   </controls>
 </window>

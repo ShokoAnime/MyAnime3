@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <window>
   <id>6107</id>
   <defaultcontrol>50</defaultcontrol>
@@ -9,11 +9,8 @@
       <type>label</type>
       <description>Does the anime have any relations</description>
       <id>1301</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -23,11 +20,8 @@
       <type>label</type>
       <description>Does series info exist for selected relation</description>
       <id>1302</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -37,11 +31,8 @@
       <type>label</type>
       <description>Does files exist for selected relation</description>
       <id>1303</id>
-      <posX>-50</posX>
       <posX>-75</posX>
-      <posY>-50</posY>
       <posY>-75</posY>
-      <width>5</width>
       <width>8</width>
       <label>
       </label>
@@ -52,12 +43,8 @@
       <description>Background</description>
       <type>image</type>
       <posX>0</posX>
-      <posX>0</posX>
       <posY>0</posY>
-      <posY>0</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>720</height>
       <height>1080</height>
       <texture>hover_My Anime3.png</texture>
     </control>
@@ -66,12 +53,8 @@
       <type>image</type>
       <id>1</id>
       <posX>0</posX>
-      <posX>0</posX>
       <posY>0</posY>
-      <posY>0</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>720</height>
       <height>1080</height>
       <texture>#Anime3.Relations.Fanart</texture>
       <animation effect="fade" start="0" end="100" time="3000">WindowOpen</animation>
@@ -81,13 +64,9 @@
     <control>
       <description>FanArt Overlay</description>
       <type>image</type>
-      <posX>-2</posX>
       <posX>-3</posX>
       <posY>0</posY>
-      <posY>0</posY>
-      <width>1284</width>
       <width>1926</width>
-      <height>722</height>
       <height>1083</height>
       <texture>MyAnime3\anime3_background.png</texture>
     </control>
@@ -95,12 +74,8 @@
       <description>Top overlay bar</description>
       <type>image</type>
       <posX>0</posX>
-      <posX>0</posX>
-      <posY>-20</posY>
       <posY>-30</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>70</height>
       <height>105</height>
       <texture>MyAnime3\overlay_bar_top.png</texture>
     </control>
@@ -108,12 +83,8 @@
       <description>Bottom overlay bar</description>
       <type>image</type>
       <posX>0</posX>
-      <posX>0</posX>
-      <posY>670</posY>
       <posY>1005</posY>
-      <width>1280</width>
       <width>1920</width>
-      <height>70</height>
       <height>105</height>
       <texture>MyAnime3\overlay_bar_bottom.png</texture>
     </control>
@@ -122,13 +93,9 @@
       <description>title BG</description>
       <type>image</type>
       <id>0</id>
-      <posX>77</posX>
       <posX>116</posX>
-      <posY>11</posY>
       <posY>16</posY>
-      <width>437</width>
       <width>656</width>
-      <height>35</height>
       <height>52</height>
       <texture>tvtitlebg.png</texture>
     </control>
@@ -136,11 +103,8 @@
       <type>fadelabel</type>
       <description>My Anime Label</description>
       <id>0</id>
-      <posX>493</posX>
       <posX>740</posX>
-      <posY>13</posY>
       <posY>20</posY>
-      <width>350</width>
       <width>525</width>
       <font>mediastream12c</font>
       <label>Relations</label>
@@ -150,11 +114,8 @@
       <description>No relations found</description>
       <type>label</type>
       <id>0</id>
-      <posX>520</posX>
       <posX>780</posX>
-      <posY>13</posY>
       <posY>20</posY>
-      <width>600</width>
       <width>900</width>
       <font>mediastream12tc</font>
       <textcolor>ffffffff</textcolor>
@@ -174,37 +135,22 @@
         <onup>910</onup>
         <ondown>910</ondown>
         <onleft>50</onleft>
-        <posX>30</posX>
         <posX>45</posX>
-        <posY>80</posY>
         <posY>120</posY>
-        <width>1250</width>
         <width>1875</width>
         <scrollOffset>4</scrollOffset>
-        <spinPosX>1300</spinPosX>
         <spinPosX>1950</spinPosX>
-        <spinPosY>1000</spinPosY>
         <spinPosY>1500</spinPosY>
-        <spinWidth>24</spinWidth>
         <spinWidth>36</spinWidth>
-        <spinHeight>24</spinHeight>
         <spinHeight>36</spinHeight>
         <spinColor>ffcccccc</spinColor>
-        <thumbWidth>181</thumbWidth>
         <thumbWidth>272</thumbWidth>
-        <thumbHeight>280</thumbHeight>
         <thumbHeight>420</thumbHeight>
-        <thumbPosX>13</thumbPosX>
         <thumbPosX>20</thumbPosX>
-        <thumbPosY>11</thumbPosY>
         <thumbPosY>16</thumbPosY>
-        <itemWidth>201</itemWidth>
         <itemWidth>302</itemWidth>
-        <itemHeight>295</itemHeight>
         <itemHeight>442</itemHeight>
-        <textureWidth>225</textureWidth>
         <textureWidth>338</textureWidth>
-        <textureHeight>324</textureHeight>
         <textureHeight>486</textureHeight>
         <thumbs flipY="true" diffuse="diffusemirrorwide.png" />
         <InfoImage>
@@ -229,13 +175,9 @@
       <dimColor>00ffffff</dimColor>
       <control>
         <type>image</type>
-        <posX>1002</posX>
         <posX>1503</posX>
         <posY>0</posY>
-        <posY>0</posY>
-        <width>278</width>
         <width>417</width>
-        <height>720</height>
         <height>1080</height>
         <texture>hiddenmenu_right.png</texture>
         <visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
@@ -247,9 +189,7 @@
         <label>MENU</label>
         <type>label</type>
         <font>mediastream12tc</font>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>225</posY>
         <posY>338</posY>
         <visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
@@ -261,13 +201,9 @@
         <visible>!Control.HasFocus(801)+!Control.HasFocus(802)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
-        <posX>1040</posX>
         <posX>1560</posX>
-        <posY>250</posY>
         <posY>375</posY>
-        <width>220</width>
         <width>330</width>
-        <height>720</height>
         <height>1080</height>
         <layout>StackLayout</layout>
         <control>
@@ -327,13 +263,8 @@
       <description>No relations found</description>
       <type>label</type>
       <id>0</id>
-      <posX>28</posX>
-      <posX>42</posX>
       <posX>0</posX>
-      <posX>0</posX>
-      <width>1280</width>
       <width>1920</width>
-      <posY>250</posY>
       <posY>375</posY>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
@@ -345,11 +276,8 @@
       <description>No relations found</description>
       <type>label</type>
       <id>0</id>
-      <posX>30</posX>
       <posX>45</posX>
-      <posY>440</posY>
       <posY>660</posY>
-      <width>1100</width>
       <width>1650</width>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
@@ -360,20 +288,15 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>Air Date</label>
-      <posX>30</posX>
       <posX>45</posX>
-      <posY>480</posY>
       <posY>720</posY>
       <visible>Control.IsVisible(1301)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Related.Year</label>
-      <posX>200</posX>
       <posX>300</posX>
-      <posY>480</posY>
       <posY>720</posY>
-      <width>250</width>
       <width>375</width>
       <visible>Control.IsVisible(1301)</visible>
     </control>
@@ -381,13 +304,9 @@
       <type>textboxscrollup</type>
       <description>Description Value</description>
       <id>0</id>
-      <posX>500</posX>
       <posX>750</posX>
-      <posY>480</posY>
       <posY>720</posY>
-      <width>740</width>
       <width>1110</width>
-      <height>180</height>
       <height>270</height>
       <textcolor>ffffffff</textcolor>
       <font>mediastream11</font>
@@ -400,40 +319,30 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>Tags</label>
-      <posX>30</posX>
       <posX>45</posX>
-      <posY>510</posY>
       <posY>765</posY>
       <visible>Control.IsVisible(1301)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Related.GenreShort</label>
-      <posX>200</posX>
       <posX>300</posX>
-      <posY>510</posY>
       <posY>765</posY>
-      <width>250</width>
       <width>375</width>
       <visible>Control.IsVisible(1301)</visible>
     </control>
     <control Style="smallTitleB">
       <type>label</type>
       <label>Status</label>
-      <posX>30</posX>
       <posX>45</posX>
-      <posY>540</posY>
       <posY>810</posY>
       <visible>Control.IsVisible(1301)</visible>
     </control>
     <control Style="smallTitle">
       <type>label</type>
       <label>#Anime3.Related.Status</label>
-      <posX>200</posX>
       <posX>300</posX>
-      <posY>540</posY>
       <posY>810</posY>
-      <width>250</width>
       <width>375</width>
       <visible>Control.IsVisible(1301)</visible>
     </control>

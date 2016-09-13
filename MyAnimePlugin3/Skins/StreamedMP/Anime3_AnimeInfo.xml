@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
   <id>6109</id>
   <defaultcontrol>801</defaultcontrol>
@@ -260,32 +260,23 @@
       <type>button</type>
       <id>803</id>
       <label>Groups</label>
-      <width>260</width>
       <width>390</width>
-      <posX>530</posX>
       <posX>795</posX>
-      <posY>70</posY>
       <posY>105</posY>
       <textalign>left</textalign>
       <onleft>801</onleft>
       <onright>803</onright>
       <onup>803</onup>
       <ondown>803</ondown>
-      <width>160</width>
       <width>240</width>
-      <textXOff>30</textXOff>
       <textXOff>45</textXOff>
     </control>
     <control>
       <type>image</type>
       <id>0</id>
-      <posX>535</posX>
       <posX>802</posX>
-      <posY>73</posY>
       <posY>110</posY>
-      <width>24</width>
       <width>36</width>
-      <height>24</height>
       <height>36</height>
       <texture>ledon.png</texture>
       <visible>Control.IsVisible(1503)</visible>
@@ -295,13 +286,9 @@
       <description>Default Poster</description>
       <type>image</type>
       <id>0</id>
-      <posX>20</posX>
       <posX>30</posX>
-      <posY>70</posY>
       <posY>105</posY>
-      <width>286</width>
       <width>429</width>
-      <height>450</height>
       <height>675</height>
       <texture>defaultposter.png</texture>
       <visible>Control.IsVisible(1502)</visible>
@@ -310,13 +297,9 @@
       <description>Poster</description>
       <type>image</type>
       <id>0</id>
-      <posX>20</posX>
       <posX>30</posX>
-      <posY>70</posY>
       <posY>105</posY>
-      <width>286</width>
       <width>429</width>
-      <height>450</height>
       <height>675</height>
       <texture>#Anime3.AnimeInfo.Poster</texture>
       <visible>Control.IsVisible(1502)</visible>
@@ -327,11 +310,8 @@
       <type>label</type>
       <description>Main Title</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>110</posY>
       <posY>165</posY>
-      <width>650</width>
       <width>975</width>
       <label>Main Title</label>
       <align>left</align>
@@ -343,11 +323,8 @@
       <type>label</type>
       <description>Main Title Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>110</posY>
       <posY>165</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.AnidbTitle</label>
       <align>left</align>
@@ -359,11 +336,8 @@
       <type>label</type>
       <description>Rating Title</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>140</posY>
       <posY>210</posY>
-      <width>650</width>
       <width>975</width>
       <label>Rating</label>
       <align>left</align>
@@ -375,11 +349,8 @@
       <type>label</type>
       <description>Rating Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>140</posY>
       <posY>210</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.Rating</label>
       <align>left</align>
@@ -389,13 +360,9 @@
     </control>
     <control>
       <type>image</type>
-      <posX>950</posX>
       <posX>1425</posX>
-      <posY>140</posY>
       <posY>210</posY>
-      <width>16</width>
       <width>24</width>
-      <height>16</height>
       <height>24</height>
       <texture>MyAnime3\user.png</texture>
       <visible>Control.IsVisible(1500)</visible>
@@ -406,11 +373,8 @@
       <type>label</type>
       <description>Rating Value</description>
       <id>0</id>
-      <posX>980</posX>
       <posX>1470</posX>
-      <posY>140</posY>
       <posY>210</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.MyRating</label>
       <align>left</align>
@@ -422,11 +386,8 @@
       <type>label</type>
       <description>Anime Type Label</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>170</posY>
       <posY>255</posY>
-      <width>650</width>
       <width>975</width>
       <label>Type</label>
       <align>left</align>
@@ -438,11 +399,8 @@
       <type>label</type>
       <description>Anime Type Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>170</posY>
       <posY>255</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.Type</label>
       <align>left</align>
@@ -454,11 +412,8 @@
       <type>label</type>
       <description>Episodes Label</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>200</posY>
       <posY>300</posY>
-      <width>650</width>
       <width>975</width>
       <label>Episodes</label>
       <align>left</align>
@@ -470,11 +425,8 @@
       <type>label</type>
       <description>Episodes Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>200</posY>
       <posY>300</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.EpisodeSpecials</label>
       <align>left</align>
@@ -486,11 +438,8 @@
       <type>label</type>
       <description>OtherTitles Label</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>230</posY>
       <posY>345</posY>
-      <width>650</width>
       <width>975</width>
       <label>Other Titles</label>
       <align>left</align>
@@ -502,11 +451,8 @@
       <type>label</type>
       <description>OtherTitles Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>230</posY>
       <posY>345</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.OtherTitles</label>
       <align>left</align>
@@ -518,11 +464,8 @@
       <type>label</type>
       <description>Aired Label</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>260</posY>
       <posY>390</posY>
-      <width>650</width>
       <width>975</width>
       <label>Aired</label>
       <align>left</align>
@@ -534,11 +477,8 @@
       <type>label</type>
       <description>Aired Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>260</posY>
       <posY>390</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.Year</label>
       <align>left</align>
@@ -550,11 +490,8 @@
       <type>label</type>
       <description>Tags Label</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>290</posY>
       <posY>435</posY>
-      <width>650</width>
       <width>975</width>
       <label>Tags</label>
       <align>left</align>
@@ -566,11 +503,8 @@
       <type>fadelabel</type>
       <description>Tags Value</description>
       <id>0</id>
-      <posX>600</posX>
       <posX>900</posX>
-      <posY>290</posY>
       <posY>435</posY>
-      <width>650</width>
       <width>975</width>
       <label>#Anime3.AnimeInfo.Info.Genre</label>
       <align>left</align>
@@ -582,13 +516,9 @@
       <type>textboxscrollup</type>
       <description>Description Value</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>350</posY>
       <posY>525</posY>
-      <width>890</width>
       <width>1335</width>
-      <height>300</height>
       <height>450</height>
       <textcolor>ffffffff</textcolor>
       <font>mediastream11</font>
@@ -604,9 +534,7 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>MY GROUPS</label>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>120</posY>
       <posY>180</posY>
       <visible>Control.IsVisible(1503)</visible>
     </control>
@@ -614,13 +542,9 @@
       <type>textboxscrollup</type>
       <description>Description Value</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>150</posY>
       <posY>225</posY>
-      <width>800</width>
       <width>1200</width>
-      <height>110</height>
       <height>165</height>
       <textcolor>ffffffff</textcolor>
       <font>mediastream12</font>
@@ -634,9 +558,7 @@
     <control Style="smallTitleB">
       <type>label</type>
       <label>OTHER GROUPS</label>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>280</posY>
       <posY>420</posY>
       <visible>Control.IsVisible(1503)</visible>
     </control>
@@ -644,13 +566,9 @@
       <type>textboxscrollup</type>
       <description>Description Value</description>
       <id>0</id>
-      <posX>340</posX>
       <posX>510</posX>
-      <posY>310</posY>
       <posY>465</posY>
-      <width>800</width>
       <width>1200</width>
-      <height>330</height>
       <height>495</height>
       <textcolor>ffffffff</textcolor>
       <font>mediastream12</font>
@@ -665,11 +583,8 @@
       <description>ANIDB Status</description>
       <type>label</type>
       <id>114</id>
-      <posX>30</posX>
       <posX>45</posX>
-      <posY>685</posY>
       <posY>1028</posY>
-      <width>900</width>
       <width>1350</width>
       <label>#Anime3.AnimeInfo.DownloadStatus</label>
       <font>mediastream10</font>

@@ -73,12 +73,16 @@
       <HintPath>..\Dependencies\MP19_DLL\Dialogs.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Installer\NSIS\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="Microsoft.DirectX.Direct3DX, Version=1.0.2911.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.Direct3DX, Version=1.0.2911.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RemotePlugins">
       <HintPath>..\Dependencies\MP19_DLL\RemotePlugins.dll</HintPath>
       <Private>False</Private>
@@ -273,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Resources\46.png" />
     <None Include="Resources\03.png" />
     <None Include="Resources\delete.png" />
@@ -1000,11 +1005,16 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y
+    <PostBuildEvent>cd "$(TargetDir)"
+mkdir Merge
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "MA3_FFDShowAPI.dll" "ICSharpCode.SharpZipLib.dll"
+del Anime3.*
+del MA3_FFDShowAPI.*
+del ICSharpCode.SharpZipLib.*
+move Merge\* .
+rmdir Merge
+xcopy "$(TargetPath)" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y
 xcopy "$(TargetDir)Anime3.pdb" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y			
-xcopy "$(TargetDir)MA3_FFDShowAPI.dll" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y	
-xcopy "$(TargetDir)MA3_FFDShowAPI.pdb" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y				
-copy "$(SolutionDir)Dependencies\Newtonsoft.Json.Net20.dll" "$(SolutionDir)Release\plugins\Windows\"
 
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avallanche\Media" /E /R /I /Y
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avalon\Media" /E /R /I /Y
@@ -1016,9 +1026,6 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallanche" "$(SolutionDir)Release\ski
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWideHD" "$(SolutionDir)Release\skin\DefaultWideHD" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
-
-
-</PostBuildEvent>
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

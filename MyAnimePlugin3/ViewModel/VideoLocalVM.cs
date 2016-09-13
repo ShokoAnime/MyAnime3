@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using MyAnimePlugin3.JMMServerBinary;
 
@@ -30,14 +31,37 @@ namespace MyAnimePlugin3.ViewModel
 
         public bool? IsLocalOrStreaming()
         {
+            bool? result;
             if (FileIsAvailable)
-                return false;
-            if (Media?.Parts != null && Media.Parts.Count > 0)
-                return true;
-            return null;
-        }
-        public bool FileIsAvailable => !string.IsNullOrEmpty(LocalFileSystemFullPath);
+                result = false;
+            else if (Media?.Parts != null && Media.Parts.Count > 0)
+                result = true;
+            else
+                result = null;
+            BaseConfig.MyAnimeLog.Write("Stream or File ? : "+((result==null) ? "Nothing" : (result==true ? "Streaming" : "File")));
+            return result;
 
+        }
+        public bool FileIsAvailable
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(LocalFileSystemFullPath))
+                    return File.Exists(LocalFileSystemFullPath);
+                return false;
+
+            }
+        }
+
+        public bool FileIsNotAvailable
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(LocalFileSystemFullPath))
+                    return false;
+                return !File.Exists(LocalFileSystemFullPath);
+            }
+        }
 
         public string FileDirectory
         {
@@ -48,7 +72,7 @@ namespace MyAnimePlugin3.ViewModel
         {
             get
             {
-                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => a.ImportFolderType == 0 && !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
                 if (b == null)
                     return string.Empty;
                 return b.LocalFileSystemFullPath;

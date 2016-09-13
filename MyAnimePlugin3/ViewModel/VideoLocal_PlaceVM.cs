@@ -27,7 +27,16 @@ namespace MyAnimePlugin3.ViewModel
                     return string.Empty;
                 if (BaseConfig.Settings.ImportFolderMappings.ContainsKey(ImportFolderID))
                     return Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], FilePath);
-                return Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
+                try
+                {
+                    if (File.Exists(Path.Combine(ImportFolder.ImportFolderLocation, FilePath)))
+                        return Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
+                }
+                catch (Exception)
+                {
+                    //ignored
+                }
+                return string.Empty;
             }
         }
 

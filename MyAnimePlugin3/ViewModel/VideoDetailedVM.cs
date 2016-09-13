@@ -86,11 +86,16 @@ namespace MyAnimePlugin3.ViewModel
 		}
         public bool? IsLocalOrStreaming()
         {
+            bool? result;
             if (FileIsAvailable)
-                return false;
-            if (Media?.Parts != null && Media.Parts.Count > 0)
-                return true;
-            return null;
+                result = false;
+            else if (Media?.Parts != null && Media.Parts.Count > 0)
+                result = true;
+            else
+                result = null;
+            BaseConfig.MyAnimeLog.Write("Stream or File ? : " + ((result == null) ? "Nothing" : (result == true ? "Streaming" : "File")));
+            return result;
+
         }
         public string VideoCodec
 		{
@@ -212,7 +217,7 @@ namespace MyAnimePlugin3.ViewModel
         {
             get
             {
-                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => a.ImportFolderType==0 && !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
                 if (b == null)
                     return string.Empty;
                 return b.LocalFileSystemFullPath;
@@ -222,9 +227,10 @@ namespace MyAnimePlugin3.ViewModel
         {
             get
             {
-                if (string.IsNullOrEmpty(FullPath))
-                    return true;
-                return File.Exists(FullPath);
+                if (!string.IsNullOrEmpty(LocalFileSystemFullPath))
+                    return File.Exists(LocalFileSystemFullPath);
+                return false;
+
             }
         }
 
@@ -232,9 +238,9 @@ namespace MyAnimePlugin3.ViewModel
         {
             get
             {
-                if (string.IsNullOrEmpty(FullPath))
+                if (string.IsNullOrEmpty(LocalFileSystemFullPath))
                     return false;
-                return !File.Exists(FullPath);
+                return !File.Exists(LocalFileSystemFullPath);
             }
         }
 

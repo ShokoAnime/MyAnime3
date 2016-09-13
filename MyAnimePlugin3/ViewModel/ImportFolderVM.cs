@@ -89,8 +89,9 @@ namespace MyAnimePlugin3.ViewModel
 
 				if (FolderIsDropDestination)
 					desc += " (Drop Destination)";
-
-				if (!LocalPathIsValid)
+			    if (CloudID.HasValue)
+			        desc += " *** CLOUD FOLDER ***";
+				else if (!LocalPathIsValid)
 					desc += " *** LOCAL PATH INVALID ***";
 
 				return desc;
@@ -130,47 +131,7 @@ namespace MyAnimePlugin3.ViewModel
             return contract;
 		}
 
-		public bool Save()
-		{
-			try
-			{
-				JMMServerBinary.Contract_ImportFolder_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.SaveImportFolder(this.ToContract());
-				if (!string.IsNullOrEmpty(response.ErrorMessage))
-				{
-					BaseConfig.MyAnimeLog.Write(response.ErrorMessage);
-					return false;
-				}
 
-				AnimePluginSettings settings = new AnimePluginSettings();
-				settings.SetImportFolderMapping(response.ImportFolder.ImportFolderID.Value, LocalPathTemp);
 
-				return true;
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(ex.ToString());
-			}
-			return false;
-		}
-
-		public void Delete()
-		{
-			try
-			{
-
-				string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteImportFolder(ImportFolderID.Value);
-				if (!string.IsNullOrEmpty(result))
-					BaseConfig.MyAnimeLog.Write(result);
-				else
-				{
-					AnimePluginSettings settings = new AnimePluginSettings();
-					settings.RemoveImportFolderMapping(ImportFolderID.Value);
-				}
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(ex.ToString());
-			}
-		}
 	}
 }

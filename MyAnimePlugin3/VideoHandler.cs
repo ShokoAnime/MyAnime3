@@ -227,9 +227,9 @@ namespace MyAnimePlugin3
 					Utils.DialogMsg("Error", "File could not be found!");
                     return false;
                 }
-				BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FullPath);
+				BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FileName);
                 timeMovieStopped = (int)(fileToPlay.VideoLocal_ResumePosition/1000);
-				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FullPath, timeMovieStopped);
+				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FileName, timeMovieStopped);
 
                 prevEpisode = curEpisode;
 				curEpisode = episode;
@@ -420,6 +420,8 @@ namespace MyAnimePlugin3
                         title =
                             Path.GetFileNameWithoutExtension(current.Media.Parts[0].Key.Replace("/", "\\"))
                                 .Replace("_", " ");
+                    BaseConfig.MyAnimeLog.Write("Streaming: "+title);
+                    BaseConfig.MyAnimeLog.Write("Url: " + current.Media.Parts[0].Key);
 
                     result =
                         g_Player.PlayVideoStream(current.Media.Parts[0].Key, title) ||

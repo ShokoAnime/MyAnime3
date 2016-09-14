@@ -487,7 +487,7 @@
         <type>label</type>
         <font>mediastream12tc</font>
         <posX>1560</posX>
-        <posY>510</posY>
+        <posY>550</posY>
         <visible>!Control.HasFocus(50)</visible>
         <animation effect="slide" time="100" start="300,0">visible</animation>
         <animation effect="slide" time="0" end="300,0">hidden</animation>
@@ -519,7 +519,17 @@
           <label>Change Layout</label>
           <onleft>50</onleft>
           <onup>12</onup>
-          <ondown>4</ondown>
+          <ondown>13</ondown>
+        </control>
+        <control>
+            <description>Filters</description>
+            <type>button</type>
+            <id>13</id>
+            <label>Filters...</label>
+            <onleft>50</onleft>
+            <onright>50</onright>
+            <onup>11</onup>
+            <ondown>4</ondown>
         </control>
         <control>
           <description>Options</description>
@@ -528,7 +538,7 @@
           <label>Options</label>
           <onleft>50</onleft>
           <onright>50</onright>
-          <onup>11</onup>
+          <onup>13</onup>
           <ondown>920</ondown>
         </control>
         <control>

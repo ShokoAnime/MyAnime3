@@ -522,7 +522,6 @@ namespace MyAnimePlugin3
         #region Playback Event Handlers
         void OnPlayBackStopped(MediaPortal.Player.g_Player.MediaType type, int timeMovieStopped, string filename)
         {
-			BaseConfig.MyAnimeLog.Write("OnPlayBackStopped: {0} - {1} - {2}", filename, timeMovieStopped, type);
             if (PlayBackOpIsOfConcern(type, filename))
             {
                 LogPlayBackOp("stopped", filename);
@@ -560,11 +559,9 @@ namespace MyAnimePlugin3
 
         void OnPlayBackEnded(MediaPortal.Player.g_Player.MediaType type, string filename)
         {
-			BaseConfig.MyAnimeLog.Write("OnPlayBackEnded: {0} - {1}", filename, type);
             if (PlayBackOpIsOfConcern(type, filename))
             {
                 LogPlayBackOp("ended", filename);
-
 
                 try
                 {
@@ -579,10 +576,11 @@ namespace MyAnimePlugin3
 
 		void g_Player_PlayBackChanged(g_Player.MediaType type, int stoptime, string filename)
 		{
-			BaseConfig.MyAnimeLog.Write("OnPlayBackChanged: {0} - {1}", filename, type);
 			if (PlayBackOpWasOfConcern(g_Player.IsVideo ? g_Player.MediaType.Video : g_Player.MediaType.Unknown, g_Player.CurrentFile))
 			{
-				try
+			    LogPlayBackOp("changed", filename);
+
+                try
 				{
 					BaseConfig.MyAnimeLog.Write("Checking for set watched");
 					#region Set Watched

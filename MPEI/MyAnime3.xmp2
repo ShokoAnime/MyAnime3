@@ -17,27 +17,6 @@
               <ZipFileName>Installer{CopyFile}\{6db65f91-ebdb-464c-b78d-8885679339d2}-Anime3.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Anime3.dll</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\plugins\Windows\Anime3.pdb</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{09ed7ffa-f4f9-4b5b-97f0-6d6725165feb}-Anime3.pdb</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\Anime3.pdb</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{a5f99130-ed2d-499c-85f3-9721f75836be}-MA3_FFDShowAPI.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.dll</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{3363d8cf-0ba7-4502-b284-3a202b1b206a}-MA3_FFDShowAPI.pdb</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.pdb</DestinationFilename>
-            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -4001,6 +3980,69 @@ Click Next to continue or Cancel to exit Setup.</Value>
               </Params>
               <ExecuteLocation>AfterPanelShow</ExecuteLocation>
             </ActionItem>
+            <ActionItem Name="Remove obsolete files" ActionType="Script" ConditionGroup="">
+              <Params>
+                <Items>
+                  <SectionParam Name="Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+using System.IO;
+using System;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+public class Script
+{
+public static void Main(PackageClass packageClass, ActionItem actionItem)
+        {
+	string SourceFilePath_plugin = MpeInstaller.TransformInRealPath("%Plugins%");
+	try
+	{
+		if (File.Exists(Path.Combine(SourceFilePath_plugin, "Windows\\Anime3.pdb")))
+		{
+			File.Delete(Path.Combine(SourceFilePath_plugin, "Windows\\Anime3.pdb"));
+		}
+		
+		if (File.Exists(Path.Combine(SourceFilePath_plugin, "Windows\\MA3_FFDShowAPI.dll")))
+		{
+			File.Delete(Path.Combine(SourceFilePath_plugin, "Windows\\MA3_FFDShowAPI.dll"));
+		}
+		
+		if (File.Exists(Path.Combine(SourceFilePath_plugin, "Windows\\MA3_FFDShowAPI.pdb")))
+		{
+			File.Delete(Path.Combine(SourceFilePath_plugin, "Windows\\MA3_FFDShowAPI.pdb"));
+		}
+	   }
+	   catch { }
+        }
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                  <SectionParam Name="Uninstall Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, UnInstallItem item)
+    {
+        return;
+    }
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                </Items>
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
           </Items>
         </Actions>
         <IncludedGroups>
@@ -4171,27 +4213,6 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName>..\Release\plugins\Windows\Anime3.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{6db65f91-ebdb-464c-b78d-8885679339d2}-Anime3.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Anime3.dll</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\plugins\Windows\Anime3.pdb</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{09ed7ffa-f4f9-4b5b-97f0-6d6725165feb}-Anime3.pdb</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\Anime3.pdb</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{a5f99130-ed2d-499c-85f3-9721f75836be}-MA3_FFDShowAPI.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.dll</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\plugins\Windows\MA3_FFDShowAPI.pdb</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{3363d8cf-0ba7-4502-b284-3a202b1b206a}-MA3_FFDShowAPI.pdb</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\MA3_FFDShowAPI.pdb</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />

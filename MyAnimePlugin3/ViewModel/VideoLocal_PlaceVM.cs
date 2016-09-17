@@ -25,6 +25,7 @@ namespace MyAnimePlugin3.ViewModel
             {
                 if (ImportFolder.CloudID.HasValue)
                     return string.Empty;
+                BaseConfig.MyAnimeLog.Write("Checking Config for Possible file: "+ ImportFolder.ImportFolderLocation+" / "+FilePath);
                 if (BaseConfig.Settings.ImportFolderMappings.ContainsKey(ImportFolderID))
                     return Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], FilePath);
                 try

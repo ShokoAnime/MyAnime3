@@ -73,9 +73,13 @@
       <HintPath>..\Dependencies\MP19_DLL\Dialogs.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DirectShowLib">
+      <HintPath>..\Dependencies\MP19_DLL\DirectShowLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>False</Private>
@@ -173,6 +177,7 @@
     <Compile Include="MultiSortLib\SortSearchCriteria.cs" />
     <Compile Include="MultiSortLib\ValueComparison.cs" />
     <Compile Include="MyAnimeLog.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="SearchCollection.cs" />
     <Compile Include="Service References\JMMImageServer\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -1007,10 +1012,9 @@
   <PropertyGroup>
     <PostBuildEvent>cd "$(TargetDir)"
 mkdir Merge
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "MA3_FFDShowAPI.dll" "ICSharpCode.SharpZipLib.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "MA3_FFDShowAPI.dll"
 del Anime3.*
 del MA3_FFDShowAPI.*
-del ICSharpCode.SharpZipLib.*
 move Merge\* .
 rmdir Merge
 xcopy "$(TargetPath)" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y

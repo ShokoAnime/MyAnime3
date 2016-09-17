@@ -271,6 +271,7 @@ namespace MyAnimePlugin3
         }
         #endregion
 
+
         /// <summary>        
         /// Updates the movie metadata on the playback screen (for when the user clicks info). 
         /// The delay is neccesary because Player tries to use metadata from the MyVideos database.
@@ -397,6 +398,7 @@ namespace MyAnimePlugin3
 		/// 
         bool Play(int timeMovieStopped, String audioLanguage, String subLanguage)
         {
+
             bool result = false;
             try
             {
@@ -411,29 +413,36 @@ namespace MyAnimePlugin3
 				// Start Listening to any External Player Events
 				listenToExternalPlayerEvents = true;
                 CreateSubsOnTempIfNecesary(current.Media);
+                IPlayerFactory prevfactory = g_Player.Factory;
+                g_Player.Factory = PlayerFactory.Instance;
+
+
                 if (current.IsLocalOrStreaming() == true)
                 {
+                   
                     string title = string.Empty;
-                    if (curEpisode != null)
-                        title = curEpisode.DisplayName;
-                    else
-                        title =
-                            Path.GetFileNameWithoutExtension(current.Media.Parts[0].Key.Replace("/", "\\"))
-                                .Replace("_", " ");
                     BaseConfig.MyAnimeLog.Write("Streaming: "+title);
                     BaseConfig.MyAnimeLog.Write("Url: " + current.Media.Parts[0].Key);
+                    if (g_Player.Player != null)
+                        BaseConfig.MyAnimeLog.Write("Before Player " + (g_Player.Player is Player ? "Anime" : "Mediaportal"));
+                    BaseConfig.MyAnimeLog.Write("Factory " + (g_Player.Factory is PlayerFactory ? "Anime" : "Mediaportal"));
 
-                    result =
-                        g_Player.PlayVideoStream(current.Media.Parts[0].Key, title) ||
-                        g_Player.IsExternalPlayer;
+                    //FIX MEDIAPORTAL 1 Bug checking for mediainfo.
+                    g_Player._mediaInfo = new MediaInfoWrapper("donoexists");
+                    //************************//
+                    g_Player.Play(current.Media.Parts[0].Key, g_Player.MediaType.Video);
+
                     currentUri = current.Media.Parts[0].Key;
+                    if (g_Player.Player != null)
+                       BaseConfig.MyAnimeLog.Write("Player " + (g_Player.Player is Player ? "Anime" : "Mediaportal"));
+                    
                 }
                 else
                 {
-                    result = g_Player.Play(current.LocalFileSystemFullPath, g_Player.MediaType.Video) ||
-                             g_Player.IsExternalPlayer;
+                    g_Player.Play(current.LocalFileSystemFullPath, g_Player.MediaType.Video);
                     currentUri = current.Media.Parts[0].Key = current.LocalFileSystemFullPath;
                 }
+                g_Player.Factory = prevfactory;
                 // Stop Listening to any External Player Events
                     listenToExternalPlayerEvents = false;
 

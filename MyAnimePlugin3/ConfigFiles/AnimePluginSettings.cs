@@ -17,6 +17,7 @@ namespace MyAnimePlugin3
 		// MA3
 		public string JMMServer_Address = "";
 		public string JMMServer_Port = "";
+	    public bool AskBeforeStartStreamingPlayback = true;
 		public bool HideEpisodeImageWhenUnwatched = false;
 		public bool HideEpisodeOverviewWhenUnwatched = false;
 		public string ImportFolderMappingsList = "";
@@ -440,6 +441,8 @@ namespace MyAnimePlugin3
 
             ModeToggleKey = xmlreader.GetValueAsString("Anime3", "ModeToggleKey", "]");
             StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
+            AskBeforeStartStreamingPlayback = xmlreader.GetValueAsBool("Anime3", "AskBeforeStartStreamingPlayback", true);
+
             _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
             xmlreader.Dispose();
 
@@ -537,6 +540,7 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLockTime", ((int)FfdshowNotificationsLockTime).ToString());
                 xmlwriter.SetValue("Anime3", "ModeToggleKey", ModeToggleKey);
                 xmlwriter.SetValue("Anime3", "StartTextToggleKey", StartTextToggleKey);
+                xmlwriter.SetValue("Anime3", "AskBeforeStartStreamingPlayback", AskBeforeStartStreamingPlayback);
 
                 string pth = Path.GetTempPath();
                 if (!_subPaths.Contains(pth))

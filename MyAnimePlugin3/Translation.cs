@@ -200,6 +200,8 @@ namespace MyAnimePlugin3
         public static string Ascending = "Ascending ";
         public static string AssociateFileEpisode = "Associate File With This Episode";
         public static string AssociateFFDshowPreset = "Associate with a ffdshow raw preset";
+        public static string AskBeforeStartStreamingPlayback = "Ask before starting streaming playback";
+        public static string AskBeforeStartStreamingPlaybackDialogText = "Ask before streaming  ({0})";
         public static string AutoCloseAfter = "Auto close after";
         public static string AverageRating = "Average Rating";
 
@@ -288,6 +290,7 @@ namespace MyAnimePlugin3
 
         public static string Fanart = "Fanart";
         public static string FFDShowRawPost = "ffdshow Raw Post-processing";
+        public static string FileNotFoundLocally = "File not found on local share";
         public static string Find = "Find";
         public static string FindOnlyShowMatches = "Find - Only Show Matches ({0})";
         public static string File = "File";

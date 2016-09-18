@@ -72,7 +72,7 @@ namespace MyAnimePlugin3.ViewModel
         {
             get
             {
-                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => a.ImportFolderType == 1 && !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
                 if (b == null)
                     return string.Empty;
                 return b.LocalFileSystemFullPath;

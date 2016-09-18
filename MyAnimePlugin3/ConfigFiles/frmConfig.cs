@@ -130,6 +130,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.Text = Translation.Anime3Config;
             this.lblModeToggleKey.Text = Translation.ModeToggle;
             this.lblStarttextToggleKey.Text = Translation.StartTextToggle;
+            this.chkAskBeforeStartStreamingPlayback.Text = Translation.AskBeforeStartStreamingPlayback;
 
             btnImagesLocation.Click += new EventHandler(btnImagesLocation_Click);
 			btnSelectLocalFolderPath.Click += new EventHandler(btnSelectLocalFolderPath_Click);
@@ -626,6 +627,7 @@ namespace MyAnimePlugin3.ConfigFiles
                 BaseConfig.Settings.StartTextToggleKey = "[";
             }
 
+            BaseConfig.Settings.AskBeforeStartStreamingPlayback = chkAskBeforeStartStreamingPlayback.Checked;
             BaseConfig.Settings.Save();
 
 
@@ -714,6 +716,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
             tbModeToggleKey.Text = BaseConfig.Settings.ModeToggleKey;
             tbStarttextToggleKey.Text = BaseConfig.Settings.StartTextToggleKey;
+            chkAskBeforeStartStreamingPlayback.Checked = BaseConfig.Settings.AskBeforeStartStreamingPlayback;
         }
         #endregion
 

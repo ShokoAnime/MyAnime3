@@ -388,14 +388,14 @@ namespace MyAnimePlugin3
                 }
             }
         }
-       
+
         /// <summary>
         /// Initiates Playback of m_currentEpisode[DBEpisode.cFilename] and calls Fullscreen Window
         /// </summary>
-		/// <param name="timeMovieStopped">Resumepoint of Movie, 0 or negative for Start from Beginning</param>
-		/// <param name="audioLanguage">Audio language to be used, use null for system default</param>
-		/// <param name="subLanguage">Subtitle language to be used, use null for system default or an empty string for no subs</param>
-		/// 
+        /// <param name="timeMovieStopped">Resumepoint of Movie, 0 or negative for Start from Beginning</param>
+        /// <param name="audioLanguage">Audio language to be used, use null for system default</param>
+        /// <param name="subLanguage">Subtitle language to be used, use null for system default or an empty string for no subs</param>
+        /// 
         bool Play(int timeMovieStopped, String audioLanguage, String subLanguage)
         {
 
@@ -407,25 +407,51 @@ namespace MyAnimePlugin3
                 // note: MP might still be unresponsive during this time, but at least we are in fullscreen and can see video should this happen
                 // I haven't actually found out why it happens, but I strongly believe it has something to do with the video database and the player doing something in the background
                 // (why does it do anything with the video database.....i just want it to play a file and do NOTHING else!)
-                GUIGraphicsContext.IsFullScreenVideo = true;
-                GUIWindowManager.ActivateWindow((int)GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
-
-				// Start Listening to any External Player Events
-				listenToExternalPlayerEvents = true;
-                CreateSubsOnTempIfNecesary(current.Media);
-                IPlayerFactory prevfactory = g_Player.Factory;
-                g_Player.Factory = PlayerFactory.Instance;
-
 
                 if (current.IsLocalOrStreaming() == true)
                 {
-                   
-                    string title = string.Empty;
-                    BaseConfig.MyAnimeLog.Write("Streaming: "+title);
+                    string filename = current.Media.Parts[0].Key.Split('/').Last();
+
+                    if (BaseConfig.Settings.AskBeforeStartStreamingPlayback)
+                    {
+                        GUIDialogYesNo dlgYesNo =
+                            (GUIDialogYesNo) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_YES_NO);
+
+                        if (null != dlgYesNo)
+                        {
+
+                            dlgYesNo.SetHeading(Translation.UseStreaming);
+                            dlgYesNo.SetLine(1, Translation.FileNotFoundLocally);
+                            dlgYesNo.SetLine(2, filename);
+                            dlgYesNo.SetDefaultToYes(true);
+                            dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+
+                            if (!dlgYesNo.IsConfirmed)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+
+                    GUIGraphicsContext.IsFullScreenVideo = true;
+                    GUIWindowManager.ActivateWindow((int) GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
+
+                    // Start Listening to any External Player Events
+                    listenToExternalPlayerEvents = true;
+                    CreateSubsOnTempIfNecesary(current.Media);
+
+                    IPlayerFactory prevfactory = g_Player.Factory;
+                    g_Player.Factory = PlayerFactory.Instance;
+
+                    timeMovieStopped = 0;
+                    string title = filename;
+                    BaseConfig.MyAnimeLog.Write("Streaming: " + title);
                     BaseConfig.MyAnimeLog.Write("Url: " + current.Media.Parts[0].Key);
                     if (g_Player.Player != null)
-                        BaseConfig.MyAnimeLog.Write("Before Player " + (g_Player.Player is Player ? "Anime" : "Mediaportal"));
-                    BaseConfig.MyAnimeLog.Write("Factory " + (g_Player.Factory is PlayerFactory ? "Anime" : "Mediaportal"));
+                        BaseConfig.MyAnimeLog.Write("Before Player " +
+                                                    (g_Player.Player is Player ? "Anime" : "Mediaportal"));
+                    BaseConfig.MyAnimeLog.Write("Factory " +
+                                                (g_Player.Factory is PlayerFactory ? "Anime" : "Mediaportal"));
 
                     //FIX MEDIAPORTAL 1 Bug checking for mediainfo.
                     g_Player._mediaInfo = new MediaInfoWrapper("donoexists");
@@ -434,74 +460,106 @@ namespace MyAnimePlugin3
 
                     currentUri = current.Media.Parts[0].Key;
                     if (g_Player.Player != null)
-                       BaseConfig.MyAnimeLog.Write("Player " + (g_Player.Player is Player ? "Anime" : "Mediaportal"));
-                    
+                        BaseConfig.MyAnimeLog.Write("Player " + (g_Player.Player is Player ? "Anime" : "Mediaportal"));
+
+                    g_Player.Factory = prevfactory;
                 }
                 else
                 {
+                    // Double check for local file existence
+                    if (!File.Exists(current.LocalFileSystemFullPath))
+                    {
+                        GUIDialogNotify dlgFileNotFound =
+                            (GUIDialogNotify) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_NOTIFY);
+
+                        if (null != dlgFileNotFound)
+                        {
+                            string filename = Path.GetFileName(current.LocalFileSystemFullPath);
+
+                            dlgFileNotFound.SetHeading(Translation.FileNotFoundLocally);
+                            dlgFileNotFound.SetText(filename);
+                            dlgFileNotFound.DoModal(GUIWindowManager.ActiveWindow);
+
+                            if (dlgFileNotFound.SelectedLabel > 0)
+                            {
+                                // Not handled
+                            }
+                        }
+
+                        return false;
+                    }
+
+                    GUIGraphicsContext.IsFullScreenVideo = true;
+                    GUIWindowManager.ActivateWindow((int) GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
+
+                    // Start Listening to any External Player Events
+                    listenToExternalPlayerEvents = true;
+                    CreateSubsOnTempIfNecesary(current.Media);
+
                     g_Player.Play(current.LocalFileSystemFullPath, g_Player.MediaType.Video);
                     currentUri = current.Media.Parts[0].Key = current.LocalFileSystemFullPath;
                 }
-                g_Player.Factory = prevfactory;
                 // Stop Listening to any External Player Events
-                    listenToExternalPlayerEvents = false;
+                listenToExternalPlayerEvents = false;
 
-				//set properties
-				if (g_Player.Playing)
-				{
-					g_Player.Pause();
+                //set properties
+                if (g_Player.Playing)
+                {
+                    g_Player.Pause();
 
-					//set audio language
-					if (string.IsNullOrEmpty(audioLanguage))
-						audioLanguage = DefaultAudioLanguage;
-					if (audioLanguage != "<file>")
-					{
-						string requestedLanguage = MediaPortal.Util.Utils.TranslateLanguageString(audioLanguage);
-						for (int index = 0; index < g_Player.AudioStreams; index++)
-						{
-							string lang = g_Player.AudioLanguage(index);
-							if (MediaPortal.Util.Utils.TranslateLanguageString(lang).Equals(requestedLanguage, StringComparison.OrdinalIgnoreCase))
-							{
-								g_Player.Player.CurrentAudioStream = index;
-								break;
-							}
-						}
-					}
+                    //set audio language
+                    if (string.IsNullOrEmpty(audioLanguage))
+                        audioLanguage = DefaultAudioLanguage;
+                    if (audioLanguage != "<file>")
+                    {
+                        string requestedLanguage = MediaPortal.Util.Utils.TranslateLanguageString(audioLanguage);
+                        for (int index = 0; index < g_Player.AudioStreams; index++)
+                        {
+                            string lang = g_Player.AudioLanguage(index);
+                            if (MediaPortal.Util.Utils.TranslateLanguageString(lang)
+                              .Equals(requestedLanguage, StringComparison.OrdinalIgnoreCase))
+                            {
+                                g_Player.Player.CurrentAudioStream = index;
+                                break;
+                            }
+                        }
+                    }
 
-					//set sub language
-					g_Player.Player.EnableSubtitle = true;
-					if (string.IsNullOrEmpty(subLanguage))
-						subLanguage = DefaultSubtitleLanguage;
-					if (subLanguage == "<none>")
-					{
-						//no subs
-						g_Player.Player.EnableSubtitle = false;
-					}
-					else if (subLanguage != "<file>")
-					{
-						//selected sub
-						string requestedLanguage = MediaPortal.Util.Utils.TranslateLanguageString(subLanguage);
-						for (int index = 0; index < g_Player.SubtitleStreams; index++)
-						{
-							string lang = g_Player.SubtitleLanguage(index);
-							if (MediaPortal.Util.Utils.TranslateLanguageString(lang).Equals(requestedLanguage, StringComparison.OrdinalIgnoreCase))
-							{
-								g_Player.Player.CurrentSubtitleStream = index;
-								break;
-							}
-						}
-					}
+                    //set sub language
+                    g_Player.Player.EnableSubtitle = true;
+                    if (string.IsNullOrEmpty(subLanguage))
+                        subLanguage = DefaultSubtitleLanguage;
+                    if (subLanguage == "<none>")
+                    {
+                        //no subs
+                        g_Player.Player.EnableSubtitle = false;
+                    }
+                    else if (subLanguage != "<file>")
+                    {
+                        //selected sub
+                        string requestedLanguage = MediaPortal.Util.Utils.TranslateLanguageString(subLanguage);
+                        for (int index = 0; index < g_Player.SubtitleStreams; index++)
+                        {
+                            string lang = g_Player.SubtitleLanguage(index);
+                            if (MediaPortal.Util.Utils.TranslateLanguageString(lang)
+                              .Equals(requestedLanguage, StringComparison.OrdinalIgnoreCase))
+                            {
+                                g_Player.Player.CurrentSubtitleStream = index;
+                                break;
+                            }
+                        }
+                    }
 
-					// tell player where to resume
-					if (timeMovieStopped > 0)
-						g_Player.SeekAbsolute(timeMovieStopped);
+                    // tell player where to resume
+                    if (timeMovieStopped > 0)
+                        g_Player.SeekAbsolute(timeMovieStopped);
 
-					if (curEpisode != null)
-						curEpisode.IncrementEpisodeStats(StatCountType.Played);
+                    if (curEpisode != null)
+                        curEpisode.IncrementEpisodeStats(StatCountType.Played);
 
-					g_Player.Pause();
+                    g_Player.Pause();
 
-				}
+                }
             }
             catch (Exception e)
             {
@@ -510,6 +568,7 @@ namespace MyAnimePlugin3
             }
             return result;
         }
+
         /*
 		public bool PlayPreview(string fileName)
 		{

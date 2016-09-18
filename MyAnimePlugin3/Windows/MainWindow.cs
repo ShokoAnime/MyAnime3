@@ -2085,25 +2085,37 @@ private bool ShowOptionsMenu(string previousMenu)
   }
 }
     */
-    private ContextMenuAction ShowOptionsDisplayMenu(string previousMenu)
-    {
-      string findFilter = String.Format(Translation.FindOnlyShowMatches, settings.FindFilter ? Translation.On : Translation.Off);
-      ContextMenu cmenu = new ContextMenu(Translation.DisplayOptions, previousmenu: previousMenu);
-      cmenu.AddAction(findFilter, () =>
+
+      private ContextMenuAction ShowOptionsDisplayMenu(string previousMenu)
       {
-        settings.FindFilter = !settings.FindFilter;
-        if (searchTimer.Enabled)
-        {
-          SaveOrRestoreFacadeItems(false);
-          DoSearch(m_Facade.SelectedListItemIndex);
-        }
-        settings.Save();
-      });
-      return cmenu.Show();
-    }
+          string findFilter = String.Format(Translation.FindOnlyShowMatches,
+              settings.FindFilter ? Translation.On : Translation.Off);
+          ContextMenu cmenu = new ContextMenu(Translation.DisplayOptions, previousmenu: previousMenu);
+          string askBeforeStreaming = String.Format(Translation.AskBeforeStartStreamingPlaybackDialogText,
+              settings.AskBeforeStartStreamingPlayback ? Translation.On : Translation.Off);
+
+          cmenu.AddAction(findFilter, () =>
+          {
+              settings.FindFilter = !settings.FindFilter;
+              if (searchTimer.Enabled)
+              {
+                  SaveOrRestoreFacadeItems(false);
+                  DoSearch(m_Facade.SelectedListItemIndex);
+              }
+              settings.Save();
+          });
+
+          cmenu.AddAction(askBeforeStreaming, () =>
+          {
+              settings.AskBeforeStartStreamingPlayback = !settings.AskBeforeStartStreamingPlayback;
+              settings.Save();
+          });
+
+          return cmenu.Show();
+      }
 
 
-    #endregion
+      #endregion
 
 
 

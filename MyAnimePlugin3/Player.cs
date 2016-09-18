@@ -73,7 +73,7 @@ namespace MyAnimePlugin3
 
                 //Manually add codecs based on file extension if not in auto-settings
                 // switch back to directx fullscreen mode
-                Log.Info("VideoPlayer9: Enabling DX9 exclusive mode");
+                Log.Info("MyAnime3Player: Enabling DX9 exclusive mode");
                 msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_SWITCH_FULL_WINDOWED, 0, 0, 0, 1, 0, null);
                 GUIWindowManager.SendMessage(msg);
 
@@ -104,7 +104,7 @@ namespace MyAnimePlugin3
                     hr = graphBuilder.AddFilter(_interfaceSourceFilter, LAV_SPLITTER_FILTER_SOURCE);
                     DsError.ThrowExceptionForHR(hr);
 
-                    Log.Debug("VideoPlayer9: Add LAVSplitter Source to graph");
+                    Log.Debug("MyAnime3Player: Add LAVSplitter Source to graph");
 
                     IFileSourceFilter interfaceFile = (IFileSourceFilter) _interfaceSourceFilter;
                     hr = interfaceFile.Load(m_strCurrentFile, null);
@@ -142,7 +142,7 @@ namespace MyAnimePlugin3
                         catch (Exception ex)
                         {
                             Log.Error(
-                                "VideoPlayer9: Exception loading Source Filter setup in setting in DShow graph , try to load by merit",
+                                "MyAnime3Player: Exception loading Source Filter setup in setting in DShow graph , try to load by merit",
                                 ex);
                             graphBuilder.RemoveFilter(_interfaceSourceFilter);
                             DirectShowUtil.ReleaseComObject(_interfaceSourceFilter);
@@ -167,7 +167,7 @@ namespace MyAnimePlugin3
                             hr = graphBuilder.AddFilter(Splitter, LAV_SPLITTER_FILTER);
                             DsError.ThrowExceptionForHR(hr);
 
-                            Log.Debug("VideoPlayer9: Add LAVSplitter to graph");
+                            Log.Debug("MyAnime3Player: Add LAVSplitter to graph");
 
                             if (hr != 0)
                             {
@@ -192,136 +192,6 @@ namespace MyAnimePlugin3
                     filterCodec._audioRendererFilter = DirectShowUtil.AddAudioRendererToGraph(graphBuilder,
                         filterConfig.AudioRenderer, false);
                 }
-
-                #region load external audio streams
-
-                // check if current "File" is a file... it could also be a URL
-                // Directory.Getfiles, ... will other give us an exception
-                if (File.Exists(m_strCurrentFile) && !AudioOnly)
-                {
-                    //load audio file (ac3, dts, mka, mp3) only with if the name matches partially with video file.
-                    string[] audioFiles = Directory.GetFiles(Path.GetDirectoryName(m_strCurrentFile),
-                        Path.GetFileNameWithoutExtension(m_strCurrentFile) + "*.*");
-                    bool audioSwitcherLoaded = false;
-                    foreach (string file in audioFiles)
-                    {
-                        switch (Path.GetExtension(file))
-                        {
-                            case ".mp3":
-                            case ".dts":
-                            case ".mka":
-                            case ".ac3":
-                                if (!audioSwitcherLoaded)
-                                {
-                                    IBaseFilter switcher = DirectShowUtil.GetFilterByName(graphBuilder,
-                                        MEDIAPORTAL_AUDIOSWITCHER_FILTER);
-                                    if (switcher != null)
-                                    {
-                                        DirectShowUtil.ReleaseComObject(switcher);
-                                        switcher = null;
-                                    }
-                                    else
-                                    {
-                                        _audioSwitcher = DirectShowUtil.AddFilterToGraph(graphBuilder,
-                                            MEDIAPORTAL_AUDIOSWITCHER_FILTER);
-                                    }
-                                    audioSwitcherLoaded = true;
-                                }
-                                _AudioSourceFilter = DirectShowUtil.AddFilterToGraph(graphBuilder, FILE_SYNC_FILTER);
-                                int result = ((IFileSourceFilter) _AudioSourceFilter).Load(file, null);
-
-                                //Force using LAVFilter
-                                _AudioExtSplitterFilter = DirectShowUtil.AddFilterToGraph(graphBuilder,
-                                    LAV_SPLITTER_FILTER);
-
-                                if (result != 0 || _AudioExtSplitterFilter == null)
-                                {
-                                    if (_AudioSourceFilter != null)
-                                    {
-                                        graphBuilder.RemoveFilter(_AudioSourceFilter);
-                                        DirectShowUtil.ReleaseComObject(_AudioSourceFilter);
-                                        _AudioSourceFilter = null;
-                                    }
-                                    if (_AudioExtSplitterFilter != null)
-                                    {
-                                        graphBuilder.RemoveFilter(_AudioExtSplitterFilter);
-                                        DirectShowUtil.ReleaseComObject(_AudioExtSplitterFilter);
-                                        _AudioExtSplitterFilter = null;
-                                    }
-                                    //Trying Add Audio decoder in graph
-                                    InvokePrivateAddFilterToGraphAndRelease(filterConfig.Audio);
-                                    graphBuilder.RenderFile(file, string.Empty);
-                                    Log.Debug("VideoPlayerVMR9 : External audio file loaded \"{0}\"", file);
-                                    AudioExternal = true;
-                                    break;
-                                }
-
-                                //Add Audio decoder in graph
-                                _AudioExtFilter = DirectShowUtil.AddFilterToGraph(graphBuilder, filterConfig.Audio);
-
-                                //Connect Filesource with the splitter
-                                IPin pinOutAudioExt1 = DsFindPin.ByDirection((IBaseFilter) _AudioSourceFilter,
-                                    PinDirection.Output, 0);
-                                IPin pinInAudioExt2 = DsFindPin.ByDirection((IBaseFilter) _AudioExtSplitterFilter,
-                                    PinDirection.Input, 0);
-                                hr = graphBuilder.Connect(pinOutAudioExt1, pinInAudioExt2);
-
-                                //Connect Splitter with the Audio Decoder
-                                IPin pinOutAudioExt3 = DsFindPin.ByDirection((IBaseFilter) _AudioExtSplitterFilter,
-                                    PinDirection.Output,
-                                    0);
-                                IPin pinInAudioExt4 = DsFindPin.ByDirection((IBaseFilter) _AudioExtFilter,
-                                    PinDirection.Input, 0);
-                                hr = graphBuilder.Connect(pinOutAudioExt3, pinInAudioExt4);
-
-                                //Render outpin from Audio Decoder
-                                DirectShowUtil.RenderUnconnectedOutputPins(graphBuilder, _AudioExtFilter);
-
-                                //Cleanup External Audio (Release)
-                                if (_AudioSourceFilter != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(_AudioSourceFilter);
-                                    _AudioSourceFilter = null;
-                                }
-                                if (_AudioExtSplitterFilter != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(_AudioExtSplitterFilter);
-                                    _AudioExtSplitterFilter = null;
-                                }
-                                if (_AudioExtFilter != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(_AudioExtFilter);
-                                    _AudioExtFilter = null;
-                                }
-                                if (pinOutAudioExt1 != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(pinOutAudioExt1);
-                                    pinOutAudioExt1 = null;
-                                }
-                                if (pinInAudioExt2 != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(pinInAudioExt2);
-                                    pinInAudioExt2 = null;
-                                }
-                                if (pinOutAudioExt3 != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(pinOutAudioExt3);
-                                    pinOutAudioExt3 = null;
-                                }
-                                if (pinInAudioExt4 != null)
-                                {
-                                    DirectShowUtil.ReleaseComObject(pinInAudioExt4);
-                                    pinInAudioExt4 = null;
-                                }
-
-                                Log.Debug("VideoPlayerVMR9 : External audio file loaded \"{0}\"", file);
-                                AudioExternal = true;
-                                break;
-                        }
-                    }
-                }
-
-                #endregion
 
                 // Add preferred audio filters
                 UpdateFilters("Audio");
@@ -391,7 +261,7 @@ namespace MyAnimePlugin3
 
                 if ((Vmr9 == null || !Vmr9.IsVMR9Connected) && !AudioOnly)
                 {
-                    Log.Error("VideoPlayer9: Failed to render file -> vmr9");
+                    Log.Error("MyAnime3Player: Failed to render file -> vmr9");
                     mediaCtrl = null;
                     Cleanup();
                     return false;
@@ -414,7 +284,7 @@ namespace MyAnimePlugin3
             catch (Exception ex)
             {
                 Error.SetError("Unable to play movie", "Unable build graph for VMR9");
-                Log.Error("VideoPlayer9: Exception while creating DShow graph {0} {1}", ex.Message, ex.StackTrace);
+                Log.Error("MyAnime3Player: Exception while creating DShow graph {0} {1}", ex.Message, ex.StackTrace);
                 Cleanup();
                 return false;
             }

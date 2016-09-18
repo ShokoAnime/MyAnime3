@@ -817,5 +817,7 @@ namespace MyAnimePlugin3.ConfigFiles
                 tbStarttextToggleKey.Text = TruncateText(tbStarttextToggleKey.Text, 1);
             }
         }
+
+
     }
 }

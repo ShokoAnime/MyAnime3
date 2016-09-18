@@ -42,28 +42,23 @@ namespace MyAnimePlugin3.ViewModel
             return result;
 
         }
-        public bool FileIsAvailable
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(LocalFileSystemFullPath))
-                    return File.Exists(LocalFileSystemFullPath);
-                return false;
 
-            }
+	    public string Uri
+	    {
+	        get
+	        {
+	            if (FileIsAvailable)
+	                return LocalFileSystemFullPath;
+	            if (Media?.Parts != null && Media.Parts.Count > 0)
+	                return Media.Parts[0].Key;
+	            return string.Empty;
+	        }
         }
+        public bool FileIsAvailable => !string.IsNullOrEmpty(LocalFileSystemFullPath);
 
-        public bool FileIsNotAvailable
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(LocalFileSystemFullPath))
-                    return false;
-                return !File.Exists(LocalFileSystemFullPath);
-            }
-        }
+	    public bool FileIsNotAvailable => string.IsNullOrEmpty(LocalFileSystemFullPath);
 
-        public string FileDirectory
+	    public string FileDirectory
         {
             get { return string.Join(",", Places.Select(a => a.FileDirectory)); }
         }

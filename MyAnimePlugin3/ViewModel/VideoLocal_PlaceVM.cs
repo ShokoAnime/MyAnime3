@@ -26,9 +26,19 @@ namespace MyAnimePlugin3.ViewModel
                 if (ImportFolder.CloudID.HasValue)
                     return string.Empty;
 
-                BaseConfig.MyAnimeLog.Write("Checking Config for Possible file: "+ ImportFolder.ImportFolderLocation+" / "+FilePath);
                 if (BaseConfig.Settings.ImportFolderMappings.ContainsKey(ImportFolderID))
-                    return Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], FilePath);
+                {
+                    try
+                    {
+                        string path = Path.Combine(BaseConfig.Settings.ImportFolderMappings[ImportFolderID], FilePath);
+                        if (File.Exists(path))
+                            return path;
+                    }
+                    catch (Exception)
+                    {
+                        //ignored
+                    }
+                }
                 try
                 {
                     if (File.Exists(Path.Combine(ImportFolder.ImportFolderLocation, FilePath)))

@@ -211,9 +211,8 @@ namespace MyAnimePlugin3.ViewModel
 
         public string FileName => VideoLocal_FileName;
 
-	    public string LocalFileSystemFullPath => FullPath;
 
-	    public string FullPath
+	    public string LocalFileSystemFullPath
         {
             get
             {
@@ -223,26 +222,20 @@ namespace MyAnimePlugin3.ViewModel
                 return b.LocalFileSystemFullPath;
             }
         }
-        public bool FileIsAvailable
+        public string Uri
         {
             get
             {
-                if (!string.IsNullOrEmpty(LocalFileSystemFullPath))
-                    return File.Exists(LocalFileSystemFullPath);
-                return false;
-
+                if (FileIsAvailable)
+                    return LocalFileSystemFullPath;
+                if (Media?.Parts != null && Media.Parts.Count > 0)
+                    return Media.Parts[0].Key;
+                return string.Empty;
             }
         }
+        public bool FileIsAvailable => !string.IsNullOrEmpty(LocalFileSystemFullPath);
 
-        public bool FileIsNotAvailable
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(LocalFileSystemFullPath))
-                    return false;
-                return !File.Exists(LocalFileSystemFullPath);
-            }
-        }
+        public bool FileIsNotAvailable => string.IsNullOrEmpty(LocalFileSystemFullPath);
 
 
         public string VideoInfoSummary

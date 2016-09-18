@@ -410,8 +410,6 @@ namespace MyAnimePlugin3
 
                 if (current.IsLocalOrStreaming() == true)
                 {
-                    string filename = current.Media.Parts[0].Key.Split('/').Last();
-
                     if (BaseConfig.Settings.AskBeforeStartStreamingPlayback)
                     {
                         GUIDialogYesNo dlgYesNo =
@@ -422,7 +420,7 @@ namespace MyAnimePlugin3
 
                             dlgYesNo.SetHeading(Translation.UseStreaming);
                             dlgYesNo.SetLine(1, Translation.FileNotFoundLocally);
-                            dlgYesNo.SetLine(2, filename);
+                            dlgYesNo.SetLine(2, current.FileName);
                             dlgYesNo.SetDefaultToYes(true);
                             dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
 
@@ -444,60 +442,24 @@ namespace MyAnimePlugin3
                     g_Player.Factory = PlayerFactory.Instance;
 
                     timeMovieStopped = 0;
-                    string title = filename;
-                    BaseConfig.MyAnimeLog.Write("Streaming: " + title);
-                    BaseConfig.MyAnimeLog.Write("Url: " + current.Media.Parts[0].Key);
-                    if (g_Player.Player != null)
-                        BaseConfig.MyAnimeLog.Write("Before Player " +
-                                                    (g_Player.Player is Player ? "Anime" : "Mediaportal"));
-                    BaseConfig.MyAnimeLog.Write("Factory " +
-                                                (g_Player.Factory is PlayerFactory ? "Anime" : "Mediaportal"));
 
                     //FIX MEDIAPORTAL 1 Bug checking for mediainfo.
                     g_Player._mediaInfo = new MediaInfoWrapper("donoexists");
                     //************************//
-                    g_Player.Play(current.Media.Parts[0].Key, g_Player.MediaType.Video);
-
-                    currentUri = current.Media.Parts[0].Key;
-                    if (g_Player.Player != null)
-                        BaseConfig.MyAnimeLog.Write("Player " + (g_Player.Player is Player ? "Anime" : "Mediaportal"));
-
+                    g_Player.Play(current.Uri, g_Player.MediaType.Video);
+                    currentUri = current.Uri;
                     g_Player.Factory = prevfactory;
                 }
                 else
                 {
-                    // Double check for local file existence
-                    if (!File.Exists(current.LocalFileSystemFullPath))
-                    {
-                        GUIDialogNotify dlgFileNotFound =
-                            (GUIDialogNotify) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_NOTIFY);
-
-                        if (null != dlgFileNotFound)
-                        {
-                            string filename = Path.GetFileName(current.LocalFileSystemFullPath);
-
-                            dlgFileNotFound.SetHeading(Translation.FileNotFoundLocally);
-                            dlgFileNotFound.SetText(filename);
-                            dlgFileNotFound.DoModal(GUIWindowManager.ActiveWindow);
-
-                            if (dlgFileNotFound.SelectedLabel > 0)
-                            {
-                                // Not handled
-                            }
-                        }
-
-                        return false;
-                    }
-
                     GUIGraphicsContext.IsFullScreenVideo = true;
                     GUIWindowManager.ActivateWindow((int) GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
 
                     // Start Listening to any External Player Events
                     listenToExternalPlayerEvents = true;
-                    CreateSubsOnTempIfNecesary(current.Media);
 
-                    g_Player.Play(current.LocalFileSystemFullPath, g_Player.MediaType.Video);
-                    currentUri = current.Media.Parts[0].Key = current.LocalFileSystemFullPath;
+                    g_Player.Play(current.Uri, g_Player.MediaType.Video);
+                    currentUri = current.Uri;
                 }
                 // Stop Listening to any External Player Events
                 listenToExternalPlayerEvents = false;

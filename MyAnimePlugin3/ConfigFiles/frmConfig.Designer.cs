@@ -150,6 +150,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.lblDisplayEpsDesc = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkAskBeforeStartStreamingPlayback = new System.Windows.Forms.CheckBox();
             this.btnSaveLocalFolderPath = new System.Windows.Forms.Button();
             this.btnSelectLocalFolderPath = new System.Windows.Forms.Button();
             this.txtFolderLocalPath = new System.Windows.Forms.TextBox();
@@ -184,7 +185,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label82 = new System.Windows.Forms.Label();
             this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
             this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
-            this.chkAskBeforeStartStreamingPlayback = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl4.SuspendLayout();
@@ -1537,6 +1537,16 @@ namespace MyAnimePlugin3.ConfigFiles
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Import Folders";
             // 
+            // chkAskBeforeStartStreamingPlayback
+            // 
+            this.chkAskBeforeStartStreamingPlayback.AutoSize = true;
+            this.chkAskBeforeStartStreamingPlayback.Location = new System.Drawing.Point(495, 180);
+            this.chkAskBeforeStartStreamingPlayback.Name = "chkAskBeforeStartStreamingPlayback";
+            this.chkAskBeforeStartStreamingPlayback.Size = new System.Drawing.Size(208, 17);
+            this.chkAskBeforeStartStreamingPlayback.TabIndex = 44;
+            this.chkAskBeforeStartStreamingPlayback.Text = "Ask before starting streaming playback";
+            this.chkAskBeforeStartStreamingPlayback.UseVisualStyleBackColor = true;
+            // 
             // btnSaveLocalFolderPath
             // 
             this.btnSaveLocalFolderPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1879,16 +1889,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.chkFfdshowNotificationsShow.TabIndex = 0;
             this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
             this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
-            // 
-            // chkAskBeforeStartStreamingPlayback
-            // 
-            this.chkAskBeforeStartStreamingPlayback.AutoSize = true;
-            this.chkAskBeforeStartStreamingPlayback.Location = new System.Drawing.Point(495, 180);
-            this.chkAskBeforeStartStreamingPlayback.Name = "chkAskBeforeStartStreamingPlayback";
-            this.chkAskBeforeStartStreamingPlayback.Size = new System.Drawing.Size(208, 17);
-            this.chkAskBeforeStartStreamingPlayback.TabIndex = 44;
-            this.chkAskBeforeStartStreamingPlayback.Text = "Ask before starting streaming playback";
-            this.chkAskBeforeStartStreamingPlayback.UseVisualStyleBackColor = true;
             // 
             // frmConfig
             // 

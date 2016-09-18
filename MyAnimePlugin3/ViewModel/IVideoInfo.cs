@@ -10,9 +10,10 @@ namespace MyAnimePlugin3.ViewModel
     public interface IVideoInfo
     {
         string FileName { get; }
-        string LocalFileSystemFullPath { get; }
+        string Uri { get; }
         Media Media { get; }
         int VideoLocalID { get; }
         bool? IsLocalOrStreaming();
+
     }
 }

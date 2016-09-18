@@ -113,7 +113,7 @@ namespace MyAnimePlugin3.DataHelpers
 			FileFfdshowPresetVM fileFfdshowPreset = null;
 			foreach (VideoDetailedVM fileLocal in fileLocals)
 			{
-				if (fileLocal.FullPath.ToUpper() == fileName.ToUpper())
+				if (fileLocal.Uri.ToUpper() == fileName.ToUpper())
 				{
 					fileFfdshowPreset = fileLocal.FileFfdshowPreset;
 					break;

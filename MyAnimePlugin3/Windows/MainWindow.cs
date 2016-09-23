@@ -4106,7 +4106,8 @@ private bool ShowOptionsMenu(string previousMenu)
       {
         if (ser.AnimeSeriesID.HasValue)
         {
-          JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false, Int32.MaxValue, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+            JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false,
+                Int32.MaxValue, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
           LoadFacade();
         }
       });
@@ -4114,7 +4115,9 @@ private bool ShowOptionsMenu(string previousMenu)
       {
         if (ser.AnimeSeriesID.HasValue)
         {
-          JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true, episode.EpisodeNumber, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+            JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false,
+                episode.EpisodeNumber -1, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+
           Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
           if (contract != null)
           {
@@ -4130,7 +4133,8 @@ private bool ShowOptionsMenu(string previousMenu)
       {
         if (ser.AnimeSeriesID.HasValue)
         {
-          JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false, episode.EpisodeNumber, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+            JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true,
+                episode.EpisodeNumber -1, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
           LoadFacade();
         }
       });

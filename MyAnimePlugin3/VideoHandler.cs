@@ -554,6 +554,7 @@ namespace MyAnimePlugin3
         {
             if (PlayBackOpIsOfConcern(type, filename))
             {
+                MainWindow.keyCommandDelayTimer.Restart();
                 LogPlayBackOp("stopped", filename);
                 try
 				{
@@ -645,6 +646,7 @@ namespace MyAnimePlugin3
         {
             if (PlayBackOpIsOfConcern(type, filename))
             {
+                MainWindow.keyCommandDelayTimer.Start();
                 LogPlayBackOp("started", filename);
                 // really stupid, you have to wait until the player itself sets the properties (a few seconds) and after that set them
                 w.RunWorkerAsync(false);

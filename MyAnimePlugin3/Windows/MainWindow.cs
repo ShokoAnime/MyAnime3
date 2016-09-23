@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using MyAnimePlugin3.Downloads;
 using Action = MediaPortal.GUI.Library.Action;
 using System.Collections;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using MyAnimePlugin3.ViewModel;
@@ -233,6 +234,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
 
     private System.Timers.Timer searchTimer = null;
     private System.Timers.Timer autoUpdateTimer = null;
+    public static Stopwatch keyCommandDelayTimer = new Stopwatch();
     private SearchCollection search = null;
     private List<GUIListItem> lstFacadeItems = null;
     private string searchSound = "click.wav";
@@ -2610,9 +2612,17 @@ private bool ShowOptionsMenu(string previousMenu)
 
       private void KeyCommandHandler(int keycodeInput)
       {
-            // Skip key command processing if video window is fullscreen
-            if (g_Player.FullScreen)
-                return;
+          // Skip key command processing if video window is fullscreen
+          if (g_Player.FullScreen)
+              return;
+
+          // Delay stopwatch for certain events
+          if (keyCommandDelayTimer.ElapsedMilliseconds < 5000)
+          {
+              return;
+          }
+
+          keyCommandDelayTimer.Stop();
 
           //when the list is selected, search the input
           if ((m_Facade.CurrentLayout == GUIFacadeControl.Layout.List && m_Facade.ListLayout.IsFocused)
@@ -2623,7 +2633,7 @@ private bool ShowOptionsMenu(string previousMenu)
               // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
               char keycode = (char) keycodeInput;
               string keycodeString = KeycodeToString(keycodeInput).ToLower();
-            
+
               if (keycodeString == BaseConfig.Settings.ModeToggleKey)
               {
                   OnSearchAction(SearchAction.ToggleMode);

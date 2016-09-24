@@ -79,8 +79,8 @@ namespace MyAnimePlugin3
 		public AnimeEpisodeVM prevEpisode = null;
         private IVideoInfo current;
         private IVideoInfo previous;
-        private string currentUri=string.Empty;
-        private string previousUri=string.Empty;
+        private string currentUri = string.Empty;
+        private string previousUri = string.Empty;
 
 /*        private string curFileName = "";
 		private string prevFileName = "";
@@ -436,7 +436,7 @@ namespace MyAnimePlugin3
                     if (BaseConfig.Settings.AskBeforeStartStreamingPlayback)
                     {
                         GUIDialogYesNo dlgYesNo =
-                            (GUIDialogYesNo) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_YES_NO);
+                            (GUIDialogYesNo)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_YES_NO);
 
                         if (null != dlgYesNo)
                         {
@@ -455,7 +455,7 @@ namespace MyAnimePlugin3
                     }
 
                     GUIGraphicsContext.IsFullScreenVideo = true;
-                    GUIWindowManager.ActivateWindow((int) GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
+                    GUIWindowManager.ActivateWindow((int)GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
 
                     // Start Listening to any External Player Events
                     listenToExternalPlayerEvents = true;
@@ -469,21 +469,24 @@ namespace MyAnimePlugin3
                     //FIX MEDIAPORTAL 1 Bug checking for mediainfo.
                     g_Player._mediaInfo = new MediaInfoWrapper("donoexists");
                     //************************//
-                    g_Player.Play(current.Uri, g_Player.MediaType.Video);
                     currentUri = current.Uri;
                     g_Player.Factory = prevfactory;
                 }
                 else
                 {
                     GUIGraphicsContext.IsFullScreenVideo = true;
-                    GUIWindowManager.ActivateWindow((int) GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
+                    GUIWindowManager.ActivateWindow((int)GUIWindow.Window.WINDOW_FULLSCREEN_VIDEO);
 
                     // Start Listening to any External Player Events
                     listenToExternalPlayerEvents = true;
-
-                    g_Player.Play(current.Uri, g_Player.MediaType.Video);
                     currentUri = current.Uri;
                 }
+
+                if (string.IsNullOrEmpty(current.Uri))
+                    return false;
+
+                g_Player.Play(current.Uri, g_Player.MediaType.Video);
+
                 // Stop Listening to any External Player Events
                 listenToExternalPlayerEvents = false;
 
@@ -721,10 +724,8 @@ namespace MyAnimePlugin3
       bool PlayBackOpIsOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
       {
           bool IsOfConcern = curEpisode != null && type == g_Player.MediaType.Video && currentUri == filename;
-          BaseConfig.MyAnimeLog.Write("Current uri: " + currentUri);
-          BaseConfig.MyAnimeLog.Write("Filename: " + currentUri);
 
-          if (IsOfConcern)
+            if (IsOfConcern)
           {
               BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
           }
@@ -835,13 +836,14 @@ namespace MyAnimePlugin3
 
                     if (logOutput)
                     {
-                        BaseConfig.MyAnimeLog.Write("Trakt has finished finished");
+                        BaseConfig.MyAnimeLog.Write("Trakt scrobbling has finished finished");
                     }
                 }
             }
             catch (Exception e)
             {
-                BaseConfig.MyAnimeLog.Write("Error in VideoHandler.TraktScrobble: {0}", e.ToString());
+                if (logOutput)
+                    BaseConfig.MyAnimeLog.Write("Error in VideoHandler.TraktScrobble: {0}", e.ToString());
             }
         }
         #endregion

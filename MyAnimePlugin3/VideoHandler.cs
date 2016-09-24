@@ -804,6 +804,8 @@ namespace MyAnimePlugin3
                         TraktScrobble(!g_Player.Paused ? ScrobblePlayingStatus.Start : ScrobblePlayingStatus.Pause);
                         Thread.Sleep(TimeSpan.FromSeconds(15));
                     }
+
+                    TraktScrobble(ScrobblePlayingStatus.Stop);
                 }
 
                 BaseConfig.MyAnimeLog.Write("Stopping Trakt scrobble thread", true);

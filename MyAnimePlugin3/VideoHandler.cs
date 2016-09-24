@@ -643,7 +643,13 @@ namespace MyAnimePlugin3
 
 			    try
 			    {
-			        BaseConfig.MyAnimeLog.Write("Checking for set watched");
+                    // Skip if paused
+                    if (g_Player.Paused)
+                    {
+                        return;
+                    }
+
+                    BaseConfig.MyAnimeLog.Write("Checking for set watched");
 
 			        #region Set Watched
 
@@ -654,10 +660,10 @@ namespace MyAnimePlugin3
 
                     if (!g_Player.IsExternalPlayer)
 			        {
-			            if ((stoptime/g_Player.Duration) > watchedAfter/100)
-			                PlaybackOperationEnded(true, prevEpisode);
-			            else
-			                PlaybackOperationEnded(false, prevEpisode);
+			                if ((stoptime/g_Player.Duration) > watchedAfter/100)
+			                    PlaybackOperationEnded(true, prevEpisode);
+			                else
+			                    PlaybackOperationEnded(false, prevEpisode);
 			        }
 			        else
 			        {
@@ -795,8 +801,7 @@ namespace MyAnimePlugin3
                 {
                     while (g_Player.Playing && traktScrobbleEnabled)
                     {
-                        // Only update every 15s
-                        TraktScrobble(ScrobblePlayingStatus.Start, false);
+                        TraktScrobble(!g_Player.Paused ? ScrobblePlayingStatus.Start : ScrobblePlayingStatus.Pause);
                         Thread.Sleep(TimeSpan.FromSeconds(15));
                     }
                 }
@@ -809,7 +814,7 @@ namespace MyAnimePlugin3
             }
         }
 
-        public void TraktScrobble(ScrobblePlayingStatus scrobblePlayingStatus, bool logOutput = true)
+        public void TraktScrobble(ScrobblePlayingStatus scrobblePlayingStatus, bool logOutput = false)
         {
             try
             {
@@ -825,6 +830,8 @@ namespace MyAnimePlugin3
                     {
                         BaseConfig.MyAnimeLog.Write("Trakt is scrobbling for anime episode id: " + curEpisode.AnimeEpisodeID);
                         BaseConfig.MyAnimeLog.Write("Trakt is scrobbling with played percentage: " + (int) percentagePlayed);
+                        BaseConfig.MyAnimeLog.Write("Trakt scrobble type: " + scrobblePlayingStatus);
+
                     }
 
                     JMMServerVM.Instance.clientBinaryHTTP.TraktScrobble(curEpisode.AnimeEpisodeID,
@@ -832,7 +839,7 @@ namespace MyAnimePlugin3
 
                     if (logOutput)
                     {
-                        BaseConfig.MyAnimeLog.Write("Trakt scrobbling has finished finished");
+                        BaseConfig.MyAnimeLog.Write("Trakt scrobbling has finished scrobbling");
                     }
                 }
             }

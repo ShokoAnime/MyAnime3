@@ -18116,10 +18116,13 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCloudProviders", ReplyAction="http://tempuri.org/IJMMServer/GetCloudProvidersResponse")]
         System.Collections.Generic.List<MyAnimePlugin3.JMMServerBinary.Contract_CloudAccount> GetCloudProviders();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetResumePosition", ReplyAction="http://tempuri.org/IJMMServer/SetResumePositionResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IJMMServer/SetResumePosition", ReplyAction = "http://tempuri.org/IJMMServer/SetResumePositionResponse")]
         void SetResumePosition(int videolocalid, int jmmuserID, long position);
-        
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IJMMServer/TraktScrobble", ReplyAction = "http://tempuri.org/IJMMServer/TraktScrobbleResponse")]
+        void TraktScrobble(int animeId, int type, int progress, int status);
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages", ReplyAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse")]
         System.Collections.Generic.List<string> GetAllUniqueAudioLanguages();
         
@@ -18533,7 +18536,7 @@ namespace MyAnimePlugin3.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetResumePositionOnVideo", ReplyAction="http://tempuri.org/IJMMServer/SetResumePositionOnVideoResponse")]
         string SetResumePositionOnVideo(int videoLocalID, long resumeposition, int userID);
-        
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideo", ReplyAction="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideoResponse")]
         string ToggleWatchedStatusOnVideo(int videoLocalID, bool watchedStatus, int userID);
         
@@ -18949,7 +18952,12 @@ namespace MyAnimePlugin3.JMMServerBinary {
         public void SetResumePosition(int videolocalid, int jmmuserID, long position) {
             base.Channel.SetResumePosition(videolocalid, jmmuserID, position);
         }
-        
+
+        public void TraktScrobble(int animeId, int type, int progress, int status)
+        {
+            base.Channel.TraktScrobble(animeId, type, progress, status);
+        }
+
         public System.Collections.Generic.List<string> GetAllUniqueAudioLanguages() {
             return base.Channel.GetAllUniqueAudioLanguages();
         }

@@ -9,7 +9,7 @@ namespace MyAnimePlugin3.ViewModel
 	public class VideoLocalVM : IVideoInfo
 	{
 		public int VideoLocalID { get; set; }
-		public string FileName { get; set; }
+        public string FileName { get; set; }
 		public int ImportFolderID { get; set; }
 		public string Hash { get; set; }
 		public string CRC32 { get; set; }

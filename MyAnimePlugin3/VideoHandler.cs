@@ -36,6 +36,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using MyAnimePlugin3.DataHelpers;
 using MyAnimePlugin3.JMMServerBinary;
 using MyAnimePlugin3.ViewModel;
@@ -85,12 +86,25 @@ namespace MyAnimePlugin3
 		private string prevFileName = "";
         private Media prevMedia;
         private Media curMedia;*/
-        int timeMovieStopped = 0;
-		private BackgroundWorker w = new BackgroundWorker();
+        int _timeMovieStopped = 0;
+        private bool traktScrobbleEnabled;
+        private BackgroundWorker w = new BackgroundWorker();
 		private bool listenToExternalPlayerEvents = false;
         WebClient wc = new WebClient();
         public string DefaultAudioLanguage = "<file>";
 		public string DefaultSubtitleLanguage = "<file>";
+
+        public enum ScrobblePlayingStatus
+        {
+            Start = 1,
+            Pause = 2,
+            Stop = 3
+        }
+        public enum ScrobblePlayingType
+        {
+            movie = 1,
+            episode = 2
+        }
         #endregion
 
         #region Constructor
@@ -146,8 +160,8 @@ namespace MyAnimePlugin3
 
 
                 #region Ask user to Resume
-                timeMovieStopped = (int)(fileToPlay.ResumePosition / 1000);
-                if (timeMovieStopped > 0)
+                _timeMovieStopped = (int)(fileToPlay.ResumePosition / 1000);
+                if (_timeMovieStopped > 0)
 				{
 					GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_YES_NO);
 
@@ -160,13 +174,13 @@ namespace MyAnimePlugin3
 						dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
 						if (!dlgYesNo.IsConfirmed) // reset resume data in DB
 						{
-							timeMovieStopped = 0;
+                            _timeMovieStopped = 0;
 						}
 					}
 				}
 				#endregion
 
-				Play(timeMovieStopped, fileToPlay.DefaultAudioLanguage, fileToPlay.DefaultSubtitleLanguage);
+				Play(_timeMovieStopped, fileToPlay.DefaultAudioLanguage, fileToPlay.DefaultSubtitleLanguage);
 				return true;
 			}
 			catch (Exception ex)
@@ -209,17 +223,14 @@ namespace MyAnimePlugin3
                     if (dlg.SelectedId > 0)
                     {
                         fileToPlay = fileLocalList[dlg.SelectedId - 1];
-                    }
-					
-                }
-
-                
+                    }				
+                }              
 
                 if (fileToPlay == null) return false;
                 previous = current;
                 previousUri = currentUri;
                 current = fileToPlay;
-				BaseConfig.MyAnimeLog.Write("Filetoplay: {0}", fileToPlay.FileName);
+                BaseConfig.MyAnimeLog.Write("Filetoplay: {0}", fileToPlay.FileName);
 
 
                 if (!fileToPlay.IsLocalOrStreaming()==null)
@@ -228,8 +239,8 @@ namespace MyAnimePlugin3
                     return false;
                 }
 				BaseConfig.MyAnimeLog.Write("Getting time stopped for : {0}", fileToPlay.FileName);
-                timeMovieStopped = (int)(fileToPlay.VideoLocal_ResumePosition/1000);
-				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FileName, timeMovieStopped);
+                _timeMovieStopped = (int)(fileToPlay.VideoLocal_ResumePosition/1000);
+				BaseConfig.MyAnimeLog.Write("Time stopped for : {0} - {1}", fileToPlay.FileName, _timeMovieStopped);
 
                 prevEpisode = curEpisode;
 				curEpisode = episode;
@@ -237,7 +248,7 @@ namespace MyAnimePlugin3
  
 
                 #region Ask user to Resume
-                if (timeMovieStopped > 0)
+                if (_timeMovieStopped > 0)
                 {
                     //MPTVSeriesLog.Write("Asking user to resume episode from: " + Utils.SecondsToHMSString(timeMovieStopped));
                     GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_YES_NO);
@@ -246,12 +257,12 @@ namespace MyAnimePlugin3
                     {
                         dlgYesNo.SetHeading(GUILocalizeStrings.Get(900)); //resume movie?
                         dlgYesNo.SetLine(1, episode.EpisodeName);
-                        dlgYesNo.SetLine(2, GUILocalizeStrings.Get(936) + " " + MediaPortal.Util.Utils.SecondsToHMSString(timeMovieStopped));
+                        dlgYesNo.SetLine(2, GUILocalizeStrings.Get(936) + " " + MediaPortal.Util.Utils.SecondsToHMSString(_timeMovieStopped));
                         dlgYesNo.SetDefaultToYes(true);
                         dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
                         if (!dlgYesNo.IsConfirmed) // reset resume data in DB
                         {
-                            timeMovieStopped = 0;
+                            _timeMovieStopped = 0;
                             //MPTVSeriesLog.Write("User selected to start episode from beginning", MPTVSeriesLog.LogLevel.Debug);
                         }
                     }
@@ -260,7 +271,7 @@ namespace MyAnimePlugin3
 
 			
 
-                Play(timeMovieStopped, curEpisode.DefaultAudioLanguage, curEpisode.DefaultSubtitleLanguage);
+                Play(_timeMovieStopped, curEpisode.DefaultAudioLanguage, curEpisode.DefaultSubtitleLanguage);
                 return true;
             }
             catch (Exception e)
@@ -299,20 +310,23 @@ namespace MyAnimePlugin3
         /// <param name="clear">Clears the properties instead of filling them if True</param>
         void SetGUIProperties(bool clear)
         {
-			if (curEpisode == null) return;
+            try
+            {
+                if (curEpisode == null) return;
 
-			string displayName = curEpisode.EpisodeNumberAndName;
-            string rating = Utils.FormatAniDBRating(Convert.ToDouble(curEpisode.AniDB_Rating)) + " (" + curEpisode.AniDB_Votes + " " + Translation.Votes + ")";
-            string formattedEpNameAndAirdate = $"{displayName} [{curEpisode.AirDateAsString}]";
+                string displayName = curEpisode.EpisodeNumberAndName;
+                string rating = Utils.FormatAniDBRating(Convert.ToDouble(curEpisode.AniDB_Rating)) + " (" +
+                                curEpisode.AniDB_Votes + " " + Translation.Votes + ")";
+                string formattedEpNameAndAirdate = $"{displayName} [{curEpisode.AirDateAsString}]";
 
-            SetGUIProperty(GuiProperty.Play_Current_Title, clear ? "" : curEpisode.AnimeSeries.SeriesName, true);
-            SetGUIProperty(GuiProperty.Play_Current_Year, clear ? "" : formattedEpNameAndAirdate, true);
-            SetGUIProperty(GuiProperty.Play_Current_Plot, clear ? "" : curEpisode.EpisodeOverview, true);
-            SetGUIProperty(GuiProperty.Play_Current_PlotOutline, clear ? "" : curEpisode.Description, true);
-            SetGUIProperty(GuiProperty.Play_Current_Rating, clear ? "" : rating, true);
+                SetGUIProperty(GuiProperty.Play_Current_Title, clear ? "" : curEpisode.AnimeSeries.SeriesName, true);
+                SetGUIProperty(GuiProperty.Play_Current_Year, clear ? "" : formattedEpNameAndAirdate, true);
+                SetGUIProperty(GuiProperty.Play_Current_Plot, clear ? "" : curEpisode.EpisodeOverview, true);
+                SetGUIProperty(GuiProperty.Play_Current_PlotOutline, clear ? "" : curEpisode.Description, true);
+                SetGUIProperty(GuiProperty.Play_Current_Rating, clear ? "" : rating, true);
 
-            // Optional labels
-            /*
+                // Optional labels
+                /*
             SetGUIProperty(GuiProperty.Play_Current_TagLine, string.Empty, true);
             SetGUIProperty(GuiProperty.Play_Current_IsWatched, string.Empty", true);
             SetGUIProperty(GuiProperty.Play_Current_Runtime, string.Empty, true);
@@ -334,13 +348,22 @@ namespace MyAnimePlugin3
             SetGUIProperty(GuiProperty.Play_Current_Collections, string.Empty, true);
             */
 
-            try
-            {
-                string imgNameSeries = curEpisode.AnimeSeries.PosterPath;
-                MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Thumb", clear ? "" : imgNameSeries);
+                try
+                {
+                    string imgNameSeries = curEpisode.AnimeSeries.PosterPath;
+                    MediaPortal.GUI.Library.GUIPropertyManager.SetProperty("#Play.Current.Thumb",
+                        clear ? "" : imgNameSeries);
+                }
+                catch
+                {
+                }
+
             }
-            catch { }
-				
+            catch (Exception e)
+            {
+                BaseConfig.MyAnimeLog.Write("Error in VideoHandler.SetGUIProperties: {0}", e);
+            }
+
         }
 
         void MarkEpisodeAsWatched(AnimeEpisodeVM episode)
@@ -521,6 +544,10 @@ namespace MyAnimePlugin3
 
                     g_Player.Pause();
 
+                    traktScrobbleEnabled = true;
+                    Thread t = new Thread(TraktScrobbleThread);
+                    t.IsBackground = true;
+                    t.Start();
                 }
             }
             catch (Exception e)
@@ -576,11 +603,11 @@ namespace MyAnimePlugin3
 						PlaybackOperationEnded(true, curEpisode);
 					}
 
-					#endregion
-
-				}
+                    #endregion
+                }
                 catch (Exception e)
                 {
+                    traktScrobbleEnabled = false;
                     BaseConfig.MyAnimeLog.Write("AnimePlugin.VideoHandler.OnPlayBackStopped()\r\n" + e.ToString());
                 }
             }
@@ -611,34 +638,37 @@ namespace MyAnimePlugin3
 			{
 			    LogPlayBackOp("changed", filename);
 
-                try
-				{
-					BaseConfig.MyAnimeLog.Write("Checking for set watched");
-					#region Set Watched
-					double watchedAfter = BaseConfig.Settings.WatchedPercentage;
-                    JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(previous.VideoLocalID, JMMServerVM.Instance.CurrentUser.JMMUserID, stoptime * 1000);
+			    try
+			    {
+			        BaseConfig.MyAnimeLog.Write("Checking for set watched");
 
+			        #region Set Watched
+
+			        double watchedAfter = BaseConfig.Settings.WatchedPercentage;
+			        JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(previous.VideoLocalID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID, stoptime*1000);
+			        _timeMovieStopped = stoptime;
 
                     if (!g_Player.IsExternalPlayer)
-					{
-						if ((stoptime / g_Player.Duration) > watchedAfter / 100)
-							PlaybackOperationEnded(true, prevEpisode);
-						else
-							PlaybackOperationEnded(false, prevEpisode);
-					}
-					else
-					{
-						// if this is an external player always set watched to true
-						PlaybackOperationEnded(true, prevEpisode);
-					}
+			        {
+			            if ((stoptime/g_Player.Duration) > watchedAfter/100)
+			                PlaybackOperationEnded(true, prevEpisode);
+			            else
+			                PlaybackOperationEnded(false, prevEpisode);
+			        }
+			        else
+			        {
+			            // if this is an external player always set watched to true
+			            PlaybackOperationEnded(true, prevEpisode);
+			        }
 
-					#endregion
+			        #endregion
 
-				}
-				catch (Exception e)
-				{
-					BaseConfig.MyAnimeLog.Write("AnimePlugin.VideoHandler.OnPlayBackStopped()\r\n" + e.ToString());
-				}
+			    }
+			    catch (Exception e)
+			    {
+			        BaseConfig.MyAnimeLog.Write("AnimePlugin.VideoHandler.OnPlayBackStopped()\r\n" + e.ToString());
+			    }
 			}
 		}
 
@@ -648,11 +678,11 @@ namespace MyAnimePlugin3
             {
                 MainWindow.keyCommandDelayTimer.Start();
                 LogPlayBackOp("started", filename);
-                // really stupid, you have to wait until the player itself sets the properties (a few seconds) and after that set them
+
                 w.RunWorkerAsync(false);
 
-				// ffdshow preset auto loading
-				FFDShowHelper ffdshowHelper = new FFDShowHelper();
+                // ffdshow preset auto loading
+                FFDShowHelper ffdshowHelper = new FFDShowHelper();
 				// ASync call to avoid mediaportal video treatment sleep 
 				ffdshowHelper.loadPlayingPresetASync(curEpisode, filename);
             }
@@ -691,12 +721,19 @@ namespace MyAnimePlugin3
       bool PlayBackOpIsOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
       {
           bool IsOfConcern = curEpisode != null && type == g_Player.MediaType.Video && currentUri == filename;
-        if (IsOfConcern)
-        {
-          BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
-        }
+          BaseConfig.MyAnimeLog.Write("Current uri: " + currentUri);
+          BaseConfig.MyAnimeLog.Write("Filename: " + currentUri);
 
-        return IsOfConcern;
+          if (IsOfConcern)
+          {
+              BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
+          }
+          else
+          {
+              BaseConfig.MyAnimeLog.Write("PlayBackOpIsNOTOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
+          }
+
+          return IsOfConcern;
       }
 
       bool PlayBackOpWasOfConcern(MediaPortal.Player.g_Player.MediaType type, string filename)
@@ -731,8 +768,9 @@ namespace MyAnimePlugin3
 
                     }
 				}
-				
-                
+			    traktScrobbleEnabled = false;
+                TraktScrobble(ScrobblePlayingStatus.Stop);
+
                 SetGUIProperties(true); // clear GUI Properties     
 			}
 			catch (Exception e)
@@ -744,6 +782,67 @@ namespace MyAnimePlugin3
         void LogPlayBackOp(string OperationType, string filename)
         {
             BaseConfig.MyAnimeLog.Write(string.Format("Playback {0} for: {1}", OperationType, filename));
+        }
+        #endregion
+
+        #region Trakt
+
+        public void TraktScrobbleThread()
+        {
+            try
+            {
+                BaseConfig.MyAnimeLog.Write("Starting Trakt scrobble thread", true);
+
+                // Keep Trakt scrobbling while video is playing
+                if (JMMServerVM.Instance.TraktEnabled && !string.IsNullOrEmpty(JMMServerVM.Instance.TraktAuthToken))
+                {
+                    while (g_Player.Playing && traktScrobbleEnabled)
+                    {
+                        // Only update every 15s
+                        TraktScrobble(ScrobblePlayingStatus.Start, false);
+                        Thread.Sleep(TimeSpan.FromSeconds(15));
+                    }
+                }
+
+                BaseConfig.MyAnimeLog.Write("Stopping Trakt scrobble thread", true);
+            }
+            catch (Exception e)
+            {
+                BaseConfig.MyAnimeLog.Write("Error in VideoHandler.TraktScrobbleThread: {0}", e.ToString());
+            }
+        }
+
+        public void TraktScrobble(ScrobblePlayingStatus scrobblePlayingStatus, bool logOutput = true)
+        {
+            try
+            {
+                if (JMMServerVM.Instance.TraktEnabled && !string.IsNullOrEmpty(JMMServerVM.Instance.TraktAuthToken))
+                {
+                    double percentagePlayed = 0;
+                    if (g_Player.Playing && g_Player.CurrentPosition > 0)
+                    {
+                        percentagePlayed = (int) Math.Round((double) (100*g_Player.CurrentPosition)/g_Player.Duration);
+                    }
+
+                    if (logOutput)
+                    {
+                        BaseConfig.MyAnimeLog.Write("Trakt is scrobbling for anime episode id: " + curEpisode.AnimeEpisodeID);
+                        BaseConfig.MyAnimeLog.Write("Trakt is scrobbling with played percentage: " + (int) percentagePlayed);
+                    }
+
+                    JMMServerVM.Instance.clientBinaryHTTP.TraktScrobble(curEpisode.AnimeEpisodeID,
+                        (int) ScrobblePlayingType.episode, (int) percentagePlayed, (int) scrobblePlayingStatus);
+
+                    if (logOutput)
+                    {
+                        BaseConfig.MyAnimeLog.Write("Trakt has finished finished");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                BaseConfig.MyAnimeLog.Write("Error in VideoHandler.TraktScrobble: {0}", e.ToString());
+            }
         }
         #endregion
     }

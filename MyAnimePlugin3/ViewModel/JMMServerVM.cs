@@ -37,8 +37,10 @@ namespace MyAnimePlugin3.ViewModel
 		public string GeneralQueueState { get; set; }
 		public bool HasherQueueRunning { get; set; }
 		public bool GeneralQueueRunning { get; set; }
+        public bool TraktEnabled { get; set; }
+        public string TraktAuthToken { get; set; }
 
-		public DataSourceType EpisodeTitleSource { get; set; }
+        public DataSourceType EpisodeTitleSource { get; set; }
 		public DataSourceType SeriesDescriptionSource { get; set; }
 		public DataSourceType SeriesNameSource { get; set; }
 
@@ -406,6 +408,9 @@ namespace MyAnimePlugin3.ViewModel
 			this.SeriesDescriptionSource = (DataSourceType)contract.SeriesDescriptionSource;
 			this.SeriesNameSource = (DataSourceType)contract.SeriesNameSource;
 
+            // Trakt
+            this.TraktEnabled = contract.Trakt_IsEnabled;
+		    this.TraktAuthToken = contract.Trakt_AuthToken;
 		}
 
 		public void RefreshImportFolders()

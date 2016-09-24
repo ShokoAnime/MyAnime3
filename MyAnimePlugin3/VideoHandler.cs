@@ -729,10 +729,6 @@ namespace MyAnimePlugin3
           {
               BaseConfig.MyAnimeLog.Write("PlayBackOpIsOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
           }
-          else
-          {
-              BaseConfig.MyAnimeLog.Write("PlayBackOpIsNOTOfConcern: {0} - {1} - {2}", filename, type, curEpisode);
-          }
 
           return IsOfConcern;
       }

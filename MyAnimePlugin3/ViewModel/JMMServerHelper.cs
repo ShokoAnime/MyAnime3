@@ -7,6 +7,7 @@ using MyAnimePlugin3.Events;
 using System.ComponentModel;
 using System.Threading;
 using System.IO;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -128,7 +129,7 @@ namespace MyAnimePlugin3.ViewModel
 		void downloadRecommendedAnimeWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, 2); // downloads only
+					new List<Contract_Recommendation>(JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, 2)); // downloads only
 
 
 			foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
@@ -145,7 +146,7 @@ namespace MyAnimePlugin3.ViewModel
 
 			// refresh the data
 			List<RecommendationVM> tempRecs = new List<RecommendationVM>();
-			contracts = JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, 2); // downloads only
+			contracts = new List<Contract_Recommendation>(JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, 2)); // downloads only
 			foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
 			{
 				RecommendationVM rec = new RecommendationVM();
@@ -215,7 +216,7 @@ namespace MyAnimePlugin3.ViewModel
 		{
 			AniDB_SeiyuuVM seiyuu = e.Argument as AniDB_SeiyuuVM;
 
-			List<JMMServerBinary.Contract_AniDB_Character> charContracts = JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(seiyuu.AniDB_SeiyuuID);
+			List<JMMServerBinary.Contract_AniDB_Character> charContracts = new List<Contract_AniDB_Character>(JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(seiyuu.AniDB_SeiyuuID));
 			if (charContracts == null) return;
 
 			List<AniDB_CharacterVM> charList = new List<AniDB_CharacterVM>();
@@ -323,8 +324,8 @@ namespace MyAnimePlugin3.ViewModel
             try
             {
 
-                List<JMMServerBinary.Contract_GroupFilter> gf_cons = JMMServerVM.Instance.clientBinaryHTTP.GetGroupFilters(grpf?.GroupFilterID ?? 0);
-                foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons.Where(a=>(a.Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) && a.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count > 0)
+                List<JMMServerBinary.Contract_GroupFilter> gf_cons = new List<Contract_GroupFilter>(JMMServerVM.Instance.clientBinaryHTTP.GetGroupFilters(grpf?.GroupFilterID ?? 0));
+                foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons.Where(a=>(a.Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID) && a.Groups[JMMServerVM.Instance.CurrentUser.JMMUserID].Count() > 0)
                         || (a.FilterType & (int)GroupFilterType.Directory) == (int)GroupFilterType.Directory).OrderBy(a=>a.GroupFilterName))
                 {
                     GroupFilterVM gf = new GroupFilterVM(gf_con);
@@ -351,8 +352,11 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeGroup> rawGrps = JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(groupFilter.GroupFilterID.Value,
-					JMMServerVM.Instance.CurrentUser.JMMUserID, BaseConfig.Settings.SingleSeriesGroups);
+			    List<JMMServerBinary.Contract_AnimeGroup> rawGrps =
+			        new List<Contract_AnimeGroup>(
+			            JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(groupFilter.GroupFilterID.Value,
+			                JMMServerVM.Instance.CurrentUser.JMMUserID, BaseConfig.Settings.SingleSeriesGroups));
+
 				if (rawGrps == null) return allGroups;
 
 				foreach (JMMServerBinary.Contract_AnimeGroup contract in rawGrps)
@@ -393,8 +397,9 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeGroup> rawGroups = JMMServerVM.Instance.clientBinaryHTTP.GetSubGroupsForGroup(grp.AnimeGroupID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_AnimeGroup> rawGroups =
+			        new List<Contract_AnimeGroup>(JMMServerVM.Instance.clientBinaryHTTP.GetSubGroupsForGroup(grp.AnimeGroupID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 				if (rawGroups == null) return allGroups;
 
 				foreach (JMMServerBinary.Contract_AnimeGroup contract in rawGroups)
@@ -419,8 +424,9 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeSeries> rawSeries = JMMServerVM.Instance.clientBinaryHTTP.GetSeriesForGroup(grp.AnimeGroupID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_AnimeSeries> rawSeries =
+			        new List<Contract_AnimeSeries>(JMMServerVM.Instance.clientBinaryHTTP.GetSeriesForGroup(grp.AnimeGroupID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 				if (rawSeries == null) return allSeries;
 
 				foreach (JMMServerBinary.Contract_AnimeSeries contract in rawSeries)
@@ -445,8 +451,10 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeSeries> rawSeries = JMMServerVM.Instance.clientBinaryHTTP.GetSeriesForGroupRecursive(grp.AnimeGroupID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_AnimeSeries> rawSeries =
+			        new List<Contract_AnimeSeries>(
+			            JMMServerVM.Instance.clientBinaryHTTP.GetSeriesForGroupRecursive(grp.AnimeGroupID,
+			                JMMServerVM.Instance.CurrentUser.JMMUserID));
 				if (rawSeries == null) return allSeries;
 
 				foreach (JMMServerBinary.Contract_AnimeSeries contract in rawSeries)
@@ -516,7 +524,7 @@ namespace MyAnimePlugin3.ViewModel
 			List<JMMUserVM> allusers = new List<JMMUserVM>();
 			try
 			{
-				List<JMMServerBinary.Contract_JMMUser> users = JMMServerVM.Instance.clientBinaryHTTP.GetAllUsers();
+				List<JMMServerBinary.Contract_JMMUser> users = new List<Contract_JMMUser>(JMMServerVM.Instance.clientBinaryHTTP.GetAllUsers());
 				foreach (JMMServerBinary.Contract_JMMUser user in users)
 					allusers.Add(new JMMUserVM(user));
 
@@ -536,8 +544,9 @@ namespace MyAnimePlugin3.ViewModel
 			List<AnimeEpisodeVM> allEps = new List<AnimeEpisodeVM>();
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForSeries(animeSeriesID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_AnimeEpisode> eps =
+			        new List<Contract_AnimeEpisode>(JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForSeries(animeSeriesID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 				foreach (JMMServerBinary.Contract_AnimeEpisode ep in eps)
 					allEps.Add(new AnimeEpisodeVM(ep));
 
@@ -556,7 +565,7 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_VideoLocal> vids = JMMServerVM.Instance.clientBinaryHTTP.GetUnrecognisedFiles(JMMServerVM.Instance.CurrentUser.JMMUserID);
+				List<JMMServerBinary.Contract_VideoLocal> vids = new List<Contract_VideoLocal>(JMMServerVM.Instance.clientBinaryHTTP.GetUnrecognisedFiles(JMMServerVM.Instance.CurrentUser.JMMUserID));
 
 				foreach (JMMServerBinary.Contract_VideoLocal vid in vids)
 				{
@@ -826,7 +835,7 @@ namespace MyAnimePlugin3.ViewModel
 			try
 			{
 
-				List<JMMServerBinary.Contract_AniDBReleaseGroup> grpsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetReleaseGroupsForAnime(animeID);
+				List<JMMServerBinary.Contract_AniDBReleaseGroup> grpsRaw = new List<Contract_AniDBReleaseGroup>(JMMServerVM.Instance.clientBinaryHTTP.GetReleaseGroupsForAnime(animeID));
 
 				foreach (JMMServerBinary.Contract_AniDBReleaseGroup grp in grpsRaw)
 				{
@@ -847,8 +856,10 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AniDBAnime> rawAnime = JMMServerVM.Instance.clientBinaryHTTP.GetAnimeForMonth(JMMServerVM.Instance.CurrentUser.JMMUserID,
-					month, year);
+			    List<JMMServerBinary.Contract_AniDBAnime> rawAnime =
+			        new List<Contract_AniDBAnime>(
+			            JMMServerVM.Instance.clientBinaryHTTP.GetAnimeForMonth(JMMServerVM.Instance.CurrentUser.JMMUserID,
+			                month, year));
 				if (rawAnime == null) return allAnime;
 
 				foreach (JMMServerBinary.Contract_AniDBAnime contract in rawAnime)
@@ -866,8 +877,9 @@ namespace MyAnimePlugin3.ViewModel
 			List<AniDB_Anime_RelationVM> allRelations = new List<AniDB_Anime_RelationVM>();
 			try
 			{
-				List<JMMServerBinary.Contract_AniDB_Anime_Relation> links = JMMServerVM.Instance.clientBinaryHTTP.GetRelatedAnimeLinks(animeID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_AniDB_Anime_Relation> links =
+			        new List<Contract_AniDB_Anime_Relation>(JMMServerVM.Instance.clientBinaryHTTP.GetRelatedAnimeLinks(animeID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 
 				List<AniDB_Anime_RelationVM> tempList = new List<AniDB_Anime_RelationVM>();
 				foreach (JMMServerBinary.Contract_AniDB_Anime_Relation link in links)
@@ -895,7 +907,7 @@ namespace MyAnimePlugin3.ViewModel
 			List<AniDB_CharacterVM> allCharacters = new List<AniDB_CharacterVM>();
 			try
 			{
-				List<JMMServerBinary.Contract_AniDB_Character> chars = JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForAnime(animeID);
+				List<JMMServerBinary.Contract_AniDB_Character> chars = new List<Contract_AniDB_Character>(JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForAnime(animeID));
 
 				// first add all the main characters
 				foreach (JMMServerBinary.Contract_AniDB_Character chr in chars)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using BinaryNorthwest;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -418,8 +419,9 @@ namespace MyAnimePlugin3.ViewModel
 			try
 			{
 				filesForEpisode = new List<VideoDetailedVM>();
-				List<JMMServerBinary.Contract_VideoDetailed> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(AnimeEpisodeID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_VideoDetailed> contracts =
+			        new List<Contract_VideoDetailed>(JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(AnimeEpisodeID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 
 				foreach (JMMServerBinary.Contract_VideoDetailed fi in contracts)
 				{
@@ -443,8 +445,9 @@ namespace MyAnimePlugin3.ViewModel
 				}*/
 
 				List<VideoDetailedVM> filesForEpisode = new List<VideoDetailedVM>();
-				List<JMMServerBinary.Contract_VideoDetailed> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(AnimeEpisodeID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_VideoDetailed> contracts =
+			        new List<Contract_VideoDetailed>(JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(AnimeEpisodeID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 
 				foreach (JMMServerBinary.Contract_VideoDetailed fi in contracts)
 				{

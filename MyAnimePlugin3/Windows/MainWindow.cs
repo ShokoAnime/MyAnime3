@@ -451,7 +451,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
     void downloadImagesWorker_DoWork(object sender, DoWorkEventArgs e)
     {
       // 1. Download posters from AniDB
-      List<JMMServerBinary.Contract_AniDBAnime> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime();
+      List<JMMServerBinary.Contract_AniDBAnime> contracts = new List<Contract_AniDBAnime>(JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime());
 
       int i = 0;
       foreach (JMMServerBinary.Contract_AniDBAnime anime in contracts)
@@ -464,7 +464,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 2. Download posters from TvDB
-      List<JMMServerBinary.Contract_TvDB_ImagePoster> posters = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBPosters(null);
+      List<JMMServerBinary.Contract_TvDB_ImagePoster> posters = new List<Contract_TvDB_ImagePoster>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBPosters(null));
       foreach (JMMServerBinary.Contract_TvDB_ImagePoster poster in posters)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -472,7 +472,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 2a. Download posters from MovieDB
-      List<JMMServerBinary.Contract_MovieDB_Poster> moviePosters = JMMServerVM.Instance.clientBinaryHTTP.GetAllMovieDBPosters(null);
+      List<JMMServerBinary.Contract_MovieDB_Poster> moviePosters = new List<Contract_MovieDB_Poster>(JMMServerVM.Instance.clientBinaryHTTP.GetAllMovieDBPosters(null));
       foreach (JMMServerBinary.Contract_MovieDB_Poster poster in moviePosters)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -480,7 +480,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 3. Download wide banners from TvDB
-      List<JMMServerBinary.Contract_TvDB_ImageWideBanner> banners = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBWideBanners(null);
+      List<JMMServerBinary.Contract_TvDB_ImageWideBanner> banners = new List<Contract_TvDB_ImageWideBanner>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBWideBanners(null));
       foreach (JMMServerBinary.Contract_TvDB_ImageWideBanner banner in banners)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -488,7 +488,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 4. Download fanart from TvDB
-      List<JMMServerBinary.Contract_TvDB_ImageFanart> fanarts = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBFanart(null);
+      List<JMMServerBinary.Contract_TvDB_ImageFanart> fanarts = new List<Contract_TvDB_ImageFanart>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBFanart(null));
       foreach (JMMServerBinary.Contract_TvDB_ImageFanart fanart in fanarts)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -496,7 +496,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 4a. Download fanart from MovieDB
-      List<JMMServerBinary.Contract_MovieDB_Fanart> movieFanarts = JMMServerVM.Instance.clientBinaryHTTP.GetAllMovieDBFanart(null);
+      List<JMMServerBinary.Contract_MovieDB_Fanart> movieFanarts = new List<Contract_MovieDB_Fanart>(JMMServerVM.Instance.clientBinaryHTTP.GetAllMovieDBFanart(null));
       foreach (JMMServerBinary.Contract_MovieDB_Fanart fanart in movieFanarts)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -504,7 +504,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 5. Download episode images from TvDB
-      List<JMMServerBinary.Contract_TvDB_Episode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(null);
+      List<JMMServerBinary.Contract_TvDB_Episode> eps = new List<Contract_TvDB_Episode>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(null));
       foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -512,7 +512,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 6. Download posters from Trakt
-      List<JMMServerBinary.Contract_Trakt_ImagePoster> traktPosters = JMMServerVM.Instance.clientBinaryHTTP.GetAllTraktPosters(null);
+      List<JMMServerBinary.Contract_Trakt_ImagePoster> traktPosters = new List<Contract_Trakt_ImagePoster>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTraktPosters(null));
       foreach (JMMServerBinary.Contract_Trakt_ImagePoster traktposter in traktPosters)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -521,7 +521,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 7. Download fanart from Trakt
-      List<JMMServerBinary.Contract_Trakt_ImageFanart> traktFanarts = JMMServerVM.Instance.clientBinaryHTTP.GetAllTraktFanart(null);
+      List<JMMServerBinary.Contract_Trakt_ImageFanart> traktFanarts = new List<Contract_Trakt_ImageFanart>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTraktFanart(null));
       foreach (JMMServerBinary.Contract_Trakt_ImageFanart traktFanart in traktFanarts)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -530,7 +530,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
       }
 
       // 8. Download episode images from Trakt
-      List<JMMServerBinary.Contract_Trakt_Episode> traktEpisodes = JMMServerVM.Instance.clientBinaryHTTP.GetAllTraktEpisodes(null);
+      List<JMMServerBinary.Contract_Trakt_Episode> traktEpisodes = new List<Contract_Trakt_Episode>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTraktEpisodes(null));
       foreach (JMMServerBinary.Contract_Trakt_Episode traktEp in traktEpisodes)
       {
         //Thread.Sleep(5); // don't use too many resources
@@ -3761,7 +3761,7 @@ private bool ShowOptionsMenu(string previousMenu)
     {
       string Thumbnail = "";
 
-      List<JMMServerBinary.Contract_VideoDetailed> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(episodeID, JMMServerVM.Instance.CurrentUser.JMMUserID);
+      List<JMMServerBinary.Contract_VideoDetailed> epContracts = new List<Contract_VideoDetailed>(JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(episodeID, JMMServerVM.Instance.CurrentUser.JMMUserID));
 
       foreach (JMMServerBinary.Contract_VideoDetailed epcontract in epContracts)
       {
@@ -3841,7 +3841,7 @@ private bool ShowOptionsMenu(string previousMenu)
       int aniDBID = ser.AniDB_Anime.AnimeID;
 
       List<TVDBSeriesSearchResultVM> TVDBSeriesSearchResults = new List<TVDBSeriesSearchResultVM>();
-      List<JMMServerBinary.Contract_TVDBSeriesSearchResult> tvResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheTvDB(searchCriteria.Trim());
+      List<JMMServerBinary.Contract_TVDBSeriesSearchResult> tvResults = new List<Contract_TVDBSeriesSearchResult>(JMMServerVM.Instance.clientBinaryHTTP.SearchTheTvDB(searchCriteria.Trim()));
       foreach (JMMServerBinary.Contract_TVDBSeriesSearchResult tvResult in tvResults)
         TVDBSeriesSearchResults.Add(new TVDBSeriesSearchResultVM(tvResult));
 
@@ -3878,7 +3878,7 @@ private bool ShowOptionsMenu(string previousMenu)
 
 
       List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBResult = new List<CrossRef_AniDB_TvDBVMV2>();
-      List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(aniDBID, false);
+      List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = new List<Contract_Azure_CrossRef_AniDB_TvDB>(JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(aniDBID, false));
       if (xrefs != null && xrefs.Count > 0)
       {
         string xrefSummary = string.Empty;
@@ -3977,7 +3977,7 @@ private bool ShowOptionsMenu(string previousMenu)
       int aniDbid = ser.AniDB_Anime.AnimeID;
 
       List<MovieDBMovieSearchResultVM> movieDbSeriesSearchResults = new List<MovieDBMovieSearchResultVM>();
-      List<Contract_MovieDBMovieSearchResult> movieResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(searchCriteria.Trim());
+      List<Contract_MovieDBMovieSearchResult> movieResults = new List<Contract_MovieDBMovieSearchResult>(JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(searchCriteria.Trim()));
       foreach (Contract_MovieDBMovieSearchResult movieResult in movieResults)
         movieDbSeriesSearchResults.Add(new MovieDBMovieSearchResultVM(movieResult));
 
@@ -4022,7 +4022,7 @@ private bool ShowOptionsMenu(string previousMenu)
       int aniDbid = ser.AniDB_Anime.AnimeID;
 
       List<MALSearchResultVM> malSearchResults = new List<MALSearchResultVM>();
-      List<Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(searchCriteria.Trim());
+      List<Contract_MALAnimeResponse> malResults = new List<Contract_MALAnimeResponse>(JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(searchCriteria.Trim()));
       foreach (Contract_MALAnimeResponse malResult in malResults)
         malSearchResults.Add(new MALSearchResultVM(malResult));
 
@@ -4716,7 +4716,7 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
     {
       try
       {
-        List<int> seasons = JMMServerVM.Instance.clientBinaryHTTP.GetSeasonNumbersForSeries(tvdbid);
+        List<int> seasons = new List<int>(JMMServerVM.Instance.clientBinaryHTTP.GetSeasonNumbersForSeries(tvdbid));
         if (seasons.Count == 0)
         {
           this.Alert(Translation.SeasonResults, string.Empty, Translation.NoSeasonsFound);

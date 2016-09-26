@@ -12,6 +12,7 @@ using MyAnimePlugin3.Downloads;
 using Action = MediaPortal.GUI.Library.Action;
 using MyAnimePlugin3.ViewModel;
 using System.ComponentModel;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.Windows
 {
@@ -111,8 +112,9 @@ namespace MyAnimePlugin3.Windows
     void getDataWorker_DoWork(object sender, DoWorkEventArgs e)
     {
       List<AnimeEpisodeVM> tempEpisodes = new List<AnimeEpisodeVM>();
-      List<JMMServerBinary.Contract_AnimeEpisode> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetContinueWatchingFilter(
-        JMMServerVM.Instance.CurrentUser.JMMUserID, 25);
+        List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+            new List<Contract_AnimeEpisode>(JMMServerVM.Instance.clientBinaryHTTP.GetContinueWatchingFilter(
+                JMMServerVM.Instance.CurrentUser.JMMUserID, 25));
 
       foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
       {
@@ -252,8 +254,9 @@ namespace MyAnimePlugin3.Windows
 
       // File Info
       List<VideoDetailedVM> filesForEpisode = new List<VideoDetailedVM>();
-      List<JMMServerBinary.Contract_VideoDetailed> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(ep.AnimeEpisodeID,
-        JMMServerVM.Instance.CurrentUser.JMMUserID);
+        List<JMMServerBinary.Contract_VideoDetailed> contracts =
+            new List<Contract_VideoDetailed>(JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(ep.AnimeEpisodeID,
+                JMMServerVM.Instance.CurrentUser.JMMUserID));
 
       foreach (JMMServerBinary.Contract_VideoDetailed fi in contracts)
         filesForEpisode.Add(new VideoDetailedVM(fi));

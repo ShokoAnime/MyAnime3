@@ -34,7 +34,7 @@ namespace MyAnimePlugin3.ViewModel
             bool? result;
             if (FileIsAvailable)
                 result = false;
-            else if (Media?.Parts != null && Media.Parts.Count > 0)
+            else if (Media?.Parts != null && Media.Parts.Count() > 0)
                 result = true;
             else
                 result = null;
@@ -49,7 +49,7 @@ namespace MyAnimePlugin3.ViewModel
 	        {
 	            if (FileIsAvailable)
 	                return LocalFileSystemFullPath;
-	            if (Media?.Parts != null && Media.Parts.Count > 0)
+	            if (Media?.Parts != null && Media.Parts.Count() > 0)
 	                return Media.Parts[0].Key;
 	            return string.Empty;
 	        }
@@ -109,8 +109,9 @@ namespace MyAnimePlugin3.ViewModel
 
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeEpisode> epContracts = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(this.VideoLocalID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+			        new List<Contract_AnimeEpisode>(JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(this.VideoLocalID,
+			            JMMServerVM.Instance.CurrentUser.JMMUserID));
 				foreach (JMMServerBinary.Contract_AnimeEpisode epcontract in epContracts)
 				{
 					AnimeEpisodeVM ep = new AnimeEpisodeVM(epcontract);

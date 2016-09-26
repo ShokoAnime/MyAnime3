@@ -12,6 +12,7 @@ using MyAnimePlugin3.Downloads;
 using Action = MediaPortal.GUI.Library.Action;
 using MyAnimePlugin3.ViewModel;
 using System.ComponentModel;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.Windows
 {
@@ -125,7 +126,7 @@ namespace MyAnimePlugin3.Windows
 				recType = 2;
 
 			List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, recType);
+					new List<Contract_Recommendation>(JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(20, JMMServerVM.Instance.CurrentUser.JMMUserID, recType));
 
 			foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
 			{

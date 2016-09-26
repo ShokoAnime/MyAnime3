@@ -10,6 +10,7 @@ using MediaPortal.GUI.Library;
 using MediaPortal.Dialogs;
 using Microsoft.Win32;
 using MyAnimePlugin3.Events;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.ViewModel
 {
@@ -420,7 +421,7 @@ namespace MyAnimePlugin3.ViewModel
 			if (!ServerOnline) return;
 			try
 			{
-				List<JMMServerBinary.Contract_ImportFolder> importFolders = Instance.clientBinaryHTTP.GetImportFolders();
+				List<JMMServerBinary.Contract_ImportFolder> importFolders = new List<Contract_ImportFolder>(Instance.clientBinaryHTTP.GetImportFolders());
 
 				foreach (JMMServerBinary.Contract_ImportFolder ifolder in importFolders)
 				{

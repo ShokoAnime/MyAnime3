@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MediaPortal.GUI.Library;
 using System.ComponentModel;
+using MyAnimePlugin3.JMMServerBinary;
 using MyAnimePlugin3.ViewModel;
 
 namespace MyAnimePlugin3.Windows
@@ -282,8 +283,10 @@ namespace MyAnimePlugin3.Windows
 				if (togPartiallyWatched != null) partiallyWatched = togPartiallyWatched.Selected;
 				if (togCompleteOnly != null) completeSeries = togCompleteOnly.Selected;
 
-				List<JMMServerBinary.Contract_AnimeGroup> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(
-					gf.GroupFilterID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID, BaseConfig.Settings.SingleSeriesGroups);
+			    List<JMMServerBinary.Contract_AnimeGroup> contracts =
+			        new List<Contract_AnimeGroup>(JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(
+			            gf.GroupFilterID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID,
+			            BaseConfig.Settings.SingleSeriesGroups));
 
 				BaseConfig.MyAnimeLog.Write("Total groups for filter = " + contracts.Count.ToString());
 
@@ -553,8 +556,11 @@ namespace MyAnimePlugin3.Windows
 
 			    // File Info
                     List<VideoDetailedVM> filesForEpisode = new List<VideoDetailedVM>();
-				List<JMMServerBinary.Contract_VideoDetailed> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(MainWindow.RandomWindow_CurrentEpisode.AnimeEpisodeID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID);
+			    List<JMMServerBinary.Contract_VideoDetailed> contracts =
+			        new List<Contract_VideoDetailed>(
+			            JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(
+			                MainWindow.RandomWindow_CurrentEpisode.AnimeEpisodeID,
+			                JMMServerVM.Instance.CurrentUser.JMMUserID));
 
 				foreach (JMMServerBinary.Contract_VideoDetailed fi in contracts)
 					filesForEpisode.Add(new VideoDetailedVM(fi));

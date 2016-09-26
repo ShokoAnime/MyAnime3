@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using MediaPortal.GUI.Library;
+using MyAnimePlugin3.JMMServerBinary;
 using MyAnimePlugin3.ViewModel;
 // ReSharper disable InconsistentNaming
 
@@ -91,7 +92,7 @@ namespace MyAnimePlugin3.Windows
         {
             charList.Clear();
             List<JMMServerBinary.Contract_AniDB_Character> charContracts =
-                JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID);
+                new List<Contract_AniDB_Character>(JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID));
             if (charContracts == null)
             {
                 ClearGUIProperty(GuiProperty.Actors_Character_CharacterCount);
@@ -167,7 +168,7 @@ namespace MyAnimePlugin3.Windows
             SetGUIProperty(GuiProperty.Actors_Actor_Poster, imagePath);
 
             List<JMMServerBinary.Contract_AniDB_Character> charContracts =
-                JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID);
+                new List<Contract_AniDB_Character>(JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForSeiyuu(MainWindow.GlobalSeiyuuID));
             if (charContracts == null)
             {
                 ClearGUIProperty(GuiProperty.Actors_Character_CharacterCount);

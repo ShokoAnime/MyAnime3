@@ -5,6 +5,7 @@ using MediaPortal.GUI.Library;
 using MyAnimePlugin3.DataHelpers;
 using MyAnimePlugin3.ViewModel;
 using BinaryNorthwest;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.Downloads
 {
@@ -45,7 +46,7 @@ namespace MyAnimePlugin3.Downloads
 				{
 
 					List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
-					List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID);
+					List<JMMServerBinary.Contract_GroupVideoQuality> summ = new List<Contract_GroupVideoQuality>(JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID));
 					foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
 					{
 						GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);

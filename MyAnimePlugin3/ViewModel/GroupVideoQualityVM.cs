@@ -40,7 +40,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.FileCountSpecials = contract.FileCountSpecials;
 			this.NormalComplete = contract.NormalComplete;
 			this.SpecialsComplete = contract.SpecialsComplete;
-			this.NormalEpisodeNumbers = contract.NormalEpisodeNumbers;
+			this.NormalEpisodeNumbers = new List<int>(contract.NormalEpisodeNumbers);
 			this.NormalEpisodeNumberSummary = contract.NormalEpisodeNumberSummary;
 
 			this.VideoBitDepth = contract.VideoBitDepth;

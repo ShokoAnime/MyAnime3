@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MyAnimePlugin3.JMMServerBinary;
 using MyAnimePlugin3.ViewModel;
 
 namespace MyAnimePlugin3
@@ -31,7 +32,7 @@ namespace MyAnimePlugin3
 		{
 			try
 			{
-				List<JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2> contract = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefV2(this.AnimeID);
+				List<JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2> contract = new List<Contract_CrossRef_AniDB_TvDBV2>(JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefV2(this.AnimeID));
 				if (contract != null)
 				{
 					crossRefTvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
@@ -124,7 +125,7 @@ namespace MyAnimePlugin3
 			try
 			{
 				crossRefTvDBEpisodes = new List<CrossRef_AniDB_TvDBEpisodeVM>();
-				List<JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefEpisode(this.AnimeID);
+				List<JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> contracts = new List<Contract_CrossRef_AniDB_TvDB_Episode>(JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefEpisode(this.AnimeID));
 				if (contracts != null)
 				{
 					foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode contract in contracts)

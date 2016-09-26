@@ -12,6 +12,7 @@ using System.IO;
 using Action = MediaPortal.GUI.Library.Action;
 using MyAnimePlugin3.ViewModel;
 using BinaryNorthwest;
+using MyAnimePlugin3.JMMServerBinary;
 
 namespace MyAnimePlugin3.Windows
 {
@@ -185,7 +186,7 @@ namespace MyAnimePlugin3.Windows
                 SetGUIProperty(GuiProperty.SubGroup_EpisodeName, ep.EpisodeNumberAndName);
 
                 List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
-				List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID);
+				List<JMMServerBinary.Contract_GroupVideoQuality> summ = new List<Contract_GroupVideoQuality>(JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_Anime.AnimeID));
 				foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
 				{
 					GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);

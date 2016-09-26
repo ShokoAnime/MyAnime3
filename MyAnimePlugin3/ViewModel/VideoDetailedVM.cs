@@ -89,7 +89,7 @@ namespace MyAnimePlugin3.ViewModel
             bool? result;
             if (FileIsAvailable)
                 result = false;
-            else if (Media?.Parts != null && Media.Parts.Count > 0)
+            else if (Media?.Parts != null && Media.Parts.Count() > 0)
                 result = true;
             else
                 result = null;
@@ -228,7 +228,7 @@ namespace MyAnimePlugin3.ViewModel
             {
                 if (FileIsAvailable)
                     return LocalFileSystemFullPath;
-                if (Media?.Parts != null && Media.Parts.Count > 0)
+                if (Media?.Parts != null && Media.Parts.Count() > 0)
                     return Media.Parts[0].Key;
                 return string.Empty;
             }

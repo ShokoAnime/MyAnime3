@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BinaryNorthwest;
+using MyAnimePlugin3.JMMServerBinary;
 using MyAnimePlugin3.ViewModel;
 
 namespace MyAnimePlugin3
@@ -151,7 +152,7 @@ namespace MyAnimePlugin3
 			{
 
 				tvDBEpisodes = new List<TvDB_EpisodeVM>();
-				List<JMMServerBinary.Contract_TvDB_Episode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(TvDBID);
+				List<JMMServerBinary.Contract_TvDB_Episode> eps = new List<Contract_TvDB_Episode>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(TvDBID));
 
 				foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
 					tvDBEpisodes.Add(new TvDB_EpisodeVM(episode));

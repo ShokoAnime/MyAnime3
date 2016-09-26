@@ -1052,7 +1052,7 @@ namespace MyAnimePlugin3
 				return "";
 
 			List<string> allTags = new List<string>();
-			allTags = JMMServerVM.Instance.clientBinaryHTTP.GetAllTagNames();
+			allTags = new List<string>(JMMServerVM.Instance.clientBinaryHTTP.GetAllTagNames());
 			allTags.Sort();
 
 			dlg.Reset();

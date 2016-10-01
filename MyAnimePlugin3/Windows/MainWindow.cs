@@ -3263,10 +3263,6 @@ private bool ShowOptionsMenu(string previousMenu)
       else
         ClearGUIProperty(GuiProperty.SeriesGroup_MyRating);
 
-
-
-
-
       // set info properties
       // most of these properties actually come from the anidb_anime record
       // we need to find all the series for this group
@@ -3587,23 +3583,18 @@ private bool ShowOptionsMenu(string previousMenu)
         SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
 
 
-        //Try to find local thumbnail and use that instead of Fanart (optional - disabled by default)
-        /*
+        //Try to find local thumbnail and use that instead of fanart if it has none
         if (settings.LoadLocalThumbnails)
         {
           string localThumbnail = LoadLocalThumbnail(ep.AnimeEpisodeID);
-          if (!string.IsNullOrEmpty(localThumbnail))
+          if (!string.IsNullOrEmpty(localThumbnail) && string.IsNullOrEmpty(fanartTexture.Filename))
           {
             fanartTexture.Filename = localThumbnail;
 
             if (this.dummyIsFanartLoaded != null)
               this.dummyIsFanartLoaded.Visible = true;
           }
-          else
-          {
-            DisableFanart();
-          }
-        }*/
+        }
       }
       else if (settings.LoadLocalThumbnails)
       {
@@ -3756,49 +3747,59 @@ private bool ShowOptionsMenu(string previousMenu)
         BaseConfig.MyAnimeLog.Write(ex.ToString());
       }
     }
-  
-    public string LoadLocalThumbnail(int episodeID)
-    {
-      string Thumbnail = "";
 
-      List<JMMServerBinary.Contract_VideoDetailed> epContracts = new List<Contract_VideoDetailed>(JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(episodeID, JMMServerVM.Instance.CurrentUser.JMMUserID));
-
-      foreach (JMMServerBinary.Contract_VideoDetailed epcontract in epContracts)
+      public string LoadLocalThumbnail(int episodeID)
       {
-        Contract_VideoLocal_Place v = epcontract.Places.FirstOrDefault(a => a.ImportFolderType == 0);
-          if (v == null)
-              continue;
-          string episodeFilePath = v.FilePath;
-          int importFolderId = v.ImportFolderID;
+          string thumbnail = "";
 
-        //BaseConfig.MyAnimeLog.Write("FILE PATH: " + episodeFilePath);
-        //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + ImportFolderID.ToString());
+          List<Contract_VideoDetailed> epContracts =
+              new List<Contract_VideoDetailed>(JMMServerVM.Instance.clientBinaryHTTP.GetFilesForEpisode(episodeID,
+                  JMMServerVM.Instance.CurrentUser.JMMUserID));
+
+          if (epContracts.Any())
+          {
+              foreach (Contract_VideoDetailed epcontract in epContracts)
+              {
+                  Contract_VideoLocal_Place v = epcontract.Places.FirstOrDefault(a => a != null);
+                  if (v == null)
+                        continue;
+
+                    string episodeFilePath = v.FilePath;
+                  int importFolderId = v.ImportFolderID;
 
 
-        // Full episode file path with file extension
-        string episodeFilePathWithExtension = Path.Combine(BaseConfig.Settings.ImportFolderMappings[importFolderId], episodeFilePath);
+                  //BaseConfig.MyAnimeLog.Write("FILE PATH: " + episodeFilePath);
+                  //BaseConfig.MyAnimeLog.Write("IMPORT FOLDER ID: " + importFolderId);
 
-        // Full episode file path without file extension
-        string episodeFileNameWithoutExtension = Path.GetFileNameWithoutExtension(episodeFilePathWithExtension);
-        string episodeFilePathWithoutExtension = Path.Combine(Path.GetDirectoryName(episodeFilePathWithExtension), episodeFileNameWithoutExtension);
+                  // Full episode file path with file extension
+                  string episodeFilePathWithExtension =
+                      Path.Combine(BaseConfig.Settings.ImportFolderMappings[importFolderId], episodeFilePath);
 
-        // Thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
-        if (File.Exists(episodeFilePathWithoutExtension + ".jpg"))
-        {
-          Thumbnail = episodeFilePathWithoutExtension + ".jpg";
-          return Thumbnail;
-        }
-        // Thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails Maker
-        else if (File.Exists(episodeFilePathWithExtension + ".jpg"))
-        {
-          Thumbnail = episodeFilePathWithExtension + ".jpg";
-          return Thumbnail;
-        }
+
+                  // Full episode file path without file extension
+                  string episodeFileNameWithoutExtension = Path.GetFileNameWithoutExtension(episodeFilePathWithExtension);
+                  string episodeFilePathWithoutExtension = Path.Combine(
+                      Path.GetDirectoryName(episodeFilePathWithExtension), episodeFileNameWithoutExtension);
+
+                  // Thumbnail format: <episode_full_path_without_extension>.jpg <--- the Mediaportal default
+                  if (File.Exists(episodeFilePathWithoutExtension + ".jpg"))
+                  {
+                      thumbnail = episodeFilePathWithoutExtension + ".jpg";
+                      return thumbnail;
+                  }
+
+                  // Thumbnail format: <episode_full_path_with_extension>.jpg <--- the standard in programs like Video Thumbnails Maker
+                  if (File.Exists(episodeFilePathWithExtension + ".jpg"))
+                  {
+                      thumbnail = episodeFilePathWithExtension + ".jpg";
+                      return thumbnail;
+                  }
+              }
+          }
+          return thumbnail;
       }
-      return Thumbnail;
-    }
 
-    void DisableFanart()
+      void DisableFanart()
     {
       //fanartSet = false;
       fanartTexture.Filename = "";

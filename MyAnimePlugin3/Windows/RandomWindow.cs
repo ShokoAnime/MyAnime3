@@ -286,7 +286,7 @@ namespace MyAnimePlugin3.Windows
 			    List<JMMServerBinary.Contract_AnimeGroup> contracts =
 			        new List<Contract_AnimeGroup>(JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(
 			            gf.GroupFilterID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID,
-			            true));
+			            false));
 
 				BaseConfig.MyAnimeLog.Write("Total groups for filter = " + contracts.Count.ToString());
 

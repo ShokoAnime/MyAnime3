@@ -2955,7 +2955,6 @@ private bool ShowOptionsMenu(string previousMenu)
       if (parent != m_Facade && parent != m_Facade.FilmstripLayout && parent != m_Facade.CoverFlowLayout &&
         parent != m_Facade.ThumbnailLayout && parent != m_Facade.ListLayout)
         return;
-
       if (m_Facade.SelectedListItem.TVTag == null) return;
 
       if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
@@ -2976,66 +2975,66 @@ private bool ShowOptionsMenu(string previousMenu)
       EvaluateVisibility();
     }
 
-    public override bool OnMessage(GUIMessage message)
-    {
-
-      switch (message.Message)
+      public override bool OnMessage(GUIMessage message)
       {
-        case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
-          {
-            int iControl = message.SenderControlId;
-            if (iControl == (int)m_Facade.GetID)
-            {
 
-              if (m_Facade.SelectedListItem != null && m_Facade.SelectedListItem.TVTag != null)
+          switch (message.Message)
+          {
+              case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
               {
-                if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
-                {
-                  GroupFilter_OnItemSelected(m_Facade.SelectedListItem);
-                }
+                  int iControl = message.SenderControlId;
+                  if (iControl == (int) m_Facade.GetID)
+                  {
 
-                if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
-                {
-                  Group_OnItemSelected(m_Facade.SelectedListItem);
-                }
+                      if (m_Facade.SelectedListItem != null && m_Facade.SelectedListItem.TVTag != null)
+                      {
+                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
+                          {
+                              GroupFilter_OnItemSelected(m_Facade.SelectedListItem);
+                          }
 
-                if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
-                {
-                  Series_OnItemSelected(m_Facade.SelectedListItem);
-                }
+                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
+                          {
+                              Group_OnItemSelected(m_Facade.SelectedListItem);
+                          }
 
-                if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeTypeVM))
-                {
-                  EpisodeType_OnItemSelected(m_Facade.SelectedListItem);
-                }
+                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
+                          {
+                              Series_OnItemSelected(m_Facade.SelectedListItem);
+                          }
 
-                if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeVM))
-                {
-                  Episode_OnItemSelected(m_Facade.SelectedListItem);
-                }
+                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeTypeVM))
+                          {
+                              EpisodeType_OnItemSelected(m_Facade.SelectedListItem);
+                          }
+
+                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeVM))
+                          {
+                              Episode_OnItemSelected(m_Facade.SelectedListItem);
+                          }
+                      }
+                  }
               }
-            }
+
+                  EvaluateVisibility();
+                  return true;
+
+              case GUIMessage.MessageType.GUI_MSG_PLAYBACK_ENDED:
+              case GUIMessage.MessageType.GUI_MSG_PLAYBACK_STOPPED:
+              {
+                  //-- Need to reload the GUI to display changes 
+                  //-- if episode is classified as watched
+                  LoadFacade();
+
+              }
+                  return true;
+
+              default:
+                  return base.OnMessage(message);
           }
-
-          EvaluateVisibility();
-          return true;
-
-        case GUIMessage.MessageType.GUI_MSG_PLAYBACK_ENDED:
-        case GUIMessage.MessageType.GUI_MSG_PLAYBACK_STOPPED:
-          {
-            //-- Need to reload the GUI to display changes 
-            //-- if episode is classified as watched
-            LoadFacade();
-
-          }
-          return true;
-
-        default:
-          return base.OnMessage(message);
       }
-    }
 
-    void g_Player_PlayBackEnded(g_Player.MediaType type, string filename)
+      void g_Player_PlayBackEnded(g_Player.MediaType type, string filename)
     {
       // Not used at this time
     }
@@ -3280,20 +3279,24 @@ private bool ShowOptionsMenu(string previousMenu)
 
       List<AnimeSeriesVM> seriesList = grp.ChildSeries;
 
-      if (seriesList.Count == 1)
-      {
-        SetGUIProperty(GuiProperty.SeriesTitle, seriesList[0].SeriesName);
-        SetGUIProperty(GuiProperty.Title, seriesList[0].SeriesName);
-        SetGUIProperty(GuiProperty.Description, seriesList[0].Description);
-      }
-      else
-      {
-        SetGUIProperty(GuiProperty.SeriesTitle, grp.GroupName);
-        SetGUIProperty(GuiProperty.Title, grp.GroupName);
-        SetGUIProperty(GuiProperty.Description, grp.ParsedDescription);
-      }
+            /*
+            if (seriesList.Count == 1)
+            {
+              SetGUIProperty(GuiProperty.SeriesTitle, seriesList[0].SeriesName);
+              SetGUIProperty(GuiProperty.Title, seriesList[0].SeriesName);
+              SetGUIProperty(GuiProperty.Description, seriesList[0].Description);
+            }
+            else
+            {
+              SetGUIProperty(GuiProperty.SeriesTitle, grp.GroupName);
+              SetGUIProperty(GuiProperty.Title, grp.GroupName);
+              SetGUIProperty(GuiProperty.Description, grp.ParsedDescription);
+            }*/
+            SetGUIProperty(GuiProperty.SeriesTitle, grp.GroupName);
+            SetGUIProperty(GuiProperty.Title, grp.GroupName);
+            SetGUIProperty(GuiProperty.Description, grp.ParsedDescription);
 
-      foreach (AnimeSeriesVM ser in seriesList)
+            foreach (AnimeSeriesVM ser in seriesList)
       {
         totalRating += ((decimal)ser.AniDB_Anime.Rating * ser.AniDB_Anime.VoteCount);
         totalRating += ((decimal)ser.AniDB_Anime.TempRating * ser.AniDB_Anime.TempVoteCount);
@@ -3312,37 +3315,38 @@ private bool ShowOptionsMenu(string previousMenu)
       if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = false;
       // Only AniDB users have votes
       BaseConfig.MyAnimeLog.Write("IsAniDBUserBool : " + JMMServerVM.Instance.CurrentUser.IsAniDBUserBool.ToString());
-      if (JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
-      {
-        BaseConfig.MyAnimeLog.Write("seriesList.Count : " + seriesList.Count.ToString());
-        if (seriesList.Count == 1)
+        if (JMMServerVM.Instance.CurrentUser.IsAniDBUserBool)
         {
-          AniDB_AnimeVM anAnime = seriesList[0].AniDB_Anime;
-          string myRating = anAnime.UserVoteFormatted;
-          if (string.IsNullOrEmpty(myRating))
-            ClearGUIProperty(GuiProperty.SeriesGroup_MyRating);
-          else
-          {
-            SetGUIProperty(GuiProperty.SeriesGroup_MyRating, myRating);
-            // Image Rankings
-            if (dummyStarCustomPlaceholder != null && dummyStarOffPlaceholder != null)
+            BaseConfig.MyAnimeLog.Write("seriesList.Count : " + seriesList.Count.ToString());
+            if (seriesList.Count == 1)
             {
-              string im = Logos.buildRating((double)Convert.ToDouble(myRating), dummyStarOffPlaceholder.FileName, dummyStarCustomPlaceholder.FileName,
-                  dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
-              SetGUIProperty(GuiProperty.CustomRatingImage, im);
+                AniDB_AnimeVM anAnime = seriesList[0].AniDB_Anime;
+                string myRating = anAnime.UserVoteFormatted;
+                if (string.IsNullOrEmpty(myRating))
+                    ClearGUIProperty(GuiProperty.SeriesGroup_MyRating);
+                else
+                {
+                    SetGUIProperty(GuiProperty.SeriesGroup_MyRating, myRating);
+                    // Image Rankings
+                    if (dummyStarCustomPlaceholder != null && dummyStarOffPlaceholder != null)
+                    {
+                        string im = Logos.buildRating((double) Convert.ToDouble(myRating),
+                            dummyStarOffPlaceholder.FileName, dummyStarCustomPlaceholder.FileName,
+                            dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                        SetGUIProperty(GuiProperty.CustomRatingImage, im);
+                    }
+
+                    if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
+
+                    BaseConfig.MyAnimeLog.Write("myRating : " + myRating.ToString());
+                    BaseConfig.MyAnimeLog.Write("dummyUserHasVotedSeries.Visible : " +
+                                                dummyUserHasVotedSeries.Visible.ToString());
+                }
             }
-
-            if (dummyUserHasVotedSeries != null) dummyUserHasVotedSeries.Visible = true;
-
-            BaseConfig.MyAnimeLog.Write("myRating : " + myRating.ToString());
-            BaseConfig.MyAnimeLog.Write("dummyUserHasVotedSeries.Visible : " + dummyUserHasVotedSeries.Visible.ToString());
-          }
         }
 
-      }
 
-
-      string rating = Utils.FormatAniDBRating((double)AniDBRating) + " (" + totalVotes.ToString() + " " + Translation.Votes + ")";
+        string rating = Utils.FormatAniDBRating((double)AniDBRating) + " (" + totalVotes.ToString() + " " + Translation.Votes + ")";
       SetGUIProperty(GuiProperty.SeriesGroup_RawRating, Utils.FormatAniDBRating((double)AniDBRating));
       SetGUIProperty(GuiProperty.SeriesGroup_RatingVoteCount, totalVotes.ToString(Globals.Culture));
       SetGUIProperty(GuiProperty.SeriesGroup_Rating, rating);

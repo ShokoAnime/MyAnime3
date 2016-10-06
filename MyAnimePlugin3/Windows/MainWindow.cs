@@ -1857,7 +1857,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
               break;*/
         }
       }
-      item.DVDLabel = grp.GroupName;
+        item.DVDLabel = grp.GroupName;
       item.TVTag = grp;
       item.IsPlayed = (grp.UnwatchedEpisodeCount == 0);
 
@@ -3372,9 +3372,7 @@ private bool ShowOptionsMenu(string previousMenu)
 
       LoadFanart(grp);
     }
-
-
-    private void EpisodeType_OnItemSelected(GUIListItem item)
+      private void EpisodeType_OnItemSelected(GUIListItem item)
     {
       if (m_bQuickSelect)
         return;

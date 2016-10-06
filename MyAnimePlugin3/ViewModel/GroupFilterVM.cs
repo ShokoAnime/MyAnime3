@@ -73,7 +73,6 @@ namespace MyAnimePlugin3.ViewModel
 			this.PredefinedCriteria = "";
 			this.FilterConditions.Clear();
             this.FilterType = contract.FilterType;
-
             this.Groups = contract.Groups.ToDictionary(a => a.Key, a => new HashSet<int>(a.Value));
             this.Series = contract.Series.ToDictionary(a => a.Key, a => new HashSet<int>(a.Value));
             this.Childs = new HashSet<int>(contract.Childs);

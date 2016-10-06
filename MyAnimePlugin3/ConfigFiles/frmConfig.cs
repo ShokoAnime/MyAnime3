@@ -91,7 +91,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label8.Text = Translation.Seconds;
             this.label45.Text = Translation.CloseFindPanel;
             this.groupBox15.Text = Translation.Other;
-            this.chkSingleSeries.Text = Translation.UseSeriesName;
             this.chkRateSeries.Text = Translation.PromptToRate;
             this.chkShowMissingGroups.Text = Translation.OnlySubbingGroups;
             this.chkShowMissing.Text = Translation.ShowIndicatorForMissingEps;
@@ -222,13 +221,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			ToolTip5.ToolTipIcon = ToolTipIcon.Info;
             ToolTip5.ToolTipTitle = Translation.WideBannerQuality;
 			ToolTip5.SetToolTip(udWideBannerQuality, Translation.WideBannerQualityToolTip);
-
-			ToolTip ToolTip6 = new ToolTip();
-			ToolTip6.IsBalloon = true;
-			ToolTip6.ToolTipIcon = ToolTipIcon.Info;
-			ToolTip6.ToolTipTitle = Translation.SinglesSeriesDisplay;
-			ToolTip6.SetToolTip(chkSingleSeries, Translation.SinglesSeriesDisplayToolTip);
-
 
 			System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
 			if (a != null)
@@ -557,7 +549,6 @@ namespace MyAnimePlugin3.ConfigFiles
 			BaseConfig.Settings.ShowMissingMyGroupsOnly = chkShowMissingGroups.Checked;
 			BaseConfig.Settings.HideWatchedFiles = chkHideWatchedFiles.Checked;
 			BaseConfig.Settings.DisplayRatingDialogOnCompletion = chkRateSeries.Checked;
-			BaseConfig.Settings.SingleSeriesGroups = chkSingleSeries.Checked;
 
 			if (cboAudioLanguage.SelectedIndex == 0)
 				BaseConfig.Settings.DefaultAudioLanguage = "<file>";
@@ -658,9 +649,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			chkShowMissing.Checked = BaseConfig.Settings.ShowMissing;
 			chkShowMissingGroups.Checked = BaseConfig.Settings.ShowMissingMyGroupsOnly;
-			chkRateSeries.Checked = BaseConfig.Settings.DisplayRatingDialogOnCompletion;
-			chkSingleSeries.Checked = BaseConfig.Settings.SingleSeriesGroups;
-			
+			chkRateSeries.Checked = BaseConfig.Settings.DisplayRatingDialogOnCompletion;			
 
 			if (!BaseConfig.Settings.ShowMissing) chkShowMissingGroups.Enabled = false;
 

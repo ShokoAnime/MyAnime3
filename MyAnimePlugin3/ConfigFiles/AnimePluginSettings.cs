@@ -122,7 +122,6 @@ namespace MyAnimePlugin3
 		public bool ShowMissing = false;
 		public bool ShowMissingMyGroupsOnly = false;
 		public bool HideWatchedFiles = false;
-		public bool SingleSeriesGroups = false;
 
 		public string DefaultAudioLanguage = "";
 		public string DefaultSubtitleLanguage = "";
@@ -363,7 +362,6 @@ namespace MyAnimePlugin3
 			ShowMissing = GetBooleanSetting(ref xmlreader, "ShowMissing", true);
 			ShowMissingMyGroupsOnly = GetBooleanSetting(ref xmlreader, "ShowMissingMyGroupsOnly", false);
 			DisplayRatingDialogOnCompletion = GetBooleanSetting(ref xmlreader, "DisplayRatingDialogOnCompletion", true);
-			SingleSeriesGroups = GetBooleanSetting(ref xmlreader, "SingleSeriesGroups", false);
 
 			string viewMode = "";
 			viewMode = xmlreader.GetValueAsString("Anime3", "LastGroupViewMode", "0");
@@ -502,7 +500,6 @@ namespace MyAnimePlugin3
                 xmlwriter.SetValue("Anime3", "ShowMissing", ShowMissing ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "ShowMissingMyGroupsOnly", ShowMissingMyGroupsOnly ? "1" : "0");
 				xmlwriter.SetValue("Anime3", "DisplayRatingDialogOnCompletion", DisplayRatingDialogOnCompletion ? "1" : "0");
-				xmlwriter.SetValue("Anime3", "SingleSeriesGroups", SingleSeriesGroups ? "1" : "0");
 
                 xmlwriter.SetValue("Anime3", "HideWatchedFiles", HideWatchedFiles ? "1" : "0");
 

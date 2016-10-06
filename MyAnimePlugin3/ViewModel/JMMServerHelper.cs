@@ -355,7 +355,7 @@ namespace MyAnimePlugin3.ViewModel
 			    List<JMMServerBinary.Contract_AnimeGroup> rawGrps =
 			        new List<Contract_AnimeGroup>(
 			            JMMServerVM.Instance.clientBinaryHTTP.GetAnimeGroupsForFilter(groupFilter.GroupFilterID.Value,
-			                JMMServerVM.Instance.CurrentUser.JMMUserID, BaseConfig.Settings.SingleSeriesGroups));
+			                JMMServerVM.Instance.CurrentUser.JMMUserID, true));
 
 				if (rawGrps == null) return allGroups;
 

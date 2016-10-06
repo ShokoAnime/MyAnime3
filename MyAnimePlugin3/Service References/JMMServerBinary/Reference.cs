@@ -5491,6 +5491,9 @@ namespace MyAnimePlugin3.JMMServerBinary
         private string GroupNameField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeriesNameField;
+
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IsFaveField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5741,6 +5744,24 @@ namespace MyAnimePlugin3.JMMServerBinary
                 }
             }
         }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeriesName
+        {
+            get
+            {
+                return this.SeriesNameField;
+            }
+            set
+            {
+                if ((object.ReferenceEquals(this.SeriesNameField, value) != true))
+                {
+                    this.SeriesNameField = value;
+                    this.RaisePropertyChanged("SeriesName");
+                }
+            }
+        }
+
 
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int IsFave

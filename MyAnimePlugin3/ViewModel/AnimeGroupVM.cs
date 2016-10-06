@@ -482,7 +482,7 @@ namespace MyAnimePlugin3.ViewModel
 			this.Stat_AniDBRating = contract.Stat_AniDBRating;
 
 			// editable members
-			this.GroupName = GetSeriesNameFromGroup(this, contract.GroupName);
+		    this.GroupName = contract.GroupName;
 			this.IsFave = contract.IsFave;
 			this.SortName = contract.SortName;
 			this.Description = contract.Description;
@@ -497,19 +497,6 @@ namespace MyAnimePlugin3.ViewModel
 			}
 
 		}
-
-        private string GetSeriesNameFromGroup(AnimeGroupVM grp, string seriesName)
-        {
-            List<AnimeSeriesVM> seriesList = grp.ChildSeries;
-
-            if (seriesList.Any() && seriesList.Count == 1)
-            {
-                if(!string.IsNullOrEmpty(seriesList[0].SeriesName))
-                seriesName = seriesList[0].SeriesName;
-            }
-
-            return seriesName;
-        }
 
         public AnimeGroupVM(JMMServerBinary.Contract_AnimeGroup contract)
 		{

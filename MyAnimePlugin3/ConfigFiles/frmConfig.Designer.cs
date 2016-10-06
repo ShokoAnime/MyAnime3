@@ -127,7 +127,6 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label45 = new System.Windows.Forms.Label();
             this.nudFindTimeout = new System.Windows.Forms.NumericUpDown();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.chkSingleSeries = new System.Windows.Forms.CheckBox();
             this.chkRateSeries = new System.Windows.Forms.CheckBox();
             this.chkShowMissingGroups = new System.Windows.Forms.CheckBox();
             this.chkShowMissing = new System.Windows.Forms.CheckBox();
@@ -1253,7 +1252,6 @@ namespace MyAnimePlugin3.ConfigFiles
             // groupBox15
             // 
             this.groupBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox15.Controls.Add(this.chkSingleSeries);
             this.groupBox15.Controls.Add(this.chkRateSeries);
             this.groupBox15.Controls.Add(this.chkShowMissingGroups);
             this.groupBox15.Controls.Add(this.chkShowMissing);
@@ -1270,20 +1268,10 @@ namespace MyAnimePlugin3.ConfigFiles
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Other";
             // 
-            // chkSingleSeries
-            // 
-            this.chkSingleSeries.AutoSize = true;
-            this.chkSingleSeries.Location = new System.Drawing.Point(18, 65);
-            this.chkSingleSeries.Name = "chkSingleSeries";
-            this.chkSingleSeries.Size = new System.Drawing.Size(214, 17);
-            this.chkSingleSeries.TabIndex = 40;
-            this.chkSingleSeries.Text = "Use series name for single series groups";
-            this.chkSingleSeries.UseVisualStyleBackColor = true;
-            // 
             // chkRateSeries
             // 
             this.chkRateSeries.AutoSize = true;
-            this.chkRateSeries.Location = new System.Drawing.Point(18, 140);
+            this.chkRateSeries.Location = new System.Drawing.Point(18, 118);
             this.chkRateSeries.Name = "chkRateSeries";
             this.chkRateSeries.Size = new System.Drawing.Size(271, 17);
             this.chkRateSeries.TabIndex = 39;
@@ -1313,7 +1301,7 @@ namespace MyAnimePlugin3.ConfigFiles
             // chkHideWatchedFiles
             // 
             this.chkHideWatchedFiles.AutoSize = true;
-            this.chkHideWatchedFiles.Location = new System.Drawing.Point(18, 165);
+            this.chkHideWatchedFiles.Location = new System.Drawing.Point(18, 143);
             this.chkHideWatchedFiles.Name = "chkHideWatchedFiles";
             this.chkHideWatchedFiles.Size = new System.Drawing.Size(225, 17);
             this.chkHideWatchedFiles.TabIndex = 30;
@@ -1323,7 +1311,7 @@ namespace MyAnimePlugin3.ConfigFiles
             // chkShowAvailableEpsOnly
             // 
             this.chkShowAvailableEpsOnly.AutoSize = true;
-            this.chkShowAvailableEpsOnly.Location = new System.Drawing.Point(18, 90);
+            this.chkShowAvailableEpsOnly.Location = new System.Drawing.Point(18, 68);
             this.chkShowAvailableEpsOnly.Name = "chkShowAvailableEpsOnly";
             this.chkShowAvailableEpsOnly.Size = new System.Drawing.Size(284, 17);
             this.chkShowAvailableEpsOnly.TabIndex = 31;
@@ -1333,7 +1321,7 @@ namespace MyAnimePlugin3.ConfigFiles
             // chkHidePlot
             // 
             this.chkHidePlot.AutoSize = true;
-            this.chkHidePlot.Location = new System.Drawing.Point(18, 115);
+            this.chkHidePlot.Location = new System.Drawing.Point(18, 93);
             this.chkHidePlot.Name = "chkHidePlot";
             this.chkHidePlot.Size = new System.Drawing.Size(184, 17);
             this.chkHidePlot.TabIndex = 35;
@@ -1343,7 +1331,7 @@ namespace MyAnimePlugin3.ConfigFiles
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(16, 215);
+            this.label33.Location = new System.Drawing.Point(16, 174);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(141, 13);
             this.label33.TabIndex = 32;
@@ -1356,7 +1344,7 @@ namespace MyAnimePlugin3.ConfigFiles
             0,
             0,
             0});
-            this.udWatched.Location = new System.Drawing.Point(163, 213);
+            this.udWatched.Location = new System.Drawing.Point(163, 172);
             this.udWatched.Minimum = new decimal(new int[] {
             5,
             0,
@@ -1374,7 +1362,7 @@ namespace MyAnimePlugin3.ConfigFiles
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(210, 215);
+            this.label35.Location = new System.Drawing.Point(210, 174);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(15, 13);
             this.label35.TabIndex = 34;
@@ -2092,7 +2080,6 @@ namespace MyAnimePlugin3.ConfigFiles
 		private System.Windows.Forms.Label label82;
 		private System.Windows.Forms.CheckBox chkFfdshowNotificationsAutoClose;
 		private System.Windows.Forms.CheckBox chkFfdshowNotificationsShow;
-		private System.Windows.Forms.CheckBox chkSingleSeries;
 		private System.Windows.Forms.GroupBox groupBox7;
 		private System.Windows.Forms.Button btnAnimeBytesTest;
 		private System.Windows.Forms.TextBox txtAnimeBytesPassword;

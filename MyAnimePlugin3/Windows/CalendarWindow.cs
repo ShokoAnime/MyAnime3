@@ -99,6 +99,15 @@ namespace MyAnimePlugin3.Windows
             _usedMonths.Add(new DateTime(MainWindow.CurrentCalendarYear, MainWindow.CurrentCalendarMonth, 1));
             BaseConfig.MyAnimeLog.Write("OnPageLoad: {0}/{1}", MainWindow.CurrentCalendarMonth, MainWindow.CurrentCalendarYear);
             LoadData(0, new DateTime(MainWindow.CurrentCalendarYear, MainWindow.CurrentCalendarMonth, 1));
+
+            // Load 6 future calendar months
+            int monthsToLoad = 1;
+            while (monthsToLoad <= 6)
+            {
+                LoadData(monthsToLoad, new DateTime(MainWindow.CurrentCalendarYear, MainWindow.CurrentCalendarMonth + monthsToLoad, 1));
+                monthsToLoad++;
+            }
+
             m_Facade.Focus = true;
         }
 

@@ -238,11 +238,9 @@ private AnimeEpisodeVM curAnimeEpisode = null;
     private SearchCollection search = null;
     private List<GUIListItem> lstFacadeItems = null;
     private string searchSound = "click.wav";
-
-
     #region GUI Properties
 
-      public enum GuiProperty
+    public enum GuiProperty
       {
           Title,
           Subtitle,
@@ -433,8 +431,6 @@ private AnimeEpisodeVM curAnimeEpisode = null;
         throw;
       }
     }
-
-
 
     void MainWindow_OnToggleWatched(List<AnimeEpisodeVM> episodes, bool state)
     {
@@ -5028,5 +5024,4 @@ public enum Listlevel
     public object Argument = null;
     public int IndexArgument = 0;
   }
-
 }

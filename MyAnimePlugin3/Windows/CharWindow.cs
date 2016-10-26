@@ -68,8 +68,6 @@ namespace MyAnimePlugin3.Windows
 
         public CharWindow()
         {
-            // get ID of windowplugin belonging to this setup
-            // enter your own unique code
             GetID = Constants.WindowIDs.CHARACTERS;
 
             MainWindow.ServerHelper.GotCharacterCreatorImagesEvent += ServerHelper_GotCharacterCreatorImagesEvent;
@@ -93,14 +91,25 @@ namespace MyAnimePlugin3.Windows
         protected override void OnPageLoad()
         {
             base.OnPageLoad();
+            LoadInfo();
 
-			if (m_Facade != null)
+            if (m_Facade != null)
 				m_Facade.CurrentLayout = GUIFacadeControl.Layout.Filmstrip;
 
             ShowCharacters();
             ClearGUIProperty(GuiProperty.Character_Status);
             if (m_Facade != null)
     			m_Facade.Focus = true;
+        }
+
+        private void LoadInfo()
+        {
+            if (MainWindow.GlobalSeriesID > 0)
+            {
+                serMain = JMMServerHelper.GetSeries(MainWindow.GlobalSeriesID);
+                if (serMain != null)
+                    mainAnime = serMain.AniDB_Anime;
+            }
         }
 
         private void ShowCharacters()
@@ -115,9 +124,7 @@ namespace MyAnimePlugin3.Windows
 
 			charList.Clear();
 
-			mainAnime = null;
-			serMain = null;
-            if ((serMain == null) || (serMain.AniDB_Anime == null))
+            if (serMain?.AniDB_Anime == null)
             {
                 ClearGUIProperty(GuiProperty.Title);
                 ClearGUIProperty(GuiProperty.Character_Name);

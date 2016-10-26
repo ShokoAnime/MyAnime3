@@ -148,6 +148,7 @@ namespace MyAnimePlugin3.Windows
 
             JMMServerBinary.Contract_AniDB_Seiyuu contract =
                 JMMServerVM.Instance.clientBinaryHTTP.GetAniDBSeiyuu(MainWindow.GlobalSeiyuuID);
+
             if (contract == null)
             {
                 ClearGUIProperty(GuiProperty.Actors_Actor_Name);

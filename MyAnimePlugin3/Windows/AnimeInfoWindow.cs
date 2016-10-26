@@ -330,11 +330,15 @@ namespace MyAnimePlugin3.Windows
             menu.AddFunc(btnNavLeft, () =>
             {
                 GUIWindowManager.CloseCurrentWindow();
+                if (serMain.AnimeSeriesID != null) MainWindow.GlobalSeriesID = serMain.AnimeSeriesID.Value;
+
                 GUIWindowManager.ActivateWindow(Constants.WindowIDs.CHARACTERS, false);
                 return true;
             });
             menu.AddFunc(btnNavRight, () =>
             {
+                if (serMain.AnimeSeriesID != null) MainWindow.GlobalSeriesID = serMain.AnimeSeriesID.Value;
+
                 GUIWindowManager.CloseCurrentWindow();
                 GUIWindowManager.ActivateWindow(Constants.WindowIDs.RELATIONS, false);
                 return true;

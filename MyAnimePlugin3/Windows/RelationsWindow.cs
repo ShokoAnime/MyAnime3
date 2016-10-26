@@ -87,7 +87,8 @@ namespace MyAnimePlugin3.Windows
 
 			BaseConfig.MyAnimeLog.Write("OnPageLoad: {0}", MainWindow.GlobalSeriesID.ToString());
 
-			LoadData();
+            LoadInfo();
+            LoadData();
 
 			ShowMainAnime();
 			ShowRelations();
@@ -96,16 +97,20 @@ namespace MyAnimePlugin3.Windows
                 m_Facade.Focus = true;
 		}
 
-		private void LoadData()
+        private void LoadInfo()
+        {
+            if (MainWindow.GlobalSeriesID > 0)
+            {
+                serMain = JMMServerHelper.GetSeries(MainWindow.GlobalSeriesID);
+                if (serMain != null)
+                    mainAnime = serMain.AniDB_Anime;
+            }
+        }
+
+        private void LoadData()
 		{
 			relations.Clear();
 
-			mainAnime = null;
-			serMain = null;
-
-
-
-			serMain = JMMServerHelper.GetSeries(MainWindow.GlobalSeriesID);
 			if (serMain != null)
 				mainAnime = serMain.AniDB_Anime;
 

@@ -445,7 +445,7 @@
 	  <posX>70</posX>
 	  <posY>630</posY>
 	  <width>1850</width>
-	  <label>#Anime3.Related.Title (#Anime3.Related.Relationship)</label>
+	  <label>#Anime3.Related.Title #Anime3.Related.Relationship</label>
 	  <visible>Control.IsVisible(1301)+Control.HasFocus(50)</visible>
 	</control>
 

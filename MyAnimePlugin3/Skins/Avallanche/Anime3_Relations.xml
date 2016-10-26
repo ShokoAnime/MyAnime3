@@ -103,7 +103,7 @@
 		<posX>70</posX>
 		<posY>730</posY>
 		<width>1560</width>
-		<label>#Anime3.Related.Title (#Anime3.Related.Relationship)</label>
+		<label>#Anime3.Related.Title #Anime3.Related.Relationship</label>
 		<visible>Control.IsVisible(1301)</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>

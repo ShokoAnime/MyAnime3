@@ -264,7 +264,7 @@
 	  <width>650</width>
 	  <textcolor>ffffffff</textcolor>
 	  <font>font16</font>
-	  <label>#Anime3.Related.Title (#Anime3.Related.Relationship)</label>
+	  <label>#Anime3.Related.Title #Anime3.Related.Relationship</label>
 	  <visible>Control.IsVisible(1301)</visible>
 	  <align>left</align>
 	  <animation effect="fade" start="0" end="100" time="200" delay="200">Visible</animation>

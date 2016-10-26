@@ -281,7 +281,7 @@
       <width>1650</width>
       <font>mediastream14tc</font>
       <textcolor>ffffffff</textcolor>
-      <label>#Anime3.Related.Title (#Anime3.Related.Relationship)</label>
+      <label>#Anime3.Related.Title #Anime3.Related.Relationship</label>
       <visible>Control.IsVisible(1301)</visible>
       <align>left</align>
     </control>

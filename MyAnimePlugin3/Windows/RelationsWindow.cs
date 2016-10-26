@@ -4,6 +4,7 @@ using System.Text;
 
 using MediaPortal.GUI.Library;
 using System.IO;
+using System.Linq;
 using AniDBHelper;
 using MediaPortal.Dialogs;
 using MyAnimePlugin3.Downloads;
@@ -30,20 +31,22 @@ namespace MyAnimePlugin3.Windows
 		[SkinControlAttribute(914)] protected GUIButtonControl btnAnimePosters = null;
 		[SkinControlAttribute(915)] protected GUIButtonControl btnAnimeWideBanners = null;
 
-        public enum GuiProperty
-        {
-            Related_DownloadStatus,
-            Related_Main_Title,
-            Related_Main_Year,
+	    public enum GuiProperty
+	    {
+	        Related_DownloadStatus,
+	        Related_Main_Title,
+	        Related_Main_Year,
+            Related_Title,
             Related_Episodes,
-            Related_Year,
-            Related_Description,
-            Related_Genre,
-            Related_GenreShort,
-            Related_Status
+	        Related_Year,
+	        Related_Description,
+	        Related_Genre,
+	        Related_GenreShort,
+	        Related_Status,
+	        Related_Relationship
+	    }
 
-        }
-        public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
+	    public void SetGUIProperty(GuiProperty which, string value) { this.SetGUIProperty(which.ToString(), value); }
         public void ClearGUIProperty(GuiProperty which) { this.ClearGUIProperty(which.ToString()); }
 
 
@@ -145,56 +148,69 @@ namespace MyAnimePlugin3.Windows
 				else dummyRelationsExist.Visible = false;
 			}
 
+
 			string imagePathMissing = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_question_poster.png";
 			string imagePathNoPicture = GUIGraphicsContext.Skin + @"\Media\MyAnime3\anime3_blankchar.png";
 
-			foreach (AniDB_Anime_RelationVM ra in relations)
-			{
-				string imagePath = "";
+            BaseConfig.MyAnimeLog.Write("CharWindow.GlobalSeriesID = {0}", MainWindow.GlobalSeriesID.ToString());
+            BaseConfig.MyAnimeLog.Write("CharWindow.Relations count = " + relations.Count);
 
-				BaseConfig.MyAnimeLog.Write("AnimeID: " + mainAnime.AnimeID.ToString() + ", Related ID: " + ra.AniDB_Anime.AnimeID.ToString());
-				BaseConfig.MyAnimeLog.Write("Poster Path: " + ra.AniDB_Anime.DefaultPosterPath);
+            if (relations?.Count > 0)
+		    {
+		        foreach (AniDB_Anime_RelationVM ra in relations)
+		        {
+		            string imagePath = "";
 
-				AniDB_AnimeVM anime = ra.AniDB_Anime;
-				if (anime != null)
-				{
-					// try and load the series
-					AnimeSeriesVM serAnime = ra.AnimeSeries;
-					if (serAnime != null)
-					{
-						string posterName = ImageAllocator.GetSeriesImageAsFileName(serAnime, GUIFacadeControl.Layout.Filmstrip);
-						if (File.Exists(posterName)) imagePath = posterName;
-					}
+		            if (ra.AniDB_Anime != null && ra.AnimeSeries != null)
+		            {
+                        BaseConfig.MyAnimeLog.Write("AnimeID: " + MainWindow.GlobalSeriesID + ", Related ID: " +
+                            ra.AniDB_Anime.AnimeID.ToString());
+                        BaseConfig.MyAnimeLog.Write("Poster Path: " + ra.AniDB_Anime.DefaultPosterPath);
 
-					if (imagePath.Length == 0)
-					{
-						if (anime.DefaultPosterPath.Trim().Length > 0 && File.Exists(anime.DefaultPosterPath))
-							imagePath = anime.DefaultPosterPath;
-						else
-							imagePath = imagePathNoPicture;
+                        AniDB_AnimeVM anime = ra.AniDB_Anime;
+		                // try and load the series
+		                AnimeSeriesVM serAnime = ra.AnimeSeries;
 
-					}
-				}
-				else
-					imagePath = imagePathMissing;
+		                if (serAnime != null)
+		                {
+		                    string posterName = ImageAllocator.GetSeriesImageAsFileName(serAnime,
+		                        GUIFacadeControl.Layout.Filmstrip);
+		                    if (File.Exists(posterName)) imagePath = posterName;
+		                }
 
+		                if (imagePath.Length == 0)
+		                {
+		                    if (anime.DefaultPosterPath.Trim().Length > 0 && File.Exists(anime.DefaultPosterPath))
+		                        imagePath = anime.DefaultPosterPath;
+		                    else
+		                        imagePath = imagePathNoPicture;
 
-				GUIListItem item = new GUIListItem();
-				item.IconImage = item.IconImageBig = imagePath;
-				item.TVTag = ra;
-				item.OnItemSelected += new GUIListItem.ItemSelectedHandler(onFacadeItemSelected);
-				m_Facade.Add(item);
-			}
+		                }
+		            }
+		            else
+		                imagePath = imagePathMissing;
 
-			if (m_Facade.Count > 0)
+                    // If it has no title skip it as it's probably an invalid item
+		            if (!string.IsNullOrEmpty(ra.AniDB_Anime?.MainTitle))
+		            {
+		                GUIListItem item = new GUIListItem();
+		                item.IconImage = item.IconImageBig = imagePath;
+		                item.TVTag = ra;
+		                item.OnItemSelected += new GUIListItem.ItemSelectedHandler(onFacadeItemSelected);
+		                m_Facade.Add(item);
+		            }
+		        }
+		    }
+
+		    if (m_Facade.Count > 0)
 			{
 				m_Facade.SelectedListItemIndex = 0;
 
-				AniDB_Anime_RelationVM ra = m_Facade.SelectedListItem.TVTag as AniDB_Anime_RelationVM;
-				if (ra != null)
-				{
-					SetAnime(ra);
-				}
+			    AniDB_Anime_RelationVM ra = m_Facade.SelectedListItem?.TVTag as AniDB_Anime_RelationVM;
+			    if (ra != null)
+			    {
+			        SetAnime(ra);
+			    }
 			}
 
 			//GUIControl.FocusControl(GetID, 50);
@@ -209,36 +225,46 @@ namespace MyAnimePlugin3.Windows
 			//if (parent != m_Facade)
 			//	return;
 
-			AniDB_Anime_RelationVM ra = item.TVTag as AniDB_Anime_RelationVM;
-			if (ra != null)
-			{
-				SetAnime(ra);
-			}
-
+		    if (item.TVTag != null)
+		    {
+		        AniDB_Anime_RelationVM ra = item.TVTag as AniDB_Anime_RelationVM;
+		        if (ra != null)
+		        {
+		            SetAnime(ra);
+		        }
+		    }
 		}
 
 		private void SetAnime(AniDB_Anime_RelationVM ra)
 		{
-			AniDB_AnimeVM anime = ra.AniDB_Anime;
+            AniDB_AnimeVM anime = ra.AniDB_Anime;
             ClearGUIProperty(GuiProperty.Related_Status);
 
 			if (dummyHasSeries != null) dummyHasSeries.Visible = false;
 			if (dummyHasSeries != null && ra.AnimeSeries != null) dummyHasSeries.Visible = false;
             if (anime != null)
             {
+                SetGUIProperty(GuiProperty.Related_Title, anime.MainTitle);
                 SetGUIProperty(GuiProperty.Related_Episodes, anime.EpisodeCountNormal.ToString(Globals.Culture) + " (" + anime.EpisodeCountSpecial.ToString(Globals.Culture) + " " + Translation.Specials + ")");
                 SetGUIProperty(GuiProperty.Related_Year, anime.AirDateAsString);
                 SetGUIProperty(GuiProperty.Related_Description, anime.ParsedDescription);
                 SetGUIProperty(GuiProperty.Related_Genre, anime.TagsFormatted);
                 SetGUIProperty(GuiProperty.Related_GenreShort, anime.TagsFormattedShort);
+
+                if (string.IsNullOrEmpty(ra.RelationType))
+                    SetGUIProperty(GuiProperty.Related_Relationship, string.Empty);
+                else
+                    SetGUIProperty(GuiProperty.Related_Relationship, $"({ra.RelationType})");
             }
             else
             {
+                ClearGUIProperty(GuiProperty.Related_Title);
                 ClearGUIProperty(GuiProperty.Related_Episodes);
                 ClearGUIProperty(GuiProperty.Related_Year);
                 ClearGUIProperty(GuiProperty.Related_Description);
                 ClearGUIProperty(GuiProperty.Related_Genre);
                 ClearGUIProperty(GuiProperty.Related_GenreShort);
+                ClearGUIProperty(GuiProperty.Related_Relationship);
             }
 
             SetGUIProperty(GuiProperty.Related_Status, ra.AnimeSeries != null ? (ra.AnimeSeries.MissingEpisodeCount > 0 ? Translation.Collecting : Translation.AllEpisodesAvailable) : Translation.NotInMyCollection);

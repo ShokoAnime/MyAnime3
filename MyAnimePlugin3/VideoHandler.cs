@@ -132,7 +132,7 @@ namespace MyAnimePlugin3
 
         private static string StaticGetPropertyName(string which)
         {
-            return Extensions.BaseProperties + "." + which.Replace("_", ".").Replace("ñ", "_");
+            return Extensions.BaseProperties + "." + which.Replace("_", ".").Replace("Ã±", "_");
         }
         public static void StaticSetGUIProperty(GuiProperty which, string value)
         {
@@ -440,7 +440,7 @@ namespace MyAnimePlugin3
                     dlgOk.SetLine(1, Translation.StreamingNotSupported);
                     dlgOk.SetLine(2, current.FileName);
 
-                    if (!dlgOk.IsConfirmed)
+                    if (dlgOk.IsConfirmed)
                     {
                         return false;
                     }

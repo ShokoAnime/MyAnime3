@@ -539,6 +539,8 @@ namespace MyAnimePlugin3
         public static string StartTextToggle = "Start text toggle key:";
         public static string StartTorrent = "Start Torrent";
         public static string StopTorrent = "Stop Torrent";
+        public static string StreamingNotSupported = "File not local and streaming not yet supported";
+
         public static string Sucess = "Sucess";
         public static string Summary = "Summary";
         public static string Support = "Support";

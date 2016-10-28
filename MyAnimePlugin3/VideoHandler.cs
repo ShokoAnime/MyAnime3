@@ -431,6 +431,22 @@ namespace MyAnimePlugin3
                 // I haven't actually found out why it happens, but I strongly believe it has something to do with the video database and the player doing something in the background
                 // (why does it do anything with the video database.....i just want it to play a file and do NOTHING else!)
 
+                // TEMPORARY FIX
+                // If file isn't local show dialog and return as streaming isn't fully working yet
+                if (current.IsLocalOrStreaming() == true)
+                {
+                    GUIDialogOK dlgOk = (GUIDialogOK)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_OK);
+                    dlgOk.SetHeading(Translation.FileNotFoundLocally);
+                    dlgOk.SetLine(1, Translation.StreamingNotSupported);
+                    dlgOk.SetLine(2, current.FileName);
+
+                    if (!dlgOk.IsConfirmed)
+                    {
+                        return false;
+                    }
+                    return false;
+                }
+
                 if (current.IsLocalOrStreaming() == true)
                 {
                     if (BaseConfig.Settings.AskBeforeStartStreamingPlayback)

@@ -17,7 +17,7 @@ namespace MyAnimePlugin3
 		// MA3
 		public string JMMServer_Address = "";
 		public string JMMServer_Port = "";
-	    public bool AskBeforeStartStreamingPlayback = true;
+        public bool AskBeforeStartStreamingPlayback = true;
 		public bool HideEpisodeImageWhenUnwatched = false;
 		public bool HideEpisodeOverviewWhenUnwatched = false;
 		public string ImportFolderMappingsList = "";
@@ -31,11 +31,12 @@ namespace MyAnimePlugin3
 		public int FfdshowNotificationsAutoCloseTime = 3000;
 		public int FfdshowNotificationsLockTime = 5000;
 	    
-	    public string ModeToggleKey = "]";
-	    public string StartTextToggleKey = "[";
+        public string ModeToggleKey = "]";
+        public string StartTextToggleKey = "[";
         private string _subPaths;
+	    public bool HomeButtonNavigation = true;
 
-        public Dictionary<int, string> ImportFolderMappings
+    public Dictionary<int, string> ImportFolderMappings
 		{
 			get
 			{
@@ -440,6 +441,7 @@ namespace MyAnimePlugin3
             ModeToggleKey = xmlreader.GetValueAsString("Anime3", "ModeToggleKey", "]");
             StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
             AskBeforeStartStreamingPlayback = xmlreader.GetValueAsBool("Anime3", "AskBeforeStartStreamingPlayback", true);
+            HomeButtonNavigation = xmlreader.GetValueAsBool("Anime3", "HomeButtonNavigation", true);
 
             _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
             xmlreader.Dispose();
@@ -538,6 +540,7 @@ namespace MyAnimePlugin3
                 xmlwriter.SetValue("Anime3", "ModeToggleKey", ModeToggleKey);
                 xmlwriter.SetValue("Anime3", "StartTextToggleKey", StartTextToggleKey);
                 xmlwriter.SetValue("Anime3", "AskBeforeStartStreamingPlayback", AskBeforeStartStreamingPlayback);
+                xmlwriter.SetValue("Anime3", "HomeButtonNavigation", HomeButtonNavigation);
 
                 string pth = Path.GetTempPath();
                 if (!_subPaths.Contains(pth))

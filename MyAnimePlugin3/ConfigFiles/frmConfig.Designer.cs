@@ -184,6 +184,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label82 = new System.Windows.Forms.Label();
             this.chkFfdshowNotificationsAutoClose = new System.Windows.Forms.CheckBox();
             this.chkFfdshowNotificationsShow = new System.Windows.Forms.CheckBox();
+            this.chkHomeButtonNavigation = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl4.SuspendLayout();
@@ -1252,6 +1253,7 @@ namespace MyAnimePlugin3.ConfigFiles
             // groupBox15
             // 
             this.groupBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox15.Controls.Add(this.chkHomeButtonNavigation);
             this.groupBox15.Controls.Add(this.chkRateSeries);
             this.groupBox15.Controls.Add(this.chkShowMissingGroups);
             this.groupBox15.Controls.Add(this.chkShowMissing);
@@ -1878,6 +1880,16 @@ namespace MyAnimePlugin3.ConfigFiles
             this.chkFfdshowNotificationsShow.Text = "Show preset load notifications";
             this.chkFfdshowNotificationsShow.UseVisualStyleBackColor = true;
             // 
+            // chkHomeButtonNavigation
+            // 
+            this.chkHomeButtonNavigation.AutoSize = true;
+            this.chkHomeButtonNavigation.Location = new System.Drawing.Point(19, 201);
+            this.chkHomeButtonNavigation.Name = "chkHomeButtonNavigation";
+            this.chkHomeButtonNavigation.Size = new System.Drawing.Size(317, 17);
+            this.chkHomeButtonNavigation.TabIndex = 40;
+            this.chkHomeButtonNavigation.Text = "Home button navigates back instead of going to home screen";
+            this.chkHomeButtonNavigation.UseVisualStyleBackColor = true;
+            // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2094,5 +2106,6 @@ namespace MyAnimePlugin3.ConfigFiles
         private System.Windows.Forms.Button btnClearStartText;
         private System.Windows.Forms.Button btnResetModeText;
         private System.Windows.Forms.CheckBox chkAskBeforeStartStreamingPlayback;
+        private System.Windows.Forms.CheckBox chkHomeButtonNavigation;
     }
 }

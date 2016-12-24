@@ -202,6 +202,7 @@ namespace MyAnimePlugin3
         public static string AssociateFFDshowPreset = "Associate with a ffdshow raw preset";
         public static string AskBeforeStartStreamingPlayback = "Ask before starting streaming playback";
         public static string AskBeforeStartStreamingPlaybackDialogText = "Ask before streaming  ({0})";
+        public static string HomeButtonNavigation = "Home button navigates back instead of going to home screen";
         public static string AutoCloseAfter = "Auto close after";
         public static string AverageRating = "Average Rating";
 

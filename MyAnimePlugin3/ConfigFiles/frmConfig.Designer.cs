@@ -1669,7 +1669,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.ManualLink.Size = new System.Drawing.Size(132, 13);
             this.ManualLink.TabIndex = 44;
             this.ManualLink.TabStop = true;
-            this.ManualLink.Text = "http://jmediamanager.org/";
+            this.ManualLink.Text = "http://shokoanime.com/";
             this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
             // 
             // label62
@@ -1709,7 +1709,7 @@ namespace MyAnimePlugin3.ConfigFiles
             this.WebsiteLink.Size = new System.Drawing.Size(132, 13);
             this.WebsiteLink.TabIndex = 40;
             this.WebsiteLink.TabStop = true;
-            this.WebsiteLink.Text = "http://jmediamanager.org/";
+            this.WebsiteLink.Text = "http://shokoanime.com/";
             this.WebsiteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WebsiteLink_LinkClicked);
             // 
             // label60

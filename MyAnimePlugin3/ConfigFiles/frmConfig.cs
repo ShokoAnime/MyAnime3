@@ -110,11 +110,11 @@ namespace MyAnimePlugin3.ConfigFiles
             this.label2.Text = Translation.ServerPort;
             this.label1.Text = Translation.ServerAddress;
             this.lblVersion.Text = Translation.Version+" X.X.X.X";
-            this.ManualLink.Text = "http://jmediamanager.org/myanime3";
+            this.ManualLink.Text = "http://shokoanime.com/mediaportal/";
             this.label62.Text = Translation.Support;
             this.ForumLink.Text = "https://discordapp.com/channels/96234011612958720/101072543024160768";
             this.label61.Text = Translation.Discord+":";
-            this.WebsiteLink.Text = "http://jmediamanager.org";
+            this.WebsiteLink.Text = "http://shokoanime.com";
             this.label60.Text = Translation.Website+":";
             this.label49.Text = Translation.PluginName;
             this.label46.Text = Translation.ImageLocation;
@@ -748,7 +748,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
         private void WebsiteLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(" http://jmediamanager.org");
+            Process.Start(" http://shokoanime.com");
         }
 
         private void ForumLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -758,7 +758,7 @@ namespace MyAnimePlugin3.ConfigFiles
 
         private void ManualLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://jmediamanager.org/myanime3/");
+            Process.Start("http://shokoanime.com/mediaportal/");
         }
 
 

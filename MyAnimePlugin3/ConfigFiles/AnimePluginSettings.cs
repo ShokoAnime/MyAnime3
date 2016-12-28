@@ -440,8 +440,8 @@ namespace MyAnimePlugin3
 
             ModeToggleKey = xmlreader.GetValueAsString("Anime3", "ModeToggleKey", "]");
             StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
-            AskBeforeStartStreamingPlayback = xmlreader.GetValueAsBool("Anime3", "AskBeforeStartStreamingPlayback", true);
-            HomeButtonNavigation = xmlreader.GetValueAsBool("Anime3", "HomeButtonNavigation", true);
+            AskBeforeStartStreamingPlayback = GetBooleanSetting(ref xmlreader, "AskBeforeStartStreamingPlayback", true);
+            HomeButtonNavigation = GetBooleanSetting(ref xmlreader, "HomeButtonNavigation", true);
 
             _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
             xmlreader.Dispose();
@@ -539,8 +539,8 @@ namespace MyAnimePlugin3
 				xmlwriter.SetValue("Anime3", "FfdshowNotificationsLockTime", ((int)FfdshowNotificationsLockTime).ToString());
                 xmlwriter.SetValue("Anime3", "ModeToggleKey", ModeToggleKey);
                 xmlwriter.SetValue("Anime3", "StartTextToggleKey", StartTextToggleKey);
-                xmlwriter.SetValue("Anime3", "AskBeforeStartStreamingPlayback", AskBeforeStartStreamingPlayback);
-                xmlwriter.SetValue("Anime3", "HomeButtonNavigation", HomeButtonNavigation);
+                xmlwriter.SetValue("Anime3", "AskBeforeStartStreamingPlayback", AskBeforeStartStreamingPlayback ? "1" : "0");
+                xmlwriter.SetValue("Anime3", "HomeButtonNavigation", HomeButtonNavigation ? "1" : "0");
 
                 string pth = Path.GetTempPath();
                 if (!_subPaths.Contains(pth))

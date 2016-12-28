@@ -2444,6 +2444,14 @@ private bool ShowOptionsMenu(string previousMenu)
 
       switch (action.wID)
       {
+
+        case MediaPortal.GUI.Library.Action.ActionType.ACTION_SWITCH_HOME:
+              if (!BaseConfig.Settings.HomeButtonNavigation)
+              {
+                  base.OnAction(action);
+
+              }
+              break;
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
 
@@ -2477,13 +2485,10 @@ private bool ShowOptionsMenu(string previousMenu)
           return;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME:
-        if (BaseConfig.Settings.HomeButtonNavigation)
-        {
-          UpdateSearchPanel(false);
-          ImageAllocator.FlushAll();
-          GUIWindowManager.ShowPreviousWindow();
-        }
-        break;
+            UpdateSearchPanel(false);
+            ImageAllocator.FlushAll();
+            GUIWindowManager.ShowPreviousWindow();
+            break;
 
         case MediaPortal.GUI.Library.Action.ActionType.ACTION_PLAY:
           BaseConfig.MyAnimeLog.Write("Received PLAY action");
@@ -2549,30 +2554,54 @@ private bool ShowOptionsMenu(string previousMenu)
       }
     }
 
-    void GUIWindowManager_OnThreadMessageHandler(object sender, GUIMessage message)
-    {
-      if (GUIWindowManager.ActiveWindowEx != this.GetID)
+      void GUIWindowManager_OnThreadMessageHandler(object sender, GUIMessage message)
       {
-        return;
+          if (GUIWindowManager.ActiveWindowEx != this.GetID)
+          {
+              return;
+          }
+
+          //BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
+          //BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
+
+          if (!BaseConfig.Settings.HomeButtonNavigation)
+          {
+              if (message.Param1 == 35 || message.Param1 == 115)
+              {
+                  // Check if searching and otherwise handle as normal
+                  if (searchTimer != null && !searchTimer.Enabled)
+                  {
+                        //BaseConfig.MyAnimeLog.Write("Search was NOT open so letting command thru");
+                        return;
+                  }
+                  else
+                  {
+                      //BaseConfig.MyAnimeLog.Write("Search was open so cancelling command");
+                  }
+              }
+          }
+
+          // Prevent certain messages from beeing sent to MP core
+          if (message.Message == GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW &&
+              message.TargetWindowId == 0 && message.TargetControlId == 0 && message.SenderControlId == 0 &&
+              message.SendToTargetWindow == false && message.Object == null && message.Object2 == null &&
+              message.Param2 == 0 && message.Param3 == 0 && message.Param4 == 0 &&
+              (message.Param1 == (int) GUIWindow.Window.WINDOW_HOME ||
+               message.Param1 == (int) GUIWindow.Window.WINDOW_SECOND_HOME)
+          )
+          {
+              message.SendToTargetWindow = true;
+              message.TargetWindowId = GetID;
+              message.Param1 = GetID;
+              message.Message = GUIMessage.MessageType.GUI_MSG_HIDE_MESSAGE;
+          }
       }
 
-      if (message.Message == GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW &&
-          message.TargetWindowId == 0 && message.TargetControlId == 0 && message.SenderControlId == 0 &&
-          message.SendToTargetWindow == false && message.Object == null && message.Object2 == null &&
-          message.Param2 == 0 && message.Param3 == 0 && message.Param4 == 0 &&
-          (message.Param1 == (int)GUIWindow.Window.WINDOW_HOME ||
-           message.Param1 == (int)GUIWindow.Window.WINDOW_SECOND_HOME)
-        )
-      {
-        // Prevent certain messages from beeing sent to MP core
-        message.SendToTargetWindow = true;
-        message.TargetWindowId = GetID;
-        message.Param1 = GetID;
-        message.Message = GUIMessage.MessageType.GUI_MSG_HIDE_MESSAGE;
-      }
-    }
-
-    #region Find
+      #region Find
 
     #region Keyboard event handling
 
@@ -2611,27 +2640,29 @@ private bool ShowOptionsMenu(string previousMenu)
 
       private void KeyCommandHandler(int keycodeInput)
       {
+          // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
+          char keycode = (char) keycodeInput;
+          string keycodeString = KeycodeToString(keycodeInput).ToLower();
+          //BaseConfig.MyAnimeLog.Write("KeyCommandHandler | keycode string: " + keycodeString);
+          //BaseConfig.MyAnimeLog.Write("KeyCommandHandler | Mode toggle key: " + BaseConfig.Settings.ModeToggleKey);
+
           // Skip key command processing if video window is fullscreen
           if (g_Player.FullScreen)
               return;
 
           // Delay stopwatch for certain events
-          if (keyCommandDelayTimer.ElapsedMilliseconds < 5000)
+          if (keyCommandDelayTimer.IsRunning && keyCommandDelayTimer.ElapsedMilliseconds < 5000)
           {
               return;
           }
 
           keyCommandDelayTimer.Stop();
-
           //when the list is selected, search the input
           if ((m_Facade.CurrentLayout == GUIFacadeControl.Layout.List && m_Facade.ListLayout.IsFocused)
               || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.LargeIcons && m_Facade.ThumbnailLayout.IsFocused)
               || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.Filmstrip && m_Facade.FilmstripLayout.IsFocused)
               || (m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow && m_Facade.CoverFlowLayout.IsFocused))
           {
-              // For some reason keycode [ and ] aren't lining up to their WinForm keycode counterpart so we have this workaround first
-              char keycode = (char) keycodeInput;
-              string keycodeString = KeycodeToString(keycodeInput).ToLower();
 
               if (keycodeString == BaseConfig.Settings.ModeToggleKey)
               {

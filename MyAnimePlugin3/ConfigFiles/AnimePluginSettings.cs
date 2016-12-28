@@ -34,7 +34,8 @@ namespace MyAnimePlugin3
         public string ModeToggleKey = "]";
         public string StartTextToggleKey = "[";
         private string _subPaths;
-	    public bool HomeButtonNavigation = true;
+        public bool BasicHome = true;
+        public bool HomeButtonNavigation = true;
 
     public Dictionary<int, string> ImportFolderMappings
 		{
@@ -442,6 +443,7 @@ namespace MyAnimePlugin3
             StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
             AskBeforeStartStreamingPlayback = GetBooleanSetting(ref xmlreader, "AskBeforeStartStreamingPlayback", true);
             HomeButtonNavigation = GetBooleanSetting(ref xmlreader, "HomeButtonNavigation", true);
+            BasicHome = xmlreader.GetValueAsBool("general", "startbasichome", false);
 
             _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
             xmlreader.Dispose();

@@ -2579,13 +2579,12 @@ private bool ShowOptionsMenu(string previousMenu)
               return;
           }
 
-          BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
-          BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
-          BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
-          BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
-          BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
-          BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
-
+          //BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
+          //BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
+          //BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
 
           // Check for custom param 2 and let message thru if found
           if (message.Param2 == 00432100)

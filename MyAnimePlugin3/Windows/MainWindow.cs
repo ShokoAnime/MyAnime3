@@ -2455,7 +2455,6 @@ private bool ShowOptionsMenu(string previousMenu)
                 if (!BaseConfig.Settings.HomeButtonNavigation)
                 {
                     string keyChar = KeycodeToString(action.m_key.KeyChar);
-                    BaseConfig.MyAnimeLog.Write("Keychar for home: " + keyChar);
                     if (keyChar.ToLower() != "h")
                     {
                         GUIWindowManager.SendThreadMessage(msgHome);
@@ -2572,41 +2571,54 @@ private bool ShowOptionsMenu(string previousMenu)
         }
     }
 
-      void GUIWindowManager_OnThreadMessageHandler(object sender, GUIMessage message)
+    void GUIWindowManager_OnThreadMessageHandler(object sender, GUIMessage message)
+    {
+      if (GUIWindowManager.ActiveWindowEx != this.GetID)
       {
-          if (GUIWindowManager.ActiveWindowEx != this.GetID)
-          {
-              return;
-          }
-
-          //BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
-          //BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
-          //BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
-          //BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
-          //BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
-          //BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
-
-          // Check for custom param 2 and let message thru if found
-          if (message.Param2 == 00432100)
-              return;
-
-          // Prevent certain messages from beeing sent to MP core
-          if (message.Message == GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW &&
-              message.TargetWindowId == 0 && message.TargetControlId == 0 && message.SenderControlId == 0 &&
-              message.SendToTargetWindow == false && message.Object == null && message.Object2 == null &&
-              message.Param2 == 0 && message.Param3 == 0 && message.Param4 == 0 &&
-              (message.Param1 == (int) GUIWindow.Window.WINDOW_HOME ||
-               message.Param1 == (int) GUIWindow.Window.WINDOW_SECOND_HOME)
-          )
-          {
-              message.SendToTargetWindow = true;
-              message.TargetWindowId = GetID;
-              message.Param1 = GetID;
-              message.Message = GUIMessage.MessageType.GUI_MSG_HIDE_MESSAGE;
-          }
+        return;
       }
 
-      #region Find
+      //BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
+      //BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
+      //BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
+      //BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
+      //BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
+      //BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
+
+      // Check for custom param 2 and let message thru if found
+      if (message.Param2 == 00432100)
+        return;
+
+      bool isFilterActive = false;
+      if (dummyFindActive != null)
+      {
+        if (dummyFindActive.Visible)
+          isFilterActive = true;
+        //BaseConfig.MyAnimeLog.Write("dummyFindActive visible = " + dummyFindActive.Visible);
+      }
+
+      //BaseConfig.MyAnimeLog.Write("Filter window is active = " + isFilterActive);
+
+      if (message.Param1 == 35 && !isFilterActive)
+        return;
+
+      // Prevent certain messages from beeing sent to MP core
+      if (message.Message == GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW &&
+          message.TargetWindowId == 0 && message.TargetControlId == 0 && message.SenderControlId == 0 &&
+          message.SendToTargetWindow == false && message.Object == null && message.Object2 == null &&
+          message.Param2 == 0 && message.Param3 == 0 && message.Param4 == 0 &&
+          (message.Param1 == (int) GUIWindow.Window.WINDOW_HOME ||
+           message.Param1 == (int) GUIWindow.Window.WINDOW_SECOND_HOME)
+      )
+      {
+        message.SendToTargetWindow = true;
+        message.TargetWindowId = GetID;
+        message.Param1 = GetID;
+        message.Message = GUIMessage.MessageType.GUI_MSG_HIDE_MESSAGE;
+      }
+    }
+
+    #region Find
 
     #region Keyboard event handling
 

@@ -2446,10 +2446,11 @@ private bool ShowOptionsMenu(string previousMenu)
 
       // Set home window message for use later
       var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-        (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
+        (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
+
       if (BaseConfig.Settings.BasicHome)
         msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-          (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
+          (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
 
       switch (action.wID)
       {

@@ -439,14 +439,14 @@ namespace MyAnimePlugin3
 			FfdshowNotificationsAutoCloseTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsAutoCloseTime", "3000"));
 			FfdshowNotificationsLockTime = int.Parse(xmlreader.GetValueAsString("Anime3", "FfdshowNotificationsLockTime", "5000"));
 
-            ModeToggleKey = xmlreader.GetValueAsString("Anime3", "ModeToggleKey", "]");
-            StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
-            AskBeforeStartStreamingPlayback = GetBooleanSetting(ref xmlreader, "AskBeforeStartStreamingPlayback", true);
-            HomeButtonNavigation = GetBooleanSetting(ref xmlreader, "HomeButtonNavigation", true);
-            BasicHome = xmlreader.GetValueAsBool("general", "startbasichome", false);
+      ModeToggleKey = xmlreader.GetValueAsString("Anime3", "ModeToggleKey", "]");
+      StartTextToggleKey = xmlreader.GetValueAsString("Anime3", "StartTextToggleKey", "[");
+      AskBeforeStartStreamingPlayback = GetBooleanSetting(ref xmlreader, "AskBeforeStartStreamingPlayback", true);
+      HomeButtonNavigation = GetBooleanSetting(ref xmlreader, "HomeButtonNavigation", true);
+      BasicHome = xmlreader.GetValueAsBool("gui", "startbasichome", false);
 
-            _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
-            xmlreader.Dispose();
+      _subPaths = xmlreader.GetValueAsString("subtitles", "paths", @".\");
+      xmlreader.Dispose();
 
 
 

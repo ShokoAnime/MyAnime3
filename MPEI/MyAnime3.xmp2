@@ -4137,14 +4137,14 @@ http://jmediamanager.org/mediaportal/</Value>
     <Name>My Anime 3</Name>
     <Id>3d1787e3-d584-4e62-8530-cc79716c63dc</Id>
     <Author>Leo Werndly</Author>
-    <HomePage>http://jmediamanager.org/</HomePage>
+    <HomePage>http://www.shokoanime.com</HomePage>
     <ForumPage>http://forum.team-mediaportal.com/threads/my-anime-3.107475/</ForumPage>
-    <UpdateUrl>http://www.jmediamanager.org/files/stable/update.xml</UpdateUrl>
+    <UpdateUrl>http://www.shokoanime.com/files/stable/update.xml</UpdateUrl>
     <Version>
       <Major>3</Major>
       <Minor>7</Minor>
       <Build>0</Build>
-      <Revision>11</Revision>
+      <Revision>1</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
 
@@ -4189,8 +4189,8 @@ This plugin does not run independently, but instead relies on using JMM Server a
 
 http://jmediamanager.org/changelog/</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://www.jmediamanager.org/files/stable/Shoko_Beta_3.7.zip</OnlineLocation>
-    <ReleaseDate>2016-11-06T18:40:56</ReleaseDate>
+    <OnlineLocation>http://www.shokoanime.com/files/stable/My_Anime_3_3.7.0.1.mpe1</OnlineLocation>
+    <ReleaseDate>2016-12-29T18:40:56</ReleaseDate>
     <Tags />
     <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>
     <Params>

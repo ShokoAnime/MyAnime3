@@ -2436,140 +2436,155 @@ private bool ShowOptionsMenu(string previousMenu)
 
     public override void OnAction(MediaPortal.GUI.Library.Action action)
     {
-      //BaseConfig.MyAnimeLog.Write("Received action: {0} | keychar: {1}", action.wID, (char) (action.m_key.KeyChar));
-      string keyChar = KeycodeToString(action.m_key.KeyChar);
-
-      if (GUIWindowManager.ActiveWindowEx != this.GetID)
+      try
       {
-        return;
-      }
+        if (action != null && action.m_key != null)
+        {
+          //BaseConfig.MyAnimeLog.Write("Received action: {0} | keychar: {1}", action.wID, (char) (action.m_key.KeyChar));
+        }
+        else if (action != null)
+        {
+          //BaseConfig.MyAnimeLog.Write("Received action: {0}", action.wID);
+        }
 
-      // Set home window message for use later
-      var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-        (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
-
-      if (BaseConfig.Settings.BasicHome)
-        msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-          (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
-
-      switch (action.wID)
-      {
-        case Action.ActionType.ACTION_SWITCH_HOME:
-          if (keyChar.ToLower() != "h" && !IsFilterActive())
-          {
-            GUIWindowManager.SendThreadMessage(msgHome);
-          }
-          else if (!BaseConfig.Settings.HomeButtonNavigation && !IsFilterActive())
-          {
-            GUIWindowManager.SendThreadMessage(msgHome);
-          }
-          break;
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
-
-          //Reset autoclose timer on search
-          if (searchTimer != null && searchTimer.Enabled)
-          {
-            searchTimer.Stop();
-            searchTimer.Start();
-          }
-
-          base.OnAction(action);
-          break;
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_LEFT:
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_RIGHT:
-
-          base.OnAction(action);
-          break;
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_REMOTE_RED_BUTTON:
-          OnSearchAction(SearchAction.ToggleMode);
+        if (GUIWindowManager.ActiveWindowEx != this.GetID)
+        {
           return;
+        }
 
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_REMOTE_BLUE_BUTTON:
-          OnSearchAction(SearchAction.ToggleStartWord);
-          return;
+        // Set home window message for use later
+        var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
+          (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
 
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED:
-          KeyCommandHandler(action.m_key.KeyChar);
-          return;
+        if (BaseConfig.Settings.BasicHome)
+          msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
+            (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
 
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_PARENT_DIR:
-          return;
+        switch (action.wID)
+        {
+          case Action.ActionType.ACTION_SWITCH_HOME:
+            string keyChar = "";
+            if (action.m_key != null)
+              keyChar = KeycodeToString(action.m_key.KeyChar);
 
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME:
-          if (BaseConfig.Settings.HomeButtonNavigation)
-          {
-            UpdateSearchPanel(false);
-            ImageAllocator.FlushAll();
-            GUIWindowManager.ShowPreviousWindow();
-          }
-          else
-          {
-            GUIWindowManager.SendThreadMessage(msgHome);
-          }
-          break;
-
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_PLAY:
-          BaseConfig.MyAnimeLog.Write("Received PLAY action");
-
-          try
-          {
-            IVM ivm = GetCurrent().Selected;
-            if (ivm is AnimeGroupVM)
+            if (keyChar.ToLower() != "h" && !IsFilterActive())
             {
-              AnimeGroupVM grp = (AnimeGroupVM) ivm;
-              JMMServerBinary.Contract_AnimeEpisode contract =
-                JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(grp.AnimeGroupID,
-                  JMMServerVM.Instance.CurrentUser.JMMUserID);
-              if (contract == null) return;
-              AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
-              vidHandler.ResumeOrPlay(ep);
+              GUIWindowManager.SendThreadMessage(msgHome);
+            }
+            break;
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_UP:
+
+            //Reset autoclose timer on search
+            if (searchTimer != null && searchTimer.Enabled)
+            {
+              searchTimer.Stop();
+              searchTimer.Start();
             }
 
-            if (ivm is AnimeSeriesVM)
-            {
-              AnimeSeriesVM ser = (AnimeSeriesVM) ivm;
-              //ser = null;
-              if ((!ser.AnimeSeriesID.HasValue)) return;
-              JMMServerBinary.Contract_AnimeEpisode contract =
-                JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(ser.AnimeSeriesID.Value,
-                  JMMServerVM.Instance.CurrentUser.JMMUserID);
-              if (contract == null) return;
-              AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
-              vidHandler.ResumeOrPlay(ep);
-            }
-          }
-          catch (Exception ex)
-          {
-            BaseConfig.MyAnimeLog.Write(ex.ToString());
-          }
-          break;
+            base.OnAction(action);
+            break;
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_LEFT:
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_RIGHT:
 
-        case MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU:
-          if (searchTimer != null && searchTimer.Enabled)
-          {
-            OnSearchAction(SearchAction.EndSearch);
+            base.OnAction(action);
+            break;
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_REMOTE_RED_BUTTON:
+            OnSearchAction(SearchAction.ToggleMode);
             return;
-          }
 
-          // back one level
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_REMOTE_BLUE_BUTTON:
+            OnSearchAction(SearchAction.ToggleStartWord);
+            return;
 
-          //string msg = string.Format("LIST LEVEL:: {0} - GF: {1} ", listLevel, selectedGroupFilter?.GroupFilterName ?? "None");
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED:
+            KeyCommandHandler(action.m_key.KeyChar);
+            return;
 
-          //					BaseConfig.MyAnimeLog.Write(msg);
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_PARENT_DIR:
+            return;
 
-          if (Breadcrumbs.Count == 1)
-          {
-            BaseConfig.MyAnimeLog.Write("Going HOME");
-            goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME;
-          }
-          Breadcrumbs.Remove(Breadcrumbs[Breadcrumbs.Count - 1]);
-          LoadFacade();
-          break;
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME:
+            BaseConfig.MyAnimeLog.Write("Basic home navgiation = " + BaseConfig.Settings.HomeButtonNavigation);
 
-        default:
-          base.OnAction(action);
-          break;
+            if (BaseConfig.Settings.HomeButtonNavigation)
+            {
+              UpdateSearchPanel(false);
+              ImageAllocator.FlushAll();
+              goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU;
+            }
+
+            GUIWindowManager.SendThreadMessage(msgHome);
+            break;
+
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_PLAY:
+            BaseConfig.MyAnimeLog.Write("Received PLAY action");
+
+            try
+            {
+              IVM ivm = GetCurrent().Selected;
+              if (ivm is AnimeGroupVM)
+              {
+                AnimeGroupVM grp = (AnimeGroupVM) ivm;
+                JMMServerBinary.Contract_AnimeEpisode contract =
+                  JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(grp.AnimeGroupID,
+                    JMMServerVM.Instance.CurrentUser.JMMUserID);
+                if (contract == null) return;
+                AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+                vidHandler.ResumeOrPlay(ep);
+              }
+
+              if (ivm is AnimeSeriesVM)
+              {
+                AnimeSeriesVM ser = (AnimeSeriesVM) ivm;
+                //ser = null;
+                if ((!ser.AnimeSeriesID.HasValue)) return;
+                JMMServerBinary.Contract_AnimeEpisode contract =
+                  JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(ser.AnimeSeriesID.Value,
+                    JMMServerVM.Instance.CurrentUser.JMMUserID);
+                if (contract == null) return;
+                AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+                vidHandler.ResumeOrPlay(ep);
+              }
+            }
+            catch (Exception ex)
+            {
+              BaseConfig.MyAnimeLog.Write(ex.ToString());
+            }
+            break;
+
+          case MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU:
+            if (searchTimer != null && searchTimer.Enabled)
+            {
+              OnSearchAction(SearchAction.EndSearch);
+              return;
+            }
+
+            // back one level
+
+            //string msg = string.Format("LIST LEVEL:: {0} - GF: {1} ", listLevel, selectedGroupFilter?.GroupFilterName ?? "None");
+
+            //					BaseConfig.MyAnimeLog.Write(msg);
+
+            if (Breadcrumbs.Count == 1)
+            {
+              BaseConfig.MyAnimeLog.Write("Going HOME");
+              goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME;
+            }
+            Breadcrumbs.Remove(Breadcrumbs[Breadcrumbs.Count - 1]);
+            LoadFacade();
+            break;
+
+          default:
+            base.OnAction(action);
+            break;
+        }
+      }
+      catch (Exception ex)
+      {
+        // On error we just let the action passthru
+        BaseConfig.MyAnimeLog.Write("Error occured in OnAction(): " + ex);
+        base.OnAction(action);
       }
     }
 
@@ -2592,20 +2607,16 @@ private bool ShowOptionsMenu(string previousMenu)
       {
         return;
       }
-
-      //BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
-      //BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
-      //BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
-      //BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
-      //BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
-      //BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
-
+      /*
+      BaseConfig.MyAnimeLog.Write("Message = " + message.Message.ToString());
+      BaseConfig.MyAnimeLog.Write("Message param1 = " + message.Param1.ToString());
+      BaseConfig.MyAnimeLog.Write("Message param2 = " + message.Param2.ToString());
+      BaseConfig.MyAnimeLog.Write("Message param3 = " + message.Param3.ToString());
+      BaseConfig.MyAnimeLog.Write("Message param4 = " + message.Param4.ToString());
+      BaseConfig.MyAnimeLog.Write("SendToTargetWindow = " + message.SendToTargetWindow.ToString());
+      */
       // Check for custom param 2 and let message thru if found
       if (message.Param2 == 00432100 && !IsFilterActive())
-        return;
-
-      // Check if home button navigation is disabled
-      if (message.Param1 == 35 && !BaseConfig.Settings.HomeButtonNavigation)
         return;
 
       // Prevent certain messages from beeing sent to MP core
@@ -2613,9 +2624,7 @@ private bool ShowOptionsMenu(string previousMenu)
           message.TargetWindowId == 0 && message.TargetControlId == 0 && message.SenderControlId == 0 &&
           message.SendToTargetWindow == false && message.Object == null && message.Object2 == null &&
           message.Param2 == 0 && message.Param3 == 0 && message.Param4 == 0 &&
-          (message.Param1 == (int) GUIWindow.Window.WINDOW_HOME ||
-           message.Param1 == (int) GUIWindow.Window.WINDOW_SECOND_HOME)
-      )
+          (message.Param1 == (int)GUIWindow.Window.WINDOW_HOME || message.Param1 == (int)GUIWindow.Window.WINDOW_SECOND_HOME))
       {
         message.SendToTargetWindow = true;
         message.TargetWindowId = GetID;
@@ -3030,64 +3039,72 @@ private bool ShowOptionsMenu(string previousMenu)
 
       public override bool OnMessage(GUIMessage message)
       {
-
+        try
+        {
           switch (message.Message)
           {
-              case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
+            case GUIMessage.MessageType.GUI_MSG_ITEM_FOCUS_CHANGED:
+            {
+              int iControl = message.SenderControlId;
+              if (iControl == (int) m_Facade.GetID)
               {
-                  int iControl = message.SenderControlId;
-                  if (iControl == (int) m_Facade.GetID)
+
+                if (m_Facade.SelectedListItem != null && m_Facade.SelectedListItem.TVTag != null)
+                {
+                  if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
                   {
-
-                      if (m_Facade.SelectedListItem != null && m_Facade.SelectedListItem.TVTag != null)
-                      {
-                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(GroupFilterVM))
-                          {
-                              GroupFilter_OnItemSelected(m_Facade.SelectedListItem);
-                          }
-
-                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
-                          {
-                              Group_OnItemSelected(m_Facade.SelectedListItem);
-                          }
-
-                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
-                          {
-                              Series_OnItemSelected(m_Facade.SelectedListItem);
-                          }
-
-                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeTypeVM))
-                          {
-                              EpisodeType_OnItemSelected(m_Facade.SelectedListItem);
-                          }
-
-                          if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeVM))
-                          {
-                              Episode_OnItemSelected(m_Facade.SelectedListItem);
-                          }
-                      }
+                    GroupFilter_OnItemSelected(m_Facade.SelectedListItem);
                   }
+
+                  if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeGroupVM))
+                  {
+                    Group_OnItemSelected(m_Facade.SelectedListItem);
+                  }
+
+                  if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeSeriesVM))
+                  {
+                    Series_OnItemSelected(m_Facade.SelectedListItem);
+                  }
+
+                  if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeTypeVM))
+                  {
+                    EpisodeType_OnItemSelected(m_Facade.SelectedListItem);
+                  }
+
+                  if (m_Facade.SelectedListItem.TVTag.GetType() == typeof(AnimeEpisodeVM))
+                  {
+                    Episode_OnItemSelected(m_Facade.SelectedListItem);
+                  }
+                }
               }
+            }
 
-                  EvaluateVisibility();
-                  return true;
+              EvaluateVisibility();
+              return true;
 
-              case GUIMessage.MessageType.GUI_MSG_PLAYBACK_ENDED:
-              case GUIMessage.MessageType.GUI_MSG_PLAYBACK_STOPPED:
-              {
-                  //-- Need to reload the GUI to display changes 
-                  //-- if episode is classified as watched
-                  LoadFacade();
+            case GUIMessage.MessageType.GUI_MSG_PLAYBACK_ENDED:
+            case GUIMessage.MessageType.GUI_MSG_PLAYBACK_STOPPED:
+            {
+              //-- Need to reload the GUI to display changes 
+              //-- if episode is classified as watched
+              LoadFacade();
 
-              }
-                  return true;
+            }
+              return true;
 
-              default:
-                  return base.OnMessage(message);
+            default:
+              return base.OnMessage(message);
           }
+        }
+        catch (Exception ex)
+        {
+          // On error we just let the message passthru
+          BaseConfig.MyAnimeLog.Write("Error occured in OnMessage(): " + ex.Message);
+          return base.OnMessage(message);
+        }
       }
 
-      void g_Player_PlayBackEnded(g_Player.MediaType type, string filename)
+    void g_Player_PlayBackEnded(g_Player.MediaType type, string filename)
     {
       // Not used at this time
     }

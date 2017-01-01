@@ -2511,10 +2511,12 @@ private bool ShowOptionsMenu(string previousMenu)
             {
               UpdateSearchPanel(false);
               ImageAllocator.FlushAll();
-              goto case MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU;
+              GUIWindowManager.ShowPreviousWindow();
             }
-
-            GUIWindowManager.SendThreadMessage(msgHome);
+            else
+            {
+              GUIWindowManager.SendThreadMessage(msgHome);
+            }
             break;
 
           case MediaPortal.GUI.Library.Action.ActionType.ACTION_PLAY:

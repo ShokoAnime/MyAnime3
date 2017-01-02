@@ -349,7 +349,7 @@ namespace MyAnimePlugin3
                 if (rating > 0)
                 {
                     JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(ser.AniDB_ID, rating, (int)VoteType.AnimePermanent);
-                    MainWindow.StaticSetGUIProperty(MainWindow.GuiProperty.SeriesGroup_MyRating, $"{rating}");
+                    MainWindow.StaticSetGUIProperty(MainWindow.GuiProperty.SeriesGroup_MyRating, $"{rating},00");
                 }
 
             }

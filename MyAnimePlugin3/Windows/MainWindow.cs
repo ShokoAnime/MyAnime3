@@ -808,66 +808,68 @@ private AnimeEpisodeVM curAnimeEpisode = null;
     }
     #endregion
 
-    protected override void OnPageLoad()
-    {
-      BaseConfig.MyAnimeLog.Write("Starting page load...");
-      pluginsIsShown = true;
+      protected override void OnPageLoad()
+      {
+          BaseConfig.MyAnimeLog.Write("Starting page load...");
+          pluginsIsShown = true;
 
-      Utils.GetLatestVersionAsync();
+          Utils.GetLatestVersionAsync();
 
-      //Removed will generate problems with MediaPortal
-      //SubClass();
+          //Removed will generate problems with MediaPortal
+          //SubClass();
 
-      if (!isFirstInitDone)
-        OnFirstStart();
+          if (!isFirstInitDone)
+          {
+              OnFirstStart();
+          }
 
-      currentViewClassification = settings.LastViewClassification;
-      currentStaticViewID = settings.LastStaticViewID;
-      currentView = settings.LastView;
-
-
-      groupViewMode = settings.LastGroupViewMode;
-      m_Facade.CurrentLayout = groupViewMode;
-      //backdrop.LoadingImage = loadingImage;
-
-      Console.Write(JMMServerVM.Instance.ServerOnline.ToString());
-
-      LoadFacade();
-      m_Facade.Focus = true;
-
-      SkinSettings.Load();
-
-      //MainWindow.anidbProcessor.UpdateVotesHTTP(MainWindow.settings.Username, MainWindow.settings.Password);
+          currentViewClassification = settings.LastViewClassification;
+          currentStaticViewID = settings.LastStaticViewID;
+          currentView = settings.LastView;
 
 
+          groupViewMode = settings.LastGroupViewMode;
+          m_Facade.CurrentLayout = groupViewMode;
+          //backdrop.LoadingImage = loadingImage;
 
-      autoUpdateTimer.Start();
+          Console.Write(JMMServerVM.Instance.ServerOnline.ToString());
 
-      BaseConfig.MyAnimeLog.Write("Thumbs Setting Folder: {0}", settings.ThumbsFolder);
+          LoadFacade();
+          m_Facade.Focus = true;
 
-      //searching
-      ClearGUIProperty(GuiProperty.FindInput);
-      ClearGUIProperty(GuiProperty.FindText);
-      ClearGUIProperty(GuiProperty.FindMatch);
+          SkinSettings.Load();
+
+          //MainWindow.anidbProcessor.UpdateVotesHTTP(MainWindow.settings.Username, MainWindow.settings.Password);
 
 
 
-      search = new SearchCollection();
-      search.List = m_Facade;
-      search.ListItemSearchProperty = "DVDLabel";
-      search.Mode = settings.FindMode;
-      search.StartWord = settings.FindStartWord;
+          autoUpdateTimer.Start();
 
-      UpdateSearchPanel(false);
+          BaseConfig.MyAnimeLog.Write("Thumbs Setting Folder: {0}", settings.ThumbsFolder);
 
-
-      DownloadAllImages();
-    }
+          //searching
+          ClearGUIProperty(GuiProperty.FindInput);
+          ClearGUIProperty(GuiProperty.FindText);
+          ClearGUIProperty(GuiProperty.FindMatch);
 
 
 
+          search = new SearchCollection();
+          search.List = m_Facade;
+          search.ListItemSearchProperty = "DVDLabel";
+          search.Mode = settings.FindMode;
+          search.StartWord = settings.FindStartWord;
 
-    void autoUpdateTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+          UpdateSearchPanel(false);
+
+
+          DownloadAllImages();
+      }
+
+
+
+
+      void autoUpdateTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
 
     }
@@ -2324,7 +2326,7 @@ private bool ShowOptionsMenu(string previousMenu)
           }
           else
           {
-              LoadFacade();
+              
           }
       });
       menu.Add(btnSettings, () =>
@@ -2434,7 +2436,20 @@ private bool ShowOptionsMenu(string previousMenu)
       base.DeInit();
     }
 
-    public override void OnAction(MediaPortal.GUI.Library.Action action)
+      public static void ReturnToMPHome()
+      {
+          // Set home window message for use later
+          var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
+              (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
+
+          if (BaseConfig.Settings.BasicHome)
+              msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
+                  (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
+
+          GUIWindowManager.SendThreadMessage(msgHome);
+      }
+
+      public override void OnAction(MediaPortal.GUI.Library.Action action)
     {
       try
       {
@@ -2452,14 +2467,6 @@ private bool ShowOptionsMenu(string previousMenu)
           return;
         }
 
-        // Set home window message for use later
-        var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-          (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
-
-        if (BaseConfig.Settings.BasicHome)
-          msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-            (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
-
         switch (action.wID)
         {
           case Action.ActionType.ACTION_SWITCH_HOME:
@@ -2469,7 +2476,7 @@ private bool ShowOptionsMenu(string previousMenu)
 
             if (keyChar.ToLower() != "h" && !IsFilterActive())
             {
-              GUIWindowManager.SendThreadMessage(msgHome);
+              ReturnToMPHome();
             }
             break;
           case MediaPortal.GUI.Library.Action.ActionType.ACTION_MOVE_DOWN:
@@ -2515,7 +2522,7 @@ private bool ShowOptionsMenu(string previousMenu)
             }
             else
             {
-              GUIWindowManager.SendThreadMessage(msgHome);
+              ReturnToMPHome();
             }
             break;
 
@@ -3112,93 +3119,96 @@ private bool ShowOptionsMenu(string previousMenu)
     }
 
       public static bool isFirstInitDone = false;
-    private void OnFirstStart()
-    {
-      if (isFirstInitDone)
-        return;
 
-      if (string.IsNullOrEmpty(MainWindow.settings.JMMServer_Address) || string.IsNullOrEmpty(MainWindow.settings.JMMServer_Port))
+      private void OnFirstStart()
       {
-        Utils.DialogMsg(Translation.Error, Translation.PleaseExitMPFirst);
-        return;
-      }
-
-
-      // check if we can connect to JMM Server
-      // and load the default user
-      List<JMMUserVM> allUsers = JMMServerHelper.GetAllUsers();
-      if (allUsers.Count == 0)
-      {
-        Utils.DialogMsg(Translation.Error, Translation.ErrorConnectingJMMServer);
-        return;
-      }
-      else
-      {
-        // check for last jmm user
-        if (string.IsNullOrEmpty(MainWindow.settings.CurrentJMMUserID))
-        {
-          if (!JMMServerVM.Instance.PromptUserLogin())
-            return;
-
-          // user has logged in, so save to settings so we will log in as the same user next time
-          MainWindow.settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
-          settings.Save();
-        }
-        else
-        {
-          JMMUserVM selUser = null;
-          foreach (JMMUserVM user in allUsers)
+          if (isFirstInitDone)
+              return;
+          fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
+          Breadcrumbs = new List<History>() {new History()};
+          if (string.IsNullOrEmpty(MainWindow.settings.JMMServer_Address) ||
+              string.IsNullOrEmpty(MainWindow.settings.JMMServer_Port))
           {
-            if (user.JMMUserID.ToString().Equals(MainWindow.settings.CurrentJMMUserID))
-            {
-              selUser = user;
-              break;
-            }
+              Utils.DialogMsg(Translation.Error, Translation.PleaseExitMPFirst);
+              return;
           }
 
-          if (selUser == null)
-          {
-            if (!JMMServerVM.Instance.PromptUserLogin())
-              return;
 
-            // user has logged in, so save to settings so we will log in as the same user next time
-            MainWindow.settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
-            settings.Save();
+          // check if we can connect to JMM Server
+          // and load the default user
+          List<JMMUserVM> allUsers = JMMServerHelper.GetAllUsers();
+          if (allUsers.Count == 0)
+          {
+              Utils.DialogMsg(Translation.Error, Translation.ErrorConnectingJMMServer);
+              return;
           }
           else
           {
-            bool authed = JMMServerVM.Instance.AuthenticateUser(selUser.Username, "");
-            string password = "";
-            while (!authed)
-            {
-              // prompt user for a password
-              if (Utils.DialogText(ref password, true, GUIWindowManager.ActiveWindow))
+              // check for last jmm user
+              if (string.IsNullOrEmpty(MainWindow.settings.CurrentJMMUserID))
               {
-                authed = JMMServerVM.Instance.AuthenticateUser(selUser.Username, password);
-                if (!authed)
-                {
-                  Utils.DialogMsg(Translation.Error, Translation.IncorrectPasswordTryAgain);
-                }
+                  if (!JMMServerVM.Instance.PromptUserLogin())
+                      return;
+
+                  // user has logged in, so save to settings so we will log in as the same user next time
+                  MainWindow.settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
+                  settings.Save();
               }
-              else return;
-            }
+              else
+              {
+                  JMMUserVM selUser = null;
+                  foreach (JMMUserVM user in allUsers)
+                  {
+                      if (user.JMMUserID.ToString().Equals(MainWindow.settings.CurrentJMMUserID))
+                      {
+                          selUser = user;
+                          break;
+                      }
+                  }
 
-            JMMServerVM.Instance.SetCurrentUser(selUser);
+                  if (selUser == null)
+                  {
+                      if (!JMMServerVM.Instance.PromptUserLogin())
+                          return;
 
-            // user has logged in, so save to settings so we will log in as the same user next time
-            settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
-            settings.Save();
+                      // user has logged in, so save to settings so we will log in as the same user next time
+                      MainWindow.settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
+                      settings.Save();
+                  }
+                  else
+                  {
+                      bool authed = JMMServerVM.Instance.AuthenticateUser(selUser.Username, "");
+                      string password = "";
+                      while (!authed)
+                      {
+                          // prompt user for a password
+                          if (Utils.DialogText(ref password, true, GUIWindowManager.ActiveWindow))
+                          {
+                              authed = JMMServerVM.Instance.AuthenticateUser(selUser.Username, password);
+                              if (!authed)
+                              {
+                                  Utils.DialogMsg(Translation.Error, Translation.IncorrectPasswordTryAgain);
+                              }
+                          }
+                          else return;
+                      }
+
+                      JMMServerVM.Instance.SetCurrentUser(selUser);
+
+                      // user has logged in, so save to settings so we will log in as the same user next time
+                      settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString();
+                      settings.Save();
+                  }
+              }
           }
-        }
+
+          JMMServerVM.Instance.ServerStatusEvent += new JMMServerVM.ServerStatusEventHandler(Instance_ServerStatusEvent);
+
+          isFirstInitDone = true;
       }
 
-      JMMServerVM.Instance.ServerStatusEvent += new JMMServerVM.ServerStatusEventHandler(Instance_ServerStatusEvent);
 
-      isFirstInitDone = true;
-    }
-
-
-    private void GroupFilter_OnItemSelected(GUIListItem item)
+      private void GroupFilter_OnItemSelected(GUIListItem item)
     {
       GroupFilterVM grpFilter = item.TVTag as GroupFilterVM;
       if (grpFilter == null) return;

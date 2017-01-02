@@ -515,20 +515,11 @@ namespace MyAnimePlugin3.ViewModel
             Username = "";
             IsAdminUser = false;
             UserAuthenticated = false;
-
 	        MainWindow.isFirstInitDone = false;
 
             if (returnToHome)
 	        {
-	            // Set home window message for use later
-	            var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-	                (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
-
-	            if (BaseConfig.Settings.BasicHome)
-	                msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
-	                    (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
-
-	            GUIWindowManager.SendThreadMessage(msgHome);
+                MainWindow.ReturnToMPHome();
 	        }
 	    }
 

@@ -448,6 +448,7 @@ namespace MyAnimePlugin3
 
         public static string RandomSeries = "Random Series";
         public static string RandomEpisode = "Random Episode";
+        public static string RateSeries = "Rate series";
         public static string RateOne = "Abysmal";
         public static string RateTwo = "Terrible";
         public static string RateThree = "Bad";

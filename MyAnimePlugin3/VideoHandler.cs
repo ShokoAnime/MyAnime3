@@ -368,8 +368,8 @@ namespace MyAnimePlugin3
 
         void MarkEpisodeAsWatched(AnimeEpisodeVM episode)
         {
-			episode.ToggleWatchedStatus(true, false);
-			MainWindow.animeSeriesIDToBeRated = episode.AnimeSeriesID;
+		      episode.ToggleWatchedStatus(true, false);
+		      MainWindow.animeSeriesIDToBeRated = episode.AnimeSeriesID;
         }
 
         void CreateSubsOnTempIfNecesary(Media m)

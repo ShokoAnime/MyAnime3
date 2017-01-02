@@ -181,8 +181,6 @@ public static object parentLevelObject = null;
     public static List<List<TorrentLink>> downloadSearchResultsHistory = new List<List<TorrentLink>>();
 
 
-
-
     public static int GlobalSeriesID = -1; // either AnimeSeriesID
     public static int GlobalAnimeID = -1; // AnimeID
     public static int GlobalSeiyuuID = -1; // SeiyuuID
@@ -369,10 +367,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
     public event OnRateSeriesHandler OnRateSeries;
     protected void RateSeriesEvent(AnimeSeriesVM series, string rateValue)
     {
-      if (OnRateSeries != null)
-      {
-        OnRateSeries(series, rateValue);
-      }
+        OnRateSeries?.Invoke(series, rateValue);
     }
 
     public MainWindow()
@@ -1040,7 +1035,7 @@ private AnimeEpisodeVM curAnimeEpisode = null;
     bool m_bQuickSelect = false;
     void SelectItem(int index)
     {
-      //BaseConfig.MyAnimeLog.Write("SelectItem: {0}", index.ToString());
+      // BaseConfig.MyAnimeLog.Write("SelectItem: {0}", index.ToString());
 
       // Hack for 'set' SelectedListItemIndex not being implemented in Filmstrip View
       // Navigate to selected using OnAction instead 
@@ -3900,7 +3895,11 @@ private bool ShowOptionsMenu(string previousMenu)
     {
       try
       {
+        if (GetCurrent().Selected == null)
+            return;
         IVM vm = GetCurrent().Selected;
+        if (vm == null)
+            return;
         if (vm is GroupFilterVM)
           ShowContextMenuGroupFilter("");
         else if (vm is AnimeGroupVM)
@@ -4171,59 +4170,112 @@ private bool ShowOptionsMenu(string previousMenu)
         ept = e.EpisodeType;
       cmenu.AddAction(Translation.MarkAllAsWatched, () =>
       {
-        if (ser.AnimeSeriesID.HasValue)
-        {
-          JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true, Int32.MaxValue, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-          if (BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+          if (ser == null)
           {
-            Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
-            if (contract != null)
-            {
-              ser = new AnimeSeriesVM(contract);
-              if (ser?.AnimeSeriesID != null)
-                ReplaceSerie(ser.AnimeSeriesID.Value, ser);
-              Utils.PromptToRateSeriesOnCompletion(ser);
-            }
+              // If we can't get a top series we fallback on what the episode tells us
+              BaseConfig.MyAnimeLog.Write("Error during watch state change - series was null!");
+              ser = episode.AnimeSeries;
           }
-          LoadFacade();
-        }
+
+          if (ser?.AnimeSeriesID != null)
+          {
+              BaseConfig.MyAnimeLog.Write("Marking series as watched: ID -> {0} - Name -> {1}", ser.AnimeSeriesID,
+                  ser.SeriesName);
+
+              JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true,
+                  Int32.MaxValue, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+              if (BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+              {
+                  Contract_AnimeSeries contract =
+                      JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value,
+                          JMMServerVM.Instance.CurrentUser.JMMUserID);
+                  if (contract != null)
+                  {
+                      ser = new AnimeSeriesVM(contract);
+                      if (ser?.AnimeSeriesID != null)
+                          ReplaceSerie(ser.AnimeSeriesID.Value, ser);
+                      Utils.PromptToRateSeriesOnCompletion(ser);
+                  }
+              }
+              LoadFacade();
+          }
       });
       cmenu.AddAction(Translation.MarkAllAsUnwatched, () =>
       {
-        if (ser.AnimeSeriesID.HasValue)
-        {
-            JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false,
-                Int32.MaxValue, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
-          LoadFacade();
-        }
+          if (ser == null)
+          {
+              // If we can't get a top series we fallback on what the episode tells us
+              BaseConfig.MyAnimeLog.Write("Error during watch state change - series was null!");
+              ser = episode.AnimeSeries;
+          }
+
+          if (ser?.AnimeSeriesID != null)
+          {
+              BaseConfig.MyAnimeLog.Write("Marking series as un-watched: ID -> {0} - Name -> {1}", ser.AnimeSeriesID,
+                  ser.SeriesName);
+
+              JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false,
+                  Int32.MaxValue, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+              LoadFacade();
+          }
       });
       cmenu.AddAction(Translation.MarkAllPreviousAsWatched, () =>
       {
-        if (ser.AnimeSeriesID.HasValue)
-        {
-            JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false,
-                episode.EpisodeNumber -1, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
-
-          Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID);
-          if (contract != null)
+          if (ser == null)
           {
-            ser = new AnimeSeriesVM(contract);
-            if (ser?.AnimeSeriesID != null)
-              ReplaceSerie(ser.AnimeSeriesID.Value, ser);
-            Utils.PromptToRateSeriesOnCompletion(ser);
+              // If we can't get a top series we fallback on what the episode tells us
+              BaseConfig.MyAnimeLog.Write("Error during watch state change - series was null!");
+              ser = episode.AnimeSeries;
           }
-          LoadFacade();
-        }
+
+          if (ser?.AnimeSeriesID != null)
+          {
+              JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, false,
+                  episode.EpisodeNumber - 1, (int)ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+
+              Contract_AnimeSeries contract =
+                  JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ser.AnimeSeriesID.Value,
+                      JMMServerVM.Instance.CurrentUser.JMMUserID);
+              if (contract != null)
+              {
+                  ser = new AnimeSeriesVM(contract);
+                  if (ser?.AnimeSeriesID != null)
+                      ReplaceSerie(ser.AnimeSeriesID.Value, ser);
+                  Utils.PromptToRateSeriesOnCompletion(ser);
+              }
+              LoadFacade();
+          }
       });
       cmenu.AddAction(Translation.MarkAllPreviousAsUnwatched, () =>
       {
-        if (ser.AnimeSeriesID.HasValue)
-        {
-            JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true,
-                episode.EpisodeNumber -1, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
-          LoadFacade();
-        }
+          if (ser == null)
+          {
+              // If we can't get a top series we fallback on what the episode tells us
+              BaseConfig.MyAnimeLog.Write("Error during watch state change - series was null!");
+              ser = episode.AnimeSeries;
+          }
+
+          if (ser?.AnimeSeriesID != null)
+          {
+              JMMServerVM.Instance.clientBinaryHTTP.SetWatchedStatusOnSeries(ser.AnimeSeriesID.Value, true,
+                  episode.EpisodeNumber - 1, (int) ept, JMMServerVM.Instance.CurrentUser.JMMUserID);
+              LoadFacade();
+          }
+      });
+      cmenu.AddAction(Translation.RateSeries, () =>
+      {
+          if (ser == null)
+          {
+              // If we can't get a top series we fallback on what the episode tells us
+              BaseConfig.MyAnimeLog.Write("Error during rating = series was null!");
+              ser = episode.AnimeSeries;
+          }
+
+          if (ser?.AnimeSeriesID != null)
+          {
+              Utils.PromptToRateSeriesMaually(ser);
+          }
       });
       cmenu.Add(Translation.AssociateFileEpisode, () =>
       {
@@ -4271,8 +4323,8 @@ private bool ShowOptionsMenu(string previousMenu)
       });
       cmenu.AddAction(Translation.DownloadThisEpisode, () => DownloadHelper.SearchEpisode(episode));
       cmenu.Add(Translation.PostProcessing + " ...", () => ShowContextMenuPostProcessing(episode.EpisodeNumberAndName));
-      return cmenu.Show();
 
+      return cmenu.Show();
     }
 
 
@@ -4431,53 +4483,80 @@ private bool ShowOptionsMenu(string previousMenu)
 
 
     }
-    /*
-private bool ShowContextMenuSeriesInfo(string previousMenu)
-{
-  GUIListItem currentitem = this.m_Facade.SelectedListItem;
-  if (currentitem == null)
-    return true;
 
-  GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
-  if (dlg == null)
-    return true;
-
-  //keep showing the dialog until the user closes it
-  int selectedLabel = 0;
-  string currentMenu = "Series Information";
-  while (true)
-  {
-    dlg.Reset();
-    dlg.SetHeading(currentMenu);
-
-    if (previousMenu != string.Empty)
-      dlg.Add("<<< " + previousMenu);
-    dlg.Add("Characters/Actors");
-    dlg.Add("Related Series");
-
-    dlg.SelectedLabel = selectedLabel;
-    dlg.DoModal(GUIWindowManager.ActiveWindow);
-    selectedLabel = dlg.SelectedLabel;
-
-    int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
-    switch (selection)
+    private void CheckForEmptyList()
     {
-      case 0:
-        //show previous
-        return true;
-      case 1:
-        ShowCharacterWindow();
-        return false;
-      case 2:
-        ShowRelationsWindow();
-        return false;
-      default:
-        //close menu
-        return false;
+      // If we have no items in list anymore navigate back so we don't end up with empty list view
+      // Mostly for mark as watched actions
+      BaseConfig.MyAnimeLog.Write("Facade count: " + m_Facade.Count);
+      GUIListItem currentitem = m_Facade.SelectedListItem;
+
+      if (m_Facade.Count == 0)
+      {
+        if (searchTimer != null && searchTimer.Enabled)
+        {
+          OnSearchAction(SearchAction.EndSearch);
+          return;
+        }
+
+        try
+        {
+          Breadcrumbs.Remove(Breadcrumbs[Breadcrumbs.Count - 1]);
+        }
+        catch (Exception)
+        {
+        }
+        LoadFacade();
+      }
     }
-  }
-}
-    */
+
+    /*
+    private bool ShowContextMenuSeriesInfo(string previousMenu)
+    {
+      GUIListItem currentitem = this.m_Facade.SelectedListItem;
+      if (currentitem == null)
+        return true;
+    
+      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+      if (dlg == null)
+        return true;
+    
+      //keep showing the dialog until the user closes it
+      int selectedLabel = 0;
+      string currentMenu = "Series Information";
+      while (true)
+      {
+        dlg.Reset();
+        dlg.SetHeading(currentMenu);
+    
+        if (previousMenu != string.Empty)
+          dlg.Add("<<< " + previousMenu);
+        dlg.Add("Characters/Actors");
+        dlg.Add("Related Series");
+    
+        dlg.SelectedLabel = selectedLabel;
+        dlg.DoModal(GUIWindowManager.ActiveWindow);
+        selectedLabel = dlg.SelectedLabel;
+    
+        int selection = selectedLabel + ((previousMenu == string.Empty) ? 1 : 0);
+        switch (selection)
+        {
+          case 0:
+            //show previous
+            return true;
+          case 1:
+            ShowCharacterWindow();
+            return false;
+          case 2:
+            ShowRelationsWindow();
+            return false;
+          default:
+            //close menu
+            return false;
+        }
+      }
+    }
+        */
     private ContextMenuAction ShowContextMenuGroupFilter(string previousMenu)
     {
       GUIListItem currentitem = this.m_Facade.SelectedListItem;
@@ -4904,7 +4983,8 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
           if (contract != null)
           {
             AnimeSeriesVM serTemp = new AnimeSeriesVM(contract);
-            Utils.PromptToRateSeriesOnCompletion(serTemp);
+            if(serTemp != null)
+              Utils.PromptToRateSeriesOnCompletion(serTemp);
           }
           LoadFacade();
         }
@@ -4916,6 +4996,17 @@ private bool ShowContextMenuSeriesInfo(string previousMenu)
           JMMServerHelper.SetWatchedStatusOnSeries(false, Int32.MaxValue, ser.AnimeSeriesID.Value);
           LoadFacade();
         }
+      });
+      cmenu.AddAction(Translation.RateSeries, () =>
+      {
+          if (ser == null)
+          {
+              BaseConfig.MyAnimeLog.Write("Error during rating = series was null!");
+          }
+          if (ser.AnimeSeriesID.HasValue)
+          {
+              Utils.PromptToRateSeriesMaually(ser);
+          }
       });
       cmenu.Add(Translation.Databases + " ...", () => ShowContextMenuDatabases(ser, ser.SeriesName));
       cmenu.Add(Translation.Images + " ...", () => ShowContextMenuImages(ser.SeriesName));

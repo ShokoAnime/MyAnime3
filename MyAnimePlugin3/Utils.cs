@@ -303,35 +303,62 @@ namespace MyAnimePlugin3
 
         }
 
-		public static void PromptToRateSeriesOnCompletion(AnimeSeriesVM ser)
-		{
-			try
-			{
-				if (!BaseConfig.Settings.DisplayRatingDialogOnCompletion) return;
+	    public static void PromptToRateSeriesOnCompletion(AnimeSeriesVM ser)
+	    {
+	        try
+	        {
+	            if (!BaseConfig.Settings.DisplayRatingDialogOnCompletion) return;
 
-				// if the user doesn't have all the episodes return
-				if (ser.MissingEpisodeCount > 0) return;
+	            // if the user doesn't have all the episodes return
+	            if (ser.MissingEpisodeCount > 0) return;
 
-				// only prompt the user if the series has finished airing
-				// and the user has watched all the episodes
-				if (!ser.AniDB_Anime.FinishedAiring || ser.UnwatchedEpisodeCount > 0) return;
+	            // if we have no anidb info return
+	            if (ser.AniDB_Anime == null || ser.AniDB_ID == 0)
+	                return;
 
-				// don't prompt if the user has already rated this
-				AniDB_VoteVM UserVote = ser.AniDB_Anime.UserVote;
-				if (UserVote != null) return;
+	            // only prompt the user if the series has finished airing
+	            // and the user has watched all the episodes
+	            if (!ser.AniDB_Anime.FinishedAiring || ser.UnwatchedEpisodeCount > 0) return;
 
-				decimal rating = Utils.PromptAniDBRating(ser.AniDB_Anime.FormattedTitle);
-				if (rating > 0)
-				{
-					JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(ser.AniDB_ID, rating, (int)VoteType.AnimePermanent);
-				}
+	            // don't prompt if the user has already rated this
+	            AniDB_VoteVM UserVote = ser.AniDB_Anime.UserVote;
+	            if (UserVote != null) return;
 
-			}
-			catch (Exception ex)
-			{
-				BaseConfig.MyAnimeLog.Write(ex.ToString());
-			}
-		}
+	            decimal rating = Utils.PromptAniDBRating(ser.AniDB_Anime.FormattedTitle);
+	            if (rating > 0)
+	            {
+	                JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(ser.AniDB_ID, rating, (int) VoteType.AnimePermanent);
+	            }
+
+	        }
+	        catch (Exception ex)
+	        {
+	            BaseConfig.MyAnimeLog.Write(ex.ToString());
+	        }
+	    }
+
+        public static void PromptToRateSeriesMaually(AnimeSeriesVM ser)
+        {
+            try
+            {
+                // if we have no anidb info return
+                if (ser.AniDB_Anime == null || ser.AniDB_ID == 0)
+                    return;
+
+                decimal rating = Utils.PromptAniDBRating(ser.AniDB_Anime.FormattedTitle);
+                if (rating > 0)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.VoteAnime(ser.AniDB_ID, rating, (int)VoteType.AnimePermanent);
+                    MainWindow.StaticSetGUIProperty(MainWindow.GuiProperty.SeriesGroup_MyRating, $"{rating}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                BaseConfig.MyAnimeLog.Write(ex.ToString());
+            }
+        }
+
         public static decimal PromptAniDBRating(string title)
         {
             RatingDialog ratingDlg = (RatingDialog)GUIWindowManager.GetWindow(Constants.WindowIDs.RATINGDIALOG);

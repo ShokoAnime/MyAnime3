@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6201</id>
+  <defaultcontrol>113</defaultcontrol>
+  <allowoverlay>yes</allowoverlay>
+  <controls>
+		<import>common.dialog.xml</import>
+		<control>
+      <id>100</id>
+      <type>checkmark</type>
+      <posX>700</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>101</id>
+      <type>checkmark</type>
+      <posX>727</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>102</id>
+      <type>checkmark</type>
+      <posX>750</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>103</id>
+      <type>checkmark</type>
+      <posX>777</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>104</id>
+      <type>checkmark</type>
+      <posX>800</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>105</id>
+      <type>checkmark</type>
+      <posX>827</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>106</id>
+      <type>checkmark</type>
+      <posX>850</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>107</id>
+      <type>checkmark</type>
+      <posX>877</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+
+
+
+		<control>
+      <id>108</id>
+      <type>checkmark</type>
+      <posX>900</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>109</id>
+      <type>checkmark</type>
+      <posX>927</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>110</id>
+      <type>checkmark</type>
+      <posX>950</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>111</id>
+      <type>checkmark</type>
+      <posX>977</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+		<control>
+      <id>112</id>
+      <type>checkmark</type>
+      <posX>1000</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>113</id>
+      <type>checkmark</type>
+      <posX>1027</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>114</id>
+      <type>checkmark</type>
+      <posX>1050</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>115</id>
+      <type>checkmark</type>
+      <posX>1077</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+
+		<control>
+      <id>116</id>
+      <type>checkmark</type>
+      <posX>1100</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>117</id>
+      <type>checkmark</type>
+      <posX>1127</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>118</id>
+      <type>checkmark</type>
+      <posX>1150</posX>
+      <posY>766</posY>
+      <width>27</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_left.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_left.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+		<control>
+      <id>119</id>
+      <type>checkmark</type>
+      <posX>1177</posX>
+      <posY>766</posY>
+      <width>26</width>
+      <height>41</height>
+      <textureCheckmark>MyAnime3\starblue_rating_right.png</textureCheckmark>
+      <textureCheckmarkNoFocus>MyAnime3\starblack_rating_right.png</textureCheckmarkNoFocus>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+    <control>
+      <id>7</id>
+      <description>Selected Rating</description>
+      <type>label</type>
+      <posX>575</posX>
+      <posY>866</posY>
+      <width>768</width>
+      <align>center</align>
+    	<animation effect="fade" time="250">WindowOpen</animation>
+    	<animation effect="slide" start="0,150" end="0,0" tween="quadratic" easing="in" time="200" delay="0">WindowOpen</animation>
+    	<animation effect="fade" time="0">WindowClose</animation>
+    </control>
+  </controls>
+</window>

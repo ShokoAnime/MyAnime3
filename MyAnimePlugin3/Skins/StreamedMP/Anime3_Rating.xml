@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
   <id>6201</id>
   <defaultcontrol>113</defaultcontrol>
@@ -7,7 +7,7 @@
     <import>common.dialog.xml</import>
     <!-- Star Controls -->
     <control>
-      <description>1 Star</description>
+      <description>0,5 Star</description>
       <type>checkmark</type>
       <id>100</id>
       <posX>660</posX>
@@ -20,10 +20,24 @@
       <animation effect="fade" time="200">windowopen</animation>
       <animation effect="fade" time="200">windowclose</animation>
     </control>
-    <control>
-      <description>2 Star</description>
+	<control>
+      <description>1 Star</description>
       <type>checkmark</type>
       <id>101</id>
+      <posX>660</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>101</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
+      <description>1,5 Star</description>
+      <type>checkmark</type>
+      <id>102</id>
       <posX>720</posX>
       <posY>543</posY>
       <width>48</width>
@@ -35,9 +49,23 @@
       <animation effect="fade" time="200">windowclose</animation>
     </control>
     <control>
-      <description>3 Star</description>
+      <description>2 Star</description>
       <type>checkmark</type>
-      <id>102</id>
+      <id>103</id>
+      <posX>720</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>102</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
+      <description>2,5 Star</description>
+      <type>checkmark</type>
+      <id>104</id>
       <posX>780</posX>
       <posY>543</posY>
       <width>48</width>
@@ -49,9 +77,23 @@
       <animation effect="fade" time="200">windowclose</animation>
     </control>
     <control>
-      <description>4 Star</description>
+      <description>3 Star</description>
       <type>checkmark</type>
-      <id>103</id>
+      <id>105</id>
+      <posX>780</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>103</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+    <control>
+      <description>3,5 Star</description>
+      <type>checkmark</type>
+      <id>106</id>
       <posX>840</posX>
       <posY>543</posY>
       <width>48</width>
@@ -62,10 +104,24 @@
       <animation effect="fade" time="200">windowopen</animation>
       <animation effect="fade" time="200">windowclose</animation>
     </control>
-    <control>
-      <description>5 Star</description>
+	<control>
+      <description>4 Star</description>
       <type>checkmark</type>
-      <id>104</id>
+      <id>107</id>
+      <posX>840</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>104</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
+      <description>4,5 Star</description>
+      <type>checkmark</type>
+      <id>108</id>
       <posX>900</posX>
       <posY>543</posY>
       <width>48</width>
@@ -77,9 +133,23 @@
       <animation effect="fade" time="200">windowclose</animation>
     </control>
     <control>
-      <description>6 Star</description>
+      <description>5 Star</description>
       <type>checkmark</type>
-      <id>105</id>
+      <id>109</id>
+      <posX>900</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>105</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
+      <description>5,5 Star</description>
+      <type>checkmark</type>
+      <id>110</id>
       <posX>960</posX>
       <posY>543</posY>
       <width>48</width>
@@ -91,9 +161,37 @@
       <animation effect="fade" time="200">windowclose</animation>
     </control>
     <control>
+      <description>6 Star</description>
+      <type>checkmark</type>
+      <id>111</id>
+      <posX>960</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>106</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+    <control>
+      <description>6,5 Star</description>
+      <type>checkmark</type>
+      <id>112</id>
+      <posX>1020</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>107</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
       <description>7 Star</description>
       <type>checkmark</type>
-      <id>106</id>
+      <id>113</id>
       <posX>1020</posX>
       <posY>543</posY>
       <width>48</width>
@@ -105,9 +203,9 @@
       <animation effect="fade" time="200">windowclose</animation>
     </control>
     <control>
-      <description>8 Star</description>
+      <description>7,5 Star</description>
       <type>checkmark</type>
-      <id>107</id>
+      <id>114</id>
       <posX>1080</posX>
       <posY>543</posY>
       <width>48</width>
@@ -118,10 +216,24 @@
       <animation effect="fade" time="200">windowopen</animation>
       <animation effect="fade" time="200">windowclose</animation>
     </control>
-    <control>
-      <description>9 Star</description>
+	<control>
+      <description>8 Star</description>
       <type>checkmark</type>
-      <id>108</id>
+      <id>115</id>
+      <posX>1080</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>108</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
+      <description>8,5 Star</description>
+      <type>checkmark</type>
+      <id>116</id>
       <posX>1140</posX>
       <posY>543</posY>
       <width>48</width>
@@ -133,9 +245,36 @@
       <animation effect="fade" time="200">windowclose</animation>
     </control>
     <control>
+      <description>9 Star</description>
+      <type>checkmark</type>
+      <id>117</id>
+      <posX>1140</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <onup>109</onup>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+    <control>
+      <description>9,5 Star</description>
+      <type>checkmark</type>
+      <id>118</id>
+      <posX>1200</posX>
+      <posY>543</posY>
+      <width>48</width>
+      <height>48</height>
+      <textureCheckmark>UserRatingStarOn.png</textureCheckmark>
+      <textureCheckmarkNoFocus>UserRatingStarOff.png</textureCheckmarkNoFocus>
+      <animation effect="fade" time="200">windowopen</animation>
+      <animation effect="fade" time="200">windowclose</animation>
+    </control>
+	<control>
       <description>10 Star</description>
       <type>checkmark</type>
-      <id>109</id>
+      <id>119</id>
       <posX>1200</posX>
       <posY>543</posY>
       <width>48</width>

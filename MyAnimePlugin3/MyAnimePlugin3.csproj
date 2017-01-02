@@ -567,6 +567,7 @@
     <Content Include="Skins\aMPed\Anime3_Main.xml" />
     <Content Include="Skins\aMPed\Anime3_Posters.xml" />
     <Content Include="Skins\aMPed\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\aMPed\Anime3_Rating.xml" />
     <Content Include="Skins\aMPed\Anime3_Relations.xml" />
     <Content Include="Skins\aMPed\Anime3_SkinSettings.xml" />
     <Content Include="Skins\aMPed\Anime3_WideBanners.xml" />
@@ -585,6 +586,7 @@
     <Content Include="Skins\Avallanche\Anime3_Posters.xml" />
     <Content Include="Skins\Avallanche\Anime3_QueueStatus.xml" />
     <Content Include="Skins\Avallanche\Anime3_Random.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Rating.xml" />
     <Content Include="Skins\Avallanche\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avallanche\Anime3_Relations.xml" />
     <Content Include="Skins\Avallanche\Anime3_SkinSettings.xml" />
@@ -616,6 +618,7 @@
     <Content Include="Skins\Avallonis\Anime3_Random.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\Avallonis\Anime3_Rating.xml" />
     <Content Include="Skins\Avallonis\Anime3_Recommendations.xml" />
     <Content Include="Skins\Avallonis\Anime3_Relations.xml">
       <SubType>Designer</SubType>
@@ -664,6 +667,7 @@
     <Content Include="Skins\Avalon\Anime3_Random.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\Avalon\Anime3_Rating.xml" />
     <Content Include="Skins\Avalon\Anime3_Recommendations.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -707,6 +711,7 @@
     <Content Include="Skins\DefaultWide\Anime3_Random.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Rating.xml" />
     <Content Include="Skins\DefaultWide\Anime3_Recommendations.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -742,6 +747,7 @@
     <Content Include="Skins\Default\Anime3_Random.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\Default\Anime3_Rating.xml" />
     <Content Include="Skins\Default\Anime3_Recommendations.xml" />
     <Content Include="Skins\Default\Anime3_Relations.xml">
       <SubType>Designer</SubType>
@@ -780,6 +786,7 @@
     <Content Include="Skins\StreamedMP\Anime3_Random.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Rating.xml" />
     <Content Include="Skins\StreamedMP\Anime3_Recommendations.xml" />
     <Content Include="Skins\StreamedMP\Anime3_Relations.xml">
       <SubType>Designer</SubType>
@@ -814,6 +821,7 @@
     <Content Include="Skins\Titan\Anime3_Random.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skins\Titan\Anime3_Rating.xml" />
     <Content Include="Skins\Titan\Anime3_Recommendations.xml" />
     <Content Include="Skins\Titan\Anime3_Relations.xml">
       <SubType>Designer</SubType>
@@ -835,6 +843,7 @@
     <Content Include="Skins\XFactor\Anime3_FanArt.xml" />
     <Content Include="Skins\XFactor\Anime3_Main.xml" />
     <Content Include="Skins\XFactor\Anime3_Posters.xml" />
+    <Content Include="Skins\XFactor\Anime3_Rating.xml" />
     <Content Include="Skins\XFactor\Anime3_Relations.xml" />
     <Content Include="Skins\XFactor\Anime3_SkinSettings.xml" />
     <Content Include="Skins\XFactor\Anime3_WideBanners.xml" />

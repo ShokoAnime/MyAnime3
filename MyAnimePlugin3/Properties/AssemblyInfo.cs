@@ -34,5 +34,5 @@ using MediaPortal.Common.Utils;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("3.7.0.14")]
-[assembly: AssemblyFileVersion("3.7.0.14")]
+[assembly: AssemblyVersion("3.7.0.15")]
+[assembly: AssemblyFileVersion("3.7.0.15")]

@@ -357,6 +357,7 @@ namespace MyAnimePlugin3
         public static string LoadingData = "Loading Data";
         public static string LocalFiles = "Local Files";
         public static string LocalMapping= "Local Mapping";
+        public static string LogOut = "Log out";
         public static string Low = "Low";
 
         public static string Main = "Main";

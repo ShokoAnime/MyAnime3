@@ -2311,16 +2311,21 @@ private bool ShowOptionsMenu(string previousMenu)
       });
       menu.Add(btnSwitchUser, () =>
       {
-        if (JMMServerVM.Instance.PromptUserLogin())
-        {
-          Breadcrumbs = new List<History>() { new History() };
+          if (JMMServerVM.Instance.PromptUserLogin())
+          {
+              Breadcrumbs = new List<History>() {new History()};
 
-          // user has logged in, so save to settings so we will log in as the same user next time
-          settings.CurrentJMMUserID = JMMServerVM.Instance.CurrentUser.JMMUserID.ToString(CultureInfo.InvariantCulture);
-          settings.Save();
+              // user has logged in, so save to settings so we will log in as the same user next time
+              settings.CurrentJMMUserID =
+                  JMMServerVM.Instance.CurrentUser.JMMUserID.ToString(CultureInfo.InvariantCulture);
+              settings.Save();
 
-          LoadFacade();
-        }
+              LoadFacade();
+          }
+          else
+          {
+              LoadFacade();
+          }
       });
       menu.Add(btnSettings, () =>
       {
@@ -3106,7 +3111,7 @@ private bool ShowOptionsMenu(string previousMenu)
       // Not used at this time
     }
 
-    static bool isFirstInitDone = false;
+      public static bool isFirstInitDone = false;
     private void OnFirstStart()
     {
       if (isFirstInitDone)

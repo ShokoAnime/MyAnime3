@@ -462,7 +462,8 @@ namespace MyAnimePlugin3.ViewModel
 				string msgCurUser = string.Format(Translation.CurrentUser, CurrentUser.Username);
 
 				dlg.Add(msgCurUser);
-				dlg.Add("--------");
+                dlg.Add("--------");
+                dlg.Add(">> " + Translation.LogOut);
 			}
 
 			List<JMMUserVM> allUsers = JMMServerHelper.GetAllUsers();
@@ -473,10 +474,16 @@ namespace MyAnimePlugin3.ViewModel
 			selectedLabel = dlg.SelectedLabel;
 
 			if (selectedLabel < 0) return false;
-			if (CurrentUser != null) selectedLabel = selectedLabel  - 2;
+			if (CurrentUser != null) selectedLabel = selectedLabel  - 3;
+
+		    if (dlg.SelectedLabelText == ">> " + Translation.LogOut)
+		    {
+                LogOut(true);
+		        return false;
+		    }
 			JMMUserVM selUser = allUsers[selectedLabel];;
 
-			BaseConfig.MyAnimeLog.Write("selected user label: " + selectedLabel.ToString());
+			BaseConfig.MyAnimeLog.Write("Selected user label: " + selectedLabel);
 
 			// try and auth user with a blank password
 
@@ -501,6 +508,29 @@ namespace MyAnimePlugin3.ViewModel
 			return true;
 			
 		}
+
+	    public void LogOut(bool returnToHome)
+	    {
+            CurrentUser = null;
+            Username = "";
+            IsAdminUser = false;
+            UserAuthenticated = false;
+
+	        MainWindow.isFirstInitDone = false;
+
+            if (returnToHome)
+	        {
+	            // Set home window message for use later
+	            var msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
+	                (int) GUIWindow.Window.WINDOW_HOME, 00432100, null);
+
+	            if (BaseConfig.Settings.BasicHome)
+	                msgHome = new GUIMessage(GUIMessage.MessageType.GUI_MSG_GOTO_WINDOW, 0, 0, 0,
+	                    (int) GUIWindow.Window.WINDOW_SECOND_HOME, 00432100, null);
+
+	            GUIWindowManager.SendThreadMessage(msgHome);
+	        }
+	    }
 
 		public void SetCurrentUser(JMMUserVM user)
 		{

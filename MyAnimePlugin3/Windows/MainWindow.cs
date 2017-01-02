@@ -2505,7 +2505,7 @@ private bool ShowOptionsMenu(string previousMenu)
             return;
 
           case MediaPortal.GUI.Library.Action.ActionType.ACTION_HOME:
-            BaseConfig.MyAnimeLog.Write("Basic home navgiation = " + BaseConfig.Settings.HomeButtonNavigation);
+            // BaseConfig.MyAnimeLog.Write("Basic home navgiation = " + BaseConfig.Settings.HomeButtonNavigation);
 
             if (BaseConfig.Settings.HomeButtonNavigation)
             {

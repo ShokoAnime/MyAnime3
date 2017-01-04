@@ -1,0 +1,23 @@
+delete random button on posters (13)
+
+MainWindow.ImagesListlevel should now only be for series, not groups -- SetImageIDs();
+
+fanart window
+- remove controls
+ - btnFilters id 12
+ - btn Random id 13
+ - labels
+   - FanArt.Count (removed)
+   - FanArt.LoadingStatus (removed)
+   - FanArt.DownloadingStatus (removed)
+   - FanArt.SelectedFanartInfo (removed)
+   - FanArt.SelectedFanartColors (removed)
+   - FanArt.SelectedFanartIsChosen is now FanArt.SelectedFanartIsDefault
+   - Added FanArt.Source
+   
+Removed hidden menu button "Display options" ID 2
+
+Anime Info window
+- Removed #Anime3.AnimeInfo.Info.Relations
+- Removed AnimeInfo.Info.CharacterCount
+- Removed AnimeInfo.Info.ShortTitles

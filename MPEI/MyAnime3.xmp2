@@ -734,6 +734,13 @@
               <ZipFileName>Installer{CopyFile}\{8e4cf7ee-3327-4e1f-a71b-496ec2547f06}-user.png</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Media\MyAnime3\user.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\StreamedMP\Anime3_Rating.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8bab8856-f55e-455e-9d18-64aeaf60b7ae}-Anime3_Rating.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Anime3_Rating.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -3155,6 +3162,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{889d6d3c-f754-4d00-a1ec-5a9d3b91e448}-user.png</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\user.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Avalon\Anime3_Rating.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bdbc6361-97f5-44fc-828c-35ac81a6e23e}-Anime3_Rating.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Anime3_Rating.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -3858,6 +3872,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{ce5cb27e-24bf-4625-a4ce-34a0f94cb440}-user.png</ZipFileName>
               <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\user.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Avallanche\Anime3_Rating.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e932061b-fb93-4dc2-a38b-36a31699b8ca}-Anime3_Rating.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Avallanche\Anime3_Rating.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -4144,7 +4165,7 @@ http://jmediamanager.org/mediaportal/</Value>
       <Major>3</Major>
       <Minor>7</Minor>
       <Build>0</Build>
-      <Revision>14</Revision>
+      <Revision>15</Revision>
     </Version>
     <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
 
@@ -4940,6 +4961,13 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <LocalFileName>..\Release\skin\StreamedMP\Media\MyAnime3\user.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{8e4cf7ee-3327-4e1f-a71b-496ec2547f06}-user.png</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Media\MyAnime3\user.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\StreamedMP\Anime3_Rating.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8bab8856-f55e-455e-9d18-64aeaf60b7ae}-Anime3_Rating.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Anime3_Rating.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
@@ -7268,6 +7296,13 @@ http://jmediamanager.org/changelog/</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Avalon\Anime3_Rating.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bdbc6361-97f5-44fc-828c-35ac81a6e23e}-Anime3_Rating.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avalon\Anime3_Rating.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\skin\Avallanche\Anime3_Actors.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{c1739c00-8f18-444b-ad2c-a729764ee122}-Anime3_Actors.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avallanche\Anime3_Actors.xml</DestinationFilename>
@@ -7958,20 +7993,17 @@ http://jmediamanager.org/changelog/</VersionDescription>
         <ZipFileName>Installer{CopyFile}\{ce5cb27e-24bf-4625-a4ce-34a0f94cb440}-user.png</ZipFileName>
         <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\user.png</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Avallanche\Anime3_Rating.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e932061b-fb93-4dc2-a38b-36a31699b8ca}-Anime3_Rating.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Avallanche\Anime3_Rating.xml</DestinationFilename>
+      </FileItem>
     </Items>
   </UniqueFileList>
   <ProjectSettings>
     <FolderGroups>
-      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{2a4fbee6-7bcb-44bb-b01e-264f69c14c7f}-</ZipFileName>
-        <DestinationFilename>%Skin%\StreamedMP</DestinationFilename>
-        <Folder>..\Release\skin\StreamedMP</Folder>
-        <Group>StreamedMP</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
       <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>

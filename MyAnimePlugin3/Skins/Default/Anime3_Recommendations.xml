@@ -263,17 +263,6 @@
 					<onleft>50</onleft>
 					<onright>50</onright>
 					<onup>921</onup>
-					<ondown>923</ondown>
-				</control>
-				<control>
-					<description>Downloads</description>
-					<width>200</width>
-					<type>button</type>
-					<id>923</id>
-					<label>Downloads</label>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<onup>922</onup>
 					<ondown>926</ondown>
 				</control>
 				<control>
@@ -284,7 +273,7 @@
 					<label>Something Random</label>
 					<onleft>50</onleft>
 					<onright>50</onright>
-					<onup>923</onup>
+					<onup>922</onup>
 					<ondown>801</ondown>
 				</control>
 			</control>

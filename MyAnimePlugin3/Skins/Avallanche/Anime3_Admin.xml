@@ -348,26 +348,8 @@
 				<onleft>50</onleft>
                 <onright>50</onright>
 				<onup>920</onup>
-				<ondown>923</ondown>
-            </control>
-			
-			<control>
-	            <description>Downloads</description>
-    		    <type>button</type>
-    		    <id>923</id>
-    		    <textureFocus>hiddenmenu_item_selected.png</textureFocus>
-    		    <textureNoFocus>-</textureNoFocus>
-    		    <width>497</width>
-    		    <height>64</height>
-				<textXOff>58</textXOff>
-				<textYOff>14</textYOff>
-    		    <label>Downloads</label>
-				<onleft>50</onleft>
-                <onright>50</onright>
-				<onup>922</onup>
 				<ondown>925</ondown>
-            </control>
-			
+            </control>		
 			<control>
 	            <description>Recommendations</description>
     		    <type>button</type>
@@ -381,7 +363,7 @@
     		    <label>Recommendations</label>
 				<onleft>50</onleft>
                 <onright>50</onright>
-				<onup>923</onup>
+				<onup>922</onup>
 				<ondown>926</ondown>
             </control>
 			

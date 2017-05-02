@@ -106,6 +106,7 @@ namespace MyAnimePlugin3.Windows
 
 		protected override void OnPageLoad()
 		{
+      /*
 			base.OnPageLoad();
 
             curBrowseSource = BaseConfig.Settings.DefaultTorrentSource;
@@ -131,7 +132,7 @@ namespace MyAnimePlugin3.Windows
 				PerformTorrentSearchAsync();
 				btnSearchPage.Focus = true;
 			}
-			
+			*/
 		}
 
 		private void ShowPageTorrents()

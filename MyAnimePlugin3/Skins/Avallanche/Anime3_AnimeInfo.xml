@@ -713,19 +713,6 @@
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
-
-	<control Style="InfoLabel">
-		<description>Status Label</description>
-		<type>fadelabel</type>
-	    <label>#Anime3.AnimeInfo.DownloadStatus</label>
-		<id>0</id>
-		<posX>70</posX>
-		<posY>1000</posY>
-		<width>500</width>
-		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
-		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
-		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
-	</control>
 	
 	<import>common.time.xml</import>
   </controls>

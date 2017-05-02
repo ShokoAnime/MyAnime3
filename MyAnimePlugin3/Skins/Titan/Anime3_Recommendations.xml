@@ -522,23 +522,6 @@
 		  <onleft>50</onleft>
 		  <onright>50</onright>
 		  <onup>921</onup>
-		  <ondown>923</ondown>
-		</control>
-
-		<control>
-		  <description>Downloads</description>
-		  <type>button</type>
-		  <id>923</id>
-		  <textureFocus>hiddenmenu_item_selected.png</textureFocus>
-		  <textureNoFocus>-</textureNoFocus>
-		  <width>499</width>
-		  <height>69</height>
-		  <textXOff>62</textXOff>
-		  <textYOff>16</textYOff>
-		  <label>Downloads</label>
-		  <onleft>50</onleft>
-		  <onright>50</onright>
-		  <onup>922</onup>
 		  <ondown>926</ondown>
 		</control>
 
@@ -555,7 +538,7 @@
 		  <label>Something Random</label>
 		  <onleft>50</onleft>
 		  <onright>50</onright>
-		  <onup>923</onup>
+		  <onup>922</onup>
 		  <ondown>801</ondown>
 		</control>
 
@@ -892,22 +875,7 @@
 	  		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
 	</control>
-
-	<control Style="InfoValueSmall">
-	  <description>Help Label</description>
-	  <type>textboxscrollup</type>
-	  <label>Hit ENTER to Download episodes of #Anime3.Recommendations.Rec.Title (F9/Info for Options)</label>
-	  <id>0</id>
-	  <posX>340</posX>
-	  <posY>515</posY>
-	  <width>600</width>
-	  <height>200</height>	  
-	  <visible>Control.IsVisible(1461)+Control.IsVisible(1463)</visible>
-	  		<animation effect="fade" time="250">WindowOpen</animation>
-		<animation effect="fade" time="250">WindowClose</animation>
-	</control>
-	
-	
+    
 	<control>
 	  <type>fadelabel</type>
 	  <description>Nothing found for</description>

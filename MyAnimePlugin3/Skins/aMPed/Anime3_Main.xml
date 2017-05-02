@@ -450,16 +450,6 @@
                     <onup>5</onup>
                     <ondown>9</ondown>
                 </control>
-                <control>
-                    <description>Downloads</description>
-                    <type>button</type>
-                    <id>9</id>
-                    <label>Downloads</label>
-                    <onleft>50</onleft>
-                    <onright>50</onright>
-                    <onup>8</onup>
-                    <ondown>10</ondown>
-                </control>
 				<control>
 					<description>Collection</description>
 					<type>button</type>

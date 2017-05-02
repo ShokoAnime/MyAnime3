@@ -138,16 +138,6 @@
           <onleft>50</onleft>
           <onright>50</onright>
           <onup>920</onup>
-          <ondown>923</ondown>
-        </control>
-        <control>
-          <description>Downloads</description>
-          <type>button</type>
-          <id>923</id>
-          <label>Downloads</label>
-          <onleft>50</onleft>
-          <onright>50</onright>
-          <onup>921</onup>
           <ondown>925</ondown>
         </control>
         <control>
@@ -157,7 +147,7 @@
           <label>Recommendations</label>
           <onleft>50</onleft>
           <onright>50</onright>
-          <onup>923</onup>
+          <onup>921</onup>
           <ondown>926</ondown>
         </control>
         <control>

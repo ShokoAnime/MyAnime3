@@ -50,8 +50,8 @@ namespace MyAnimePlugin3
     protected GUIButtonControl btnWindowUtilities = null;
     [SkinControlAttribute(922)]
     protected GUIButtonControl btnWindowCalendar = null;
-    [SkinControlAttribute(923)]
-    protected GUIButtonControl btnWindowDownloads = null;
+    //[SkinControlAttribute(923)]
+    //protected GUIButtonControl btnWindowDownloads = null;
     //[SkinControlAttribute(924)] protected GUIButtonControl btnWindowCollectionStats = null;
     [SkinControlAttribute(925)]
     protected GUIButtonControl btnWindowRecommendations = null;
@@ -2273,11 +2273,11 @@ private bool ShowOptionsMenu(string previousMenu)
         SetGlobalIDs();
         GUIWindowManager.ActivateWindow(Constants.WindowIDs.CALENDAR);
       });
-      menu.Add(btnWindowDownloads, () =>
+      /*menu.Add(btnWindowDownloads, () =>
       {
         SetGlobalIDs();
         GUIWindowManager.ActivateWindow(Constants.WindowIDs.DOWNLOADS);
-      });
+      });*/
       menu.Add(btnWindowContinueWatching, () =>
       {
         SetGlobalIDs();
@@ -4349,7 +4349,7 @@ private bool ShowOptionsMenu(string previousMenu)
         cfmenu.Show();
         return ContextMenuAction.Exit;
       });
-      cmenu.AddAction(Translation.DownloadThisEpisode, () => DownloadHelper.SearchEpisode(episode));
+      //cmenu.AddAction(Translation.DownloadThisEpisode, () => DownloadHelper.SearchEpisode(episode));
       cmenu.Add(Translation.PostProcessing + " ...", () => ShowContextMenuPostProcessing(episode.EpisodeNumberAndName));
 
       return cmenu.Show();

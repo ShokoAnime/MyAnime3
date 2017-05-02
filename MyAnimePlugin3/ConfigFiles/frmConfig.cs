@@ -232,7 +232,11 @@ namespace MyAnimePlugin3.ConfigFiles
 
 			lbImportFolders.DisplayMember = Translation.Description;
 
-			btnTestJMMServer.Click += new EventHandler(btnTestJMMServer_Click);
+      // Remove downloads tab
+      tabControl1.TabPages.Remove(tabPage11);
+
+
+      btnTestJMMServer.Click += new EventHandler(btnTestJMMServer_Click);
 			lbImportFolders.SelectedIndexChanged += new EventHandler(lbImportFolders_SelectedIndexChanged);
 			btnSaveLocalFolderPath.Click += new EventHandler(btnSaveLocalFolderPath_Click);
 

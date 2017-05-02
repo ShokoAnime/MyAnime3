@@ -145,22 +145,6 @@
 	  <ondown>802</ondown>
 	</control>
 	<control>
-	  <description>Downloads button</description>
-	  <type>button</type>
-	  <id>803</id>
-	  <label>Downloads</label>
-	  <width>150</width>
-	  <posX>70</posX>
-	  <posY>145</posY>
-	  <align>right</align>
-	  <textalign>center</textalign>
-	  <onleft>901</onleft>
-	  <onright>801</onright>
-	  <onup>901</onup>
-	  <ondown>100</ondown>
-	  <textYOff>1</textYOff>
-	</control>
-	<control>
 	  <description>AniDB Info button</description>
 	  <type>button</type>
 	  <id>801</id>

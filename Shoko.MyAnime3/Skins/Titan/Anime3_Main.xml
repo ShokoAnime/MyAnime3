@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+  <id>6101</id>
+  <defaultcontrol>50</defaultcontrol>
+  <allowoverlay>yes</allowoverlay>
+  <define>#header.label:Anime</define>
+  <controls>
+    <!-- Import Dummy Controls to handle visibility -->
+	<import>Anime3_Dummy.xml</import>
+	<!-- ********************** BACKGROUNDS************************************** -->
+    <control>
+      <description>Fanart Background #1</description>
+      <type>image</type>
+      <id>524</id>
+      <posY>0</posY>
+      <posX>0</posX>
+      <width>1920</width>
+      <height>1080</height>
+      <texture>#Anime3.Fanart.1</texture>
+      <animation effect="fade" time="100">visible</animation>
+      <animation effect="fade" time="100" delay="100">hidden</animation>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+  
+    
+
+
+	<!--            :: BACKGROUNDS ::           	 -->
+	<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>0</posY>
+	  <width>1920</width>
+	  <height>1080</height>
+	  <texture>fanart_overlay.png</texture>
+	  <visible>!Control.IsVisible(1250)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+    <control>
+      <description>background listview</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1920</width>
+      <height>273</height>
+      <texture>fanart_overlay_top.png</texture>
+      <visible>Control.IsVisible(1250)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+	<control>
+	  <description>background listview</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>252</posY>
+	  <width>1903</width>
+	  <height>790</height>
+	  <texture>panel_list.png</texture>
+	  <visible>[facadeview.list + Control.IsVisible(50)]+!Control.IsVisible(1250)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+    <control>
+      <id>0</id>
+      <type>image</type>
+			<posX>1123</posX>
+			<posY>252</posY>
+			<width>790</width>
+			<height>790</height>
+			<texture>panel_myfilms_menu.png</texture>
+      <visible>[facadeview.list + Control.IsVisible(50)]+Control.IsVisible(1250)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+	<control>
+	  <description>background thumbs</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>10</posX>
+	  <posY>252</posY>
+	  <width>1903</width>
+	  <height>790</height>
+	  <texture>panel_list.png</texture>
+	  <visible>[facadeview.smallicons | facadeview.largeicons] + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>0</posX>
+	  <posY>279</posY>
+	  <width>1920</width>
+	  <height>801</height>
+	  <texture>filmstrip_overlay.png</texture>
+	  <visible>[facadeview.filmstrip | facadeview.coverflow] + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+	<control>
+	  <description>filmstrip overlay</description>
+	  <type>image</type>
+	  <id>0</id>
+	  <posX>52</posX>
+	  <posY>958</posY>
+	  <width>1820</width>
+	  <height>84</height>
+	  <texture>BasicHomeSubBG.png</texture>
+	  <visible>[facadeview.filmstrip | facadeview.coverflow] + Control.IsVisible(50)</visible>
+	  <animation effect="fade" time="250">WindowOpen</animation>
+	  <animation effect="fade" time="250">WindowClose</animation>
+	</control>
+
+
+	<!-- *********************** FIND PANEL *********************************** -->
+	<!-- List / banner view -->
+
+	<control>
+	  <type>image</type>
+	  <id>1</id>
+	  <posX>780</posX>
+	  <posY>100</posY>
+	  <width>800</width>
+	  <height>150</height>
+	  <texture>info_bg.png</texture>
+	  <shouldCache>true</shouldCache>
+	  <visible>[facadeview.list]+control.isvisible(3463)</visible>
+	</control>
+	
+	
+	<control Style="InfoValueSmall">
+	  <description>Find Label</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>812</posX>
+	  <posY>130</posY>
+	  <width>300</width>
+	  <label>Find:</label>
+	  <visible>[facadeview.list]+control.isvisible(3463)</visible>
+	</control>
+	<control Style="InfoValueSmall">
+	  <description>find text</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>910</posX>
+	  <posY>130</posY>
+	  <width>570</width>
+	  <label>#Anime3.FindText</label>
+	  <visible>[facadeview.list]+control.isvisible(3463)</visible>
+	</control>
+	<control Style="InfoLabel">
+	  <description>Find description *-key (T9)</description>
+	  <type>fadelabel</type>
+	  <id>0</id>
+	  <posX>812</posX>
+	  <posY>170</posY>
+	  <width>900</width>
+	  <label>*=#Anime3.FindAsteriskMode #=#Anime3.FindSharpMode</label>
+	  <visible>Control.IsVisible(3463)+Control.IsVisible(3464)+!Player.hasmedia</visible>
+	</control>
+	<control Style="InfoLabel">
+	  <description>Find description W-key (text)</description>
+	  <type>fadelabel</type>
+	  <id>0</id>
+	  <posX>812</posX>
+	  <posY>170</posY>
+	  <width>900</width>
+	  <label>#Anime3.StartTextToggle =Start Word (#Anime3.FindStartWord) TAB=Next Match</label>
+	  <visible>Control.IsVisible(3463)+Control.IsVisible(3465)+!Player.hasmedia</visible>
+	</control>
+	<control  Style="InfoLabel">
+	  <description>Find description M-key</description>
+	  <type>label</type>
+	  <id>0</id>
+	  <posX>1200</posX>
+	  <posY>130</posY>
+	  <width>600</width>
+	  <align>left</align>
+	  <label>#Anime3.ModeToggleKey =Mode (#Anime3.FindMode)</label>
+	  <visible>Control.IsVisible(3463)</visible>
+	</control>
+
+
+
+    <control>
+      <id>0</id>
+      <type>image</type>
+      <posX>66</posX>
+      <posY>34</posY>
+      <width>61</width>
+      <height>57</height>
+      <texture>icon_anime.png</texture>
+      <visible>control.isvisible(50)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+ <import>common.time.xml</import>
+    <!--            :: HEADER ::            -->
+	<import>anime3_HiddenMenu.xml</import>
+	<import>anime3_Facade.xml</import>
+	<import>anime3_Groups_ListPosters.xml</import>
+	<import>anime3_Groups_FilmstripCoverflow.xml</import>
+	<import>anime3_Groups_Banners.xml</import>
+	<import>anime3_EpisodeList.xml</import>
+	<import>Anime3_SkinSettings.xml</import>
+    
+    <import>common.overlay.xml</import>
+    <!-- ********************** IMPORT PROCESS *************************************** -->
+    
+  </controls>
+</window>

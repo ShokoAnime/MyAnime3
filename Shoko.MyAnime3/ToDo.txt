@@ -1,0 +1,51 @@
+xcopy "$(SolutionDir)\MyAnimePlugin2\Skins" "C:\ProgramData\Team MediaPortal\MediaPortal\skin" /E /R /I /Y
+
+Current Changelog
+-----------------
+Can now search TheTvDB for a group/series
+Can now download fanart/posters/wide banners within plugin once group or series has been associated with a TvDB series
+Added ability to view and edit episodes for a series from config screen
+Now keeping track of the number of unwatched episodes for groups and series. Current data will be incorrect but doing a "Run Import" will fix it
+Can now mark all episodes in a series as watched/unwatched
+"Unwatched Favorites" view now works
+Drop folder has been implemented
+
+To Do
+-----
+1. Layout menu only working in group view
+4. Image selector for config screen
+5. show # of episodes on disk
+8. sort by year desc, name asc
+10. Cleanup
+   - remove episodes where file no longer exists
+26. option to keep aspect ratio for image in list poster view
+28. Recon manually entered episodes
+    - If episode has AniDB ID, but the AniDB_Epsiode record does not exist get data
+    - OnSave for AniDB_Episode check for any AnimeEpisode records which
+      - have no episode name
+    - if AnimeSeries has AniDB ID, but the AniDB_Anime record does not exist get data
+    - OnSave for AniDB_Anime check for any AnimeSeries records which have no
+      - description
+      - image_poster
+      - genre
+29. Recon
+    - to populate media info
+    - to search for any AnimeSeries/Groups which do not have a description
+    - for groups/series without a poster image
+      - look if AniDB_Anime has one set first and use that
+      - check that file actually exists
+    
+34. Utilities
+    - Separate cleanup and recon functions into menu items
+    - Have Run import button on screen
+    - Show Groups without TvDB associations
+    - Show files without AnimeEpisode data
+
+
+TvDB Testing
+------------
+http://thetvdb.com/api/B178B8940CAF4A2C/series/84187/en.xml
+http://thetvdb.com/api/B178B8940CAF4A2C/series/84187/all/en.xml
+http://thetvdb.com/api/B178B8940CAF4A2C/series/84187/banners.xml
+http://thetvdb.com/api/B178B8940CAF4A2C/episodes/306542/en.xml
+

@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3951B061-720C-4D6A-A03D-87E033B71F41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shoko.MyAnime3</RootNamespace>
+    <AssemblyName>Anime3</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Utils">
+      <HintPath>..\Dependencies\MP19_DLL\Common.Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Core">
+      <HintPath>..\Dependencies\MP19_DLL\Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Databases">
+      <HintPath>..\Dependencies\MP19_DLL\Databases.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Dialogs">
+      <HintPath>..\Dependencies\MP19_DLL\Dialogs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DirectShowLib">
+      <HintPath>..\Dependencies\MP19_DLL\DirectShowLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ImpromptuInterface, Version=6.2.2.0, Culture=neutral, PublicKeyToken=0b1781c923b2975b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImpromptuInterface.6.2.2\lib\net40\ImpromptuInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.Direct3DX, Version=1.0.2911.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Nancy.Rest.Annotations, Version=1.4.3.25274, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Rest.Annotations.1.4.3.1-beta\lib\net452\Nancy.Rest.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Rest.Client, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Rest.Client.1.4.3.5-beta\lib\net452\Nancy.Rest.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RemotePlugins">
+      <HintPath>..\Dependencies\MP19_DLL\RemotePlugins.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Utils">
+      <HintPath>..\Dependencies\MP19_DLL\Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsyncImageResource.cs" />
+    <Compile Include="BaseConfig.cs" />
+    <Compile Include="ConfigFiles\DragHelper.cs" />
+    <Compile Include="ConfigFiles\FileBrowserObject.cs" />
+    <Compile Include="ConfigFiles\View.cs" />
+    <Compile Include="DataHelpers\FFDShowHelper.cs" />
+    <Compile Include="QuickSort.cs" />
+    <Compile Include="Events\GotAnimeEventArgs.cs" />
+    <Compile Include="Events\GotAnimeForRecommendedEventArgs.cs" />
+    <Compile Include="Events\GotAnimeForRelatedEventArgs.cs" />
+    <Compile Include="Events\GotCharacterCreatorImagesEventArgs.cs" />
+    <Compile Include="Events\GotCharacterImagesEventArgs.cs" />
+    <Compile Include="Events\ServerStatusEventArgs.cs" />
+    <Compile Include="SkinExtensions.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
+    <Compile Include="Fanart.cs" />
+    <Compile Include="ILog.cs" />
+    <Compile Include="ImageManagement\ImageDownloader.cs" />
+    <Compile Include="ImageManagement\ImageDownloadEventArgs.cs" />
+    <Compile Include="ImageManagement\ImageDownloadRequest.cs" />
+    <Compile Include="ImageManagement\QueueUpdateEventArgs.cs" />
+    <Compile Include="MA3WindowManager.cs" />
+    <Compile Include="DataHelpers\BlockingList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConfigFiles\AnimePluginSettings.cs" />
+    <Compile Include="ConfigFiles\frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigFiles\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="FacadeHelper.cs" />
+    <Compile Include="ImageAllocator.cs" />
+    <Compile Include="Logos.cs" />
+    <Compile Include="MyAnimeLog.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="SearchCollection.cs" />
+    <Compile Include="ShellDll.cs" />
+    <Compile Include="ShellItem.cs" />
+    <Compile Include="ImageSwapper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SkinSettings.cs" />
+    <Compile Include="Translation.cs" />
+    <Compile Include="TvDBDetails.cs" />
+    <Compile Include="TvDBSummary.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="VideoHandler.cs" />
+    <Compile Include="ViewModel\Helpers\GroupFilterHelper.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_AnimeCrossRefs.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Anime.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Anime_DefaultImage.cs" />
+    <Compile Include="ViewModel\VM_AnimeEpisodeType.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeEpisode_User.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeGroup_User.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeSeries_User.cs" />
+    <Compile Include="ViewModel\Server\VM_BookmarkedAnime.cs" />
+    <Compile Include="ViewModel\FanartContainer.cs" />
+    <Compile Include="ViewModel\Server\VM_GroupFilter.cs" />
+    <Compile Include="ViewModel\Helpers\IVideoInfo.cs" />
+    <Compile Include="ViewModel\Helpers\ShokoServerHelper.cs" />
+    <Compile Include="ViewModel\VM_ShokoServer.cs" />
+    <Compile Include="ViewModel\Server\VM_MovieDB_Fanart.cs" />
+    <Compile Include="ViewModel\Server\VM_MovieDB_Poster.cs" />
+    <Compile Include="ViewModel\PosterContainer.cs" />
+    <Compile Include="ViewModel\Server\VM_Recommendation.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_ImageFanart.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_ImagePoster.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_ImageFanart.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_ImagePoster.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_ImageWideBanner.cs" />
+    <Compile Include="ViewModel\Server\VM_VideoDetailed.cs" />
+    <Compile Include="ViewModel\Server\VM_VideoLocal.cs" />
+    <Compile Include="Windows\ActorWindow.cs" />
+    <Compile Include="Windows\AdminWindow.cs" />
+    <Compile Include="Windows\AnimeInfoWindow.cs" />
+    <Compile Include="Windows\CalendarWindow.cs" />
+    <Compile Include="Windows\CharWindow.cs" />
+    <Compile Include="Windows\ContinueWatchingWindow.cs" />
+    <Compile Include="Windows\FanartWindow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Helpers\IVM.cs" />
+    <Compile Include="Windows\MainWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Windows\PosterWindow.cs" />
+    <Compile Include="Windows\RandomWindow.cs" />
+    <Compile Include="Windows\RatingDialog.cs" />
+    <Compile Include="Windows\RecommendationsWindow.cs" />
+    <Compile Include="Windows\RelationsWindow.cs" />
+    <Compile Include="Windows\WideBannerWindow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\46.png" />
+    <None Include="Resources\03.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\Save_16.png" />
+    <None Include="Resources\folder_10.png" />
+    <None Include="Resources\glass_10.png" />
+    <None Include="Resources\50.png" />
+    <None Include="Resources\database_down.png" />
+    <Content Include="Resources\Plus_10.png" />
+    <Content Include="Resources\Refresh_16.png" />
+    <None Include="Resources\Report_16.png" />
+    <Content Include="Resources\Sync_16.png" />
+    <Content Include="Resources\Tick_16.png" />
+    <Content Include="Skins\aMPed\Anime3_Admin.xml" />
+    <Content Include="Skins\aMPed\Anime3_AnimeInfo.xml" />
+    <Content Include="Skins\aMPed\Anime3_Calendar.xml" />
+    <Content Include="Skins\aMPed\Anime3_Char.xml" />
+    <Content Include="Skins\aMPed\Anime3_Collection.xml" />
+    <Content Include="Skins\aMPed\Anime3_Dummy.xml" />
+    <Content Include="Skins\aMPed\Anime3_Fanart.Backdrops.xml" />
+    <Content Include="Skins\aMPed\Anime3_FanArt.xml" />
+    <Content Include="Skins\aMPed\Anime3_Main.xml" />
+    <Content Include="Skins\aMPed\Anime3_Posters.xml" />
+    <Content Include="Skins\aMPed\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\aMPed\Anime3_Rating.xml" />
+    <Content Include="Skins\aMPed\Anime3_Relations.xml" />
+    <Content Include="Skins\aMPed\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\aMPed\Anime3_WideBanners.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Actors.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Admin.xml" />
+    <Content Include="Skins\Avallanche\Anime3_AnimeInfo.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Background.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Calendar.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Char.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Downloads.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Dummy.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Facade.xml" />
+    <Content Include="Skins\Avallanche\Anime3_FanArt.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Hiddenmenu.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Main.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Posters.xml" />
+    <Content Include="Skins\Avallanche\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Random.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Rating.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Recommendations.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Relations.xml" />
+    <Content Include="Skins\Avallanche\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Views.xml" />
+    <Content Include="Skins\Avallanche\Anime3_Watching.xml" />
+    <Content Include="Skins\Avallanche\Anime3_WideBanners.xml" />
+    <Content Include="Skins\Avallanche\Media\MyAnime3\anime3_ListIcon.png" />
+    <Content Include="Skins\Avallanche\Media\MyAnime_Title_bg.png" />
+    <Content Include="Skins\Avallonis\Anime3_Actors.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Admin.xml" />
+    <Content Include="Skins\Avallonis\Anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avallonis\Anime3_Background.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avallonis\Anime3_Calendar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avallonis\Anime3_Char.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Dummy.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Facade.xml" />
+    <Content Include="Skins\Avallonis\Anime3_FanArt.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Hiddenmenu.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Main.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Posters.xml" />
+    <Content Include="Skins\Avallonis\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avallonis\Anime3_Rating.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Recommendations.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avallonis\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Views.xml" />
+    <Content Include="Skins\Avallonis\Anime3_Watching.xml" />
+    <Content Include="Skins\Avallonis\Anime3_WideBanners.xml" />
+    <Content Include="Skins\Avallonis\Media\hover_My Anime3.jpg" />
+    <Content Include="Skins\Avallonis\Media\MyAnime3\anime3_ListIcon.png" />
+    <Content Include="Skins\Avalon\Anime3_Actors.xml" />
+    <Content Include="Skins\Avalon\Anime3_Admin.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Background.xml" />
+    <Content Include="Skins\Avalon\Anime3_Background.standard.xml" />
+    <Content Include="Skins\Avalon\Anime3_Calendar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Char.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Dummy.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Facade.xml" />
+    <Content Include="Skins\Avalon\Anime3_FanArt.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Hiddenmenu.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Main.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Posters.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\Avalon\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Rating.xml" />
+    <Content Include="Skins\Avalon\Anime3_Recommendations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\Avalon\Anime3_Views.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Views.standard.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_Watching.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Anime3_WideBanners.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Avalon\Media\hover_My Anime3.jpg" />
+    <Content Include="Skins\Avalon\Media\MyAnime3\anime3_ListIcon.png" />
+    <Content Include="Skins\DefaultWide\Anime3_Actors.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Admin.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Calendar.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Char.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Dummy.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_FanArt.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Main.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Posters.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Rating.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Recommendations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\DefaultWide\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_Watching.xml" />
+    <Content Include="Skins\DefaultWide\Anime3_WideBanners.xml" />
+    <Content Include="Skins\DefaultWide\Media\background.png" />
+    <Content Include="Skins\DefaultWide\Media\filmstrip_overlay.png" />
+    <Content Include="Skins\DefaultWide\Media\hover_my anime alt.png" />
+    <Content Include="Skins\DefaultWide\Media\hover_My Anime3.png" />
+    <Content Include="Skins\DefaultWide\Media\mainoverlay.png" />
+    <Content Include="Skins\DefaultWide\Media\MyAnime3\overlay_bar_bottom.png" />
+    <Content Include="Skins\DefaultWide\Media\MyAnime3\overlay_bar_top.png" />
+    <Content Include="Skins\DefaultWide\Media\thumbborder.png" />
+    <Content Include="Skins\Default\Anime3_Actors.xml" />
+    <Content Include="Skins\Default\Anime3_Admin.xml" />
+    <Content Include="Skins\Default\Anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Default\Anime3_Calendar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Default\Anime3_Char.xml" />
+    <Content Include="Skins\Default\Anime3_Collection.xml" />
+    <Content Include="Skins\Default\Anime3_Dummy.xml" />
+    <Content Include="Skins\Default\Anime3_FanArt.xml" />
+    <Content Include="Skins\Default\Anime3_Main.xml" />
+    <Content Include="Skins\Default\Anime3_Posters.xml" />
+    <Content Include="Skins\Default\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Default\Anime3_Rating.xml" />
+    <Content Include="Skins\Default\Anime3_Recommendations.xml" />
+    <Content Include="Skins\Default\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Default\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\Default\Anime3_Watching.xml" />
+    <Content Include="Skins\Default\Anime3_WideBanners.xml" />
+    <Content Include="Skins\Default\Media\hover_my anime alt.png" />
+    <Content Include="Skins\Default\Media\hover_My Anime3.png" />
+    <Content Include="Skins\StreamedMP\Anime3_Actors.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_Admin.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Calendar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Char.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Dummy.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Main.fanart.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Main.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Posters.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_QueueStatus.fanart.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_Rating.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_Recommendations.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\StreamedMP\Anime3_FanArt.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_Watching.xml" />
+    <Content Include="Skins\StreamedMP\Anime3_WideBanners.xml" />
+    <Content Include="Skins\StreamedMP\Media\MyAnime3\anime3_focusframe.png" />
+    <Content Include="Skins\StreamedMP\Media\hover_My Anime3.png" />
+    <Content Include="Skins\StreamedMP\Media\MyAnime3\overlay_bar_bottom.png" />
+    <Content Include="Skins\StreamedMP\Media\MyAnime3\overlay_bar_top.png" />
+    <Content Include="Skins\Titan\Anime3_Actors.xml" />
+    <Content Include="Skins\Titan\Anime3_Admin.xml" />
+    <Content Include="Skins\Titan\Anime3_AnimeInfo.xml" />
+    <Content Include="Skins\Titan\Anime3_Calendar.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Titan\Anime3_Char.xml" />
+    <Content Include="Skins\Titan\Anime3_Dummy.xml" />
+    <Content Include="Skins\Titan\Anime3_EpisodeList.xml" />
+    <Content Include="Skins\Titan\Anime3_Facade.xml" />
+    <Content Include="Skins\Titan\Anime3_Fanart.xml" />
+    <Content Include="Skins\Titan\Anime3_Groups_Banners.xml" />
+    <Content Include="Skins\Titan\Anime3_Groups_FilmstripCoverflow.xml" />
+    <Content Include="Skins\Titan\Anime3_Groups_ListPosters.xml" />
+    <Content Include="Skins\Titan\Anime3_HiddenMenu.xml" />
+    <Content Include="Skins\Titan\Anime3_Main.xml" />
+    <Content Include="Skins\Titan\Anime3_Posters.xml" />
+    <Content Include="Skins\Titan\Anime3_QueueStatus.xml" />
+    <Content Include="Skins\Titan\Anime3_Random.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Titan\Anime3_Rating.xml" />
+    <Content Include="Skins\Titan\Anime3_Recommendations.xml" />
+    <Content Include="Skins\Titan\Anime3_Relations.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\Titan\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\Titan\Anime3_Time.xml" />
+    <Content Include="Skins\Titan\Anime3_Watching.xml" />
+    <Content Include="Skins\Titan\Anime3_WideBanners.xml" />
+    <Content Include="Skins\Titan\Media\hover_My Anime3.jpg" />
+    <Content Include="Skins\XFactor\Anime3_Admin.xml" />
+    <Content Include="Skins\XFactor\anime3_AnimeInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Skins\XFactor\Anime3_Calendar.xml" />
+    <Content Include="Skins\XFactor\Anime3_Char.xml" />
+    <Content Include="Skins\XFactor\Anime3_Collection.xml" />
+    <Content Include="Skins\XFactor\Anime3_Dummy.xml" />
+    <Content Include="Skins\XFactor\Anime3_FanArt.xml" />
+    <Content Include="Skins\XFactor\Anime3_Main.xml" />
+    <Content Include="Skins\XFactor\Anime3_Posters.xml" />
+    <Content Include="Skins\XFactor\Anime3_Rating.xml" />
+    <Content Include="Skins\XFactor\Anime3_Relations.xml" />
+    <Content Include="Skins\XFactor\Anime3_SkinSettings.xml" />
+    <Content Include="Skins\XFactor\Anime3_WideBanners.xml" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_background.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_bg_filmstrip_s.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_bg_list_e.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_bg_list_s.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_bg_widebanners.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_findpanel.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_ListIcon.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_NotAvailable.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_UnWatched.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_UnwatchedDVD.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_UnwatchedNA.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_UnWatched_DVD.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_UnWatched_left.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_Watched.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_WatchedDVD.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_WatchedNA.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_Watched_DVD.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_Watched_DVD_right.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_Watched_left.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_Watched_left_DVD.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\anime3_Watched_right.png" />
+    <Content Include="Skins\XFactor\Media\hover_My Anime3.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\Picture_cover.png" />
+    <Content Include="Skins\XFactor\Media\MyAnime3\tv_background.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_anidb.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_ArrowLeft_64.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_ArrowRight_64.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_background.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_banner_focus.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_banner_nofocus.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_blankchar.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_cross_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_DefaultBackground.jpg" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_dice.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_episodelist.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_episode_background.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_ex_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_fanart_focus.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_fanart_nofocus.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_fanart_overlay_window.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_hash.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_heart1_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_heart2_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_Icon_Download.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_Icon_Media.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_Icon_Note.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_Icon_Note2.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_image.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_InfoPosterFrame.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Info_credit_frame.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_info_info_guidelines.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_info_stats_guidelines.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_ListIcon.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_1080p.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_16x9.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_4x3.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_720p.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_AVC.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_bluray.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_Divx.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_dvd.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_mpeg2.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_x264.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_logo_xvid.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_NotAvailable.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_NotifyBg.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_question_green_128.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_question_green_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_question_poster.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_question_purple_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_refresh_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_relations_background.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_season_background.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_smile_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_star_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_status_overlay.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\Anime3_thumbborder.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_tick_48.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatched.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatchedDVD.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatchedNA.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatched_DVD.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatched_DVD_right.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatched_left.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatched_left_DVD.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_UnWatched_right.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Watched.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_WatchedDVD.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_WatchedNA.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Watched_DVD.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Watched_DVD_right.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Watched_left.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Watched_left_DVD.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\anime3_Watched_right.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\nav24_back.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\nav24_next.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\nav32_back.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\nav32_next.png" />
+    <Content Include="Skins\[ Media ]\MyAnime3\user.png" />
+    <Content Include="ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConfigFiles\frmConfig.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FFDShowAPI\Shoko.FFDShowAPI.csproj">
+      <Project>{69CF2FFC-CB08-42F8-8DE9-E5C32F3FE8BA}</Project>
+      <Name>Shoko.FFDShowAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shoko.Commons\Shoko.Commons.csproj">
+      <Project>{e0399140-9902-4f38-909d-85e42717ec30}</Project>
+      <Name>Shoko.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shoko.Commons\Shoko.Models\Shoko.Models.csproj">
+      <Project>{f73f9df6-580a-4341-b516-8717626f9d42}</Project>
+      <Name>Shoko.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(TargetDir)"
+mkdir Merge
+
+
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Anime3.dll" "Shoko.Commons.dll" "Shoko.Models.dll" "MA3_FFDShowAPI.dll" "Nancy.Rest.Annotations.dll" "Nancy.Rest.Client.dll" "Pri.LongPath.dll" "Newtonsoft.Json.dll" "ImpromptuInterface.dll" "de\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "en-gb\Shoko.Commons.resources.dll" 
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Merge\Animetemp2.dll" "es\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "fr\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Merge\Animetemp2.dll" "it\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "nl\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Merge\Animetemp2.dll" "pl\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "pt\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Anime3.dll" "Merge\Animetemp2.dll" "ru\Shoko.Commons.resources.dll"
+del Merge\Animetemp*
+del MA3_FFDShowAPI.*
+del Shoko.*
+move Merge\* .
+rmdir Merge
+rmdir /S /Q de
+rmdir /S /Q en-gb
+rmdir /S /Q es
+rmdir /S /Q fr
+rmdir /S /Q it
+rmdir /S /Q nl
+rmdir /S /Q pl
+rmdir /S /Q pt
+rmdir /S /Q ru
+del jint.*
+del Nancy.*
+del Newtonsoft.Json.*
+del ImpromptuInterface.*
+del Pri.LongPath.*
+xcopy "$(TargetPath)" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y
+xcopy "$(TargetDir)Anime3.pdb" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y			
+
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avallanche\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avalon\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\DefaultWideHD\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\StreamedMP\Media" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Titan\Media" /E /R /I /Y
+
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallanche" "$(SolutionDir)Release\skin\Avallanche" /E /R /I /Y
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWideHD" "$(SolutionDir)Release\skin\DefaultWideHD" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y</PostBuildEvent>
+  </PropertyGroup>
+</Project>

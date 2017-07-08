@@ -1,0 +1,309 @@
+﻿<window>
+	<id>6105</id>
+	<defaultcontrol>50</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<disabletopbar>yes</disabletopbar>
+	<define>#header.hover:hover_my anime.png</define>
+	<define>#header.label:Anime</define>
+	<controls>
+		<import>common.window.bars.xml</import>
+		<import>common.time.xml</import>
+	<!-- Dummies -->
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for main character poster having height > width</description>
+	  <id>5681</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	  <!-- this will be true when the main character poster has a heigh greater than its width -->
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for main actor poster having height > width</description>
+	  <id>5682</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	  <!-- this will be true when the main actor poster has a heigh greater than its width -->
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for secondary character poster having height > width</description>
+	  <id>5683</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	  <!-- this will be true when the secondary character poster has a heigh greater than its width -->
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for series poster having height > width</description>
+	  <id>5684</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	  <!-- this will be true when the series poster has a heigh greater than its width -->
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for main character exists</description>
+	  <id>5691</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for main actor exists</description>
+	  <id>5692</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for secondary character exists</description>
+	  <id>5693</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	</control>
+
+	<control>
+	  <type>label</type>
+	  <description>Dummy Label for series exists</description>
+	  <id>5694</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>620</width>
+	  <visible>false</visible>
+	</control>
+
+
+	<!-- :::::::::::::::::::::::::::::: TOP BAR :: TIME :: LOCATION :::::::::::::::::::::::::::::: -->
+	<control Style="Title">
+		<description>Title</description>
+		<type>textboxscrollup</type>
+		<id>0</id>
+		<label>#Anime3.Title</label>
+	</control>
+    <control Style="Slide 1">
+      <description>Button group</description>
+      <type>group</type>
+      <dimColor>ffffffff</dimColor>
+		<control>
+		  <type>label</type>
+		  <description>Current View</description>
+		  <id>0</id>
+		  <posX>140</posX>
+		  <posY>130</posY>
+		  <width>430</width>
+		  <align>center</align>
+		  <font>font16</font>
+		  <label>Characters</label>
+		  <visible>!Control.hasfocus(151)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+		<control>
+		  <type>label</type>
+		  <description>Current View</description>
+		  <id>0</id>
+		  <posX>140</posX>
+		  <posY>130</posY>
+		  <width>430</width>
+		  <align>center</align>
+		  <font>font16</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <label>Others</label>
+		  <visible>Control.hasfocus(151)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+		<control>
+			<description>Back Arrow</description>
+			<id>104</id>
+			<type>image</type>
+			<posX>25</posX>
+			<posY>120</posY>
+			<width>24</width>
+			<height>24</height>
+			<texture>nav24_back.png</texture>
+		</control>
+		<control>
+			<description>Relations</description>
+			<type>button</type>
+			<id>901</id>
+			<label>Relations</label>
+			<posX>20</posX>
+			<posY>120</posY>
+			<textalign>center</textalign>
+			<onleft>902</onleft>
+			<onright>902</onright>
+			<onup>50</onup>
+			<ondown>50</ondown>
+		</control>
+		<control>
+			<description>Next Arrow</description>
+			<id>104</id>
+			<type>image</type>
+			<posX>680</posX>
+			<posY>120</posY>
+			<width>24</width>
+			<height>24</height>
+			<texture>nav24_next.png</texture>
+		</control>
+		<control>
+			<description>Info</description>
+			<type>button</type>
+			<id>902</id>
+			<label>Info</label>
+			<posX>480</posX>
+			<posY>120</posY>
+			<textalign>center</textalign>
+			<onleft>901</onleft>
+			<onright>901</onright>
+			<onup>50</onup>
+			<ondown>50</ondown>
+		</control>
+
+		<!--  ************** FACADE *****************  -->
+		<control>
+			<description>composite control consisting of a list control and a thumbnail panel</description>
+			<type>facadeview</type>
+			<id>50</id>
+			<control>
+				<description>Textlist (series and/or seasons if set and Episodes)</description>
+				<type>listcontrol</type>
+				<id>50</id>
+				<posX>20</posX>
+				<onleft>901</onleft>
+				<onright>151</onright>
+				<width>250</width>
+			</control>
+		</control>
+		<control>
+			<description>Textlist</description>
+			<type>listcontrol</type>
+			<id>151</id>
+			<posX>270</posX>
+			<posY>350</posY>
+			<height>250</height>
+			<width>200</width>
+			<spaceBetweenItems>0</spaceBetweenItems>
+		    <textcolor>ffa9d0f7</textcolor>
+			<onleft>50</onleft>
+			<onright>902</onright>
+		</control>
+		<control Style="Thumb">
+		  <type>image</type>
+		  <description>Main Actor</description>
+		  <id>0</id>
+		  <posX>510</posX>
+		  <posY>160</posY>
+          <centered>yes</centered>
+		  <keepaspectratio>yes</keepaspectratio>
+		  <texture>#Anime3.Character.PosterMainActor</texture>
+		  <visible>Control.IsVisible(5692)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+		<control Style="Thumb">
+		  <type>image</type>
+		  <description>Main Character</description>
+		  <id>0</id>
+		  <posX>270</posX>
+		  <posY>160</posY>
+          <centered>yes</centered>
+		  <keepaspectratio>yes</keepaspectratio>
+		  <texture>#Anime3.Character.PosterMainChar</texture>
+		  <visible>Control.IsVisible(5691)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+		<control Style="Thumb">
+		  <type>image</type>
+		  <description>Series Character</description>
+		  <id>0</id>
+		  <posX>270</posX>
+		  <posY>160</posY>
+          <centered>yes</centered>
+		  <keepaspectratio>yes</keepaspectratio>
+		  <texture>#Anime3.Character.SeriesCharacter</texture>
+		  <visible>Control.IsVisible(5693)+!Control.hasfocus(151)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+		<control Style="Thumb">
+		  <type>image</type>
+		  <description>Second Character</description>
+		  <id>0</id>
+		  <posX>270</posX>
+		  <posY>160</posY>
+          <centered>yes</centered>
+		  <keepaspectratio>yes</keepaspectratio>
+		  <texture>#Anime3.Character.PosterSecondChar</texture>
+		  <visible>Control.IsVisible(5694)+Control.hasfocus(151)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+		<control Style="Thumb">
+		  <type>image</type>
+		  <description>Poster Series</description>
+		  <id>0</id>
+		  <posX>510</posX>
+		  <posY>360</posY>
+          <centered>yes</centered>
+		  <keepaspectratio>yes</keepaspectratio>
+		  <texture>#Anime3.Character.PosterSeries</texture>
+		  <visible>Control.IsVisible(5694)</visible>
+          <animation effect="fade" time="450" >VisibleChange</animation>
+		</control>
+	  </control>
+
+		<!--  ************** CHARACTER LABELS *****************  -->
+
+		<!--  <control>
+			<description>Character Name</description>
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>30</posX>
+			<posY>505</posY>
+			<label>#Anime3.Character.Name</label>
+		</control>  -->
+		<control Style="Ticker2">
+			<description>Actor Name</description>
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>30</posX>
+			<posY>505</posY>
+			<label>#Anime3.Actor.Name as #Anime3.Character.Name</label>
+		</control>
+		<control Style="Ticker2">
+			<description>Actor Name</description>
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>40</posX>
+		    <textcolor>99a9d0f7</textcolor>
+			<label>also as #Anime3.Character.SeriesCharacter in #Anime3.Character.SeriesName</label>
+			<visible>Control.hasfocus(151)+[Control.IsVisible(5694)|Control.IsVisible(5693)]</visible>
+		</control>
+		<control Style="Align Right">
+			<description>Char Status</description>
+			<type>fadelabel</type>
+			<id>114</id>
+			<posY>535</posY>
+			<font>font14</font>
+			<textcolor>77ffffff</textcolor>
+			<label>#Anime3.Character.Status</label>
+		</control>
+	</controls>
+</window>

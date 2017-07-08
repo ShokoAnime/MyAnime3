@@ -1,0 +1,505 @@
+﻿<window>
+	<id>6102</id>
+	<defaultcontrol>50</defaultcontrol>
+	<allowoverlay>yes</allowoverlay>
+
+	<controls>
+
+
+		<!-- ********************** BACKGROUNDS************************************** -->
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>MyAnime3/anime3_DefaultBackground.jpg</texture>
+			<animation effect="fade" start="0" end="100" time="3000">WindowOpen</animation>
+			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+		</control>
+			
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>#Anime3.Fanart.1</texture>anime3_background.png
+		</control>
+		
+		<control>
+			<description>Background</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1280</width>
+			<height>720</height>
+			<texture>MyAnime3/anime3_background.png</texture>
+		</control>
+
+		<control>
+			<type>fadelabel</type>
+			<id>0</id>
+			<posX>40</posX>
+			<posY>690</posY>
+			<width>900</width>
+			<font>font10</font>
+			<label>Version:   #Anime3.VersionNumber   (DB: #Anime3.DBVersionNumber)</label>
+		</control>
+
+		<control>
+		  <type>fadelabel</type>
+		  <id>0</id>
+		  <posX>300</posX>
+		  <posY>690</posY>
+		  <width>300</width>
+		  <font>font10</font>
+		  <textcolor>F7FE2E</textcolor>
+		  <label>#Anime3.LatestVersionText</label>
+		</control>
+
+		<control>
+			<type>label</type>
+			<id>0</id>
+			<posX>30</posX>
+			<posY>50</posY>
+			<width>390</width>
+			<align>left</align>
+			<label>Groups Without Association</label>
+			<font>font12</font>
+		</control>
+
+		<control>
+			<description>composite control </description>
+			<type>facadeview</type>
+			<id>50</id>
+			<control>
+				<description>Groups without Association</description>
+				<type>listcontrol</type>
+				<id>50</id>
+				<posX>30</posX>
+				<posY>90</posY>
+				<onleft>6</onleft>
+				<onright>51</onright>
+				<width>500</width>
+				<height>370</height>
+				<scrollOffset>4</scrollOffset>
+				<spinWidth>18</spinWidth>
+				<spinHeight>18</spinHeight>
+				<spinPosX>-50</spinPosX>
+				<spinPosY>-50</spinPosY>
+				<spinCanFocus>no</spinCanFocus>
+				<textureFocus>menu_list_focus.png</textureFocus>
+				<textureNoFocus>button_green_nofocus_165x32.png</textureNoFocus>
+				<font>font10</font>
+				<font2>font10</font2>
+				<font3>font10</font3>
+				<textXOff>-90</textXOff>
+				<textYOff>4</textYOff>
+				<textXOff2>325</textXOff2>
+				<textYOff2>4</textYOff2>
+				<textXOff3>360</textXOff3>
+				<textYOff3>6</textYOff3>
+				<IconXOff>330</IconXOff>
+				<IconYOff>7</IconYOff>
+				<itemWidth>100</itemWidth>
+				<itemHeight>20</itemHeight>
+				<spaceBetweenItems>1</spaceBetweenItems>
+				<!-- Text -->
+				<downloadColor>ffffffff</downloadColor>
+				<!-- not watched color (normal) -->
+				<remoteColor>ffffffff</remoteColor>
+				<!-- watched color -->
+				<textcolor>ffffffff</textcolor>
+				<!-- local file not present color -->
+				<textcolor2>ffffffff</textcolor2>
+				<!-- local file not present colorcolumn 2-->
+				<textcolor3>ffffffff</textcolor3>
+				<!-- local file not present color column 3-->
+			</control>
+		</control>
+
+		<control>
+			<type>label</type>
+			<id>0</id>
+			<posX>35</posX>
+			<posY>440</posY>
+			<label>#Anime3.MissingGroups Groups</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+
+		<control>
+			<type>label</type>
+			<id>0</id>
+			<posX>600</posX>
+			<posY>50</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>Unrecognized Files</label>
+			<font>font12</font>
+		</control>
+		
+		<control>
+			<description>Unrecognized files</description>
+			<type>listcontrol</type>
+			<id>51</id>
+			<onleft>50</onleft>
+			<onright>50</onright>
+			<posX>600</posX>
+			<posY>90</posY>
+			<width>500</width>
+			<height>370</height>
+			<scrollOffset>4</scrollOffset>
+			<spinWidth>18</spinWidth>
+			<spinHeight>18</spinHeight>
+			<spinPosX>-50</spinPosX>
+			<spinPosY>-50</spinPosY>
+			<spinCanFocus>no</spinCanFocus>
+			<textureFocus>menu_list_focus.png</textureFocus>
+			<textureNoFocus>button_green_nofocus_165x32.png</textureNoFocus>
+			<font>font10</font>
+			<font2>font10</font2>
+			<font3>font10</font3>
+			<textXOff>-90</textXOff>
+			<textYOff>4</textYOff>
+			<textXOff2>325</textXOff2>
+			<textYOff2>4</textYOff2>
+			<textXOff3>360</textXOff3>
+			<textYOff3>6</textYOff3>
+			<IconXOff>330</IconXOff>
+			<IconYOff>7</IconYOff>
+			<itemWidth>100</itemWidth>
+			<itemHeight>20</itemHeight>
+			<spaceBetweenItems>1</spaceBetweenItems>
+			<!-- Text -->
+			<downloadColor>ffffffff</downloadColor>
+			<!-- not watched color (normal) -->
+			<remoteColor>ffffffff</remoteColor>
+			<!-- watched color -->
+			<textcolor>ffffffff</textcolor>
+			<!-- local file not present color -->
+			<textcolor2>ffffffff</textcolor2>
+			<!-- local file not present colorcolumn 2-->
+			<textcolor3>ffffffff</textcolor3>
+			<!-- local file not present color column 3-->
+		</control>
+
+		<control>
+			<type>label</type>
+			<id>0</id>
+			<posX>605</posX>
+			<posY>440</posY>
+			<label>#Anime3.UnrecognizedFiles Files</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+		
+		<!--  ************** HIDDEN MENU *****************  -->
+
+		<control>
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>2</defaultcontrol>
+			<onexit>50</onexit>
+			<buttonX>0</buttonX>
+			<buttonY>0</buttonY>
+			<buttonwidth>106</buttonwidth>
+			<buttonheight>720</buttonheight>
+			<textureFocus>-</textureFocus>
+			<textureNoFocus>-</textureNoFocus>
+			<width>568</width>
+			<height>900</height>
+			<dimColor>00ffffff</dimColor>
+			<control>
+				<type>image</type>
+				<posX>26</posX>
+				<posY>78</posY>
+				<width>367</width>
+				<height>591</height>
+				<texture>hiddenmenu_left.png</texture>
+				<colorDiffuse>fffffffff</colorDiffuse>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+			</control>
+			<control>
+				<description>group element</description>
+				<type>group</type>
+				<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+				<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+				<visible>!Control.HasFocus(50)</visible>
+				<control>
+					<description>button group</description>
+					<type>group</type>
+					<animation effect="slide" time="450" start="-300,0" reversible="false">visible</animation>
+					<animation effect="slide" time="450" end="-300,0" reversible="false">hidden</animation>
+					<posX>71</posX>
+					<posY>121</posY>
+					<layout>StackLayout</layout>
+					<visible>!Control.HasFocus(50)</visible>
+					<control>
+						<description>Run Import</description>
+						<type>button</type>
+						<id>6</id>
+						<label>Run Import</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>9</onup>
+						<ondown>7</ondown>
+					</control>
+					<control>
+						<description>Import CD/DVD</description>
+						<type>button</type>
+						<id>7</id>
+						<label>Import CD/DVD</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>6</onup>
+						<ondown>8</ondown>
+					</control>
+					<control>
+						<description>Cleanup Database</description>
+						<type>button</type>
+						<id>8</id>
+						<label>Cleanup Database</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>7</onup>
+						<ondown>9</ondown>
+					</control>
+					<control>
+						<description>More Options</description>
+						<type>button</type>
+						<id>9</id>
+						<label>More Options</label>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<onup>8</onup>
+						<ondown>6</ondown>
+					</control>
+				</control>
+			</control>
+		</control>
+
+		<!--  ************** HASHER STATUS *****************  -->
+
+		<control>
+			<type>label</type>
+			<id>101</id>
+			<posX>40</posX>
+			<posY>510</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>HASHER QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+
+		<control>
+			<description>Vid Hasher Queue</description>
+			<type>label</type>
+			<id>102</id>
+			<posX>300</posX>
+			<posY>510</posY>
+			<label>Hash...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+
+		<control>
+			<description>Vid Hasher Status</description>
+			<type>label</type>
+			<id>104</id>
+			<posX>400</posX>
+			<posY>510</posY>
+			<width>900</width>
+			<label>Hash...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<!--  ************** ANIDB STATUS *****************  -->
+
+		<control>
+			<type>label</type>
+			<id>111</id>
+			<posX>40</posX>
+			<posY>540</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>ANIDB QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+
+		<control>
+			<description>ANIDB Queue</description>
+			<type>label</type>
+			<id>112</id>
+			<posX>300</posX>
+			<posY>540</posY>
+			<label>Hash...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<control>
+			<description>ANIDB Status</description>
+			<type>label</type>
+			<id>114</id>
+			<posX>400</posX>
+			<posY>540</posY>
+			<width>900</width>
+			<label>Hash...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<!--  ************** IMAGE DOWNLOAD STATUS *****************  -->
+
+		<control>
+			<type>label</type>
+			<id>121</id>
+			<posX>40</posX>
+			<posY>570</posY>
+			<width>200</width>
+			<align>left</align>
+			<label>IMAGE QUEUE</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+
+		<control>
+			<description>IMAGE Queue</description>
+			<type>label</type>
+			<id>122</id>
+			<posX>300</posX>
+			<posY>570</posY>
+			<label>Hash...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+
+		<control>
+			<description>IMAGE Status</description>
+			<type>label</type>
+			<id>124</id>
+			<posX>400</posX>
+			<posY>570</posY>
+			<width>900</width>
+			<label>Hash...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+	  <!--  ************** TVDB STATUS *****************  -->
+
+	  <control>
+		<type>label</type>
+		<id>141</id>
+		<posX>40</posX>
+		<posY>600</posY>
+		<width>200</width>
+		<align>left</align>
+		<label>TVDB QUEUE</label>
+		<textcolor>ffa9d0f7</textcolor>
+		<font>font10</font>
+	  </control>
+
+	  <control>
+		<description>TVDB Queue</description>
+		<type>label</type>
+		<id>142</id>
+		<posX>300</posX>
+		<posY>600</posY>
+		<label>Hash...</label>
+		<font>font10</font>
+		<align>Left</align>
+		<textcolor>ffffffff</textcolor>
+	  </control>
+
+
+	  <control>
+		<description>TVDB Status</description>
+		<type>label</type>
+		<id>144</id>
+		<posX>400</posX>
+		<posY>600</posY>
+		<width>900</width>
+		<label>Hash...</label>
+		<font>font10</font>
+		<align>Left</align>
+		<textcolor>ffffffff</textcolor>
+	  </control>
+
+		<!--  ************** OTHER STATUS *****************  -->
+
+		<control>
+			<type>label</type>
+			<id>131</id>
+			<posX>40</posX>
+			<posY>630</posY>
+			<width>300</width>
+			<align>left</align>
+			<label>IMPORT PROGRESS</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+
+		<control>
+			<description>scan progress value</description>
+			<type>label</type>
+			<id>132</id>
+			<posX>300</posX>
+			<posY>630</posY>
+			<width>900</width>
+			<label>Scan...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+
+		<control>
+			<type>label</type>
+			<id>133</id>
+			<posX>40</posX>
+			<posY>660</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>CLEANUP PROGRESS</label>
+			<textcolor>ffa9d0f7</textcolor>
+			<font>font10</font>
+		</control>
+
+		<control>
+			<description>cleanup status value</description>
+			<type>label</type>
+			<id>134</id>
+			<posX>300</posX>
+			<posY>660</posY>
+			<width>900</width>
+			<label>Cleanup...</label>
+			<font>font10</font>
+			<align>Left</align>
+			<textcolor>ffffffff</textcolor>
+		</control>
+		
+		<import>common.time.xml</import>
+
+	</controls>
+</window>

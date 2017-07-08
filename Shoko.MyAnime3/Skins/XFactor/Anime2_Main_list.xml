@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+   <define>#title.color:ffFFFFFFFF</define>
+  <!-- Title Color                        Default: ffFFFFFFFF -->
+  <define>#text.color:ffFFFFFFFF</define>
+  <!-- Text Color                         Default: ffFFFFFFFF -->
+  <define>#default.color:ffFFFFFFFF</define>
+  <!-- Normal List Color                  Default: ffFFFFFFFF -->
+  <define>#watched.color:ffFFFFFFFF</define>
+  <!-- Watched List Color                 Default: ff808080 -->
+  <define>#notpresent.color:ffFFFFFFFF</define>
+  <!-- File Not Present in List Color     Default: ffF87B72 -->
+  <define>#iswatched:#Anime2.Episode.WatchedFlag</define>
+  
+   <!-- Setup will replace the *.png with a '-' if user does not want them -->
+  <define>#overlaywubg:overlaywubg.png</define>
+  <define>#tvseries_Watched:tvseries_Watched.png</define>
+  <define>#tvseries_UnWatched:tvseries_UnWatched.png</define>
+  <define>#tvseries_WatchedNA:tvseries_WatchedNA.png</define>
+  <define>#tvseries_UnWatchedNA:tvseries_UnWatchedNA.png</define>
+  
+  
+  <controls>
+ 
+	
+	
+    <control>
+      <description>Overlay - Season</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1280</width>
+      <height>720</height>
+      <texture>tvseries_bg_list2.png</texture>
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+	  <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1239)|Control.IsVisible(1240)]</visible>
+    </control>	
+	
+	    <control>
+      <description>Default Cover Art</description>
+      <type>image</type>
+      <id>0</id>
+      <id>60</id>
+      <posX>49</posX>
+      <posY>308</posY>
+      <width>265</width>
+      <height>385</height>
+      <texture>defaultposter.png</texture>
+	  <animation>VisibleChange</animation>
+      <visible flipY="true" diffuse="Thumb_Mask.png">facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+    </control>
+    
+    <control>
+      <description>Cover Art</description>
+      <type>image</type>
+      <id>60</id>
+      <posX>49</posX>
+      <posY>308</posY>
+      <width>265</width>
+      <height>385</height>
+      <texture flipY="true" diffuse="Thumb_Mask.png">#Anime2.GroupSeriesPoster</texture>
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+Control.IsVisible(1238)|Control.IsVisible(1240)</visible>
+    </control>
+	
+	    <control>
+      <description>Cover Art</description>
+      <type>image</type>
+      <id>60</id>
+      <posX>49</posX>
+      <posY>308</posY>
+      <width>265</width>
+      <height>385</height>
+      <texture flipY="true" diffuse="Thumb_Mask.png">#Anime2.GroupSeriesPoster</texture>
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+Control.IsVisible(1237)|Control.IsVisible(1240)</visible>
+    </control>
+	
+		<control>
+      <id>0</id>
+      <type>image</type>
+      <posX>30</posX>
+      <posY>290</posY>
+      <width>301</width>
+      <height>404</height>
+	  <texture flipY="true" diffuse="Thumb_Mask.png">poster_frame_rounder_corners_cut.png</texture>	  
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+	  <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+    </control>
+
+	<control>
+      <description>Big Episode Thumb</description>
+      <type>image</type>
+      <id>67</id>
+      <posX>18</posX>
+      <posY>444</posY>
+      <width>323</width>
+      <height>212</height>	        
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+      <texture>#Anime2.Episode.Image</texture>
+	  <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>		
+
+	<control>
+      <id>0</id>
+      <type>image</type>
+      <posX>0</posX>
+      <posY>426</posY>
+      <width>360</width>
+      <height>250</height>
+	  <texture>episode_frame_shadow_big.png</texture>	  
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+	  <visible>facadeview.list+Control.IsVisible(1239)</visible>
+    </control>
+
+	<control>
+      <description>Watched Indicator - UnWatched (new)</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>261</posX>
+      <posY>435</posY>
+      <width>90</width>
+      <height>97</height>
+      <texture>new_icon.png</texture>
+	  <animation effect="fade" time="800" reversible="true">VisibleChange</animation>
+	  <visible>Control.IsVisible(1239)+facadeview.list+!Control.IsVisible(1243)</visible>
+    </control>	
+
+	      
+
+<!-- ************************ LIST VIEW  SERIES********************************-->
+    
+    <control>
+      <description>Series Title</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>375</posX>
+      <posY>419</posY>
+	  <width>445</width>
+      <textcolor>ffFFFFFF</textcolor>
+      <align>left</align>
+      <font>fontLowerCase18</font>
+      <label>#Anime2.Title</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>	
+	
+	<control>
+		<description>Fave Icon (Wide Banners View)</description>
+		<id>611</id>
+		<type>image</type>
+		<posX>370</posX>
+		<posY>360</posY>
+		<width>48</width>
+		<height>48</height>
+		<texture>MyAnime/anime2_heart1_48.png</texture>
+        <visible>facadeview.list+Control.IsVisible(1245)+Control.IsVisible(1238)</visible>
+	</control>
+   
+    <control Style="TVSeriesLabel">
+	  <description>Series Year Value</description>
+      <label>#Anime2.SeriesGroup.Year</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>474</posY>
+	  <width>445</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>
+
+    <control Style="TVSeriesLabel">
+	  <description>Series Genre Value</description>
+      <label>#Anime2.SeriesGroup.Genre</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>450</posY>
+	  <width>445</width>
+	  <font>font12</font>
+	  <textcolor>ff99CCCC</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>	
+    <control Style="TVSeriesTitle">
+	  <description>Series Episodes Title</description>
+      <label>Episodes</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>498</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor>   
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>
+    <control Style="TVSeriesLabel">
+	  <description>Series Episodes Value</description>
+      <label>#Anime2.SeriesGroup.Episodes</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>498</posY>
+      <width>245</width>	  
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>
+    <control Style="TVSeriesTitle">
+	  <description>Series Watched Title</description>
+      <label>Watched</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>521</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor>   
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>	
+	
+    <control>
+      <description>Series Watched Icon</description>
+      <id>0</id>
+      <label>Yes</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]+Control.IsVisible(1243)+Control.IsVisible(1244)</visible>
+    </control>
+    <control>
+      <description>Series Un-Watched Icon</description>
+      <label>No</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]+!Control.IsVisible(1243)+Control.IsVisible(1244)</visible>
+    </control>
+    <control>
+      <description>Series Not Available and Watched Icon</description>
+      <label>Yes</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]+Control.IsVisible(1243)+!Control.IsVisible(1244)</visible>
+    </control>
+    <control>
+      <description>Series Not Available and Un-Watched Icon</description>
+      <label>No</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]+!Control.IsVisible(1243)+!Control.IsVisible(1244)</visible>
+    </control>
+
+    <control>
+      <description>Series Description</description>
+      <type>textboxscrollup</type>
+      <id>631</id>
+      <posX>375</posX>
+      <posY>552</posY>
+      <width>460</width>	  
+      <height>116</height>
+      <seperator>----------------------------------------------------------------------------------------------------</seperator>
+      <textcolor>ffFFFFFF</textcolor>
+      <font>fontLowerCase13</font>
+      <label>#Anime2.Description</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>
+	    
+	
+	    <control Style="TVSeriesTitle">
+	  <description>Series Rating Title</description>
+      <label>Rating</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>680</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>	
+	
+	    <control Style="TVSeriesTitle">
+	  <description>Series Rating Value</description>
+      <label>#Anime2.SeriesGroup.RawRating</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>674</posY>
+      <width>300</width>
+	  <font>font22</font>
+	  <textcolor>ff99CCCC</textcolor>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>		
+	
+			<control>
+      <type>imagelist</type>
+      <id>0</id>
+      <posX>660</posX>
+      <posY>679</posY>
+      <!--38 -->
+      <textureWidth>25</textureWidth>
+      <textureHeight>25</textureHeight>
+      <subitems>
+        <subitem>star_empty.png</subitem>
+        <subitem>star_yellow.png</subitem>
+      </subitems>
+      <orientation>horizontal</orientation>
+      <align>left</align>
+      <imagesToDraw>10</imagesToDraw>
+      <percentage>#Anime2.SeriesGroup.RawRating</percentage>      
+	  <animation effect="fade" time="800" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)]</visible>
+    </control>
+	
+	
+    <!--
+    :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    :::::::::::::::::::::::::::::::::: EPISODE VIEW :: LIST VIEW ::
+    :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    -->
+
+
+    <control>
+	  <description>Episode Title</description>
+      <type>fadelabel</type>
+      <label>#Anime2.Episode.EpisodeName</label>
+      <id>0</id>
+      <posX>375</posX>
+      <posY>419</posY>
+	  <width>445</width>
+      <font>fontLowerCase18</font>
+	  <textcolor>ffffffff</textcolor> 	
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+
+    <control Style="TVSeriesLabel">
+	  <description>Episode Aired Value</description>
+      <label>#Anime2.Episode.AirDate</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>474</posY>
+	  <width>445</width>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+
+	
+
+    <control>
+      <description>Episode Runtime</description>
+      <label>#Anime2.Episode.Length</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>450</posY>
+	  <width>445</width>
+	  <font>font12</font>
+	  <textcolor>ff99CCCC</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+	
+	
+    <control Style="TVSeriesTitle">
+	  <description>Episode FileInfo Title</description>
+      <label>File Info</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>498</posY>
+	  <textcolor>ff909090</textcolor> 	    
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+	
+    <control Style="TVSeriesLabel">
+	  <description>Episode File Info Value</description>
+      <label>#Anime2.Episode.FileInfo</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>498</posY>
+      <width>305</width>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+    <control Style="TVSeriesTitle">
+	  <description>Episode pesonal rating Title</description>
+      <label>My rating</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>521</posY>
+	  <textcolor>ff909090</textcolor> 	    
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+    <control Style="TVSeriesLabel">
+	  <description>Episode personal rating Value</description>
+      <label>#Anime2.Episode.MyRating </label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>305</width>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+	
+    <control>
+      <description>Episode Plot Value</description>
+      <type>textboxscrollup</type>
+      <id>631</id>
+      <posX>375</posX>
+      <posY>552</posY>
+      <width>460</width>	  
+      <height>116</height>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <seperator>--------------------------------------------------------------------------------------</seperator>
+      <font>fontLowerCase13</font>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>h
+      <label>#Anime2.Episode.Description</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>
+    </control>
+	
+		    <control Style="TVSeriesTitle">
+	  <description>Episode Rating Title</description>
+      <label>Rating</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>680</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor> 	 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>	
+	
+	    <control Style="TVSeriesTitle">
+	  <description>Episode Rating Value</description>
+      <label>#Anime2.Episode.Rating</label>
+      <type>label</type>
+      <posX>495</posX>
+      <posY>674</posY>
+      <width>300</width>>
+	  <font>font22</font>
+	  <textcolor>ff99CCCC</textcolor>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>	
+	
+		<control>
+      <type>imagelist</type>
+      <id>0</id>
+      <posX>745</posX>
+      <posY>679</posY>
+      <textureWidth>25</textureWidth>
+      <textureHeight>25</textureHeight>
+      <subitems>
+        <subitem>star_empty.png</subitem>
+        <subitem>star_yellow.png</subitem>
+      </subitems>
+      <orientation>horizontal</orientation>
+      <align>left</align>
+      <imagesToDraw>5</imagesToDraw>
+      <percentage>#Anime2.Episode.RawRating</percentage>      
+	  <animation effect="fade" time="800" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1239)+facadeview.list</visible>
+    </control>
+	
+    <!--
+    :::::::::::::::::::::::::::
+    :: EPISODE VIEW :: LOGOS ::
+    :::::::::::::::::::::::::::
+    -->
+	
+	
+    <control>
+      <type>image</type>
+      <description>thumb Logos ( in textlist )</description>
+      <id>66</id>
+      <posX>5</posX>
+      <posY>670</posY>
+      <width>350</width>
+      <height>35</height>
+	  <texture>#Anime2.Logos</texture>
+      <!--<texture flipY="true" diffuse="Thumb_Mask.png">#Anime2.Logos</texture>-->
+      <keepaspectratio>yes</keepaspectratio>
+      <spaceBetweenItems>2</spaceBetweenItems>
+	  <!--<animation effect="fade" time="350" reversible="true">VisibleChange</animation>-->
+      <visible>facadeview.list+!Control.IsVisible(1238)+!Control.IsVisible(1240)</visible>
+    </control>
+
+	<!--
+    :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    :::::::::::::::::::::::::::: EPISODE TYPES VIEW :: LIST VIEW ::
+    :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	Note: This shows the anime deatils for the deatils.
+    -->
+
+
+    <control>
+	  <description>Episode Type Title</description>
+      <type>label</type>
+      <label>#Anime2.SeriesTitle</label>
+      <id>0</id>
+      <posX>375</posX>
+      <posY>419</posY>
+	  <width>445</width>
+      <font>fontLowerCase18</font>
+	  <textcolor>ffffffff</textcolor> 	
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+
+    <control Style="TVSeriesLabel">
+	  <description>Episode Type Year Value</description>
+      <label>#Anime2.SeriesGroup.Year</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>474</posY>
+	  <width>445</width>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+
+	
+
+    <control>
+      <description>Episode type Genre</description>
+      <label>#Anime2.SeriesGroup.Genre</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>450</posY>
+	  <width>445</width>
+	  <font>font12</font>
+	  <textcolor>ff99CCCC</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+	
+	
+    <control Style="TVSeriesTitle">
+	  <description>Episode type Episodes Title</description>
+      <label>Episodes</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>498</posY>
+	  <textcolor>ff909090</textcolor> 	    
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+	
+    <control Style="TVSeriesLabel">
+	  <description>Episode type Episodes Value</description>
+      <label>#Anime2.SeriesGroup.Episodes</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>498</posY>
+      <width>305</width>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+    <control Style="TVSeriesTitle">
+	  <description>Episode type Watched Title</description>
+      <label>Watched</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>521</posY>
+	  <textcolor>ff909090</textcolor> 	    
+      <font>font12</font>	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+
+<control>
+      <description>Episode type Watched Icon</description>
+      <id>0</id>
+      <label>Yes</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 	  
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <visible>facadeview.list+[Control.IsVisible(1240)|Control.IsVisible(1237)]+Control.IsVisible(1243)+Control.IsVisible(1244)</visible>
+    </control>
+    <control>
+      <description>Episode type Un-Watched Icon</description>
+      <label>No</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1240)|Control.IsVisible(1237)]+!Control.IsVisible(1243)+Control.IsVisible(1244)</visible>
+    </control>
+    <control>
+      <description>Episode type Not Available and Watched Icon</description>
+      <label>Yes</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1240)|Control.IsVisible(1237)]+Control.IsVisible(1243)+!Control.IsVisible(1244)</visible>
+    </control>
+    <control>
+      <description>Episode type Not Available and Un-Watched Icon</description>
+      <label>No</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>521</posY>
+      <width>300</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>facadeview.list+[Control.IsVisible(1240)|Control.IsVisible(1237)]+!Control.IsVisible(1243)+!Control.IsVisible(1244)</visible>
+    </control>
+	
+    <control>
+      <description>Episode type Plot Value</description>
+      <type>textboxscrollup</type>
+      <id>631</id>
+      <posX>375</posX>
+      <posY>552</posY>
+      <width>460</width>	  
+      <height>116</height>
+	  <textcolor>ffFFFFFF</textcolor>      
+      <seperator>--------------------------------------------------------------------------------------</seperator>
+      <font>fontLowerCase13</font>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>h
+      <label>#Anime2.Description</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>
+    </control>
+	
+		    <control Style="TVSeriesTitle">
+	  <description>Episode type Rating Title</description>
+      <label>Rating</label>
+      <type>label</type>
+      <posX>375</posX>
+      <posY>680</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor> 	 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>	
+	
+	    <control Style="TVSeriesTitle">
+	  <description>Episode type Rating Value</description>
+      <label>#Anime2.SeriesGroup.RawRating</label>
+      <type>label</type>
+      <posX>512</posX>
+      <posY>674</posY>
+      <width>300</width>>
+	  <font>font22</font>
+	  <textcolor>ff99CCCC</textcolor>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>	
+	
+		<control>
+      <type>imagelist</type>
+      <id>0</id>
+      <posX>660</posX>
+      <posY>679</posY>
+      <textureWidth>25</textureWidth>
+      <textureHeight>25</textureHeight>
+      <subitems>
+        <subitem>star_empty.png</subitem>
+        <subitem>star_yellow.png</subitem>
+      </subitems>
+      <orientation>horizontal</orientation>
+      <align>left</align>
+      <imagesToDraw>10</imagesToDraw>
+      <percentage>#Anime2.SeriesGroup.RawRating</percentage>      
+	  <animation effect="fade" time="800" reversible="true">VisibleChange</animation>
+      <visible>Control.IsVisible(1240)+facadeview.list</visible>
+    </control>
+	
+	<!-- *********************** FIND PANEL *********************************** -->
+
+	<control>
+		<type>actiongroup</type>
+		<description>Find Panel</description>
+		<height>10</height>
+		<textcolorNoFocus>fffcfcfc</textcolorNoFocus>
+	  	<unfocusedAlpha>200</unfocusedAlpha>
+		<dimColor>0xffffffff</dimColor>
+		<control>
+		  <description>background</description>
+		  <type>image</type>
+		  <id>0</id>
+		  <posX>400</posX>
+		  <posY>40</posY>
+		  <width>445</width>
+		  <height>85</height>
+		  <texture>MyAnime/anime2_findpanel.png</texture>
+      <visible>facadeview.list+Control.IsVisible(3463)</visible>
+      <animation effect="fade" start="0" end ="100" time=" 250" acceleration=" -0.4" reversible="false">visiblechange</animation>
+		</control>
+
+		<control>
+		  <description>Find Label</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>415</posX>
+		  <posY>55</posY>
+		  <width>200</width>
+		  <font>font14</font>
+		  <label>Find:</label>
+      <visible>facadeview.list+Control.IsVisible(3463)</visible>
+    </control>
+
+		<control>
+		  <description>find text background</description>
+		  <type>image</type>
+		  <id>0</id>
+		  <posX>470</posX>
+		  <posY>49</posY>
+		  <width>370</width>
+		  <height>42</height>
+		  <texture>dialogbigbuttonfo.png</texture>
+      <visible>facadeview.list+Control.IsVisible(3463)</visible>
+    </control>
+
+		<control>
+		  <description>find text</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>500</posX>
+		  <posY>57</posY>
+		  <width>490</width>
+		  <font>font12</font>
+		  <label>#Anime2.FindText</label>
+      <visible>facadeview.list+Control.IsVisible(3463)</visible>
+    </control>
+
+	<control>
+		  <description>Find description *</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>475</posX>
+		  <posY>93</posY>
+		  <width>200</width>
+		  <font>font10</font>
+		  <label>* = #Anime2.FindAsteriskMode</label>
+      <visible>facadeview.list+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+    </control>
+
+	<control>
+		  <description>Find description #</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>645</posX>
+		  <posY>93</posY>
+		  <width>200</width>
+		  <font>font10</font>
+		  <label># = #Anime2.FindSharpMode</label>
+      <visible>facadeview.list+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+    </control>
+	
+	<control>
+		  <description>Find description C+W-key (text)</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>420</posX>
+		  <posY>93</posY>
+		  <width>250</width>
+		  <font>font10</font>
+		  <label>C+W = Start Word (#Anime2.FindStartWord)</label>
+      <visible>facadeview.list+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
+    </control>
+
+	<control>
+		  <description>Find description tab-key (text)</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>665</posX>
+		  <posY>93</posY>
+		  <width>200</width>
+		  <font>font10</font>
+		  <label>TAB = Next Match</label>
+      <visible>facadeview.list+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
+    </control>
+	</control>
+
+  </controls>
+<animation effect="fade" start="100" end="0" time="350">WindowClose</animation>
+</window>

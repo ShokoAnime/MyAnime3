@@ -1,0 +1,616 @@
+﻿<window>
+        <id>6107</id>
+        <defaultcontrol>901</defaultcontrol>
+        <allowoverlay>no</allowoverlay>
+        <disabletopbar>yes</disabletopbar>
+        <define>#header.hover:hover_my anime.png</define>
+		<define>#header.label:Anime</define>
+	<controls>
+		<import>common.window.bars.xml</import>
+		<import>common.time.xml</import>
+
+	<!-- ********************** DUMMY CONTROLS FOR VISIBILITY ************************************** -->
+
+	<control>
+	  <type>label</type>
+	  <description>Does the user have files for this series for the MAIN SERIES</description>
+	  <id>1333</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does a PREQUEL exist</description>
+	  <id>1301</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does the user have the AniDB info on their system locally for the PREQUEL</description>
+	  <id>1302</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does the user have files for this series for the PREQUEL</description>
+	  <id>1303</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does a SEQUEL exist</description>
+	  <id>1311</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does the user have the AniDB info on their system locally for the SEQUEL</description>
+	  <id>1312</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does the user have files for this series for the SEQUEL</description>
+	  <id>1313</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does any OTHER RELATION exist</description>
+	  <id>1321</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does the user have the AniDB info on their system locally for the OTHER RELATION</description>
+	  <id>1322</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+	<control>
+	  <type>label</type>
+	  <description>Does the user have files for this series for the OTHER RELATION</description>
+	  <id>1323</id>
+	  <posX>-50</posX>
+	  <posY>-50</posY>
+	  <width>5</width>
+	  <label></label>
+	  <visible>false</visible>
+	</control>
+
+	<!-- ********************** BACKGROUNDS************************************** -->
+
+
+	<!-- :::::::::::::::::::::::::::::: TOP BAR :: TIME :: LOCATION :::::::::::::::::::::::::::::: -->
+		<control Style="Title">
+			<description>Title</description>
+			<type>textboxscrollup</type>
+			<id>0</id>
+			<label>#Anime3.Related.Main.Title</label>
+		</control>
+    <control Style="Slide 1">
+      <description>Button group</description>
+      <type>group</type>
+      <dimColor>ffffffff</dimColor>
+		<control>
+		  <type>label</type>
+		  <description>Current View</description>
+		  <id>0</id>
+		  <posX>140</posX>
+		  <posY>130</posY>
+		  <width>430</width>
+		  <align>center</align>
+		  <font>font16</font>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <label>Relations</label>
+		</control>
+		<control>
+		  <description>Back Arrow</description>
+		  <id>104</id>
+		  <type>image</type>
+		  <posX>30</posX>
+		  <posY>120</posY>
+		  <width>24</width>
+		  <height>24</height>
+		  <texture>nav24_back.png</texture>
+		</control>
+		<control>
+		  <description>Anime Info</description>
+		  <type>button</type>
+		  <id>901</id>
+		  <label>Info</label>
+		  <width>150</width>
+		  <posX>60</posX>
+		  <posY>118</posY>
+		  <textalign>center</textalign>
+		  <onleft>902</onleft>
+		  <onright>902</onright>
+		  <onup>50</onup>
+		  <ondown>81</ondown>
+		</control>
+		<control>
+		  <description>Next Arrow</description>
+		  <id>104</id>
+		  <type>image</type>
+		  <posX>670</posX>
+		  <posY>120</posY>
+		  <width>24</width>
+		  <height>24</height>
+		  <texture>nav24_next.png</texture>
+		</control>
+		<control>
+		  <description>Characters</description>
+		  <type>button</type>
+		  <id>902</id>
+		  <label>Characters</label>
+		  <width>150</width>
+		  <posX>520</posX>
+		  <posY>118</posY>
+		  <textalign>center</textalign>
+		  <onleft>901</onleft>
+		  <onright>901</onright>
+		  <onup>50</onup>
+		  <onup>50</onup>
+		  <ondown>81</ondown>
+		</control>
+		
+		<!--  ************** MIDDLE ANIME *****************  -->
+		<control>
+		  <type>label</type>
+		  <description>Year</description>
+		  <id>102</id>
+		  <posX>240</posX>
+		  <posY>170</posY>
+		  <width>240</width>
+		  <label>#Anime3.Related.Main.Year</label>
+		  <align>center</align>
+		  <textcolor>ffa9d0f7</textcolor>
+		</control>
+		<control>
+		  <type>label</type>
+		  <description>Episodes</description>
+		  <id>102</id>
+		  <posX>240</posX>
+		  <posY>195</posY>
+		  <width>240</width>
+		  <label>#Anime3.Related.Main.Episodes</label>
+		  <align>center</align>
+		  <textcolor>ffa9d0f7</textcolor>
+		</control>
+		
+		<control>
+		  <type>image</type>
+		  <description>current anime image</description>
+		  <id>71</id>
+		  <posX>290</posX>
+		  <posY>225</posY>
+		  <height>210</height>
+		  <width>135</width>
+		  <texture>anime3_blankchar.png</texture>
+		  <border texture="image_border.png" textureRotate="yes" textureRepeat="no">5</border>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>387</posX>
+		  <posY>255</posY>
+		  <width>40</width>
+		  <height>49</height>
+		  <texture>anime3_status_overlay.png</texture>
+		</control>
+		<control>
+		  <id>104</id>
+		  <type>image</type>
+		  <posX>394</posX>
+		  <posY>258</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_cross_48.png</texture>
+		  <visible>!Control.IsVisible(1333)</visible>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>394</posX>
+		  <posY>258</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_tick_48.png</texture>
+		  <visible>Control.IsVisible(1333)</visible>
+		</control>
+		<control>
+		  <description>Get Missing Info</description>
+		  <type>button</type>
+		  <id>81</id>
+		  <label>Get Missing Info</label>
+		  <width>215</width>
+		  <posX>250</posX>
+		  <posY>450</posY>
+		  <textalign>center</textalign>
+		  <onleft>83</onleft>
+		  <onright>82</onright>
+		  <onup>901</onup>
+		  <ondown>50</ondown>
+		</control>
+		<control>
+		  <type>image</type>
+		  <description>current anime image</description>
+		  <id>71</id>
+		  <posX>465</posX>
+		  <posY>335</posY>
+		  <height>48</height>
+		  <width>48</width>
+		  <texture>anime3_ArrowRight_64.png</texture>
+		</control>
+		<control>
+		  <type>image</type>
+		  <description>current anime image</description>
+		  <id>71</id>
+		  <posX>200</posX>
+		  <posY>335</posY>
+		  <height>48</height>
+		  <width>48</width>
+		  <texture>anime3_ArrowLeft_64.png</texture>
+		</control>
+
+		<!--  ************** SEQUEL ANIME *****************  -->
+		<!-- <control Style="TV Desc">
+		  <type>textboxscrollup</type>
+		  <description>Title</description>
+		  <id>101</id>
+		  <posX>480</posX>
+		  <posY>150</posY>
+		  <width>200</width>
+		  <font>font14</font>
+		  <textalign>center</textalign>
+		  <label>#Anime3.Related.Sequel.Title</label>
+		</control>  -->
+		<control>
+		  <type>label</type>
+		  <description>Year</description>
+		  <id>102</id>
+		  <posX>470</posX>
+		  <posY>170</posY>
+		  <width>240</width>
+		  <label>#Anime3.Related.Sequel.Year</label>
+		  <align>center</align>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>Control.IsVisible(1312)</visible>
+		</control>
+		<control>
+		  <type>label</type>
+		  <description>Episodes</description>
+		  <id>102</id>
+		  <posX>470</posX>
+		  <posY>195</posY>
+		  <width>240</width>
+		  <label>#Anime3.Related.Sequel.Episodes</label>
+		  <align>center</align>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>Control.IsVisible(1312)</visible>
+		</control>
+		<control Style="Cover">
+		  <type>image</type>
+		  <description>SEQUEL anime image</description>
+		  <id>72</id>
+		  <posX>530</posX>
+		  <posY>225</posY>
+		  <height>190</height>
+		  <width>120</width>
+		  <texture>anime3_blankchar.png</texture>
+		  <visible>Control.IsVisible(1312)</visible>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>610</posX>
+		  <posY>278</posY>
+		  <width>40</width>
+		  <height>49</height>
+		  <texture>anime3_status_overlay.png</texture>
+		  <visible>[Control.IsVisible(1311)+Control.IsVisible(1312)+[!Control.IsVisible(1313)]]|Control.IsVisible(1313)</visible>
+		</control>
+		<control>
+		  <id>104</id>
+		  <type>image</type>
+		  <posX>617</posX>
+		  <posY>280</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_cross_48.png</texture>
+		  <visible>Control.IsVisible(1311)+Control.IsVisible(1312)+[!Control.IsVisible(1313)]</visible>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>617</posX>
+		  <posY>280</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_tick_48.png</texture>
+		  <visible>Control.IsVisible(1313)</visible>
+		</control>
+		<control>
+		  <id>105</id>
+		  <type>image</type>
+		  <posX>540</posX>
+		  <posY>310</posY>
+		  <width>96</width>
+		  <height>96</height>
+		  <texture>anime3_question_green_128.png</texture>
+		  <visible>Control.IsVisible(1311)+[!Control.IsVisible(1312)]</visible>
+		</control>
+		<control>
+		  <description>View Sequel</description>
+		  <type>button</type>
+		  <id>82</id>
+		  <label>View Sequel</label>
+		  <width>180</width>
+		  <posX>510</posX>
+		  <posY>430</posY>
+		  <textalign>center</textalign>
+		  <visible>Control.IsVisible(1312)</visible>
+		  <onleft>81</onleft>
+		  <onright>83</onright>
+		  <onup>901</onup>
+		  <ondown>50</ondown>
+		</control>
+
+		<!--  ************** PREQUEL ANIME *****************  -->
+		<control>
+		  <type>label</type>
+		  <description>Year</description>
+		  <id>102</id>
+		  <posX>5</posX>
+		  <posY>170</posY>
+		  <width>240</width>
+		  <label>#Anime3.Related.Prequel.Year</label>
+		  <align>center</align>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>Control.IsVisible(1302)</visible>
+		</control>
+		<control>
+		  <type>label</type>
+		  <description>Episodes</description>
+		  <id>102</id>
+		  <posX>5</posX>
+		  <posY>195</posY>
+		  <width>240</width>
+		  <label>#Anime3.Related.Prequel.Episodes</label>
+		  <align>center</align>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <visible>Control.IsVisible(1302)</visible>
+		</control>
+		<control Style="Cover">
+		  <type>image</type>
+		  <description>PREQUEL anime image</description>
+		  <id>73</id>
+		  <posX>60</posX>
+		  <posY>225</posY>
+		  <height>190</height>
+		  <width>120</width>
+		  <texture>anime3_blankchar.png</texture>
+		  <visible>Control.IsVisible(1302)</visible>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>140</posX>
+		  <posY>278</posY>
+		  <width>40</width>
+		  <height>49</height>
+		  <texture>anime3_status_overlay.png</texture>
+		  <visible>[Control.IsVisible(1301)+Control.IsVisible(1302)+[!Control.IsVisible(1303)]]|Control.IsVisible(1303)</visible>
+		</control>
+		<control>
+		  <id>104</id>
+		  <type>image</type>
+		  <posX>147</posX>
+		  <posY>280</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_cross_48.png</texture>
+		  <visible>Control.IsVisible(1301)+Control.IsVisible(1302)+[!Control.IsVisible(1303)]</visible>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>147</posX>
+		  <posY>280</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_tick_48.png</texture>
+		  <visible>Control.IsVisible(1303)</visible>
+		</control>
+		<control>
+		  <id>105</id>
+		  <type>image</type>
+		  <posX>40</posX>
+		  <posY>315</posY>
+		  <width>96</width>
+		  <height>96</height>
+		  <texture>anime3_question_green_128.png</texture>
+		  <visible>Control.IsVisible(1301)+[!Control.IsVisible(1302)]</visible>
+		</control>
+		<control>
+		  <description>View Prequel</description>
+		  <type>button</type>
+		  <id>83</id>
+		  <label>View Prequel</label>
+		  <width>180</width>
+		  <posX>30</posX>
+		  <posY>430</posY>
+		  <textalign>center</textalign>
+		  <visible>Control.IsVisible(1302)</visible>
+		  <onleft>82</onleft>
+		  <onright>81</onright>
+		  <onup>901</onup>
+		  <ondown>50</ondown>
+		</control>
+
+		<!--  ************** OTHER RELATIONS *****************  -->
+		<control>
+		  <type>label</type>
+		  <description>Heading</description>
+		  <id>801</id>
+		  <posX>140</posX>
+		  <posY>525</posY>
+		  <width>430</width>
+		  <textcolor>ffa9d0f7</textcolor>
+		  <font>font14</font>
+		  <label>Other Relations</label>
+		  <align>center</align>
+		  <visible>Control.IsVisible(1321)</visible>
+		</control>
+		<control>
+		  <description>composite control</description>
+		  <type>facadeview</type>
+		  <id>50</id>
+		  <control>
+			<description>Filmstrip view</description>
+			<type>filmstrip</type>
+			<scrollOffset>2</scrollOffset>
+			<id>50</id>
+			<onup>81</onup>
+			<ondown>81</ondown>
+			<posX>30</posX>
+			<posY>465</posY>
+			<width>350</width>
+			<spinPosX>2000</spinPosX>
+			<spinCanFocus>no</spinCanFocus>
+			<thumbWidth>41</thumbWidth>
+			<thumbHeight>60</thumbHeight>
+			<thumbPosX>5</thumbPosX>
+			<thumbPosY>5</thumbPosY>
+			<itemWidth>41</itemWidth>
+			<itemHeight>60</itemHeight>
+			<textureWidth>46</textureWidth>
+			<textureHeight>61</textureHeight>
+			<imageFolderFocus>Framefocus.png</imageFolderFocus>
+			<frame>-</frame>
+			<frameFocus>-</frameFocus>
+			<background>-</background>
+			<showFrame>no</showFrame>
+			<showFolder>no</showFolder>
+			<showBackGround>no</showBackGround>
+			<showInfoImage>no</showInfoImage>
+			<thumbAnimation effect="zoom" start="100,100" end="130,130" time="200">focus</thumbAnimation>
+			<thumbAnimation effect="zoom" start="130,130" end="100,100" time="200">unfocus</thumbAnimation>
+			<scrollOffset>3</scrollOffset>
+		  </control>
+		</control>
+		<!-- <control>
+		  <type>fadelabel</type>
+		  <description>Title</description>
+		  <id>801</id>
+		  <posX>510</posX>
+		  <posY>470</posY>
+		  <width>400</width>
+		  <textcolor>ffdddddd</textcolor>
+		  <font>font14</font>
+		  <label>#Anime3.Related.Other.Relationship</label>
+		  <align>left</align>
+		  <visible>Control.IsVisible(1321)</visible>
+		</control>
+		<control>
+		  <type>fadelabel</type>
+		  <description>Title</description>
+		  <id>801</id>
+		  <posX>450</posX>
+		  <posY>505</posY>
+		  <width>240</width>
+		  <textcolor>ffdddddd</textcolor>
+		  <font>font14</font>
+		  <label>#Anime3.Related.Other.Title</label>
+		  <align>left</align>
+		  <visible>Control.IsVisible(1321)</visible>
+		</control>
+		<control>
+		  <type>fadelabel</type>
+		  <description>Title</description>
+		  <id>801</id>
+		  <posX>450</posX>
+		  <posY>530</posY>
+		  <width>240</width>
+		  <textcolor>ffffffff</textcolor>
+		  <font>font14</font>
+		  <label>#Anime3.Related.Other.Year - Episodes: #Anime3.Related.Other.Episodes</label>
+		  <align>left</align>
+		  <visible>Control.IsVisible(1321)+Control.IsVisible(1322)</visible>
+		</control>
+		<control>
+		  <id>104</id>
+		  <type>image</type>
+		  <posX>380</posX>
+		  <posY>655</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_cross_48.png</texture>
+		  <visible>Control.IsVisible(1321)+Control.IsVisible(1322)+!Control.IsVisible(1323)</visible>
+		</control>
+		<control>
+		  <id>107</id>
+		  <type>image</type>
+		  <posX>380</posX>
+		  <posY>530</posY>
+		  <width>32</width>
+		  <height>32</height>
+		  <texture>anime3_tick_48.png</texture>
+		  <visible>Control.IsVisible(1323)</visible>
+		</control> -->
+	</control>
+        <control Style="Ticker">
+            <description>TICKER All except Episodes</description>
+            <type>fadelabel</type>
+            <id>801</id>
+            <posX>20</posX>
+            <posY>535</posY>
+            <font>font14</font>
+            <label>::: Relation: #Anime3.Related.Other.Relationship ::: #Anime3.Related.Other.Title ::: #Anime3.Related.Other.Year - Episodes: #Anime3.Related.Other.Episodes</label>
+		    <visible>Control.IsVisible(1321)|Control.IsVisible(1322)|Control.IsVisible(1323)</visible>
+        </control>
+		<control Style="Align Right">
+		  <description>ANIDB Status</description>
+		  <type>fadelabel</type>
+		  <id>114</id>
+		  <posY>505</posY>
+		  <width>300</width>
+		  <label>#Anime3.Related.Status</label>
+		  <textcolor>ffdddddd</textcolor>
+		</control>
+  </controls>
+</window>

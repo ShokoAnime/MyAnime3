@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window> 
+  <controls>
+	<!-- THUMBS VIEW  -->
+	
+    <control>
+      <description>Overlay Bg</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>1280</width>
+      <height>720</height>
+      <texture>tvseries_bg_widebanners.png</texture>
+	  <animation effect="fade" time="400" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+Control.IsVisible(50)</visible>
+    </control>					    
+
+	    <control>
+      <description>Series Title Shadow</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>19</posX>
+      <posY>476</posY>
+      <width>730</width>
+      <textcolor>ff303030</textcolor>
+      <align>left</align>
+      <font>font32</font>
+      <label>#Anime2.Title</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>	
+    <control>
+      <description>Series Title</description>
+      <type>label</type>
+      <id>0</id>
+      <posX>18</posX>
+      <posY>475</posY>
+      <width>730</width>
+      <textcolor>ffFFFFFF</textcolor>
+      <align>left</align>
+      <font>font32</font>
+      <label>#Anime2.Title</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>	
+    <control Style="TVSeriesTitle">
+	  <description>Series Genre Title</description>
+      <label>Genre</label>
+      <type>label</type>
+      <posX>333</posX>
+      <posY>536</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>
+    <control Style="TVSeriesLabel">
+	  <description>Series Genre Value</description>
+      <label>#Anime2.SeriesGroup.Genre</label>
+      <type>fadelabel</type>
+      <posX>425</posX>
+      <posY>536</posY>
+	  <width>500</width>
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>		
+	    <control Style="TVSeriesTitle">
+	  <description>Series Runtime Title</description>
+      <label>Episodes</label>
+      <type>label</type>
+      <posX>18</posX>
+      <posY>536</posY>
+	  <font>font12</font>
+	  <textcolor>ff909090</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>
+    <control Style="TVSeriesLabel">
+	  <description>Series Runtime Value</description>
+      <label>#Anime2.SeriesGroup.Episodes</label>
+      <type>label</type>
+      <posX>138</posX>
+      <posY>536</posY>    
+      <width>360</width>	  
+	  <font>font12</font>
+	  <textcolor>ffffffff</textcolor> 
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>
+	
+	<control>
+		<description>Fave Icon (Wide Banners View)</description>
+		<id>611</id>
+		<type>image</type>
+		<posX>10</posX>
+		<posY>430</posY>
+		<width>48</width>
+		<height>48</height>
+		<texture>MyAnime\anime2_heart1_48.png</texture>
+        <visible>[facadeview.smallicons|facadeview.largeicons]+Control.IsVisible(1245)+Control.IsVisible(1242)</visible>
+	</control>
+
+  <control>
+      <description>Series Description</description>
+      <type>textboxscrollup</type>
+      <id>631</id>
+      <posX>18</posX>
+      <posY>571</posY>
+      <width>850</width>
+      <height>140</height>
+      <seperator>----------------------------------------------------------------------------------------------------</seperator>
+      <textcolor>ffFFFFFF</textcolor>
+      <font>fontLowerCase13</font>
+      <label>#Anime2.Description</label>
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <animation effect="zoom" end="1,1" center="550,420" time="10">WindowClose</animation>	  
+      <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>	
+
+			    <control>
+      <type>imagelist</type>
+      <id>1001</id>
+      <posX>880</posX>
+      <posY>571</posY>
+	  <textureWidth>25</textureWidth>
+      <textureHeight>25</textureHeight>
+      <subitems>
+        <subitem>-.png</subitem>
+        <subitem>star_yellow.png</subitem>
+      </subitems>
+      <orientation>horizontal</orientation>
+      <align>left</align>
+      <imagesToDraw>5</imagesToDraw>
+      <percentage>#Anime2.SeriesGroup.RawRating</percentage>      
+	  <animation effect="fade" time="350" reversible="true">VisibleChange</animation>
+	  <visible>[facadeview.smallicons|facadeview.largeicons]+!Control.IsVisible(1239)+!Control.IsVisible(1240)</visible>
+    </control>
+	
+	<!-- *********************** FIND PANEL *********************************** -->
+
+	<control>
+		<type>actiongroup</type>
+		<description>Find Panel</description>
+		<height>10</height>
+		<textcolorNoFocus>fffcfcfc</textcolorNoFocus>
+	  	<unfocusedAlpha>200</unfocusedAlpha>
+		<dimColor>0xffffffff</dimColor>
+		<control>
+		  <description>background</description>
+		  <type>image</type>
+		  <id>0</id>
+		  <posX>400</posX>
+		  <posY>40</posY>
+		  <width>445</width>
+		  <height>85</height>
+		  <texture>MyAnime/anime2_findpanel.png</texture>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)</visible>
+      <animation effect="fade" start="0" end ="100" time=" 250" acceleration=" -0.4" reversible="false">visiblechange</animation>
+		</control>
+
+		<control>
+		  <description>Find Label</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>415</posX>
+		  <posY>55</posY>
+		  <width>200</width>
+		  <font>font14</font>
+		  <label>Find:</label>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)</visible>
+    </control>
+
+		<control>
+		  <description>find text background</description>
+		  <type>image</type>
+		  <id>0</id>
+		  <posX>470</posX>
+		  <posY>49</posY>
+		  <width>370</width>
+		  <height>42</height>
+		  <texture>dialogbigbuttonfo.png</texture>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)</visible>
+    </control>
+
+		<control>
+		  <description>find text</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>500</posX>
+		  <posY>57</posY>
+		  <width>490</width>
+		  <font>font12</font>
+		  <label>#Anime2.FindText</label>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)</visible>
+    </control>
+
+	<control>
+		  <description>Find description *</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>475</posX>
+		  <posY>93</posY>
+		  <width>200</width>
+		  <font>font10</font>
+		  <label>* = #Anime2.FindAsteriskMode</label>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+    </control>
+
+	<control>
+		  <description>Find description #</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>645</posX>
+		  <posY>93</posY>
+		  <width>200</width>
+		  <font>font10</font>
+		  <label># = #Anime2.FindSharpMode</label>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)+Control.IsVisible(3464)</visible>
+    </control>
+	
+	<control>
+		  <description>Find description C+W-key (text)</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>420</posX>
+		  <posY>93</posY>
+		  <width>250</width>
+		  <font>font10</font>
+		  <label>C+W = Start Word (#Anime2.FindStartWord)</label>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
+    </control>
+
+	<control>
+		  <description>Find description tab-key (text)</description>
+		  <type>label</type>
+		  <id>0</id>
+		  <posX>665</posX>
+		  <posY>93</posY>
+		  <width>200</width>
+		  <font>font10</font>
+		  <label>TAB = Next Match</label>
+      <visible>facadeview.largeicons+Control.IsVisible(3463)+Control.IsVisible(3465)</visible>
+    </control>
+	</control>
+	
+  </controls>
+
+</window>

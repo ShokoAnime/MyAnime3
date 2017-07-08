@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+
+	<id>6102</id>
+	<defaultcontrol>50</defaultcontrol>
+	<define>#header.label:Utilities</define>
+	<allowoverlay>no</allowoverlay>
+
+	<controls>
+
+		<!-- Import Dummy controls to handle visibility -->
+		<import>Anime3_Dummy.xml</import>
+
+		<!-- Specific Dummy controls to handle visibility -->
+		<control>
+			<type>label</type>
+			<description>Dummy Label showing server status</description>
+			<id>3511</id>
+			<posX>-50</posX>
+			<posY>-50</posY>
+			<width>0</width>
+			<visible>false</visible>
+		</control>
+
+		<control>
+			<type>label</type>
+			<description>Dummy Label showing unlinked files</description>
+			<id>3512</id>
+			<posX>-50</posX>
+			<posY>-50</posY>
+			<width>0</width>
+			<visible>false</visible>
+		</control>
+
+		<!-- Default Background -->
+		<control>
+			<description>Default Background</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1920</width>
+			<height>1080</height>
+			<texture>background.png</texture>
+		</control>
+
+		<!-- Backgrounds -->
+
+
+
+
+		<!-- ********************** Hidden Menu ************************************** -->
+
+		<control>
+			<id>1</id>
+			<type>image</type>
+			<posX>0</posX>
+			<posY>440</posY>
+			<width>64</width>
+			<height>199</height>
+			<texture>hiddenmenu_tab.png</texture>
+			<visible>Control.HasFocus(50)</visible>
+			<animation effect="slide" start="-60,0" time="250" delay="400">WindowOpen</animation>
+			<animation effect="slide" start="0,0" end="-60,0" time="250" delay="100">WindowClose</animation>
+		</control>
+
+		<control>
+
+			<type>actiongroup</type>
+			<description>action menu</description>
+			<defaultcontrol>6</defaultcontrol>
+			<onexit>50</onexit>
+			<dimColor>00ffffff</dimColor>
+			<buttonX>0</buttonX>
+			<buttonY>0</buttonY>
+			<buttonwidth>497</buttonwidth>
+			<buttonheight>1080</buttonheight>
+
+			<control>
+				<type>image</type>
+				<id>0</id>
+				<width>1920</width>
+				<height>1080</height>
+				<texture>semi_trans_back_hidden_menu.png</texture>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="fade" time="450">visible</animation>
+				<animation effect="fade" time="400">hidden</animation>
+			</control>
+
+			<control>
+				<type>image</type>
+				<id>0</id>
+				<posY>0</posY>
+				<posX>0</posX>
+				<width>612</width>
+				<height>1074</height>
+				<texture>menu_bg.png</texture>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="fade" time="0">WindowClose</animation>
+				<animation effect="slide" start="-150,0" time="100">visible</animation>
+				<animation effect="fade" time="50">visible</animation>
+				<animation effect="fade" time="0">hidden</animation>
+			</control>
+
+
+
+			<control>
+				<type>group</type>
+				<description>group element</description>
+				<visible>!Control.HasFocus(50)</visible>
+				<animation effect="fade" time="0">WindowClose</animation>
+				<animation effect="slide" start="-150,0" time="100">visible</animation>
+				<animation effect="fade" time="50">visible</animation>
+				<animation effect="fade" time="0">hidden</animation>
+				<posX>53</posX>
+				<posY>96</posY>
+				<layout>StackLayout(0, Vertical, true)</layout>
+				
+				
+				
+				<control>
+					<description>Menu label</description>
+					<type>label</type>
+					<id>1</id>
+					<label>Utilities</label>
+					<font>fontB16</font>
+					<textcolor>393939</textcolor>
+					<animation effect="fade" time="0">WindowClose</animation>
+					<animation effect="slide" start="-150,0" time="100">visible</animation>
+					<animation effect="fade" time="50">visible</animation>
+					<animation effect="fade" time="0">hidden</animation>
+					<align>center</align>
+					<height>59</height>
+					<width>276</width>
+				</control>
+
+				<control>
+					<description>Run Import</description>
+					<type>button</type>
+					<id>6</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Run Import</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>926</onup>
+					<ondown>7</ondown>
+				</control>
+
+				<control>
+					<description>Re-scan Unlinked Files</description>
+					<type>button</type>
+					<id>7</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Re-scan Unlinked Files</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>6</onup>
+					<ondown>9</ondown>
+				</control>
+
+				<control>
+					<description>Scan Drop Folder(s)</description>
+					<type>button</type>
+					<id>9</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Scan Drop Folder(s)</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>7</onup>
+					<ondown>10</ondown>
+				</control>
+				<control>
+					<description>Remove records without physical file</description>
+					<type>button</type>
+					<id>10</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Erase records without files</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>9</onup>
+					<ondown>11</ondown>
+				</control>
+				
+				<control>
+					<description>Sync Votes from AniDB</description>
+					<type>button</type>
+					<id>11</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Sync Votes from AniDB</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>10</onup>
+					<ondown>12</ondown>
+				</control>
+				
+				<control>
+					<description>Sync MyList from AniDB</description>
+					<type>button</type>
+					<id>12</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Sync MyList from AniDB</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>11</onup>
+					<ondown>922</ondown>
+				</control>
+
+
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<textureFocus>-</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>14</height>
+					<label>-</label>
+					<visible>true</visible>
+				</control>
+				<control>
+					<type>image</type>
+					<id>0</id>
+					<width>431</width>
+					<keepaspectratio>yes</keepaspectratio>
+					<height>1</height>
+					<align>right</align>
+					<texture>hiddenmenu_separator.png</texture>
+					<visible>!Control.HasFocus(50)</visible>
+					<animation effect="fade" time="0">WindowClose</animation>
+					<animation effect="slide" start="-150,0" time="100">visible</animation>
+					<animation effect="fade" time="50">visible</animation>
+					<animation effect="fade" time="0">hidden</animation>
+				</control>
+				<control>
+					<description>Empty button</description>
+					<type>button</type>
+					<id>0</id>
+					<textureFocus>-</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>2</height>
+					<label>-</label>
+					<visible>true</visible>
+				</control>
+
+				<control>
+					<description>Other label</description>
+					<type>label</type>
+					<id>1</id>
+					<height>52</height>
+					<width>208</width>
+					<align>center</align>
+					<label>Other</label>
+					<font>fontB12</font>
+					<textcolor>393939</textcolor>
+					<visible>!Control.HasFocus(50)</visible>
+					<animation effect="fade" time="0">WindowClose</animation>
+					<animation effect="slide" start="-150,0" time="100">visible</animation>
+					<animation effect="fade" time="50">visible</animation>
+					<animation effect="fade" time="0">hidden</animation>
+				</control>
+
+
+				<control>
+					<description>Calendar</description>
+					<type>button</type>
+					<id>922</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Calendar</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>8</onup>
+					<ondown>925</ondown>
+				</control>
+
+
+
+				<control>
+					<description>Recommendations</description>
+					<type>button</type>
+					<id>925</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Recommendations</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>922</onup>
+					<ondown>926</ondown>
+				</control>
+
+				<control>
+					<description>Something Random</description>
+					<type>button</type>
+					<id>926</id>
+					<textureFocus>hiddenmenu_item_selected.png</textureFocus>
+					<textureNoFocus>-</textureNoFocus>
+					<width>499</width>
+					<height>69</height>
+					<textXOff>62</textXOff>
+					<textYOff>16</textYOff>
+					<label>Something Random</label>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<onup>925</onup>
+					<ondown>6</ondown>
+				</control>
+
+			</control>
+		</control>
+
+
+
+
+		<control>
+			<description>background listview</description>
+			<type>image</type>
+			<id>0</id>
+			<posX>0</posX>
+			<posY>0</posY>
+			<width>1920</width>
+			<height>219</height>
+			<visible>true</visible>
+			<texture>fanart_overlay_top.png</texture>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control>
+			<description>panel listview</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>10</posX>
+			<posY>252</posY>
+			<width>1903</width>
+			<height>790</height>
+			<texture>panel_thumbs.png</texture>
+			<visible>true</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+
+
+		<!-- ********************** List for Unlinked Files and groups without TvDB cross refs etc ************************************** -->
+		<control>
+			<description>List for Unlinked Files</description>
+			<type>facadeview</type>
+			<visible>Control.IsVisible(50)</visible>
+			<id>50</id>
+			<control>
+				<description>listcontrol</description>
+				<type>listcontrol</type>
+				<id>50</id>
+				<onleft>6</onleft>
+				<onright>6</onright>
+				<scrollOffset>1</scrollOffset>
+				<posX>980</posX>
+				<posY>331</posY>
+				<width>878</width>
+				<height>700</height>
+				<textXOff>50</textXOff>
+				<textXOff2>650</textXOff2>
+				<textureFocus>listcontrol_item_selected_wide.png</textureFocus>
+				<textureNoFocus>-</textureNoFocus>
+				<textpadding>24</textpadding>
+				<dimColor>ffffffff</dimColor>
+				<spinPosX>1828</spinPosX>
+				<spinPosY>1000</spinPosY>
+			</control>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+		<control>
+			<description>List Lines</description>
+			<type>image</type>
+			<id>1</id>
+			<posX>1038</posX>
+			<posY>385</posY>
+			<width>791</width>
+			<height>506</height>
+			<texture>list_lines.png</texture>
+			<visible>control.isvisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<!-- ************************** Unlinked Files Page ***********************************-->
+
+		<control>
+			<description>Unlinked Files Value</description>
+			<type>label</type>
+			<label>Unlinked Files: #Anime3.Utilities.UnlinkedFilesCount</label>
+			<id>0</id>
+			<posX>96</posX>
+			<posY>998</posY>
+			<align>left</align>
+			<font>TitanLight12</font>
+			<textcolor>000000</textcolor>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+
+		<!-- :::::::::::::::::::::::::::::: Unlinked Files Page - File Details :::::::::::::::::::::::::::::: -->
+
+
+		<control>
+			<type>label</type>
+			<description>File Details</description>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>324</posY>
+			<font>TitanLight16</font>
+			<textcolor>FF00b7ff</textcolor>
+			<label>File Details</label>
+			<visible>Control.IsVisible(50)</visible>
+	    <shadowAngle>120</shadowAngle>
+	    <shadowDistance>2</shadowDistance>
+  	  <shadowColor>FF000000</shadowColor>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoLabel">
+			<description>Folder Label</description>
+			<type>label</type>
+			<label>Folder</label>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>404</posY>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Folder Value</description>
+			<type>fadelabel</type>
+			<label>#Anime3.Utilities.UnlinkedFile.Folder</label>
+			<id>0</id>
+			<posX>272</posX>
+			<posY>404</posY>
+			<width>680</width>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoLabel">
+			<description>Name Label</description>
+			<type>label</type>
+			<label>Name</label>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>444</posY>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Name Value</description>
+			<type>fadelabel</type>
+			<label>#Anime3.Utilities.UnlinkedFile.FileName</label>
+			<id>0</id>
+			<posX>272</posX>
+			<posY>444</posY>
+			<width>680</width>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoLabel">
+			<description>Size Label</description>
+			<type>label</type>
+			<label>Size</label>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>484</posY>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Size Value</description>
+			<type>fadelabel</type>
+			<label>#Anime3.Utilities.UnlinkedFile.Size</label>
+			<id>0</id>
+			<posX>272</posX>
+			<posY>484</posY>
+			<width>680</width>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>	</control>
+
+		<control Style="InfoLabel">
+			<description>FileExists Label</description>
+			<type>label</type>
+			<label>File on Disk</label>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>524</posY>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>	</control>
+
+		<control Style="InfoValueSmall">
+			<description>FileExists Value</description>
+			<type>fadelabel</type>
+			<label>#Anime3.Utilities.UnlinkedFile.FileExists</label>
+			<id>0</id>
+			<posX>272</posX>
+			<posY>524</posY>
+			<width>680</width>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>	</control>
+
+		<control Style="InfoLabel">
+			<description>Hash Label</description>
+			<type>fadelabel</type>
+			<label>Hash</label>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>564</posY>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>	</control>
+
+		<control Style="InfoValueSmall">
+			<description>Hash Value</description>
+			<type>label</type>
+			<label>#Anime3.Utilities.UnlinkedFile.Hash</label>
+			<id>0</id>
+			<posX>272</posX>
+			<posY>564</posY>
+			<width>680</width>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>	</control>
+
+		<!-- ************************** Server Status Page ***********************************-->
+
+		<control>
+			<type>label</type>
+			<description>Server Status</description>
+			<id>0</id>
+			<posX>102</posX>
+			<posY>624</posY>
+			<font>TitanLight16</font>
+			<textcolor>FF00b7ff</textcolor>
+			<label>Server Status</label>
+	    <shadowAngle>120</shadowAngle>
+	    <shadowDistance>2</shadowDistance>
+  	  <shadowColor>FF000000</shadowColor>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+
+		<!-- ************************** Server Status Page - General Queue ***********************************-->
+
+
+		<control>
+			<type>image</type>
+			<posX>105</posX>
+			<posY>711</posY>
+			<width>32</width>
+			<height>32</height>
+			<visible>Control.IsVisible(50)</visible>
+			<texture>MyAnime3\anime3_anidb.png</texture>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoLabel">
+			<type>label</type>
+			<posX>155</posX>
+			<posY>710</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>General Queue</label>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Queue</description>
+			<type>label</type>
+			<posX>415</posX>
+			<posY>710</posY>
+			<label>#Anime3.Utilities.Status.GeneralQueueCount</label>
+			<align>Left</align>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Status</description>
+			<type>fadelabel</type>
+			<posX>515</posX>
+			<posY>710</posY>
+			<width>437</width>
+			<label>#Anime3.Utilities.Status.GeneralQueueRunning</label>
+			<visible>Control.IsVisible(50)</visible>
+			<align>Left</align>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Status</description>
+			<type>fadelabel</type>
+			<posX>155</posX>
+			<posY>750</posY>
+			<width>797</width>
+			<label>#Anime3.Utilities.Status.GeneralQueueState</label>
+			<visible>Control.IsVisible(50)</visible>
+			<align>Left</align>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<!-- ************************** Server Status Page - Hasher Queue ***********************************-->
+
+
+		<control>
+			<type>image</type>
+			<posX>105</posX>
+			<posY>791</posY>
+			<width>32</width>
+			<height>32</height>
+			<visible>Control.IsVisible(50)</visible>
+			<texture>MyAnime3\anime3_hash.png</texture>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<control Style="InfoLabel">
+			<type>label</type>
+			<posX>155</posX>
+			<posY>790</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>Hasher Queue</label>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Queue</description>
+			<type>label</type>
+			<posX>415</posX>
+			<posY>790</posY>
+			<label>#Anime3.Utilities.Status.HasherQueueCount</label>
+			<align>Left</align>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Status</description>
+			<type>fadelabel</type>
+			<posX>515</posX>
+			<posY>790</posY>
+			<width>437</width>
+			<label>#Anime3.Utilities.Status.HasherQueueRunning</label>
+			<visible>Control.IsVisible(50)</visible>
+			<align>Left</align>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Status</description>
+			<type>fadelabel</type>
+			<posX>155</posX>
+			<posY>830</posY>
+			<width>797</width>
+			<label>#Anime3.Utilities.Status.HasherQueueState</label>
+			<visible>Control.IsVisible(50)</visible>
+			<align>Left</align>
+			<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>		</control>
+
+		<!-- ************************** Server Status Page - Image Queue ***********************************-->
+
+
+		<control>
+			<type>image</type>
+			<posX>105</posX>
+			<posY>871</posY>
+			<width>32</width>
+			<height>32</height>
+			<visible>Control.IsVisible(50)</visible>
+			<texture>MyAnime3\anime3_image.png</texture>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoLabel">
+			<type>label</type>
+			<posX>155</posX>
+			<posY>870</posY>
+			<width>290</width>
+			<align>left</align>
+			<label>Images Queue</label>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Queue</description>
+			<type>label</type>
+			<posX>415</posX>
+			<posY>870</posY>
+			<label>#Anime3.Utilities.Status.ImagesQueueCount</label>
+			<align>Left</align>
+			<visible>Control.IsVisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Status</description>
+			<type>fadelabel</type>
+			<posX>515</posX>
+			<posY>870</posY>
+			<width>437</width>
+			<label>#Anime3.Utilities.Status.ImagesQueueRunning</label>
+			<visible>Control.IsVisible(50)</visible>
+			<align>Left</align>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+
+		<control Style="InfoValueSmall">
+			<description>Vid Hasher Status</description>
+			<type>fadelabel</type>
+			<posX>155</posX>
+			<posY>910</posY>
+			<width>797</width>
+			<label>#Anime3.Utilities.Status.ImagesQueueState</label>
+			<visible>Control.IsVisible(50)</visible>
+			<align>Left</align>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+
+		</control>
+
+		<control>
+			<id>0</id>
+			<type>image</type>
+			<posX>66</posX>
+			<posY>34</posY>
+			<width>61</width>
+			<height>57</height>
+			<texture>icon_anime.png</texture>
+			<visible>control.isvisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+		<control>
+			<description>Moviecount</description>
+			<type>label</type>
+			<label>#(L(97))Unlinked Files</label>
+			<id>0</id>
+			<posX>72</posX>
+			<posY>94</posY>
+			<align>left</align>
+			<textcolor>FFFFFFFF</textcolor>
+			<font>TitanLight12</font>
+			<visible>control.isvisible(50)</visible>
+			<animation effect="fade" time="250">WindowOpen</animation>
+			<animation effect="fade" time="250">WindowClose</animation>
+		</control>
+		<import>common.time.xml</import>
+		<import>common.overlay.xml</import>
+	</controls>
+</window>

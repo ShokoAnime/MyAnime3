@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+    <controls>
+        <!-- ********** Anime2 FANART  ********** -->
+        <control>
+            <description>Fanart Background #1</description>
+            <type>image</type>
+            <id>524</id>
+            <posY>100</posY>
+            <width>720</width>
+            <height>405</height>
+            <keepaspectratio>no</keepaspectratio>
+            <dimColor>50ffffff</dimColor>
+            <texture>#Anime3.Fanart.1</texture>
+            <visible>window.isvisible(6101)</visible>
+            <animation effect="fade" start="0" end="100" time="1000">WindowOpen</animation>
+            <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+            <animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+            <!-- Do not modify the visibility for this component. It is handled by the plug-in. -->
+        </control>
+        <control>
+            <description>Episode Image Backdrop in Episode View</description>
+            <type>image</type>
+            <id>0</id>
+            <posY>100</posY>
+            <width>720</width>
+            <height>405</height>
+            <texture>#Anime3.Episode.Image</texture>
+            <visible>window.isvisible(6101)+Control.IsVisible(1239)+Control.IsVisible(1243)</visible>
+            <colordiffuse>ffffffff</colordiffuse>
+            <dimColor>50ffffff</dimColor>
+        </control>
+		<control>
+			<description>Fanart Background Series Info (AnimeInfo)</description>
+			<type>image</type>
+			<id>524</id>
+			<posY>100</posY>
+			<width>720</width>
+			<height>405</height>
+			<texture>#Anime3.AnimeInfo.Fanart</texture>
+			<visible>window.isvisible(6109)</visible>
+			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200" delay="200">Hidden</animation>
+		  <!-- Do not modify the visibility for this component. It is handled by the plug-in. Use the above 
+			  defines for conditional visibility if you dont want to use fan-art only specific views. -->
+		</control>
+    </controls>
+</window>

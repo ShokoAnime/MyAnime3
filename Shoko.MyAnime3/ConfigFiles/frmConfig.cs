@@ -14,9 +14,7 @@ namespace Shoko.MyAnime3.ConfigFiles
 {
     public partial class frmConfig : Form
     {
-
-
-
+        private List<ImportFolder> _importFolders = new List<ImportFolder>();
 
         #region General
 
@@ -192,10 +190,13 @@ namespace Shoko.MyAnime3.ConfigFiles
 
         void btnSaveLocalFolderPath_Click(object sender, EventArgs e)
         {
-            ImportFolder fldr = lbImportFolders.SelectedItem as ImportFolder;
-            if (fldr == null) return;
-            FolderMappings.Instance.MapFolder(fldr.ImportFolderID, txtFolderLocalPath.Text.Trim());
-            BaseConfig.Settings.Save();
+            if (lbImportFolders.SelectedItem != null)
+            {
+                ImportFolder fldr = _importFolders[lbImportFolders.SelectedIndex];
+                if (fldr == null) return;
+                FolderMappings.Instance.MapFolder(fldr.ImportFolderID, txtFolderLocalPath.Text.Trim());
+                BaseConfig.Settings.Save();
+            }
         }
 
         void btnSelectLocalFolderPath_Click(object sender, EventArgs e)
@@ -209,8 +210,7 @@ namespace Shoko.MyAnime3.ConfigFiles
         void lbImportFolders_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtFolderLocalPath.Text = "";
-
-            ImportFolder fldr = lbImportFolders.SelectedItem as ImportFolder;
+            ImportFolder fldr = _importFolders[lbImportFolders.SelectedIndex];
             if (fldr == null) return;
 
             txtFolderLocalPath.Text = fldr.GetLocalFileSystemFullPath();
@@ -228,6 +228,7 @@ namespace Shoko.MyAnime3.ConfigFiles
         {
             //lbImportFolders.DataSource = null;
             lbImportFolders.Items.Clear();
+            _importFolders.Clear();
 
             if (!VM_ShokoServer.Instance.SetupClient())
             {
@@ -237,7 +238,10 @@ namespace Shoko.MyAnime3.ConfigFiles
 
             // refresh import folders
             foreach (ImportFolder fldr in VM_ShokoServer.Instance.ImportFolders)
-                lbImportFolders.Items.Add(fldr);
+            {
+                lbImportFolders.Items.Add(fldr.ImportFolderLocation);
+                _importFolders.Add(fldr);
+            }
 
             return true;
         }

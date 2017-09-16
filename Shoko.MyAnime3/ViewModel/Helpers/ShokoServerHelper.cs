@@ -472,7 +472,7 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
                 SetWatchedStatusOnSeries(watchedStatus, maxEpisodeNumber, animeSeriesID, epType.EpisodeType);
         }
 
-        public static void SetWatchedStatusOnSeries(bool watchedStatus, int maxEpisodeNumber, int animeSeriesID, enEpisodeType episodeType)
+        public static void SetWatchedStatusOnSeries(bool watchedStatus, int maxEpisodeNumber, int animeSeriesID, EpisodeType episodeType)
         {
             try
             {
@@ -503,14 +503,15 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
                             tvPoster.TvDB_ImagePosterID, (int) ImageEntityType.TvDB_Cover, (int) ImageSizeType.Poster);
                         tvPoster.IsImageDefault = isDefault;
                         break;
+                    /*
+                           case ImageEntityType.Trakt_Poster:
 
-                    case ImageEntityType.Trakt_Poster:
-                        VM_Trakt_ImagePoster traktPoster = (VM_Trakt_ImagePoster) poster.PosterObject;
-                        VM_ShokoServer.Instance.ShokoServices.SetDefaultImage(isDefault, animeID,
-                            traktPoster.Trakt_ImagePosterID, (int) ImageEntityType.Trakt_Poster, (int) ImageSizeType.Poster);
-                        traktPoster.IsImageDefault = isDefault;
-                        break;
-
+                               VM_Trakt_ImagePoster traktPoster = (VM_Trakt_ImagePoster) poster.PosterObject;
+                               VM_ShokoServer.Instance.ShokoServices.SetDefaultImage(isDefault, animeID,
+                                   traktPoster.Trakt_ImagePosterID, (int) ImageEntityType.Trakt_Poster, (int) ImageSizeType.Poster);
+                               traktPoster.IsImageDefault = isDefault;
+                    break;
+                    */
                     case ImageEntityType.AniDB_Cover:
                         VM_AniDB_Anime anime = (VM_AniDB_Anime) poster.PosterObject;
                         VM_ShokoServer.Instance.ShokoServices.SetDefaultImage(isDefault, animeID,
@@ -547,13 +548,14 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
                         VM_ShokoServer.Instance.ShokoServices.EnableDisableImage(enabled, tvPoster.TvDB_ImagePosterID, (int) ImageEntityType.TvDB_Cover);
                         tvPoster.Enabled = enabled ? 1 : 0;
                         break;
-
+                    /*
                     case ImageEntityType.Trakt_Poster:
+
                         VM_Trakt_ImagePoster traktPoster = (VM_Trakt_ImagePoster) poster.PosterObject;
                         VM_ShokoServer.Instance.ShokoServices.EnableDisableImage(enabled, traktPoster.Trakt_ImagePosterID, (int) ImageEntityType.Trakt_Poster);
                         traktPoster.Enabled = enabled ? 1 : 0;
-                        break;
-
+                    break;
+                    */
                     case ImageEntityType.AniDB_Cover:
                         VM_AniDB_Anime anime = (VM_AniDB_Anime) poster.PosterObject;
                         VM_ShokoServer.Instance.ShokoServices.EnableDisableImage(enabled, anime.AnimeID, (int) ImageEntityType.AniDB_Cover);
@@ -620,14 +622,14 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
                             tvFanart.TvDB_ImageFanartID, (int) ImageEntityType.TvDB_FanArt, (int) ImageSizeType.Fanart);
                         tvFanart.IsImageDefault = isDefault;
                         break;
-
+                        /*
                     case ImageEntityType.Trakt_Fanart:
                         VM_Trakt_ImageFanart traktFanart = (VM_Trakt_ImageFanart) fanart.FanartObject;
                         VM_ShokoServer.Instance.ShokoServices.SetDefaultImage(isDefault, animeID,
                             traktFanart.Trakt_ImageFanartID, (int) ImageEntityType.Trakt_Fanart, (int) ImageSizeType.Fanart);
                         traktFanart.IsImageDefault = isDefault;
                         break;
-
+                        */
                     case ImageEntityType.MovieDB_FanArt:
                         VM_MovieDB_Fanart movieFanart = (VM_MovieDB_Fanart) fanart.FanartObject;
                         VM_ShokoServer.Instance.ShokoServices.SetDefaultImage(isDefault, animeID,
@@ -657,13 +659,13 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
                         VM_ShokoServer.Instance.ShokoServices.EnableDisableImage(enabled, tvFanart.TvDB_ImageFanartID, (int) ImageEntityType.TvDB_FanArt);
                         tvFanart.Enabled = enabled ? 1 : 0;
                         break;
-
+                        /*
                     case ImageEntityType.Trakt_Fanart:
                         VM_Trakt_ImageFanart traktFanart = (VM_Trakt_ImageFanart) fanart.FanartObject;
                         VM_ShokoServer.Instance.ShokoServices.EnableDisableImage(enabled, traktFanart.Trakt_ImageFanartID, (int) ImageEntityType.Trakt_Fanart);
                         traktFanart.Enabled = enabled ? 1 : 0;
                         break;
-
+                        */
                     case ImageEntityType.MovieDB_FanArt:
                         VM_MovieDB_Fanart movieFanart = (VM_MovieDB_Fanart) fanart.FanartObject;
                         VM_ShokoServer.Instance.ShokoServices.EnableDisableImage(enabled, movieFanart.MovieDB_FanartID, (int) ImageEntityType.MovieDB_FanArt);

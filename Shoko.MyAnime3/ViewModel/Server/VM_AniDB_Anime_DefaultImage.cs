@@ -24,7 +24,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             get => (VM_TvDB_ImageWideBanner) base.TVWideBanner;
             set => base.TVWideBanner = value;
         }
-
+        /*
         public new VM_Trakt_ImagePoster TraktPoster
         {
             get => (VM_Trakt_ImagePoster) base.TraktPoster;
@@ -36,7 +36,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             get => (VM_Trakt_ImageFanart) base.TraktFanart;
             set => base.TraktFanart = value;
         }
-
+        */
         public new VM_MovieDB_Poster MoviePoster
         {
             get => (VM_MovieDB_Poster) base.MoviePoster;
@@ -85,14 +85,14 @@ namespace Shoko.MyAnime3.ViewModel.Server
                     case ImageEntityType.TvDB_Banner:
                         fileName = TVWideBanner.FullImagePath;
                         break;
-
+                        /*
                     case ImageEntityType.Trakt_Poster:
                         fileName = TraktPoster.FullImagePath;
                         break;
 
                     case ImageEntityType.Trakt_Fanart:
                         fileName = TraktFanart.FullImagePath;
-                        break;
+                        break;*/
                 }
 
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -135,14 +135,14 @@ namespace Shoko.MyAnime3.ViewModel.Server
                     case ImageEntityType.TvDB_Banner:
                         fileName = TVWideBanner.FullImagePath;
                         break;
-
+                        /*
                     case ImageEntityType.Trakt_Poster:
                         fileName = TraktPoster.FullImagePath;
                         break;
 
                     case ImageEntityType.Trakt_Fanart:
                         fileName = TraktFanart.FullImagePath;
-                        break;
+                        break;*/
                 }
 
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))

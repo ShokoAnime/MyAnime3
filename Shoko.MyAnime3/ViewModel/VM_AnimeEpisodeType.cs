@@ -6,7 +6,7 @@ namespace Shoko.MyAnime3.ViewModel
 {
     public class VM_AnimeEpisodeType : IVM
     {
-        public enEpisodeType EpisodeType { get; set; }
+        public EpisodeType EpisodeType { get; set; }
         public string EpisodeTypeDescription { get; set; }
         public VM_AnimeSeries_User AnimeSeries { get; set; }
 
@@ -18,26 +18,26 @@ namespace Shoko.MyAnime3.ViewModel
         public VM_AnimeEpisodeType(VM_AnimeSeries_User series, VM_AnimeEpisode_User ep)
         {
             AnimeSeries = series;
-            EpisodeType = (enEpisodeType) ep.EpisodeType;
+            EpisodeType = (EpisodeType) ep.EpisodeType;
             EpisodeTypeDescription = EpisodeTypeTranslated(EpisodeType);
         }
 
 
-        public static string EpisodeTypeTranslated(enEpisodeType epType)
+        public static string EpisodeTypeTranslated(EpisodeType epType)
         {
             switch (epType)
             {
-                case enEpisodeType.Credits:
+                case EpisodeType.Credits:
                     return Translation.Credits;
-                case enEpisodeType.Episode:
+                case EpisodeType.Episode:
                     return Translation.Episodes;
-                case enEpisodeType.Other:
+                case EpisodeType.Other:
                     return Translation.Other;
-                case enEpisodeType.Parody:
+                case EpisodeType.Parody:
                     return Translation.Parody;
-                case enEpisodeType.Special:
+                case EpisodeType.Special:
                     return Translation.Specials;
-                case enEpisodeType.Trailer:
+                case EpisodeType.Trailer:
                     return Translation.Trailers;
                 default:
                     return Translation.Other;

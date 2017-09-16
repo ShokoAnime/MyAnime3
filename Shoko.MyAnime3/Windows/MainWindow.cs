@@ -469,9 +469,9 @@ namespace Shoko.MyAnime3.Windows
             foreach (TvDB_Episode episode in eps)
                 //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadTvDBEpisode(episode, false);
-
+            /*
             // 6. Download posters from Trakt
-            List<VM_Trakt_ImagePoster> traktPosters = VM_ShokoServer.Instance.ShokoServices.GetAllTraktPosters(null).CastList<VM_Trakt_ImagePoster>();
+            List<VM_Trakt_ImagePoster> traktPosters = VM_ShokoServer.Instance.ShokoServices.GetAllT.GetAllTraktPosters(null).CastList<VM_Trakt_ImagePoster>();
             foreach (VM_Trakt_ImagePoster traktposter in traktPosters)
             {
                 //Thread.Sleep(5); // don't use too many resources
@@ -487,8 +487,9 @@ namespace Shoko.MyAnime3.Windows
                 if (string.IsNullOrEmpty(traktFanart.ImageURL)) continue;
                 imageHelper.DownloadTraktFanart(traktFanart, false);
             }
-
+            */
             // 8. Download episode images from Trakt
+            /*
             List<Trakt_Episode> traktEpisodes = VM_ShokoServer.Instance.ShokoServices.GetAllTraktEpisodes(null);
             foreach (Trakt_Episode traktEp in traktEpisodes)
             {
@@ -502,7 +503,7 @@ namespace Shoko.MyAnime3.Windows
                 if (pos <= 0) continue;
 
                 imageHelper.DownloadTraktEpisode(traktEp, false);
-            }
+            }*/
         }
 
 
@@ -1370,7 +1371,7 @@ void UnSubClass()
                         vm = asvm.EpisodeTypes[0];
                     }
 
-                    enEpisodeType eptype = vm.EpisodeType;
+                    EpisodeType eptype = vm.EpisodeType;
 
                     // get the episodes for this series / episode types
                     //BaseConfig.MyAnimeLog.Write("GetEpisodes:: {0}", ser.AnimeSeriesID.Value);
@@ -3690,7 +3691,7 @@ void UnSubClass()
                 {
                     TVDB_Series_Search_Response local = res;
                     string disp = String.Format("{0} ({1}) / {2}", res.SeriesName, res.Language, res.Id);
-                    cmenu.AddAction(disp, () => LinkAniDBToTVDB(ser, aniDBID, enEpisodeType.Episode, 1, local.SeriesID, 1, 1));
+                    cmenu.AddAction(disp, () => LinkAniDBToTVDB(ser, aniDBID, EpisodeType.Episode, 1, local.SeriesID, 1, 1));
                 }
                 return cmenu.Show();
             }
@@ -3731,7 +3732,7 @@ void UnSubClass()
                         Utils.DialogMsg(Translation.Error, res);
                     else
                         foreach (CrossRef_AniDB_TvDBV2 xref in CrossRef_AniDB_TvDBResult)
-                            LinkAniDBToTVDB(ser, xref.AnimeID, (enEpisodeType) xref.AniDBStartEpisodeType,
+                            LinkAniDBToTVDB(ser, xref.AnimeID, (EpisodeType) xref.AniDBStartEpisodeType,
                                 xref.AniDBStartEpisodeNumber, xref.TvDBID,
                                 xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber);
                 });
@@ -3739,7 +3740,7 @@ void UnSubClass()
             return cmenu.Show();
         }
 
-        private void LinkAniDBToTVDB(VM_AnimeSeries_User ser, int animeID, enEpisodeType anidbEpType, int anidbEpNumber, int tvDBID, int tvSeason, int tvEpNumber)
+        private void LinkAniDBToTVDB(VM_AnimeSeries_User ser, int animeID, EpisodeType anidbEpType, int anidbEpNumber, int tvDBID, int tvSeason, int tvEpNumber)
         {
             string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(animeID, (int) anidbEpType, anidbEpNumber,
                 tvDBID, tvSeason, tvEpNumber, null);
@@ -3895,7 +3896,7 @@ void UnSubClass()
             });
             VM_AnimeSeries_User ser = GetTopSerie();
             VM_AnimeEpisodeType e = GetTopEpType();
-            enEpisodeType ept = enEpisodeType.Episode;
+            EpisodeType ept = EpisodeType.Episode;
             if (e != null)
                 ept = e.EpisodeType;
             cmenu.AddAction(Translation.MarkAllAsWatched, () =>
@@ -4592,7 +4593,7 @@ void UnSubClass()
                     cmenu.AddAction(Translation.Season + " " + season.ToString(Globals.Culture), () =>
                     {
                         VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDBForAnime(animeID);
-                        LinkAniDBToTVDB(ser, animeID, enEpisodeType.Episode, 1, tvdbid, local, 1);
+                        LinkAniDBToTVDB(ser, animeID, EpisodeType.Episode, 1, tvdbid, local, 1);
                     });
                 }
                 return cmenu.Show();

@@ -346,7 +346,7 @@ namespace Shoko.MyAnime3.Windows
                             else
                             {
                                 foreach (VM_AnimeEpisodeType anEpType in MainWindow.ContinueWatching_CurrentSeries.EpisodeTypesToDisplay)
-                                    if (anEpType.EpisodeType == enEpisodeType.Episode)
+                                    if (anEpType.EpisodeType == EpisodeType.Episode)
                                     {
                                         MainWindow.Breadcrumbs.Add(new History {Listing = MainWindow.ContinueWatching_CurrentSeries, Selected = anEpType});
                                         MainWindow.Breadcrumbs.Add(new History {Listing = anEpType, Selected = null});

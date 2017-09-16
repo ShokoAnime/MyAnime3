@@ -112,7 +112,7 @@ namespace Shoko.MyAnime3.Extensions
             string id = CL_TraktTVShowResponse.url.Substring(pos + 1, CL_TraktTVShowResponse.url.Length - pos - 1);
             return id;
         }
-
+        /*
         public static string GetFullImagePathPlain(this Trakt_Episode traktEpisodeVm)
         {
             // typical EpisodeImage url
@@ -166,7 +166,7 @@ namespace Shoko.MyAnime3.Extensions
             if (String.IsNullOrEmpty(traktEpisodeVm.EpisodeImage)) return String.Empty;
             return traktEpisodeVm.EpisodeImage;
         }
-
+        */
         public static string GetOverview(this CL_MALAnime_Response malSearchResultVm)
         {
             return Utils.ReparseDescription(malSearchResultVm.synopsis);

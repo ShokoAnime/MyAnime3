@@ -179,7 +179,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             }
         }
 
-        public List<VM_AnimeEpisode_User> GetEpisodesByType(enEpisodeType epType)
+        public List<VM_AnimeEpisode_User> GetEpisodesByType(EpisodeType epType)
         {
             List<VM_AnimeEpisode_User> eps = new List<VM_AnimeEpisode_User>();
 
@@ -190,7 +190,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             return eps;
         }
 
-        public List<VM_AnimeEpisode_User> GetEpisodesToDisplay(enEpisodeType epType)
+        public List<VM_AnimeEpisode_User> GetEpisodesToDisplay(EpisodeType epType)
         {
             List<VM_AnimeEpisode_User> eps = new List<VM_AnimeEpisode_User>();
 
@@ -206,7 +206,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             return eps;
         }
 
-        public void GetWatchedUnwatchedCount(enEpisodeType epType, ref int unwatched, ref int watched)
+        public void GetWatchedUnwatchedCount(EpisodeType epType, ref int unwatched, ref int watched)
         {
             unwatched = 0;
             watched = 0;

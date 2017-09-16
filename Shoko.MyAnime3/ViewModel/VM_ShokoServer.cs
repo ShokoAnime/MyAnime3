@@ -360,8 +360,8 @@ namespace Shoko.MyAnime3.ViewModel
                 mappings.Add(typeof(MovieDB_Fanart), typeof(VM_MovieDB_Fanart));
                 mappings.Add(typeof(MovieDB_Poster), typeof(VM_MovieDB_Poster));
                 mappings.Add(typeof(CL_Recommendation), typeof(VM_Recommendation));
-                mappings.Add(typeof(Trakt_ImageFanart), typeof(VM_Trakt_ImageFanart));
-                mappings.Add(typeof(Trakt_ImagePoster), typeof(VM_Trakt_ImagePoster));
+               // mappings.Add(typeof(Trakt_ImageFanart), typeof(VM_Trakt_ImageFanart));
+               // mappings.Add(typeof(Trakt_ImagePoster), typeof(VM_Trakt_ImagePoster));
                 mappings.Add(typeof(TvDB_ImageFanart), typeof(VM_TvDB_ImageFanart));
                 mappings.Add(typeof(TvDB_ImagePoster), typeof(VM_TvDB_ImagePoster));
                 mappings.Add(typeof(TvDB_ImageWideBanner), typeof(VM_TvDB_ImageWideBanner));

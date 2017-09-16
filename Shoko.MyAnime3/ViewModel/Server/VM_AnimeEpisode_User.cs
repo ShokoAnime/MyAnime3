@@ -31,7 +31,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             }
         }
 
-        public enEpisodeType EpisodeTypeEnum => (enEpisodeType) EpisodeType;
+        public EpisodeType EpisodeTypeEnum => (EpisodeType) EpisodeType;
 
         public string DefaultAudioLanguage
         {
@@ -86,22 +86,22 @@ namespace Shoko.MyAnime3.ViewModel.Server
                 string shortType = string.Empty;
                 switch (EpisodeTypeEnum)
                 {
-                    case enEpisodeType.Credits:
+                    case Shoko.Models.Enums.EpisodeType.Credits:
                         shortType = "C";
                         break;
-                    case enEpisodeType.Episode:
+                    case Shoko.Models.Enums.EpisodeType.Episode:
                         shortType = "E";
                         break;
-                    case enEpisodeType.Other:
+                    case Shoko.Models.Enums.EpisodeType.Other:
                         shortType = "O";
                         break;
-                    case enEpisodeType.Parody:
+                    case Shoko.Models.Enums.EpisodeType.Parody:
                         shortType = "P";
                         break;
-                    case enEpisodeType.Special:
+                    case Shoko.Models.Enums.EpisodeType.Special:
                         shortType = "S";
                         break;
-                    case enEpisodeType.Trailer:
+                    case Shoko.Models.Enums.EpisodeType.Trailer:
                         shortType = "T";
                         break;
                 }
@@ -165,7 +165,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             #region normal episodes
 
             // now do stuff to improve performance
-            if (EpisodeTypeEnum == enEpisodeType.Episode)
+            if (EpisodeTypeEnum == Shoko.Models.Enums.EpisodeType.Episode)
                 if (tvSummary.CrossRefTvDBV2 != null && tvSummary.CrossRefTvDBV2.Count > 0)
                 {
                     // find the xref that is right
@@ -175,7 +175,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
                     CrossRef_AniDB_TvDBV2 xrefBase = null;
                     foreach (CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
                     {
-                        if (xrefTV.AniDBStartEpisodeType != (int) enEpisodeType.Episode) continue;
+                        if (xrefTV.AniDBStartEpisodeType != (int)Shoko.Models.Enums.EpisodeType.Episode) continue;
                         if (EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
                         {
                             foundStartingPoint = true;
@@ -231,7 +231,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
 
             #region special episodes
 
-            if ((EpisodeTypeEnum == enEpisodeType.Special) && tvSummary.CrossRefTvDBV2!=null)
+            if ((EpisodeTypeEnum == Shoko.Models.Enums.EpisodeType.Special) && tvSummary.CrossRefTvDBV2!=null)
             {
                 // find the xref that is right
                 // relies on the xref's being sorted by season number and then episode number (desc)
@@ -242,7 +242,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
                 CrossRef_AniDB_TvDBV2 xrefBase = null;
                 foreach (CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
                 {
-                    if (xrefTV.AniDBStartEpisodeType != (int) enEpisodeType.Special) continue;
+                    if (xrefTV.AniDBStartEpisodeType != (int)Shoko.Models.Enums.EpisodeType.Special) continue;
                     if (EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
                     {
                         foundStartingPoint = true;

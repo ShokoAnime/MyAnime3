@@ -28,13 +28,13 @@ namespace Shoko.MyAnime3.ViewModel
                     IsImageDefault = movieFanart.IsImageDefault;
                     FanartSource = "MovieDB";
                     break;
-
+                    /*
                 case ImageEntityType.Trakt_Fanart:
                     VM_Trakt_ImageFanart traktFanart = (VM_Trakt_ImageFanart) FanartObject;
                     IsImageEnabled = traktFanart.Enabled == 1;
                     IsImageDefault = traktFanart.IsImageDefault;
                     FanartSource = "Trakt";
-                    break;
+                    break;*/
             }
         }
 
@@ -49,9 +49,9 @@ namespace Shoko.MyAnime3.ViewModel
 
                     case ImageEntityType.MovieDB_FanArt:
                         return ((VM_MovieDB_Fanart)FanartObject).FullImagePath;
-
+                        /*
                     case ImageEntityType.Trakt_Fanart:
-                        return ((VM_Trakt_ImageFanart)FanartObject).FullImagePath;
+                        return ((VM_Trakt_ImageFanart)FanartObject).FullImagePath;*/
                 }
 
                 return "";
@@ -69,9 +69,9 @@ namespace Shoko.MyAnime3.ViewModel
 
                     case ImageEntityType.MovieDB_FanArt:
                         return ((VM_MovieDB_Fanart)FanartObject).FullImagePath;
-
+                        /*
                     case ImageEntityType.Trakt_Fanart:
-                        return ((VM_Trakt_ImageFanart)FanartObject).FullImagePath;
+                        return ((VM_Trakt_ImageFanart)FanartObject).FullImagePath;*/
                 }
 
                 return string.Empty;

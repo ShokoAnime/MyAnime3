@@ -39,13 +39,13 @@ namespace Shoko.MyAnime3.ViewModel
                     IsImageDefault = moviePoster.IsImageDefault;
                     PosterSource = "MovieDB";
                     break;
-
+                    /*
                 case ImageEntityType.Trakt_Poster:
                     VM_Trakt_ImagePoster traktPoster = (VM_Trakt_ImagePoster)PosterObject;
                     IsImageEnabled = traktPoster.Enabled == 1;
                     IsImageDefault = traktPoster.IsImageDefault;
                     PosterSource = "Trakt";
-                    break;
+                    break;*/
             }
         }
 
@@ -63,9 +63,9 @@ namespace Shoko.MyAnime3.ViewModel
 
                     case ImageEntityType.MovieDB_Poster:
                         return ((VM_MovieDB_Poster)PosterObject).FullImagePath;
-
+                        /*
                     case ImageEntityType.Trakt_Poster:
-                        return ((VM_Trakt_ImagePoster)PosterObject).FullImagePath;
+                        return ((VM_Trakt_ImagePoster)PosterObject).FullImagePath;*/
                 }
 
                 return string.Empty;

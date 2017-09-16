@@ -26,14 +26,15 @@ namespace Shoko.MyAnime3.ViewModel.Server
 
         public bool TraktCrossRefExists => !(CrossRef_AniDB_Trakt == null || CrossRef_AniDB_Trakt.Count == 0 || TraktShows == null || TraktShows.Count == 0);
 
-
+        /*
         public new List<VM_Trakt_ImageFanart> TraktImageFanarts => base.TraktImageFanarts.Cast<VM_Trakt_ImageFanart>().ToList();
         public new List<VM_Trakt_ImagePoster> TraktImagePosters => base.TraktImageFanarts.Cast<VM_Trakt_ImagePoster>().ToList();
-
+        */
         public void Fill(VM_AniDB_Anime anime)
         {
             AllFanarts = new List<FanartContainer>();
             AllPosters = new List<PosterContainer>();
+            /*
             foreach (VM_Trakt_ImageFanart contract in TraktImageFanarts)
             {
                 contract.IsImageDefault = anime?.DefaultImageFanart != null && anime.DefaultImageFanart.ImageParentType == (int) ImageEntityType.Trakt_Fanart && anime.DefaultImageFanart.ImageParentID == contract.Trakt_ImageFanartID;
@@ -43,7 +44,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
             {
                 contract.IsImageDefault = anime?.DefaultImagePoster != null && anime.DefaultImagePoster.ImageParentType == (int) ImageEntityType.Trakt_Poster && anime.DefaultImagePoster.ImageParentID == contract.Trakt_ImagePosterID;
                 AllPosters.Add(new PosterContainer(ImageEntityType.Trakt_Poster, contract));
-            }
+            }*/
             foreach (VM_TvDB_ImageFanart contract in TvDBImageFanarts)
             {
                 contract.IsImageDefault = anime?.DefaultImageFanart != null && anime.DefaultImageFanart.ImageParentType == (int) ImageEntityType.TvDB_FanArt && anime.DefaultImageFanart.ImageParentID == contract.TvDB_ImageFanartID;

@@ -482,7 +482,7 @@ namespace Shoko.MyAnime3.Windows
                             if (ep.LocalFileCount == 0)
                                 useEp = false;
 
-                            if (ep.EpisodeTypeEnum != enEpisodeType.Episode && ep.EpisodeTypeEnum != enEpisodeType.Special)
+                            if (ep.EpisodeTypeEnum != EpisodeType.Episode && ep.EpisodeTypeEnum != EpisodeType.Special)
                                 useEp = false;
 
                             if (useEp) epList.Add(ep);
@@ -706,7 +706,7 @@ namespace Shoko.MyAnime3.Windows
                 else
                 {
                     foreach (VM_AnimeEpisodeType anEpType in MainWindow.RandomWindow_CurrentSeries.EpisodeTypesToDisplay)
-                        if (anEpType.EpisodeType == enEpisodeType.Episode)
+                        if (anEpType.EpisodeType == EpisodeType.Episode)
                         {
                             MainWindow.Breadcrumbs.Add(new History {Listing = MainWindow.RandomWindow_CurrentSeries, Selected = anEpType});
                             MainWindow.Breadcrumbs.Add(new History {Listing = anEpType, Selected = null});

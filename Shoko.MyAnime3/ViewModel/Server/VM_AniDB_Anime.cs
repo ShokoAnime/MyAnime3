@@ -117,7 +117,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
                             return DefaultImagePoster.TVPoster.FullImagePath;
                         else
                             return PosterPath;
-
+                        /*
                     case ImageEntityType.Trakt_Poster:
                         if (DefaultImagePoster.TraktPoster != null)
                             return DefaultImagePoster.TraktPoster.FullImagePath;
@@ -128,7 +128,7 @@ namespace Shoko.MyAnime3.ViewModel.Server
                         if (DefaultImagePoster.MoviePoster != null)
                             return DefaultImagePoster.MoviePoster.FullImagePath;
                         else
-                            return PosterPath;
+                            return PosterPath;*/
                 }
 
                 return PosterPath;
@@ -153,13 +153,13 @@ namespace Shoko.MyAnime3.ViewModel.Server
                             return DefaultImagePoster.TVPoster.FullImagePath;
                         else
                             return string.Empty;
-
+                        /*
                     case ImageEntityType.Trakt_Poster:
                         if (DefaultImagePoster.TraktPoster != null)
                             return DefaultImagePoster.TraktPoster.FullImagePath;
                         else
                             return string.Empty;
-
+                            */
                     case ImageEntityType.MovieDB_Poster:
                         if (DefaultImagePoster.MoviePoster != null)
                             return DefaultImagePoster.MoviePoster.FullImagePath;
@@ -285,12 +285,12 @@ namespace Shoko.MyAnime3.ViewModel.Server
 
         public string AnimeID_Friendly => $"AniDB: {AnimeID}";
 
-        public enAnimeType AnimeTypeEnum
+        public Shoko.Models.Enums.AnimeType AnimeTypeEnum
         {
             get
             {
-                if (AnimeType > 5) return enAnimeType.Other;
-                return (enAnimeType) AnimeType;
+                if (AnimeType > 5) return Shoko.Models.Enums.AnimeType.Other;
+                return (AnimeType) AnimeType;
             }
         }
 
@@ -300,12 +300,12 @@ namespace Shoko.MyAnime3.ViewModel.Server
             {
                 switch (AnimeTypeEnum)
                 {
-                    case enAnimeType.Movie: return "Movie";
-                    case enAnimeType.Other: return "Other";
-                    case enAnimeType.OVA: return "OVA";
-                    case enAnimeType.TVSeries: return "TV Series";
-                    case enAnimeType.TVSpecial: return "TV Special";
-                    case enAnimeType.Web: return "Web";
+                    case Shoko.Models.Enums.AnimeType.Movie: return "Movie";
+                    case Shoko.Models.Enums.AnimeType.Other: return "Other";
+                    case Shoko.Models.Enums.AnimeType.OVA: return "OVA";
+                    case Shoko.Models.Enums.AnimeType.TVSeries: return "TV Series";
+                    case Shoko.Models.Enums.AnimeType.TVSpecial: return "TV Special";
+                    case Shoko.Models.Enums.AnimeType.Web: return "Web";
                     default: return "Other";
                 }
             }

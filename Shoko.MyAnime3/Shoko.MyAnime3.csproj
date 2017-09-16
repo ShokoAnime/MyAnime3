@@ -190,8 +190,6 @@
     <Compile Include="ViewModel\Server\VM_MovieDB_Poster.cs" />
     <Compile Include="ViewModel\PosterContainer.cs" />
     <Compile Include="ViewModel\Server\VM_Recommendation.cs" />
-    <Compile Include="ViewModel\Server\VM_Trakt_ImageFanart.cs" />
-    <Compile Include="ViewModel\Server\VM_Trakt_ImagePoster.cs" />
     <Compile Include="ViewModel\Server\VM_TvDB_ImageFanart.cs" />
     <Compile Include="ViewModel\Server\VM_TvDB_ImagePoster.cs" />
     <Compile Include="ViewModel\Server\VM_TvDB_ImageWideBanner.cs" />
@@ -676,16 +674,17 @@
     <PostBuildEvent>cd "$(TargetDir)"
 mkdir Merge
 
-
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Anime3.dll" "Shoko.Commons.dll" "Shoko.Models.dll" "MA3_FFDShowAPI.dll" "Nancy.Rest.Annotations.dll" "Nancy.Rest.Client.dll" "Pri.LongPath.dll" "Newtonsoft.Json.dll" "ImpromptuInterface.dll" "de\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "en-gb\Shoko.Commons.resources.dll" 
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Merge\Animetemp2.dll" "es\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "fr\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Merge\Animetemp2.dll" "it\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "nl\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp1.dll" "Merge\Animetemp2.dll" "pl\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Animetemp2.dll" "Merge\Animetemp1.dll" "pt\Shoko.Commons.resources.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Anime3.dll" "Merge\Animetemp2.dll" "ru\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp1.dll" "es\Shoko.Commons.resources.dll" "en-gb\Shoko.Commons.resources.dll" 
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp2.dll" "it\Shoko.Commons.resources.dll" "fr\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp3.dll" "nl\Shoko.Commons.resources.dll" "pl\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp4.dll" "pt\Shoko.Commons.resources.dll" "ru\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp5.dll" "Merge\Animetemp1.dll" "Merge\Animetemp2.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp6.dll" "Merge\Animetemp3.dll" "Merge\Animetemp4.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp7.dll" "Merge\Animetemp5.dll" "de\Shoko.Commons.resources.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp8.dll" "Merge\Animetemp6.dll" "Merge\Animetemp7.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "Shoko.Commons.dll" "Shoko.Models.dll" "MA3_FFDShowAPI.dll" "Nancy.Rest.Annotations.dll" "Nancy.Rest.Client.dll" "Pri.LongPath.dll" "Newtonsoft.Json.dll" "ImpromptuInterface.dll" "Merge\Animetemp8.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Anime3.dll" "Merge\Animetemp1.dll" "Merge\Animetemp8.dll"
+del anime3.*
 del Merge\Animetemp*
 del MA3_FFDShowAPI.*
 del Shoko.*
@@ -700,11 +699,11 @@ rmdir /S /Q nl
 rmdir /S /Q pl
 rmdir /S /Q pt
 rmdir /S /Q ru
-del jint.*
 del Nancy.*
 del Newtonsoft.Json.*
 del ImpromptuInterface.*
 del Pri.LongPath.*
+
 xcopy "$(TargetPath)" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y
 xcopy "$(TargetDir)Anime3.pdb" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y			
 
@@ -718,6 +717,7 @@ xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallanche" "$(SolutionDir)Release\ski
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWideHD" "$(SolutionDir)Release\skin\DefaultWideHD" /E /R /I /Y		
 xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y</PostBuildEvent>
+xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

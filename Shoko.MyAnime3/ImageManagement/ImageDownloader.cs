@@ -352,7 +352,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 BaseConfig.MyAnimeLog.Write(ex.ToString());
             }
         }
-
+        /*
         public void DownloadTraktPoster(VM_Trakt_ImagePoster poster, bool forceDownload)
         {
             if (string.IsNullOrEmpty(poster.ImageURL)) return;
@@ -448,7 +448,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 BaseConfig.MyAnimeLog.Write(ex.ToString());
             }
         }
-
+        */
         private string GetFileName(ImageDownloadRequest req, bool thumbNailOnly)
         {
             switch (req.ImageType)
@@ -479,16 +479,16 @@ namespace Shoko.MyAnime3.ImageManagement
 
                 case ImageEntityType.MovieDB_FanArt:
                     return ((VM_MovieDB_Fanart)req.ImageData).FullImagePathPlain;
+                /*
+            case ImageEntityType.Trakt_Poster:
+                return ((VM_Trakt_ImagePoster)req.ImageData).FullImagePathPlain;
 
-                case ImageEntityType.Trakt_Poster:
-                    return ((VM_Trakt_ImagePoster)req.ImageData).FullImagePathPlain;
+            case ImageEntityType.Trakt_Fanart:
+                return ((VM_Trakt_ImageFanart)req.ImageData).FullImagePathPlain;
 
-                case ImageEntityType.Trakt_Fanart:
-                    return ((VM_Trakt_ImageFanart)req.ImageData).FullImagePathPlain;
-
-                case ImageEntityType.Trakt_Episode:
-                    return ((Trakt_Episode)req.ImageData).GetFullImagePathPlain();
-
+            case ImageEntityType.Trakt_Episode:
+                return ((Trakt_Episode)req.ImageData).GetFullImagePathPlain();
+                 */
                 default:
                     return string.Empty;
             }
@@ -524,13 +524,13 @@ namespace Shoko.MyAnime3.ImageManagement
 
                 case ImageEntityType.MovieDB_FanArt:
                     return ((VM_MovieDB_Fanart)req.ImageData).MovieDB_FanartID.ToString();
-
+                    /*
                 case ImageEntityType.Trakt_Poster:
                     return ((VM_Trakt_ImagePoster)req.ImageData).Trakt_ImagePosterID.ToString();
 
                 case ImageEntityType.Trakt_Fanart:
                     return ((VM_Trakt_ImageFanart)req.ImageData).Trakt_ImageFanartID.ToString();
-
+                    */
                 case ImageEntityType.Trakt_Episode:
                     return ((Trakt_Episode)req.ImageData).Trakt_EpisodeID.ToString();
 

@@ -683,7 +683,6 @@ mkdir Merge
 ..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp7.dll" "Merge\Animetemp5.dll" "de\Shoko.Commons.resources.dll"
 ..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp8.dll" "Merge\Animetemp6.dll" "Merge\Animetemp7.dll"
 ..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "Shoko.Commons.dll" "Shoko.Models.dll" "MA3_FFDShowAPI.dll" "Nancy.Rest.Annotations.dll" "Nancy.Rest.Client.dll" "Pri.LongPath.dll" "Newtonsoft.Json.dll" "ImpromptuInterface.dll" "Merge\Animetemp8.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Anime3.dll" "Merge\Animetemp1.dll" "Merge\Animetemp8.dll"
 del anime3.*
 del Merge\Animetemp*
 del MA3_FFDShowAPI.*
@@ -707,17 +706,16 @@ del Pri.LongPath.*
 xcopy "$(TargetPath)" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y
 xcopy "$(TargetDir)Anime3.pdb" "$(SolutionDir)Release\plugins\Windows\" /E /R /I /Y			
 
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avallanche\Media" /E /R /I /Y
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avalon\Media" /E /R /I /Y
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\DefaultWideHD\Media" /E /R /I /Y
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\StreamedMP\Media" /E /R /I /Y
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Titan\Media" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avallanche\Media" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Avalon\Media" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\[ Media ]" "$(SolutionDir)Release\skin\DefaultWideHD\Media" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\[ Media ]" "$(SolutionDir)Release\skin\StreamedMP\Media" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\[ Media ]" "$(SolutionDir)Release\skin\Titan\Media" /E /R /I /Y
 
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avallanche" "$(SolutionDir)Release\skin\Avallanche" /E /R /I /Y
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Avalon" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\DefaultWideHD" "$(SolutionDir)Release\skin\DefaultWideHD" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
-xcopy "$(SolutionDir)MyAnimePlugin3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\Avallanche" "$(SolutionDir)Release\skin\Avallanche" /E /R /I /Y
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\Avalon" "$(SolutionDir)Release\skin\Avalon" /E /R /I /Y			
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\StreamedMP" "$(SolutionDir)Release\skin\StreamedMP" /E /R /I /Y		
+xcopy "$(SolutionDir)Shoko.MyAnime3\Skins\Titan" "$(SolutionDir)Release\skin\Titan" /E /R /I /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

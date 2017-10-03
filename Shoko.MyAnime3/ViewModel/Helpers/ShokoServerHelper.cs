@@ -287,7 +287,12 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
             List<VM_GroupFilter> gfs = new List<VM_GroupFilter>();
             try
             {
-                List<VM_GroupFilter> gf_cons = VM_ShokoServer.Instance.ShokoServices.GetGroupFilters(grpf.GroupFilterID).CastList<VM_GroupFilter>();
+                int grid = 0;
+                if (grpf != null)
+                    grid = grpf.GroupFilterID;
+
+
+                List<VM_GroupFilter> gf_cons = VM_ShokoServer.Instance.ShokoServices.GetGroupFilters(grid).CastList<VM_GroupFilter>();
 
 
                 foreach (VM_GroupFilter gf_con in gf_cons.Where(a => a.Groups.ContainsKey(VM_ShokoServer.Instance.CurrentUser.JMMUserID) && a.Groups[VM_ShokoServer.Instance.CurrentUser.JMMUserID].Count() > 0

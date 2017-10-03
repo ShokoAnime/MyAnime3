@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using MediaPortal.GUI.Library;
+using Shoko.Commons.Extensions;
 using Shoko.MyAnime3.DataHelpers;
 using Action = MediaPortal.GUI.Library.Action;
 using Shoko.MyAnime3.ViewModel;
@@ -111,7 +112,7 @@ namespace Shoko.MyAnime3.Windows
 
 			if (ser != null)
 			{
-				List<VM_TvDB_ImageWideBanner> tvDBWideBanners = ser.Anime.AniDB_AnimeCrossRefs.TvDBImageWideBanners;
+				List<VM_TvDB_ImageWideBanner> tvDBWideBanners = ser.Anime.AniDB_AnimeCrossRefs.TvDBImageWideBanners?.CastList<VM_TvDB_ImageWideBanner>() ?? new List<VM_TvDB_ImageWideBanner>();
 
 				GUIListItem item = null;
 				foreach (VM_TvDB_ImageWideBanner banner in tvDBWideBanners)

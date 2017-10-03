@@ -40,7 +40,9 @@ namespace Shoko.MyAnime3
 				if (!string.IsNullOrEmpty(anime.DefaultImageFanart.FullImagePath) && File.Exists(anime.DefaultImageFanart.FullImagePath))
 				{
 					allFanart.Add(anime.DefaultImageFanart.FullImagePath);
-					return allFanart;
+				    BaseConfig.MyAnimeLog.Write("Default Fanart: " +anime.DefaultImageFanart.FullImagePath);
+
+                    return allFanart;
 				}
 			}
 
@@ -48,7 +50,7 @@ namespace Shoko.MyAnime3
 			foreach (FanartContainer fanart in anime.AniDB_AnimeCrossRefs.AllFanarts)
 			{
 				if (!fanart.IsImageEnabled) continue;
-				if (!File.Exists(fanart.FullImagePath)) continue;
+				//if (!File.Exists(fanart.FullImagePath)) continue;
 
 				allFanart.Add(fanart.FullImagePath);
 			}

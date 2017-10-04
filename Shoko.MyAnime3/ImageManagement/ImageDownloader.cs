@@ -18,8 +18,9 @@ namespace Shoko.MyAnime3.ImageManagement
 
         private readonly BlockingList<ImageDownloadRequest> imagesToDownload = new BlockingList<ImageDownloadRequest>();
         private readonly BackgroundWorker workerImages = new BackgroundWorker();
-        private static readonly object downloadsLock = new object();
-
+        private static Dictionary<string,object> locks = new Dictionary<string, object>();
+        private static object hashlock = new object();
+        
         public int QueueCount => imagesToDownload.Count;
 
         public ImageDownloader()
@@ -51,6 +52,8 @@ namespace Shoko.MyAnime3.ImageManagement
         {
             workerImages.RunWorkerAsync();
         }
+        
+
 
         public void DownloadAniDBCover(VM_AniDB_Anime anime, bool forceDownload)
         {
@@ -494,36 +497,36 @@ namespace Shoko.MyAnime3.ImageManagement
             }
         }
 
-        private string GetEntityID(ImageDownloadRequest req)
+        private int GetEntityID(ImageDownloadRequest req)
         {
             switch (req.ImageType)
             {
                 case ImageEntityType.AniDB_Cover:
-                    return ((VM_AniDB_Anime)req.ImageData).AnimeID.ToString();
+                    return ((VM_AniDB_Anime)req.ImageData).AnimeID;
 
                 case ImageEntityType.AniDB_Character:
-                    return ((CL_AniDB_Character)req.ImageData).AniDB_CharacterID.ToString();
+                    return ((CL_AniDB_Character)req.ImageData).AniDB_CharacterID;
 
                 case ImageEntityType.AniDB_Creator:
-                    return ((AniDB_Seiyuu)req.ImageData).AniDB_SeiyuuID.ToString();
+                    return ((AniDB_Seiyuu)req.ImageData).AniDB_SeiyuuID;
 
                 case ImageEntityType.TvDB_Cover:
-                    return ((VM_TvDB_ImagePoster)req.ImageData).TvDB_ImagePosterID.ToString();
+                    return ((VM_TvDB_ImagePoster)req.ImageData).TvDB_ImagePosterID;
 
                 case ImageEntityType.TvDB_Banner:
-                    return ((VM_TvDB_ImageWideBanner)req.ImageData).TvDB_ImageWideBannerID.ToString();
+                    return ((VM_TvDB_ImageWideBanner)req.ImageData).TvDB_ImageWideBannerID;
 
                 case ImageEntityType.TvDB_Episode:
-                    return ((TvDB_Episode)req.ImageData).TvDB_EpisodeID.ToString();
+                    return ((TvDB_Episode)req.ImageData).TvDB_EpisodeID;
 
                 case ImageEntityType.TvDB_FanArt:
-                    return ((VM_TvDB_ImageFanart)req.ImageData).TvDB_ImageFanartID.ToString();
+                    return ((VM_TvDB_ImageFanart)req.ImageData).TvDB_ImageFanartID;
 
                 case ImageEntityType.MovieDB_Poster:
-                    return ((VM_MovieDB_Poster)req.ImageData).MovieDB_PosterID.ToString();
+                    return ((VM_MovieDB_Poster)req.ImageData).MovieDB_PosterID;
 
                 case ImageEntityType.MovieDB_FanArt:
-                    return ((VM_MovieDB_Fanart)req.ImageData).MovieDB_FanartID.ToString();
+                    return ((VM_MovieDB_Fanart)req.ImageData).MovieDB_FanartID;
                     /*
                 case ImageEntityType.Trakt_Poster:
                     return ((VM_Trakt_ImagePoster)req.ImageData).Trakt_ImagePosterID.ToString();
@@ -532,13 +535,23 @@ namespace Shoko.MyAnime3.ImageManagement
                     return ((VM_Trakt_ImageFanart)req.ImageData).Trakt_ImageFanartID.ToString();
                     */
                 case ImageEntityType.Trakt_Episode:
-                    return ((Trakt_Episode)req.ImageData).Trakt_EpisodeID.ToString();
+                    return ((Trakt_Episode)req.ImageData).Trakt_EpisodeID;
 
                 default:
-                    return string.Empty;
+                    return 0;
             }
         }
 
+        public object GetUniqueLock(ImageDownloadRequest req, bool thumb)
+        {
+            string r=req.ImageType + "_" + GetEntityID(req) + "_" + (thumb ? "1" : "0");
+            lock (hashlock)
+            {
+                if (!locks.ContainsKey(r))
+                    locks.Add(r, new object());
+                return locks[r];
+            }
+        }
         private void ProcessImages(object sender, DoWorkEventArgs args)
         {
             foreach (ImageDownloadRequest req in imagesToDownload)
@@ -550,51 +563,31 @@ namespace Shoko.MyAnime3.ImageManagement
             try
             {
                 string fileName = GetFileName(req, false);
-                string entityID = GetEntityID(req);
+                int entityID = GetEntityID(req);
                 bool downloadImage;
                 bool fileExists = File.Exists(fileName);
 
                 downloadImage = !fileExists || req.ForceDownload;
 
+
+
+
+
                 if (downloadImage)
                 {
-                    string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
-                    if (File.Exists(tempName)) File.Delete(tempName);
-
-
-                    OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
-                    if (fileExists) File.Delete(fileName);
-
-                    Stream imageArray = null;
-                    try
-                    {
-                        imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int)req.ImageType, false);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-
-                    if (imageArray == null)
-                    {
-                        imagesToDownload.Remove(req);
-                        OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-                        return;
-                    }
-                    Stream fw = File.OpenWrite(tempName);
-                    imageArray.CopyTo(fw);
-                    fw.Close();
-                    imageArray.Close();
  
-                    // move the file to it's final location
-                    string fullPath = Path.GetDirectoryName(fileName);
-                    if (fullPath != null)
+                    lock (GetUniqueLock(req,false))
                     {
-                        if (!Directory.Exists(fullPath))
-                            Directory.CreateDirectory(fullPath);
+                        string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
+                        if (File.Exists(tempName)) File.Delete(tempName);
+                        OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+
+                        if (LoadAndSaveImage(entityID, (int)req.ImageType, false, tempName))
+                        {
+                            MoveFile(fileExists, fileName, tempName);
+                        }          
                     }
-                    // move the file to it's final location
-                        File.Move(tempName, fileName);
+
                 }
 
                 OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Complete));
@@ -611,42 +604,19 @@ namespace Shoko.MyAnime3.ImageManagement
 
                     if (downloadImage)
                     {
-                        string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
-                        if (File.Exists(tempName)) File.Delete(tempName);
-
-                        OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
-                        if (fileExists) File.Delete(fileName);
-
-                        Stream imageArray = null;
-                        try
+                        lock (GetUniqueLock(req, true))
                         {
-                            imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int) req.ImageType,  true);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
+                            string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
+                            if (File.Exists(tempName)) File.Delete(tempName);
 
-                        if (imageArray == null)
-                        {
-                            imagesToDownload.Remove(req);
-                            OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-                            return;
-                        }
+                            OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
 
-                        FileStream fw = File.OpenWrite(tempName);
-                        imageArray.CopyTo(fw);
-                        fw.Close();
-                        imageArray.Close();
-                        // move the file to it's final location
-                        string fullPath = Path.GetDirectoryName(fileName);
-                        if (fullPath != null)
-                        {
-                            if (!Directory.Exists(fullPath))
-                                Directory.CreateDirectory(fullPath);
+                            if (LoadAndSaveImage(entityID, (int)req.ImageType, true, tempName))
+                            {
+                                MoveFile(fileExists, fileName, tempName);
+                            }
+                          
                         }
-                        // move the file to it's final location
-                        File.Move(tempName, fileName);
                     }
                 }
 
@@ -663,54 +633,98 @@ namespace Shoko.MyAnime3.ImageManagement
             }
         }
 
+        bool LoadAndSaveImage(int entityid, int type, bool thumb, string tempname)
+        {
+            Stream imageArray = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                try
+                {
+                    imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(entityid, type, thumb);
+                    imageArray.CopyTo(ms);
+                    try
+                    {
+                        imageArray.Close();
+                    }
+                    catch
+                    {
+                        //ignored 
+                    }
+                    if (ms.Length > 0)
+                    {
+                        ms.Position = 0;
+                        byte[] image = ms.ToArray();
+                        if (image.Length > 8)
+                        {
+                            if (((image[0] == 0xFF) && (image[1] == 0xD8)) || (image[0] == 0x89 && image[1] == 0x50 && image[2] == 0x4e && image[3] == 0x47) || (image[0] == 0x47 && image[1] == 0x49 && image[2] == 0x46))
+                            {
+                                Stream fw = null;
+                                try
+                                {
+                                    fw = File.OpenWrite(tempname);
+                                    fw.Write(image, 0, image.Length);
+                                    fw.Close();
+                                }
+                                catch (Exception)
+                                {
+                                    fw?.Dispose();
+                                    return false;
+                                }
+                                return true;
+
+                            }
+                        }
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
+        void MoveFile(bool fileExists, string fileName, string tempName)
+        {
+            // move the file to it's final location
+            if (fileExists) File.Delete(fileName);
+            string fullPath = Path.GetDirectoryName(fileName);
+                if (fullPath != null)
+            {
+                if (!Directory.Exists(fullPath))
+                    Directory.CreateDirectory(fullPath);
+            }
+
+            // move the file to it's final location
+            File.Move(tempName, fileName);
+        }
+
         public void DownloadImage(ImageDownloadRequest req)
         {
             try
             {
-                lock (downloadsLock)
-                {
+
                     string fileName = GetFileName(req, false);
-                    string entityID = GetEntityID(req);
+                    int entityID = GetEntityID(req);
                     bool fileExists = File.Exists(fileName);
 
                     bool downloadImage = !fileExists || req.ForceDownload;
 
                     if (downloadImage)
                     {
-                        string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
-                        if (File.Exists(tempName)) File.Delete(tempName);
-
-
-                        OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
-                        if (fileExists) File.Delete(fileName);
-
-                        Stream imageArray = null;
-                        try
+                        lock (GetUniqueLock(req, false))
                         {
-                            imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int) req.ImageType, false);
+                            string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
+                            if (File.Exists(tempName)) File.Delete(tempName);
+
+
+                            OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+
+                            if (LoadAndSaveImage(entityID, (int) req.ImageType, false, tempName))
+                            {
+                                MoveFile(fileExists,fileName,tempName);
+                            }
                         }
-                        catch
-                        {
-                            // ignored
-                        }
-
-                        if (imageArray == null) return;
-
-                        FileStream fw = File.OpenWrite(tempName);
-                        imageArray.CopyTo(fw);
-                        fw.Close();
-                        imageArray.Close();
-
-                        // move the file to it's final location
-                        string fullPath = Path.GetDirectoryName(fileName);
-                        if (fullPath != null)
-                        {
-                            if (!Directory.Exists(fullPath))
-                                Directory.CreateDirectory(fullPath);
-                        }
-
-                        // move the file to it's final location
-                        File.Move(tempName, fileName);
                     }
 
 
@@ -725,43 +739,22 @@ namespace Shoko.MyAnime3.ImageManagement
 
                         if (downloadImage)
                         {
-                            string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
-                            if (File.Exists(tempName)) File.Delete(tempName);
-
-                            OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
-                            if (fileExists) File.Delete(fileName);
-
-                            Stream imageArray = null;
-                            try
+                            lock (GetUniqueLock(req, true))
                             {
-                                imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(int.Parse(entityID), (int) req.ImageType, true);
+                                string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName) ?? "");
+                                if (File.Exists(tempName)) File.Delete(tempName);
+
+                                OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+
+                                if (LoadAndSaveImage(entityID, (int)req.ImageType, true, tempName))
+                                {
+                                    MoveFile(fileExists, fileName, tempName);
+                                }                        
                             }
-                            catch
-                            {
-                                // ignored
-                            }
-
-                            if (imageArray == null) return;
-
-                            FileStream fw = File.OpenWrite(tempName);
-                            imageArray.CopyTo(fw);
-                            fw.Close();
-                            imageArray.Close();
-
-                            // move the file to it's final location
-                            string fullPath = Path.GetDirectoryName(fileName);
-                            if (fullPath != null)
-                            {
-                                if (!Directory.Exists(fullPath))
-                                    Directory.CreateDirectory(fullPath);
-                            }
-
-                            // move the file to it's final location
-                            File.Move(tempName, fileName);
                         }
                     }
                 }
-            }
+
             catch (Exception ex)
             {
                 BaseConfig.MyAnimeLog.Write(ex.ToString());

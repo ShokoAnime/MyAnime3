@@ -608,7 +608,7 @@ namespace Shoko.MyAnime3
                 LogPlayBackOp("stopped", filename);
                 try
 				{
-                    VM_ShokoServer.Instance.ShokoServices.SetResumePosition(current.VideoLocalID, VM_ShokoServer.Instance.CurrentUser.JMMUserID,timeMovieStopped*1000);
+                    VM_ShokoServer.Instance.ShokoServices.SetResumePosition(current.VideoLocalID, timeMovieStopped * 1000, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
 					BaseConfig.MyAnimeLog.Write("Checking for set watched");
 					#region Set Watched
                     double watchedAfter = BaseConfig.Settings.WatchedPercentage;
@@ -674,8 +674,8 @@ namespace Shoko.MyAnime3
 			        #region Set Watched
 
 			        double watchedAfter = BaseConfig.Settings.WatchedPercentage;
-			        VM_ShokoServer.Instance.ShokoServices.SetResumePosition(previous.VideoLocalID,
-			            VM_ShokoServer.Instance.CurrentUser.JMMUserID, stoptime*1000);
+			        VM_ShokoServer.Instance.ShokoServices.SetResumePosition(previous.VideoLocalID, stoptime * 1000,
+			            VM_ShokoServer.Instance.CurrentUser.JMMUserID);
 			        _timeMovieStopped = stoptime;
 
                     if (!g_Player.IsExternalPlayer)

@@ -85,7 +85,7 @@ namespace Shoko.MyAnime3.Windows
 
         void Instance_ServerStatusEvent(ServerStatusEventArgs ev)
         {
-            string msg = string.Format("JMM Server Status: {0}/{1} -- {2}/{3}", ev.GeneralQueueState, ev.GeneralQueueCount, ev.HasherQueueState, ev.HasherQueueCount);
+            string msg = string.Format("Shoko Server Status: {0}/{1} -- {2}/{3}", ev.GeneralQueueState, ev.GeneralQueueCount, ev.HasherQueueState, ev.HasherQueueCount);
             BaseConfig.MyAnimeLog.Write(msg);
 
             SetGUIProperty(GuiProperty.Utilities_Status_HasherQueueCount, ev.HasherQueueCount.ToString(Globals.Culture));

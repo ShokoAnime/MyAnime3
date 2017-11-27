@@ -1219,7 +1219,7 @@ namespace Shoko.MyAnime3.ConfigFiles
             this.groupBox1.Size = new System.Drawing.Size(714, 86);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "JMM Server";
+            this.groupBox1.Text = "Shoko Server";
             // 
             // btnTestJMMServer
             // 
@@ -1283,7 +1283,7 @@ namespace Shoko.MyAnime3.ConfigFiles
             this.ManualLink.Size = new System.Drawing.Size(123, 13);
             this.ManualLink.TabIndex = 44;
             this.ManualLink.TabStop = true;
-            this.ManualLink.Text = "http://shokoanime.com/";
+            this.ManualLink.Text = "https://shokoanime.com/";
             this.ManualLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ManualLink_LinkClicked);
             // 
             // label62
@@ -1323,7 +1323,7 @@ namespace Shoko.MyAnime3.ConfigFiles
             this.WebsiteLink.Size = new System.Drawing.Size(123, 13);
             this.WebsiteLink.TabIndex = 40;
             this.WebsiteLink.TabStop = true;
-            this.WebsiteLink.Text = "http://shokoanime.com/";
+            this.WebsiteLink.Text = "https://shokoanime.com/";
             this.WebsiteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WebsiteLink_LinkClicked);
             // 
             // label60
@@ -1333,7 +1333,7 @@ namespace Shoko.MyAnime3.ConfigFiles
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(51, 13);
             this.label60.TabIndex = 39;
-            this.label60.Text = "WebSite:";
+            this.label60.Text = "Website:";
             // 
             // txtPluginName
             // 

@@ -228,7 +228,7 @@ namespace Shoko.MyAnime3
         public static string Coverflow = "Coverflow";
         public static string CreateSeriesForAnime = "Create Series for Anime";
         public static string Credits = "Credits";
-        public static string CouldNotConnect = "Could not connect to JMM Server";
+        public static string CouldNotConnect = "Could not connect to Shoko Server";
         public static string ConnectedTorrents = "Connected successfully, {0} torrents in list currently";
         public static string ConnectionFailed = "Connection failed";
         public static string ConnectedSucess = "Connected sucessfully";
@@ -281,7 +281,7 @@ namespace Shoko.MyAnime3
         public static string EpisodesShort = "Eps";
         public static string EpisodeWatchedDate = "Episode Watched Date";
         public static string Error = "Error";
-        public static string ErrorConnectingJMMServer = "Error connecting to JMM Server";
+        public static string ErrorConnectingJMMServer = "Error connecting to Shoko Server";
         
         public static string EpisodeDisplay= "Episode Display";
         public static string EpisodeOverviewNA = "Episode Overview Not Available";
@@ -349,7 +349,7 @@ namespace Shoko.MyAnime3
         public static string InfoDelay= "Info Delay";
         public static string IPAddress= "IP Address";
 
-        public static string JMMServer = "JMM Server";
+        public static string JMMServer = "Shoko Server";
 
         public static string Language= "Language";
         public static string ListPosters = "List Posters";
@@ -424,7 +424,7 @@ namespace Shoko.MyAnime3
         public static string PermanentVote = "Permanent Vote";
         public static string PlayFile = "Play file";
         public static string PlayPreviousEpisode = "Play Previous Episode";
-        public static string PleaseExitMPFirst = "Please exit MP and set your JMM Server location first";
+        public static string PleaseExitMPFirst = "Please exit MP and set your Shoko Server location first";
         public static string PleaseUsernameFirst = "Please enter a username first";
         public static string PleasePasswordFirst = "Please enter a password first";
         public static string PluginName= "Plugin Name";
@@ -593,7 +593,7 @@ namespace Shoko.MyAnime3
         public static string WaitingOnServer = "Waiting on server";
         public static string WaitFFDShow = "Wait ffdshow load for";
         public static string Watch = "Watch";
-        public static string Website = "WebSite";
+        public static string Website = "Website";
         public static string WideBanner = "Wide Banner";
         public static string WideBanners = "Wide Banners";
         public static string WideBannerQuality = "Wide Banner Quality";

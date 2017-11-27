@@ -74,11 +74,11 @@ namespace Shoko.MyAnime3.ConfigFiles
             label2.Text = Translation.ServerPort;
             label1.Text = Translation.ServerAddress;
             lblVersion.Text = Translation.Version + " X.X.X.X";
-            ManualLink.Text = "http://shokoanime.com/mediaportal/";
+            ManualLink.Text = "https://shokoanime.com/mediaportal/";
             label62.Text = Translation.Support;
             ForumLink.Text = "https://discordapp.com/channels/96234011612958720/101072543024160768";
             label61.Text = Translation.Discord + ":";
-            WebsiteLink.Text = "http://shokoanime.com";
+            WebsiteLink.Text = "https://shokoanime.com";
             label60.Text = Translation.Website + ":";
             label49.Text = Translation.PluginName;
             label46.Text = Translation.ImageLocation;
@@ -496,7 +496,7 @@ namespace Shoko.MyAnime3.ConfigFiles
 
         private void ManualLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://shokoanime.com/mediaportal/");
+            Process.Start("https://shokoanime.com/mediaportal/");
         }
 
 

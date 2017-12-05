@@ -2902,7 +2902,7 @@ void UnSubClass()
             }
 
 
-            // check if we can connect to JMM Server
+            // check if we can connect to Shoko Server
             // and load the default user
             List<JMMUser> allUsers = ShokoServerHelper.GetAllUsers();
             if (allUsers.Count == 0)

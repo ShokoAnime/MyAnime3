@@ -343,7 +343,7 @@ namespace Shoko.MyAnime3.ViewModel
             {
                 AnimePluginSettings settings = AnimePluginSettings.Instance;
                 string url = string.Format(@"http://{0}:{1}/", settings.JMMServer_Address, settings.JMMServer_Port);
-                BaseConfig.MyAnimeLog.Write("JMM Server URL: " + url);
+                BaseConfig.MyAnimeLog.Write("Shoko Server URL: " + url);
 
 
                 Dictionary<Type, Type> mappings = new Dictionary<Type, Type>();
@@ -379,7 +379,7 @@ namespace Shoko.MyAnime3.ViewModel
                 GetServerSettings();
                 RefreshImportFolders();
 
-                BaseConfig.MyAnimeLog.Write("JMM Server Status: " + status.GeneralQueueState);
+                BaseConfig.MyAnimeLog.Write("Shoko Server Status: " + status.GeneralQueueState);
 
                 return true;
             }

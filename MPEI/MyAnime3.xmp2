@@ -72,13 +72,6 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\StreamedMP\Anime3_Downloads.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{a6e33dde-f0d5-4b5f-9e80-bbff87769cec}-Anime3_Downloads.xml</ZipFileName>
-              <DestinationFilename>%Skin%\StreamedMP\Anime3_Downloads.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\skin\StreamedMP\Anime3_Dummy.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{183f770c-c514-4623-a87f-063a3b9d346c}-Anime3_Dummy.xml</ZipFileName>
               <DestinationFilename>%Skin%\StreamedMP\Anime3_Dummy.xml</DestinationFilename>
@@ -843,13 +836,6 @@ Posters will always be shown, even when a fanart exists</Description>
               <LocalFileName>..\Release\skin\Titan\Anime3_Char.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{6df01e18-b1ab-4216-b3a4-076bfff0411f}-Anime3_Char.xml</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Anime3_Char.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Titan\Anime3_Downloads.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{ab0c0f66-1f31-4a72-8b12-e59be3858ae4}-Anime3_Downloads.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Titan\Anime3_Downloads.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
@@ -2507,13 +2493,6 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Avalon\Anime3_Downloads.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{403e89c0-12ca-4f53-b3ee-8c3f09955571}-Anime3_Downloads.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Avalon\Anime3_Downloads.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\skin\Avalon\Anime3_Dummy.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{574b7038-5573-4fd0-a062-7d90ae93298c}-Anime3_Dummy.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Dummy.xml</DestinationFilename>
@@ -4164,50 +4143,130 @@ http://jmediamanager.org/mediaportal/</Value>
     <Version>
       <Major>3</Major>
       <Minor>7</Minor>
-      <Build>0</Build>
-      <Revision>3</Revision>
+      <Build>1</Build>
+      <Revision>0</Revision>
     </Version>
-    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription>View our changelog for release notes:
-
-
-
-
-
-
-
+    <VersionDescription>View our changelog for release notes:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 http://shokoanime.com/changelog/</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://www.shokoanime.com/files/stable/My_Anime_3_3.7.0.1.mpe1</OnlineLocation>
@@ -4296,13 +4355,6 @@ http://shokoanime.com/changelog/</VersionDescription>
         <LocalFileName>..\Release\skin\StreamedMP\Anime3_Collection.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{b96d2319-4975-47b8-80e5-9592e086d180}-Anime3_Collection.xml</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Anime3_Collection.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\StreamedMP\Anime3_Downloads.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{a6e33dde-f0d5-4b5f-9e80-bbff87769cec}-Anime3_Downloads.xml</ZipFileName>
-        <DestinationFilename>%Skin%\StreamedMP\Anime3_Downloads.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -5017,13 +5069,6 @@ http://shokoanime.com/changelog/</VersionDescription>
         <LocalFileName>..\Release\skin\Titan\Anime3_Char.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{6df01e18-b1ab-4216-b3a4-076bfff0411f}-Anime3_Char.xml</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Anime3_Char.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Titan\Anime3_Downloads.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ab0c0f66-1f31-4a72-8b12-e59be3858ae4}-Anime3_Downloads.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Titan\Anime3_Downloads.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -6641,13 +6686,6 @@ http://shokoanime.com/changelog/</VersionDescription>
         <LocalFileName>..\Release\skin\Avalon\Anime3_Char.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{c7cd1063-faa0-4414-b23c-6397a7efdcf9}-Anime3_Char.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Anime3_Char.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Avalon\Anime3_Downloads.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{403e89c0-12ca-4f53-b3ee-8c3f09955571}-Anime3_Downloads.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Anime3_Downloads.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />

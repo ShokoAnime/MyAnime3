@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using Shoko.Commons;
 using Shoko.Commons.Extensions;
 using Shoko.Models.Server;
@@ -211,8 +213,7 @@ namespace Shoko.MyAnime3.ConfigFiles
         {
             txtFolderLocalPath.Text = "";
             ImportFolder fldr = _importFolders[lbImportFolders.SelectedIndex];
-            if (fldr == null) return;
-
+            if (fldr == null) return;            
             txtFolderLocalPath.Text = fldr.GetLocalFileSystemFullPath();
         }
 

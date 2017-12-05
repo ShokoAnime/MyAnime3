@@ -208,7 +208,7 @@ namespace Shoko.MyAnime3.Windows
                     cmenu.AddAction(Translation.CreateSeriesForAnime, () =>
                     {
                         CL_Response<CL_AnimeSeries_User> resp = VM_ShokoServer.Instance.ShokoServices.CreateSeriesFromAnime(
-                                rec.RecommendedAnimeID, null, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                                rec.RecommendedAnimeID, null, VM_ShokoServer.Instance.CurrentUser.JMMUserID,false);
                         if (string.IsNullOrEmpty(resp.ErrorMessage))
                             Utils.DialogMsg(Translation.Sucess, Translation.SeriesCreated);
                         else

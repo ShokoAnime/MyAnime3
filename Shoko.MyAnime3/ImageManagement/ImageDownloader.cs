@@ -67,7 +67,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(anime.PosterPath))
+                    if (!File.Exists(anime.PosterPathNoDefaultPlain))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -176,7 +176,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(poster.FullImagePath))
+                    if (!File.Exists(poster.FullImagePathPlain))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -208,7 +208,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(wideBanner.FullImagePath))
+                    if (!File.Exists(wideBanner.FullImagePathPlain))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -240,7 +240,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(episode.GetFullImagePath()))
+                    if (!File.Exists(episode.GetFullImagePathPlain()))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -272,7 +272,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(fanart.FullImagePath) || !File.Exists(fanart.FullThumbnailPath))
+                    if (!File.Exists(fanart.FullImagePathPlain) || !File.Exists(fanart.FullThumbnailPathPlain))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -304,7 +304,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(poster.FullImagePath))
+                    if (!File.Exists(poster.FullImagePathPlain))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -336,7 +336,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (!req.ForceDownload)
                 {
                     // check to make sure the file actually exists
-                    if (!File.Exists(fanart.FullImagePath))
+                    if (!File.Exists(fanart.FullImagePathPlain))
                     {
                         imagesToDownload.Add(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
@@ -563,6 +563,7 @@ namespace Shoko.MyAnime3.ImageManagement
             try
             {
                 string fileName = GetFileName(req, false);
+                BaseConfig.MyAnimeLog.Write("Image Path: " + fileName);
                 int entityID = GetEntityID(req);
                 bool downloadImage;
                 bool fileExists = File.Exists(fileName);
@@ -597,6 +598,8 @@ namespace Shoko.MyAnime3.ImageManagement
                 if (req.ImageType == ImageEntityType.TvDB_FanArt)
                 {
                     fileName = GetFileName(req, true);
+                    BaseConfig.MyAnimeLog.Write("Image Path: " + fileName);
+
                     entityID = GetEntityID(req);
                     fileExists = File.Exists(fileName);
 
@@ -640,6 +643,7 @@ namespace Shoko.MyAnime3.ImageManagement
             {
                 try
                 {
+                    BaseConfig.MyAnimeLog.Write("Trying to load from shokoserver, EntityID: "+entityid+" Type: "+type+" Thumb: "+(thumb ? "yes" : "no"));
                     imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(entityid, type, thumb);
                     imageArray.CopyTo(ms);
                     try
@@ -648,6 +652,8 @@ namespace Shoko.MyAnime3.ImageManagement
                     }
                     catch
                     {
+                        BaseConfig.MyAnimeLog.Write("Error closing input stream");
+
                         //ignored 
                     }
                     if (ms.Length > 0)
@@ -670,15 +676,20 @@ namespace Shoko.MyAnime3.ImageManagement
                                     fw?.Dispose();
                                     return false;
                                 }
+                                BaseConfig.MyAnimeLog.Write("Valid image returned");
+
                                 return true;
 
                             }
                         }
                     }
+                    BaseConfig.MyAnimeLog.Write("Not a valid image");
+
                     return false;
                 }
-                catch
+                catch (Exception e)
                 {
+                    BaseConfig.MyAnimeLog.Write("Error Loading Image: "+e.ToString());
                     return false;
                 }
             }
@@ -705,7 +716,9 @@ namespace Shoko.MyAnime3.ImageManagement
             {
 
                     string fileName = GetFileName(req, false);
-                    int entityID = GetEntityID(req);
+                BaseConfig.MyAnimeLog.Write("Image Path: " + fileName);
+
+                int entityID = GetEntityID(req);
                     bool fileExists = File.Exists(fileName);
 
                     bool downloadImage = !fileExists || req.ForceDownload;
@@ -732,7 +745,9 @@ namespace Shoko.MyAnime3.ImageManagement
                     if (req.ImageType == ImageEntityType.TvDB_FanArt)
                     {
                         fileName = GetFileName(req, true);
-                        entityID = GetEntityID(req);
+                        BaseConfig.MyAnimeLog.Write("Image Path: " + fileName);
+
+                    entityID = GetEntityID(req);
                         fileExists = File.Exists(fileName);
 
                         downloadImage = !fileExists || req.ForceDownload;

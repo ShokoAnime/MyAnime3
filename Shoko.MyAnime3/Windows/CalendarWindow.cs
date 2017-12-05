@@ -300,7 +300,7 @@ namespace Shoko.MyAnime3.Windows
                     if ((anime4 = m_Facade.SelectedListItem.TVTag as VM_AniDB_Anime) != null)
                     {
                         CL_Response<CL_AnimeSeries_User> resp = VM_ShokoServer.Instance.ShokoServices.CreateSeriesFromAnime(
-                            anime4.AnimeID, null, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                            anime4.AnimeID, null, VM_ShokoServer.Instance.CurrentUser.JMMUserID,false);
                         if (string.IsNullOrEmpty(resp.ErrorMessage))
                             Utils.DialogMsg(Translation.Sucess, Translation.SeriesCreated);
                         else

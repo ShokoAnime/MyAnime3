@@ -3742,8 +3742,14 @@ void UnSubClass()
 
         private void LinkAniDBToTVDB(VM_AnimeSeries_User ser, int animeID, EpisodeType anidbEpType, int anidbEpNumber, int tvDBID, int tvSeason, int tvEpNumber)
         {
-            string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(animeID, (int) anidbEpType, anidbEpNumber,
-                tvDBID, tvSeason, tvEpNumber, null);
+            CrossRef_AniDB_TvDBV2 cross = new CrossRef_AniDB_TvDBV2();
+            cross.AnimeID = animeID;
+            cross.AniDBStartEpisodeType = (int)anidbEpType;
+            cross.AniDBStartEpisodeNumber = anidbEpNumber;
+            cross.TvDBID = tvDBID;
+            cross.TvDBSeasonNumber = tvSeason;
+            cross.TvDBStartEpisodeNumber = tvEpNumber;
+            string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(cross);
 
             if (res.Length > 0)
                 Utils.DialogMsg("Error", res);

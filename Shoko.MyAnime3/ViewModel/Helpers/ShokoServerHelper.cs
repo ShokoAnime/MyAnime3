@@ -316,7 +316,8 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
             try
             {
                 List<VM_AnimeGroup_User> rawGrps = VM_ShokoServer.Instance.ShokoServices.GetAnimeGroupsForFilter(groupFilter.GroupFilterID,
-                            VM_ShokoServer.Instance.CurrentUser.JMMUserID, false).CastList<VM_AnimeGroup_User>() ?? new List<VM_AnimeGroup_User>(); 
+                            VM_ShokoServer.Instance.CurrentUser.JMMUserID, false).CastList<VM_AnimeGroup_User>() ?? new List<VM_AnimeGroup_User>();
+                BaseConfig.MyAnimeLog.Write("Group Sort of "+groupFilter.GroupFilterName+" Criterias: "+groupFilter.SortingCriteria);
                 return groupFilter.SortGroups(rawGrps.AsQueryable()).ToList();
             }
             catch (Exception ex)

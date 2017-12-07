@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Timers;
@@ -1087,6 +1088,9 @@ void UnSubClass()
             return listlevel;
       }
         */
+
+
+       
         void bgLoadFacade()
         {
             try
@@ -1188,7 +1192,7 @@ void UnSubClass()
                     {
                         BaseConfig.MyAnimeLog.Write("APPLYING QUICK SORT");
                         QuickSort srt = GroupFilterQuickSorts[gf.GroupFilterID];
-                        groups = groups.AsQueryable().GeneratePredicate(GroupFilterHelper.GetEnumForText_Sorting(srt.SortType), srt.SortDirection).ToList();
+                        groups = ShokoServerHelper.GeneratePredicate(groups.AsQueryable(),GroupFilterHelper.GetEnumForText_Sorting(srt.SortType), srt.SortDirection).ToList();
                     }
 
 

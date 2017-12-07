@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Utils;
@@ -310,15 +311,94 @@ namespace Shoko.MyAnime3.ViewModel.Helpers
             gfs.Sort();
             return gfs;
         }
+        public static IQueryable<T> SortGroups<T>(CL_GroupFilter gf, IQueryable<T> list) where T : VM_AnimeGroup_User
+        {
 
+            BaseConfig.MyAnimeLog.Write("Criteria Orig: " + gf.SortingCriteria);
+            List<GroupFilterSortingCriteria> criterias = GroupFilterSortingCriteria.Create(gf.GroupFilterID, gf.SortingCriteria);
+            foreach (GroupFilterSortingCriteria f in criterias)
+            {
+                BaseConfig.MyAnimeLog.Write("Criteria: " + f.SortType.ToString() + " " + f.SortDirection);
+                list = GeneratePredicate(list, f.SortType, f.SortDirection);
+            }
+            return list;
+        }
+
+        public static IQueryable<T> GeneratePredicate<T>(IQueryable<T> lst, GroupFilterSorting sortType, GroupFilterSortDirection sortDirection) where T : VM_AnimeGroup_User
+        {
+            Expression<Func<T, object>> selector;
+
+            switch (sortType)
+            {
+                case GroupFilterSorting.AniDBRating:
+                    selector = c => c.Stat_AniDBRating;
+                    break;
+                case GroupFilterSorting.EpisodeAddedDate:
+                    selector = c => c.EpisodeAddedDate;
+                    break;
+                case GroupFilterSorting.EpisodeAirDate:
+                    selector = c => c.LatestEpisodeAirDate;
+                    break;
+                case GroupFilterSorting.EpisodeWatchedDate:
+                    selector = c => c.WatchedDate;
+                    break;
+                case GroupFilterSorting.GroupName:
+                    selector = c => c.GroupName;
+                    break;
+                case GroupFilterSorting.SortName:
+                    selector = c => c.SortName;
+                    break;
+                case GroupFilterSorting.MissingEpisodeCount:
+                    selector = c => c.MissingEpisodeCount;
+                    break;
+                case GroupFilterSorting.SeriesAddedDate:
+                    selector = c => c.Stat_SeriesCreatedDate;
+                    break;
+                case GroupFilterSorting.SeriesCount:
+                    selector = c => c.Stat_SeriesCount;
+                    break;
+                case GroupFilterSorting.UnwatchedEpisodeCount:
+                    selector = c => c.UnwatchedEpisodeCount;
+                    break;
+                case GroupFilterSorting.UserRating:
+                    selector = c => c.Stat_UserVoteOverall;
+                    break;
+                case GroupFilterSorting.Year:
+                    if (sortDirection == GroupFilterSortDirection.Asc)
+                        selector = c => c.Stat_AirDate_Min;
+                    else
+                        selector = c => c.Stat_AirDate_Max;
+                    break;
+                default:
+                    selector = c => c.GroupName;
+                    break;
+            }
+
+            if (lst.GetType().IsAssignableFrom(typeof(IOrderedQueryable<T>)))
+            {
+                IOrderedQueryable<T> n = (IOrderedQueryable<T>)lst;
+                if (sortDirection != GroupFilterSortDirection.Asc)
+                    return n.ThenByDescending(selector);
+                return n.ThenBy(selector);
+            }
+            if (sortDirection != GroupFilterSortDirection.Asc)
+                return lst.OrderByDescending(selector);
+            return lst.OrderBy(selector);
+            
+
+        }
         public static List<VM_AnimeGroup_User> GetAnimeGroupsForFilter(VM_GroupFilter groupFilter)
         {
             try
             {
                 List<VM_AnimeGroup_User> rawGrps = VM_ShokoServer.Instance.ShokoServices.GetAnimeGroupsForFilter(groupFilter.GroupFilterID,
                             VM_ShokoServer.Instance.CurrentUser.JMMUserID, false).CastList<VM_AnimeGroup_User>() ?? new List<VM_AnimeGroup_User>();
-                BaseConfig.MyAnimeLog.Write("Group Sort of "+groupFilter.GroupFilterName+" Criterias: "+groupFilter.SortingCriteria);
-                return groupFilter.SortGroups(rawGrps.AsQueryable()).ToList();
+                if (string.IsNullOrEmpty(groupFilter.SortingCriteria))
+                    groupFilter.SortingCriteria = "5;1";
+
+                IQueryable<VM_AnimeGroup_User> qr = rawGrps.AsQueryable();
+                qr = SortGroups(groupFilter, qr);
+                return qr.ToList();
             }
             catch (Exception ex)
             {

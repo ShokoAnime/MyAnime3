@@ -4079,15 +4079,15 @@ public class Script
               <Description>Image in upper right part</Description>
             </SectionParam>
             <SectionParam Name="Readme text">
-              <Value>Ths plugin requires JMM server to function, for setup instructions please visit:
+              <Value>Ths plugin requires Shoko Server to function, for setup instructions please visit:
 
 
-http://jmediamanager.org/jmmserver/setup
+http://docs.shokoanime.com/server/index.html 
 
 
 For more information on how to setup the plugin iself:
 
-http://jmediamanager.org/mediaportal/</Value>
+http://docs.shokoanime.com/myanime3/</Value>
               <ValueType>String</ValueType>
               <Description>The readme text</Description>
             </SectionParam>
@@ -4137,140 +4137,140 @@ http://jmediamanager.org/mediaportal/</Value>
     <Name>My Anime 3</Name>
     <Id>3d1787e3-d584-4e62-8530-cc79716c63dc</Id>
     <Author>Leo Werndly</Author>
-    <HomePage>http://www.shokoanime.com</HomePage>
-    <ForumPage>http://forum.team-mediaportal.com/threads/my-anime-3.107475/</ForumPage>
-    <UpdateUrl>http://www.shokoanime.com/files/stable/update.xml</UpdateUrl>
+    <HomePage>https://www.shokoanime.com</HomePage>
+    <ForumPage>https://forum.team-mediaportal.com/threads/my-anime-3.107475/</ForumPage>
+    <UpdateUrl>https://www.shokoanime.com/files/stable/update.xml</UpdateUrl>
     <Version>
       <Major>3</Major>
       <Minor>7</Minor>
       <Build>1</Build>
       <Revision>0</Revision>
     </Version>
-    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This plugin does not run independently, but instead relies on using JMM Server as a back-end.</ExtensionDescription>
-    <VersionDescription>View our changelog for release notes:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-http://shokoanime.com/changelog/</VersionDescription>
+    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This plugin does not run independently, but instead relies on using Shoko Server as a back-end.</ExtensionDescription>
+    <VersionDescription>View our changelog for release notes:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://www.shokoanime.com/files/stable/My_Anime_3_3.7.0.1.mpe1</OnlineLocation>
-    <ReleaseDate>2017-01-07T18:40:56</ReleaseDate>
+    <OnlineLocation>https://www.shokoanime.com/files/stable/My_Anime_3_3.7.1.0.mpe1</OnlineLocation>
+    <ReleaseDate>2017-12-24T18:40:56</ReleaseDate>
     <Tags />
     <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>
     <Params>

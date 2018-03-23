@@ -59,7 +59,7 @@ namespace Shoko.MyAnime3
                 Image off = ImageAllocator.LoadImageFastFromFile(GUIGraphicsContext.Skin + @"\Media\" + offstar);
                 Image on = ImageAllocator.LoadImageFastFromFile(GUIGraphicsContext.Skin + @"\Media\" + onstar);
                 int val = (int)Math.Floor(value);
-                string tmpfile = ((int)val).ToString(CultureInfo.InvariantCulture) + "_";
+                string tmpfile = onstar + "_" + ((int)val).ToString(CultureInfo.InvariantCulture) + "_";
 
                 for (int x = 0; x < 10; x++)
                 {

@@ -3200,6 +3200,16 @@ void UnSubClass()
             SetGUIProperty(GuiProperty.SeriesGroup_RatingVoteCount, totalVotes.ToString(Globals.Culture));
             SetGUIProperty(GuiProperty.SeriesGroup_Rating, rating);
 
+            // Image Rankings
+            if (dummyStarOnPlaceholder != null && dummyStarOffPlaceholder != null)
+            {
+                string im = Logos.buildRating((double)AniDBRating, dummyStarOffPlaceholder.FileName,
+                    dummyStarOnPlaceholder.FileName,
+                    dummyStarOnPlaceholder.Width, dummyStarOnPlaceholder.Height);
+                SetGUIProperty(GuiProperty.RatingImage, im);
+            }
+
+
             // set watched/unavailable flag
             if (dummyIsWatched != null) dummyIsWatched.Visible = grp.UnwatchedEpisodeCount == 0;
 

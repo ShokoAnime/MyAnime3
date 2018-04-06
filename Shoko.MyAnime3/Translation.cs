@@ -583,7 +583,7 @@ namespace Shoko.MyAnime3
         public static string uTorrent="uTorrent";
         public static string Version = "Version";
         public static string ViewSeriesInfo = "View Series Info";
-        public static string Votes = "Votes";
+        public static string Votes = "votes";
 
 
         public static string Year = "Year";

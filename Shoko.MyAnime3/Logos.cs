@@ -59,17 +59,17 @@ namespace Shoko.MyAnime3
                 Image off = ImageAllocator.LoadImageFastFromFile(GUIGraphicsContext.Skin + @"\Media\" + offstar);
                 Image on = ImageAllocator.LoadImageFastFromFile(GUIGraphicsContext.Skin + @"\Media\" + onstar);
                 int val = (int)Math.Floor(value);
-                string tmpfile = ((int)val).ToString(CultureInfo.InvariantCulture) + "_";
+                string tmpfile = onstar + "_" + ((int)val).ToString(CultureInfo.InvariantCulture) + "_";
 
                 for (int x = 0; x < 10; x++)
                 {
                     if (x < val)
                     {
-                        g.DrawImageUnscaled(on, x * width, 0);
+                        g.DrawImage(on, new Rectangle(x * width, 0, width, height), new Rectangle(0, 0, on.Width, on.Height), GraphicsUnit.Pixel);
                     }
                     if (x >= val)
                     {
-                        g.DrawImageUnscaled(off, x * width, 0);
+                        g.DrawImage(off, new Rectangle(x * width, 0, width, height), new Rectangle(0, 0, off.Width, off.Height), GraphicsUnit.Pixel);
                     }
                     if (x == val)
                     {
@@ -77,8 +77,9 @@ namespace Shoko.MyAnime3
                         tmpfile += sub;
                         if (sub > 0)
                         {
+                            var subSrc = (int)((value - val) * on.Width);
                             g.DrawImage(on, new Rectangle(x * width, 0, sub, height),
-                                new Rectangle(0, 0, sub, height), GraphicsUnit.Pixel);
+                                new Rectangle(0, 0, subSrc, on.Height), GraphicsUnit.Pixel);
                         }
                     }
                 }

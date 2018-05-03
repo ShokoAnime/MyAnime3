@@ -41,8 +41,8 @@ namespace Shoko.MyAnime3
 		}
 
 		// All the episode overrides for this anime
-		private List<CrossRef_AniDB_TvDB_Episode> crossRefTvDBEpisodes = null;
-		public List<CrossRef_AniDB_TvDB_Episode> CrossRefTvDBEpisodes
+		private List<CrossRef_AniDB_TvDB_Episode_Override> crossRefTvDBEpisodes = null;
+		public List<CrossRef_AniDB_TvDB_Episode_Override> CrossRefTvDBEpisodes
 		{
 			get
 			{
@@ -62,7 +62,7 @@ namespace Shoko.MyAnime3
 				if (dictTvDBCrossRefEpisodes == null)
 				{
 					dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
-					foreach (CrossRef_AniDB_TvDB_Episode xrefEp in CrossRefTvDBEpisodes)
+					foreach (CrossRef_AniDB_TvDB_Episode_Override xrefEp in CrossRefTvDBEpisodes)
 						dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
 				}
 				return dictTvDBCrossRefEpisodes;

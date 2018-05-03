@@ -265,7 +265,7 @@ namespace Shoko.MyAnime3.Windows
 
             List<GUIListItem> listItems = new List<GUIListItem>();
 
-            foreach (VM_VideoLocal locFile in unlinkedVideos)
+            foreach (VM_VideoLocal locFile in unlinkedVideos.OrderByDescending(a => a.DateTimeCreated))
             {
                 GUIListItem itm = new GUIListItem(locFile.FileName);
                 itm.TVTag = locFile;

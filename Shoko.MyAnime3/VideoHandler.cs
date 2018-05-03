@@ -383,7 +383,7 @@ namespace Shoko.MyAnime3
             string fname = Path.GetFileNameWithoutExtension(fullname);
             if (p.Streams != null)
             {
-                foreach (Shoko.Models.PlexAndKodi.Stream s in p.Streams.Where(a => a.File != null && a.StreamType == "3"))
+                foreach (Shoko.Models.PlexAndKodi.Stream s in p.Streams.Where(a => a.File != null && a.StreamType == 3))
                 {
                     string extension = Path.GetExtension(s.File);
                     string filePath = Path.Combine(Path.GetTempPath(), Path.GetDirectoryName(fullname));

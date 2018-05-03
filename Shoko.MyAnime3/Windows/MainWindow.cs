@@ -3784,7 +3784,7 @@ void UnSubClass()
         {
             if (ser.CrossRefAniDBMAL != null)
                 foreach (CrossRef_AniDB_MAL xref in ser.CrossRefAniDBMAL)
-                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(xref.AnimeID, xref.StartEpisodeType, xref.StartEpisodeNumber);
+                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(xref.AnimeID, malID, xref.StartEpisodeType, xref.StartEpisodeNumber);
 
             string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMAL(animeID, malID, malTitle, 1, 1);
             if (res.Length > 0)
@@ -4591,7 +4591,7 @@ void UnSubClass()
             cmenu.AddAction(Translation.RemoveMALAssociation, () =>
             {
                 foreach (CrossRef_AniDB_MAL xref in ser.CrossRefAniDBMAL)
-                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(xref.AnimeID, xref.StartEpisodeType, xref.StartEpisodeNumber);
+                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(xref.AnimeID, xref.MALID, xref.StartEpisodeType, xref.StartEpisodeNumber);
             });
             return cmenu.Show();
         }

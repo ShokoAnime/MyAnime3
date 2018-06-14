@@ -167,10 +167,6 @@ namespace Shoko.MyAnime3.Extensions
             return traktEpisodeVm.EpisodeImage;
         }
         */
-        public static string GetOverview(this CL_MALAnime_Response malSearchResultVm)
-        {
-            return Utils.ReparseDescription(malSearchResultVm.synopsis);
-        }
 
         public static string GetPrettyDescription(this CL_GroupVideoQuality CL_GroupVideoQuality)
         {

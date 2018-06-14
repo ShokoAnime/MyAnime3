@@ -309,7 +309,7 @@ namespace Shoko.MyAnime3.Windows
 
         private static string StaticGetPropertyName(string which)
         {
-            return SkinExtensions.BaseProperties + "." + which.Replace("_", ".").Replace("ñ", "_");
+            return SkinExtensions.BaseProperties + "." + which.Replace("_", ".").Replace("Ã±", "_");
         }
 
         public static void StaticSetGUIProperty(GuiProperty which, string value)
@@ -3780,19 +3780,6 @@ void UnSubClass()
             ShokoServerHelper.GetSeries(ser.AnimeSeriesID);
         }
 
-        private void LinkAniDBToMAL(VM_AnimeSeries_User ser, int animeID, int malID, string malTitle)
-        {
-            if (ser.CrossRefAniDBMAL != null)
-                foreach (CrossRef_AniDB_MAL xref in ser.CrossRefAniDBMAL)
-                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(xref.AnimeID, malID, xref.StartEpisodeType, xref.StartEpisodeNumber);
-
-            string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMAL(animeID, malID, malTitle, 1, 1);
-            if (res.Length > 0)
-                Utils.DialogMsg(Translation.Error, res);
-
-            ShokoServerHelper.GetSeries(ser.AnimeSeriesID);
-        }
-
         private ContextMenuAction SearchTheMovieDBMenu(VM_AnimeSeries_User ser, string previousMenu)
         {
             int aniDBID = ser.Anime.AnimeID;
@@ -3830,48 +3817,6 @@ void UnSubClass()
                 {
                     CL_MovieDBMovieSearch_Response local = res;
                     cmenu.AddAction(res.MovieName, () => LinkAniDBToMovieDB(ser, aniDbid, local.MovieID));
-                }
-                return cmenu.Show();
-            }
-            this.Alert(Translation.SearchResults, string.Empty, Translation.NoResultsFound);
-            return ContextMenuAction.Exit;
-        }
-
-        private ContextMenuAction SearchMALMenu(VM_AnimeSeries_User ser, string previousMenu)
-        {
-     
-
-            ContextMenu cmenu = new ContextMenu(Translation.SearchMAL, previousmenu: previousMenu);
-            cmenu.Add(Translation.SearchUsing + ": " + ser.Anime.FormattedTitle, () => SearchMAL(ser, ser.Anime.FormattedTitle, Translation.SearchMAL));
-            cmenu.Add(Translation.ManualSearch, () =>
-            {
-                searchText = ser.Anime.FormattedTitle;
-                if (Utils.DialogText(ref searchText, GetID))
-                    return SearchMAL(ser, searchText, Translation.SearchMAL);
-                return ContextMenuAction.Continue;
-            });
-            return cmenu.Show();
-        }
-
-        private ContextMenuAction SearchMAL(VM_AnimeSeries_User ser, string searchCriteria, string previousMenu)
-        {
-            if (searchCriteria.Length == 0)
-                return ContextMenuAction.Exit;
-
-            int aniDbid = ser.Anime.AnimeID;
-
-            List<CL_MALAnime_Response> malSearchResults = VM_ShokoServer.Instance.ShokoServices.SearchMAL(searchCriteria.Trim());
-
-
-            BaseConfig.MyAnimeLog.Write("Found {0} MAL results for {1}", malSearchResults.Count, searchCriteria);
-
-            if (malSearchResults.Count > 0)
-            {
-                ContextMenu cmenu = new ContextMenu(Translation.SearchResults, previousmenu: previousMenu);
-                foreach (CL_MALAnime_Response res in malSearchResults)
-                {
-                    CL_MALAnime_Response local = res;
-                    cmenu.AddAction(String.Format("{0} ({1} {2})", res.title, res.episodes, Translation.EpisodesShort), () => LinkAniDBToMAL(ser, aniDbid, local.id, local.title));
                 }
                 return cmenu.Show();
             }
@@ -3977,7 +3922,7 @@ void UnSubClass()
                     BaseConfig.MyAnimeLog.Write("Error during watch state change - series was null!");
                     ser = episode.AnimeSeries;
                 }
-                else                
+                else
                 {
                     VM_ShokoServer.Instance.ShokoServices.SetWatchedStatusOnSeries(ser.AnimeSeriesID, false,
                         episode.EpisodeNumber - 1, (int) ept, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
@@ -4078,13 +4023,11 @@ void UnSubClass()
 
             bool hasTvDbLink = ser.CrossRefAniDBTvDBV2.Count > 0 && ser.Anime.AniDB_AnimeCrossRefs != null && ser.Anime.AniDB_AnimeCrossRefs.TvDBCrossRefExists;
             bool hasMovieDbLink = ser.CrossRefAniDBMovieDB != null && ser.Anime.AniDB_AnimeCrossRefs != null && ser.Anime.AniDB_AnimeCrossRefs.MovieDBMovie != null;
-            bool hasMalLink = ser.CrossRefAniDBMAL != null && ser.CrossRefAniDBMAL.Count > 0;
 
             ContextMenu cmenu = new ContextMenu(currentMenu, previousmenu: previousMenu);
 
             string tvdbText = Translation.SearchTheTvDB;
             string moviedbText = Translation.SearchTheMovieDB;
-            string malText = Translation.SearchMAL;
 
             if (hasTvDbLink && ser.Anime.AniDB_AnimeCrossRefs != null)
                 tvdbText += string.Format(" ({0}: {1})", Translation.Current, ser.Anime.AniDB_AnimeCrossRefs.TvDBSeries[0].SeriesName);
@@ -4092,21 +4035,15 @@ void UnSubClass()
             if (hasMovieDbLink && ser.Anime.AniDB_AnimeCrossRefs != null)
                 moviedbText += string.Format(" ({0}: {1})", Translation.Current, ser.Anime.AniDB_AnimeCrossRefs.MovieDBMovie.MovieName);
 
-            if (hasMalLink)
-                malText += string.Format(" ({0}: {1})", Translation.Current, ser.CrossRefAniDBMAL.Count == 1 ? ser.CrossRefAniDBMAL[0].MALTitle : Translation.MultipleLinks);
-
             if (!hasMovieDbLink)
             {
                 cmenu.Add(tvdbText, () => SearchTheTvDBMenu(ser, currentMenu));
-                cmenu.Add(malText, () => SearchMALMenu(ser, currentMenu));
             }
 
             if (!hasTvDbLink)
                 cmenu.Add(moviedbText, () => SearchTheMovieDBMenu(ser, currentMenu));
             if (hasTvDbLink)
                 cmenu.Add(Translation.TheTVDB + " ...", () => ShowContextMenuTVDB(ser, currentMenu));
-            if (hasMalLink)
-                cmenu.Add(Translation.MAL + " ...", () => ShowContextMenuMAL(ser, currentMenu));
             if (hasMovieDbLink)
                 cmenu.Add(Translation.TheMovieDB + " ...", () => ShowContextMenuMovieDB(ser, currentMenu));
             return cmenu.Show();
@@ -4571,28 +4508,6 @@ void UnSubClass()
                 return ContextMenuAction.PreviousMenu;
             ContextMenu cmenu = new ContextMenu(displayName, previousMenu);
             cmenu.AddAction(Translation.RemoveMovieDBAssociation, () => VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBOther(ser.Anime.AnimeID, (int) CrossRefType.MovieDB));
-            return cmenu.Show();
-        }
-
-        private ContextMenuAction ShowContextMenuMAL(VM_AnimeSeries_User ser, string previousMenu)
-        {
-            GUIListItem currentitem = m_Facade.SelectedListItem;
-            if (currentitem == null)
-                return ContextMenuAction.Exit;
-            string displayName;
-
-            if (ser.CrossRefAniDBMAL != null && ser.CrossRefAniDBMAL.Count > 0)
-                displayName = ser.CrossRefAniDBMAL.Count == 1
-                    ? ser.CrossRefAniDBMAL[0].MALTitle
-                    : Translation.MultipleLinks;
-            else
-                return ContextMenuAction.PreviousMenu;
-            ContextMenu cmenu = new ContextMenu(displayName, previousmenu: previousMenu);
-            cmenu.AddAction(Translation.RemoveMALAssociation, () =>
-            {
-                foreach (CrossRef_AniDB_MAL xref in ser.CrossRefAniDBMAL)
-                    VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBMAL(xref.AnimeID, xref.MALID, xref.StartEpisodeType, xref.StartEpisodeNumber);
-            });
             return cmenu.Show();
         }
 

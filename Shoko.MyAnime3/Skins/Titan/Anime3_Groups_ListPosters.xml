@@ -169,7 +169,7 @@
 		<label>Year</label>
 		<id>0</id>
 		<posX>565</posX>
-		<posY>412</posY>
+		<posY>396</posY>
 		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
@@ -181,7 +181,31 @@
 		<label>#Anime3.SeriesGroup.Year</label>
 		<id>0</id>
 		<posX>798</posX>
-		<posY>412</posY>
+		<posY>396</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoLabel">
+		<description>Episodes Label</description>
+		<type>fadelabel</type>
+		<label>Episodes</label>
+		<id>0</id>
+		<posX>565</posX>
+		<posY>428</posY>
+		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
+		<animation effect="fade" time="250">WindowOpen</animation>
+		<animation effect="fade" time="250">WindowClose</animation>
+	  </control>
+
+	  <control Style="InfoValueSmall">
+		<description>Episodes Value</description>
+		<type>label</type>
+		<label>#Anime3.SeriesGroup.Episodes</label>
+		<id>0</id>
+		<posX>798</posX>
+		<posY>428</posY>
 		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
@@ -194,7 +218,7 @@
 		<label>Genre</label>
 		<id>0</id>
 		<posX>565</posX>
-		<posY>476</posY>
+		<posY>460</posY>
 		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
@@ -206,37 +230,37 @@
 		<label>#Anime3.SeriesGroup.Genre</label>
 		<id>0</id>
 		<posX>798</posX>
-		<posY>476</posY>
+		<posY>460</posY>
 		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
 
+
+
 	  <control Style="InfoLabel">
-		<description>Episodes Label</description>
+		<description>Last Air Date Label</description>
 		<type>fadelabel</type>
-		<label>Episodes</label>
+		<label>Last Air Date</label>
 		<id>0</id>
 		<posX>565</posX>
-		<posY>444</posY>
+		<posY>492</posY>
 		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
 
 	  <control Style="InfoValueSmall">
-		<description>Episodes Value</description>
+		<description>Last Air Date Value</description>
 		<type>label</type>
-		<label>#Anime3.SeriesGroup.Episodes</label>
+		<label>#Anime3.SeriesGroup.LastAirDate</label>
 		<id>0</id>
 		<posX>798</posX>
-		<posY>444</posY>
+		<posY>492</posY>
 		<visible>facadeview.list+[Control.IsVisible(1238)|Control.IsVisible(1237)|Control.IsVisible(1240)]</visible>
 		<animation effect="fade" time="250">WindowOpen</animation>
 		<animation effect="fade" time="250">WindowClose</animation>
 	  </control>
-
-
 	
 	
 	

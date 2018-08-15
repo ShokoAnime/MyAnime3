@@ -223,8 +223,10 @@ namespace Shoko.MyAnime3.Windows
             // Overview
             string overview = ep.EpisodeOverview;
             if (BaseConfig.Settings.HidePlot)
-                if (ep.EpisodeOverview.Trim().Length > 0 && ep.IsWatched())
-                    overview = "*** Hidden to prevent spoilers ***";
+            {
+                if (ep.EpisodeOverview.Trim().Length > 0 && !ep.IsWatched())
+                    overview = "*** " + Translation.HiddenToPreventSpoiles + " ***";
+            }
             setGUIProperty("Watching.Episode.Overview", overview);
 
             // File Info

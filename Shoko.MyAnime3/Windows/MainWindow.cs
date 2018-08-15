@@ -24,6 +24,7 @@ using Shoko.Models.TvDB;
 using Shoko.MyAnime3.ConfigFiles;
 using Shoko.MyAnime3.DataHelpers;
 using Shoko.MyAnime3.Events;
+using Shoko.MyAnime3.Extensions;
 using Shoko.MyAnime3.ImageManagement;
 using Shoko.MyAnime3.ViewModel;
 using Shoko.MyAnime3.ViewModel.Helpers;
@@ -286,7 +287,8 @@ namespace Shoko.MyAnime3.Windows
             RatingImage,
             CustomRatingImage,
             ModeToggleKey,
-            StartTextToggle
+            StartTextToggle,
+            SeriesGroup_LastAirDate,
         }
 
         #endregion
@@ -358,7 +360,7 @@ namespace Shoko.MyAnime3.Windows
         public MainWindow()
         {
             // get ID of windowplugin belonging to this setup
-            // enter your own unique code
+            // enter your own unique co
             GetID = Constants.PlugInInfo.ID;
 
             try
@@ -1046,6 +1048,9 @@ void UnSubClass()
 
         void ReportFacadeLoadingProgress(BackGroundLoadingArgumentType type, int indexArgument, object state)
         {
+            if (!workerFacade.IsBusy)
+                return;
+
             if (!workerFacade.CancellationPending)
             {
                 BackgroundFacadeLoadingArgument Arg = new BackgroundFacadeLoadingArgument();
@@ -3113,7 +3118,15 @@ void UnSubClass()
             SetGUIProperty(GuiProperty.SeriesGroup_Genre, grp.TagsFormatted);
             SetGUIProperty(GuiProperty.SeriesGroup_GenreShort, grp.TagsFormattedShort);
             SetGUIProperty(GuiProperty.SeriesGroup_Year, grp.YearFormatted);
-
+            DateTime? dt = grp.AllSeries.SelectMany(a => a.AllEpisodes.Where(b=>b.LocalFileCount>0)).Max(a => a.AniDB_AirDate);
+            if (dt.HasValue)
+            {
+                SetGUIProperty(GuiProperty.SeriesGroup_LastAirDate, dt.ToDateString());
+            }
+            else
+            {
+                ClearGUIProperty(GuiProperty.SeriesGroup_LastAirDate);
+            }
 
             decimal totalRating = 0;
             int totalVotes = 0;
@@ -3337,6 +3350,16 @@ void UnSubClass()
             ClearGUIProperty(GuiProperty.Subtitle);
             SetGUIProperty(GuiProperty.Description, ser.Description);
 
+            DateTime? dt = ser.AllEpisodes.Where(a=>a.LocalFileCount>0).Max(a => a.AniDB_AirDate);
+            if (dt.HasValue)
+            {
+                SetGUIProperty(GuiProperty.SeriesGroup_LastAirDate, dt.ToDateString());
+            }
+            else
+            {
+                ClearGUIProperty(GuiProperty.SeriesGroup_LastAirDate);
+            }
+
             // set info properties
             // most of these properties actually come from the anidb_anime record
             // we need to find all the series for this group
@@ -3490,7 +3513,7 @@ void UnSubClass()
             }
             else
             {
-                if (ep.EpisodeOverview.Trim().Length > 0 && ep.IsWatched())
+                if (ep.EpisodeOverview.Trim().Length > 0 && !ep.IsWatched())
                     SetGUIProperty(GuiProperty.Episode_Description, "*** " + Translation.HiddenToPreventSpoiles + " ***");
                 else if (!string.IsNullOrEmpty(ep.EpisodeOverview))
                     SetGUIProperty(GuiProperty.Episode_Description, ep.EpisodeOverview);

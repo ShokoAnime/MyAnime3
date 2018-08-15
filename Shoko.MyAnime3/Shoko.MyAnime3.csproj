@@ -93,8 +93,8 @@
     <Reference Include="Nancy.Rest.Client, Version=1.4.3.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.Rest.Client.1.4.3.9-beta\lib\net462\Nancy.Rest.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RemotePlugins">
       <HintPath>..\Dependencies\MP19_DLL\RemotePlugins.dll</HintPath>
@@ -234,9 +234,7 @@
     <Content Include="Skins\aMPed\Anime3_AnimeInfo.xml" />
     <Content Include="Skins\aMPed\Anime3_Calendar.xml" />
     <Content Include="Skins\aMPed\Anime3_Char.xml" />
-    <Content Include="Skins\aMPed\Anime3_Collection.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Skins\aMPed\Anime3_Collection.xml" />
     <Content Include="Skins\aMPed\Anime3_Dummy.xml" />
     <Content Include="Skins\aMPed\Anime3_Fanart.Backdrops.xml" />
     <Content Include="Skins\aMPed\Anime3_FanArt.xml" />
@@ -689,6 +687,8 @@ del anime3.*
 del Merge\Animetemp*
 del MA3_FFDShowAPI.*
 del Shoko.*
+del Dynamitey.*
+
 move Merge\* .
 rmdir Merge
 rmdir /S /Q de

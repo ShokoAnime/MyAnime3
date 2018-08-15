@@ -226,5 +226,8 @@ namespace Shoko.MyAnime3.Extensions
 
             return desc;
         }
+
+        public static string ToDateString(this DateTime? dt) => dt.HasValue ? dt.Value.ToString("dd MMM yyyy", Globals.Culture) : string.Empty;
+
     }
 }

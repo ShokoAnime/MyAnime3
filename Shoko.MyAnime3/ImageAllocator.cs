@@ -91,7 +91,7 @@ namespace Shoko.MyAnime3
 
         static string buildIdentifier(string name)
         {
-            return "[Anime2:" + name + "]";
+            return "[Anime3:" + name + "]";
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Shoko.MyAnime3
 
         public static string ExtractFullName(string identifier)
         {
-            String RegExp = @"\[Anime2:(.*)\]";
+            String RegExp = @"\[Anime3:(.*)\]";
             Regex Engine = new Regex(RegExp, RegexOptions.IgnoreCase);
             Match match = Engine.Match(identifier);
             if (match.Success)

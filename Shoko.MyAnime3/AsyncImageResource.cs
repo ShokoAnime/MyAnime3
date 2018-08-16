@@ -299,7 +299,7 @@ namespace Cornerstone.MP
 
         private string getIdentifier(string filename)
         {
-            return "[MyAnime3:" + filename.GetHashCode() + "]";
+            return "[Anime3:" + filename.GetHashCode() + "]";
         }
 
         /// <summary>

@@ -1501,8 +1501,10 @@ void UnSubClass()
                         {
                             ordererGroups.Add(group);
                         });
-                        Parallel.ForEach(ordererGroups, (group) =>
+                        Parallel.ForEach(ordererGroups, new ParallelOptions { MaxDegreeOfParallelism = Convert.ToInt32(Math.Ceiling((Environment.ProcessorCount * 0.75) * 1.0)) }, (group) =>
                         {
+                            if (workerFacade.CancellationPending)
+                                return;
                             string img = ImageAllocator.GetGroupImage(group, groupViewMode);
                             // Load Series Banners if WideBanners otherwise load Posters for Filmstrip/Coverflow
                             ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgLoading, groups.FindIndex(s => s.AnimeGroupID == group.AnimeGroupID), img);

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using Cornerstone.MP;
@@ -170,7 +171,7 @@ namespace Shoko.MyAnime3.Windows
         //private GUIFacadeControl.Layout episodeTypesViewMode = GUIFacadeControl.Layout.List; // List
         private readonly GUIFacadeControl.Layout episodesViewMode = GUIFacadeControl.Layout.List; // List
 
-        private List<GUIListItem> itemsForDelayedImgLoading;
+        private Dictionary<int, GUIListItem> itemsForDelayedImgLoading;
 
         private BackgroundWorker workerFacade;
         private readonly BackgroundWorker downloadImagesWorker = new BackgroundWorker();
@@ -868,6 +869,21 @@ void UnSubClass()
             }
         }
 
+        private void EndWorker()
+        {
+            lock (workerFacade)
+            {
+                if (workerFacade != null)
+                {
+                    if (workerFacade.IsBusy) // we have to wait - complete method will call LoadFacade again
+                    {
+                        if (!workerFacade.CancellationPending)
+                            workerFacade.CancelAsync();
+                    }
+                }
+            }
+        }
+
         void prepareLoadFacade()
         {
             try
@@ -914,11 +930,12 @@ void UnSubClass()
                 {
                     case BackGroundLoadingArgumentType.ListFullElement:
                     case BackGroundLoadingArgumentType.ListElementForDelayedImgLoading:
-                        List<GUIListItem> ls = arg.Argument as List<GUIListItem>;
+                        Dictionary<int, GUIListItem> ls = arg.Argument as Dictionary<int,GUIListItem>;
                         if (m_Facade != null && ls != null && ls.Count > 0)
                         {
-                            foreach (GUIListItem gli in ls)
+                            foreach (int idx in ls.Keys)
                             {
+                                GUIListItem gli = ls[idx];
                                 //BaseConfig.MyAnimeLog.Write("workerFacade_ProgressChanged - ListElementForDelayedImgLoading");
                                 // Messages are not recieved in OnMessage for Filmstrip, instead subscribe to OnItemSelected
                                 if (m_Facade.CurrentLayout == GUIFacadeControl.Layout.Filmstrip || m_Facade.CurrentLayout == GUIFacadeControl.Layout.CoverFlow)
@@ -929,8 +946,8 @@ void UnSubClass()
                                 if (arg.Type == BackGroundLoadingArgumentType.ListElementForDelayedImgLoading)
                                 {
                                     if (itemsForDelayedImgLoading == null)
-                                        itemsForDelayedImgLoading = new List<GUIListItem>();
-                                    itemsForDelayedImgLoading.Add(gli);
+                                        itemsForDelayedImgLoading = new Dictionary<int, GUIListItem>();
+                                    itemsForDelayedImgLoading.Add(idx, gli);
                                 }
                             }
                             if (m_Facade.SelectedListItemIndex < 1)
@@ -942,24 +959,41 @@ void UnSubClass()
                         break;
                     case BackGroundLoadingArgumentType.DelayedImgLoading:
                     {
+                        string image = arg.Argument as string;
+                        BaseConfig.MyAnimeLog.Write(string.Format("DelayedImgLoading: Number:" + arg.IndexArgument + " Image: " + image));
                         if (itemsForDelayedImgLoading != null && itemsForDelayedImgLoading.Count > arg.IndexArgument)
                         {
-                            string image = arg.Argument as string;
-                            itemsForDelayedImgLoading[arg.IndexArgument].IconImageBig = image;
+                            GUIListItem guiListItem = null;
+                            if (itemsForDelayedImgLoading.TryGetValue(arg.IndexArgument, out guiListItem))
+                            {
+                                if (guiListItem != null)
+                                {
+                                    guiListItem.IconImage = image;
+                                    guiListItem.IconImageBig = image;
+                                    guiListItem.ThumbnailImage = image;
+                                    //guiListItem.RefreshCoverArt();
+                                }
+                                else
+                                {
+                                    BaseConfig.MyAnimeLog.Write(string.Format("DelayedImgLoading: GUIListItem was null. Skipping index: {0}", arg.IndexArgument));
+                                }
+                            }
+                            else
+                            {
+                                BaseConfig.MyAnimeLog.Write(string.Format("DelayedImgLoading: Could not find GUIListItem with index: {0}", arg.IndexArgument));
+                            }
                         }
-                    }
-                        break;
+                        }
+                    break;
 
                     case BackGroundLoadingArgumentType.DelayedImgInit:
                         itemsForDelayedImgLoading = null;
                         break;
                     case BackGroundLoadingArgumentType.SetFacadeMode:
-                        //GUIFacadeControl.Layout viewMode = (GUIFacadeControl.Layout) arg.Argument;
-                        //setFacadeMode(viewMode);
+                        SetFacade();
                         break;
 
                     case BackGroundLoadingArgumentType.ElementSelection:
-                    {
                         // thread told us which element it'd like to select
                         // however the user might have already started moving around
                         // if that is the case, we don't select anything
@@ -968,8 +1002,13 @@ void UnSubClass()
                             m_Facade.Focus = true;
                             SelectItem(arg.IndexArgument);
                         }
-                    }
                         break;
+                    case BackGroundLoadingArgumentType.PromptRating:
+                        VM_AnimeSeries_User ser = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(arg.IndexArgument, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                        if (ser != null)
+                            Utils.PromptToRateSeriesOnCompletion(ser);
+                        break;
+
                 }
             }
             catch (Exception ex)
@@ -1048,16 +1087,12 @@ void UnSubClass()
 
         void ReportFacadeLoadingProgress(BackGroundLoadingArgumentType type, int indexArgument, object state)
         {
-            if (!workerFacade.IsBusy)
-                return;
-
             if (!workerFacade.CancellationPending)
             {
                 BackgroundFacadeLoadingArgument Arg = new BackgroundFacadeLoadingArgument();
                 Arg.Type = type;
                 Arg.IndexArgument = indexArgument;
                 Arg.Argument = state;
-
                 workerFacade.ReportProgress(0, Arg);
             }
         }
@@ -1106,7 +1141,7 @@ void UnSubClass()
                 bool delayedImageLoading = false;
                 List<VM_AnimeGroup_User> groups = null;
                 List<VM_GroupFilter> groupFilters ;
-                List<GUIListItem> list = new List<GUIListItem>();
+                Dictionary<int, GUIListItem> list = new Dictionary<int, GUIListItem>();
                 BackGroundLoadingArgumentType type = BackGroundLoadingArgumentType.None;
                 History level = GetCurrent();
 
@@ -1127,9 +1162,8 @@ void UnSubClass()
                     }
 
                     // text as usual
-                    ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0,
-                        GUIFacadeControl.Layout.List);
-
+                    ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.SetFacadeMode, 0, null);
+                    
                     if (workerFacade.CancellationPending)
                         return;
 
@@ -1152,7 +1186,7 @@ void UnSubClass()
                             if (selected != null && grpFilter.GroupFilterID != 0 && selected.GroupFilterID != 0 &&
                                 grpFilter.GroupFilterID == selected.GroupFilterID)
                                 selectedIndex = count;
-                            list.Add(item);
+                            list.Add(groupFilters.FindIndex(a=>a.GroupFilterID==grpFilter.GroupFilterID), item);
                         }
                         catch (Exception ex)
                         {
@@ -1231,7 +1265,7 @@ void UnSubClass()
                                 selectedIndex = count;
 
                             if (workerFacade.CancellationPending) return;
-                            list.Add(item);
+                            list.Add(groups.FindIndex(a=>a.AnimeGroupID==grp.AnimeGroupID), item);
                             count++;
                         }
                         catch (Exception ex)
@@ -1304,7 +1338,7 @@ void UnSubClass()
                             if (selected is VM_AnimeGroup_User && ((VM_AnimeGroup_User) selected).AnimeGroupID == grp.AnimeGroupID)
                                 selectedIndex = count;
                             if (workerFacade.CancellationPending) return;
-                            list.Add(item);
+                            list.Add(subGroups.FindIndex(a=>a.AnimeGroupID==grp.AnimeGroupID),item);
                             count++;
                         }
                         catch (Exception ex)
@@ -1329,7 +1363,7 @@ void UnSubClass()
                             if (selected is VM_AnimeSeries_User && ((VM_AnimeSeries_User) selected).AnimeSeriesID == ser.AnimeSeriesID)
                                 selectedIndex = count;
                             if (workerFacade.CancellationPending) return;
-                            list.Add(item);
+                            list.Add(seriesList.FindIndex(a=>a.AnimeSeriesID==ser.AnimeSeriesID)+subGroups.Count, item);
                             count++;
                         }
                         catch (Exception ex)
@@ -1360,7 +1394,7 @@ void UnSubClass()
                         SetEpisodeTypeListItem(ref item, anEpType);
                         if (selected != null && selected.EpisodeType == anEpType.EpisodeType)
                             selectedIndex = count;
-                        list.Add(item);
+                        list.Add(asvm.EpisodeTypesToDisplay.FindIndex(a=>a.EpisodeType==anEpType.EpisodeType), item);
                         count++;
                     }
                 }
@@ -1413,7 +1447,7 @@ void UnSubClass()
                             }
 
                             if (workerFacade.CancellationPending) return;
-                            list.Add(item);
+                            list.Add(episodeList.FindIndex(a=>a.AnimeEpisodeID==ep.AnimeEpisodeID), item);
                         }
                         catch (Exception ex)
                         {
@@ -1438,10 +1472,14 @@ void UnSubClass()
                 BaseConfig.MyAnimeLog.Write("Report ItemToAutoSelect: {0}", selectedIndex.ToString());
 
                 #endregion
+                    
 
                 ReportFacadeLoadingProgress(type, selectedIndex, list);
 
-                SetFacade();
+                if (animeSeriesIDToBeRated.HasValue && BaseConfig.Settings.DisplayRatingDialogOnCompletion)
+                {
+                    ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.PromptRating, animeSeriesIDToBeRated.Value, null);
+                }
 
                 #region DelayedImageLoading
 
@@ -1449,104 +1487,37 @@ void UnSubClass()
                 // since the other views will not have enough items to be concerned about
 
 
+
+
                 if (delayedImageLoading && groups != null)
                 {
                     BaseConfig.MyAnimeLog.Write("delayedImageLoading: Started");
-                    // This is a perfect oportunity to use all cores on the machine
-                    // we queue each image up to be loaded, resize and put them into memory in parallel
 
-
-                    // Set the amount of threads to the amount of CPU cores in the machine.
-                    int MaxThreads = Environment.ProcessorCount;
-                    // This keeps track of how many of the threads have terminated
-                    int done = 0;
-                    // Pool of threads.
-                    List<Thread> ImageLoadThreadPool = new List<Thread>();
-                    // List of Groups in the facade. This is checked by the threads to get groups to load fanart for.
-                    List<KeyValuePair<VM_AnimeGroup_User, int>> FacadeGroups = new List<KeyValuePair<VM_AnimeGroup_User, int>>();
-
-                    // Fill the list of groups in order of their proximity to the current selection. This makes the groups currently shown load first, and then further out.
-                    FacadeHelper.ProximityForEach(groups, selectedIndex, delegate(VM_AnimeGroup_User grp, int currIndex) { FacadeGroups.Add(new KeyValuePair<VM_AnimeGroup_User, int>(grp, currIndex)); });
-
-
-                    // Create number of threads based on MaxThreads. MaxThreads should be the amount of CPU cores.
-                    for (int i = 0; i < MaxThreads; i++)
+                    int done = 0;                   // we need to know later when all threads are done
+                    try
                     {
-                        // Create a new thread. The function it should run is written here using the delegate word.
-                        Thread thread = new Thread(new ThreadStart(delegate
+                        List<VM_AnimeGroup_User> ordererGroups = new List<VM_AnimeGroup_User>();
+                        FacadeHelper.ProximityForEach(groups, selectedIndex, delegate(VM_AnimeGroup_User group, int currIndex)
                         {
-                            // The number of groups left to load in the facade. Is renewed on each loop of the threads do while loop.
-                            int FacadeGroupCount ;
-
-                            do
-                            {
-                                // create varible to store the group.
-                                KeyValuePair<VM_AnimeGroup_User, int> group;
-
-                                // The FacadeGroups list is accessed by all threads, therefor it is in a locked section to make it thread safe.
-                                lock (FacadeGroups)
-                                {
-                                    // Dtore into the facadeGroupCount varible which is in the threads scope.
-                                    FacadeGroupCount = FacadeGroups.Count;
-
-                                    // If there are groups left to load, and the facade is not stopping, load a group and remove it from the list.
-                                    if (FacadeGroupCount > 0 && !workerFacade.CancellationPending)
-                                    {
-                                        group = FacadeGroups[0];
-                                        FacadeGroups.RemoveAt(0);
-                                    }
-                                    // Ether their are no more groups or the facade is stopping, so we should exit while marking us as finished.
-                                    else
-                                    {
-                                        Interlocked.Increment(ref done);
-                                        return;
-                                    }
-                                }
-
-                                // If a group was loaded, get it's image, then report that the image is loaded to the facadeworker.
-                                // the facade worker (which is another thread itself) will handle putting the image into the facade for us.
-                                if (group.Key != null)
-                                {
-                                    string img = ImageAllocator.GetGroupImage(group.Key, groupViewMode);
-                                    ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgLoading, group.Value, img);
-                                }
-                            }
-                            // while there are still groups left to load, repeat loop.
-                            while (FacadeGroupCount > 0);
-                        }));
-
-                        // Make the thread a lower priority. Everything else should have a higher priority then this background image loading.
-                        thread.Priority = ThreadPriority.BelowNormal;
-
-                        // add this thread to the thread pool.
-                        ImageLoadThreadPool.Add(thread);
+                            ordererGroups.Add(group);
+                        });
+                        Parallel.ForEach(ordererGroups, (group) =>
+                        {
+                            string img = ImageAllocator.GetGroupImage(group, groupViewMode);
+                            // Load Series Banners if WideBanners otherwise load Posters for Filmstrip/Coverflow
+                            ReportFacadeLoadingProgress(BackGroundLoadingArgumentType.DelayedImgLoading, groups.FindIndex(s => s.AnimeGroupID == group.AnimeGroupID), img);
+                        });
                     }
-
-                    // for each thread in the thread pool, start it.
-                    foreach (Thread thread in ImageLoadThreadPool)
-                        thread.Start();
-
-                    // Do not continue untill all the image loading threads are finished. Currently we are in the facade background worker thread. The image loading threads call
-                    // this thread's ProgressChanged function, which then adds the images that were loaded in to the facade. If we go beyond this point before the image loading
-                    // threads finish, then that ProgressChanged function might not exisit any more since this facade background worker thread could have finished already.
-
-                    //while (done < MaxThreads)
-                    //    Thread.Sleep(500);
+                    catch (Exception exs)
+                    {
+                        BaseConfig.MyAnimeLog.Write("Delayed ImgLoad Exception: " + exs.Message);
+                    }
 
                     BaseConfig.MyAnimeLog.Write("ImageLoad: Finished");
                 }
 
                 #endregion
 
-                if (animeSeriesIDToBeRated.HasValue && BaseConfig.Settings.DisplayRatingDialogOnCompletion)
-                {
-                    VM_AnimeSeries_User ser = (VM_AnimeSeries_User) VM_ShokoServer.Instance.ShokoServices.GetSeries(animeSeriesIDToBeRated.Value,
-                        VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                    if (ser != null)
-                        Utils.PromptToRateSeriesOnCompletion(ser);
-
-                    animeSeriesIDToBeRated = null;
-                }
             }
 
             catch (Exception e)
@@ -2239,7 +2210,7 @@ void UnSubClass()
         public override void DeInit()
         {
             BaseConfig.MyAnimeLog.Write("DeInit");
-
+            EndWorker();
             base.DeInit();
         }
 
@@ -3882,11 +3853,8 @@ void UnSubClass()
                 episode.ToggleWatchedStatus(!isWatched);
                 LoadFacade();
             });
-            VM_AnimeSeries_User ser = GetTopSerie();
-            VM_AnimeEpisodeType e = GetTopEpType();
-            EpisodeType ept = EpisodeType.Episode;
-            if (e != null)
-                ept = e.EpisodeType;
+            VM_AnimeSeries_User ser = episode.AnimeSeries;
+            EpisodeType ept = episode.EpisodeTypeEnum;
             cmenu.AddAction(Translation.MarkAllAsWatched, () =>
             {
                 if (ser == null)
@@ -4825,7 +4793,8 @@ void UnSubClass()
         ElementSelection,
         SetFacadeMode,
         ListFullElement,
-        ListElementForDelayedImgLoading
+        ListElementForDelayedImgLoading,
+        PromptRating
     }
 
     public enum AniDBMyListSyncMode

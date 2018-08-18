@@ -35,8 +35,8 @@
 			<type>image</type>
 			<posX>0</posX>
 			<posY>0</posY>
-			<width>1280</width>
-			<height>720</height>
+			<width>1920</width>
+			<height>1080</height>
 			<texture>Background.png</texture>
 		</control>
 		
@@ -45,7 +45,7 @@
 			<type>image</type>
 			<posX>0</posX>
 			<posY>-20</posY>
-			<width>1280</width>
+			<width>1920</width>
 			<height>70</height>
 			<texture>MyAnime3\overlay_bar_top.png</texture>
 		</control>
@@ -55,7 +55,7 @@
 			<type>image</type>
 			<posX>0</posX>
 			<posY>670</posY>
-			<width>1280</width>
+			<width>1920</width>
 			<height>70</height>
 			<texture>MyAnime3\overlay_bar_bottom.png</texture>
 		</control>

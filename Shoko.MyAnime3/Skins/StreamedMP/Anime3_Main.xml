@@ -752,7 +752,7 @@
     <control Style="TVSeriesLabel">
       <type>label</type>
       <label>#Anime3.SeriesGroup.Year</label>
-      <posX>548</posX>
+      <posX>588</posX>
       <posY>908</posY>
       <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
     </control>
@@ -766,7 +766,7 @@
     <control Style="TVSeriesLabel">
       <type>label</type>
       <label>#Anime3.SeriesGroup.Episodes</label>
-      <posX>548</posX>
+      <posX>588</posX>
       <posY>946</posY>
       <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
     </control>
@@ -780,7 +780,7 @@
     <control Style="TVSeriesLabel">
       <type>label</type>
       <label>#Anime3.SeriesGroup.Rating</label>
-      <posX>548</posX>
+      <posX>588</posX>
       <posY>984</posY>
       <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
     </control>
@@ -790,6 +790,20 @@
       <posX>878</posX>
       <posY>984</posY>
       <textcolor>F7FE2E</textcolor>
+      <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
+    </control>
+    <control Style="TVSeriesTitle">
+      <type>label</type>
+      <label>LAST AIR DATE</label>
+      <posX>352</posX>
+      <posY>1019</posY>
+      <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
+    </control>
+    <control Style="TVSeriesLabel">
+      <type>label</type>
+      <label>#Anime3.SeriesGroup.LastAirDate</label>
+      <posX>588</posX>
+      <posY>1022</posY>
       <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)+facadeview.list]</visible>
     </control>
     <!-- *****************************************INFORMATION IN FILMSTRIP VIEW***************************************************************** -->
@@ -983,7 +997,7 @@
       <id>0</id>
       <label>#Anime3.SeriesGroup.Rating</label>
       <type>label</type>
-      <posX>890</posX>
+      <posX>990</posX>
       <posY>975</posY>
       <width>368</width>
       <visible>Control.IsVisible(1242)+Control.IsVisible(1238)</visible>
@@ -993,10 +1007,30 @@
       <id>0</id>
       <label>#Anime3.SeriesGroup.MyRating</label>
       <type>label</type>
-      <posX>890</posX>
-      <posY>1005</posY>
+      <posX>1300</posX>
+      <posY>975</posY>
       <width>368</width>
       <textcolor>F7FE2E</textcolor>
+      <visible>Control.IsVisible(1242)+Control.IsVisible(1238)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="TVSeriesTitle">
+      <id>0</id>
+      <label>LAST AIR DATE</label>
+      <type>label</type>
+      <posX>660</posX>
+      <posY>1005</posY>
+      <width>225</width>
+      <visible>Control.IsVisible(1242)+Control.IsVisible(1238)</visible>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+    </control>
+    <control Style="TVSeriesLabel">
+      <id>0</id>
+      <label>#Anime3.SeriesGroup.LastAirDate</label>
+      <type>label</type>
+      <posX>990</posX>
+      <posY>1005</posY>
+      <width>368</width>
       <visible>Control.IsVisible(1242)+Control.IsVisible(1238)</visible>
       <animation effect="fade" time="250" delay="0">WindowClose</animation>
     </control>

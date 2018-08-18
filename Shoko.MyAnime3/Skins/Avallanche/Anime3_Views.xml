@@ -161,7 +161,7 @@
 	<control Style="InfoLabel">
 		<description>Genre Label</description>
 		<type>label</type>
-		<label>#TVSeries.Translation.Genre.Label</label>
+		<label>Genre</label>
 		<id>0</id>
 		<posX>714</posX>
 		<posY>952</posY>
@@ -176,7 +176,7 @@
 		<type>fadelabel</type>
 	 	<label>#Anime3.SeriesGroup.Genre</label>
 		<id>0</id>
-		<posX>882</posX>
+		<posX>900</posX>
 		<posY>952</posY>
 	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
@@ -202,13 +202,39 @@
 		<type>fadelabel</type>
 	  	<label>#Anime3.SeriesGroup.Episodes</label>
 		<id>0</id>
-		<posX>882</posX>
+		<posX>900</posX>
 		<posY>990</posY>
 	  	<visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
 		<animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
 		<animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
 	</control>
+
+    <control Style="InfoLabel">
+      <description>Last Air Date Label</description>
+      <type>fadelabel</type>
+      <label>Last Air Date</label>
+      <id>0</id>
+      <posX>714</posX>
+      <posY>1028</posY>
+      <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+      <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+      <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+      <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>
+
+    <control Style="InfoValueSmall">
+      <description>Last Air Date Value</description>
+      <type>label</type>
+      <label>#Anime3.SeriesGroup.LastAirDate</label>
+      <id>0</id>
+      <posX>900</posX>
+      <posY>1028</posY>
+      <visible>Control.IsVisible(1240)|Control.IsVisible(1237)|[Control.IsVisible(1238)]</visible>
+      <animation effect="fade" start="0" end="100" time="300" delay="350">WindowOpen</animation>
+      <animation effect="fade" start="100" end="0" time="0" delay="0">WindowClose</animation>
+      <animation effect="fade" start="0" end="100" time="300" delay="350" reversible="false">visible</animation>
+    </control>  
 	
 	<control>
 		<type>textboxscrollup</type>

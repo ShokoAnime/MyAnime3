@@ -59,8 +59,8 @@
 		<id>1</id>
 		<posX>0</posX>
 		<posY>0</posY>
-		<width>1280</width>
-		<height>720</height>
+		<width>1920</width>
+		<height>1080</height>
 		<texture>Background.png</texture>
 	  </control>
 
@@ -69,8 +69,8 @@
 			<type>image</type>
 			<posX>0</posX>
 			<posY>0</posY>
-			<width>1280</width>
-			<height>720</height>
+			<width>1920</width>
+			<height>1080</height>
 			<texture>filmstrip_overlay.png</texture>
 		</control>
 
@@ -301,7 +301,7 @@
       <id>0</id>
       <posX>28</posX>
       <posX>0</posX>
-      <width>1280</width>
+      <width>1920</width>
       <posY>250</posY>
       <font>font14</font>
       <textcolor>ffffffff</textcolor>

@@ -17,8 +17,8 @@
 	  <id>0</id>
 	  <posX>0</posX>
 	  <posY>0</posY>
-	  <width>1280</width>
-	  <height>720</height>
+    <width>1920</width>
+    <height>1080</height>
 	  <texture>Background.png</texture>
 	</control>
 
@@ -28,8 +28,8 @@
 		  <id>524</id>
 		  <posX>0</posX>
 		  <posY>0</posY>
-		  <width>1280</width>
-		  <height>720</height>
+		  <width>1920</width>
+		  <height>1080</height>
 		  <dimColor>50ffffff</dimColor>
 		  <texture>#Anime3.Fanart.1</texture>
 		  <visible>facadeview.list|facadeview.coverflow</visible>
@@ -45,7 +45,7 @@
 	  <id>0</id>
 	  <posX>-2</posX>
 	  <posY>0</posY>
-	  <width>1284</width>
+	  <width>1920</width>
 	  <height>722</height>
 	  <texture>mainoverlay.png</texture>
 	  <visible>facadeview.list</visible>
@@ -57,8 +57,8 @@
 	  <type>image</type>
 	  <posX>0</posX>
 	  <posY>0</posY>
-	  <width>1280</width>
-	  <height>720</height>
+	  <width>1920</width>
+	  <height>1080</height>
 	  <texture>filmstrip_overlay.png</texture>
 	  <visible>facadeview.filmstrip|facadeview.coverflow</visible>
 	</control>
@@ -115,7 +115,7 @@
 		  <id>640</id>
 		<posX>310</posX>
 		<posY>247</posY>
-		<width>900</width>
+		<width>1920</width>
 		<font>font18</font>
 		<textcolor>ffFFFFFF</textcolor>
 		  <label>Groups: #Anime3.GroupFilter.GroupCount</label>
@@ -133,7 +133,7 @@
       <description>background</description>
       <type>image</type>
       <id>0</id>
-      <posX>720</posX>
+      <posX>1080</posX>
       <posY>110</posY>
       <width>495</width>
       <height>85</height>
@@ -325,7 +325,7 @@
 		<id>50</id>
 		<posX>13</posX>
 		<posY>92</posY>
-		<width>1280</width>
+		<width>1920</width>
 		<height>500</height>
 		<!-- up/down buttons & page # -->
 		<onleft>12</onleft>
@@ -368,8 +368,8 @@
           <id>50</id>
           <posX>0</posX>
           <posY>200</posY>
-          <width>1280</width>
-          <height>720</height>
+          <width>1920</width>
+          <height>1080</height>
           <onup>12</onup>
           <onleft>12</onleft>
           <selectedCard>0</selectedCard>
@@ -383,14 +383,14 @@
           <selectedOffsetY>0</selectedOffsetY>
           <speed>8</speed>
           <backgroundHeight>250</backgroundHeight>
-          <backgroundWidth>1280</backgroundWidth>
+          <backgroundWidth>1920</backgroundWidth>
           <backgroundX>0</backgroundX>
           <backgroundY>470</backgroundY>
           <backgroundDiffuse>FF000000</backgroundDiffuse>
           <background>-</background>
           <showBackground>yes</showBackground>
-          <foregroundHeight>720</foregroundHeight>
-          <foregroundWidth>1280</foregroundWidth>
+          <foregroundHeight>1080</foregroundHeight>
+          <foregroundWidth>1920</foregroundWidth>
           <foregroundX>0</foregroundX>
           <foregroundY>0</foregroundY>
           <foregroundDiffuse>FF000000</foregroundDiffuse>
@@ -436,7 +436,7 @@
 	  <buttonX>0</buttonX>
 	  <buttonY>0</buttonY>
 	  <buttonwidth>106</buttonwidth>
-	  <buttonheight>720</buttonheight>
+	  <buttonheight>1080</buttonheight>
 	  <textureFocus>-</textureFocus>
 	  <textureNoFocus>-</textureNoFocus>
 	  <width>568</width>

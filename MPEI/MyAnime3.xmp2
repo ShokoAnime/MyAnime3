@@ -1873,6 +1873,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{9b58d4de-3671-43cf-8647-68cae5ae3fdd}-user.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\MyAnime3\user.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Titan\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3d30be96-3be9-4d22-80c2-c0dd5f60ce53}-Anime3_DefaultBackground2.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -2421,6 +2428,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <LocalFileName>..\Release\skin\DefaultWideHD\Media\MyAnime3\user.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{84670e2f-fd3c-46c9-8155-bcf1832bdf7c}-user.png</ZipFileName>
               <DestinationFilename>%Skin%\DefaultWideHD\Media\MyAnime3\user.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\DefaultWideHD\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{48544a33-59f9-4edf-a44c-93b8cf0b4e4d}-Anime3_DefaultBackground2.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWideHD\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -3148,6 +3162,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{bdbc6361-97f5-44fc-828c-35ac81a6e23e}-Anime3_Rating.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Anime3_Rating.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{830048e6-1546-4e98-abb1-597ca130d9dd}-Anime3_DefaultBackground2.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -3858,6 +3879,751 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{e932061b-fb93-4dc2-a38b-36a31699b8ca}-Anime3_Rating.xml</ZipFileName>
               <DestinationFilename>%Skin%\Avallanche\Anime3_Rating.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Avallanche\Media\hover_My Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4eca7266-39db-4e36-9991-549363b368c8}-hover_My Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallanche\Media\hover_My Anime3.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{34616225-cfa3-4d07-be0e-ae3f57407bb9}-Anime3_DefaultBackground2.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Ares">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>Ates</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Ares</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Actors.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3a6ee045-27a2-4abf-97f8-ad763acfec3a}-Anime3_Actors.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Actors.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Admin.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d755d7c3-c9f7-4fdd-b65a-3a28cae9eb0c}-Anime3_Admin.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Admin.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_AnimeInfo.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4a22fa91-9117-4f6f-ad55-5581b3c77371}-Anime3_AnimeInfo.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_AnimeInfo.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Calendar.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{53654269-951a-4065-9831-cb63d7b60863}-Anime3_Calendar.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Calendar.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Char.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ad0fd422-b24a-4566-89a4-492cf60a2364}-Anime3_Char.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Char.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Dummy.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6b7545b8-df51-4e59-976a-307c262624ff}-Anime3_Dummy.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Dummy.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_EpisodeList.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{42bc4c37-43b8-4141-8414-3a6cf6ed82aa}-Anime3_EpisodeList.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_EpisodeList.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Facade.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{68cdc71a-ae22-4d57-81ed-c5a20422aa6b}-Anime3_Facade.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Facade.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Fanart.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9ae5ee6a-c87d-4dab-bbf5-dc525392e23c}-Anime3_Fanart.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Fanart.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Groups_Banners.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0aaf5019-8fb9-4812-a51a-623a59e03e3c}-Anime3_Groups_Banners.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Groups_Banners.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Groups_FilmstripCoverflow.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6a71d459-d134-4023-b230-7ee8d325d67d}-Anime3_Groups_FilmstripCoverflow.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Groups_FilmstripCoverflow.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Groups_ListPosters.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{03f117e7-c11b-4cf9-b67b-99416f691679}-Anime3_Groups_ListPosters.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Groups_ListPosters.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_HiddenMenu.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fd742f69-30e3-4b3f-a417-c5f303d4047a}-Anime3_HiddenMenu.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_HiddenMenu.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Main.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6a1ae0d0-64a0-4140-94f6-59c6a584db79}-Anime3_Main.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Main.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_mediainfo.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{399fe550-cf16-47b1-8af6-857cc21d9739}-Anime3_mediainfo.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_mediainfo.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Posters.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2d7bd488-4602-4344-9b22-93eec2f2bb18}-Anime3_Posters.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Posters.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Random.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3fa6f350-f9e2-448f-afed-a057398af147}-Anime3_Random.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Random.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Rating.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{81bb99cb-2760-4a9d-8390-ffa210d91c9d}-Anime3_Rating.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Rating.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Recommendations.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0f5ff844-4932-492f-8464-3e0deaa2bc3a}-Anime3_Recommendations.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Recommendations.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Relations.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b3640d07-be7c-476c-b988-79f12562dc4f}-Anime3_Relations.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Relations.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_SkinSettings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9816e9e5-10f3-4f5b-a170-8b5a86f39558}-Anime3_SkinSettings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_SkinSettings.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_Watching.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e537572c-a931-4b1d-bbc7-947f19ac852f}-Anime3_Watching.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Watching.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Anime3_WideBanners.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{af01567f-f375-4df2-85ed-67aa938157e9}-Anime3_WideBanners.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Anime3_WideBanners.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\hover_My Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0d550dd9-93a2-46c9-9f5b-085531e9266e}-hover_My Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\hover_My Anime3.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime2_search_64.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cdaa5e0b-eeb7-4240-bbda-4f61d93988af}-anime2_search_64.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime2_search_64.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_anidb.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b6bd3689-b642-4998-85a5-2b0b8edc5676}-anime3_anidb.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_anidb.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ArrowLeft_64.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d7b5fcbb-4de7-416a-a698-e73f7fa1fabf}-anime3_ArrowLeft_64.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ArrowLeft_64.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ArrowRight_64.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d5662819-fc09-4a3f-b1e7-11ca55ed155e}-anime3_ArrowRight_64.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ArrowRight_64.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{efe595f8-1a8a-42e3-8ca3-15a7496a8397}-anime3_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_banner_focus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8cd8180c-9898-478b-8359-1d739cd7514d}-anime3_banner_focus.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_banner_focus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_banner_nofocus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e519b3f5-c3f9-4a30-843c-84c1b91a4c18}-anime3_banner_nofocus.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_banner_nofocus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_blankchar.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c5264f3b-e1ed-4d95-a479-8ce3a9c2fb19}-anime3_blankchar.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_blankchar.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_cross_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5810d126-2e49-475f-9fb9-130b15bcd6d5}-anime3_cross_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_cross_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_DefaultBackground.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{86d14ff4-5e21-42bc-a851-3d4147cd2708}-Anime3_DefaultBackground.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_DefaultBackground.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c70637b3-dca1-4b25-8d94-2491f465bde6}-Anime3_DefaultBackground2.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_dice.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b9aaaef3-35a1-4082-ba78-0d34bb2bc99f}-anime3_dice.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_dice.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_episodelist.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fe01cea1-e818-436b-b70e-682c47d20832}-anime3_episodelist.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_episodelist.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_episode_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{edc1577d-4b55-47e2-9e2b-406555386bf2}-anime3_episode_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_episode_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ex_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1945441a-3e10-4015-844c-75b88d93c7cf}-anime3_ex_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ex_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_fanart_focus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{da16d87b-0c28-42dd-be63-226790afb43c}-anime3_fanart_focus.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_fanart_focus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_fanart_nofocus.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e690ff34-a74b-46f9-94b5-9b05e37edb6d}-anime3_fanart_nofocus.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_fanart_nofocus.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_fanart_overlay_window.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{58919eb2-5c54-4b40-afff-1abcad493baf}-anime3_fanart_overlay_window.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_fanart_overlay_window.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_filmstrip_overlay.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{84894360-cb19-42e0-bcc1-1a31f3729207}-anime3_filmstrip_overlay.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_filmstrip_overlay.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_hash.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9402cd02-25eb-420e-84b8-93f07603955c}-anime3_hash.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_hash.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_heart1_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5e677935-8404-4919-a158-1b02bfb31d9b}-anime3_heart1_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_heart1_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_heart2_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8a5f29db-6dc9-4deb-8e08-574a486cf268}-anime3_heart2_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_heart2_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Download.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0f57c5e1-5860-421e-9e60-81f69834db01}-Anime3_Icon_Download.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Download.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Media.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cd73b9b2-5eb5-4a56-90c7-1291d4113566}-Anime3_Icon_Media.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Media.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Note.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f2e9d602-d79c-4e9b-943e-9cdf495598fe}-Anime3_Icon_Note.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Note.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Note2.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ed542aa2-e379-426c-b2f2-f9735669be3b}-Anime3_Icon_Note2.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Note2.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_image.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3d7ccb8a-5046-4eef-8e63-8b5bcdfd0605}-anime3_image.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_image.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_InfoPosterFrame.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c3fd0e61-d33d-4148-b597-e441f04813c3}-Anime3_InfoPosterFrame.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_InfoPosterFrame.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Info_credit_frame.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{500d1a63-816c-4fab-9d41-c58cee8376c9}-anime3_Info_credit_frame.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Info_credit_frame.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_info_info_guidelines.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4171fb4e-b77b-480e-a2b1-ba3920a5e65c}-anime3_info_info_guidelines.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_info_info_guidelines.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_info_stats_guidelines.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{039aae3d-a3a0-4acf-bd0e-cc47644cea19}-anime3_info_stats_guidelines.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_info_stats_guidelines.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ListIcon.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1485d5e2-4641-4665-8a2c-e8c5b732a2d0}-anime3_ListIcon.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_1080p.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6ff0fa5c-3f4b-443a-ae66-f8c1d48e9a1b}-anime3_logo_1080p.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_1080p.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_16x9.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7fc6b450-0442-4ff0-aa3c-e3cee94a7570}-anime3_logo_16x9.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_16x9.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_4x3.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{af2018ff-1933-4100-b5b0-2ec08fbf0e8a}-anime3_logo_4x3.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_4x3.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_720p.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{347ec7af-f7dd-43bd-adfd-16eeb0fb85c3}-anime3_logo_720p.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_720p.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_AVC.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ab6eb881-f3a4-40bd-9f66-27784634f199}-anime3_logo_AVC.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_AVC.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_bluray.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d69950a0-fae9-4e6b-a51f-e4d7e258916d}-anime3_logo_bluray.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_bluray.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_Divx.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2c592663-190d-4546-b4ef-af50c877673a}-anime3_logo_Divx.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_Divx.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_dvd.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7505c36e-0094-4201-b01e-4f3f8c450fac}-anime3_logo_dvd.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_dvd.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_mpeg2.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e8eaeb6c-d9fa-4132-9dd3-9dab4acad161}-anime3_logo_mpeg2.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_mpeg2.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_x264.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{40372cbf-484b-423c-b5e2-9b0d6dea82f4}-anime3_logo_x264.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_x264.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_xvid.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cb3c234e-e6fb-4534-a481-e6c50dfd7cad}-anime3_logo_xvid.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_xvid.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_NotAvailable.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f5ee634b-e5f6-4ba8-b30d-370919c291dd}-anime3_NotAvailable.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_NotAvailable.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_NotifyBg.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{777dd531-d8fe-4c17-9096-3b91f58bb0d2}-anime3_NotifyBg.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_NotifyBg.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_green_128.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{de328e6e-8532-418e-8164-6adaf8ac56ac}-anime3_question_green_128.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_green_128.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_green_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ee78e81a-c524-4169-8836-7ad8752908f4}-anime3_question_green_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_green_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_poster.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{343f72f5-e9b8-46f7-9629-185d5e257110}-anime3_question_poster.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_poster.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_purple_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{437d17c1-9722-4cd9-8a3b-068fb82b0d26}-anime3_question_purple_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_purple_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_refresh_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9673bab1-a945-4e03-bd45-0f88f82aaa95}-anime3_refresh_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_refresh_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_relations_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9ed40701-da16-4976-b17e-efcdaa63fe4c}-anime3_relations_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_relations_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_season_background.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fe9ca714-e36b-4708-85b7-2c5936090b63}-anime3_season_background.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_season_background.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_smile_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bd1abb7c-c15c-487d-9017-4be1b942297d}-anime3_smile_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_smile_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_star_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a0a46aac-dd26-49b2-a61b-36530af91b07}-anime3_star_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_star_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_status_overlay.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a9c9bdf1-bf02-4ba2-bc3a-fef6ebc6d5b6}-anime3_status_overlay.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_status_overlay.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_thumbborder.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{35f5d292-8ddd-4a23-b38f-8843619e7fb2}-Anime3_thumbborder.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_thumbborder.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_tick_48.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{dedf1bf9-9b19-4310-857d-eec3a8b546e2}-anime3_tick_48.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_tick_48.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8cb60e1d-8901-4ba1-bc7a-76fb1ac7cd12}-anime3_UnWatched.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatchedDVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{44756bbe-2e63-450d-815e-7576ac82bdf6}-anime3_UnWatchedDVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatchedDVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatchedNA.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e0fd9891-fdd4-43a2-8db6-4755ff412ea7}-anime3_UnWatchedNA.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatchedNA.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b33a3349-a61c-41c0-8bcc-6ad192f0935d}-anime3_UnWatched_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_DVD_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2c525382-b4f5-45eb-99cc-274936fd2068}-anime3_UnWatched_DVD_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_DVD_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_left.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8da42875-cc9a-4e24-aa22-3dadab3d4d12}-anime3_UnWatched_left.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_left.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_left_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0ea3eb98-6b6d-485c-a956-95eeae7363b3}-anime3_UnWatched_left_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_left_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3e9f061b-c948-4787-93f5-45bb7643795b}-anime3_UnWatched_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{890cd1e6-7b06-45f2-a00c-9454d1e4c7e1}-anime3_Watched.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_WatchedDVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a7853089-a723-492c-b4f2-3e390a40dee3}-anime3_WatchedDVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_WatchedDVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_WatchedNA.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{0d73a781-9968-475c-b938-a97858dbc10a}-anime3_WatchedNA.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_WatchedNA.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{76fcf45b-76b0-4d16-aad8-639e047ba589}-anime3_Watched_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_DVD_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e3990ec6-e522-432b-b7a6-c6ffdf563591}-anime3_Watched_DVD_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_DVD_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_left.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2884944d-eae4-44b5-9f7a-b72da4071dd6}-anime3_Watched_left.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_left.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_left_DVD.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bc7e305f-1cb1-4e04-a4d3-276f3261e3a9}-anime3_Watched_left_DVD.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_left_DVD.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_right.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{85992ad8-f310-4db0-a781-3edb8719d810}-anime3_Watched_right.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_right.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\BG_Anime.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1d653315-42b0-4f48-8ae4-d374df3659e3}-BG_Anime.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\BG_Anime.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav24_back.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c2bdd9ec-57d8-4397-bef5-3bbc284ca646}-nav24_back.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav24_back.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav24_next.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e70886b2-108f-4cc0-bb2b-26ff90844c5c}-nav24_next.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav24_next.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav32_back.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d345909c-ae00-4d6c-82a9-9a156c29819a}-nav32_back.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav32_back.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav32_next.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7d9efb06-eb0f-43c5-bde7-41d96cfa26ea}-nav32_next.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav32_next.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\user.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ea1697cd-0464-4857-a581-f1361b36da09}-user.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\user.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -3942,6 +4708,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <string>Skin addons</string>
           <string>Avalon Standard</string>
           <string>StreamedMP Fanart</string>
+          <string>Ares</string>
         </IncludedGroups>
         <PanelName>Tree View Selector</PanelName>
         <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
@@ -4056,6 +4823,7 @@ public class Script
           <string>StreamedMP</string>
           <string>StreamedMP Fanart</string>
           <string>Avallanche</string>
+          <string>Ares</string>
         </IncludedGroups>
         <PanelName>Install Section</PanelName>
         <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
@@ -4082,12 +4850,12 @@ public class Script
               <Value>Ths plugin requires Shoko Server to function, for setup instructions please visit:
 
 
-http://docs.shokoanime.com/server/index.html 
+https://docs.shokoanime.com/server/install_windows.html 
 
 
 For more information on how to setup the plugin iself:
 
-http://docs.shokoanime.com/myanime3/</Value>
+https://docs.shokoanime.com/myanime3/install.html</Value>
               <ValueType>String</ValueType>
               <Description>The readme text</Description>
             </SectionParam>
@@ -4136,141 +4904,258 @@ http://docs.shokoanime.com/myanime3/</Value>
   <GeneralInfo>
     <Name>My Anime 3</Name>
     <Id>3d1787e3-d584-4e62-8530-cc79716c63dc</Id>
-    <Author>Leo Werndly</Author>
+    <Author>Shoko Team</Author>
     <HomePage>https://www.shokoanime.com</HomePage>
     <ForumPage>https://forum.team-mediaportal.com/threads/my-anime-3.107475/</ForumPage>
     <UpdateUrl>https://www.shokoanime.com/files/stable/update.xml</UpdateUrl>
     <Version>
       <Major>3</Major>
       <Minor>7</Minor>
-      <Build>1</Build>
+      <Build>2</Build>
       <Revision>0</Revision>
     </Version>
-    <ExtensionDescription>MyAnime is a plugin for MediaPortal that allows you to watch and manaage your anime collection.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <ExtensionDescription>My Anime is the only MediaPortal plugin available that can deliver your entire anime collection in all it’s glory, no matter the size straight to your TV! With My Anime 3, the latest version in the My Anime you have complete control over your entire anime collection from within MediaPortal allowing you to customize the look and style when displaying your collection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.tv and MyAnimeList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This plugin does not run independently, but instead relies on using Shoko Server as a back-end.</ExtensionDescription>
-    <VersionDescription>View our changelog for release notes:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
+    <VersionDescription>View our changelog for release notes:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>https://www.shokoanime.com/files/stable/My_Anime_3_3.7.1.0.mpe1</OnlineLocation>
-    <ReleaseDate>2017-12-24T18:40:56</ReleaseDate>
+    <OnlineLocation>https://www.shokoanime.com/files/stable/My_Anime_3_3.7.2.mpe1</OnlineLocation>
+    <ReleaseDate>2018-08-18T18:40:56</ReleaseDate>
     <Tags />
     <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>
     <Params>
@@ -6109,6 +6994,13 @@ http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Titan\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3d30be96-3be9-4d22-80c2-c0dd5f60ce53}-Anime3_DefaultBackground2.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\skin\DefaultWideHD\Media\MyAnime3\anime2_search_64.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{757a204d-4d36-42ab-9f43-7ec92431c1ac}-anime2_search_64.png</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWideHD\Media\MyAnime3\anime2_search_64.png</DestinationFilename>
@@ -6644,6 +7536,13 @@ http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
         <LocalFileName>..\Release\skin\DefaultWideHD\Media\MyAnime3\user.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{84670e2f-fd3c-46c9-8155-bcf1832bdf7c}-user.png</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWideHD\Media\MyAnime3\user.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\DefaultWideHD\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{48544a33-59f9-4edf-a44c-93b8cf0b4e4d}-Anime3_DefaultBackground2.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWideHD\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -7337,6 +8236,13 @@ http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
         <LocalFileName>..\Release\skin\Avalon\Anime3_Rating.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{bdbc6361-97f5-44fc-828c-35ac81a6e23e}-Anime3_Rating.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Anime3_Rating.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{830048e6-1546-4e98-abb1-597ca130d9dd}-Anime3_DefaultBackground2.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -8038,6 +8944,741 @@ http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
         <ZipFileName>Installer{CopyFile}\{e932061b-fb93-4dc2-a38b-36a31699b8ca}-Anime3_Rating.xml</ZipFileName>
         <DestinationFilename>%Skin%\Avallanche\Anime3_Rating.xml</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Avallanche\Media\hover_My Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{4eca7266-39db-4e36-9991-549363b368c8}-hover_My Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avallanche\Media\hover_My Anime3.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{34616225-cfa3-4d07-be0e-ae3f57407bb9}-Anime3_DefaultBackground2.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Actors.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3a6ee045-27a2-4abf-97f8-ad763acfec3a}-Anime3_Actors.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Actors.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Admin.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d755d7c3-c9f7-4fdd-b65a-3a28cae9eb0c}-Anime3_Admin.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Admin.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_AnimeInfo.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{4a22fa91-9117-4f6f-ad55-5581b3c77371}-Anime3_AnimeInfo.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_AnimeInfo.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Calendar.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{53654269-951a-4065-9831-cb63d7b60863}-Anime3_Calendar.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Calendar.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Char.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ad0fd422-b24a-4566-89a4-492cf60a2364}-Anime3_Char.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Char.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Dummy.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6b7545b8-df51-4e59-976a-307c262624ff}-Anime3_Dummy.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Dummy.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_EpisodeList.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{42bc4c37-43b8-4141-8414-3a6cf6ed82aa}-Anime3_EpisodeList.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_EpisodeList.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Facade.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{68cdc71a-ae22-4d57-81ed-c5a20422aa6b}-Anime3_Facade.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Facade.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Fanart.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9ae5ee6a-c87d-4dab-bbf5-dc525392e23c}-Anime3_Fanart.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Fanart.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Groups_Banners.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0aaf5019-8fb9-4812-a51a-623a59e03e3c}-Anime3_Groups_Banners.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Groups_Banners.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Groups_FilmstripCoverflow.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6a71d459-d134-4023-b230-7ee8d325d67d}-Anime3_Groups_FilmstripCoverflow.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Groups_FilmstripCoverflow.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Groups_ListPosters.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{03f117e7-c11b-4cf9-b67b-99416f691679}-Anime3_Groups_ListPosters.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Groups_ListPosters.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_HiddenMenu.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fd742f69-30e3-4b3f-a417-c5f303d4047a}-Anime3_HiddenMenu.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_HiddenMenu.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Main.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6a1ae0d0-64a0-4140-94f6-59c6a584db79}-Anime3_Main.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Main.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_mediainfo.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{399fe550-cf16-47b1-8af6-857cc21d9739}-Anime3_mediainfo.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_mediainfo.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Posters.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2d7bd488-4602-4344-9b22-93eec2f2bb18}-Anime3_Posters.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Posters.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Random.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3fa6f350-f9e2-448f-afed-a057398af147}-Anime3_Random.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Random.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Rating.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{81bb99cb-2760-4a9d-8390-ffa210d91c9d}-Anime3_Rating.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Rating.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Recommendations.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0f5ff844-4932-492f-8464-3e0deaa2bc3a}-Anime3_Recommendations.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Recommendations.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Relations.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b3640d07-be7c-476c-b988-79f12562dc4f}-Anime3_Relations.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Relations.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_SkinSettings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9816e9e5-10f3-4f5b-a170-8b5a86f39558}-Anime3_SkinSettings.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_SkinSettings.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_Watching.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e537572c-a931-4b1d-bbc7-947f19ac852f}-Anime3_Watching.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_Watching.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Anime3_WideBanners.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{af01567f-f375-4df2-85ed-67aa938157e9}-Anime3_WideBanners.xml</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Anime3_WideBanners.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\hover_My Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0d550dd9-93a2-46c9-9f5b-085531e9266e}-hover_My Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\hover_My Anime3.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime2_search_64.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{cdaa5e0b-eeb7-4240-bbda-4f61d93988af}-anime2_search_64.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime2_search_64.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_anidb.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b6bd3689-b642-4998-85a5-2b0b8edc5676}-anime3_anidb.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_anidb.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ArrowLeft_64.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d7b5fcbb-4de7-416a-a698-e73f7fa1fabf}-anime3_ArrowLeft_64.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ArrowLeft_64.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ArrowRight_64.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d5662819-fc09-4a3f-b1e7-11ca55ed155e}-anime3_ArrowRight_64.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ArrowRight_64.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_background.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{efe595f8-1a8a-42e3-8ca3-15a7496a8397}-anime3_background.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_background.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_banner_focus.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8cd8180c-9898-478b-8359-1d739cd7514d}-anime3_banner_focus.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_banner_focus.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_banner_nofocus.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e519b3f5-c3f9-4a30-843c-84c1b91a4c18}-anime3_banner_nofocus.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_banner_nofocus.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_blankchar.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c5264f3b-e1ed-4d95-a479-8ce3a9c2fb19}-anime3_blankchar.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_blankchar.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_cross_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5810d126-2e49-475f-9fb9-130b15bcd6d5}-anime3_cross_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_cross_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_DefaultBackground.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{86d14ff4-5e21-42bc-a851-3d4147cd2708}-Anime3_DefaultBackground.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_DefaultBackground.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c70637b3-dca1-4b25-8d94-2491f465bde6}-Anime3_DefaultBackground2.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_dice.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b9aaaef3-35a1-4082-ba78-0d34bb2bc99f}-anime3_dice.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_dice.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_episodelist.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fe01cea1-e818-436b-b70e-682c47d20832}-anime3_episodelist.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_episodelist.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_episode_background.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{edc1577d-4b55-47e2-9e2b-406555386bf2}-anime3_episode_background.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_episode_background.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ex_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1945441a-3e10-4015-844c-75b88d93c7cf}-anime3_ex_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ex_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_fanart_focus.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{da16d87b-0c28-42dd-be63-226790afb43c}-anime3_fanart_focus.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_fanart_focus.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_fanart_nofocus.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e690ff34-a74b-46f9-94b5-9b05e37edb6d}-anime3_fanart_nofocus.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_fanart_nofocus.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_fanart_overlay_window.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{58919eb2-5c54-4b40-afff-1abcad493baf}-anime3_fanart_overlay_window.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_fanart_overlay_window.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_filmstrip_overlay.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{84894360-cb19-42e0-bcc1-1a31f3729207}-anime3_filmstrip_overlay.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_filmstrip_overlay.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_hash.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9402cd02-25eb-420e-84b8-93f07603955c}-anime3_hash.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_hash.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_heart1_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5e677935-8404-4919-a158-1b02bfb31d9b}-anime3_heart1_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_heart1_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_heart2_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8a5f29db-6dc9-4deb-8e08-574a486cf268}-anime3_heart2_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_heart2_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Download.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0f57c5e1-5860-421e-9e60-81f69834db01}-Anime3_Icon_Download.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Download.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Media.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{cd73b9b2-5eb5-4a56-90c7-1291d4113566}-Anime3_Icon_Media.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Media.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Note.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f2e9d602-d79c-4e9b-943e-9cdf495598fe}-Anime3_Icon_Note.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Note.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_Icon_Note2.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ed542aa2-e379-426c-b2f2-f9735669be3b}-Anime3_Icon_Note2.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_Icon_Note2.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_image.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3d7ccb8a-5046-4eef-8e63-8b5bcdfd0605}-anime3_image.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_image.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_InfoPosterFrame.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c3fd0e61-d33d-4148-b597-e441f04813c3}-Anime3_InfoPosterFrame.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_InfoPosterFrame.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Info_credit_frame.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{500d1a63-816c-4fab-9d41-c58cee8376c9}-anime3_Info_credit_frame.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Info_credit_frame.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_info_info_guidelines.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{4171fb4e-b77b-480e-a2b1-ba3920a5e65c}-anime3_info_info_guidelines.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_info_info_guidelines.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_info_stats_guidelines.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{039aae3d-a3a0-4acf-bd0e-cc47644cea19}-anime3_info_stats_guidelines.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_info_stats_guidelines.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_ListIcon.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1485d5e2-4641-4665-8a2c-e8c5b732a2d0}-anime3_ListIcon.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_1080p.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6ff0fa5c-3f4b-443a-ae66-f8c1d48e9a1b}-anime3_logo_1080p.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_1080p.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_16x9.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7fc6b450-0442-4ff0-aa3c-e3cee94a7570}-anime3_logo_16x9.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_16x9.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_4x3.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{af2018ff-1933-4100-b5b0-2ec08fbf0e8a}-anime3_logo_4x3.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_4x3.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_720p.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{347ec7af-f7dd-43bd-adfd-16eeb0fb85c3}-anime3_logo_720p.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_720p.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_AVC.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ab6eb881-f3a4-40bd-9f66-27784634f199}-anime3_logo_AVC.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_AVC.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_bluray.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d69950a0-fae9-4e6b-a51f-e4d7e258916d}-anime3_logo_bluray.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_bluray.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_Divx.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2c592663-190d-4546-b4ef-af50c877673a}-anime3_logo_Divx.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_Divx.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_dvd.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7505c36e-0094-4201-b01e-4f3f8c450fac}-anime3_logo_dvd.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_dvd.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_mpeg2.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e8eaeb6c-d9fa-4132-9dd3-9dab4acad161}-anime3_logo_mpeg2.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_mpeg2.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_x264.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{40372cbf-484b-423c-b5e2-9b0d6dea82f4}-anime3_logo_x264.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_x264.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_logo_xvid.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{cb3c234e-e6fb-4534-a481-e6c50dfd7cad}-anime3_logo_xvid.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_logo_xvid.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_NotAvailable.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f5ee634b-e5f6-4ba8-b30d-370919c291dd}-anime3_NotAvailable.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_NotAvailable.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_NotifyBg.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{777dd531-d8fe-4c17-9096-3b91f58bb0d2}-anime3_NotifyBg.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_NotifyBg.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_green_128.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{de328e6e-8532-418e-8164-6adaf8ac56ac}-anime3_question_green_128.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_green_128.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_green_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ee78e81a-c524-4169-8836-7ad8752908f4}-anime3_question_green_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_green_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_poster.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{343f72f5-e9b8-46f7-9629-185d5e257110}-anime3_question_poster.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_poster.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_question_purple_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{437d17c1-9722-4cd9-8a3b-068fb82b0d26}-anime3_question_purple_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_question_purple_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_refresh_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9673bab1-a945-4e03-bd45-0f88f82aaa95}-anime3_refresh_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_refresh_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_relations_background.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9ed40701-da16-4976-b17e-efcdaa63fe4c}-anime3_relations_background.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_relations_background.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_season_background.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fe9ca714-e36b-4708-85b7-2c5936090b63}-anime3_season_background.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_season_background.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_smile_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bd1abb7c-c15c-487d-9017-4be1b942297d}-anime3_smile_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_smile_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_star_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a0a46aac-dd26-49b2-a61b-36530af91b07}-anime3_star_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_star_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_status_overlay.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a9c9bdf1-bf02-4ba2-bc3a-fef6ebc6d5b6}-anime3_status_overlay.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_status_overlay.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\Anime3_thumbborder.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{35f5d292-8ddd-4a23-b38f-8843619e7fb2}-Anime3_thumbborder.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\Anime3_thumbborder.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_tick_48.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{dedf1bf9-9b19-4310-857d-eec3a8b546e2}-anime3_tick_48.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_tick_48.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8cb60e1d-8901-4ba1-bc7a-76fb1ac7cd12}-anime3_UnWatched.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatchedDVD.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{44756bbe-2e63-450d-815e-7576ac82bdf6}-anime3_UnWatchedDVD.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatchedDVD.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatchedNA.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e0fd9891-fdd4-43a2-8db6-4755ff412ea7}-anime3_UnWatchedNA.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatchedNA.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_DVD.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b33a3349-a61c-41c0-8bcc-6ad192f0935d}-anime3_UnWatched_DVD.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_DVD.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_DVD_right.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2c525382-b4f5-45eb-99cc-274936fd2068}-anime3_UnWatched_DVD_right.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_DVD_right.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_left.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8da42875-cc9a-4e24-aa22-3dadab3d4d12}-anime3_UnWatched_left.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_left.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_left_DVD.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0ea3eb98-6b6d-485c-a956-95eeae7363b3}-anime3_UnWatched_left_DVD.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_left_DVD.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_UnWatched_right.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3e9f061b-c948-4787-93f5-45bb7643795b}-anime3_UnWatched_right.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_UnWatched_right.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{890cd1e6-7b06-45f2-a00c-9454d1e4c7e1}-anime3_Watched.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_WatchedDVD.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a7853089-a723-492c-b4f2-3e390a40dee3}-anime3_WatchedDVD.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_WatchedDVD.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_WatchedNA.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{0d73a781-9968-475c-b938-a97858dbc10a}-anime3_WatchedNA.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_WatchedNA.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_DVD.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{76fcf45b-76b0-4d16-aad8-639e047ba589}-anime3_Watched_DVD.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_DVD.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_DVD_right.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e3990ec6-e522-432b-b7a6-c6ffdf563591}-anime3_Watched_DVD_right.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_DVD_right.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_left.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2884944d-eae4-44b5-9f7a-b72da4071dd6}-anime3_Watched_left.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_left.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_left_DVD.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bc7e305f-1cb1-4e04-a4d3-276f3261e3a9}-anime3_Watched_left_DVD.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_left_DVD.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\anime3_Watched_right.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{85992ad8-f310-4db0-a781-3edb8719d810}-anime3_Watched_right.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\anime3_Watched_right.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\BG_Anime.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1d653315-42b0-4f48-8ae4-d374df3659e3}-BG_Anime.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\BG_Anime.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav24_back.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c2bdd9ec-57d8-4397-bef5-3bbc284ca646}-nav24_back.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav24_back.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav24_next.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e70886b2-108f-4cc0-bb2b-26ff90844c5c}-nav24_next.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav24_next.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav32_back.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d345909c-ae00-4d6c-82a9-9a156c29819a}-nav32_back.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav32_back.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\nav32_next.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7d9efb06-eb0f-43c5-bde7-41d96cfa26ea}-nav32_next.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\nav32_next.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\user.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ea1697cd-0464-4857-a581-f1361b36da09}-user.png</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\user.png</DestinationFilename>
+      </FileItem>
     </Items>
   </UniqueFileList>
   <ProjectSettings>
@@ -8080,6 +9721,16 @@ http://docs.shokoanime.com/changelog.html#ma3</VersionDescription>
         <DestinationFilename>%Skin%\Avallanche</DestinationFilename>
         <Folder>..\Release\skin\Avallanche</Folder>
         <Group>Avallanche</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{895f0b4c-4194-4d4f-a5f3-03edb3bfbbbd}-</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\</DestinationFilename>
+        <Folder>..\Release\skin\Ares</Folder>
+        <Group>Ares</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>

@@ -3898,7 +3898,7 @@ Posters will always be shown, even when a fanart exists</Description>
       </GroupItem>
       <GroupItem Name="Ares">
         <ParentGroup>Skins</ParentGroup>
-        <DisplayName>Ates</DisplayName>
+        <DisplayName>Ares</DisplayName>
         <DefaulChecked>true</DefaulChecked>
         <Description>Ares</Description>
         <Files>

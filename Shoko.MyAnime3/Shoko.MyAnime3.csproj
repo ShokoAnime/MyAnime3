@@ -80,6 +80,9 @@
     <Reference Include="ImpromptuInterface, Version=6.2.2.0, Culture=neutral, PublicKeyToken=0b1781c923b2975b, processorArchitecture=MSIL">
       <HintPath>..\packages\ImpromptuInterface.6.2.2\lib\net40\ImpromptuInterface.dll</HintPath>
     </Reference>
+    <Reference Include="MediaInfo.Wrapper">
+      <HintPath>..\Dependencies\MP19_DLL\MediaInfo.Wrapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>False</Private>
@@ -687,7 +690,7 @@ mkdir Merge
 ..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp6.dll" "Merge\Animetemp3.dll" "Merge\Animetemp4.dll"
 ..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp7.dll" "Merge\Animetemp5.dll" "de\Shoko.Commons.resources.dll"
 ..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /closed /out:"Merge\Animetemp8.dll" "Merge\Animetemp6.dll" "Merge\Animetemp7.dll"
-..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "Shoko.Commons.dll" "Shoko.Models.dll" "MA3_FFDShowAPI.dll" "Nancy.Rest.Annotations.dll" "Nancy.Rest.Client.dll" "Pri.LongPath.dll" "Newtonsoft.Json.dll" "ImpromptuInterface.dll" "Merge\Animetemp8.dll"
+..\..\..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /t:library /lib:"..\..\..\Dependencies\MP19_DLL" /closed /out:"Merge\Anime3.dll" "Anime3.dll" "Shoko.Commons.dll" "Shoko.Models.dll" "MA3_FFDShowAPI.dll" "Nancy.Rest.Annotations.dll" "Nancy.Rest.Client.dll" "Newtonsoft.Json.dll" "ImpromptuInterface.dll" "Merge\Animetemp8.dll"
 del anime3.*
 del Merge\Animetemp*
 del MA3_FFDShowAPI.*

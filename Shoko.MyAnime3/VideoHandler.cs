@@ -487,7 +487,7 @@ namespace Shoko.MyAnime3
                     timeMovieStopped = 0;
 
                     //FIX MEDIAPORTAL 1 Bug checking for mediainfo.
-                    g_Player._mediaInfo = new MediaInfoWrapper("donoexists");
+                    //g_Player._mediaInfo = new MediaInfoWrapper("donoexists");
                     //************************//
                     currentUri = current.Uri;
                     g_Player.Factory = prevfactory;

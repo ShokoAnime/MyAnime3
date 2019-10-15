@@ -644,7 +644,7 @@ namespace Shoko.MyAnime3.ImageManagement
                 try
                 {
                     BaseConfig.MyAnimeLog.Write("Trying to load from shokoserver, EntityID: "+entityid+" Type: "+type+" Thumb: "+(thumb ? "yes" : "no"));
-                    imageArray = VM_ShokoServer.Instance.ShokoImages.GetImage(entityid, type, thumb);
+                    imageArray = (Stream)VM_ShokoServer.Instance.ShokoImages.GetImage(entityid, type, thumb);
                     imageArray.CopyTo(ms);
                     try
                     {

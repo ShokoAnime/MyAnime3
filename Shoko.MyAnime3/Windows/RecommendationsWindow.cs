@@ -126,8 +126,8 @@ namespace Shoko.MyAnime3.Windows
 		public override bool Init()
 		{
             bool res = this.InitSkin<GuiProperty>("Anime3_Recommendations.xml");
-            SetGUIProperty(GuiProperty.Fanart_1, "hover_my anime3.jpg");
-            SetGUIProperty(GuiProperty.Fanart_2, "hover_my anime3.jpg");
+            SetGUIProperty(GuiProperty.Fanart_1, "hover_My_Anime3.jpg");
+            SetGUIProperty(GuiProperty.Fanart_2, "hover_My_Anime3.jpg");
             return res;
         }
 

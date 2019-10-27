@@ -25,7 +25,7 @@
       <posY>0</posY>
       <width>1920</width>
       <height>1080</height>
-      <texture>hover_My Anime3.jpg</texture>
+      <texture>hover_My_Anime3.jpg</texture>
       <animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
     </control>
     <control>

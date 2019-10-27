@@ -1036,13 +1036,6 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Titan\Media\hover_My Anime3.jpg</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{d6c0d5a0-5057-44f8-94c4-a915ac2c2b11}-hover_My Anime3.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\Titan\Media\hover_My Anime3.jpg</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\skin\Titan\Media\panel_myfilms_menu.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{9a71e99c-0a5f-484c-9465-19d2e4af55b6}-panel_myfilms_menu.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\panel_myfilms_menu.png</DestinationFilename>
@@ -1880,6 +1873,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{3d30be96-3be9-4d22-80c2-c0dd5f60ce53}-Anime3_DefaultBackground2.jpg</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Titan\Media\hover_My_Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b03e10d0-6747-4185-bce5-073ae2a8cddc}-hover_My_Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Media\hover_My_Anime3.jpg</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -2612,13 +2612,6 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Avalon\Media\hover_My Anime3.jpg</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{c034b51a-e1cf-462f-b5d9-a482391f97a8}-hover_My Anime3.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\Avalon\Media\hover_My Anime3.jpg</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
               <LocalFileName>..\Release\skin\Avalon\Media\MyAnime3\anime3_ListIcon.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{4a1bdf48-5826-46a7-86a6-ca2ae5022ae6}-anime3_ListIcon.png</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
@@ -3168,6 +3161,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <LocalFileName>..\Release\skin\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{830048e6-1546-4e98-abb1-597ca130d9dd}-Anime3_DefaultBackground2.jpg</ZipFileName>
               <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Avalon\Media\hover_My_Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f79d521c-78bd-4226-b444-952982bcbc47}-hover_My_Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avalon\Media\hover_My_Anime3.jpg</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -3882,16 +3882,16 @@ Posters will always be shown, even when a fanart exists</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Avallanche\Media\hover_My Anime3.jpg</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{4eca7266-39db-4e36-9991-549363b368c8}-hover_My Anime3.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\Avallanche\Media\hover_My Anime3.jpg</DestinationFilename>
+              <LocalFileName>..\Release\skin\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{34616225-cfa3-4d07-be0e-ae3f57407bb9}-Anime3_DefaultBackground2.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{34616225-cfa3-4d07-be0e-ae3f57407bb9}-Anime3_DefaultBackground2.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+              <LocalFileName>..\Release\skin\Avallanche\Media\hover_My_Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b4b065bc-2097-4d74-b173-39b8cf4721a1}-hover_My_Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\Avallanche\Media\hover_My_Anime3.jpg</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -4063,13 +4063,6 @@ Posters will always be shown, even when a fanart exists</Description>
               <LocalFileName>..\Release\skin\Ares\Anime3_WideBanners.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{af01567f-f375-4df2-85ed-67aa938157e9}-Anime3_WideBanners.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Anime3_WideBanners.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>..\Release\skin\Ares\Media\hover_My Anime3.jpg</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{0d550dd9-93a2-46c9-9f5b-085531e9266e}-hover_My Anime3.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\hover_My Anime3.jpg</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
@@ -4624,6 +4617,13 @@ Posters will always be shown, even when a fanart exists</Description>
               <ZipFileName>Installer{CopyFile}\{ea1697cd-0464-4857-a581-f1361b36da09}-user.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\user.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Release\skin\Ares\Media\hover_My_Anime3.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{34a14278-b7b5-4099-ac92-748df765a23f}-hover_My_Anime3.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\hover_My_Anime3.jpg</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -4850,12 +4850,12 @@ public class Script
               <Value>Ths plugin requires Shoko Server to function, for setup instructions please visit:
 
 
-https://docs.shokoanime.com/server/install_windows.html 
+https://docs.shokoanime.com/server/install_windows 
 
 
 For more information on how to setup the plugin iself:
 
-https://docs.shokoanime.com/myanime3/install.html</Value>
+https://docs.shokoanime.com/myanime3/install/</Value>
               <ValueType>String</ValueType>
               <Description>The readme text</Description>
             </SectionParam>
@@ -4911,10 +4911,103 @@ https://docs.shokoanime.com/myanime3/install.html</Value>
     <Version>
       <Major>3</Major>
       <Minor>7</Minor>
-      <Build>2</Build>
+      <Build>3</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>My Anime is the only MediaPortal plugin available that can deliver your entire anime collection in all it’s glory, no matter the size straight to your TV! With My Anime 3, the latest version in the My Anime you have complete control over your entire anime collection from within MediaPortal allowing you to customize the look and style when displaying your collection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5103,6 +5196,102 @@ It connects to various community sites such as AniDB, The TvDB, MovieDB, Trakt.t
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This plugin does not run independently, but instead relies on using Shoko Server as a back-end.</ExtensionDescription>
     <VersionDescription>View our changelog for release notes:
 
@@ -5152,10 +5341,58 @@ This plugin does not run independently, but instead relies on using Shoko Server
 
 
 
-https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://docs.shokoanime.com/changelog/myanime3/</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>https://www.shokoanime.com/files/stable/My_Anime_3_3.7.2.mpe1</OnlineLocation>
-    <ReleaseDate>2018-08-18T18:40:56</ReleaseDate>
+    <ReleaseDate>2019-10-22T18:40:56</ReleaseDate>
     <Tags />
     <Location>..\Release\MP1\[Name]_[Version].mpe1</Location>
     <Params>
@@ -6154,13 +6391,6 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Titan\Media\hover_My Anime3.jpg</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d6c0d5a0-5057-44f8-94c4-a915ac2c2b11}-hover_My Anime3.jpg</ZipFileName>
-        <DestinationFilename>%Skin%\Titan\Media\hover_My Anime3.jpg</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\skin\Titan\Media\panel_myfilms_menu.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{9a71e99c-0a5f-484c-9465-19d2e4af55b6}-panel_myfilms_menu.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\panel_myfilms_menu.png</DestinationFilename>
@@ -7001,6 +7231,13 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Titan\Media\hover_My_Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b03e10d0-6747-4185-bce5-073ae2a8cddc}-hover_My_Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Media\hover_My_Anime3.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\skin\DefaultWideHD\Media\MyAnime3\anime2_search_64.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{757a204d-4d36-42ab-9f43-7ec92431c1ac}-anime2_search_64.png</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWideHD\Media\MyAnime3\anime2_search_64.png</DestinationFilename>
@@ -7687,13 +7924,6 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Avalon\Media\hover_My Anime3.jpg</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{c034b51a-e1cf-462f-b5d9-a482391f97a8}-hover_My Anime3.jpg</ZipFileName>
-        <DestinationFilename>%Skin%\Avalon\Media\hover_My Anime3.jpg</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
         <LocalFileName>..\Release\skin\Avalon\Media\MyAnime3\anime3_ListIcon.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{4a1bdf48-5826-46a7-86a6-ca2ae5022ae6}-anime3_ListIcon.png</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\anime3_ListIcon.png</DestinationFilename>
@@ -8243,6 +8473,13 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
         <LocalFileName>..\Release\skin\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{830048e6-1546-4e98-abb1-597ca130d9dd}-Anime3_DefaultBackground2.jpg</ZipFileName>
         <DestinationFilename>%Skin%\Avalon\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Avalon\Media\hover_My_Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f79d521c-78bd-4226-b444-952982bcbc47}-hover_My_Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avalon\Media\hover_My_Anime3.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -8947,16 +9184,16 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Avallanche\Media\hover_My Anime3.jpg</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{4eca7266-39db-4e36-9991-549363b368c8}-hover_My Anime3.jpg</ZipFileName>
-        <DestinationFilename>%Skin%\Avallanche\Media\hover_My Anime3.jpg</DestinationFilename>
+        <LocalFileName>..\Release\skin\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{34616225-cfa3-4d07-be0e-ae3f57407bb9}-Anime3_DefaultBackground2.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{34616225-cfa3-4d07-be0e-ae3f57407bb9}-Anime3_DefaultBackground2.jpg</ZipFileName>
-        <DestinationFilename>%Skin%\Avallanche\Media\MyAnime3\Anime3_DefaultBackground2.jpg</DestinationFilename>
+        <LocalFileName>..\Release\skin\Avallanche\Media\hover_My_Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b4b065bc-2097-4d74-b173-39b8cf4721a1}-hover_My_Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Avallanche\Media\hover_My_Anime3.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -9118,13 +9355,6 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
         <LocalFileName>..\Release\skin\Ares\Anime3_WideBanners.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{af01567f-f375-4df2-85ed-67aa938157e9}-Anime3_WideBanners.xml</ZipFileName>
         <DestinationFilename>%Skin%\[DEFAULT]\Anime3_WideBanners.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>..\Release\skin\Ares\Media\hover_My Anime3.jpg</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{0d550dd9-93a2-46c9-9f5b-085531e9266e}-hover_My Anime3.jpg</ZipFileName>
-        <DestinationFilename>%Skin%\[DEFAULT]\Media\hover_My Anime3.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -9678,6 +9908,13 @@ https://docs.shokoanime.com/changelog.html#m372</VersionDescription>
         <LocalFileName>..\Release\skin\Ares\Media\MyAnime3\user.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{ea1697cd-0464-4857-a581-f1361b36da09}-user.png</ZipFileName>
         <DestinationFilename>%Skin%\[DEFAULT]\Media\MyAnime3\user.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Release\skin\Ares\Media\hover_My_Anime3.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{34a14278-b7b5-4099-ac92-748df765a23f}-hover_My_Anime3.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\[DEFAULT]\Media\hover_My_Anime3.jpg</DestinationFilename>
       </FileItem>
     </Items>
   </UniqueFileList>

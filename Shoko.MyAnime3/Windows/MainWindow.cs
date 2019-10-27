@@ -638,7 +638,7 @@ namespace Shoko.MyAnime3.Windows
             strButtonText = sett.PluginName;
             strButtonImage = String.Empty;
             strButtonImageFocus = String.Empty;
-            strPictureImage = "hover_my anime3.jpg";
+            strPictureImage = "hover_My_Anime3.jpg";
             return true;
         }
 
@@ -2874,7 +2874,7 @@ void UnSubClass()
         {
             if (isFirstInitDone)
                 return;
-            fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
+            fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_My_Anime3.jpg";
             Breadcrumbs = new List<History> {new History()};
             if (string.IsNullOrEmpty(settings.JMMServer_Address) ||
                 string.IsNullOrEmpty(settings.JMMServer_Port))
@@ -3462,7 +3462,7 @@ void UnSubClass()
                 {
                     // Fallback to default thumbnail if none found
                     SetGUIProperty(GuiProperty.Episode_Image, ep.EpisodeImageLocation);
-                    fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
+                    fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_My_Anime3.jpg";
                 }
                 else
                 {
@@ -3582,7 +3582,7 @@ void UnSubClass()
                 BaseConfig.MyAnimeLog.Write("LOADING FANART: {0} - {1}", desc, fanart?.FileName ?? "NONE");
 
                 if (string.IsNullOrEmpty(fanart?.FileName))
-                    fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_my anime3.jpg";
+                    fanartTexture.Filename = GUIGraphicsContext.Skin + @"\Media\hover_My_Anime3.jpg";
                 else
                     fanartTexture.Filename = fanart.FileName;
 

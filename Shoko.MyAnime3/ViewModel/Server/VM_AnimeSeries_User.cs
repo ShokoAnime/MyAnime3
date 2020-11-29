@@ -342,7 +342,6 @@ namespace Shoko.MyAnime3.ViewModel.Server
             CrossRefAniDBMAL = contract.CrossRefAniDBMAL;
             TvDB_Series = contract.TvDB_Series;
             MovieDB_Movie = contract.MovieDB_Movie;
-            TopLevelGroup = contract.TopLevelGroup;
         }
 
 

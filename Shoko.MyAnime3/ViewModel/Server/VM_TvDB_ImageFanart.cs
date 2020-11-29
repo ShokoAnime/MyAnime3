@@ -36,31 +36,9 @@ namespace Shoko.MyAnime3.ViewModel.Server
             }
         }
 
-        public string FullThumbnailPathPlain
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(ThumbnailPath)) return string.Empty;
-                return Path.Combine(Utils.GetTvDBImagePath(), ThumbnailPath.Replace("/", @"\"));
-            }
-        }
+        public string FullThumbnailPathPlain => FullImagePathPlain;
 
-        public string FullThumbnailPath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(FullThumbnailPathPlain)) return FullThumbnailPathPlain;
-
-                if (!File.Exists(FullThumbnailPathPlain))
-                {
-                    ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_FanArt, this, false);
-                    MainWindow.imageHelper.DownloadImage(req);
-                    if (File.Exists(FullThumbnailPathPlain)) return FullThumbnailPathPlain;
-                }
-
-                return FullThumbnailPathPlain;
-            }
-        }
+        public string FullThumbnailPath => FullImagePath;
 
     }
 }

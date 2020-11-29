@@ -250,7 +250,7 @@ namespace Shoko.MyAnime3.Windows
             }
         }
 
-        private void SetCharacterProperties(CL_AniDB_Character aniChar)
+        private void SetCharacterProperties(CL_AniDB_Character aniChar, VM_AniDB_Anime anime = null)
         {
             SetGUIProperty(GuiProperty.Actors_Character_Name, aniChar.CharName);
             SetGUIProperty(GuiProperty.Actors_Character_KanjiName, aniChar.CharKanjiName);
@@ -263,11 +263,11 @@ namespace Shoko.MyAnime3.Windows
 
             SetGUIProperty(GuiProperty.Actors_Character_Poster, imagePath);
 
-            if (aniChar.Anime != null)
+            if (anime != null)
             {
-                SetGUIProperty(GuiProperty.Actors_Series_Title, aniChar.Anime.FormattedTitle);
+                SetGUIProperty(GuiProperty.Actors_Series_Title, anime.FormattedTitle);
                 SetGUIProperty(GuiProperty.Actors_Series_Poster,
-                    ImageAllocator.GetAnimeImageAsFileName((VM_AniDB_Anime)aniChar.Anime, GUIFacadeControl.Layout.List));
+                    ImageAllocator.GetAnimeImageAsFileName(anime, GUIFacadeControl.Layout.List));
             }
             else
             {
